@@ -1,4 +1,4 @@
-BaseUrl= "https://cloudnative.to"
+BaseUrl= "https://cloudnative.to/"
 LanguageCode= "en-US"
 Title= "Cloud Native Community"
 paginate = 5

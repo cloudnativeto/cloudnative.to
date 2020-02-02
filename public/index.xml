@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cloud Native Community</title>
+    <link>https://cloudnative.to/</link>
+    <description>Recent content on Cloud Native Community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <copyright>All rights reserved - 2020</copyright>
+    
+	<atom:link href="https://cloudnative.to/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>
