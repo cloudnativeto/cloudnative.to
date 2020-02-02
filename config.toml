@@ -13,7 +13,7 @@ canonifyurls = true
     post = "/post/:year/:month/:day/:slug"
 
 [params]
-  description = "comming soon..."
+  description = "coming soon..."
   cover = "images/user.jpg"
   author = "Cloud Native Community"
   authorlocation = ""
