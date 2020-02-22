@@ -1,0 +1,32 @@
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+{{ "<!-- testimonial -->" | safeHTML }}
+{{ with $data.homepage.testimonial }}
+<section class="section bg-gray bg-dots">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <div class="section-title-border border-center"></div>
+        <h4 class="section-title-sm">{{ .subtitle | markdownify }}</h4>
+        <h2 class="section-title">{{ .title | markdownify }}</h2>
+      </div>
+      <div class="col-10 mx-auto">
+        <div class="testimonial-slider">
+          {{ range .testimonial_item }}
+          {{ "<!-- slider-item -->" | safeHTML }}
+          <div class="text-center">
+            <img class="img-fluid box-shadow rounded-circle mb-5 d-inline-block" src="{{ .client_image | absURL }}" alt="{{ .name }}">
+            <div class="bg-quote text-center pt-md-4">
+              <p class="font-italic mb-5 h5 text-dark">{{ .content | markdownify }}</p>
+              <h4>{{ .name }}</h4>
+              <span class="text-primary">{{ .designation | markdownify }}</span>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ "<!-- /testimonial -->" | safeHTML }}

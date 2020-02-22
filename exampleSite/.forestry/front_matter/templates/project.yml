@@ -1,0 +1,46 @@
+---
+label: Project
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: title
+- type: datetime
+  name: date
+  label: date
+- type: text
+  name: description
+  label: description
+  description: meta description
+- type: text
+  name: bg_image_webp
+  label: bg_image_webp
+  description: page title background image webp
+- type: file
+  name: bg_image
+  label: bg_image
+  description: page title background image
+- type: text
+  name: image_webp
+  label: image_webp
+  description: project image webp
+- type: file
+  name: image
+  label: image
+  description: project image
+- type: text
+  name: client
+  label: client
+  description: Client
+- type: text
+  name: category
+  label: category
+  description: Project category
+- type: text
+  name: status
+  label: status
+  description: 'Ex: pending'
+- type: text
+  name: type
+  label: type
+  default: project

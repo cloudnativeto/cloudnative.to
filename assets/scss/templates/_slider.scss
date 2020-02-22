@@ -1,0 +1,28 @@
+/* hero slider */
+.hero-section {
+  padding: 160px 0 270px;
+}
+
+.hero-slider {
+  overflow-x: hidden;
+
+  .prevArrow {
+    left: -100px;
+  }
+
+  .nextArrow {
+    right: -100px;
+  }
+
+  &:hover {
+    .prevArrow {
+      left: 35px;
+    }
+
+    .nextArrow {
+      right: 35px;
+    }
+  }
+}
+
+/* /hero slider */

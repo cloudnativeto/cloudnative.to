@@ -1,0 +1,14 @@
+<div class="project-item mb-5">
+  <div class="position-relative mb-4 overflow-hidden">
+    <img src="{{ .Params.Image_webp | absURL }}" onerror="this.src='{{.Params.Image | absURL }}'" alt="{{ .Title }}"
+      class="img-fluid w-100">
+    <div class="hover-overlay">
+      <a href="{{ .Params.Image | absURL }}" class="venobox"><i class="uni-plus"></i></a>
+    </div>
+  </div>
+  {{ "<!-- project-info -->" | safeHTML }}
+  <div>
+    <h6 class="text-primary">{{ .Params.Category }}</h6>
+    <h4><a class="text-dark" href="{{ .Permalink }}">{{ .Title }}</a></h4>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="team-member text-center">
+  <div class="team-member-img position-relative mb-5">
+    <img class="img-fluid w-100" src="{{ .Params.Image_webp | absURL }}"
+      onerror="this.src='{{.Params.Image | absURL }}'" alt="{{ .Title }}">
+    <div class="hover-icon py-4">
+      <ul class="list-inline social-icon">
+        {{ range .Params.Social }}
+        <li class="list-inline-item">
+          <a href="{{ .link | safeURL }}" class="hover-ripple ripple-white"><i class="fa {{ .icon }}"></i></a>
+        </li>
+        {{ end }}
+      </ul>
+    </div>
+  </div>
+  <h4>{{ .Title }}</h4>
+  <span>{{ .Params.Designation | markdownify }}</span>
+</div>

@@ -1,0 +1,34 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+{{ "<!-- service details -->" | safeHTML }}
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <aside class="col-lg-4">
+        {{ "<!-- service list -->" | safeHTML }}
+        <div class="bg-white px-4 py-5 box-shadow mb-5">
+          <h4 class="mb-4">Our Services</h4>
+          <ul class="list-styled style-circle">
+            {{ range (where .Site.Pages "Type" "service") }}
+            <li class="border-bottom border-color"><a href="{{ .Permalink }}"
+                class="text-color d-block pb-3 mt-3 text-decoration-none">{{ .Title }}</a></li>
+            {{ end }}
+          </ul>
+        </div>
+        {{ partial "quick-contact.html" . }}
+      </aside>
+      <div class="col-lg-8">
+        <img src="{{ .Params.Image_webp | absURL }}" onerror="this.src='{{.Params.Image | absURL }}'"
+          alt="service thumb" class="img-fluid w-100 mb-5">
+        <div class="content">
+          {{ .Content }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ "<!-- /service details -->" | safeHTML }}
+
+{{ end }}

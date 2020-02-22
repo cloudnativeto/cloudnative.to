@@ -1,0 +1,23 @@
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+{{ with $data.homepage.about }}
+<div class="container">
+  <div class="row justify-content-between align-items-center">
+    <div class="col-md-5 bg-contain" data-background="{{ .bg_image | absURL }}">
+      {{ "<!-- about us image -->" | safeHTML }}
+      <img class="img-fluid w-100" src="{{ .image_webp | absURL }}" onerror="this.src='{{.image | absURL }}'" alt="About Image">
+    </div>
+    <div class="col-md-6">
+      <div class="section-title-border"></div>
+      <h6 class="section-title-sm">{{ .subtitle | markdownify }}</h6>
+      <h2 class="section-title">{{ .title | markdownify }}</h2>
+      <p class="mb-5">{{ .content | markdownify }}</p>
+      {{ if .button.enable }}
+      {{ with .button }}
+      <a href="{{ .link | absLangURL }}" class="btn btn-primary hover-ripple">{{ .label }}</a>
+      {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</div>
+{{ end }}

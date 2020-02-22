@@ -1,0 +1,12 @@
+<div class="card border-0 rounded-0 position-relative box-shadow">
+  {{ with .Params.Categories }}{{range first 1 .}} <div class="card-type">{{ . | title }}</div>{{ end }}{{ end }}
+  <img class="card-img-top rounded-0" src="{{ .Params.Image_webp | absURL }}"
+    onerror="this.src='{{.Params.Image | absURL }}'" alt="{{ .Title }}">
+  <div class="card-body">
+    <div class="card-meta text-uppercase mb-2">by <strong class="text-dark">{{ .Params.Author }}</strong>/ on
+      <strong class="text-dark">{{ .PublishDate.Format "02 Jan 2006" }}</strong></div>
+    <h4 class="card-title"><a class="text-dark" href="{{ .Permalink }}">{{ .Title }}</a></h4>
+    <div class="section-title-border"></div>
+    <p class="card-text">{{ .Summary }}</p>
+  </div>
+</div>

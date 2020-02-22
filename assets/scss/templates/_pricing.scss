@@ -1,0 +1,260 @@
+/* pricing */
+.pricing-table {
+  transition: .2s ease;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: url(../images/backgrounds/pricing-table-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  &.active {
+    background: $primary-color;
+    color: $white;
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: $white;
+    }
+  }
+}
+
+.pricing-duration {
+  transition: .2s linear;
+
+  &.active {
+    font-weight: 600;
+    color: $text-color-dark;
+  }
+}
+
+.pricing-switcher {
+  text-align: center;
+
+  .fieldset {
+    display: inline-block;
+    position: relative;
+    padding: 2px;
+    border-radius: 50em;
+    background: $primary-color;
+    height: 40px;
+    width: 100px;
+  }
+
+  input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+  }
+
+  label {
+    position: absolute;
+    z-index: 1;
+    cursor: pointer;
+    color: $text-color;
+    top: 50%;
+    transform: translateY(-50%);
+    text-transform: uppercase;
+    font-size: 16px;
+
+    &.monthly {
+      right: 130px;
+
+      &::before {
+        position: absolute;
+        content: "";
+        height: 30px;
+        width: 50px;
+        border-radius: 50px;
+        top: 50%;
+        transform: translateY(-50%);
+        right: -85px;
+      }
+    }
+
+    &.yearly {
+      left: 130px;
+
+      &::before {
+        position: absolute;
+        content: "";
+        height: 30px;
+        width: 50px;
+        border-radius: 50px;
+        top: 50%;
+        transform: translateY(-50%);
+        left: -85px;
+      }
+    }
+  }
+
+  .switch {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    height: 30px;
+    width: 30px;
+    background-color: $white;
+    border-radius: 50em;
+    transition: transform 0.3s;
+  }
+
+  input[type="radio"]:checked+label+.switch,
+  input[type="radio"]:checked+label:nth-of-type(n)+.switch {
+    transform: translateX(60px);
+  }
+}
+
+.pricing-list {
+  li {
+    position: relative;
+    padding: 0 !important;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .pricing-list {
+    margin: 3em 0 0;
+  }
+
+  .pricing-list:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .pricing-list>li {
+    width: 33.3333333333%;
+    float: left;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+.pricing-wrapper {
+  position: relative;
+}
+
+.touch .pricing-wrapper {
+  perspective: 2000px;
+}
+
+.pricing-wrapper.is-switched .is-visible {
+  transform: rotateY(180deg);
+  animation: rotate 0.5s;
+}
+
+.pricing-wrapper.is-switched .is-hidden {
+  transform: rotateY(0);
+  animation: rotate-inverse 0.5s;
+  opacity: 0;
+}
+
+.pricing-wrapper.is-switched .is-selected {
+  opacity: 1;
+}
+
+.pricing-wrapper.is-switched.reverse-animation .is-visible {
+  transform: rotateY(-180deg);
+  animation: rotate-back 0.5s;
+}
+
+.pricing-wrapper.is-switched.reverse-animation .is-hidden {
+  transform: rotateY(0);
+  animation: rotate-inverse-back 0.5s;
+  opacity: 0;
+}
+
+.pricing-wrapper.is-switched.reverse-animation .is-selected {
+  opacity: 1;
+}
+
+.pricing-wrapper>li {
+  backface-visibility: hidden;
+}
+
+.pricing-wrapper .is-visible {
+  position: relative;
+  z-index: 5;
+}
+
+.pricing-wrapper .is-hidden {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  transform: rotateY(180deg);
+}
+
+.pricing-wrapper .is-selected {
+  z-index: 3 !important;
+}
+
+@keyframes rotate {
+  0% {
+    transform: perspective(2000px) rotateY(0);
+  }
+
+  70% {
+    transform: perspective(2000px) rotateY(200deg);
+  }
+
+  100% {
+    transform: perspective(2000px) rotateY(180deg);
+  }
+}
+
+@keyframes rotate-inverse {
+  0% {
+    transform: perspective(2000px) rotateY(-180deg);
+  }
+
+  70% {
+    transform: perspective(2000px) rotateY(20deg);
+  }
+
+  100% {
+    transform: perspective(2000px) rotateY(0);
+  }
+}
+
+@keyframes rotate-back {
+  0% {
+    transform: perspective(2000px) rotateY(0);
+  }
+
+  70% {
+    transform: perspective(2000px) rotateY(-200deg);
+  }
+
+  100% {
+    transform: perspective(2000px) rotateY(-180deg);
+  }
+}
+
+@keyframes rotate-inverse-back {
+  0% {
+    transform: perspective(2000px) rotateY(180deg);
+  }
+
+  70% {
+    transform: perspective(2000px) rotateY(-20deg);
+  }
+
+  100% {
+    transform: perspective(2000px) rotateY(0);
+  }
+}
+
+/* /pricing */

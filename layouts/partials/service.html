@@ -1,0 +1,31 @@
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+{{ "<!-- service -->" | safeHTML }}
+  <section class="bg-gray-white">
+    <div class="section bg-secondary section-bottom-lg">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
+            {{ with $data.homepage.service }}
+            <div class="section-title-border border-center"></div>
+            <h4 class="section-title-sm">{{ .subtitle | markdownify }}</h4>
+            <h2 class="section-title text-white">{{ .title | markdownify }}</h2>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="service-wrapper">
+      <div class="container">
+        <div class="row">
+          {{ range first 3 ( where .Site.RegularPages "Type" "service") }}
+          {{ "<!-- service-item -->" | safeHTML }}
+          <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+            {{ .Render "service" }}
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </section>
+  {{ "<!-- /service -->" | safeHTML }}
