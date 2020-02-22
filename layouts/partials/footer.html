@@ -27,7 +27,7 @@
               <h4 class="text-white mb-4">{{ i18n "services" }}</h4>
               <ul class="list-styled">
                 {{ range (where .Site.RegularPages "Type" "service")}}
-                <li class="mb-3 text-light"><a class="text-light d-block" href="{{ .Permalink }}">{{ .Title }}</a>
+                <li class="mb-3 text-light"><a class="text-light d-block" href="{{ .Permalink | relURL }}">{{ .Title }}</a>
                 </li>
                 {{ end }}
               </ul>
