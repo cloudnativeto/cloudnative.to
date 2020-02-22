@@ -145,11 +145,11 @@ map_marker = "images/marker.png"
 ########################### social icon ############################
 [[params.social]]
 icon = "fa-twitter"
-URL = "https://twitter.com/cloudnativeto"
+link = "https://twitter.com/cloudnativeto"
 
 [[params.social]]
 icon = "fa-github"
-URL = "https://github.com/cloudnativeto"
+link = "https://github.com/cloudnativeto"
 
 ################################### English language #####################################
 [Languages.en]

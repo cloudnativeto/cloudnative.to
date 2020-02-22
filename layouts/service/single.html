@@ -12,7 +12,7 @@
           <h4 class="mb-4">Our Services</h4>
           <ul class="list-styled style-circle">
             {{ range (where .Site.Pages "Type" "service") }}
-            <li class="border-bottom border-color"><a href="{{ .Permalink }}"
+            <li class="border-bottom border-color"><a href="{{ .Permalink | relURL }}"
                 class="text-color d-block pb-3 mt-3 text-decoration-none">{{ .Title }}</a></li>
             {{ end }}
           </ul>

@@ -9,6 +9,6 @@
   {{ "<!-- project-info -->" | safeHTML }}
   <div>
     <h6 class="text-primary">{{ .Params.Category }}</h6>
-    <h4><a class="text-dark" href="{{ .Permalink }}">{{ .Title }}</a></h4>
+    <h4><a class="text-dark" href="{{ .Permalink | relURL }}">{{ .Title }}</a></h4>
   </div>
 </div>
