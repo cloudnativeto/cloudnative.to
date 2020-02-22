@@ -1,0 +1,55 @@
+{{ define "main" }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+{{ partial "page-title.html" . }}
+
+{{ if $data.about.philosophy.enable }}
+{{ with $data.about.philosophy }}
+{{ "<!-- philosophy -->" | safeHTML }}
+<section class="section bg-gray position-relative">
+  <div class="container position-relative zindex-1">
+    <div class="row">
+      {{ $.Scratch.Set "counter" 0 }}
+      {{ range $index, $element := .philosophy_item }}
+      {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+      {{ "<!-- philosophy item -->" | safeHTML }}
+      <div class="col-md-4 mb-4 mb-md-0">
+        <h3><span class="text-primary">{{if lt $index 9}}0{{end}}{{$.Scratch.Get `counter`}}.</span> {{ .title }}</h3>
+        <p>{{ .content | markdownify }}</p>
+        <ul class="list-styled style-circle">
+          {{ range .bullet_point }}
+          <li class="mb-3">{{ . | markdownify }}</li>
+          {{ end }}
+        </ul>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  <!-- background shapes -->
+  <img class="img-fluid philosophy-bg-shape" src="{{ `images/backgrounds/about-page-bg.webp` | relURL }}"
+    onerror="this.src='{{ `images/backgrounds/about-page-bg.png` | relURL }}'" alt="shape">
+  <img class="img-fluid about-bg-shape" src="{{ `images/backgrounds/about-us-3-bg.webp` | relURL }}"
+    onerror="this.src='{{ `images/backgrounds/about-us-3-bg.png` | relURL }}'" alt="shape">
+</section>
+{{ "<!-- /philosophy -->" | safeHTML }}
+{{ end }}
+{{ end }}
+
+{{ if $data.about.about.enable }}
+{{ "<!-- about us -->" | safeHTML }}
+<section class="section">
+  {{ partial "about.html" . }}
+</section>
+{{ "<!-- /about us -->" | safeHTML }}
+{{ end }}
+
+{{ if $data.about.service.enable }}
+{{ partial "service.html" . }}
+{{ end }}
+
+{{ if $data.homepage.team.enable }}
+{{ partial "team.html" . }}
+{{ end }}
+
+{{ end }}

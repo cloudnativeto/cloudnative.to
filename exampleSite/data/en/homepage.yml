@@ -1,0 +1,207 @@
+########################### hero slider ############################
+slider:
+  enable : true
+  slider_item:
+    # slider item
+    - subtitle : "We are here to"
+      title : "Planning Business"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      bg_image_webp : "images/slider/banner-1.webp"
+      bg_image : "images/slider/banner-1.jpg"
+      animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
+      button:
+        enable : true
+        label : "more details"
+        link : "about"
+        animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
+        
+    # slider item
+    - subtitle : "We are here to"
+      title : "Planning Business"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      bg_image_webp : "images/slider/banner-2.webp"
+      bg_image : "images/slider/banner-2.jpg"
+      animation : "fadeInDown" # animation select from : https://daneden.github.io/animate.css/
+      button:
+        enable : true
+        label : "more details"
+        link : "about"
+        animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
+        
+    # slider item
+    - subtitle : "We are here to"
+      title : "Planning Business"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      bg_image_webp : "images/slider/banner-3.webp"
+      bg_image : "images/slider/banner-3.jpg"
+      animation : "fadeInLeft" # animation select from : https://daneden.github.io/animate.css/
+      button:
+        enable : true
+        label : "more details"
+        link : "about"
+        animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
+        
+    # slider item
+    - subtitle : "We are here to"
+      title : "Planning Business"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      bg_image_webp : "images/slider/banner-4.webp"
+      bg_image : "images/slider/banner-4.jpg"
+      animation : "fadeInRight" # animation select from : https://daneden.github.io/animate.css/
+      button:
+        enable : true
+        label : "more details"
+        link : "about"
+        animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
+
+################################## banner feature ############################
+banner_feature:
+  enable : true
+  # Max use 4 item
+  feature_item:
+    # banner feature item loop
+    - name : "Business Solution"
+      icon : "fa-diamond" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+      content : "Lorem ipsum dolor sit amet constur adipelit sed."
+      
+    # banner feature item loop
+    - name : "Market Research"
+      icon : "fa-bar-chart" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+      content : "Lorem ipsum dolor sit amet constur adipelit sed."
+      
+    # banner feature item loop
+    - name : "Business Strategy"
+      icon : "fa-lightbulb-o" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+      content : "Lorem ipsum dolor sit amet constur adipelit sed."
+      
+    # banner feature item loop
+    - name : "Speed Optimization"
+      icon : "fa-dashboard" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+      content : "Lorem ipsum dolor sit amet constur adipelit sed."
+
+
+################################## about ####################################
+about:
+  enable : true
+  subtitle : "About Us"
+  title : "We Are Dynamic Team and Business Agency"
+  content : "Excepteur sint occaecat cupidatat non proident sunt iculpa qui officia deserunt mollit anim est. laborum sed perspiciatis unde omnis natus error sit voluptatem accusantium."
+  bg_image : "images/backgrounds/about-us-bg.png"
+  image_webp : "images/about/about-us.webp"
+  image : "images/about/about-us.png"
+  button:
+    enable : true;
+    label : "more service"
+    link : "service"
+
+################################## funfacts ###############################
+funfacts :
+  enable : true
+  funfacts_item :
+    # fanfacts item loop
+    - name : "project done"
+      count : "50"
+      icon : "fa-bullseye" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+      
+    # fanfacts item loop
+    - name : "Years Experience"
+      count : "25"
+      icon : "fa-calendar" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+      
+    # fanfacts item loop
+    - name : "Awards Win"
+      count : "250"
+      icon : "fa-trophy" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+      
+    # fanfacts item loop
+    - name : "Happy Coustomers"
+      count : "500"
+      icon : "fa-smile-o" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+
+
+################################# feature ############################################
+feature:
+  enable : true
+  subtitle : "Why Choose Us"
+  title : "Why They Choose Bexar"
+  image_webp : "images/feature/feature.webp"
+  image : "images/feature/feature.jpg"
+  content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius tempor incididunt ut labore."
+  feature_item:
+    # feature item loop
+    - name : "Creative Design"
+      icon : "fa-snowflake-o" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+      content : "Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia."
+      
+    # feature item loop
+    - name : "Pixel Perfect Coding"
+      icon : "fa-code" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+      content : "Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia."
+
+################################# service ############################################
+service:
+  enable : true
+  subtitle : "Best Service"
+  title : "Service We Provide"
+  # service item comes from "content/*/service" folder
+
+################################# team ##############################################
+team:
+  enable : true
+  subtitle : "Our Team"
+  title : "We Are Dynamic Team and <br> Business Agency"
+  # team member comes from "content/*/team" folder
+
+################################# project ############################################
+project:
+  enable : true
+  subtitle : "Case Study"
+  title : "Bexar Case Studies"
+  button:
+    enable : true
+    label : "more projects"
+    link : "project"
+  # project item comes from "content/*/project" folder
+
+################################# testimonial #########################################
+testimonial:
+  enable : true
+  subtitle : "Testimonials"
+  title : "What Clients Are Say?"
+  testimonial_item:
+    # testimonial item loop
+    - client_image : "images/testimonial/client-1.jpg"
+      name : "Dominic Allen"
+      designation : "Designer"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit sed eiusmod tempor incididunt ut labore dolore magna aliqua.enim ad minim veniam.quis nostrud exercitation ullamco laboris nis aliquip ex ea commodo consequat. duis aute irure dolor in reprehen."
+      
+    # testimonial item loop
+    - client_image : "images/testimonial/client-2.jpg"
+      name : "Alex Pitt"
+      designation : "Designer"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit sed eiusmod tempor incididunt ut labore dolore magna aliqua.enim ad minim veniam.quis nostrud exercitation ullamco laboris nis aliquip ex ea commodo consequat. duis aute irure dolor in reprehen."
+
+    # testimonial item loop
+    - client_image : "images/testimonial/client-3.jpg"
+      name : "John Doe"
+      designation : "Designer"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit sed eiusmod tempor incididunt ut labore dolore magna aliqua.enim ad minim veniam.quis nostrud exercitation ullamco laboris nis aliquip ex ea commodo consequat. duis aute irure dolor in reprehen."
+
+
+################################# blog ################################################
+cta:
+  enable : true
+  title : "Bexar give the smart solution for your business"
+  bg_image_webp : "images/backgrounds/cta-lg.webp"
+  bg_image : "images/backgrounds/cta-lg.jpg"
+  button:
+    enable : true
+    label : "get a quote"
+    link : "contact"
+
+################################# blog ################################################
+blog:
+  enable : true
+  subtitle : "Latest News"
+  title : "Learn From Bexar"
+  # blog post comes from "content/*/blog" folder

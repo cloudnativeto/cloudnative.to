@@ -1,0 +1,9 @@
+<div class="card border-0 rounded-0 box-shadow">
+  <img class="card-img-top rounded-0" src="{{ .Params.Image_webp | absURL }}" onerror="this.src='{{ .Params.Image | absURL }}'" alt="{{ .Title }}">
+  <div class="card-body position-relative">
+    {{ with .Params.Icon}}<i class="card-icon fa {{. }}"></i>{{ end }}
+    <h4 class="card-title"><a class="text-dark" href="{{ .Permalink }}">{{ .Title }}</a></h4>
+    <p class="card-text">{{ .Summary }}</p>
+    <a href="{{ .Permalink }}" class="btn btn-secondary btn-arrow">{{ i18n "read_more" }}</a>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+{{ define "main" }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+{{ partial "page-title.html" . }}
+
+{{ "<!-- team member -->" | safeHTML }}
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        {{ with $data.homepage.team }}
+        <div class="section-title-border border-center"></div>
+        <h4 class="section-title-sm">{{ .subtitle | markdownify }}</h4>
+        <h2 class="section-title">{{ .title | markdownify }}</h2>
+        {{ end }}
+      </div>
+    </div>
+    <div class="row">
+      {{ range .Data.Pages }}
+      {{ "<!-- team member -->" | safeHTML }}
+      <div class="col-lg-4 col-sm-6 mb-5">
+        {{ .Render "team" }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ "<!-- /team member -->" | safeHTML }}
+
+
+{{ end }}

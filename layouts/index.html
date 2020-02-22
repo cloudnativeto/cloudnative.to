@@ -1,56 +1,236 @@
-{{ partial "header.html" . }}
+{{ define "main" }}
 
-{{if .Site.Params.cover}}
-<header class="main-header " style="background-image: url({{.Site.BaseURL}}{{.Site.Params.cover}})">
+{{ $data := index .Site.Data .Site.Language.Lang }}
 
-{{else}}
-<header class="main-header no-cover">
-{{end}}
-
-    <nav class="main-nav overlay clearfix">
-        {{ if .Site.Params.logo }}
-            <a class="blog-logo" href="{{ .Permalink }}"><img src="{{ .Site.BaseURL }}{{.Site.Params.logo}}" alt="Blog Logo" /></a>
-        {{end}}
-        <!--
-        {{ if .Site.Menus.main }}
-            <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
-        {{else}}
-            {{ if .Site.Params.RSSLink}}
-              <a class="menu-button icon-feed" href="{{.Site.Params.RSSLink }}">&nbsp;&nbsp;Subscribe</a>
-            {{else}}
-              <a class="menu-button icon-feed" href="{{ with .OutputFormats.Get "RSS" }}{{ .RelPermalink }}{{ end }}">&nbsp;&nbsp;Subscribe</a>
-            {{end}}
-        {{end}}
-        -->
-    </nav>
-<div class="vertical">
-        <div class="main-header-content inner">
-            <h1 class="page-title">
-              <a class="btn-bootstrap-2 title-scroll">{{ .Site.Title }}</a>
-          </h1>
-          <h2 class="page-description">{{ .Site.Params.description }}</h2>
+{{ if $data.homepage.slider.enable }}
+{{ with $data.homepage.slider }}
+{{ "<!-- slider -->" | safeHTML }}
+<section>
+  <div class="hero-slider">
+    {{ range .slider_item }}
+    {{ "<!-- slider item -->" | safeHTML }}
+    <div class="hero-slider-item bg-cover hero-section"
+      style="background-image: url('{{ .bg_image_webp | absURL }}'),url('{{ .bg_image | absURL }}');">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6" data-duration-in=".3" data-animation-in="{{ .animation }}" data-delay-in=".1">
+            <h4 class="mb-0 letter-spacing">{{ .subtitle | markdownify }}</h4>
+            <h1 class="mb-4">{{ .title | markdownify }}</h1>
+            <p class="mb-5">{{ .content | markdownify }}</p>
+            {{ if .button.enable }}
+            <a href="{{ .button.link | absLangURL }}" class="btn btn-primary-outline" data-duration-in=".3"
+              data-animation-in="{{ .button.animation }}" data-delay-in=".4">{{ .button.label }}</a>
+            {{ end }}
+          </div>
         </div>
-</div>
-</header>
-
-<!--
-<main id="content" class="content" role="main">
-    {{ $pages := .Pages }}
-    {{ if .IsHome }}
-    {{ $pages = .Site.RegularPages }}
-    {{ end }}
-    {{ $paginator := .Paginate $pages }}
-
-    <div class="extra-pagination inner">
-        {{ partial "pagination.html" $paginator }}
+      </div>
     </div>
-
-    {{ range $index, $page := $paginator.Pages }}
-        {{ .Render "li" }}
     {{ end }}
+  </div>
+</section>
+{{ "<!-- /slider -->" | safeHTML }}
+{{ end }}
+{{ end }}
 
-    {{ partial "pagination.html" $paginator }}
+{{ if $data.homepage.banner_feature.enable}}
+{{ with $data.homepage.banner_feature}}
+{{ "<!-- banner feature -->" | safeHTML }}
+<section class="banner-feature-wrapper">
+  <div class="container">
+    <div class="row justify-content-center">
+      {{ range .feature_item }}
+      {{ "<!-- feature item -->" | safeHTML }}
+      <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+        <div class="bg-white py-5 px-4 text-center box-shadow banner-feature">
+          {{ with .icon }}
+          <div class="icon-bg mb-4 water-wave">
+            <i class="fa {{ . }} icon text-primary"></i>
+          </div>
+          {{ end }}
+          <h4 class="mb-4">{{ .name | markdownify }}</h4>
+          <p>{{ .content | markdownify }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ "<!-- /banner feature -->" | safeHTML }}
+{{ end }}
+{{ end }}
 
-</main>
-{{ partial "footer.html" . }}
--->
+{{ if $data.homepage.about.enable }}
+{{ "<!-- about us -->" | safeHTML }}
+<section class="section pt-0">
+  {{ partial "about.html" . }}
+</section>
+{{ "<!-- /about us -->" | safeHTML }}
+{{ end }}
+
+{{ if $data.homepage.funfacts.enable }}
+{{ with $data.homepage.funfacts }}
+{{ "<!-- funfacts -->" | safeHTML }}
+<section class="funfacts">
+  <div class="container">
+    <div class="row bg-secondary p-5">
+      {{ range .funfacts_item }}
+      {{ "<!-- funfacts item -->" | safeHTML }}
+      <div class="col-md-3 col-sm-6 mb-4 mb-md-0">
+        <div class="d-flex align-items-center">
+          <i class="fa {{ .icon }} icon-lg mr-3 text-primary"></i>
+          <div>
+            <h3 class="text-white mb-0"><span class="count" data-count="{{ .count }}">0</span>+</h3>
+            <span class="text-white">{{ .name }}</span>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ "<!-- /funfacts -->" | safeHTML }}
+{{ end }}
+{{ end }}
+
+{{ if $data.homepage.feature.enable }}
+{{ "<!-- feature -->" | safeHTML }}
+{{ with $data.homepage.feature }}
+<section class="section">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-lg-4 offset-lg-2 order-lg-1 order-2">
+        <div class="section-title-border"></div>
+        <h4 class="section-title-sm">{{ .subtitle | markdownify }}</h4>
+        <h2 class="section-title">{{ .title | markdownify }}</h2>
+        <p class="mb-5">{{ .content | markdownify }}</p>
+        <ul class="list-unstyled">
+          {{ range .feature_item }}
+          {{ "<!-- feature item -->" | safeHTML }}
+          <li class="d-flex align-items-center mb-5">
+            <div class="text-center mr-4">
+              <div class="icon-bg water-wave"><i class="fa {{ .icon }} icon text-primary"></i></div>
+            </div>
+            <div>
+              <h4>{{ .name | markdownify }}</h4>
+              {{ .content | markdownify }}
+            </div>
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+      <div class="col-lg-5 pr-lg-0 order-lg-2 order-1 mb-5 mb-lg-0">
+        <div class="feature-img-bg box-shadow">
+          <img class="img-fluid w-100" src="{{ .image_webp | absURL }}" onerror="this.src='{{ .image | absURL }}'"
+            alt="feature-image">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ "<!-- /feature -->" | safeHTML }}
+{{ end }}
+
+{{ if $data.homepage.service.enable }}
+{{ partial "service.html" . }}
+{{ end }}
+
+{{ if $data.homepage.team.enable }}
+{{ partial "team.html" . }}
+{{ end }}
+
+{{ "<!-- case study -->" | safeHTML }}
+{{ if $data.homepage.project.enable}}
+<section class="section pt-0">
+  {{ with $data.homepage.project }}
+  <div class="pb-4 bg-gray-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="section-title-border"></div>
+          <h4 class="section-title-sm">{{ .subtitle | markdownify }}</h4>
+          <h2>{{ .title | markdownify }}</h2>
+        </div>
+        {{ if .button.enable }}
+        {{ with .button }}
+        <div class="col-md-4 text-right align-self-end d-md-block d-none">
+          <a href="{{ .link | absLangURL }}" class="btn btn-primary mb-3 hover-ripple">{{ .label }}</a>
+        </div>
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+  {{ end }}
+  <div class="container-fluid px-0">
+    <div class="row no-gutters">
+      {{ range first 4 ( where .Site.RegularPages "Type" "project")}}
+      {{ "<!-- project-item -->" | safeHTML }}
+      <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+        {{ .Render "project"}}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{end}}
+{{ "<!-- /case study -->" | safeHTML }}
+
+{{ if $data.homepage.testimonial.enable }}
+{{ partial "testimonial.html" . }}
+{{ end }}
+
+{{ if $data.homepage.cta.enable }}
+{{ with $data.homepage.cta }}
+{{ "<!-- call to action -->" | safeHTML }}
+<section class="section overlay-secondary bg-fixed"
+  style="background-image: url('{{ .bg_image_webp | absURL }}'),url('{{ .bg_image | absURL }}');">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 col-md-10 col-11 text-center mx-auto">
+        <h2 class="section-title text-white">{{ .title | markdownify }}</h2>
+        {{ if .button.enable }}
+        {{ with .button }}
+        <a href="{{ .link | absLangURL }}" class="btn btn-primary hover-ripple">{{ .label }}</a>
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ "<!-- /call to action -->" | safeHTML }}
+{{ end }}
+{{ end }}
+
+{{ "<!-- blog -->" | safeHTML }}
+{{ if $data.homepage.blog.enable }}
+<section class="section bg-gray-white position-relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        {{ with $data.homepage.blog }}
+        <div class="section-title-border"></div>
+        <h4 class="section-title-sm">{{ .subtitle | markdownify }}</h4>
+        <h2 class="section-title">{{ .title }}</h2>
+        {{ end }}
+      </div>
+    </div>
+    <div class="row">
+      {{ "<!-- blog post -->" | safeHTML }}
+      {{ range first 3 ( where .Site.RegularPages "Type" "post" )}}
+      <article class="col-lg-4 col-sm-6 mb-lg-0 mb-4 zindex-1">
+        {{ .Render "post" }}
+      </article>
+      {{ end }}
+    </div>
+  </div>
+  {{ "<!-- background shapes -->" | safeHTML }}
+  <img class="img-fluid blog-shape-left" src="{{`images/backgrounds/blog-bg-left.webp` | relURL }}" alt=""
+    onerror="this.src='{{`images/backgrounds/blog-bg-left.png` | relURL }}'">
+  <img class="img-fluid blog-shape-right" src="{{`images/backgrounds/blog-bg-right.webp` | relURL }}" alt=""
+    onerror="this.src='{{`images/backgrounds/blog-bg-right.png` | relURL }}'">
+</section>
+{{ end }}
+{{ "<!-- /blog -->" | safeHTML }}
+
+{{ end }}

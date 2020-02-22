@@ -1,0 +1,31 @@
+{{ define "main" }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+{{ partial "page-title.html" . }}
+
+{{ "<!-- service items -->" | safeHTML }}
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        {{ with $data.homepage.service }}
+        <div class="section-title-border border-center"></div>
+        <h4 class="section-title-sm">{{ .subtitle | markdownify }}</h4>
+        <h2 class="section-title">{{ .title | markdownify }}</h2>
+        {{ end }}
+      </div>
+    </div>
+    <div class="row">
+      {{ range .Data.Pages }}
+      {{ "<!-- service-item -->" | safeHTML }}
+      <div class="col-lg-4 col-sm-6 mb-4">
+        {{ .Render "service" }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ "<!-- /service items -->" | safeHTML }}
+
+{{ end }}

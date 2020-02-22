@@ -1,107 +1,42 @@
-{{ partial "header.html" . }}
-{{ $baseurl := default "/" .Site.BaseURL }}
+{{ define "main" }}
 
-<header class="main-header " style="background-image: url({{$baseurl}}{{.Site.Params.cover}})">
+{{ partial "page-title.html" . }}
 
-    <nav class="main-nav overlay clearfix">
-        {{ if .Site.Params.logo }}
-            <a class="blog-logo" href="{{ $baseurl }}"><img src="{{ $baseurl }}{{.Site.Params.logo}}" alt="Blog Logo" /></a>
-        {{end}}
-        <!--
-        {{ if .Site.Menus.main }}
-            <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
-        {{else}}
-            {{ if .Site.Params.RSSLink}}
-              <a class="menu-button icon-feed" href="{{.Site.Params.RSSLink }}">&nbsp;&nbsp;Subscribe</a>
-            {{else}}
-              <a class="menu-button icon-feed" href="{{ with .OutputFormats.Get "RSS" }}{{ .RelPermalink }}{{ end }}">&nbsp;&nbsp;Subscribe</a>
-            {{end}}
-        {{end}}
-        -->
-    </nav>
-<div class="vertical">
-        <div class="main-header-content inner">
-            <h1 class="page-title">
-              <a class="btn-bootstrap-2" href="#content">{{ .Site.Title }}</a>
-          </h1>
-          <h2 class="page-description">{{ .Site.Params.description }}</h2>
+{{ "<!-- blog details -->" | safeHTML }}
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        {{ "<!-- post thumb -->" | safeHTML }}
+        <div class="position-relative mb-5">
+          <img src="{{ .Params.Image_webp | absURL }}"  onerror="this.src='{{.Params.Image | absURL }}'" alt="post thumb" class="img-fluid w-100">
+          {{ with .Params.Categories }}{{range first 1 .}} <div class="card-type">{{ . | title }}</div>{{ end }}{{ end }}
         </div>
-</div>
-    <a class="scroll-down icon-arrow-left" href="#content"><span class="hidden">Scroll Down</span></a>
-</header>
-<!--
-  <main id="content" class="content" role="main">
+        <div class="card-meta text-uppercase mb-2">by <strong class="text-dark">{{ .Params.Author }}</strong>/ on <strong class="text-dark">{{ .PublishDate.Format "02 Jan 2006" }}</strong></div>
+        <h2>{{ .Title }}</h2>
+        <div class="content">
+          {{ .Content }}
+        </div>
+        {{ "<!-- tags -->" | safeHTML }}
+        <div class="mb-3">
+          <h5 class="d-inline-block mr-3">Tags:</h5>
+          <ul class="list-inline d-inline-block">
+            {{ range .Params.Tags }}
+            <li class="list-inline-item"><a class="text-color" href="{{ `tags/` | absURL }}{{ . | lower }}">{{ . }}</a>,</li>
+            {{ end }}
+          </ul>
+        </div>
+        <!-- comments -->
+        {{ if .Site.DisqusShortname }}
+        <div class="mt-5">
+          {{ template "_internal/disqus.html" . }}
+        </div>
+        {{ end }}
+      </div>
+      {{ partial "sidebar.html" . }}
+    </div>
+  </div>
+</section>
+{{ "<!-- /blog details -->" | safeHTML }}
 
-
-  <article class="post {{ .Section }}">
-
-    <header class="post-header">
-        <h1 class="post-title">{{.Title}}</h1>
-        <section class="post-meta">
-        {{ if eq .Section "post"}}
-	<time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">
-            {{ .Date.Format "2006-01-02" }}
-          </time>
-        {{end}}
-         {{ range .Params.tags }}
-          <span class="post-tag small"><a href="{{$baseurl}}tags/{{ . | urlize }}/">#{{ . }}</a></span>
-         {{ end }}
-        </section>
-    </header>
-
-    <section class="post-content">
-      {{ .Content }}
-    </section>
-
-
-  <footer class="post-footer">
-
-
-    {{if .Site.Params.logo}}
-    <figure class="author-image">
-
-        <a class="img" href="{{$baseurl}}" style="background-image: url({{$baseurl}}{{.Site.Params.logo}})"><span class="hidden">{{ .Site.Params.author }}</span></a>
-    </figure>
-    {{end}}
-
-    {{ partial "author.html" . }}
-
-    {{ if ne .Params.share false}}
-    <section class="share">
-      <h4>Share this {{ if .Type }}{{.Type}}{{else}}post{{end}}</h4>
-      <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text={{ .Title | safeHTML}}&amp;url={{ .Permalink }}"
-          onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-          <span class="hidden">Twitter</span>
-      </a>
-      <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}"
-          onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-          <span class="hidden">Facebook</span>
-      </a>
-      <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url={{ .Permalink }}"
-         onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-          <span class="hidden">Google+</span>
-      </a>
-    </section>
-    {{end}}
-
-    {{ if ne .Params.comments false}}
-    {{ with .Site.DisqusShortname }}
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-      var disqus_shortname = '{{ . }}';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    {{ end }}
-    {{ end }}
-
-  </footer>
-</article>
-
-</main>
--->
-{{ partial "footer.html" . }}
+{{ end }}

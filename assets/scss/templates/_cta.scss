@@ -1,0 +1,28 @@
+/* cta sm */
+.cta-sm-bg{
+  position: relative;
+  &::before{
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    left: calc(100% - 10%);
+    top: 0;
+    background: url(../images/backgrounds/cta-sm-right.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  &::after{
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-image: url(../images/backgrounds/cta-sm-left.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 0;
+  }
+}
+/* /cta sm */

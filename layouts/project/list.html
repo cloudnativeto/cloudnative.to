@@ -1,0 +1,37 @@
+{{ define "main" }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+{{ partial "page-title.html" . }}
+
+{{ "<!-- case study -->" | safeHTML }}
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <ul class="list-inline text-center mb-4 filter-controls">
+          <li class="list-inline-item h5 p-2 font-secondary text-dark active" data-filter="all">{{ i18n "all"}}</li>
+          {{ $categories := slice }}
+          {{ range .Data.Pages }}
+          {{ $categories = $categories | append .Params.Category }}
+          {{ end }}
+          {{ range ( $categories | uniq ) }}
+          <li class="list-inline-item h5 p-2 font-secondary text-dark text-uppercase" data-filter="{{ . | urlize }}">
+            {{ . | humanize }}</li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+    <div class="row filtr-container">
+      {{ range .Data.Pages }}
+      {{ "<!-- project-item -->" | safeHTML }}
+      <div class="col-lg-4 col-sm-6 filtr-item" data-category="{{ .Params.Category | urlize }}">
+        {{ .Render "project"}}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ "<!-- /case study -->" | safeHTML }}
+
+{{ end }}

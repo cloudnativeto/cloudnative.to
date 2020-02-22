@@ -1,0 +1,39 @@
+################################### philosophy ###########################
+philosophy:
+  enable : true
+  philosophy_item:
+    # philosophy item loop
+    - title : "Our Mission"
+      content : "Lorem ipsum dolor sit amet consectetur adip isicing elit sed do eiusmod tempor incididunt ut labore."
+      bullet_point:
+        - "Quality Services"
+        - "Clients Satisfaction"
+        
+    # philosophy item loop
+    - title : "Our Approach"
+      content : "Lorem ipsum dolor sit amet consectetur adip isicing elit sed do eiusmod tempor incididunt ut labore."
+      bullet_point:
+        - "Quality Services"
+        - "Clients Satisfaction"
+        
+    # philosophy item loop
+    - title : "Our Philosophy"
+      content : "Lorem ipsum dolor sit amet consectetur adip isicing elit sed do eiusmod tempor incididunt ut labore."
+      bullet_point:
+        - "Quality Services"
+        - "Clients Satisfaction"
+
+################################### about ###########################
+about:
+  enable : true
+  # about content comes from `data/*/homepage.yml` file
+
+################################### service ###########################
+service:
+  enable : true
+  # service item comes from `content/*/service` folder
+
+################################### team ###########################
+team: 
+  enable : true
+  # team member comes from `content/*/team` folder

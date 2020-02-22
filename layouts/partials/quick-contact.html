@@ -1,0 +1,19 @@
+{{ if .Site.Params.quick_contact }}
+{{ "<!-- quick contact -->" | safeHTML }}
+<div class="bg-white px-4 py-5 box-shadow mb-5 sticky-top">
+  <h4 class="mb-4">{{ i18n "quick_contact"}}</h4>
+  <form action="{{ .Site.Params.contact_form_action }}" method="POST">
+    <input type="text" name="name" id="name" class="form-control form-control-sm border-0 rounded-0 box-shadow mb-3"
+      placeholder="Name">
+    <input type="email" name="mail" id="mail" class="form-control form-control-sm border-0 rounded-0 box-shadow mb-3"
+      placeholder="Email">
+    <input type="text" name="phone" id="phone" class="form-control form-control-sm border-0 rounded-0 box-shadow mb-3"
+      placeholder="Phone">
+    <input type="text" name="subject" id="subject" class="form-control form-control-sm border-0 rounded-0 box-shadow mb-3"
+      placeholder="Subject">
+    <textarea name="message" id="message" class="form-control form-control-sm border-0 rounded-0 box-shadow mb-3 py-3 px-4"
+      placeholder="Your Message"></textarea>
+    <button type="submit" value="send" class="btn btn-primary">{{ i18n "send" }}</button>
+  </form>
+</div>
+{{ end }}
