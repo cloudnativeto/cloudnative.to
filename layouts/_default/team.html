@@ -1,7 +1,7 @@
 <div class="team-member text-center">
   <div class="team-member-img position-relative mb-5">
-    <img class="img-fluid w-100" src="{{ .Params.Image_webp | absURL }}"
-      onerror="this.src='{{.Params.Image | absURL }}'" alt="{{ .Title }}">
+    <img class="img-fluid w-100" src="{{ .Params.Image_webp | relURL }}"
+      onerror="this.src='{{.Params.Image | relURL }}'" alt="{{ .Title }}">
     <div class="hover-icon py-4">
       <ul class="list-inline social-icon">
         {{ range .Params.Social }}

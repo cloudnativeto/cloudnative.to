@@ -8,7 +8,7 @@
         <div class="col-lg-5 mb-5 mb-lg-0">
           <!-- logo -->
           <a class="mb-4 d-inline-block" href="{{ .Site.BaseURL | relLangURL }}"><img class="img-fluid"
-              src="{{ .Site.Params.logo_footer | absURL }}" alt="{{ .Site.Title }}"></a>
+              src="{{ .Site.Params.logo_footer | relURL }}" alt="{{ .Site.Title }}"></a>
           <p class="text-light mb-5">{{ .Site.Params.footer_content | markdownify }}</p>
           <h4 class="text-white mb-4">{{ i18n "follow" }}</h4>
           <!-- social links -->
@@ -84,7 +84,7 @@
 
 {{ if .Site.Params.search }}
 <script>
-  var indexURL = {{"index.json" | absURL}}
+  var indexURL = {{"index.json" | relURL}}
 </script>
 {{ end }}
 
@@ -95,12 +95,12 @@
 
 {{ "<!-- JS Plugins -->" | safeHTML }}
 {{ range .Site.Params.plugins.js}}
-<script src="{{ .link | absURL }}"></script>
+<script src="{{ .link | relURL }}"></script>
 {{ end }}
 
 {{ "<!-- Main Script -->" | safeHTML }}
 {{ $script := resources.Get "js/script.js" | minify}}
-<script src="{{ $script.Permalink }}"></script>
+<script src="{{ $script.Permalink | relURL }}"></script>
 
 {{ "<!-- google analitycs -->" | safeHTML }}
 {{ with .Site.Params.google_analitycs_id}}

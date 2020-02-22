@@ -9,7 +9,7 @@
       <div class="col-lg-8">
         {{ "<!-- post thumb -->" | safeHTML }}
         <div class="position-relative mb-5">
-          <img src="{{ .Params.Image_webp | absURL }}"  onerror="this.src='{{.Params.Image | absURL }}'" alt="post thumb" class="img-fluid w-100">
+          <img src="{{ .Params.Image_webp | relURL }}"  onerror="this.src='{{.Params.Image | relURL }}'" alt="post thumb" class="img-fluid w-100">
           {{ with .Params.Categories }}{{range first 1 .}} <div class="card-type">{{ . | title }}</div>{{ end }}{{ end }}
         </div>
         <div class="card-meta text-uppercase mb-2">by <strong class="text-dark">{{ .Params.Author }}</strong>/ on <strong class="text-dark">{{ .PublishDate.Format "02 Jan 2006" }}</strong></div>
@@ -22,7 +22,7 @@
           <h5 class="d-inline-block mr-3">Tags:</h5>
           <ul class="list-inline d-inline-block">
             {{ range .Params.Tags }}
-            <li class="list-inline-item"><a class="text-color" href="{{ `tags/` | absURL }}{{ . | lower }}">{{ . }}</a>,</li>
+            <li class="list-inline-item"><a class="text-color" href="{{ `tags/` | relURL }}{{ . | lower }}">{{ . }}</a>,</li>
             {{ end }}
           </ul>
         </div>

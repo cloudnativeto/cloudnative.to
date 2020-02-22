@@ -1,9 +1,9 @@
 <div class="project-item mb-5">
   <div class="position-relative mb-4 overflow-hidden">
-    <img src="{{ .Params.Image_webp | absURL }}" onerror="this.src='{{.Params.Image | absURL }}'" alt="{{ .Title }}"
+    <img src="{{ .Params.Image_webp | relURL }}" onerror="this.src='{{.Params.Image | relURL }}'" alt="{{ .Title }}"
       class="img-fluid w-100">
     <div class="hover-overlay">
-      <a href="{{ .Params.Image | absURL }}" class="venobox"><i class="uni-plus"></i></a>
+      <a href="{{ .Params.Image | relURL }}" class="venobox"><i class="uni-plus"></i></a>
     </div>
   </div>
   {{ "<!-- project-info -->" | safeHTML }}

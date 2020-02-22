@@ -1,19 +1,18 @@
 ########################### Default configuration ######################
-baseURL = "https://examplesite.com/"
-title = "Bexar Hugo Template"
-theme = "bexar-hugo"
+baseURL = "https://cloudnative.to/"
+title = "Cloud Native Community"
 # post pagination
 paginate = "6"
 # post excerpt
 summaryLength = "10"
 # disqus short name
-disqusShortname = "bexer" # get your shortname form here : https://disqus.com
+# disqusShortname = "bexer" # get your shortname form here : https://disqus.com
 # disable language
 disableLanguages = [] # desable language from here
 
 [outputs]
 home = ["HTML", "RSS", "JSON"]
-  
+
 ############################### Plugins #################################
 # CSS Plugins
 [[params.plugins.css]]
@@ -102,12 +101,12 @@ logo_footer = "images/logo-alt.png"
 # top header
 top_header = true
 # Meta data
-description = "This is meta description"
-author = "Themefisher"
+description = "Slogan"
+author = "Cloud Native Community"
 # contact info
 address = "9567 Turner Trace Apt. BC C3G8A4"
 mobile = "+211234565523"
-email = "info@bexer.com"
+email = "contact@cloudnative.to"
 # contact form action
 contact_form_action = "#" # contact form works with https://formspree.io
 # Google Analitycs
@@ -137,7 +136,7 @@ mailchimp_form_name = "b_463ee871f45d2d93748e77cad_a0a2c6d074" # replace this co
 
 # google map
 [params.map]
-enable = true
+enable = false
 gmap_api = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"
 map_latitude = "51.5223477"
 map_longitude = "-0.1622023"
@@ -145,42 +144,34 @@ map_marker = "images/marker.png"
 
 ########################### social icon ############################
 [[params.social]]
-icon = "fa-facebook"
-URL = "https://facebook.com/themefisher"
-
-[[params.social]]
 icon = "fa-twitter"
-URL = "https://twitter.com/themefisher"
+URL = "https://twitter.com/cloudnativeto"
 
 [[params.social]]
 icon = "fa-github"
-URL = "https://github.com/themefisher"
-
-[[params.social]]
-icon = "fa-instagram"
-URL = "https://instagram.com/themefisher"
+URL = "https://github.com/cloudnativeto"
 
 ################################### English language #####################################
 [Languages.en]
 languageName = "En"
 languageCode = "en-us"
-contentDir = "content/english"
+contentDir = "content/en"
 weight = 1
 home = "Home"
 # footer content
 footer_content = "Lorem ipsum dolor amet consectetur adipisicing elit sed eiusm tempor incididunt ut labore dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamaboris nisi ut aliquip.exea commodo consequat. Duis aute irure dolor in reprehenderit. Lorem ipsum dolor amet consectetur adipisicing elit sed eiusm tempor incididunt ut labore dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamaboris nisi ut aliquip.exea commodo consequat. Duis aute irure dolor in reprehenderit."
 # copyright
-copyright = "Copyright &copy; 2020 a hugo theme by [themefisher](https://themefisher.com)"
+copyright = "Copyright &copy; 2020 Cloud Native Community"
 
 
 ################################### French language #####################################
 [Languages.fr]
 languageName = "Fr"
 languageCode = "fr-fr"
-contentDir = "content/french"
+contentDir = "content/fr"
 weight = 2
 home = "Accueil"
 # footer content
 footer_content = "Lorem ipsum dolor amet consectetur adipisicing elit sed eiusm tempor incididunt ut labore dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamaboris nisi ut aliquip.exea commodo consequat. Duis aute irure dolor in reprehenderit. Lorem ipsum dolor amet consectetur adipisicing elit sed eiusm tempor incididunt ut labore dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamaboris nisi ut aliquip.exea commodo consequat. Duis aute irure dolor in reprehenderit."
 # copyright
-copyright = "Copyright &copy; 2020 a hugo theme by [themefisher](https://themefisher.com)"
+copyright = "Copyright &copy; 2020 Cloud Native Community"

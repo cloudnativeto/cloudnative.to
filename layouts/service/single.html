@@ -20,7 +20,7 @@
         {{ partial "quick-contact.html" . }}
       </aside>
       <div class="col-lg-8">
-        <img src="{{ .Params.Image_webp | absURL }}" onerror="this.src='{{.Params.Image | absURL }}'"
+        <img src="{{ .Params.Image_webp | relURL }}" onerror="this.src='{{.Params.Image | relURL }}'"
           alt="service thumb" class="img-fluid w-100 mb-5">
         <div class="content">
           {{ .Content }}
