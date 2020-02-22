@@ -44,7 +44,7 @@
       <div class="col-md-5 mb-5 mb-md-0">
         <div id="map_canvas" data-latitude="{{ .Site.Params.map.map_latitude }}"
           data-longitude="{{ .Site.Params.map.map_longitude }}"
-          data-marker="{{ .Site.Params.map.map_marker | absURL }}"
+          data-marker="{{ .Site.Params.map.map_marker | relURL }}"
           data-marker-name="{{ .Site.Title }}">
         </div>
       </div>

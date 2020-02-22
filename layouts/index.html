@@ -10,7 +10,7 @@
     {{ range .slider_item }}
     {{ "<!-- slider item -->" | safeHTML }}
     <div class="hero-slider-item bg-cover hero-section"
-      style="background-image: url('{{ .bg_image_webp | absURL }}'),url('{{ .bg_image | absURL }}');">
+      style="background-image: url('{{ .bg_image_webp | relURL }}'),url('{{ .bg_image | relURL }}');">
       <div class="container">
         <div class="row">
           <div class="col-lg-6" data-duration-in=".3" data-animation-in="{{ .animation }}" data-delay-in=".1">
@@ -120,7 +120,7 @@
       </div>
       <div class="col-lg-5 pr-lg-0 order-lg-2 order-1 mb-5 mb-lg-0">
         <div class="feature-img-bg box-shadow">
-          <img class="img-fluid w-100" src="{{ .image_webp | absURL }}" onerror="this.src='{{ .image | absURL }}'"
+          <img class="img-fluid w-100" src="{{ .image_webp | relURL }}" onerror="this.src='{{ .image | relURL }}'"
             alt="feature-image">
         </div>
       </div>
@@ -184,7 +184,7 @@
 {{ with $data.homepage.cta }}
 {{ "<!-- call to action -->" | safeHTML }}
 <section class="section overlay-secondary bg-fixed"
-  style="background-image: url('{{ .bg_image_webp | absURL }}'),url('{{ .bg_image | absURL }}');">
+  style="background-image: url('{{ .bg_image_webp | relURL }}'),url('{{ .bg_image | relURL }}');">
   <div class="container">
     <div class="row">
       <div class="col-lg-7 col-md-10 col-11 text-center mx-auto">
