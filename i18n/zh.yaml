@@ -1,0 +1,65 @@
+- id: read_more
+  translation: 了解详情
+
+- id: address
+  translation: 地址
+
+- id: phone
+  translation: 电话
+
+- id: email
+  translation: 邮箱
+
+- id: contact_form
+  translation: 联系方式
+
+- id: send
+  translation: 发送消息
+
+- id: follow
+  translation: 关注我们
+
+- id: services
+  translation: 服务
+
+- id: contact_info
+  translation: 联系信息
+
+- id: subscribe_newsletter
+  translation: 订阅信息
+
+- id: subscribe
+  translation: 订阅
+
+- id: connect_with_us
+  translation: 联系我们
+
+- id: call_now
+  translation: 致电
+
+- id: search_placeholder
+  translation: 输入搜索词
+
+- id: quick_contact
+  translation: 快速联系
+
+- id: latest_article
+  translation: 最新文章
+
+- id: category
+  translation: 类别
+
+- id: tags
+  translation: 标签
+
+- id: all
+  translation: 所有
+
+- id: client
+  translation: 客户
+
+- id: date
+  translation: 日期
+
+- id: status
+  translation: 状态
