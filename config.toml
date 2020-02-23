@@ -153,7 +153,7 @@ link = "https://github.com/cloudnativeto"
 
 ################################### English language #####################################
 [Languages.en]
-languageName = "En"
+languageName = "en"
 languageCode = "en-us"
 contentDir = "content/en"
 weight = 1
@@ -164,14 +164,62 @@ footer_content = "Lorem ipsum dolor amet consectetur adipisicing elit sed eiusm 
 copyright = "Copyright &copy; 2020 Cloud Native Community"
 
 
-################################### French language #####################################
-[Languages.fr]
-languageName = "Fr"
-languageCode = "fr-fr"
-contentDir = "content/fr"
-weight = 2
-home = "Accueil"
+################################### Chinese language #####################################
+[Languages.zh]
+languageName = "zh"
+languageCode = "zh-cn"
+contentDir = "content/zh"
+weight = 1
+home = "主页"
 # footer content
 footer_content = "Lorem ipsum dolor amet consectetur adipisicing elit sed eiusm tempor incididunt ut labore dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamaboris nisi ut aliquip.exea commodo consequat. Duis aute irure dolor in reprehenderit. Lorem ipsum dolor amet consectetur adipisicing elit sed eiusm tempor incididunt ut labore dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamaboris nisi ut aliquip.exea commodo consequat. Duis aute irure dolor in reprehenderit."
 # copyright
-copyright = "Copyright &copy; 2020 Cloud Native Community"
+copyright = "Copyright &copy; 2020 云原生社区"
+
+########################### Chinese navigation ################################
+# main menu
+[[Languages.zh.menu.main]]
+name = "关于"
+URL = "about"
+weight = 2
+
+[[Languages.zh.menu.main]]
+name = "服务"
+URL = "service"
+weight = 3
+
+[[Languages.zh.menu.main]]
+name = "博客"
+URL = "blog"
+weight = 4
+
+[[Languages.zh.menu.main]]
+name = "团队"
+URL = "team"
+weight = 6
+
+[[Languages.zh.menu.main]]
+name = "联系"
+URL = "contact"
+weight = 7
+
+[[Languages.zh.menu.main]]
+weight = 8
+name = "页面"
+hasChildren = true
+
+  [[Languages.zh.menu.main]]
+  parent = "页面"
+  name = "项目"
+  URL = "project"
+
+# footer menu
+[[Languages.zh.menu.footer]]
+name = "服务条款"
+URL = "terms"
+weight = 1
+
+[[Languages.zh.menu.ooter]]
+name = "隐私政策"
+URL = "privacy-policy"
+weight = 2
