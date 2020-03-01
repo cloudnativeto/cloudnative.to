@@ -73,15 +73,15 @@ name = "Contact"
 URL = "contact"
 weight = 7
 
-[[menu.main]]
-weight = 8
-name = "Pages"
-hasChildren = true
-
-  [[menu.main]]
-  parent = "Pages"
-  name = "Project"
-  URL = "project"
+# [[menu.main]]
+# weight = 8
+# name = "Pages"
+# hasChildren = true
+#
+#   [[menu.main]]
+#   parent = "Pages"
+#   name = "Project"
+#   URL = "project"
 
 # footer menu
 [[menu.footer]]
@@ -153,7 +153,7 @@ link = "https://github.com/cloudnativeto"
 
 ################################### English language #####################################
 [Languages.en]
-languageName = "en"
+languageName = "English"
 languageCode = "en-us"
 contentDir = "content/en"
 weight = 1
@@ -166,7 +166,7 @@ copyright = "Copyright &copy; 2020 Cloud Native Community"
 
 ################################### Chinese language #####################################
 [Languages.zh]
-languageName = "zh"
+languageName = "中文"
 languageCode = "zh-cn"
 contentDir = "content/zh"
 weight = 1
@@ -203,15 +203,15 @@ name = "联系"
 URL = "contact"
 weight = 7
 
-[[Languages.zh.menu.main]]
-weight = 8
-name = "页面"
-hasChildren = true
-
-  [[Languages.zh.menu.main]]
-  parent = "页面"
-  name = "项目"
-  URL = "project"
+# [[Languages.zh.menu.main]]
+# weight = 8
+# name = "页面"
+# hasChildren = true
+#
+#   [[Languages.zh.menu.main]]
+#   parent = "页面"
+#   name = "项目"
+#   URL = "project"
 
 # footer menu
 [[Languages.zh.menu.footer]]
