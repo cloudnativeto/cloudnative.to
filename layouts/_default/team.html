@@ -13,5 +13,6 @@
     </div>
   </div>
   <h4>{{ .Title }}</h4>
-  <span>{{ .Params.Designation | markdownify }}</span>
+  <h5>{{ .Params.Designation | markdownify }}</h5>
+  <span>{{ .Params.description | markdownify }}</span>
 </div>
