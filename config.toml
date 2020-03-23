@@ -134,14 +134,6 @@ enable = true
 mailchimp_form_action = "https://gmail.us4.list-manage.com/subscribe/post?u=463ee871f45d2d93748e77cad&amp;id=a0a2c6d074" # replace this url with yours
 mailchimp_form_name = "b_463ee871f45d2d93748e77cad_a0a2c6d074" # replace this code with yours
 
-# google map
-[params.map]
-enable = false
-gmap_api = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"
-map_latitude = "51.5223477"
-map_longitude = "-0.1622023"
-map_marker = "images/marker.png"
-
 ########################### social icon ############################
 [[params.social]]
 icon = "fa-twitter"
