@@ -88,11 +88,6 @@
 </script>
 {{ end }}
 
-{{ "<!-- Google Map API -->" | safeHTML }}
-{{ with .Site.Params.map.gmap_api }}
-<script src="{{ . | safeURL }}"></script>
-{{ end }}
-
 {{ "<!-- JS Plugins -->" | safeHTML }}
 {{ range .Site.Params.plugins.js}}
 <script src="{{ .link | relURL }}"></script>
