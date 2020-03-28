@@ -147,7 +147,7 @@ service:
 
 ################################# team ##############################################
 team:
-  enable : true
+  enable : false
   subtitle : "团队"
   title : "多样性的创始团队"
   # team member comes from "content/*/team" folder
