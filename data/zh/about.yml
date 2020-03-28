@@ -5,23 +5,23 @@ philosophy:
     # philosophy item loop
     - title : "使命"
       content : "推动云原生技术发展，打造开发者精神家园，让云原生技术为人人所用。"
-      bullet_point:
-        - "Quality Services"
-        - "Clients Satisfaction"
+      #bullet_point:
+      #  - "Quality Services"
+      #  - "Clients Satisfaction"
         
     # philosophy item loop
     - title : "宗旨"
       content : "连接、中立、开源。即连接国内外社区，企业中立，且关注开源、立足开源、反馈开源。"
-      bullet_point:
-        - "Quality Services"
-        - "Clients Satisfaction"
+      #bullet_point:
+      #  - "Quality Services"
+      #  - "Clients Satisfaction"
         
     # philosophy item loop
     - title : "原则"
       content : "共识、共治、共建。"
-      bullet_point:
-        - "Quality Services"
-        - "Clients Satisfaction"
+      #bullet_point:
+      #   - "Quality Services"
+      #   - "Clients Satisfaction"
 
 ################################### about ###########################
 about:
