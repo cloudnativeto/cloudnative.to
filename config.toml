@@ -9,6 +9,8 @@ summaryLength = "10"
 # disqusShortname = "bexer" # get your shortname form here : https://disqus.com
 # disable language
 disableLanguages = [] # desable language from here
+hasCJKLanguage = true
+DefaultContentLanguage = "zh"
 
 [outputs]
 home = ["HTML", "RSS", "JSON"]
@@ -99,7 +101,7 @@ weight = 2
 logo = "images/logo.png"
 logo_footer = "images/logo-alt.png"
 # top header
-top_header = true
+top_header = false
 # Meta data
 description = "Slogan"
 author = "Cloud Native Community"
@@ -148,8 +150,8 @@ link = "https://github.com/cloudnativeto"
 languageName = "English"
 languageCode = "en-us"
 contentDir = "content/en"
-weight = 1
-home = "Home"
+weight = 2
+#home = "Home"
 # footer content
 footer_content = "Lorem ipsum dolor amet consectetur adipisicing elit sed eiusm tempor incididunt ut labore dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamaboris nisi ut aliquip.exea commodo consequat. Duis aute irure dolor in reprehenderit. Lorem ipsum dolor amet consectetur adipisicing elit sed eiusm tempor incididunt ut labore dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamaboris nisi ut aliquip.exea commodo consequat. Duis aute irure dolor in reprehenderit."
 # copyright
@@ -162,7 +164,7 @@ languageName = "中文"
 languageCode = "zh-cn"
 contentDir = "content/zh"
 weight = 1
-home = "主页"
+#home = "主页"
 # footer content
 footer_content = "Lorem ipsum dolor amet consectetur adipisicing elit sed eiusm tempor incididunt ut labore dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamaboris nisi ut aliquip.exea commodo consequat. Duis aute irure dolor in reprehenderit. Lorem ipsum dolor amet consectetur adipisicing elit sed eiusm tempor incididunt ut labore dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamaboris nisi ut aliquip.exea commodo consequat. Duis aute irure dolor in reprehenderit."
 # copyright
@@ -175,10 +177,10 @@ name = "关于"
 URL = "about"
 weight = 2
 
-[[Languages.zh.menu.main]]
-name = "服务"
-URL = "service"
-weight = 3
+#[[Languages.zh.menu.main]]
+#name = "服务"
+#URL = "service"
+#weight = 3
 
 [[Languages.zh.menu.main]]
 name = "博客"
