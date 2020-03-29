@@ -153,7 +153,7 @@ contentDir = "content/en"
 weight = 2
 #home = "Home"
 # footer content
-footer_content = "Lorem ipsum dolor amet consectetur adipisicing elit sed eiusm tempor incididunt ut labore dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamaboris nisi ut aliquip.exea commodo consequat. Duis aute irure dolor in reprehenderit. Lorem ipsum dolor amet consectetur adipisicing elit sed eiusm tempor incididunt ut labore dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamaboris nisi ut aliquip.exea commodo consequat. Duis aute irure dolor in reprehenderit."
+footer_content = "云原生社区是一个有温度的开源社区。它由一群热爱开源的行业精英自发成立，秉持“共识、共治、共建”的原则。社区的宗旨是：连接、中立、开源。即连接国内外社区，企业中立，且关注开源、立足开源、反馈开源。"
 # copyright
 copyright = "Copyright &copy; 2020 Cloud Native Community"
 
@@ -166,7 +166,7 @@ contentDir = "content/zh"
 weight = 1
 #home = "主页"
 # footer content
-footer_content = "Lorem ipsum dolor amet consectetur adipisicing elit sed eiusm tempor incididunt ut labore dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamaboris nisi ut aliquip.exea commodo consequat. Duis aute irure dolor in reprehenderit. Lorem ipsum dolor amet consectetur adipisicing elit sed eiusm tempor incididunt ut labore dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamaboris nisi ut aliquip.exea commodo consequat. Duis aute irure dolor in reprehenderit."
+footer_content = "云原生社区是一个有温度的开源社区。它由一群热爱开源的行业精英自发成立，秉持“共识、共治、共建”的原则。社区的宗旨是：连接、中立、开源。即连接国内外社区，企业中立，且关注开源、立足开源、反馈开源。"
 # copyright
 copyright = "Copyright &copy; 2020 云原生社区"
 
