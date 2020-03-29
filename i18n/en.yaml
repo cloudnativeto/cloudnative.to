@@ -63,3 +63,6 @@
 
 - id: status
   translation: status
+
+- id: site_name
+  translation: Cloud Native Community

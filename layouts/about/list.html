@@ -15,7 +15,7 @@
       {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
       {{ "<!-- philosophy item -->" | safeHTML }}
       <div class="col-md-4 mb-4 mb-md-0">
-        <h3><span class="text-primary">{{if lt $index 9}}0{{end}}{{$.Scratch.Get `counter`}}.</span> {{ .title }}</h3>
+        <h4><span class="text-primary">{{if lt $index 9}}0{{end}}{{$.Scratch.Get `counter`}}.</span> {{ .title }}</h4>
         <p>{{ .content | markdownify }}</p>
         <ul class="list-styled style-circle">
           {{ range .bullet_point }}

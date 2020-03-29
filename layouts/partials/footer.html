@@ -1,3 +1,4 @@
+{{ $data := index .Site.Data .Site.Language.Lang }}
 <!-- footer -->
 <footer>
   <!-- main footer -->
@@ -8,7 +9,7 @@
         <div class="col-lg-5 mb-5 mb-lg-0">
           <!-- logo -->
           <a class="mb-4 d-inline-block" href="{{ .Site.BaseURL | relLangURL }}"><img class="img-fluid"
-              src="{{ .Site.Params.logo_footer | relURL }}" alt="{{ .Site.Title }}"></a>
+              src="{{ .Site.Params.logo_footer | relURL }}" alt="{{ .Site.Title }}" width="60%" ></a>
           <p class="text-light mb-5">{{ .Site.Params.footer_content | markdownify }}</p>
           <h4 class="text-white mb-4">{{ i18n "follow" }}</h4>
           <!-- social links -->
@@ -36,14 +37,17 @@
             </div>
             -->
             <!-- contact info -->
+            {{ with $data.homepage.contact }}
             <div class="col-6 mb-5">
               <h4 class="text-white mb-4">{{ i18n "contact_info"}}</h4>
               <ul class="list-unstyled">
-                <li class="text-light mb-3">{{ .Site.Params.mobile }}</li>
-                <li class="text-light mb-3">{{ .Site.Params.email }}</li>
-                <li class="text-light mb-3">{{ .Site.Params.address }}</li>
+                <li class="text-light mb-3">{{ .address | markdownify }}</li>
+                <li class="text-light mb-3">{{ .email | markdownify }}</li>
+                <li class="text-light mb-3">{{ .description| markdownify }}</li>
+                <li class="text-light mb-3"><img src="{{ .image | relURL }}" width="128px"></li>
               </ul>
             </div>
+           {{ end }}
             {{ if .Site.Params.subscription.enable }}
             {{ with .Site.Params.subscription }}
             <div class="col-12">
