@@ -30,10 +30,10 @@ about:
 
 ################################### service ###########################
 service:
-  enable : true
+  enable : false
   # service item comes from `content/*/service` folder
 
 ################################### team ###########################
 team: 
-  enable : true
+  enable : false
   # team member comes from `content/*/team` folder

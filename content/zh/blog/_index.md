@@ -1,9 +1,8 @@
 ---
-title: "Blog"
+title: "博客"
 # meta description
-description: "this is meta description"
+description: "云原生技术分享。"
 # page title background image
-bg_image_webp: "images/backgrounds/page-title.webp"
-bg_image: "images/backgrounds/page-title.jpg"
+bg_image: "images/backgrounds/page-title-2.jpg"
 ---
 

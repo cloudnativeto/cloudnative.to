@@ -63,3 +63,6 @@
 
 - id: status
   translation: 状态
+
+- id: site_name
+  translation: 云原生社区

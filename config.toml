@@ -55,10 +55,10 @@ name = "About"
 URL = "about"
 weight = 2
 
-[[menu.main]]
-name = "Service"
-URL = "service"
-weight = 3
+#[[menu.main]]
+#name = "Service"
+#URL = "service"
+#weight = 3
 
 [[menu.main]]
 name = "Blog"
@@ -106,13 +106,11 @@ top_header = false
 description = "Slogan"
 author = "Cloud Native Community"
 # contact info
-address = "9567 Turner Trace Apt. BC C3G8A4"
-mobile = "+211234565523"
-email = "contact@cloudnative.to"
+wechat_qrcode= "images/wechat-qrcode.jpg"
 # contact form action
 contact_form_action = "#" # contact form works with https://formspree.io
 # Google Analitycs
-google_analitycs_id = "" # your id
+google_analitycs_id = "UA-93485976-4" # your id
 # page sidebar quick contact form
 quick_contact = true
 # search
@@ -126,12 +124,12 @@ preloader = "" # use jpg, png, svg or gif format.
 # Navigation button
 [params.navigation_button]
 enable = true
-label = "get a quote"
+label = "Join us"
 link = "contact"
 
 # Subscription
 [params.subscription]
-enable = true
+enable = false
 # mailchimp subsciption
 mailchimp_form_action = "https://gmail.us4.list-manage.com/subscribe/post?u=463ee871f45d2d93748e77cad&amp;id=a0a2c6d074" # replace this url with yours
 mailchimp_form_name = "b_463ee871f45d2d93748e77cad_a0a2c6d074" # replace this code with yours
@@ -144,6 +142,15 @@ link = "https://twitter.com/cloudnativeto"
 [[params.social]]
 icon = "fa-github"
 link = "https://github.com/cloudnativeto"
+
+[[params.social]]
+icon = "fa-wechat"
+# change the link after the public announcement
+link = "/contact"
+
+[[params.social]]
+icon = "fa-rss"
+link = "https://cloudnative.to/blog/index.xml"
 
 ################################### English language #####################################
 [Languages.en]

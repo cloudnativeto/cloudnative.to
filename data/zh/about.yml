@@ -30,7 +30,7 @@ about:
 
 ################################### service ###########################
 service:
-  enable : true
+  enable : false
   # service item comes from `content/*/service` folder
 
 ################################### team ###########################
