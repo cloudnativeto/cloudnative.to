@@ -7,7 +7,6 @@ description: "CNCF Ambassador， 京东计算存储平台部门产品经理， �
 bg_image_webp: "images/backgrounds/page-title.webp"
 bg_image: "images/backgrounds/page-title.jpg"
 # portrait
-image_webp: "images/team/zhangliying.jpg"
 image: "images/team/zhangliying.jpg"
 # designation
 designation: "京东"

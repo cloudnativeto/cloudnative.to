@@ -6,7 +6,6 @@ description: "Senior Engineer at PingCAP, TiDB/TiKV Core Team Member。主要负
 bg_image_webp: "images/backgrounds/page-title.webp"
 bg_image: "images/backgrounds/page-title.jpg"
 # portrait
-image_webp: "images/team/lognheng.jpg"
 image: "images/team/longheng.jpg"
 # designation
 designation: "PingCAP"

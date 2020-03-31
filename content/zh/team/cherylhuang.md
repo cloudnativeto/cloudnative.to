@@ -1,23 +1,23 @@
 ---
-title: "宋净超（Jimmy Song）"
+title: "Cheryl Hung"
 # meta description
-description: "蚂蚁金服云原生布道师，ServiceMesher 社区联合创始人，CNCF Ambassador，热衷开源和分享。"
+description: "Cheryl Hung 是 Linux 基金会下的非营利组织 Cloud Native Computing Foundation 的生态系统主管，该基金会托管包括 Kubernetes，Prometheus 和 Envoy 在内的开源项目。"
 # page title background image
 bg_image_webp: "images/backgrounds/page-title.webp"
 bg_image: "images/backgrounds/page-title.jpg"
 # portrait
-image: "images/team/jimmysong.jpg"
+image: "/images/team/cherylhung.jpg"
 # designation
-designation: "蚂蚁金服"
+designation: "CNCF"
 social:
   - icon : "fa-twitter" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
-    link : "https://twitter.com/jimmysongio"
+    link : "https://twitter.com/oicheryl"
   - icon : "fa-linkedin" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
-    link : "https://linkedin.com/in/jimmysongio"
+    link : "http://www.linkedin.com/in/cheryljhung/"
   - icon : "fa-github" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
-    link : "https://github.com/rootsongjc"
+    link : "https://www.github.com/oicheryl"
   - icon : "fa-globe" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
-    link : "https://jimmysong.io"
+    link : "https://www.oicheryl.com/"
 # type  
 type: "team"
 ---
