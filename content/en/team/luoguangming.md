@@ -6,7 +6,6 @@ description: "百度高级研发工程师，开源项目爱好者，Service Mesh
 bg_image_webp: "images/backgrounds/page-title.webp"
 bg_image: "images/backgrounds/page-title.jpg"
 # portrait
-image_webp: "images/team/luoguangming.jpg"
 image: "images/team/luoguangming.jpg"
 # designation
 designation: "百度"

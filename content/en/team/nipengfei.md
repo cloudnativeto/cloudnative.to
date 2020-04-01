@@ -6,7 +6,6 @@ description: "微软 Azure 资深工程师，同时也是 Kubernetes 项目维�
 bg_image_webp: "images/backgrounds/page-title.webp"
 bg_image: "images/backgrounds/page-title.jpg"
 # portrait
-image_webp: "images/team/nipengfei.jpg"
 image: "images/team/nipengfei.jpg"
 # designation
 designation: "微软"
