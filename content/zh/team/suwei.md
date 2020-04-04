@@ -1,6 +1,5 @@
 ---
 title: "粟伟"
-date: 2020-04-04T10:00:55+06:00
 # meta description
 description: "开源项目爱好者， 某互联网外企担任解决方案架构师， 主要负责容器类云原生相关产品及服务, 具有丰富的公有云经验。"
 # page title background image
