@@ -87,8 +87,8 @@ weight = 7
 
 # footer menu
 [[menu.footer]]
-name = "Terms of Service"
-URL = "terms"
+name = "Code of Conduct"
+URL = "/code-of-conduct"
 weight = 1
 
 [[menu.footer]]
@@ -112,9 +112,13 @@ contact_form_action = "#" # contact form works with https://formspree.io
 # Google Analitycs
 google_analitycs_id = "UA-93485976-4" # your id
 # page sidebar quick contact form
-quick_contact = true
+quick_contact = false
 # search
 search = true
+map = false
+email = "[contact@cloudnative.to](mailto:contact@cloudnative.to)"
+wechat = "[jimmysongio](https://jimmysong.io/contact)"
+address = "请关注我们的全球城市联络人计划"
 
 # Preloader
 [params.preloader]
@@ -160,7 +164,7 @@ contentDir = "content/en"
 weight = 2
 #home = "Home"
 # footer content
-footer_content = "云原生社区是一个有温度的开源社区。它由一群热爱开源的行业精英自发成立，秉持“共识、共治、共建”的原则。社区的宗旨是：连接、中立、开源。即连接国内外社区，企业中立，且关注开源、立足开源、反馈开源。"
+footer_content = "Cloud Native Community with Tech, Dev and Open Eyes."
 # copyright
 copyright = "Copyright &copy; 2020 Cloud Native Community"
 
@@ -173,7 +177,7 @@ contentDir = "content/zh"
 weight = 1
 #home = "主页"
 # footer content
-footer_content = "云原生社区是一个有温度的开源社区。它由一群热爱开源的行业精英自发成立，秉持“共识、共治、共建”的原则。社区的宗旨是：连接、中立、开源。即连接国内外社区，企业中立，且关注开源、立足开源、反馈开源。"
+footer_content = " 云原生社区：有技术，有温度，有格局。"
 # copyright
 copyright = "Copyright &copy; 2020 云原生社区"
 
@@ -216,8 +220,8 @@ weight = 7
 
 # footer menu
 [[Languages.zh.menu.footer]]
-name = "服务条款"
-URL = "terms"
+name = "社区守则"
+URL = "/code-of-conduct"
 weight = 1
 
 [[Languages.zh.menu.ooter]]

@@ -2,7 +2,7 @@
   translation: 了解详情
 
 - id: address
-  translation: 地址
+  translation: 分布
 
 - id: phone
   translation: 电话
@@ -66,3 +66,15 @@
 
 - id: site_name
   translation: 云原生社区
+
+- id: author
+  translation: 作者
+
+- id: published_at
+  translation: 发表于
+
+- id: dateFormat
+  translation: "2006年1月2日"
+
+- id: wechat
+  translation: 微信

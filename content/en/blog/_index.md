@@ -1,7 +1,7 @@
 ---
 title: "Blog"
 # meta description
-description: "Cloud Native blogs."
+description: "UGC by members, vendor neutral."
 # page title background image
 bg_image: "images/backgrounds/page-title-2.jpg"
 ---

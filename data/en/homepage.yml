@@ -71,7 +71,6 @@ about:
   title : "We Are Dynamic Team and Business Agency"
   content : "Excepteur sint occaecat cupidatat non proident sunt iculpa qui officia deserunt mollit anim est. laborum sed perspiciatis unde omnis natus error sit voluptatem accusantium."
   bg_image : "images/backgrounds/about-us-bg.png"
-  image_webp : "images/about/about-us.webp"
   image : "images/about/about-us.png"
   button:
     enable : true;
@@ -108,7 +107,6 @@ feature:
   enable : false
   subtitle : "Why Choose Us"
   title : "Why They Choose Bexar"
-  image_webp : "images/feature/feature.webp"
   image : "images/feature/feature.jpg"
   content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius tempor incididunt ut labore."
   feature_item:
@@ -176,7 +174,6 @@ testimonial:
 cta:
   enable : false
   title : "Bexar give the smart solution for your business"
-  bg_image_webp : "images/backgrounds/cta-lg.webp"
   bg_image : "images/backgrounds/cta-lg.jpg"
   button:
     enable : true
