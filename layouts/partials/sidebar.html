@@ -11,7 +11,7 @@
         <a href="{{ .Permalink | relURL }}">
           <h5 class="mt-0">{{ .Title }}</h5>
         </a>
-        {{ .PublishDate.Format "02 Jan 2006" }}
+        {{ default (i18n "dateFormat") .Site.Params.dateformat | .PublishDate.Format }}
       </div>
     </div>
     {{ end }}

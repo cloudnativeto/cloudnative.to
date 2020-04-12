@@ -5,7 +5,7 @@ slider:
     # slider item
     - subtitle : ""
       title : "欢迎来到云原生社区"
-      content : "云原生社区由 [Jimmy Song](https://jimmysong.io) 和他的[伙伴们](/team)发起于 2020 年 2 月，经过几个月时间的筹备，现在我们要向全世界宣布，云原生社区正式成立了！这是一个有温度的开源社区，我们希望借助开源打破公司的边界，我们关注技术人的成长，促进社区之间的交流。让我们一起关注开源，回馈开源。"
+      content : "云原生社区由 [Jimmy 和他的伙伴们](/team)发起于 2020 年 2 月，经过几个月时间的筹备，现在我们要向全世界宣布，云原生社区正式成立了！这是一个有温度的开源社区，我们希望借助开源打破公司的边界，我们关注技术人的成长，促进社区之间的交流。让我们一起关注开源，回馈开源。"
       bg_image_webp : "images/slider/banner-1.png"
       bg_image : "images/slider/banner-1.png"
       animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
@@ -46,7 +46,7 @@ about:
   enable : true
   subtitle : "关于云原生社区"
   title : "中立的云原生开发者社区"
-  content : "云原生社区是一个有温度的开源社区。它由一群热爱开源的行业精英自发成立，秉持“共识、共治、共享、共建”的原则。社区的宗旨是：连接、中立、开源。立足中国，面向世界，企业中立，关注开源，回馈开源。"
+  content : "云原生社区是一个有技术、有温度、有格局的开源社区。它由一群热爱开源的行业精英自发成立，秉持“共识、共治、共建、共享”的原则。社区的宗旨是：连接、中立、开源。立足中国，面向世界，企业中立，关注开源，回馈开源。"
   bg_image : "images/backgrounds/about-us-bg.png"
   image : "images/about/about-us.png"
   button:
@@ -162,7 +162,7 @@ cta:
 ################################# blog ################################################
 blog:
   enable : true
-  subtitle : "我们致力于云原生技术的传播和知识分享"
+  subtitle : "UGC，厂商中立"
   title : "博客"
   # blog post comes from "content/*/blog" folder
 
@@ -170,6 +170,6 @@ blog:
 contact:
   enable : true
   title : "联系信息"
-  image : "images/wechat-qrcode.jpg"
+  image : "images/wechat-qrcode.png"
   description : "关注云原生社区微信公众号，加入社区并获取最新资讯。"
   address: "北京 · 上海 · 成都 · 伦敦 · 旧金山"
