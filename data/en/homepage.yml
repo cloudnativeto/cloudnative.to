@@ -191,6 +191,6 @@ blog:
 contact:
   enable : true
   title : "Contact"
-  image : "images/wechat-qrcode.jpg"
+  image : "images/wechat-qrcode.png"
   description : "Follow us on wechat public account."
   address: "Beijing · Chengdu · London · San Francisco · Shanghai"

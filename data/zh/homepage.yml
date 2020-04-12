@@ -162,7 +162,7 @@ cta:
 ################################# blog ################################################
 blog:
   enable : true
-  subtitle : "博客为 UGC，厂商中立"
+  subtitle : "UGC，厂商中立"
   title : "博客"
   # blog post comes from "content/*/blog" folder
 
@@ -170,6 +170,6 @@ blog:
 contact:
   enable : true
   title : "联系信息"
-  image : "images/wechat-qrcode.jpg"
+  image : "images/wechat-qrcode.png"
   description : "关注云原生社区微信公众号，加入社区并获取最新资讯。"
   address: "北京 · 上海 · 成都 · 伦敦 · 旧金山"

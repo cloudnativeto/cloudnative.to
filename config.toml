@@ -103,10 +103,8 @@ logo_footer = "images/logo-alt.png"
 # top header
 top_header = false
 # Meta data
-description = "Slogan"
+description = "有技术 有温度 有格局"
 author = "Cloud Native Community"
-# contact info
-wechat_qrcode= "images/wechat-qrcode.jpg"
 # contact form action
 contact_form_action = "#" # contact form works with https://formspree.io
 # Google Analitycs
@@ -118,17 +116,17 @@ search = true
 map = false
 email = "[contact@cloudnative.to](mailto:contact@cloudnative.to)"
 wechat = "[jimmysongio](https://jimmysong.io/contact)"
-address = "请关注我们的全球城市联络人计划"
+address = "请关注我们的全球地区合伙人计划"
 
 # Preloader
 [params.preloader]
-enable = true
+enable = false
 preloader = "" # use jpg, png, svg or gif format.
 
 # Navigation button
 [params.navigation_button]
 enable = true
-label = "Join us"
+label = "加入我们"
 link = "contact"
 
 # Subscription
@@ -177,7 +175,7 @@ contentDir = "content/zh"
 weight = 1
 #home = "主页"
 # footer content
-footer_content = " 云原生社区：有技术，有温度，有格局。"
+footer_content = "云原生社区是一个有技术、有温度、有格局的开源社区。它由一群热爱开源的行业精英自发成立，秉持“共识、共治、共建、共享”的原则服务于全球华人。"
 # copyright
 copyright = "Copyright &copy; 2020 云原生社区"
 
