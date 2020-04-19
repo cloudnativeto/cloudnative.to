@@ -109,7 +109,7 @@ service:
 team:
   enable : false
   subtitle : "多样性的创始团队"
-  title : "创始人团队"
+  title : " 管理委员会"
   # team member comes from "content/*/team" folder
 
 ################################# project ############################################
@@ -151,7 +151,7 @@ testimonial:
 ################################# blog ################################################
 cta:
   enable : true
-  title : "加入云原生社区，寻找你与志同道合的伙伴！"
+  title : "打造中国最具影响力的云原生社区！"
   bg_image_webp : "images/backgrounds/cta-lg.webp"
   bg_image : "images/backgrounds/cta-lg.jpg"
   button:

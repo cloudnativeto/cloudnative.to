@@ -75,6 +75,11 @@ name = "Contact"
 URL = "contact"
 weight = 7
 
+[[menu.main]]
+name = "Contribute"
+URL = "contribute"
+weight = 8
+
 # [[menu.main]]
 # weight = 8
 # name = "Pages"
@@ -126,7 +131,6 @@ preloader = "" # use jpg, png, svg or gif format.
 # Navigation button
 [params.navigation_button]
 enable = true
-label = "加入我们"
 link = "contact"
 
 # Subscription
@@ -205,6 +209,11 @@ weight = 6
 name = "联系"
 URL = "contact"
 weight = 7
+
+[[Languages.zh.menu.main]]
+name = "投稿"
+URL = "contribute"
+weight = 8
 
 # [[Languages.zh.menu.main]]
 # weight = 8

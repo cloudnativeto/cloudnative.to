@@ -75,3 +75,6 @@
 
 - id: dateFormat
   translation: "Jan 2, 2006"
+
+- id: join_us
+  translation: "Join us"

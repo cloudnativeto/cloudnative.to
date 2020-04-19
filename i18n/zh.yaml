@@ -78,3 +78,6 @@
 
 - id: wechat
   translation: 微信
+
+- id: join_us
+  translation: "加入我们"
