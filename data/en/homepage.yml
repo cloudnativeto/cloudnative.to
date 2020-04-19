@@ -3,35 +3,11 @@ slider:
   enable : true
   slider_item:
     # slider item
-    - subtitle : "We are here to"
-      title : "Planning Business"
-      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    - subtitle : "WELCOME TO THE "
+      title : "CLOUD NATIVE COMMUNITY"
+      content : "The cloud native community was launched by [Jimmy and his partners](/team) in February 2020. After several months of preparation, we are now announcing to the world that the Cloud Native Community is officially established! This is an open source community with a temperature, and we hope to use the concept of open source to break down the boundaries of the company. We focus on the growth of technical people and facilitate the communication between the communities. Let's focus on open source and give feedback to open source."
       bg_image : "images/slider/banner-1.png"
       animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
-      button:
-        enable : true
-        label : "more details"
-        link : "about"
-        animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
-
-    # slider item
-    - subtitle : "We are here to"
-      title : "Planning Business"
-      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      bg_image : "images/slider/banner-2.jpg"
-      animation : "fadeInDown" # animation select from : https://daneden.github.io/animate.css/
-      button:
-        enable : true
-        label : "more details"
-        link : "about"
-        animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
-
-    # slider item
-    - subtitle : "We are here to"
-      title : "Planning Business"
-      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      bg_image : "images/slider/banner-3.jpg"
-      animation : "fadeInLeft" # animation select from : https://daneden.github.io/animate.css/
       button:
         enable : true
         label : "more details"
@@ -67,9 +43,9 @@ banner_feature:
 ################################## about ####################################
 about:
   enable : true
-  subtitle : "About Us"
-  title : "We Are Dynamic Team and Business Agency"
-  content : "Excepteur sint occaecat cupidatat non proident sunt iculpa qui officia deserunt mollit anim est. laborum sed perspiciatis unde omnis natus error sit voluptatem accusantium."
+  subtitle : "ABOUT CLOUD NATIVE COMMUNITY"
+  title : "NEUTRAL CLOUD NATIVE DEVELOPER COMMUNITY"
+  content : "Cloud Native Community is an open source community with technology, temperature and pattern. It was founded spontaneously by a group of industry elites who love open source and uphold the principle of "consensus, co-governance, co-construction and sharing". The aim of the community is: connection, neutral, open source. We are based in China, facing the world, enterprise neutrality, focusing on open source, and give feedback to open source."
   bg_image : "images/backgrounds/about-us-bg.png"
   image : "images/about/about-us.png"
   button:
@@ -184,7 +160,7 @@ cta:
 blog:
   enable : true
   subtitle : "Latest News"
-  title : "Learn From Bexar"
+  title : "Learn From Cloud Native Community"
   # blog post comes from "content/*/blog" folder
 
 ################################# contact ################################################
