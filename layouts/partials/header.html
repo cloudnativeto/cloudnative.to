@@ -98,7 +98,7 @@
           {{ end }}
           {{ if .Site.Params.navigation_button.enable }}
           {{ "<!-- get start btn -->" | safeHTML }}
-          <a href="{{ .Site.Params.navigation_button.link | relLangURL }}" class="btn btn-primary hover-ripple">{{ .Site.Params.navigation_button.label }}</a>
+          <a href="{{ .Site.Params.navigation_button.link | relLangURL }}" class="btn btn-primary hover-ripple">{{ i18n "join_us" }}</a>
           {{ end }}
         </div>
       </nav>
