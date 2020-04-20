@@ -125,26 +125,13 @@ project:
 testimonial:
   enable : true
   subtitle : "Testimonials"
-  title : "What Clients Are Say?"
+  title : "Messages from other communities"
   testimonial_item:
     # testimonial item loop
     - client_image : "images/testimonial/client-1.jpg"
       name : "Dominic Allen"
       designation : "Designer"
       content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit sed eiusmod tempor incididunt ut labore dolore magna aliqua.enim ad minim veniam.quis nostrud exercitation ullamco laboris nis aliquip ex ea commodo consequat. duis aute irure dolor in reprehen."
-
-    # testimonial item loop
-    - client_image : "images/testimonial/client-2.jpg"
-      name : "Alex Pitt"
-      designation : "Designer"
-      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit sed eiusmod tempor incididunt ut labore dolore magna aliqua.enim ad minim veniam.quis nostrud exercitation ullamco laboris nis aliquip ex ea commodo consequat. duis aute irure dolor in reprehen."
-
-    # testimonial item loop
-    - client_image : "images/testimonial/client-3.jpg"
-      name : "John Doe"
-      designation : "Designer"
-      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit sed eiusmod tempor incididunt ut labore dolore magna aliqua.enim ad minim veniam.quis nostrud exercitation ullamco laboris nis aliquip ex ea commodo consequat. duis aute irure dolor in reprehen."
-
 
 ################################# blog ################################################
 cta:
