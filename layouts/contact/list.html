@@ -47,12 +47,12 @@
 {{ end }}
 {{ "<!-- /contact item -->" | safeHTML }}
 
+{{ if .Site.Params.map }}
 {{ "<!-- contact form and map -->" | safeHTML }}
 <section class="section">
   <div class="container">
     <div class="row">
       {{ "<!-- google map -->" | safeHTML }}
-      {{ if .Site.Params.map }}
       <div class="col-md-5 mb-5 mb-md-0">
         <div id="map_canvas" data-latitude="{{ .Site.Params.map.map_latitude }}"
           data-longitude="{{ .Site.Params.map.map_longitude }}"
@@ -60,7 +60,6 @@
           data-marker-name="{{ .Site.Title }}">
         </div>
       </div>
-      {{ end }}
       {{ if .Site.Params.quick_contact }}
       <div class="col-md-7">
         <h3 class="section-title">{{ i18n "contact_form" }}</h3>
@@ -96,4 +95,5 @@
 </section>
 {{ "<!-- /contact form and map -->" | safeHTML }}
 
+{{ end }}
 {{ end }}
