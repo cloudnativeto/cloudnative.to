@@ -15,6 +15,7 @@
     </div>
   </div>
 </section>
+{{ if .Site.Params.contact_list }}
 <section class="section pb-0">
   <div class="container">
     <div class="row">
@@ -43,6 +44,7 @@
     </div>
   </div>
 </section>
+{{ end }}
 {{ "<!-- /contact item -->" | safeHTML }}
 
 {{ "<!-- contact form and map -->" | safeHTML }}
