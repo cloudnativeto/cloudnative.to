@@ -6,7 +6,6 @@ description: "蚂蚁金服云原生布道师，ServiceMesher 社区联合创始�
 bg_image_webp: "images/backgrounds/page-title.webp"
 bg_image: "images/backgrounds/page-title.jpg"
 # portrait
-image_webp: "images/team/jimmysong.jpg"
 image: "images/team/jimmysong.jpg"
 # designation
 designation: "蚂蚁金服"

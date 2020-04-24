@@ -9,6 +9,8 @@ summaryLength = "10"
 # disqusShortname = "bexer" # get your shortname form here : https://disqus.com
 # disable language
 disableLanguages = [] # desable language from here
+hasCJKLanguage = true
+DefaultContentLanguage = "zh"
 
 [outputs]
 home = ["HTML", "RSS", "JSON"]
@@ -53,10 +55,10 @@ name = "About"
 URL = "about"
 weight = 2
 
-[[menu.main]]
-name = "Service"
-URL = "service"
-weight = 3
+#[[menu.main]]
+#name = "Service"
+#URL = "service"
+#weight = 3
 
 [[menu.main]]
 name = "Blog"
@@ -73,6 +75,11 @@ name = "Contact"
 URL = "contact"
 weight = 7
 
+[[menu.main]]
+name = "Contribute"
+URL = "contribute"
+weight = 8
+
 # [[menu.main]]
 # weight = 8
 # name = "Pages"
@@ -85,8 +92,8 @@ weight = 7
 
 # footer menu
 [[menu.footer]]
-name = "Terms of Service"
-URL = "terms"
+name = "Code of Conduct"
+URL = "/code-of-conduct"
 weight = 1
 
 [[menu.footer]]
@@ -99,37 +106,36 @@ weight = 2
 logo = "images/logo.png"
 logo_footer = "images/logo-alt.png"
 # top header
-top_header = true
+top_header = false
 # Meta data
-description = "Slogan"
+description = "有技术 有温度 有格局"
 author = "Cloud Native Community"
-# contact info
-address = "9567 Turner Trace Apt. BC C3G8A4"
-mobile = "+211234565523"
-email = "contact@cloudnative.to"
 # contact form action
 contact_form_action = "#" # contact form works with https://formspree.io
 # Google Analitycs
-google_analitycs_id = "" # your id
+google_analitycs_id = "UA-93485976-4" # your id
 # page sidebar quick contact form
-quick_contact = true
+quick_contact = false
 # search
 search = true
+map = false
+email = "[contact@cloudnative.to](mailto:contact@cloudnative.to)"
+wechat = "[jimmysongio](https://jimmysong.io/contact)"
+address = "请关注我们的全球地区合伙人计划"
 
 # Preloader
 [params.preloader]
-enable = true
+enable = false
 preloader = "" # use jpg, png, svg or gif format.
 
 # Navigation button
 [params.navigation_button]
 enable = true
-label = "get a quote"
 link = "contact"
 
 # Subscription
 [params.subscription]
-enable = true
+enable = false
 # mailchimp subsciption
 mailchimp_form_action = "https://gmail.us4.list-manage.com/subscribe/post?u=463ee871f45d2d93748e77cad&amp;id=a0a2c6d074" # replace this url with yours
 mailchimp_form_name = "b_463ee871f45d2d93748e77cad_a0a2c6d074" # replace this code with yours
@@ -143,15 +149,24 @@ link = "https://twitter.com/cloudnativeto"
 icon = "fa-github"
 link = "https://github.com/cloudnativeto"
 
+[[params.social]]
+icon = "fa-wechat"
+# change the link after the public announcement
+link = "/contact"
+
+[[params.social]]
+icon = "fa-rss"
+link = "https://cloudnative.to/blog/index.xml"
+
 ################################### English language #####################################
 [Languages.en]
 languageName = "English"
 languageCode = "en-us"
 contentDir = "content/en"
-weight = 1
-home = "Home"
+weight = 2
+#home = "Home"
 # footer content
-footer_content = "Lorem ipsum dolor amet consectetur adipisicing elit sed eiusm tempor incididunt ut labore dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamaboris nisi ut aliquip.exea commodo consequat. Duis aute irure dolor in reprehenderit. Lorem ipsum dolor amet consectetur adipisicing elit sed eiusm tempor incididunt ut labore dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamaboris nisi ut aliquip.exea commodo consequat. Duis aute irure dolor in reprehenderit."
+footer_content = "Cloud Native Community with Tech, Dev and Open Eyes."
 # copyright
 copyright = "Copyright &copy; 2020 Cloud Native Community"
 
@@ -162,9 +177,9 @@ languageName = "中文"
 languageCode = "zh-cn"
 contentDir = "content/zh"
 weight = 1
-home = "主页"
+#home = "主页"
 # footer content
-footer_content = "Lorem ipsum dolor amet consectetur adipisicing elit sed eiusm tempor incididunt ut labore dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamaboris nisi ut aliquip.exea commodo consequat. Duis aute irure dolor in reprehenderit. Lorem ipsum dolor amet consectetur adipisicing elit sed eiusm tempor incididunt ut labore dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamaboris nisi ut aliquip.exea commodo consequat. Duis aute irure dolor in reprehenderit."
+footer_content = "云原生社区是一个有技术、有温度、有格局的开源社区。它由一群热爱开源的行业精英自发成立，秉持“共识、共治、共建、共享”的原则服务于全球华人。"
 # copyright
 copyright = "Copyright &copy; 2020 云原生社区"
 
@@ -175,10 +190,10 @@ name = "关于"
 URL = "about"
 weight = 2
 
-[[Languages.zh.menu.main]]
-name = "服务"
-URL = "service"
-weight = 3
+#[[Languages.zh.menu.main]]
+#name = "服务"
+#URL = "service"
+#weight = 3
 
 [[Languages.zh.menu.main]]
 name = "博客"
@@ -195,6 +210,11 @@ name = "联系"
 URL = "contact"
 weight = 7
 
+[[Languages.zh.menu.main]]
+name = "投稿"
+URL = "contribute"
+weight = 8
+
 # [[Languages.zh.menu.main]]
 # weight = 8
 # name = "页面"
@@ -207,8 +227,8 @@ weight = 7
 
 # footer menu
 [[Languages.zh.menu.footer]]
-name = "服务条款"
-URL = "terms"
+name = "社区守则"
+URL = "/code-of-conduct"
 weight = 1
 
 [[Languages.zh.menu.ooter]]

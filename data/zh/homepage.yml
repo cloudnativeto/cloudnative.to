@@ -3,55 +3,16 @@ slider:
   enable : true
   slider_item:
     # slider item
-    - subtitle : "We are here to"
-      title : "Planning Business"
-      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      bg_image_webp : "images/slider/banner-1.webp"
-      bg_image : "images/slider/banner-1.jpg"
+    - subtitle : ""
+      title : "欢迎来到云原生社区"
+      content : "云原生社区由 [Jimmy 和他的伙伴们](/team)发起于 2020 年 2 月，经过几个月时间的筹备，现在我们要向全世界宣布，云原生社区正式成立了！这是一个有温度的开源社区，我们希望借助开源打破公司的边界，我们关注技术人的成长，促进社区之间的交流。让我们一起关注开源，回馈开源。"
+      bg_image_webp : "images/slider/banner-1.png"
+      bg_image : "images/slider/banner-1.png"
       animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
       button:
         enable : true
-        label : "more details"
-        link : "about"
-        animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
-
-    # slider item
-    - subtitle : "We are here to"
-      title : "Planning Business"
-      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      bg_image_webp : "images/slider/banner-2.webp"
-      bg_image : "images/slider/banner-2.jpg"
-      animation : "fadeInDown" # animation select from : https://daneden.github.io/animate.css/
-      button:
-        enable : true
-        label : "more details"
-        link : "about"
-        animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
-
-    # slider item
-    - subtitle : "We are here to"
-      title : "Planning Business"
-      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      bg_image_webp : "images/slider/banner-3.webp"
-      bg_image : "images/slider/banner-3.jpg"
-      animation : "fadeInLeft" # animation select from : https://daneden.github.io/animate.css/
-      button:
-        enable : true
-        label : "more details"
-        link : "about"
-        animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
-
-    # slider item
-    - subtitle : "We are here to"
-      title : "Planning Business"
-      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      bg_image_webp : "images/slider/banner-4.webp"
-      bg_image : "images/slider/banner-4.jpg"
-      animation : "fadeInRight" # animation select from : https://daneden.github.io/animate.css/
-      button:
-        enable : true
-        label : "more details"
-        link : "about"
+        label : "加入我们"
+        link : "contact"
         animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
 
 ################################## banner feature ############################
@@ -85,14 +46,13 @@ about:
   enable : true
   subtitle : "关于云原生社区"
   title : "中立的云原生开发者社区"
-  content : "云原生社区是一群有种共同愿景的云原生爱好者于 2020 年 2 月发起的，厂商中立的开发者社区。"
+  content : "云原生社区是一个有技术、有温度、有格局的开源社区。它由一群热爱开源的行业精英自发成立，秉持“共识、共治、共建、共享”的原则。社区的宗旨是：连接、中立、开源。立足中国，面向世界，企业中立，关注开源，回馈开源。"
   bg_image : "images/backgrounds/about-us-bg.png"
-  image_webp : "images/about/about-us.webp"
   image : "images/about/about-us.png"
   button:
     enable : true;
-    label : "more service"
-    link : "service"
+    label : "查看详情"
+    link : "about"
 
 ################################## funfacts ###############################
 funfacts :
@@ -140,16 +100,16 @@ feature:
 
 ################################# service ############################################
 service:
-  enable : true
+  enable : false
   subtitle : "服务"
   title : "我们可以为您做什么"
   # service item comes from "content/*/service" folder
 
 ################################# team ##############################################
 team:
-  enable : true
-  subtitle : "团队"
-  title : "多样性的创始团队"
+  enable : false
+  subtitle : "多样性的创始团队"
+  title : " 管理委员会"
   # team member comes from "content/*/team" folder
 
 ################################# project ############################################
@@ -166,8 +126,8 @@ project:
 ################################# testimonial #########################################
 testimonial:
   enable : true
-  subtitle : "社区寄语"
-  title : "与我们的合作开源社区"
+  subtitle : "云原生社区与国内外开源届保持了良好的合作"
+  title : "社区寄语"
   testimonial_item:
     # testimonial item loop
     - client_image : "images/testimonial/client-1.jpg"
@@ -190,18 +150,26 @@ testimonial:
 
 ################################# blog ################################################
 cta:
-  enable : false
-  title : "Bexar give the smart solution for your business"
+  enable : true
+  title : "打造中国最具影响力的云原生社区！"
   bg_image_webp : "images/backgrounds/cta-lg.webp"
   bg_image : "images/backgrounds/cta-lg.jpg"
   button:
     enable : true
-    label : "get a quote"
+    label : "加入我们"
     link : "contact"
 
 ################################# blog ################################################
 blog:
   enable : true
-  subtitle : "博客"
-  title : "学习&分享"
+  subtitle : "UGC，厂商中立"
+  title : "博客"
   # blog post comes from "content/*/blog" folder
+
+################################# contact ################################################
+contact:
+  enable : true
+  title : "联系信息"
+  image : "images/wechat-qrcode.png"
+  description : "关注云原生社区微信公众号，加入社区并获取最新资讯。"
+  address: "北京 · 上海 · 成都 · 伦敦 · 旧金山"

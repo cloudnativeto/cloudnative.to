@@ -3,8 +3,19 @@
 {{ $data := index .Site.Data .Site.Language.Lang }}
 
 {{ partial "page-title.html" . }}
-
 {{ "<!-- contact items -->" | safeHTML }}
+<section class="section pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="content">
+          {{ .Content }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ if .Site.Params.contact_list }}
 <section class="section pb-0">
   <div class="container">
     <div class="row">
@@ -18,9 +29,9 @@
       </div>
       <div class="col-md-4 mb-4 mb-md-0">
         <div class="bg-white box-shadow text-center p-5 px-md-2 px-lg-5">
-          <i class="fa fa-phone text-primary icon-lg mb-4"></i>
-          <h4 class="mb-4">{{ i18n "phone" }}</h4>
-          <p>{{ .Site.Params.mobile | markdownify }}</p>
+          <i class="fa fa-wechat text-primary icon-lg mb-4"></i>
+          <h4 class="mb-4">{{ i18n "wechat" }}</h4>
+          <p>{{ .Site.Params.wechat | markdownify }}</p>
         </div>
       </div>
       <div class="col-md-4 mb-4 mb-md-0">
@@ -33,14 +44,15 @@
     </div>
   </div>
 </section>
+{{ end }}
 {{ "<!-- /contact item -->" | safeHTML }}
 
+{{ if .Site.Params.map }}
 {{ "<!-- contact form and map -->" | safeHTML }}
 <section class="section">
   <div class="container">
     <div class="row">
       {{ "<!-- google map -->" | safeHTML }}
-      {{ if .Site.Params.map.enable }}
       <div class="col-md-5 mb-5 mb-md-0">
         <div id="map_canvas" data-latitude="{{ .Site.Params.map.map_latitude }}"
           data-longitude="{{ .Site.Params.map.map_longitude }}"
@@ -48,7 +60,7 @@
           data-marker-name="{{ .Site.Title }}">
         </div>
       </div>
-      {{ end }}
+      {{ if .Site.Params.quick_contact }}
       <div class="col-md-7">
         <h3 class="section-title">{{ i18n "contact_form" }}</h3>
         <form action="{{ .Site.Params.contact_form_action }}" method="POST" class="row">
@@ -77,9 +89,11 @@
           </div>
         </form>
       </div>
+      {{ end }}
     </div>
   </div>
 </section>
 {{ "<!-- /contact form and map -->" | safeHTML }}
 
+{{ end }}
 {{ end }}

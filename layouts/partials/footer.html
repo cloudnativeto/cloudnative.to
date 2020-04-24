@@ -1,3 +1,4 @@
+{{ $data := index .Site.Data .Site.Language.Lang }}
 <!-- footer -->
 <footer>
   <!-- main footer -->
@@ -8,7 +9,7 @@
         <div class="col-lg-5 mb-5 mb-lg-0">
           <!-- logo -->
           <a class="mb-4 d-inline-block" href="{{ .Site.BaseURL | relLangURL }}"><img class="img-fluid"
-              src="{{ .Site.Params.logo_footer | relURL }}" alt="{{ .Site.Title }}"></a>
+              src="{{ .Site.Params.logo_footer | relURL }}" alt="{{ .Site.Title }}" width="60%"></a>
           <p class="text-light mb-5">{{ .Site.Params.footer_content | markdownify }}</p>
           <h4 class="text-white mb-4">{{ i18n "follow" }}</h4>
           <!-- social links -->
@@ -20,9 +21,10 @@
             {{ end }}
           </ul>
         </div>
-        <div class="col-lg-6">
-          <div class="row">
+        <div class="col-lg-5 mb-5 mb-lg-0">
             <!-- service list -->
+            <!-- hide this -->
+            <!--
             <div class="col-6 mb-5">
               <h4 class="text-white mb-4">{{ i18n "services" }}</h4>
               <ul class="list-styled">
@@ -32,23 +34,28 @@
                 {{ end }}
               </ul>
             </div>
+            -->
             <!-- contact info -->
-            <div class="col-6 mb-5">
+            {{ with $data.homepage.contact }}
+            <div class="mb-5">
               <h4 class="text-white mb-4">{{ i18n "contact_info"}}</h4>
-              <ul class="list-unstyled">
-                <li class="text-light mb-3">{{ .Site.Params.mobile }}</li>
-                <li class="text-light mb-3">{{ .Site.Params.email }}</li>
-                <li class="text-light mb-3">{{ .Site.Params.address }}</li>
-              </ul>
+              <p class="text-light mb-3">{{ .address | markdownify }}</p>
+              <p class="text-light mb-3">{{ .email | markdownify }}</p>
+              <p class="text-light mb-3">{{ .description| markdownify }}</p>
+              <p class="text-light mb-3"><img src="{{ .image | relURL }}" width="356px"></p>
             </div>
+            {{ end }}
             {{ if .Site.Params.subscription.enable }}
             {{ with .Site.Params.subscription }}
             <div class="col-12">
               <h4 class="text-white mb-4">{{ i18n "subscribe_newsletter"}}</h4>
-              <form action="{{ .mailchimp_form_action }}" method="post" name="mc-embedded-subscribe-form" target="_blank">
+              <form action="{{ .mailchimp_form_action }}" method="post" name="mc-embedded-subscribe-form"
+                target="_blank">
                 <div class="position-relative">
-                  <input type="email" class="form-control border-0 text-white newsletter-form" id="newsletter" name="newsletter" placeholder="Enter your email">
-                  <button type="submit" name="subscribe" class="btn btn-primary btn-subscribe">{{ i18n "subscribe"}}</button>
+                  <input type="email" class="form-control border-0 text-white newsletter-form" id="newsletter"
+                    name="newsletter" placeholder="Enter your email">
+                  <button type="submit" name="subscribe"
+                    class="btn btn-primary btn-subscribe">{{ i18n "subscribe"}}</button>
                   <div style="position: absolute; left: -5000px;" aria-hidden="true">
                     <input type="text" name="{{ .mailchimp_form_name }}" tabindex="-1">
                   </div>
@@ -57,7 +64,6 @@
             </div>
             {{ end }}
             {{ end }}
-          </div>
         </div>
       </div>
     </div>
@@ -72,7 +78,8 @@
         <div class="col-md-6 text-center text-md-right">
           <ul class="list-inline">
             {{ range .Site.Menus.footer }}
-            <li class="list-inline-item mx-0"><a class="d-inline-block px-3 text-white" href="{{ .URL | relLangURL }}" class="text-white">{{ .Name }}</a></li>
+            <li class="list-inline-item mx-0"><a class="d-inline-block px-3 text-white" href="{{ .URL | relLangURL }}"
+                class="text-white">{{ .Name }}</a></li>
             {{ end }}
           </ul>
         </div>
@@ -84,7 +91,7 @@
 
 {{ if .Site.Params.search }}
 <script>
-  var indexURL = {{"index.json" | relURL}}
+  var indexURL = {{ "index.json" | relURL}}
 </script>
 {{ end }}
 

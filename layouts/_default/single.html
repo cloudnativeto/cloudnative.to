@@ -12,8 +12,7 @@
           <img src="{{ .Params.Image_webp | relURL }}"  onerror="this.src='{{.Params.Image | relURL }}'" alt="post thumb" class="img-fluid w-100">
           {{ with .Params.Categories }}{{range first 1 .}} <div class="card-type">{{ . | title }}</div>{{ end }}{{ end }}
         </div>
-        <div class="card-meta text-uppercase mb-2">by <strong class="text-dark">{{ .Params.Author }}</strong>/ on <strong class="text-dark">{{ .PublishDate.Format "02 Jan 2006" }}</strong></div>
-        <h2>{{ .Title }}</h2>
+        <div class="card-meta text-uppercase mb-2">{{ i18n "author" }}  <strong class="text-dark">{{ .Params.Author }}</strong> {{ i18n "published_at" }} <strong class="text-dark">{{ default (i18n "dateFormat") .Site.Params.dateformat | .PublishDate.Format }}</strong></div>
         <div class="content">
           {{ .Content }}
         </div>
@@ -21,9 +20,10 @@
         <div class="mb-3">
           <h5 class="d-inline-block mr-3">Tags:</h5>
           <ul class="list-inline d-inline-block">
-            {{ range .Params.Tags }}
-            <li class="list-inline-item"><a class="text-color" href="{{ `tags/` | relURL }}{{ . | lower }}">{{ . }}</a>,</li>
-            {{ end }}
+            {{ range $index, $elements:= .Params.Tags }}<a>
+            <li class="list-inline-item"><a class="text-color" href="{{ `tags/` | relLangURL }}{{ . | urlize | lower }}"> {{ if ne $index 0 }}, {{ end }}
+            {{ . | title }}</a>
+            {{ end}}
           </ul>
         </div>
         <!-- comments -->

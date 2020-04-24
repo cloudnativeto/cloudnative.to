@@ -1,6 +1,6 @@
 - id: read_more
   translation: Read More
-  
+
 - id: address
   translation: Our Address
 
@@ -63,3 +63,18 @@
 
 - id: status
   translation: status
+
+- id: site_name
+  translation: "Cloud Native Community"
+
+- id: author
+  translation: by
+
+- id: published_at
+  translation: "on"
+
+- id: dateFormat
+  translation: "Jan 2, 2006"
+
+- id: join_us
+  translation: "Join us"

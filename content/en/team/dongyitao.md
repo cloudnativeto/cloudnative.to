@@ -6,7 +6,6 @@ description: "蚂蚁金服高级产品经理，致力于云原生中间件和Paa
 bg_image_webp: "images/backgrounds/page-title.webp"
 bg_image: "images/backgrounds/page-title.jpg"
 # portrait
-image_webp: "images/team/dongyitao.jpg"
 image: "images/team/dongyitao.jpg"
 # designation
 designation: "蚂蚁金服"

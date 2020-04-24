@@ -1,9 +1,8 @@
 ---
-title: "About"
+title: "关于"
 # meta description
-description: "this is meta description"
+description: "关于云原生社区的介绍。"
 # page title background image
-bg_image_webp: "images/backgrounds/page-title.webp"
 bg_image: "images/backgrounds/page-title.jpg"
 ---
 

@@ -3,25 +3,25 @@ philosophy:
   enable : true
   philosophy_item:
     # philosophy item loop
-    - title : "Our Mission"
-      content : "Lorem ipsum dolor sit amet consectetur adip isicing elit sed do eiusmod tempor incididunt ut labore."
-      bullet_point:
-        - "Quality Services"
-        - "Clients Satisfaction"
-        
+    - title : "使命"
+      content : "推动云原生技术的发展普及，帮助中国开发者走向世界。"
+      #bullet_point:
+      #  - "Quality Services"
+      #  - "Clients Satisfaction"
+
     # philosophy item loop
-    - title : "Our Approach"
-      content : "Lorem ipsum dolor sit amet consectetur adip isicing elit sed do eiusmod tempor incididunt ut labore."
-      bullet_point:
-        - "Quality Services"
-        - "Clients Satisfaction"
-        
-    # philosophy item loop
-    - title : "Our Philosophy"
-      content : "Lorem ipsum dolor sit amet consectetur adip isicing elit sed do eiusmod tempor incididunt ut labore."
-      bullet_point:
-        - "Quality Services"
-        - "Clients Satisfaction"
+    - title : "宗旨"
+      content : "连接开源社区与开发者，企业中立，开发者优先，开源优先。"
+      #bullet_point:
+      #  - "Quality Services"
+      #  - "Clients Satisfaction"
+
+      # philosophy item loop
+    - title : "原则"
+      content : "共识、共治、共建、共享。"
+      #bullet_point:
+      #   - "Quality Services"
+      #   - "Clients Satisfaction"
 
 ################################### about ###########################
 about:
@@ -30,7 +30,7 @@ about:
 
 ################################### service ###########################
 service:
-  enable : true
+  enable : false
   # service item comes from `content/*/service` folder
 
 ################################### team ###########################

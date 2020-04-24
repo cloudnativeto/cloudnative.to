@@ -1,16 +1,24 @@
 # cloudnative.to
 
-Source code of cloudnative.to
+云原生社区官网源码。
 
-## Spec
+## 投稿
 
-### Images
+向本站投稿请参考[投稿指南](https://cloudnative.to/contribute/)。
 
-Team member portfolio: 363 * 438
+## 协议
 
-Logo: 6277 × 2092
+本站内容采用[署名-非商业性使用-相同方式共享 4.0（CC BY-NC-SA 4.0）](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)许可。
 
-### Theme settings
+## 规格
 
-Primary color: `#ea27a8`
+### 图片
+
+- 团队成员照片尺寸：363 x 438
+
+- 博客图片比例：16:9
+
+### 主题设置
+
+主色调： `#ea27a8`
 

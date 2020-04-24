@@ -3,51 +3,11 @@ slider:
   enable : true
   slider_item:
     # slider item
-    - subtitle : "We are here to"
-      title : "Planning Business"
-      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      bg_image_webp : "images/slider/banner-1.webp"
-      bg_image : "images/slider/banner-1.jpg"
+    - subtitle : "WELCOME TO THE "
+      title : "CLOUD NATIVE COMMUNITY"
+      content : "The cloud native community was launched by [Jimmy and his partners](/team) in February 2020. After several months of preparation, we are now announcing to the world that the Cloud Native Community is officially established! This is an open source community with a temperature, and we hope to use the concept of open source to break down the boundaries of the company. We focus on the growth of technical people and facilitate the communication between the communities. Let's focus on open source and give feedback to open source."
+      bg_image : "images/slider/banner-1.png"
       animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
-      button:
-        enable : true
-        label : "more details"
-        link : "about"
-        animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
-
-    # slider item
-    - subtitle : "We are here to"
-      title : "Planning Business"
-      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      bg_image_webp : "images/slider/banner-2.webp"
-      bg_image : "images/slider/banner-2.jpg"
-      animation : "fadeInDown" # animation select from : https://daneden.github.io/animate.css/
-      button:
-        enable : true
-        label : "more details"
-        link : "about"
-        animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
-
-    # slider item
-    - subtitle : "We are here to"
-      title : "Planning Business"
-      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      bg_image_webp : "images/slider/banner-3.webp"
-      bg_image : "images/slider/banner-3.jpg"
-      animation : "fadeInLeft" # animation select from : https://daneden.github.io/animate.css/
-      button:
-        enable : true
-        label : "more details"
-        link : "about"
-        animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
-
-    # slider item
-    - subtitle : "We are here to"
-      title : "Planning Business"
-      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      bg_image_webp : "images/slider/banner-4.webp"
-      bg_image : "images/slider/banner-4.jpg"
-      animation : "fadeInRight" # animation select from : https://daneden.github.io/animate.css/
       button:
         enable : true
         label : "more details"
@@ -83,16 +43,15 @@ banner_feature:
 ################################## about ####################################
 about:
   enable : true
-  subtitle : "About Us"
-  title : "We Are Dynamic Team and Business Agency"
-  content : "Excepteur sint occaecat cupidatat non proident sunt iculpa qui officia deserunt mollit anim est. laborum sed perspiciatis unde omnis natus error sit voluptatem accusantium."
+  subtitle : "ABOUT CLOUD NATIVE COMMUNITY"
+  title : "NEUTRAL CLOUD NATIVE DEVELOPER COMMUNITY"
+  content : "Cloud Native Community is an open source community with technology, temperature and pattern. It was founded spontaneously by a group of industry elites who love open source and uphold the principle of 'consensus, co-governance, co-construction and sharing'. The aim of the community is: connection, neutral, open source. We are based in China, facing the world, enterprise neutrality, focusing on open source, and give feedback to open source."
   bg_image : "images/backgrounds/about-us-bg.png"
-  image_webp : "images/about/about-us.webp"
   image : "images/about/about-us.png"
   button:
     enable : true;
-    label : "more service"
-    link : "service"
+    label : "Learn more"
+    link : "about"
 
 ################################## funfacts ###############################
 funfacts :
@@ -124,7 +83,6 @@ feature:
   enable : false
   subtitle : "Why Choose Us"
   title : "Why They Choose Bexar"
-  image_webp : "images/feature/feature.webp"
   image : "images/feature/feature.jpg"
   content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius tempor incididunt ut labore."
   feature_item:
@@ -140,14 +98,14 @@ feature:
 
 ################################# service ############################################
 service:
-  enable : true
+  enable : false
   subtitle : "Best Service"
   title : "Service We Provide"
   # service item comes from "content/*/service" folder
 
 ################################# team ##############################################
 team:
-  enable : true
+  enable : false
   subtitle : "Our Team"
   title : "We Are Dynamic Team and <br> Business Agency"
   # team member comes from "content/*/team" folder
@@ -167,7 +125,7 @@ project:
 testimonial:
   enable : true
   subtitle : "Testimonials"
-  title : "What Clients Are Say?"
+  title : "Messages from other communities"
   testimonial_item:
     # testimonial item loop
     - client_image : "images/testimonial/client-1.jpg"
@@ -175,24 +133,10 @@ testimonial:
       designation : "Designer"
       content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit sed eiusmod tempor incididunt ut labore dolore magna aliqua.enim ad minim veniam.quis nostrud exercitation ullamco laboris nis aliquip ex ea commodo consequat. duis aute irure dolor in reprehen."
 
-    # testimonial item loop
-    - client_image : "images/testimonial/client-2.jpg"
-      name : "Alex Pitt"
-      designation : "Designer"
-      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit sed eiusmod tempor incididunt ut labore dolore magna aliqua.enim ad minim veniam.quis nostrud exercitation ullamco laboris nis aliquip ex ea commodo consequat. duis aute irure dolor in reprehen."
-
-    # testimonial item loop
-    - client_image : "images/testimonial/client-3.jpg"
-      name : "John Doe"
-      designation : "Designer"
-      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit sed eiusmod tempor incididunt ut labore dolore magna aliqua.enim ad minim veniam.quis nostrud exercitation ullamco laboris nis aliquip ex ea commodo consequat. duis aute irure dolor in reprehen."
-
-
 ################################# blog ################################################
 cta:
   enable : false
   title : "Bexar give the smart solution for your business"
-  bg_image_webp : "images/backgrounds/cta-lg.webp"
   bg_image : "images/backgrounds/cta-lg.jpg"
   button:
     enable : true
@@ -203,5 +147,13 @@ cta:
 blog:
   enable : true
   subtitle : "Latest News"
-  title : "Learn From Bexar"
+  title : "Learn From Cloud Native Community"
   # blog post comes from "content/*/blog" folder
+
+################################# contact ################################################
+contact:
+  enable : true
+  title : "Contact"
+  image : "images/wechat-qrcode.png"
+  description : "Follow us on wechat public account."
+  address: "Beijing · Chengdu · London · San Francisco · Shanghai"
