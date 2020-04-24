@@ -107,7 +107,7 @@ service:
 team:
   enable : false
   subtitle : "Our Team"
-  title : "We Are Dynamic Team and <br> Business Agency"
+  title : "Steering Committee"
   # team member comes from "content/*/team" folder
 
 ################################# project ############################################
@@ -135,19 +135,19 @@ testimonial:
 
 ################################# blog ################################################
 cta:
-  enable : false
-  title : "Bexar give the smart solution for your business"
+  enable : true
+  title : "Create the most influential cloud native community in China!"
   bg_image : "images/backgrounds/cta-lg.jpg"
   button:
     enable : true
-    label : "get a quote"
+    label : "Join Us"
     link : "contact"
 
 ################################# blog ################################################
 blog:
   enable : true
-  subtitle : "Latest News"
-  title : "Learn From Cloud Native Community"
+  subtitle : "User Generated Context, Vendor neutral"
+  title : "Blog"
   # blog post comes from "content/*/blog" folder
 
 ################################# contact ################################################
@@ -155,5 +155,5 @@ contact:
   enable : true
   title : "Contact"
   image : "images/wechat-qrcode.png"
-  description : "Follow us on wechat public account."
+  description : "Follow us on wechat public account and join the community, to get the latest cloud native news and blogs."
   address: "Beijing · Chengdu · London · San Francisco · Shanghai"
