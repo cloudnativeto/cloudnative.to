@@ -146,7 +146,7 @@ cta:
 ################################# blog ################################################
 blog:
   enable : true
-  subtitle : "User Generated Context, Vendor neutral"
+  subtitle : "User Generated Content, Vendor neutral"
   title : "Blog"
   # blog post comes from "content/*/blog" folder
 
