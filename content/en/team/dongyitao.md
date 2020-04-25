@@ -1,14 +1,14 @@
 ---
-title: "董一韬"
+title: "Yitao Dong"
 # meta description
-description: "蚂蚁金服高级产品经理，致力于云原生中间件和PaaS产品研发和落地实践，热衷于开源技术。"
+description: "He is a Senior Product Manager at Ant Financial, dedicated to the development and implementation of cloud native middleware and PaaS products, with a passion for open source technologies."
 # page title background image
 bg_image_webp: "images/backgrounds/page-title.webp"
 bg_image: "images/backgrounds/page-title.jpg"
 # portrait
 image: "images/team/dongyitao.jpg"
 # designation
-designation: "蚂蚁金服"
+designation: "Ant Financial"
 social:
   - icon : "fa-twitter" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
     link : "https://twitter.com/Matthew_Dyt"
