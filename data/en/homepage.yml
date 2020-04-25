@@ -51,7 +51,7 @@ about:
   button:
     enable : true;
     label : "Learn more"
-    link : "about"
+    link : "/blog/cnc-announcement/"
 
 ################################## funfacts ###############################
 funfacts :
