@@ -124,15 +124,19 @@ project:
 ################################# testimonial #########################################
 testimonial:
   enable : true
-  subtitle : "Testimonials"
-  title : "Messages from other communities"
+  title : "TESTIMONIALS"
   testimonial_item:
     # testimonial item loop
-    - client_image : "images/testimonial/client-1.jpg"
-      name : "Dominic Allen"
-      designation : "Designer"
-      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit sed eiusmod tempor incididunt ut labore dolore magna aliqua.enim ad minim veniam.quis nostrud exercitation ullamco laboris nis aliquip ex ea commodo consequat. duis aute irure dolor in reprehen."
+    - client_image : "images/testimonial/jimmysong.png"
+      name : "Jimmy Song"
+      designation : "Co-founder of Cloud Native Community"
+      content : "The spirit of open source should be promoted, the results of open source should be seen, and the cloud native community wants to be with developers for their lifetime growth."
 
+    - client_image : "images/testimonial/luoguangming.jpg"
+      name : "Guangming Luo"
+      designation : "Co-founder of Cloud Native Community"
+      content : "This is the best of times and everyone should be able to benefit from the open source community and cloud native technology. That's why we are here!"
+      
 ################################# blog ################################################
 cta:
   enable : true
