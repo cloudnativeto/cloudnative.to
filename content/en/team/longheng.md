@@ -1,7 +1,7 @@
 ---
-title: "龙恒"
+title: "Heng Long"
 # meta description
-description: "Senior Engineer at PingCAP, TiDB/TiKV Core Team Member。主要负责分布式数据库 TiDB 计算层研发和开发者社区相关工作。"
+description: "Senior Engineer at PingCAP, TiDB/TiKV Core Team Member. Mainly responsible for distributed database TiDB computing layer development and developer community related work."
 # page title background image
 bg_image_webp: "images/backgrounds/page-title.webp"
 bg_image: "images/backgrounds/page-title.jpg"
