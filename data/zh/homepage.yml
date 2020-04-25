@@ -52,7 +52,7 @@ about:
   button:
     enable : true;
     label : "查看详情"
-    link : "about"
+    link : "/blog/cnc-announcement/"
 
 ################################## funfacts ###############################
 funfacts :
@@ -126,27 +126,18 @@ project:
 ################################# testimonial #########################################
 testimonial:
   enable : true
-  subtitle : "云原生社区与国内外开源届保持了良好的合作"
   title : "社区寄语"
   testimonial_item:
     # testimonial item loop
-    - client_image : "images/testimonial/client-1.jpg"
-      name : "Dominic Allen"
-      designation : "Designer"
-      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit sed eiusmod tempor incididunt ut labore dolore magna aliqua.enim ad minim veniam.quis nostrud exercitation ullamco laboris nis aliquip ex ea commodo consequat. duis aute irure dolor in reprehen."
+    - client_image : "images/testimonial/jimmysong.png"
+      name : "Jimmy Song"
+      designation : "云原生社区联合创始人"
+      content : "开源精神应该被提倡，开源成果值得被看见，云原生社区希望陪伴开发者们的终生成长。"
 
-    # testimonial item loop
-    - client_image : "images/testimonial/client-2.jpg"
-      name : "Alex Pitt"
-      designation : "Designer"
-      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit sed eiusmod tempor incididunt ut labore dolore magna aliqua.enim ad minim veniam.quis nostrud exercitation ullamco laboris nis aliquip ex ea commodo consequat. duis aute irure dolor in reprehen."
-
-    # testimonial item loop
-    - client_image : "images/testimonial/client-3.jpg"
-      name : "John Doe"
-      designation : "Designer"
-      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit sed eiusmod tempor incididunt ut labore dolore magna aliqua.enim ad minim veniam.quis nostrud exercitation ullamco laboris nis aliquip ex ea commodo consequat. duis aute irure dolor in reprehen."
-
+    - client_image : "images/testimonial/luoguangming.jpg"
+      name : "罗广明"
+      designation : "云原生社区联合创始人"
+      content : "这是一个最好的时代，人人都应该可以从开源社区与云原生技术中获益！"
 
 ################################# blog ################################################
 cta:
