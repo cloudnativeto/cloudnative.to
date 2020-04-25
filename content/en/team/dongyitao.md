@@ -1,7 +1,7 @@
 ---
 title: "Yitao Dong"
 # meta description
-description: "He is a Senior Product Manager at Ant Financial, dedicated to the development and implementation of cloud native middleware and PaaS products, with a passion for open source technologies."
+description: "Senior Product Manager at Ant Financial, dedicated to the development and implementation of cloud native middleware and PaaS products, with a passion for open source technologies."
 # page title background image
 bg_image_webp: "images/backgrounds/page-title.webp"
 bg_image: "images/backgrounds/page-title.jpg"
