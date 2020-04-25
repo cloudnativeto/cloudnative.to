@@ -11,7 +11,7 @@ bg_image: "images/backgrounds/page-title-3.jpg"
 关注「Cloud Native Community」微信公众号，或在公众号中回复「加入」，将获得申请地址。
 
 <p align="center">
-  <img src="qrcode.jpg" tile="云原生社区微信公众号二维码" alt="云原生社区微信公众号二维码">
+  <img src="qrcode.jpg" tile="云原生社区微信公众号二维码" alt="云原生社区微信公众号二维码" width="128px">
 </p>
 
 请认真填写申请表，社区管理员会核对表单与加入知识星球时的备注。您的个人信息仅会作为社区成员身份记录，不会泄露和作为其他用途，请放心填写。

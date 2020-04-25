@@ -5,11 +5,11 @@ philosophy:
     # philosophy item loop
     - title : "Our Mission"
       content : "To promote the development and popularization of cloud native technology. To help Chinese developers to grow a global vision."
-        
+
     # philosophy item loop
     - title : "Our Aim"
       content : "Connecting developers with open source community: enterprise neutral, developer first, open source first."
-        
+
     # philosophy item loop
     - title : "Our Principle"
       content : "Consensus, co-governance, co-construction and sharing."
