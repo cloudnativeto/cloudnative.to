@@ -155,6 +155,11 @@ icon = "fa-wechat"
 link = "/contact"
 
 [[params.social]]
+icon = "fa-envelope"
+# change the link after the public announcement
+link = "mailto:contact@cloudnative.to"
+
+[[params.social]]
 icon = "fa-rss"
 link = "https://cloudnative.to/blog/index.xml"
 
