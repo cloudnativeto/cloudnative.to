@@ -12,6 +12,6 @@ type: "post"
 
 > 云原生社区（Cloud Native Community）
 >
-> 有技术，有温度，有格局。
+> 有技术，有温度，有情怀。
 
 TBD
