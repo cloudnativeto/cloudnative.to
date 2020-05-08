@@ -8,7 +8,7 @@ bg_image: "images/backgrounds/page-title-3.jpg"
 
 ### 加入云原生社区
 
-关注 `Cloud Native Community` 微信公众号，或在公众号中回复 `加入`，将获得申请地址。
+关注云原生社区官方微信公众号，或在公众号中回复 `加入`，将获得申请地址。
 
 <p align="center">
   <img src="qrcode.jpg" tile="云原生社区微信公众号二维码" alt="云原生社区微信公众号二维码" width="128px">
@@ -39,4 +39,4 @@ bg_image: "images/backgrounds/page-title-3.jpg"
 您可以使用以下方式与我们联系：
 
 - 发送邮件至 [contact@cloudnative.to](mailto:contact@cloudnative.to)
-- 在 `Cloud Native Community` 微信公众号中留言
+- 请在云原生社区官方微信公众号中留言
