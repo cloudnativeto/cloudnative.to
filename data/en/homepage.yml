@@ -45,7 +45,7 @@ about:
   enable : true
   subtitle : "ABOUT CLOUD NATIVE COMMUNITY"
   title : "NEUTRAL CLOUD NATIVE DEVELOPER COMMUNITY"
-  content : "Cloud Native Community is an open source community with technology, temperature and pattern. It was founded spontaneously by a group of industry elites who love open source and uphold the principle of 'consensus, co-governance, co-construction and sharing'. The aim of the community is: connection, neutral, open source. We are based in China, facing the world, enterprise neutrality, focusing on open source, and give feedback to open source."
+  content : "Cloud Native Community is an open source community with technology, temperature and passion. It was founded spontaneously by a group of industry elites who love open source and uphold the principle of 'consensus, co-governance, co-construction and sharing'. The aim of the community is: connection, neutral, open source. We are based in China, facing the world, enterprise neutrality, focusing on open source, and give feedback to open source."
   bg_image : "images/backgrounds/about-us-bg.png"
   image : "images/about/about-us.png"
   button:
