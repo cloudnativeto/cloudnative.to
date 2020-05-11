@@ -5,7 +5,7 @@ slider:
     # slider item
     - subtitle : ""
       title : "欢迎来到云原生社区"
-      content : "云原生社区由 [Jimmy 和他的伙伴们](/team)发起于 2020 年 2 月，经过几个月时间的筹备，现在我们要向全世界宣布，云原生社区正式成立了！这是一个有温度的开源社区，我们希望借助开源打破公司的边界，我们关注技术人的成长，促进社区之间的交流。让我们一起关注开源，回馈开源。"
+      content : "云原生社区由 [Jimmy 和他的伙伴们](/team)发起于 2020 年 2 月，经过几个月时间的筹备，现在我们要向全世界宣布，[云原生社区正式成立了](/blog/cnc-announcement/)！这是一个有温度的开源社区，我们希望借助开源打破公司的边界，我们关注技术人的成长，促进社区之间的交流。让我们一起关注开源，回馈开源。"
       bg_image_webp : "images/slider/banner-1.png"
       bg_image : "images/slider/banner-1.png"
       animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
@@ -153,7 +153,7 @@ cta:
 ################################# blog ################################################
 blog:
   enable : true
-  subtitle : "UGC，厂商中立"
+  subtitle : "UGC，企业中立"
   title : "博客"
   # blog post comes from "content/*/blog" folder
 

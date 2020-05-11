@@ -3,7 +3,7 @@
   <img class="card-img-top rounded-0" src="{{ .Params.Image_webp | relURL }}"
     onerror="this.src='{{.Params.Image | relURL }}'" alt="{{ .Title }}">
   <div class="card-body">
-      <div class="card-meta text-uppercase mb-2"> {{ i18n "author" }} <strong class="text-dark">{{ .Params.Author }}</strong> {{ i18n "published_at" }}
+      <div class="card-meta text-uppercase mb-2"> {{ i18n "author" }} <strong class="text-dark">{{ .Params.Author | markdownify }}</strong> {{ i18n "published_at" }}
       <strong class="text-dark">{{ default (i18n "dateFormat") .Site.Params.dateformat | .PublishDate.Format }}</strong></div>
     <h4 class="card-title"><a class="text-dark" href="{{ .Permalink | relURL }}">{{ .Title }}</a></h4>
     <div class="section-title-border"></div>
