@@ -1,7 +1,7 @@
 ---
 title: "云原生社区成立"
-date: 2020-05-02T06:00:00+08:00
-description: "社区治理委员会宣布云原生社区今天正式成立了。"
+date: 2020-05-12T06:00:00+08:00
+description: "云原生社区今天正式成立了。"
 bg_image: "images/backgrounds/page-title.jpg"
 image: "images/blog/blog-1.jpg"
 author: "[Jimmy Song](https://jimmysong.io)"
