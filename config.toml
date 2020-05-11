@@ -171,7 +171,7 @@ contentDir = "content/en"
 weight = 2
 #home = "Home"
 # footer content
-footer_content = "Cloud Native Community is an open source community with technology, temperature and passion. It was founded spontaneously by a group of industry elites who love open source, and it adheres to the principle of "consensus, co-governance, co-construction and sharing" to serve the global developers espcially for Ethnic Chinese."
+footer_content = "Cloud Native Community is an open source community with technology, temperature and passion. It was founded spontaneously by a group of industry elites who love open source, and it adheres to the principle of 'consensus, co-governance, co-construction and sharing' to serve the global developers espcially for Ethnic Chinese."
 # copyright
 copyright = "Copyright &copy; 2020 Cloud Native Community"
 
