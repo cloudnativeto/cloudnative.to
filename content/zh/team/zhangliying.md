@@ -12,7 +12,7 @@ image: "images/team/zhangliying.jpg"
 designation: "京东"
 social:
   - icon : "fa-twitter" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
-    link : "https://twitter.comVivian_zly7755"
+    link : "https://twitter.com/Vivian_zly7755"
 # type
 type: "team"
 ---

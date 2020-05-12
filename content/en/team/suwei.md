@@ -8,7 +8,7 @@ bg_image: "images/backgrounds/page-title.jpg"
 # portrait
 image: "images/team/suwei.jpg"
 # designation
-designation: "Internet Company"
+designation: "AWS"
 social:
   - icon : "fa-twitter" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
     link : "https://twitter.comVivian_zly7755"
