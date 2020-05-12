@@ -1,7 +1,7 @@
 ---
 title: "Wei Su"
 # meta description
-description: "Open source project enthusiast, solution architect for a foreign Internet company, mainly responsible for container cloud native related products and services, with rich experience in public cloud."
+description: "Open source project enthusiast, AWS solution architect, mainly responsible for container cloud native related products and services, with rich experience in public cloud."
 # page title background image
 bg_image_webp: "images/backgrounds/page-title.webp"
 bg_image: "images/backgrounds/page-title.jpg"
