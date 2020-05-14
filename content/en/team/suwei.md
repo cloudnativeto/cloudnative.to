@@ -11,7 +11,11 @@ image: "images/team/suwei.jpg"
 designation: "AWS"
 social:
   - icon : "fa-twitter" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
-    link : "https://twitter.comVivian_zly7755"
+    link : "https://twitter.com/suwei18904898"
+  - icon : "fa-linkedin" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+    link : "https://www.linkedin.com/in/wei-su-31874a25"
+  - icon : "fa-github" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+    link : "https://github.com/stevensu1977"
 # type
 type: "team"
 ---
