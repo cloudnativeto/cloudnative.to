@@ -1,12 +1,13 @@
 ---
-author: "罗广明"
-authorlink: "https://github.com/GuangmingLuo"
 title: "混合微服务高可用在企业级生产中的实践"
-summary: "本文为 Service Mesh Virtual Meetup - 'Service Mesh 高可用在企业级生产中的实践'分享专题重新整理的文字稿。"
-banner: "/images/blog/ms-ha.jpeg"
+description: "本文为 Service Mesh Virtual Meetup - 'Service Mesh 高可用在企业级生产中的实践'分享专题重新整理的文字稿。"
+author: "[罗广明](https://github.com/GuangmingLu)"
+bg_image: "images/backgrounds/page-title.jpg"
+image: "images/blog/ms-ha.jpeg"
 categories: ["Service Mesh"]
 tags: ["service mesh","Microservices","Spring Cloud"]
-date: 2020-05-20T10:16:46+08:00
+date: 2020-05-20T06:00:00+08:00
+type: "post"
 ---
 
 ## 前言
