@@ -1,6 +1,6 @@
 ---
 title: "一文带你彻底厘清 Kubernetes 中的证书工作机制"
-description: "在本文中，我将试图以一种比官方文档更容易理解的方式来说明 Kubernetes 中和证书（Certificate）相关的工作机制，如果你也存在这方面的疑惑，希望这篇文章对你有所帮助。"
+description: "在本文中，我将试图以一种比官方文档更容易理解的方式来说明 Kubernetes 和证书（Certificate）相关的工作机制，如果你也存在这方面的疑惑，希望这篇文章对你有所帮助。"
 author: "[赵化冰](https://zhaohuabing.com)"
 bg_image: ""
 image: "https://zhaohuabing.com/img/2020-05-19-k8s-certificate/background-cloudnativeto.jpg"
@@ -11,7 +11,7 @@ type: "post"
 ---
 
 
-接触 Kubernetes 以来，我经常看到 Kubernetes 在不同的地方使用了证书（Certificate），在 Kubernetes 安装和组件启动参数中也需要配置大量证书相关的参数。但是 Kubernetes 的文档在解释这些证书的工作机制方面做得并不是太好。经过大量的相关阅读和分析工作后，我基本弄清楚了 Kubernetes 中证书的使用方式。在本文中，我将试图以一种比官方文档更容易理解的方式来说明 Kubernetes 中证书相关的工作机制，如果你也存在这方面的疑惑，希望这篇文章对你有所帮助。
+接触 Kubernetes 以来，我经常看到 Kubernetes 在不同的地方使用了证书（Certificate），在 Kubernetes 安装和组件启动参数中也需要配置大量证书相关的参数。但是 Kubernetes 的文档在解释这些证书的工作机制方面做得并不是太好。经过大量的相关阅读和分析工作后，我基本弄清楚了 Kubernetes 中证书的使用方式。在本文中，我将试图以一种比官方文档更容易理解的方式来说明 Kubernetes 证书相关的工作机制，如果你也存在这方面的疑惑，希望这篇文章对你有所帮助。
 
 ## Kubernetes 组件的认证方式
 
