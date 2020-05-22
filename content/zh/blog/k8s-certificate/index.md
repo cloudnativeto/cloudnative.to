@@ -3,7 +3,7 @@ title: "一文带你彻底厘清 Kubernetes 中的证书工作机制"
 description: "在本文中，我将试图以一种比官方文档更容易理解的方式来说明 Kubernete s中和证书（Certificate）相关的工作机制，如果你也存在这方面的疑惑，希望这篇文章对你有所帮助。"
 author: "[赵化冰](https://zhaohuabing.com)"
 bg_image: ""
-image: "images/blog/ms-ha.jpeg"
+image: "https://zhaohuabing.com/img/2020-05-19-k8s-certificate/background-cloudnativeto.jpg"
 categories: ["Kubernetes"]
 tags: ["Kubernetes"]
 date: 2020-05-21T06:00:00+08:00
