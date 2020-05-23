@@ -31,17 +31,11 @@ Introduction for the Steering Community：https://cloudnative.to/en/team/
 You will gain the followings after joining the community:
 
 - Knowledge and news closer to the source
-
 - A more valuable network
-
 - More professional  and characteristic consultation
-
 - Opportunities to get closer to opinion leaders
-
 - Faster and more efficient personal growth
-
 - More knowledge sharing and exposure opportunities
-
 - More industry talent to be found
 
 ## Join
