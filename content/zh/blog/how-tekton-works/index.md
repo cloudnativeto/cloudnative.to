@@ -135,14 +135,68 @@ spec:
           path: ready
       name: tekton-internal-downward
 ```
+
+对原生的排序step container进一步处理：启动命令使用`entrypoint`提供，并设置执行参数：
+
+`entrypoint.go`
+```go
+func orderContainers(entrypointImage string, steps []corev1.Container, results []v1alpha1.TaskResult) (corev1.Container, []corev1.Container, error) {
+	initContainer := corev1.Container{
+		Name:         "place-tools",
+		Image:        entrypointImage,
+		Command:      []string{"cp", "/ko-app/entrypoint", entrypointBinary},
+		VolumeMounts: []corev1.VolumeMount{toolsMount},
+	}
+
+	if len(steps) == 0 {
+		return corev1.Container{}, nil, errors.New("No steps specified")
+	}
+
+	for i, s := range steps {
+		var argsForEntrypoint []string
+		switch i {
+		case 0:
+			argsForEntrypoint = []string{
+				// First step waits for the Downward volume file.
+				"-wait_file", filepath.Join(downwardMountPoint, downwardMountReadyFile),
+				"-wait_file_content", // Wait for file contents, not just an empty file.
+				// Start next step.
+				"-post_file", filepath.Join(mountPoint, fmt.Sprintf("%d", i)),
+				"-termination_path", terminationPath,
+			}
+		default:
+			// All other steps wait for previous file, write next file.
+			argsForEntrypoint = []string{
+				"-wait_file", filepath.Join(mountPoint, fmt.Sprintf("%d", i-1)),
+				"-post_file", filepath.Join(mountPoint, fmt.Sprintf("%d", i)),
+				"-termination_path", terminationPath,
+			}
+		}
+    ...
+}
+```
+
 ### 自动运行的容器
 
 这些自动运行的容器作为 pod 的`initContainer`会在 step 容器运行之前运行
 
-- `credential-initializer`
-- `working-dir-initializer`
-- `place-scripts`
-- `place-tools`
+#### `credential-initializer`
+
+用于将 `ServiceAccount` 的相关secrets持久化到容器的文件系统中。比如 ssh 相关秘钥、config文件以及know_hosts文件；docker registry 相关的凭证则会被写入到 docker 的配置文件中。
+
+#### `working-dir-initializer`
+
+收集`Task`内的各个`Step`的`workingDir`配置，初始化目录结构
+
+#### `place-scripts`
+
+假如`Step`使用的是`script`配置（与command+args相对），这个容器会将脚本代码（`script`字段的内容）持久化到`/tekton/scripts`目录中。
+
+注：所有的脚本会自动加上`#!/bin/sh\nset -xe\n`，所以`script`字段里就不必写了。
+
+####  `place-tools`
+
+将`entrypoint`的二进制文件，复制到`/tekton/tools/entrypoint`.
 
 ### Task/Step间的数据传递
 
