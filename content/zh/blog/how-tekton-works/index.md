@@ -2,17 +2,16 @@
 title: "Tekton 的工作原理"
 description: "结合源码和场景分析 Tekton 的工作原理。"
 author: "[张晓辉](https://atbug.com)"
-bg_image: ""
-image: "https://atbug.oss-cn-hangzhou.aliyuncs.com/2020/05/24/tekton.jpeg"
+image: "https://gw.alipayobjects.com/mdn/rms_95b965/afts/img/A*eUqkTKk66gkAAAAAAAAAAABkARQnAQ"
 categories: ["DevOps"]
 tags: ["Tekton", "CICD"]
 date: 2020-05-23T22:47:14+08:00
 type: "post"
 ---
 
-(img from Tekton)
+作者：张晓辉：资深码农，12 年软件开发经验。曾在汇丰软件、唯品会、数人云等公司任职。目前就职小鹏汽车，在基础架构团队从事技术中台的研发。
 
-*这篇文章是基于 Tekton Pipeline 的最新版本`v0.12.1`版本。*
+> 这篇文章是基于 Tekton Pipeline 的最新版本`v0.12.1`版本。
 
 快速入门请参考：[云原生 CICD: Tekton Pipeline 实战](https://atbug.com/tekton-trigger-practice/) ，*实战是基于版本 v0.10.x*。
 
@@ -396,6 +395,3 @@ spec:
 - Knative Controller：[https://knative.dev/docs/eventing/samples/writing-receive-adapter-source/03-controller](https://knative.dev/docs/eventing/samples/writing-receive-adapter-source/03-controller)
 - Why Aren’t PipelineResources in Beta?：[https://tekton.dev/docs/pipelines/resources/#why-aren-t-pipelineresources-in-beta](https://tekton.dev/docs/pipelines/resources/#why-aren-t-pipelineresources-in-beta)
 
----
-
-张晓辉：资深码农，12 年软件开发经验。曾在汇丰软件、唯品会、数人云等公司任职。目前就职小鹏汽车，在基础架构团队从事技术中台的研发。
