@@ -193,7 +193,7 @@ func orderContainers(entrypointImage string, steps []corev1.Container, results [
 
 注：所有的脚本会自动加上`#!/bin/sh\nset -xe\n`，所以`script`字段里就不必写了。
 
-####  `place-tools`
+#### `place-tools`
 
 将`entrypoint`的二进制文件，复制到`/tekton/tools/entrypoint`.
 
@@ -217,7 +217,6 @@ workspaces:
   persistentVolumeClaim:
     claimName: m2-pv-claim
 ```
-
 
 ```yaml
 apiVersion: v1
@@ -302,7 +301,7 @@ workspaces:
 - 需要提前创建`secret`
 - `secret`的[大小限制为1MB（Kubernetes的限制）](https://github.com/kubernetes/kubernetes/blob/f16bfb069a22241a5501f6fe530f5d4e2a82cf0e/pkg/apis/core/validation/validation.go#L5042)
 
-#### Result
+#### `results`
 
 `results`字段可以用来配置多个文件用来存储`Tasks`的执行结果，这些文件保存在`/tekton/results`目录中。
 
@@ -368,7 +367,8 @@ spec:
 
 执行结果：
 
-```
+
+```bash
 ┌──────Logs(tekton-pipelines/pass-date-read-date-rhlf2-pod-9b2sk)[all] ──────────                                                                       │
 │ place-scripts stream closed                                                                                                                                                                                                                                                             ││ step-read 1590242170                                                                                                                                                                                                                                                                    │
 │ step-read Sat May 23 13:56:10 UTC 2020                                                                                                                                                                                                                                                  ││ step-read + echo 1590242170                                                                                                                                                                                                                                                             │
