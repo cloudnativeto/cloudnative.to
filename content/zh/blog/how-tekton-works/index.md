@@ -2,7 +2,7 @@
 title: "Tekton 的工作原理"
 description: "结合源码和场景分析 Tekton 的工作原理。"
 author: "[张晓辉](https://atbug.com)"
-image: "https://gw.alipayobjects.com/mdn/rms_95b965/afts/img/A*eUqkTKk66gkAAAAAAAAAAABkARQnAQ"
+image: "https://atbug.oss-cn-hangzhou.aliyuncs.com/2020/05/26/yellowmetalpipeonredwall3964505.jpg"
 categories: ["DevOps"]
 tags: ["Tekton", "CICD"]
 date: 2020-05-23T22:47:14+08:00
@@ -29,7 +29,7 @@ taskruns            tr,trs       tekton.dev   true         TaskRun
 tasks                            tekton.dev   true         Task
 ```
 
-Tekton Pipelines提供了上面的CRD，其中部分CRD与k8s core中资源相对应
+Tekton Pipelines提供了上面的CRD，其中部分CRD与Kubernetes core中资源相对应
 
 - Task => Pod
 - Task.Step => Container
@@ -39,7 +39,7 @@ Tekton Pipelines提供了上面的CRD，其中部分CRD与k8s core中资源相�
 ## 工作原理
 
 ![](https://atbug.oss-cn-hangzhou.aliyuncs.com/2020/05/23/15902280074872.jpg)
-(图片来自)
+(图片来自tekton.dev)
 
 
 Tekton Pipeline 是基于 Knative 的实现，pod `tekton-pipelines-controller` 中有两个 [Knative Controller](https://knative.dev/docs/eventing/samples/writing-receive-adapter-source/03-controller/)的实现：PipelineRun 和 TaskRun。
@@ -284,7 +284,7 @@ workspaces:
 引用一个`configMap`卷，将`configMap`卷作为工作区，有如下限制：
 - 挂载的卷是`只读`的
 - 需要提前创建`configMap`
-- `configMap`的[大小限制为1MB（K8s的限制）](https://github.com/kubernetes/kubernetes/blob/f16bfb069a22241a5501f6fe530f5d4e2a82cf0e/pkg/apis/core/validation/validation.go#L5042)
+- `configMap`的[大小限制为1MB（Kubernetes的限制）](https://github.com/kubernetes/kubernetes/blob/f16bfb069a22241a5501f6fe530f5d4e2a82cf0e/pkg/apis/core/validation/validation.go#L5042)
 
 使用场景，比如使用`maven`编译Java项目，配置文件`settings.xml`可以使用`configMap`作为工作区
 
@@ -300,7 +300,7 @@ workspaces:
 用于引用`secret`卷，同`configMap`工作区一样，也有限制：
 - 挂载的卷是`只读`的
 - 需要提前创建`secret`
-- `secret`的[大小限制为1MB（K8s的限制）](https://github.com/kubernetes/kubernetes/blob/f16bfb069a22241a5501f6fe530f5d4e2a82cf0e/pkg/apis/core/validation/validation.go#L5042)
+- `secret`的[大小限制为1MB（Kubernetes的限制）](https://github.com/kubernetes/kubernetes/blob/f16bfb069a22241a5501f6fe530f5d4e2a82cf0e/pkg/apis/core/validation/validation.go#L5042)
 
 #### Result
 
@@ -390,8 +390,8 @@ spec:
 
 ## 参考
 
-- 云原生 CICD: Tekton Pipeline 实战：[https://atbug.com/tekton-trigger-practice](https://atbug.com/tekton-trigger-practice)
-- 控制 Pod 内容器的启动顺序：[https://atbug.com/control-process-order-of-pod-containers](https://atbug.com/control-process-order-of-pod-containers)
-- Knative Controller：[https://knative.dev/docs/eventing/samples/writing-receive-adapter-source/03-controller](https://knative.dev/docs/eventing/samples/writing-receive-adapter-source/03-controller)
-- Why Aren’t PipelineResources in Beta?：[https://tekton.dev/docs/pipelines/resources/#why-aren-t-pipelineresources-in-beta](https://tekton.dev/docs/pipelines/resources/#why-aren-t-pipelineresources-in-beta)
+- [云原生 CICD: Tekton Pipeline 实战](https://atbug.com/tekton-trigger-practice)
+- [控制 Pod 内容器的启动顺序](https://atbug.com/control-process-order-of-pod-containers)
+- [Knative Controller](https://knative.dev/docs/eventing/samples/writing-receive-adapter-source/03-controller)
+- [Why Aren’t PipelineResources in Beta?](https://tekton.dev/docs/pipelines/resources/#why-aren-t-pipelineresources-in-beta)
 
