@@ -11,9 +11,9 @@ type: "post"
 
 作者：张晓辉：资深码农，12 年软件开发经验。曾在汇丰软件、唯品会、数人云等公司任职。目前就职小鹏汽车，在基础架构团队从事技术中台的研发。
 
-> 这篇文章是基于 Tekton Pipeline 的最新版本`v0.12.1`版本。
+**这篇文章是基于 Tekton Pipeline 的最新版本`v0.12.1`版本。**
 
-快速入门请参考：[云原生 CICD: Tekton Pipeline 实战](https://atbug.com/tekton-trigger-practice/) ，*实战是基于版本 v0.10.x*。
+快速入门请参考：[云原生 CICD: Tekton Pipeline 实战](https://atbug.com/tekton-trigger-practice/) ，实战是基于版本 v0.10.x。
 
 ## Pipeline CRD 与核心资源的关系
 
@@ -281,6 +281,7 @@ workspaces:
 ##### `configMap`
 
 引用一个`configMap`卷，将`configMap`卷作为工作区，有如下限制：
+
 - 挂载的卷是`只读`的
 - 需要提前创建`configMap`
 - `configMap`的[大小限制为1MB（Kubernetes的限制）](https://github.com/kubernetes/kubernetes/blob/f16bfb069a22241a5501f6fe530f5d4e2a82cf0e/pkg/apis/core/validation/validation.go#L5042)
@@ -297,6 +298,7 @@ workspaces:
 ##### `secret`
 
 用于引用`secret`卷，同`configMap`工作区一样，也有限制：
+
 - 挂载的卷是`只读`的
 - 需要提前创建`secret`
 - `secret`的[大小限制为1MB（Kubernetes的限制）](https://github.com/kubernetes/kubernetes/blob/f16bfb069a22241a5501f6fe530f5d4e2a82cf0e/pkg/apis/core/validation/validation.go#L5042)
