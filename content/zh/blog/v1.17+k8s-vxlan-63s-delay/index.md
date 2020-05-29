@@ -25,7 +25,7 @@ type: "post"
 - `curl -I 10.96.0.10:9153/metrics` 超时，很久之后才有返回
 - `curl -I <podIP>:9153/metrics` 能直接返回
 
-涉及到本次排查的信息为
+涉及到本次排查的信息为：
 
 ```shell
 $ kubectl get node -o wide
@@ -39,7 +39,7 @@ NAME                       READY   STATUS    RESTARTS   AGE   IP            NODE
 coredns-546565776c-v5wwg   1/1     Running   2          25h   10.244.2.73   node2   <none>           <none>
 ```
 
-多次尝试发现很久的时间都是一样，用 time 命令观察了下一直是63秒返回。包括其他任何 SVC 都是这样
+多次尝试发现很久的时间都是一样，用 time 命令观察了下一直是63秒返回。包括其他任何 SVC 都是这样。
 
 ```shell
 $ time    curl -I 10.96.0.10:9153/metrics
@@ -53,7 +53,7 @@ user	0m0.002s
 sys	0m0.007s
 ```
 
-proxyMode 是 ipvs ，用 ipvsadm 看下超时的时候的状态，一直是`SYN_RECV`，也就是发送了 SYN ，没收到回包
+proxyMode 是 ipvs ，用 ipvsadm 看下超时的时候的状态，一直是`SYN_RECV`，也就是发送了 SYN ，没收到回包。
 
 ```shell
 $ ipvsadm -lnc |& grep 9153
@@ -152,24 +152,24 @@ IP 10.244.0.0.2201 > 10.244.2.73.9153: Flags [.], ack 114, win 342, options [nop
 
 先看上面的第一部分，搜了下资料，得知 TCP 默认 SYN 报文最大 retry 5次，每次超时了翻倍，`1s -> 3s -> 7s -> 15s -> 31s -> 63s`。只有63秒的时候 node 的机器上才收到了 VXLAN 的报文。说明 POD 所在 node 压根没收到63秒之前的。
 
-一般 LVS 的 dr 模式下 TCP 的时间戳混乱或者其他几个 ARP 的内核参数不对下 `SYN` 是一直收不到的而不是63秒后有结果，所以和内核相关参数无关。于是同样上面的步骤 tcpdump 抓包，加上`-w filename.pcap`选项把抓的包导出下来导入到 wireshark 里准备看看
+一般 LVS 的 dr 模式下 TCP 的时间戳混乱或者其他几个 ARP 的内核参数不对下 `SYN` 是一直收不到的而不是63秒后有结果，所以和内核相关参数无关。于是同样上面的步骤 tcpdump 抓包，加上`-w filename.pcap`选项把抓的包导出下来导入到 wireshark 里准备看看。
 
 ### 报文分析
 
 9153的包 wireshark 里看63秒前面都是 TCP 的 SYN 重传，看到了 master 上向外发送的 VXLAN 报文的时候有了发现。
 
-可以看到 UDP 的 checksum 是`0xffff`，我对 UDP 报文不太熟悉， UDP 的 header 的 Checksum 没记错的话`CRC32`校验的，不可能是这种两个字节都置1的 `0xffff` ，明显就是 UDP 的 header 的校验出错了。后面几个正常包的 Checksum 都是 missing 的
+可以看到 UDP 的 checksum 是`0xffff`，我对 UDP 报文不太熟悉， UDP 的 header 的 Checksum 没记错的话`CRC32`校验的，不可能是这种两个字节都置1的 `0xffff` ，明显就是 UDP 的 header 的校验出错了。后面几个正常包的 Checksum 都是 missing 的。
 
 ![vxlan1](vxlan-udp-csum1.png)
 
-wireshark 的`编辑`->`首选项`->`Protocols`->`UDP`->`Validate the UDP checksum if possible` 勾上更直观看
+wireshark 的`编辑`->`首选项`->`Protocols`->`UDP`->`Validate the UDP checksum if possible` 勾上更直观看。
 
 ![vxlan1](vxlan-udp-csum2.png)
 
 
 ### 不是根本的解决方法
 
-搜了下`wireshark linux udp checksum incorrect`，都是推荐把 `Checksum Offload` disable 掉就行了，例如我这里是 flannel ，则是
+搜了下`wireshark linux udp checksum incorrect`，都是推荐把 `Checksum Offload` disable 掉就行了，例如我这里是 flannel ，则是：
 
 ```shell
 $ /sbin/ethtool -K flannel.1 tx-checksum-ip-generic off
@@ -184,7 +184,7 @@ tcp-segmentation-offload: off
 udp-fragmentation-offload: off [requested on]
 ```
 
-再测下正常，而 WEAVE 他们也用的 VXLAN 模式，但是他们在创建网卡的时候把这个已经 off 掉了，所以 WEAVE 的 VXLAN 模式在`v1.17+`集群没出现这个问题
+再测下正常，而 WEAVE 他们也用的 VXLAN 模式，但是他们在创建网卡的时候把这个已经 off 掉了，所以 WEAVE 的 VXLAN 模式在`v1.17+`集群没出现这个问题。
 
 ```shell
 $ time curl -I 10.96.0.10:9153
@@ -200,12 +200,11 @@ user	0m0.005s
 sys	0m0.003s
 ```
 
-你以为这样就完了？其实并没有，因为我自己维护了一套 [ansible 部署 kubernetes](https://github.com/zhangguanzhang/Kubernetes-ansible) 的方案，每次新版本发布我都会实际测下。并且同事反映了他同样云主机开出来用我 ansible 部署`v1.17.5`没有这个问题。这就很奇怪了，原因后面说，请接着继续看
+你以为这样就完了？其实并没有，因为我自己维护了一套 [ansible 部署 kubernetes](https://github.com/zhangguanzhang/Kubernetes-ansible) 的方案，每次新版本发布我都会实际测下。并且同事反映了他同样云主机开出来用我 ansible 部署`v1.17.5`没有这个问题。这就很奇怪了，原因后面说，请接着继续看。
 
 ### 什么是checksum offload
 
-Checksum Offload 是网卡的一个功能选项。如果该选项开启，则网卡层面会计算需要发送或者接收到的消息的校验和，从而节省 CPU 的计算开销。此时，在需要发送的消息到达网卡前，系统会在报头的校验和字段填充一个随机值。
-但是，尽管校验和卸载能够降低 CPU 的计算开销，但受到计算能力的限制，某些环境下的一些网络卡计算速度不如主频超过 400MHz 的 CPU 快。
+Checksum Offload 是网卡的一个功能选项。如果该选项开启，则网卡层面会计算需要发送或者接收到的消息的校验和，从而节省 CPU 的计算开销。此时，在需要发送的消息到达网卡前，系统会在报头的校验和字段填充一个随机值。但是，尽管校验和卸载能够降低 CPU 的计算开销，但受到计算能力的限制，某些环境下的一些网络卡计算速度不如主频超过 400MHz 的 CPU 快。
 
 ## 正文
 
@@ -237,9 +236,9 @@ Checksum Offload 是网卡的一个功能选项。如果该选项开启，则网
 | 7.6    |        ansible             |       v1.17.5        |               no               |      no       |
 
 
-可以看出就是1.17以上的 kube-proxy 如果使用 POD 则会有这个问题，而非 POD 则不会， 在github 上 [compare 了下v1.17.0和v1.16.3](https://github.com/kubernetes/kubernetes/compare/v1.16.3...v1.17.0)
+可以看出就是1.17以上的 kube-proxy 如果使用 POD 则会有这个问题，而非 POD 则不会， 在github 上 [compare 了下v1.17.0和v1.16.3](https://github.com/kubernetes/kubernetes/compare/v1.16.3...v1.17.0)。
 
-发现了 [Dockerfile的改动](https://github.com/kubernetes/kubernetes/commit/fed582333f639dc22e879f4bbb258e403c210c30) ， `1.17.0`里的 Dockerfile 的BASEIMAGE是用  [指定了一个源安装了最新的iptables](https://github.com/coreos/flannel/pull/1282#issuecomment-635273081)，然后利用`update-alternatives`把脚本`/usr/sbin/iptables-wrapper`去替代`iptables` 来检测应该使用`nft`还是`legacy`， hack 下镜像回自带源里的 iptables 验证下
+发现了 [Dockerfile的改动](https://github.com/kubernetes/kubernetes/commit/fed582333f639dc22e879f4bbb258e403c210c30) ， `1.17.0`里的 Dockerfile 的BASEIMAGE是用  [指定了一个源安装了最新的iptables](https://github.com/coreos/flannel/pull/1282#issuecomment-635273081)，然后利用`update-alternatives`把脚本`/usr/sbin/iptables-wrapper`去替代`iptables` 来检测应该使用`nft`还是`legacy`， hack 下镜像回自带源里的 iptables 验证下。
 
 ```Dockerfile
 FROM registry.aliyuncs.com/google_containers/kube-proxy:v1.17.5
@@ -247,14 +246,14 @@ RUN rm -f /usr/sbin/iptables &&
     clean-install iptables
 ```
 
-构建的镜像推送到了 dockerhub 上`zhangguanzhang/hack-kube-proxy:v1.17.5`，更改下集群 kube-proxy ds 的镜像
+构建的镜像推送到了 dockerhub 上`zhangguanzhang/hack-kube-proxy:v1.17.5`，更改下集群 kube-proxy ds 的镜像。
 
 ```shell
 $ kubectl -n kube-system get ds kube-proxy -o yaml | grep image:
         image: zhangguanzhang/hack-kube-proxy:v1.17.5
 ```
 
-测试访问成功
+测试访问成功。
 
 ```shell
 $ time curl -I 10.96.0.10:9153
@@ -270,9 +269,9 @@ user	0m0.003s
 sys	0m0.003s
 ```
 
-对于这个问题我在 [flannel 的 pr](https://github.com/coreos/flannel/pull/1282) 下面也参与了回复，同时在官方 github 上提了一个 [issue](https://github.com/kubernetes/kubernetes/issues/91519)
+对于这个问题我在 [flannel 的 pr](https://github.com/coreos/flannel/pull/1282) 下面也参与了回复，同时在官方 github 上提了一个 [issue](https://github.com/kubernetes/kubernetes/issues/91519)。
 
-这个问题的触发是由于`v1.17+`的 kube-proxy 的 docker 镜像里安装了最新的 iptables ， `--random-fully`选项[会触发内核vxlan的bug](https://github.com/kubernetes/kubernetes/issues/88986#issuecomment-635640143)
+这个问题的触发是由于`v1.17+`的 kube-proxy 的 docker 镜像里安装了最新的 iptables ， `--random-fully`选项[会触发内核vxlan的bug](https://github.com/kubernetes/kubernetes/issues/88986#issuecomment-635640143)。
 
 ## 总结
 
