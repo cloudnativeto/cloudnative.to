@@ -1,5 +1,5 @@
 ---
-title: "v1.17+ Kubernetes集群下CNI使用VXLAN模式SVC有63秒延迟的触发原因定位"
+title: "Kubernetes v1.17+ 集群下 CNI 使用 VXLAN 模式 SVC 有 63 秒延迟的触发原因定位"
 description: "本文为使用工具排查出v1.17+的kubernetes集群下为何CNI的VXLAN模式下有超时，并且给出了三种解决方案和定位到问题起源。"
 author: "[张馆长](https://zhangguanzhang.github.io/)"
 image: "images/blog/flannel-vxlan.png"
