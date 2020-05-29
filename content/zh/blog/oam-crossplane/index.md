@@ -74,4 +74,4 @@ OAM spec v1alpha1在阿里云的[企业级分布式应用服务(EDAS)](https://w
 
 OAM的核心理念是开发人员可以描述他们的应用，然后他们就可以是应用运行在一个无服务器平台，或者在一个本地的Kubernetes集群而无需修改应用的描述。这是阿里巴巴和微软一直在努力的云边协同（cloud,edge consistency）故事的一部分。很明显，与Crossplane的合作弥补了这个故事真正实现所缺失的重要部分，那就是在一个系统中同时涵盖统一的应用定义和基础设施定义。我们将继续努力使Crossplane成为OAM的标准Kubernetes实现，并且具有更好的工作负载/特征可移植性，互操作性，丰富的运行能力；构建一个聚焦于标准应用和基础设施的开放社区。
 
-`原文地址：[OAM and Crossplane: The Next Stage for Building Modern Application](https://www.alibabacloud.com/blog/596240)`
+（原文地址：[OAM and Crossplane: The Next Stage for Building Modern Application](https://www.alibabacloud.com/blog/596240)）
