@@ -81,3 +81,6 @@
 
 - id: join_us
   translation: "加入我们"
+
+- id: translator
+  translation: "译者"
