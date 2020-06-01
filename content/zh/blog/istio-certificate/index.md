@@ -2,7 +2,6 @@
 title: "一文带你彻底厘清 Isito 中的证书工作机制"
 description: "Istio 为微服务提供了无侵入，可插拔的安全框架。应用不需要修改代码，就可以利用 Istio 提供的双向 TLS 认证实现服务身份认证，并基于服务身份信息提供细粒度的访问控制。本文将为你揭秘 Istio 双向 TLS 认证的实现机制。"
 author: "[赵化冰](https://zhaohuabing.com)"
-bg_image: ""
 image: "https://zhaohuabing.com/img/2020-05-25-istio-certificate/background-cloudnativeto.jpg"
 categories: ["Istio"]
 tags: ["Istio"]
@@ -10,11 +9,11 @@ date: 2020-05-25T06:00:00+08:00
 type: "post"
 ---
 
-在上一篇文章[一文带你彻底厘清 Kubernetes 中的证书工作机制](https://zhaohuabing.com/post/2020-05-19-k8s-certificate/)中，我们介绍了 Kubernetes 中证书的工作机制。在这篇文章中，我们继续探讨 Istio 是如何使用证书来实现网格中服务的身份认证和安全通信的。
+在上一篇文章[一文带你彻底厘清 Kubernetes 中的证书工作机制](/blog/k8s-certificate/)中，我们介绍了 Kubernetes 中证书的工作机制。在这篇文章中，我们继续探讨 Istio 是如何使用证书来实现网格中服务的身份认证和安全通信的。
 
 本文是对 Istio 认证工作机制的深度分析，假设读者已经了解 Service Mesh 以及 Istio 的相关基础概念，因此在本文对此类基础概念不再解释。对于 Istio 不熟悉的读者，建议先阅读 Istio 官方网站上的的这篇基础介绍 [What is Istio?](https://istio.io/docs/concepts/what-is-istio/)。
 
-# Istio 安全架构
+## Istio 安全架构
 
 Istio 为微服务提供了无侵入，可插拔的安全框架。应用不需要修改代码，就可以利用 Istio 提供的双向 TLS 认证实现服务身份认证，并基于服务身份信息提供细粒度的访问控制。Istio 安全的高层架构如下图所示：
 
@@ -22,10 +21,10 @@ Istio 为微服务提供了无侵入，可插拔的安全框架。应用不需�
 图1. Istio Security Architecture，图片来源[istio.io](https://istio.io/docs/concepts/security/#high-level-architecture)
 
 图中展示了 Istio 中的服务认证和授权两部分内容。让我们暂时忽略掉授权部分，先关注认证部分。服务认证是通过控制面和数据面一起实现的：
- * 控制面：Istiod 中实现了一个 CA （Certificate Authority，证书机构） 服务器。该 CA 服务器负责为网格中的各个服务签发证书，并将证书分发给数据面的各个服务的边车代理。
- * 数据面：在网格中的服务相互之间发起 plain HTTP/TCP 通信时，和服务同一个 pod 中的边车代理会拦截服务请求，采用证书和对端服务的边车代理进行双向 TLS 认证并建立一个 TLS 连接，使用该 TLS 连接来在网络中传输数据。
+ * 控制面：Istiod 中实现了一个 CA （Certificate Authority，证书机构） 服务器。该 CA 服务器负责为网格中的各个服务签发证书，并将证书分发给数据面的各个服务的sidecar代理。
+ * 数据面：在网格中的服务相互之间发起 plain HTTP/TCP 通信时，和服务同一个 pod 中的sidecar代理会拦截服务请求，采用证书和对端服务的sidecar代理进行双向 TLS 认证并建立一个 TLS 连接，使用该 TLS 连接来在网络中传输数据。
 
-# 控制面证书签发流程
+## 控制面证书签发流程
 
 图1是对 Istio 安全架构的一个高度概括的描述，让我们把图1中控制面的交互展开，看一下其中的细节。
 
@@ -38,7 +37,7 @@ Istio 为微服务提供了无侵入，可插拔的安全框架。应用不需�
 3. Istiod 根据请求中服务的身份信息（Service Account）为其签发证书，将证书返回给 Pilot-agent。
 4. Pilot-agent 将证书和私钥通过 SDS 接口返回给 Envoy。
 
-## 为什么要通过 Pilot-agent 中转？
+### 为什么要通过 Pilot-agent 中转？
 
 从图2可以看到，Istio 证书签发的过程中涉及到了三个组件： Istiod (Istio CA) ---> Pilot-agent ---> Enovy。为什么其他 xDS 接口都是由 Istiod 直接向 Envoy 提供，但 SDS 却要通过 Pilot-agent 进行一次中转，而不是直接由 Envoy 通过 SDS 接口从 Istiod 获取证书呢？这样做主要有两个原因。
 
@@ -46,7 +45,7 @@ Istio 为微服务提供了无侵入，可插拔的安全框架。应用不需�
 
 另一方面，通过 Pilot-agent 来提供 SDS 服务，由 Pilot-agent 生成标准的 CSR 证书签名请求，可以很容易地对接不同的 CA 服务器，方便 Istio 和其他证书机构进行集成。
 
-## 控制面身份认证
+### 控制面身份认证
 
 要通过服务证书来实现网格中服务的身份认证，必须首先确保服务从控制面获取自身证书的流程是安全的。Istio 通过 Istiod 和 Pilog-agent 之间的 gRPC 通道传递 CSR 和证书，因此在这两个组件进行通信时，双方需要先验证对方的身份，以避免恶意第三方伪造 CSR 请求或者假冒 Istiod CA 服务器。在目前的版本中(Istio1.6)，Pilot-agent 和 Istiod 分布采用了不同的认证方式。
 
@@ -63,7 +62,7 @@ Istio 为微服务提供了无侵入，可插拔的安全框架。应用不需�
 
 备注：除了 Kubernetes 之外， Istio 也支持虚机部署，在虚机部署的场景下，由于没有 service account，Pilot-agent 和 Pilotd 之间的身份认证方式有所不同。由于 Istio 的主要使用场景还是 Kubernetes，本文只分析 Kubernetes 部署场景。
 
-# SDS 工作原理
+## SDS 工作原理
 
 和其他 [xDS](https://www.envoyproxy.io/docs/envoy/latest/api-docs/xds_protocol) 接口一样，SDS 也是 Envoy 支持的一种动态配置服务接口。Envoy 可以通过 [SDS（secret discovery service）](https://www.envoyproxy.io/docs/envoy/latest/configuration/security/secret) 接口从 SDS 服务器自动获取证书。和之前的方式相比，SDS 最大的好处就是简化了证书管理。在没有使用 SDS 前，Istio 中的服务证书被创建为 Kubernetes secret，并挂载到代理容器中。如果证书过期了，则需要更新 secret 并重启 Envoy 容器，以启用新的证书。使用SDS后，SDS 服务器（Pilot-agent充当了 SDS 服务器的角色）将向 Envoy 实例主动推送证书。如果证书过期，SDS 服务器只需将新的证书推送到 Envoy 例中，Envoy 会使用新的证书来创建链接，无需重新启动。
 
@@ -109,14 +108,14 @@ SDS 服务向 Envoy 下发的数据结构为```extensions.transport_sockets.tls.
 }
 ```
 
-# 网格边车证书配置
+## 网格 Sidecar 证书配置
 
-在 Istio 的 Enovy 边车配置中，有两处需要通过 SDS 来配置证书：
+在 Istio 的 Enovy sidecar 配置中，有两处需要通过 SDS 来配置证书：
 
 * Inbound Listener：由于Enovy 通过 Listener 对外提供服务，需要通过 SDS 配置服务器证书，服务器证书私钥，以及验证下游客户端证书的 CA 根证书。
 * Outbound Cluster：对于上游的 Cluster 而言，Envoy 是客户端的角色，因此需要在 Cluster 中通过 SDS 配置客户端证书，客户端证书私钥，以及验证上游服务器的 CA 根证书。
 
-下面我们来看一下 bookinfo 示例中 Envoy 边车代理上 reviews 微服务相关的证书配置，以对 Istio 中 SDS 的运作机制有一个更清晰的认识。为了简略起见，本文只显示了部分关键的配置。你也可以查看 Github 上的[完整配置](https://github.com/zhaohuabing/bookinfo-bookinfo-config-dump/blob/istio1.5.4/reviews-config-dump)。
+下面我们来看一下 bookinfo 示例中 Envoy sidecar代理上 reviews 微服务相关的证书配置，以对 Istio 中 SDS 的运作机制有一个更清晰的认识。为了简略起见，本文只显示了部分关键的配置。你也可以查看 Github 上的[完整配置](https://github.com/zhaohuabing/bookinfo-bookinfo-config-dump/blob/istio1.5.4/reviews-config-dump)。
 
 通过 Envoy 的管理端口，可以导出 Envoy 中的当前配置，导出命令如下：
 ```bash
@@ -384,9 +383,9 @@ spec:
   }
 ```
 
-通过上面的配置，我们可以看到，虽然需要在 Enovy 边车配置文件中不同的位置为 Envoy 配置服务器、客户端证书以及验证对方的 CA 根证书，但 Istio 中实际上只采用了一个服务证书和 CA 根证书。Isito 将名称为 default 的证书被同时用于 Inbound Listener 的服务器证书和 Outbound Cluster 的客户端证书，并将名称为 ROOTCA 的证书被用于验证下游客户端证书和上游服务器证书的根证书。
+通过上面的配置，我们可以看到，虽然需要在 Enovy sidecar配置文件中不同的位置为 Envoy 配置服务器、客户端证书以及验证对方的 CA 根证书，但 Istio 中实际上只采用了一个服务证书和 CA 根证书。Isito 将名称为 default 的证书被同时用于 Inbound Listener 的服务器证书和 Outbound Cluster 的客户端证书，并将名称为 ROOTCA 的证书被用于验证下游客户端证书和上游服务器证书的根证书。
 
-# Gateway 证书配置
+## Gateway 证书配置
 
 除了需要和网格内部的服务进行通信之外，Ingress Gateway 和 Egress Gateway 还需要连接到网格外部的系统。如果这些外部连接也需要采用 TLS，则 Gateway 中也要配置这些外部系统的相关证书。
 
@@ -505,7 +504,7 @@ Istio 将此配置通过 xDS 接口下发到 Ingress Gateway Pod 中的 Envoy �
 ![](https://zhaohuabing.com/img/2020-05-25-istio-certificate/ingress-gateway-ca-sds.svg)
 图4. Ingress Gateway 证书获取流程
 
-# 数据面使用的所有证书
+## 数据面使用的所有证书
 
 下图中以 bookinfo 来举例说明 Istio 在数据面使用到的所有证书。为了方便说明 Gateway 的证书配置，我们假设在 Ingress Gateway 上以 bookinfo.example.com 的主机名对外提供服务，并且 ratings 服务通过 Egress Gateway 访问了一个网格外部的第三方 TLS 服务。
 
@@ -516,10 +515,12 @@ Istio 将此配置通过 xDS 接口下发到 Ingress Gateway Pod 中的 Envoy �
 ![](https://zhaohuabing.com/img/2020-05-25-istio-certificate/bookinfo-ca.svg)
 图5. Istio 数据面使用到的所有证书
 
-# 小结
+## 小结
 
 微服务应用本质上是一个分布式的网络程序，在微服务应用内存在大量的服务间网络通信。在云化部署环境中，服务间的身份认证和安全通信是微服务面临的一大挑战。Istio 建立了一套以数字证书为基础的服务认证安全框架，在不修改应用的前提下提供了服务之间的身份认证和安全通信，并以身份认证为基础提供了强大的授权机制。
 
-# 参考文档
+## 参考文档
+
 * [Istio Secure Gateways](https://istio.io/docs/tasks/traffic-management/ingress/secure-ingress/)
 * [Istio Egress Gateways with TLS Origination](https://istio.io/docs/tasks/traffic-management/egress/egress-gateway-tls-origination/#perform-tls-origination-with-an-egress-gateway)
+
