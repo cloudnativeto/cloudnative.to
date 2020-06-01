@@ -78,3 +78,6 @@
 
 - id: join_us
   translation: "Join us"
+
+- id: translator
+  translation: "Translator"
