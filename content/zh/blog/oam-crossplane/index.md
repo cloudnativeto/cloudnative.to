@@ -3,6 +3,7 @@ title: "(译)OAM和Crossplane: 构建现代应用的下一个阶段"
 description: "本文翻译自阿里云高级技术专家张磊的文章OAM and Crossplane: The Next Stage for Building Modern Application"
 author: "张磊"
 translator: "[白凯](https://github.com/baikai)"
+image: "https://img.alicdn.com/tfs/TB1FXfqd5cKOu4jSZKbXXc19XXa-1920-1080.png"
 categories: ["OAM"]
 tags: ["OAM","Microservices","Crossplane"]
 date: 2020-05-28T10:00:00+08:00
