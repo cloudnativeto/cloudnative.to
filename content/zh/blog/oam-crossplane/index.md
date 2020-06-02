@@ -56,7 +56,7 @@ type: "post"
 
 OAM spec v1alpha1在阿里云的[企业级分布式应用服务（EDAS）](https://www.alibabacloud.com/zh/product/edas)以及内部平台上得到了快速采用。然而，我们同样发现了一个在"运行什么"片段中的问题(之前称之为[ComponentSchematic](https://github.com/oam-dev/spec/blob/v1.0.0-alpha.1/3.component_model.md?spm=a2c65.11461447.0.0.72267a2flm3ivr#component-schematics))，我们需要发布新版本的ComponentSchematic来进行YAML中的任何修改。这是因为它被设计成了一个模式（schematic）对象，因此开发者可以定义他们需要部署的任何工作负载并与他人分享。一个类似的问题同样存在于运行策略部分（我们称之为"traits"）——它的模式同样将schematic暴露给了终端用户。
 
-在12月份举行的KubeCon北美大会上，我们会见了来自Upbound.io的Crossplane维护者。我们讨论了OAM，以及如何通过利用CRDs作为模式(CRDs as schemas)的方法将OAM规范与Crossplane无缝集成。我们都认为这个方向是有希望的，在经过了数月的头脑风暴，提案以及无数次的激烈讨论之后，这个想法最终演进成为了如下的OAM spec v1alpha2:
+在12月份举行的KubeCon北美大会上，我们会见了来自Upbound.io的Crossplane维护者。我们讨论了OAM，以及如何通过利用CRD作为模式(CRD as schemas)的方法将OAM规范与Crossplane无缝集成。我们都认为这个方向是有希望的，在经过了数月的头脑风暴，提案以及无数次的激烈讨论之后，这个想法最终演进成为了如下的OAM spec v1alpha2:
 
 ![image.png](https://img.alicdn.com/tfs/TB1cPesaCRLWu4jSZKPXXb6BpXa-811-413.png)
 
