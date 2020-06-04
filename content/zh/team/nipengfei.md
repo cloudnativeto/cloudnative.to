@@ -1,7 +1,7 @@
 ---
 title: "倪朋飞"
 # meta description
-description: "微软 Azure 资深工程师，同时也是 Kubernetes 项目维护者，主要负责开源容器编排系统 Kubernetes 在 Azure 的落地实践。"
+description: "微软 Azure 资深工程师，Kubernetes 项目维护者，极客时间专栏作者，在云计算、SDN 网络和云原生等领域具有多年实践经验。"
 # page title background image
 bg_image_webp: "images/backgrounds/page-title.webp"
 bg_image: "images/backgrounds/page-title.jpg"
@@ -19,4 +19,3 @@ social:
 # type
 type: "team"
 ---
-

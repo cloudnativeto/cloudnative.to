@@ -10,7 +10,7 @@
 }
 
 .card-meta {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .blog-shape-left {
@@ -124,6 +124,12 @@ blockquote {
         color: $white;
       }
     }
+  }
+}
+
+.content{
+  img{
+    max-width: 100%;
   }
 }
 

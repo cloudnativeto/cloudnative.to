@@ -108,7 +108,7 @@ logo_footer = "images/logo-alt.png"
 # top header
 top_header = false
 # Meta data
-description = "有技术 有温度 有格局"
+description = "有技术 有温度 有情怀"
 author = "Cloud Native Community"
 # contact form action
 contact_form_action = "#" # contact form works with https://formspree.io
@@ -155,6 +155,11 @@ icon = "fa-wechat"
 link = "/contact"
 
 [[params.social]]
+icon = "fa-envelope"
+# change the link after the public announcement
+link = "mailto:contact@cloudnative.to"
+
+[[params.social]]
 icon = "fa-rss"
 link = "https://cloudnative.to/blog/index.xml"
 
@@ -166,7 +171,7 @@ contentDir = "content/en"
 weight = 2
 #home = "Home"
 # footer content
-footer_content = "Cloud Native Community with Tech, Dev and Open Eyes."
+footer_content = "Cloud Native Community is an open source community with technology, temperature and passion. It was founded spontaneously by a group of industry elites who love open source, and it adheres to the principle of 'consensus, co-governance, co-construction and sharing' to serve the global developers espcially for Ethnic Chinese."
 # copyright
 copyright = "Copyright &copy; 2020 Cloud Native Community"
 
@@ -179,7 +184,7 @@ contentDir = "content/zh"
 weight = 1
 #home = "主页"
 # footer content
-footer_content = "云原生社区是一个有技术、有温度、有格局的开源社区。它由一群热爱开源的行业精英自发成立，秉持“共识、共治、共建、共享”的原则服务于全球华人。"
+footer_content = "云原生社区是一个有技术、有温度、有情怀的开源社区。它由一群热爱开源的行业精英自发成立，秉持“共识、共治、共建、共享”的原则服务于全球华人。"
 # copyright
 copyright = "Copyright &copy; 2020 云原生社区"
 

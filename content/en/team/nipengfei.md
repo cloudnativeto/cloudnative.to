@@ -1,7 +1,7 @@
 ---
 title: "Pengfei Ni"
 # meta description
-description: "Microsoft Azure senior engineer and Kubernetes project maintainer, responsible for the open source container orchestration system Kubernetes in Azure on-premise practices."
+description: "Pengfei Ni is a senior software engineer at Microsoft Azure and maintainer of the kubernetes project. He has extensive experience in Cloud Computing, Kubernetes and Cloud Native architecture. "
 # page title background image
 bg_image_webp: "images/backgrounds/page-title.webp"
 bg_image: "images/backgrounds/page-title.jpg"
@@ -19,4 +19,3 @@ social:
 # type
 type: "team"
 ---
-
