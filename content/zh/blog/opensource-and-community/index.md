@@ -2,11 +2,10 @@
 title: "解秘开源与社区"
 description: "本文分享作者近期关于对开源社区的一些思考的沉淀，以飨读者！"
 author: "[罗广明](https://github.com/GuangmingLu)"
-bg_image: "images/backgrounds/page-title.jpg"
-image: "images/blog/ms-ha.jpeg"
+image: "images/blog/open-source.jpeg"
 categories: ["开源"]
 tags: ["开源","社区"]
-date: 2020-06-04T12:00:00+08:00
+date: 2020-06-06T12:00:00+08:00
 type: "post"
 ---
 
