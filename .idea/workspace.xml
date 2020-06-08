@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7a3734f-0e80-4944-80f0-5b7b29d874aa" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/content/zh/blog/zookeeper-operator/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/content/zh/blog/zookeeper-operator/index.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -61,10 +61,10 @@ Operator 主要包含：Deploy、Monitor、Scale 三个大模块。
 
 #### 基本知识
 - Kubernetes Labels
-    - Labels：是一对 key/value，被关联到特定对象上，标签一般用来表示同一类资源，用来划分特定的对象，一个对象可以有多个标签，但是，key 值必须是唯一的。这里我们将在 list-watch 的时候用这个 labels 进行过滤，从所有的 k8s event 中过滤出符合特定 label 的 event，用来触发 operator 的主流程。
+    - Labels：是一对 key/value，被关联到特定对象上，标签一般用来表示同一类资源，用来划分特定的对象，一个对象可以有多个标签，但是，key 值必须是唯一的。这里我们将在 list-watch 的时候用这个 labels 进行过滤，从所有的 Kubernetes event 中过滤出符合特定 label 的 event，用来触发 operator 的主流程。
 
 - Kubernetes Informer
-    - watch：可以是 k8s 内建的资源或者是自定义的资源。当 reflector 通过 watch API 接收到有关新资源实例存在的通知时，它使用相应的列表 API 获取新创建的对象，并将其放入 watchHandler 函数内的 Delta Fifo 队列中。
+    - watch：可以是 Kubernetes 内建的资源或者是自定义的资源。当 reflector 通过 watch API 接收到有关新资源实例存在的通知时，它使用相应的列表 API 获取新创建的对象，并将其放入 watchHandler 函数内的 Delta Fifo 队列中。
       
     - Informer：informer 从 Delta Fifo 队列中弹出对象。执行此操作的功能是 processLoop。Base controller 的作用是保存对象以供以后检索，并调用我们的控制器将对象传递给它。
       
@@ -161,7 +161,7 @@ fi
 >
 >1988：该端口为 zk-agent 服务端口，通过该接口 operator 可以查询到当前节点运行状态，后面会详解介绍。
 >
->2181：该端口为 zk 客户端端口，该端口创建 k8s headless 模式 svc，方便客户端一次获取所有节点 ip。
+>2181：该端口为 zk 客户端端口，该端口创建 Kubernetes headless 模式 svc，方便客户端一次获取所有节点 ip。
 >
 >3888：选举 leader 使用
 >
@@ -459,12 +459,12 @@ zk agent 作为 sidecar 伴随主容器一并启动，提供如下接口：
 ### 应用组件（Components）
 > 组件（Components）：概念让平台架构师等能够将应用分解成成一个个可被复用的模块，这种模块化封装应用组成部分的思想，代表了一种构建安全、高可扩展性应用的最佳实践：通过一个完全分布式的架构模型，实现了应用组件描述和实现的解耦。
 
-按照应用组件的定义，对应到目前zk operator的快速部署模块上，部署模块主要生成和创建原生资源，完成容器化zk集群搭建，并持续维持声明式定义的集群终态。部署模块可以单独定义CRD, 比如`workload.zookeeper.example.com`。
+按照应用组件的定义，对应到目前zk operator的快速部署模块上，部署模块主要生成和创建原生资源，完成容器化zk集群搭建，并持续维持声明式定义的集群终态。部署模块可以单独定义CRD, 比如 `workload.zookeeper.example.com`。
 
 ### 应用运维特征（Traits）
 > 运维特征（Traits）：它们描述了应用在具体部署环境中的运维特征，比如应用的水平扩展的策略和 Ingress 规则，这些特征对于应用的运维来说非常重要，但它们在不同的部署环境里却往往有着截然不同的实现方式。 
 
-Traits则对应 zk operator 模块中的 伸缩、滚动升级两个模块，这两个模块可以抽出来定义为单独CRD，比如`scale.zookeeper.example.com`和`rolling.zookeeper.example.com`。
+Traits则对应 zk operator 模块中的 伸缩、滚动升级两个模块，这两个模块可以抽出来定义为单独CRD，比如 `scale.zookeeper.example.com` 和 `rolling.zookeeper.example.com`。
 
 ## 小结
 
