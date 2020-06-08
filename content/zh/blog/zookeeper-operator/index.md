@@ -1,6 +1,6 @@
 ---
 title: "Zookeeper operator 实战"
-description: "Zookeeper 作为最新完成 operator 化的组件，除了快速部署以外，实现 Operator 对 scale up/down 的进度干预，控制 rolling 的重启顺序，感知组件实际运行状态等，具体实现请阅读对于相关章节。"
+description: "Zookeeper作为最新完成 operator 化的组件，除了可以快速部署以外，还实现了 Operator 对 scale up/down 的进度干预，控制 rolling 的重启顺序，感知组件实际运行状态等，具体实现请阅读对于相关章节。"
 author: "[朱慧君](https://github.com/Ghostbaby)"
 image: "https://raw.githubusercontent.com/Ghostbaby/picgo/master/WechatIMG239.png"
 categories: ["Operator"]
