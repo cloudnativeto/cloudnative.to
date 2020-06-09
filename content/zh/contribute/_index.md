@@ -70,7 +70,7 @@ layout: "contribute"
 
 ## 如何投稿
 
-请先保证您已阅读并同意以上指南，fork [云原生社区官网](https://github.com/cloudnativeto/cloudnative.to)仓库，创作文章并[提交 PR](https://github.com/cloudnativeto/cloudnative.to/pulls)，投稿文章请遵循 [投稿文章风格指南](https://github.com/cloudnativeto/cloudnative.to/blob/master/STYLE.md)。
+请先保证您已阅读并同意以上指南，fork [云原生社区官网](https://github.com/cloudnativeto/cloudnative.to)仓库，创作文章并[提交 PR](https://github.com/cloudnativeto/cloudnative.to/pulls)，投稿文章请遵循 [投稿文章风格指南](https://cloudnative.to/style-guides)。
 
 最终解释权归云原生社区所有。
 
