@@ -17,7 +17,7 @@
           {{ range .testimonial_item }}
           {{ "<!-- slider-item -->" | safeHTML }}
           <div class="text-center">
-            <img class="img-fluid box-shadow rounded-circle mb-5 d-inline-block" src="{{ .client_image | relURL }}" alt="{{ .name }}">
+            <img class="img-fluid box-shadow rounded-circle mb-5 d-inline-block" src="{{ .client_image | relURL }}" alt="{{ .name }}" width="70px">
             <div class="bg-quote text-center pt-md-4">
               <p class="font-italic mb-5 h5 text-dark">{{ .content | markdownify }}</p>
               <h4>{{ .name }}</h4>

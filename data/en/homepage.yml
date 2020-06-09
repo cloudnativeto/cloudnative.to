@@ -127,7 +127,7 @@ testimonial:
   title : "TESTIMONIALS"
   testimonial_item:
     # testimonial item loop
-    - client_image : "images/testimonial/jimmysong.png"
+    - client_image : "images/testimonial/jimmysong.jpg"
       name : "Jimmy Song"
       designation : "Co-founder of Cloud Native Community"
       content : "The spirit of open source should be promoted, the results of open source should be seen, and the cloud native community wants to be with developers for their lifetime growth."
@@ -136,7 +136,12 @@ testimonial:
       name : "Guangming Luo"
       designation : "Co-founder of Cloud Native Community"
       content : "This is the best of times and everyone should be able to benefit from the open source community and cloud native technology. That's why we are here!"
-      
+
+    - client_image : "images/testimonial/lijiansheng.jpg"
+      name : "Jiansheng Li"
+      designation : "Senior Developer Advocate"
+      content : "The heart of open source comes from the community behind it, and driving the development and growth of cloud native technologies has to start with the Cloud Native Community!"
+
 ################################# blog ################################################
 cta:
   enable : true
