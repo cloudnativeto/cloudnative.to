@@ -2,7 +2,7 @@
 title: "Zookeeper operator 实战"
 description: "Zookeeper作为最新完成 operator 化的组件，除了可以快速部署以外，还实现了 Operator 对 scale up/down 的进度干预，控制 rolling 的重启顺序，感知组件实际运行状态等，具体实现请阅读对于相关章节。"
 author: "[朱慧君](https://github.com/Ghostbaby)"
-image: "/images/blog/zookeeper-operator.png"
+image: "/images/blog/zookeeper-operator-1.png"
 categories: ["Operator"]
 tags: ["zookeeper","operator","OAM"]
 date: 2020-06-08T11:00:00+08:00
@@ -53,7 +53,7 @@ Operator 主要包含：Deploy、Monitor、Scale 三个大模块。
 - Monitor：主要用于生成和创建 ServiceMonitor、PrometheusRule 资源，用于自动化注册 target、添加告警策略，实现对集群的监控和告警。
 - Scale：主要用于把控扩缩容以及滚动升级的进度，确保以最少的主从切换完成重启。
  
-![架构图](https://raw.githubusercontent.com/Ghostbaby/picgo/master/image2019-11-21_15-38-17.png)
+![架构图](/images/blog/zookeeper-operator-2.png)
 
 ## 具体方案
 
