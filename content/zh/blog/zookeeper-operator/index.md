@@ -2,7 +2,7 @@
 title: "Zookeeper operator 实战"
 description: "Zookeeper作为最新完成 operator 化的组件，除了可以快速部署以外，还实现了 Operator 对 scale up/down 的进度干预，控制 rolling 的重启顺序，感知组件实际运行状态等，具体实现请阅读对于相关章节。"
 author: "[朱慧君](https://github.com/Ghostbaby)"
-image: "https://raw.githubusercontent.com/Ghostbaby/picgo/master/WechatIMG239.png"
+image: "/images/blog/zookeeper-operator.png"
 categories: ["Operator"]
 tags: ["zookeeper","operator","OAM"]
 date: 2020-06-08T11:00:00+08:00
@@ -453,7 +453,7 @@ zk agent 作为 sidecar 伴随主容器一并启动，提供如下接口：
  
  /del，获取客户端传入需要删除到节点信息，并更新到动态节点配置中。传入值参考 add 接口格式。
 ## OAM对接
-![转自 孙健波 OAM 深入解读：OAM 为云原生应用带来哪些价值？](https://mmbiz.qpic.cn/mmbiz_png/yvBJb5IiafvkVGGI2jKfXC7Iy0Hylib48reDaRpKsxxwB8Oiakl3JRyiaQGw1ibwmxUibQf0BIhaq2q2PYgmYC0Kl4yw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![转自 孙健波 OAM 深入解读：OAM 为云原生应用带来哪些价值？](/images/blog/oam.jpeg)
 > OAM 是一个专注于描述应用的标准规范。有了这个规范，应用描述就可以彻底与基础设施部署和管理应用的细节分开。这种关注点分离（Seperation of Conerns）的设计好处是非常明显的。
 
 ### 应用组件（Components）
