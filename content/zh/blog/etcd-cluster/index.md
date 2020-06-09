@@ -261,7 +261,7 @@ $ /opt/etcd/bin/etcdctl  --endpoints="http://192.168.202.128:2379,http://192.168
     http://192.168.202.130:2379 is healthy: successfully committed proposal: took = 3.300984ms
     http://192.168.202.129:2379 is healthy: successfully committed proposal: took = 3.263923ms
 ```
-![](http://image.blueskykong.com/etcd-discovery.png)
+![](images/blog/etcd-discovery.png)
 
 可以看到，集群中的三个节点都是健康的正常状态。以动态发现方式启动集群成功。
 
