@@ -15,6 +15,8 @@ layout: "contribute"
 
 向社区投稿前请先阅读下面的贡献者协议，一旦向社区提交 PR 代表您已同意该协议。
 
+> 所有投稿请在文章开头部分添加作者介绍，文字尽量控制在 100 字以内。
+
 ## 贡献者协议
 
 ### 定义
@@ -70,7 +72,7 @@ layout: "contribute"
 
 ## 如何投稿
 
-请先保证您已阅读并同意以上指南，fork [云原生社区官网](https://github.com/cloudnativeto/cloudnative.to)仓库，创作文章并[提交 PR](https://github.com/cloudnativeto/cloudnative.to/pulls)，投稿文章请遵循 [投稿文章风格指南](https://cloudnative.to/style-guides)。
+请先保证您已阅读并同意以上指南，fork [云原生社区官网](https://github.com/cloudnativeto/cloudnative.to)仓库，创作文章并[提交 PR](https://github.com/cloudnativeto/cloudnative.to/pulls)，投稿文章请遵循 [投稿文章风格指南](/style-guides)。
 
 最终解释权归云原生社区所有。
 
