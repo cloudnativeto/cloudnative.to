@@ -129,7 +129,7 @@ testimonial:
   title : "社区寄语"
   testimonial_item:
     # testimonial item loop
-    - client_image : "images/testimonial/jimmysong.png"
+    - client_image : "images/testimonial/jimmysong.jpg"
       name : "Jimmy Song"
       designation : "云原生社区联合创始人"
       content : "开源精神应该被提倡，开源成果值得被看见，云原生社区希望陪伴开发者们的终生成长。"
@@ -138,6 +138,11 @@ testimonial:
       name : "罗广明"
       designation : "云原生社区联合创始人"
       content : "这是一个最好的时代，人人都应该可以从开源社区与云原生技术中获益！"
+
+    - client_image : "images/testimonial/lijiansheng.jpg"
+      name : "李建盛（适兕）"
+      designation : "资深布道师"
+      content : "开源的核心来自于其背后的共同体（Community），推动云原生技术的发展和壮大，必须从 Cloud Native Community 做起！"
 
 ################################# blog ################################################
 cta:
@@ -153,7 +158,7 @@ cta:
 ################################# blog ################################################
 blog:
   enable : true
-  subtitle : "UGC，企业中立"
+  subtitle : "PGC，企业中立"
   title : "博客"
   # blog post comes from "content/*/blog" folder
 
