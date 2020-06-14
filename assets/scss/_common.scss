@@ -415,7 +415,7 @@ a.text-dark {
   0% {
     border-radius: 120px 135px 110px 90px;
 
-    &::before {
+    #{if(&, "&", "*")}:before {
       border-radius: 130px 120px 160px 130px;
     }
   }
@@ -423,7 +423,7 @@ a.text-dark {
   25% {
     border-radius: 130px 140px 100px 110px;
 
-    &::before {
+    #{if(&, "&", "*")}:before {
       border-radius: 100px 147px 140px 120px;
     }
   }
@@ -431,7 +431,7 @@ a.text-dark {
   50% {
     border-radius: 110px 97px 150px 100px;
 
-    &::before {
+    #{if(&, "&", "*")}:before {
       border-radius: 102px 147px 140px 120px;
     }
   }
@@ -439,7 +439,7 @@ a.text-dark {
   75% {
     border-radius: 80px 107px 120px 90px;
 
-    &::before {
+    #{if(&, "&", "*")}:before {
       border-radius: 102px 147px 140px 120px;
     }
   }
@@ -447,7 +447,7 @@ a.text-dark {
   100% {
     border-radius: 120px 135px 110px 90px;
 
-    &::before {
+    #{if(&, "&", "*")}:before {
       border-radius: 130px 120px 160px 130px;
     }
   }
