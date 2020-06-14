@@ -14,6 +14,6 @@
       <strong class="text-dark">{{ default (i18n "dateFormat") .Site.Params.dateformat | .PublishDate.Format }}</strong></div>
     <h4 class="card-title"><a class="text-dark" href="{{ .Permalink | relURL }}">{{ .Title }}</a></h4>
     <div class="section-title-border"></div>
-    <p class="card-text">{{ .Params.Description}}</p>
+    <p class="card-text" title="{{.Params.Description}}">{{ .Params.Description}}</p>
   </div>
 </div>
