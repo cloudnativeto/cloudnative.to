@@ -7,9 +7,8 @@ categories: ["Cloud Native"]
 tags: ["Cloud Native"]
 date: 2020-06-04T14:00:00+08:00
 type: "post"
+profile: "信天创投合伙人，前腾讯、创新工场、百度。"
 ---
-
-作者：蒋宇捷，信天创投合伙人，前腾讯、创新工场、百度。
 
 今天我们不讲行业和商业，讲讲2019年最热的概念——云原生（Cloud Native）。
 

@@ -26,3 +26,20 @@
 }
 
 /* /hero slider */
+
+.avatar {
+  text-align: center;
+
+  &-wrp {
+    width: 40%;
+  }
+
+  &-img {
+    width: 100%;
+  }
+
+  &-name {
+    margin: 1rem;
+    font-size: 18px;
+  }
+}
