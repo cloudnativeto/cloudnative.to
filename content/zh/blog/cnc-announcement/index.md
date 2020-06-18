@@ -8,7 +8,7 @@ author: "[Jimmy Song](https://jimmysong.io)"
 categories: ["其他"]
 tags: ["社区"]
 type: "post"
-avatar: "/images/team/jimmysong.jpg"
+avatar: "/images/testimonial/jimmysong.jpg"
 profile: "蚂蚁金服云原生布道师，ServiceMesher 社区联合创始人，CNCF Ambassador，热衷开源和分享。"
 ---
 
