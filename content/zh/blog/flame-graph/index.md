@@ -1,11 +1,11 @@
 ---
 title: "性能调优利器--火焰图"
 description: "后浪程序员的精进之路"
-author: "yousali"
-image: ""
-categories: ["profile"]
+author: "[yousa](https://github.com/Miss-you)"
+image: "images/flame.png"
+categories: ["Programming"]
 tags: ["profile","flamegraph"]
-date: 2020-06-18T12:00:00+08:00
+date: 2020-06-17T12:00:00+08:00
 type: "post"
 ---
 
@@ -157,7 +157,7 @@ staprun -x {进程号} {内核模块名} > demo.bt
 
 趁热打铁，通过几张火焰图熟悉下如何使用火焰图
 
-图片来自于春哥微博或者个人近期定位的问题
+图片源于春哥微博或者本人近期绘制的性能火焰图
 
 #### **on-cpu 火焰图**
 
@@ -165,7 +165,7 @@ staprun -x {进程号} {内核模块名} > demo.bt
 
 ![mark](http://media.makcyun.top/blog/20200608/JUtSlFHAAtuz.png?imageslim)
 
-Apache APISIX 是一个开源国产的高性能 API 网关，之前在进行选型压测时，发现当 Route 匹配不中场景下， QPS 急剧下降，在其 CPU （四十八核）占用率几乎达到100%的情况下只有几千 QPS，通过绘制火焰图发现，其主要耗时在一个 table 插入阶段(`lj_cf_table_insert`)，分析代码发现是该 table 一直没有释放，每次匹配不中路由会插入数据，导致表越来越大，后续插入耗时过长导致 QPS 下降。
+Apache APISIX 是一个开源国产的高性能 API 网关，之前在进行选型压测时，发现当 Route 匹配不中场景下， QPS 急剧下降，在其 CPU （四十八核）占用率几乎达到100%的情况下只有几千 QPS，通过绘制火焰图发现，其主要耗时在一个 table 插入阶段(`lj_cf_table_insert`)，分析代码发现是该 table 一直没有释放，每次匹配不中时，路由会向一张用于统计的表中插入一条数据，导致该表越来越大，后续插入耗时过长导致 QPS 下降。
 
 #### **off-cpu 火焰图**
 
@@ -181,7 +181,7 @@ Apache APISIX 是一个开源国产的高性能 API 网关，之前在进行选�
 
 
 
-这是一张 agent 的 off-cpu 火焰图，它是一个多线程异步事件模型，主线程处理各个消息，多个线程分别负责配置下发或者监控上报的职责。当前问题出现在监控上报性能差，无法在周期（一分钟）内完成监控数据上报，导致监控断点，通过 off-cpu 火焰图我们可以分析出，该上报线程花费了大量的时间使用 curl_easy_perform 接口收发 http 监控数据消息中。
+这是一张 agent 的 off-cpu 火焰图，它是一个多线程异步事件模型，主线程处理各个消息，多个线程分别负责配置下发或者监控上报。当前问题出现在监控上报性能差，无法在周期（一分钟）内完成监控数据上报，导致监控断点，通过 off-cpu 火焰图我们可以分析出，该上报线程花费了大量的时间使用 curl_easy_perform 接口收发 http 监控数据消息。
 
 依据火焰图将发送 http 消息的逻辑改为异步非阻塞后，该问题解决。
 
