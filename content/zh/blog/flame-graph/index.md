@@ -7,6 +7,9 @@ categories: ["Programming"]
 tags: ["profile","flamegraph"]
 date: 2020-06-17T12:00:00+08:00
 type: "post"
+profile: "腾讯云研发工程师，Apache APISIX PMC，一个略逗比的 BUG hunter。"
+avatar: "/images/profile/yousa.jpg"
+
 ---
 
 作者：yousali(厉辉)，腾讯 CSIG 后台开发工程师，Apache APISIX PMC
