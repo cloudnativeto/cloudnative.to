@@ -5,8 +5,6 @@ title = "Cloud Native Community"
 paginate = "6"
 # post excerpt
 summaryLength = "10"
-# disqus short name
-# disqusShortname = "bexer" # get your shortname form here : https://disqus.com
 # disable language
 disableLanguages = [] # desable language from here
 hasCJKLanguage = true
@@ -123,6 +121,9 @@ email = "[contact@cloudnative.to](mailto:contact@cloudnative.to)"
 wechat = "[jimmysongio](https://jimmysong.io/contact)"
 address = "请关注我们的全球地区合伙人计划"
 
+# Gitalk
+enableGitalk = true
+
 # Preloader
 [params.preloader]
 enable = false
@@ -139,6 +140,19 @@ enable = false
 # mailchimp subsciption
 mailchimp_form_action = "https://gmail.us4.list-manage.com/subscribe/post?u=463ee871f45d2d93748e77cad&amp;id=a0a2c6d074" # replace this url with yours
 mailchimp_form_name = "b_463ee871f45d2d93748e77cad_a0a2c6d074" # replace this code with yours
+
+[params.gitalk] 
+clientID = ["0f001988910adcfadfb7"] # Your client ID
+clientSecret = ["14f7d06ee5e6575c295d18fc11616e8cb60fb84e"] # Your client secret
+repo = "cloudnativeto.github.io" # The repo to store comments
+owner = "cloudnativeto" # Your GitHub ID
+admin= ["rootsongjc"] # Required. Github repository owner and collaborators. (Users who having write access to this repository)
+id= "location.pathname" # The unique id of the page.
+labels= "gitalk" # Github issue labels. If you used to use Gitment, you can change it
+perPage= 15 # Pagination size, with maximum 100.
+pagerDirection= "last" # Comment sorting direction, available values are 'last' and 'first'.
+createIssueManually= false # If it is 'false', it is auto to make a Github issue when the administrators login.
+distractionFreeMode= false # Enable hot key (cmd|ctrl + enter) submit comment.
 
 ########################### social icon ############################
 [[params.social]]
