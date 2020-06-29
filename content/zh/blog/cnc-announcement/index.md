@@ -8,6 +8,8 @@ author: "[Jimmy Song](https://jimmysong.io)"
 categories: ["其他"]
 tags: ["社区"]
 type: "post"
+avatar: "/images/profile/jimmysong.jpg"
+profile: "蚂蚁金服云原生布道师，ServiceMesher 社区联合创始人，CNCF Ambassador，热衷开源和分享。"
 ---
 
 2020 年伊始，受新冠疫情影响，全球各地的员工开启了在家办公的模式，因此人与人之间的距离感觉被拉远了。但是云原生圈子里有我们这样一群人，因为一个共同的愿景聚集到了一起，组建了社区管理委员会，并在过去的三个月里利用业余时间，齐心协力完成了社区的筹备工作。今天我们要正式宣布云原生社区正式成立了。

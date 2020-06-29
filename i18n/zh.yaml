@@ -52,6 +52,9 @@
 - id: tags
   translation: 标签
 
+- id: toc
+  translation: 目录
+
 - id: all
   translation: 所有
 

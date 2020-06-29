@@ -52,6 +52,9 @@
 - id: tags
   translation: Tags
 
+- id: toc
+  translation: Toc
+
 - id: all
   translation: ALL
 
