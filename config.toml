@@ -142,9 +142,9 @@ mailchimp_form_action = "https://gmail.us4.list-manage.com/subscribe/post?u=463e
 mailchimp_form_name = "b_463ee871f45d2d93748e77cad_a0a2c6d074" # replace this code with yours
 
 [params.gitalk] 
-clientID = "[Client ID]" # Your client ID
-clientSecret = "[Client Secret]" # Your client secret
-repo = "cloudnative.to" # The repo to store comments
+clientID = "[0f001988910adcfadfb7]" # Your client ID
+clientSecret = "[14f7d06ee5e6575c295d18fc11616e8cb60fb84e]" # Your client secret
+repo = "cloudnativeto.github.io" # The repo to store comments
 owner = "cloudnativeto" # Your GitHub ID
 admin= ["rootsongjc"] # Required. Github repository owner and collaborators. (Users who having write access to this repository)
 id= "location.pathname" # The unique id of the page.
