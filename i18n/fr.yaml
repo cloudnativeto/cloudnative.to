@@ -43,8 +43,8 @@
 - id: quick_contact
   translation: Quick Contact
 
-- id: latest_article
-  translation: Latest Article
+- id: related_article
+  translation: See Also
 
 - id: category
   translation: Category
