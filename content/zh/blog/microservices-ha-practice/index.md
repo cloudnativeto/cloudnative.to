@@ -8,6 +8,8 @@ categories: ["Service Mesh"]
 tags: ["service mesh","Microservices","Spring Cloud"]
 date: 2020-05-20T06:00:00+08:00
 type: "post"
+avatar: "/images/profile/luoguangming.jpg"
+profile: "百度云智学院讲师，ServiceMesher 社区管委会核心成员，Cloud Native Community 联合创始人兼管委会成员，Istio Handbook 组织者兼编委会成员、作者。"
 ---
 
 ## 前言

@@ -7,6 +7,7 @@ categories: ["开源"]
 tags: ["开源","社区"]
 date: 2020-06-06T12:00:00+08:00
 type: "post"
+avatar: "/images/profile/luoguangming.jpg"
 profile: "百度云智学院讲师，ServiceMesher 社区管委会核心成员，Cloud Native Community 联合创始人兼管委会成员，Istio-handbook 组织者兼编委会成员、作者。"
 ---
 
