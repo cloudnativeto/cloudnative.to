@@ -1,30 +1,11 @@
 {{ "<!-- sidebar -->" | safeHTML }}
 <aside class="col-lg-4 order-1 order-lg-2">
-
-  {{ "<!-- profile -->" | safeHTML }}
-  {{- if .Params.Profile }}
-  <div class="bg-pink px-4 py-5 box-shadow mb-5 avatar-content">
-    <div class="avatar">
-      {{- if .Params.avatar }}
-      <div class="mx-auto avatar-wrp">
-        <img class="rounded-circle avatar-img" src="{{ .Params.Avatar }}">
-      </div>
-      {{- end }}
-      <p class="avatar-name">
-        <strong class="text-dark ">{{ .Params.Author | markdownify }}</strong> 
-      </p>
-      <p>{{ .Params.Profile }}</p>
-    </div>
-  </div>
-  {{- end }}
-
   {{ "<!-- categories -->" | safeHTML }}
   <div class="bg-white px-4 py-5 box-shadow mb-5 word-cloud">
     <h4 class="mb-4">{{ i18n "category" }}</h4>
     {{ if not (eq (len $.Site.Taxonomies.categories) 0) }}
       {{ $fontUnit := "rem" }}
       {{ $largestFontSize := 2.0 }}
-      {{ $largestFontSize := 2.5 }}
       {{ $smallestFontSize := 1.0 }}
       {{ $fontSpread := sub $largestFontSize $smallestFontSize }}
       {{ $max := add (len (index $.Site.Taxonomies.categories.ByCount 0).Pages) 1 }}
@@ -51,7 +32,6 @@
     {{ if not (eq (len $.Site.Taxonomies.tags) 0) }}
       {{ $fontUnit := "rem" }}
       {{ $largestFontSize := 2.0 }}
-      {{ $largestFontSize := 2.5 }}
       {{ $smallestFontSize := 1.0 }}
       {{ $fontSpread := sub $largestFontSize $smallestFontSize }}
       {{ $max := add (len (index $.Site.Taxonomies.tags.ByCount 0).Pages) 1 }}
@@ -72,6 +52,22 @@
       </div>
     {{ end }}
   </div>
+  {{ "<!-- profile -->" | safeHTML }}
+  {{- if .Params.Profile }}
+  <div class="bg-pink px-4 py-5 box-shadow mb-5 avatar-content">
+    <div class="avatar">
+      {{- if .Params.avatar }}
+      <div class="mx-auto avatar-wrp">
+        <img class="rounded-circle avatar-img" src="{{ .Params.Avatar }}">
+      </div>
+      {{- end }}
+      <p class="avatar-name">
+        <strong class="text-dark ">{{ .Params.Author | markdownify }}</strong> 
+      </p>
+      <p>{{ .Params.Profile }}</p>
+    </div>
+  </div>
+  {{- end }}
   {{ "<!-- toc -->" | safeHTML }}
   {{ if gt .WordCount 400 }}
   <div class="bg-white px-4 py-5 box-shadow mb-5 sticky-top">
