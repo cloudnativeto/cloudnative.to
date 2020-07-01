@@ -1,0 +1,42 @@
+/* word cloud */
+.word {
+  &-cloud {
+    a:nth-child(5n+1) {
+      display: inline-block;
+      transform: rotate(-2deg);
+    }
+    a:nth-child(5n+5) {
+      display: inline-block;
+      transform: rotate(3deg);
+    }
+    a:nth-child(3n+3) {
+      display: inline-block;
+      transform: rotate(1deg);
+    }
+    a:nth-child(3n+4) {
+      display: inline-block;
+      transform: rotate(-3deg);
+    }
+  }
+}
+/* word cloud */
+
+/* avatar */
+.avatar {
+  text-align: center;
+
+  &-wrp {
+    width: 60%;
+  }
+
+  &-img {
+    width: 100%;
+  }
+
+  &-name {
+    margin: 1rem;
+    font-size: 18px;
+  }
+}
+/* avatar */
+
