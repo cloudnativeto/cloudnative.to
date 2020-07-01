@@ -45,6 +45,8 @@ link = "plugins/search/fuse.min.js"
 link = "plugins/search/mark.js"
 [[params.plugins.js]]
 link = "plugins/search/search.js"
+[[params.plugins.js]]
+link = "plugins/bigPicture/bigPicture.js"
 
 ########################### navigation ################################
 # main menu

@@ -3,12 +3,8 @@
 {{ with $related }}
 <div class="mb-3">
   <h2>{{ i18n "related_article" }}</h2>
-  <ul>
-    {{ range . }}
-    <li>
-      <strong class="h3"><a href="{{ .RelPermalink }}">{{ .Title }}</a></strong> <span>{{ .Params.Author | markdownify }}</span>
-    </li>
-    {{ end }}
-  </ul>
+  {{ range . }}
+    <p class="h3"><a href="{{ .RelPermalink }}">{{ .Title }}</a> <span class="ml-3">{{ .Params.Author | markdownify }}</span></p> 
+  {{ end }}
 </div>
 {{ end }}

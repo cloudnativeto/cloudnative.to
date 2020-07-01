@@ -9,17 +9,17 @@ date: 2020-06-12T12:00:00+08:00
 type: "post"
 ---
 
-# 背景
+## 背景
 
 Istio 从发布开始就使用 Envoy 作为自己的数据平面，充分利用了 Envoy 提供的服务发现、路由、熔断、负载均衡等功能。与此同时，Istio 项目也一直致力于提供一个便于灵活扩展的平台，以满足用户多样化的需求。在过去的一年半中， Google 的团队一直在努力用 WebAssembly 技术为 Envoy 代理添加动态扩展，并推出了针对 Envoy 代理的 WebAssembly (以下简称为WASM) 扩展机制，包括标准化的 ABI，SDK，以及该扩展机制的第一个重点实现：全新的、低延迟的 Istio 遥测系统。
 
 本文主要对 Envoy 和 WebAssembly 技术进行介绍，并使用 solo.io 团队推出的 wasme 工具完成 WASM filter 的构建、发布和部署，方便读者了解 Envoy WASM Filter 的扩展方式及其实现原理。
 
-# Envoy 的过滤器机制
+## Envoy 的过滤器机制
 
 Envoy 是 Istio 中的 Sidecar 官方标配，是一个面向服务架构的高性能网络代理，由 C++ 语言实现，拥有强大的定制化能力。Envoy 提供了进程外架构、支持L3/L4 filter、HTTP L7 filter、服务发现和动态配置、健康检查等高级功能。这里我们重点介绍一下 Envoy 流量处理过程中的 filter 机制。 
 
-## 过滤器机制
+### 过滤器机制
 
 Envoy 是面向服务架构设计的L7代理和通信总线，核心是一个 L3/L4 网络代理。可插入 filter 链机制允许开发人员编写 filter 来执行不同的 TCP 代理任务并将其插入到主体服务中。Envoy 还支持额外的 HTTP L7 filter 层。可以将 HTTP filter 插入执行不同任务的 HTTP 连接管理子系统。
 
@@ -41,7 +41,7 @@ HTTP 过滤器在 L7 上运行，由网络过滤器（即 HTTP 连接管理器�
 
 整体来看，Envoy 的过滤器机制为用户提供了很多好处，比如：用户可以创建一个中间层，以便在与不兼容的服务器通信时优雅地处理客户端请求；代理可以执行协议转换，允许不同的协议互操作；代理可以通过过滤器做出智能路由决策等。
 
-## 扩展方式
+### 扩展方式
 
 现有的 Filter 可能无法满足用户的使用需求，这时候就需要对 Envoy 进行功能扩展，通过在现有的过滤链基础上自定义新的 filter，实现定制化需求。用户可以通过以下三种方式对 Envoy 进行扩展。
 
@@ -64,9 +64,9 @@ Lua 是一种轻量小巧的脚本语言，用标准C语言编写并以源代码
 
 为了提供更加方便、更加灵活的扩展方式，Google 团队计划用 WebAssembly 为 Envoy 代理添加动态扩展。用户可以使用自己擅长的编程语言编写 filter，并使用工具编译成 wasm 格式，嵌入到 Envoy 中运行即可。目前，Google 也与社区紧密合作，以确保为用户提供良好的开发者体验，帮助用户快速上手。Google 团队也一直与 Solo.io 团队紧密合作，Solo 团队已经建立了 WebAssembly Hub 服务，用于构建，共享，发现和部署 WASM 扩展。有了 WebAssembly Hub，WASM 扩展就会像容器一样易于管理，安装和运行。
 
-# WASM 概述
+## WASM 概述
 
-## 介绍
+### 介绍
 
 WebAssembly（WASM）是一种由多种语言编写的，可移植的字节码格式，它能以接近本机的速度执行。作为一种可移植、体积小、加载快并且兼容 Web 的全新格式，wasm具有以下特点：
 
@@ -79,7 +79,7 @@ WebAssembly（WASM）是一种由多种语言编写的，可移植的字节码�
 
 尽管 WASM 最初是作为客户端技术诞生的，但它应用于服务器端时也有很多优势。比如运行时是内存安全的，并且以沙盒方式运行以确保其安全性。
 
-## 工具链
+### 工具链
 
 这里简单介绍一下 WASM 编译相关的工具链。传统的编译器设计都是三步式的：Frontend(前端)，Optimizer（优化器），Backend(后端)。
 
@@ -91,9 +91,9 @@ WebAssembly（WASM）是一种由多种语言编写的，可移植的字节码�
 
 Emscripten 的底层就是 LLVM 编译器，可以将 LLVM 字节码编译成 JavaScript，还支持 WebAssembly 这一更加先进的 Web 技术，可以生成 WASM 字节码文件。
 
-# WASM与Envoy和Istio
+## WASM与Envoy和Istio
 
-## Istio 引入 WebAssembly
+### Istio 引入 WebAssembly
 
 该特性在 Istio 1.5 自带的 Envoy 中以 Alpha 版本推出，其源代码在 envoy-wasm 开发分支中，并且正在努力将其合并到 Envoy 主干上。该实现使用了 Google 高性能 V8 引擎 中内置的 WebAssembly 运行时。
 
@@ -110,7 +110,7 @@ Emscripten 的底层就是 LLVM 编译器，可以将 LLVM 字节码编译成 Ja
 * 可靠性和隔离性：扩展模块部署在具有资源限制的沙箱中，这意味着虽然该模块可能崩溃或泄漏内存，但不会让整个 Envoy 挂掉。
 * 灵活性：可以将多种编程语言编译为 WASM，让各种技术背景的开发人员都可以选择自己的语言来编写 Envoy 扩展，比如：C++，Go，Rust，Java，TypeScript 等。
 
-## WASME 实践
+### WASME 实践
 
 Solo.io 团队发布了 WebAssembly Hub，这是一套为 Envoy 和 Istio 准备的，用于构建、部署、共享和发现 Envoy Proxy WASM 扩展的工具和仓库。
 
@@ -307,7 +307,7 @@ spec:
     image: webassemblyhub.io/ilackarms/istio-test:1.5.0-0
 ```
 
-## 工作原理分析
+### 工作原理分析
 
 刚才我们使用 wasme 命令行工具完成了 wasm filter 的构建、部署过程，其背后的工作原理简单描述如下：
 
@@ -398,11 +398,11 @@ spec:
 },
 ```
 
-# 小结
+## 小结
 
 本文首先介绍了 Envoy 的过滤器模型和 WASM 扩展技术，并结合 Solo 团队提供的 wasme 工具完成了 WASM 扩展的构建、部署过程，最后对背后的工作原理进行了分析。可以看到，使用 WASM 可以很方便的将自定义 filter 集成到 Envoy 中，实现 Envoy 代理的功能增强，同时我们也发现 envoy-wasm 仍然处于初步阶段，在支持的语言类型、运行性能、部署运维等方面仍然有待完善，相信在社区的不断努力下，WASM 技术能够走向成熟并应用于更多的使用场景中。
 
-# 参考
+## 参考
 
 [重新定义代理的扩展性：Envoy 和 Istio 引入 WebAssembly](https://istio.io/latest/zh/blog/2020/wasm-announce/)
 

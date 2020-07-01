@@ -1,4 +1,12 @@
 /* blog */
+
+.blog {
+  .content {
+    img {
+      cursor: pointer;
+    }
+  }
+}
 .card-type {
   position: absolute;
   top: 30px;
