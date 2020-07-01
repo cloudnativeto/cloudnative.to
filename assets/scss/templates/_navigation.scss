@@ -141,6 +141,12 @@
     visibility: visible;
     opacity: 1;
   }
+
+  .algolia-autocomplete {
+    .ds-dropdown-menu {
+      min-width: auto;
+    }
+  }
 }
 
 .search-box {
