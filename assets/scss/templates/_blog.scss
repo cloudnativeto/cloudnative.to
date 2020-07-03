@@ -1,4 +1,18 @@
 /* blog */
+
+.blog {
+  .content {
+    img {
+      cursor: zoom-in;
+    }
+  }
+}
+
+// 博客文章图片放大后遮罩层
+#bp_container {
+  cursor: zoom-out;
+}
+
 .card-type {
   position: absolute;
   top: 30px;
@@ -142,6 +156,10 @@ blockquote {
   img{
     max-width: 100%;
   }
+}
+
+ul.related {
+  list-style-type: initial;
 }
 
 /* /blog */

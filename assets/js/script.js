@@ -107,4 +107,11 @@
 		$(this).parent().find('.fa-minus').removeClass('fa-minus').addClass('fa-plus');
 	});
 
+	// Blog Img 
+	$('.blog .content img').on('click', function (e) {
+		BigPicture({
+			el: e.target,
+		})
+	})
+
 })(jQuery);
