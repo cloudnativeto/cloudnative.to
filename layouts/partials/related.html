@@ -4,7 +4,7 @@
 <div class="mb-3">
   <h2>{{ i18n "related_article" }}</h2>
   {{ range . }}
-    <a href="{{ .RelPermalink }}">{{ .Title }} - <span>{{ .Params.Author | markdownify }}</span></a>
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
   {{ end }}
 </div>
 {{ end }}
