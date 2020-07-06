@@ -39,6 +39,12 @@ type: "guide"
 - `categories`: 表示投稿分类，使用数组的形式，例如：`["指南"]`。
 - `tags`: 表示投稿的 TAG，使用数组的形式，例如：`["社区", "风格", "投稿"]`。
 - `type`: 表示投稿的类型，例如：`guide`。
+    * `guide`
+    * `post`
+    * `project`
+    * `team`
+    * `service`
+    * `none`
 
 ## 标题
 
