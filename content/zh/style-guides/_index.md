@@ -27,6 +27,8 @@ author: "[Heng Lonng](https://github.com/lonng)"
 categories: ["指南"]
 tags: ["社区", "风格", "投稿"]
 type: "guide"
+avatar: "/images/profile/jimmysong.jpg"
+profile: "蚂蚁金服云原生布道师，ServiceMesher 社区联合创始人，CNCF Ambassador，热衷开源和分享。"
 ---
 ```
 
@@ -36,15 +38,17 @@ type: "guide"
 - `date`: 表示投稿的时间，使用 RFC3999 格式，例如：`2020-06-09T06:00:00+08:00`。
 - `description`: 表示对投稿内容的简要描述，尽量控制在 100 字以内，例如：`本指南为 Cloud Native Community 投稿技术文档的编写提供了一套风格指南规范。`。
 - `author`: 表示投稿作者，使用 Markdown 格式，例如：`[Heng Lonng](https://github.com/lonng)`。
-- `categories`: 表示投稿分类，使用数组的形式，例如：`["指南"]`。
+- `categories`: 是用于分类技术类别的，例如“Kubernetes”、“Istio”等。
 - `tags`: 表示投稿的 TAG，使用数组的形式，例如：`["社区", "风格", "投稿"]`。
-- `type`: 表示投稿的类型，例如：`guide`。
+- `type`: 表示投稿的类型，例如：`guide`，如果是投稿，这个 type 的值使用 post 即可，其他类型的页面再选择对应的 type，这个 type 的值实际是指定页面布局。
     * `guide`
     * `post`
     * `project`
     * `team`
     * `service`
     * `none`
+- `avatar `: 表示作者头像，请放置正方形头像到`/images/profile`目录下，例如： `/images/profile/jimmysong.jpg`。
+- `profile`:  表示作者简介，例如：`蚂蚁金服云原生布道师，ServiceMesher 社区联合创始人，CNCF Ambassador，热衷开源和分享。`。
 
 ## 标题
 
