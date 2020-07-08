@@ -3,8 +3,6 @@ title: "社区投稿风格指南"
 date: 2020-06-09T06:00:00+08:00
 description: "本指南为 Cloud Native Community 投稿技术文档的编写提供了一套风格指南规范。"
 author: "[Heng Lonng](https://github.com/lonng)"
-categories: ["指南"]
-tags: ["社区", "风格", "投稿"]
 type: "guide"
 ---
 
@@ -13,6 +11,44 @@ type: "guide"
 - 提高中文文案可读性
 - 统一文档风格，保证社区投稿对外输出风格一致
 - 避免不同的文档作者对同一问题反复作出决策，降低与文档相关的沟通成本
+
+## 文件头
+
+所有投稿文章都需要在投稿文件的头部添加文件头（文件头前后使用三个短横线“-”），例如：
+
+```
+---
+title: "文章标题"
+date: 2020-06-09T06:00:00+08:00
+description: "对本文的摘要或者描述。"
+author: "[Heng Lonng](https://github.com/lonng)"
+categories: ["Kubernetes"]
+tags: ["Kubernetes", "源码分析", "kube-apiserver"]
+type: "post"
+avatar: "/images/profile/jimmysong.jpg"
+profile: "作者简介。"
+---
+```
+
+其中：
+
+- `title`: 表示投稿的标题，例如：`社区投稿风格指南`。
+- `date`: 表示投稿的时间，使用 RFC3999 格式，例如：`2020-06-09T06:00:00+08:00`。
+- `description`: 表示对投稿内容的简要描述，尽量控制在 100 字以内，例如：`本指南为 Cloud Native Community 投稿技术文档的编写提供了一套风格指南规范。`。
+- `author`: 表示投稿作者，使用 Markdown 格式，例如：`[Heng Lonng](https://github.com/lonng)`。
+- `categories`: 是用于分类技术类别的，例如“Kubernetes”、“Istio”等。
+- `tags`: 表示投稿的 TAG，使用数组的形式，例如：`["社区", "风格", "投稿"]`。
+- `type`: 表示投稿的类型，例如：`guide`，如果是投稿，这个 type 的值使用 post 即可，其他类型的页面再选择对应的 type，这个 type 的值实际是指定页面布局。
+    * `guide`
+    * `post`
+    * `project`
+    * `team`
+    * `service`
+    * `none`
+- `avatar `: 表示作者头像，请放置正方形头像到`/images/profile`目录下，例如： `/images/profile/jimmysong.jpg`。
+- `profile`:  表示作者简介，例如：`蚂蚁金服云原生布道师，ServiceMesher 社区联合创始人，CNCF Ambassador，热衷开源和分享。`。
+
+注意：以上为添加博客时必须指定的所有 header，对于其他页面只需要设置 `title`、`description`、`type` 即可，有的页面可能需要其他 header 配置，请参考对应的页面已有文章。
 
 ## 标题
 
