@@ -3,8 +3,6 @@ title: "社区投稿风格指南"
 date: 2020-06-09T06:00:00+08:00
 description: "本指南为 Cloud Native Community 投稿技术文档的编写提供了一套风格指南规范。"
 author: "[Heng Lonng](https://github.com/lonng)"
-categories: ["指南"]
-tags: ["社区", "风格", "投稿"]
 type: "guide"
 ---
 
@@ -20,15 +18,15 @@ type: "guide"
 
 ```
 ---
-title: "社区投稿风格指南"
+title: "文章标题"
 date: 2020-06-09T06:00:00+08:00
-description: "本指南为 Cloud Native Community 投稿技术文档的编写提供了一套风格指南规范。"
+description: "对本文的摘要或者描述。"
 author: "[Heng Lonng](https://github.com/lonng)"
-categories: ["指南"]
-tags: ["社区", "风格", "投稿"]
-type: "guide"
+categories: ["Kubernetes"]
+tags: ["Kubernetes", "源码分析", "kube-apiserver"]
+type: "post"
 avatar: "/images/profile/jimmysong.jpg"
-profile: "蚂蚁金服云原生布道师，ServiceMesher 社区联合创始人，CNCF Ambassador，热衷开源和分享。"
+profile: "作者简介。"
 ---
 ```
 
@@ -49,6 +47,8 @@ profile: "蚂蚁金服云原生布道师，ServiceMesher 社区联合创始人�
     * `none`
 - `avatar `: 表示作者头像，请放置正方形头像到`/images/profile`目录下，例如： `/images/profile/jimmysong.jpg`。
 - `profile`:  表示作者简介，例如：`蚂蚁金服云原生布道师，ServiceMesher 社区联合创始人，CNCF Ambassador，热衷开源和分享。`。
+
+注意：以上为添加博客时必须指定的所有 header，对于其他页面只需要设置 `title`、`description`、`type` 即可，有的页面可能需要其他 header 配置，请参考对应的页面已有文章。
 
 ## 标题
 
