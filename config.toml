@@ -168,6 +168,10 @@ icon = "fa-github"
 link = "https://github.com/cloudnativeto"
 
 [[params.social]]
+icon = "fa-slack"
+link = "https://cloudnativecommunity.slack.com"
+
+[[params.social]]
 icon = "fa-wechat"
 # change the link after the public announcement
 link = "/contact"
@@ -189,7 +193,7 @@ contentDir = "content/en"
 weight = 2
 #home = "Home"
 # footer content
-footer_content = "Cloud Native Community is an open source community with technology, warmth and passion. It was founded spontaneously by a group of industry elites who love open source, and it adheres to the principle of 'consensus, co-governance, co-construction and sharing' to serve the global developers especially for Ethnic Chinese."
+footer_content = "Cloud Native Community began with the founding of Kubernetes & CloudNative in 2016, the group covers thousands of early cloud native advocates. Building on this group, in May 2020, CNCF ambassadors and opinion leaders in the open source communities launched a new initiative to bring the Cloud Native Communtiy. The community has been upgraded to a cloud native community, aiming to build an open and inclusive communication environment to promote the spread and popularity of cloud native technology."
 # copyright
 copyright = "Copyright &copy; 2020 Cloud Native Community"
 
@@ -202,7 +206,7 @@ contentDir = "content/zh"
 weight = 1
 #home = "主页"
 # footer content
-footer_content = "云原生社区是一个有技术、有温度、有情怀的开源社区。它由一群热爱开源的行业精英自发成立，秉持“共识、共治、共建、共享”的原则服务于全球华人。"
+footer_content = "云原生社区始于 2016 年成立的 Kubernetes & CloudNative 实战群，覆盖了上千名早期云原生拥护者。在此基础上于 2020 年 5 月，由 CNCF 大使、开源领域意见领袖共同发起将原社群升级为云原生社区，旨在构建一个开放、包容的沟通环境，促进云原生技术的传播和普及。"
 # copyright
 copyright = "Copyright &copy; 2020 云原生社区"
 

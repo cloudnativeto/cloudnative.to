@@ -5,7 +5,7 @@ slider:
     # slider item
     - subtitle : "WELCOME TO THE "
       title : "CLOUD NATIVE COMMUNITY"
-      content : "The cloud native community was launched by [Jimmy and his partners](/team) in February 2020. After several months of preparation, we are now announcing to the world that the Cloud Native Community is officially established! This is a warm open source community, and we hope to use the concept of open source to break down the boundaries of the company. We focus on the growth of technical people and facilitate the communication between the communities. Let's focus on open source and give feedback to open source."
+      content : "Cloud Native Community began with the founding of Kubernetes & CloudNative in 2016, the group covers thousands of early cloud native advocates. Building on this group, in May 2020, CNCF ambassadors and opinion leaders in the open source communities launched a new initiative to bring the Cloud Native Communtiy. The community has been upgraded to a cloud native community, aiming to build an open and inclusive communication environment to promote the spread and popularity of cloud native technology."
       bg_image : "images/slider/banner-1.png"
       animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
       button:
@@ -45,7 +45,7 @@ about:
   enable : true
   subtitle : "ABOUT CLOUD NATIVE COMMUNITY"
   title : "NEUTRAL CLOUD NATIVE DEVELOPER COMMUNITY"
-  content : "Cloud Native Community is an open source community with technology, warmth and passion. It was founded spontaneously by a group of industry elites who love open source and uphold the principle of 'consensus, co-governance, co-construction and sharing'. The aim of the community is: connection, neutral, open source. We are based in China, facing the world, enterprise neutrality, focusing on open source, and give feedback to open source."
+  content : "Cloud Native Community began with the founding of Kubernetes & CloudNative in 2016, the group covers thousands of early cloud native advocates. Building on this group, in May 2020, CNCF ambassadors and opinion leaders in the open source communities launched a new initiative to bring the Cloud Native Communtiy. The community has been upgraded to a cloud native community, aiming to build an open and inclusive communication environment to promote the spread and popularity of cloud native technology."
   bg_image : "images/backgrounds/about-us-bg.png"
   image : "images/about/about-us.png"
   button:
