@@ -50,11 +50,11 @@ IT 技术日新月异，想必每个 IT 人都会有类似的焦虑：我该学�
 
 加入知识星球，扫码置顶二维码即可加入云原生社区的 Kubernetes 源码研习社
 
+欢迎加入 [云原生社区](https://t.zsxq.com/meIurBu)
+
 ![知识星球二维码](images/study-group.jpg)
 
 ## 你能收获什么？
 
 - 对 Kubernetes 核心源码有更深刻的理解
 - 一群热爱云原生的志同道合的朋友
-
-
