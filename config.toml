@@ -82,6 +82,11 @@ name = "Contribute"
 URL = "contribute"
 weight = 8
 
+[[menu.main]]
+name = "Job"
+URL = "job"
+weight = 9
+
 # [[menu.main]]
 # weight = 8
 # name = "Pages"
@@ -241,6 +246,11 @@ weight = 7
 name = "投稿"
 URL = "contribute"
 weight = 8
+
+[[Languages.zh.menu.main]]
+name = "招聘"
+URL = "job"
+weight = 9
 
 # [[Languages.zh.menu.main]]
 # weight = 8
