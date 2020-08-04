@@ -8,7 +8,7 @@ bg_image: "images/backgrounds/page-title.jpg"
 # portrait
 image: "images/team/jimmysong.jpg"
 # designation
-designation: "Ant Financial"
+designation: "Ant Group"
 social:
   - icon : "fa-twitter" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
     link : "https://twitter.com/jimmysongio"

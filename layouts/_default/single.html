@@ -10,7 +10,7 @@
           <img src="{{ .Params.Image_webp | relURL }}"  onerror="this.src='{{.Params.Image | relURL }}'" alt="post thumb" class="img-fluid w-100">
           {{ with .Params.Categories }}{{range first 1 .}} <div class="card-type">{{ . | title }}</div>{{ end }}{{ end }}
         </div>
-        <div class="card-meta text-uppercase mb-2">{{ i18n "author" }}  <strong class="text-dark">{{ .Params.Author | markdownify }}</strong>
+        <div class="card-meta mb-2">{{ i18n "author" }}  <strong class="text-dark">{{ .Params.Author | markdownify }}</strong>
           {{ if .Params.translator }}
           {{ i18n "translator" }}
           <strong class="text-dark">

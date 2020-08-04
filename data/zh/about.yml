@@ -4,7 +4,7 @@ philosophy:
   philosophy_item:
     # philosophy item loop
     - title : "使命"
-      content : "推动云原生技术的发展普及，帮助中国开发者走向世界。"
+      content : "促进云原生技术的传播和普及。"
       #bullet_point:
       #  - "Quality Services"
       #  - "Clients Satisfaction"

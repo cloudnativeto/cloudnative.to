@@ -16,7 +16,7 @@
 
 - 团队成员照片尺寸：363 x 438
 
-- 博客图片比例：16:9
+- 博客图片比例：16:9（建议尺寸 1200 x 676）
 
 ### 主题设置
 
@@ -26,7 +26,7 @@
 
 云原生社区官网为纯静态网站，使用 [Hugo](https://gohugo.io/) 构建，使用 GitHub Pages 托管，通过 GitHub Action 自动发布，支持多语言。
 
-### hugo 安装
+### Hugo 安装
 
 网站使用到了 sass， 安装 [Hugo](https://gohugo.io/getting-started/installing/) 时请选择安装 `extended` 版hugo，否则无法编译sass。
 

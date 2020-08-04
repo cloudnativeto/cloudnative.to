@@ -4,7 +4,7 @@ philosophy:
   philosophy_item:
     # philosophy item loop
     - title : "Our Mission"
-      content : "To promote the development and popularization of cloud native technology. To help Chinese developers to grow a global vision."
+      content : "Promote the spread and popularity of cloud native technologies."
 
     # philosophy item loop
     - title : "Our Aims"

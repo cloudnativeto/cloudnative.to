@@ -219,13 +219,19 @@ copyright = "Copyright &copy; 2020 云原生社区"
 # main menu
 [[Languages.zh.menu.main]]
 name = "关于"
-URL = "about"
 weight = 2
 
-#[[Languages.zh.menu.main]]
-#name = "服务"
-#URL = "service"
-#weight = 3
+[[Languages.zh.menu.main]]
+parent = "关于"
+name = "社区介绍"
+URL = "about"
+weight = 1
+
+[[Languages.zh.menu.main]]
+parent = "关于"
+name = "初创成员"
+URL = "/team"
+weight = 2
 
 [[Languages.zh.menu.main]]
 name = "博客"
@@ -233,9 +239,14 @@ URL = "blog"
 weight = 4
 
 [[Languages.zh.menu.main]]
-name = "团队"
-URL = "team"
+name = "资料"
 weight = 6
+
+[[Languages.zh.menu.main]]
+parent = "资料"
+name = "Kubebuilder"
+URL = "/kubebuilder"
+weight = 1
 
 [[Languages.zh.menu.main]]
 name = "联系"
