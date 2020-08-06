@@ -4,7 +4,8 @@ description: "从YAML工程师迈入云原生研发工程师"
 author: "[金润森（gasxia）](https://jinrunsen.com)"
 date: 2020-08-05T20:16:40+08:00
 type: "post"
-profile: "云帐房-容器研发工程师，云原生社区志愿者"
+profile: "南京云帐房-容器研发工程师，云原生社区志愿者"
+image: "images/blog/kubernetes-programming-base-banner.png"
 ---
 
 Kubernetes 诞生至今已经 5 年了，火爆整个社区，大家也对 Kubernetes 越来越熟悉，越来越了解。但现阶段很多人都是熟练使用 Kubernetes，甚至我们会自嘲为 “YAML 工程师”。
@@ -25,10 +26,10 @@ Kubernetes 诞生至今已经 5 年了，火爆整个社区，大家也对 Kuber
 
 学习 Kubernetes 编程后会对 Kubernetens 的各个组件有更加深刻的认知。比如你了解了 `controller 架构模式 ` 后就会知道（以下说法并不严谨，只列出组件中的部分功能）:
 
-* kube-proxy 是 Service 资源和服务发现负载之间的协调控制器
-* kubelet 是 Pod 资源和容器运行时之间的协调控制器
+* kube-proxy 是 Service 资源和服务发现负载之间的协调控制器。
+* kubelet 是 Pod 资源和容器运行时之间的协调控制器。
 
-了解 API Server 的架构后也就知道， kubectl 其实是高级定制版的 curl 工具
+了解 API Server 的架构后也就知道， kubectl 其实是高级定制版的 curl 工具。
 
 ## 扩展模式
 
@@ -51,18 +52,20 @@ Controller 实现控制循环，通过 API Server 监听集群的共享状态，
 
 所有的控制器都按照以下逻辑运行:
 
-1. 由事件驱动来读取资源 (resources) 的状态 (state)
+1. 由事件驱动来读取资源 (resources) 的状态 (state)。
 2. 更改集群内或集群外对象的状态 (state)。比如，启动一个 Pod，创建 Endpoint。
-3. 通过 API server 更新步骤 1 中的资源状态（status），存储到 etcd 中
-4. 重复循环，返回步骤 1
+3. 通过 API server 更新步骤 1 中的资源状态（status），存储到 etcd 中。
+4. 重复循环，返回步骤 1。
 
-![引用自《Programming Kubernetes》](http://gasxia.oss-cn-shanghai.aliyuncs.com/pasteimageintomarkdown/2020-05-08/124082684381808.png?Expires=4742551800&OSSAccessKeyId=LTAI4G2WaBWkyoDj3fQDcL5W&Signature=tf8It3nBp1Pnpy8sySP6%2FH%2BDXFU%3D "图片引用自 Programming Kubernetes")
+![引用自《Programming Kubernetes》](./images/1.png)  
+&ensp;&ensp;&ensp;&ensp;引用自《Programming Kubernetes》
 
 ### 控制器组件
 
 从架构的角度来看，Controller 通常使用一下数据结构:
 
-![引用自 “深入剖析 Kubernetes”](http://gasxia.oss-cn-shanghai.aliyuncs.com/pasteimageintomarkdown/2020-05-08/124534133135056.png?Expires=4742552251&OSSAccessKeyId=LTAI4G2WaBWkyoDj3fQDcL5W&Signature=4rwh7i9wP3XHlncLNfnrsDS0S3c%3D)
+![引用自 “深入剖析 Kubernetes”](./images/2.png "引用自 “深入剖析 Kubernetes”")  
+&ensp;&ensp;&ensp;&ensp;引用自 “深入剖析 Kubernetes”
 
 * Informers
   从 Kubernetes API Server 里监听它所关心的对象状态，Informer 与 API 对象是一一对应的。
@@ -117,7 +120,8 @@ Kubernetes 由一堆不同角色的节点（集群中机器）组成，如图 2-
   * Kubernetes dashboard
   * 代理 kubectl exec 会话
 
-![引用自《Programming Kubernetes》](http://gasxia.oss-cn-shanghai.aliyuncs.com/pasteimageintomarkdown/2020-05-12/210417989932130.png?Expires=4742866717&OSSAccessKeyId=LTAI4G2WaBWkyoDj3fQDcL5W&Signature=LYJJr39oyjfN3xLUvW5pazy4ekk%3D)
+![引用自《Programming Kubernetes》](./images/3.png "引用自《Programming Kubernetes》")  
+&ensp;&ensp;&ensp;&ensp;引用自《Programming Kubernetes》
 
 ### API Server HTTP 协议接口
 
@@ -141,9 +145,9 @@ redis-cli                     1/1     Running   303        12d
 ### API 术语
 
 弄清楚什么是 [RESTful 架构](https://www.ruanyifeng.com/blog/2011/09/restful.html) 就很容易理解和区分 Kubernetes API Server 里面这些概念。
-如果一个架构符合 REST 原则，就称它为 RESTful 架构。REST 是 Representational State Transfer 的缩写，可以翻译为 "表现层状态转化"，这里省略了主语 “资源”（Resources)。** 核心在于 “资源”，它是一种信息实体，可以有很多种外在表现形式，我们把 “资源” 具体呈现出来的形式，叫做它的 “表现层”（Representation）。**
+如果一个架构符合 REST 原则，就称它为 RESTful 架，REST 是 Representational State Transfer 的缩写，可以翻译为 "表现层状态转化"，这里省略了主语 “资源”（Resources)。 **核心在于 “资源”，它是一种信息实体，可以有很多种外在表现形式，我们把 “资源” 具体呈现出来的形式，叫做它的 “表现层”（Representation）。**
 
-RESTful API 是基于 HTTP 协议且符合 REST 原则的软件架构，controller 架构也符合 REST 原则。在 Kubernetes 中同时使用了这两种架构，所以也多弄出来了一些术语来区分指代实体，但其实都是 “资源” 这一信息实体在不同上下文中的不同表示形态。
+RESTful API 是基于 HTTP 协议且符合 REST 原则的软件架构，controller 架构也符合 REST 原则。在 Kubernetes 中同时使用了这两种架构，所以弄出来了一些术语来区分指代实体，其实都是 “资源” 这一信息实体在不同上下文中的不同表示形态。
 
 | | RESTful API | controller 架构 |
 | --- | --- | --- |
@@ -178,7 +182,9 @@ RESTful API 是基于 HTTP 协议且符合 REST 原则的软件架构，controll
 #### GVR
 
 Resource 和 API group、Version 一起称为 GroupVersionResource（GVR），来唯一标示一个 HTTP 路径。
-![引用自《Programming Kubernetes》](http://gasxia.oss-cn-shanghai.aliyuncs.com/pasteimageintomarkdown/2020-05-13/248860674623119.png?Expires=4742983293&OSSAccessKeyId=LTAI4G2WaBWkyoDj3fQDcL5W&Signature=hlLCQocZBSTQbdNjR6nUrpXVxik%3D)
+
+![引用自《Programming Kubernetes》](./images/4.png "引用自《Programming Kubernetes》")  
+&ensp;&ensp;&ensp;&ensp;引用自《Programming Kubernetes》
 
 ### 声明式状态管理
 
@@ -192,11 +198,11 @@ spec 定义的期望状态提供了实现 "infrastructure-as-code" 的基础，�
 
 ### [Programming Kubernetes](https://www.amazon.com/Programming-Kubernetes-Developing-Cloud-Native-Applications/dp/1492047104/ref=sr_1_1?dchild=1&keywords=Programming+Kubernetes&qid=1595852427&sr=8-1)
 
-![20200727202644](http://gasxia.oss-cn-shanghai.aliyuncs.com/markdown/912f9e18475feed7e4d07fc28cc1feef.png)
+![Programming Kubernetes](./images/5.png)
 
 本文是阅读《Programming Kubernetes》书籍前两章时做的笔记与总结。
 
-这本书是由来自 AWS 和 Red Hat 的两位高级工程师写作的，他们自 2015 年依赖就一直致力于 Kubernetes 的开发，写作，教学。
+这本书是由来自 AWS 和 Red Hat 的两位高级工程师写作的，他们自 2015 年以来就一直致力于 Kubernetes 的开发，写作，教学。
 
 书中主要围绕着 “Kubernetes 扩展编程 “ 主题讲了 Kubernetes 编程基础，client-go，自定义资源（CRD），Opeator，API Servers 扩展等内容。
 
@@ -219,6 +225,6 @@ spec 定义的期望状态提供了实现 "infrastructure-as-code" 的基础，�
 
 ## 参考
 
-1. <https://www.ruanyifeng.com/blog/2011/09/restful.html>
+1. [理解 RESTful 架构](https://www.ruanyifeng.com/blog/2011/09/restful.html)
 2. [Kubernetes ApiServer 并发安全机制](https://yangxikun.com/kubernetes/2020/01/30/kubernetes-apiserver-concurrent-safe.html)
 3. [深入剖析 Kubernetes](https://time.geekbang.org/column/article/42076)
