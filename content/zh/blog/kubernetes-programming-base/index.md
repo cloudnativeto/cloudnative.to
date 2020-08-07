@@ -8,15 +8,15 @@ profile: "南京云帐房-容器研发工程师，云原生社区志愿者"
 image: "images/blog/kubernetes-programming-base-banner.png"
 ---
 
-Kubernetes 诞生至今已经 5 年了，火爆整个社区，大家也对 Kubernetes 越来越熟悉，越来越了解。但现阶段很多人都是熟练使用 Kubernetes，甚至我们会自嘲为 “YAML 工程师”。
+Kubernetes 诞生至今已经 5 年了，火爆整个社区，大家对 Kubernetes 越来越熟悉，越来越了解。但现阶段很多人都是熟练使用 Kubernetes，甚至我们会自嘲为 “YAML 工程师”。
 
 可是随着各类云原生应用的出现、Operator 理念的推广、深入维护 Kubernetes 的需求下，仅仅做一个 "YAML 工程师" 已经不能满足老板的要求了。需要我们进一步了解 Kubernetes 是如何实现的，该怎么扩展 Kubernetes。
 
-我也是在这样的场景下，开始学习 Kubernetes 编程，在这里总结了我学习到的 Kubernetes 编程的基础知识，让大家对 Kubernetes 编程有个大致的了解。
+我在这样的场景下，开始学习 Kubernetes 编程，在这里总结了我学习到的 Kubernetes 编程的基础知识，让大家对 Kubernetes 编程有个大致的了解。
 
 ## 基于 Kubernetes 编程
 
-什么叫做基于 Kubernentes 编程呢？回想一下，我们以前听过基于 Linux 编程，基于 Windows 编程，可以放在‘基于’后面的都是通用标准的平台。基于 Kubernetes 编程也有着相同的概念，Kubernetes 经过 5 年的高速发展，已经成为了容器编排调度框架的标准，直接将之成为 “云原生操作系统” 也不为过。
+什么叫做基于 Kubernentes 编程呢？回想一下，我们以前听过基于 Linux 编程，基于 Windows 编程，可以放在‘基于’后面的都是通用标准的平台。基于 Kubernetes 编程有着相同的概念，Kubernetes 经过 5 年的高速发展，已经成为了容器编排调度框架的标准，直接将之成为 “云原生操作系统” 也不为过。
 
 基于 Kubernnetes 编程可以定义为，开发一个 Kubernetes-native 应用，它直接与 K8S API Server（K8S 的一个核心组件，后面会介绍）交互，查询资源的状态或更新状态。
 
@@ -29,7 +29,7 @@ Kubernetes 诞生至今已经 5 年了，火爆整个社区，大家也对 Kuber
 * kube-proxy 是 Service 资源和服务发现负载之间的协调控制器。
 * kubelet 是 Pod 资源和容器运行时之间的协调控制器。
 
-了解 API Server 的架构后也就知道， kubectl 其实是高级定制版的 curl 工具。
+了解 API Server 的架构后就知道， kubectl 其实是高级定制版的 curl 工具。
 
 ## 扩展模式
 
@@ -172,7 +172,7 @@ RESTful API 是基于 HTTP 协议且符合 REST 原则的软件架构，controll
 * v1beta1: 升级改进
 * v1: 开发完成毕业
 
-在持续开发中，对象会有也会发生变化，便用 Version 来标示版本变化。
+在持续开发中，对象会发生变化，便用 Version 来标示版本变化。
 对象会存储所有版本的对象属性的并集。但是在取出时指定版本，即只会取出这个版本所需要的对象定义。
 
 #### Resource
@@ -206,7 +206,7 @@ spec 定义的期望状态提供了实现 "infrastructure-as-code" 的基础，�
 
 书中主要围绕着 “Kubernetes 扩展编程 “ 主题讲了 Kubernetes 编程基础，client-go，自定义资源（CRD），Opeator，API Servers 扩展等内容。
 
-对于接触过云原生但不想仅仅停留在使用阶段的朋友，这本书值得一读，通过学习如何在 Kubernetes 基础上做开发，也能让你更加了解 Kubernetes，后续可以深入阅读 Kubernetes 源码。
+对于接触过云原生但不想仅仅停留在使用阶段的朋友，这本书值得一读，通过学习如何在 Kubernetes 基础上做开发，能让你更加了解 Kubernetes，后续可以深入阅读 Kubernetes 源码。
 
 这本书目前国内还未出版，可以去购买 ACM 会员，在 [Oreilly 官网](https://learning.oreilly.com/library/view/programming-kubernetes/9781492047094/) 上阅读。
 或者加入 [云原生社区](https://cloudnative.to/)，社区内分享了 Programming Kubernetes 中文版（腾讯内部翻译）。在 [社区 Github 仓库 Issue](https://github.com/cloudnativeto/community/issues/37) 下回复即可。
@@ -214,7 +214,7 @@ spec 定义的期望状态提供了实现 "infrastructure-as-code" 的基础，�
 ### Kubernetes 源码剖析
 
 对 Kubernetes 编程有了基础的了解后，推荐大家阅读 [《Kubernetes 源码剖析》](https://item.jd.com/12665791.html)，由来自百度 BFE 团队的郑东旭大佬写的。
-前文也说了，Kubernetes 本身的很多组件也是通过 controller 模式来写的，对于我们编写 Kubernetes 扩展应用来说，是极好的样例代码。
+前文说了，Kubernetes 本身的很多组件是通过 controller 模式来写的，对于我们编写 Kubernetes 扩展应用来说，是极好的样例代码。
 书中第 3 章分析了 Kubernetes 核心数据结构，第 5 章详细的分析了在扩展编程时必不可少的依赖库 client-go，有需求的同学还可以根据第 2 章的说明自己构建 Kuberntes 组件。
 
 目前（2020-08）云原生社区正在组织 Kubernete 源码剖析精读活动，有兴趣的同学可以加入一起学习，具体信息查看 [社区 Issue](https://github.com/cloudnativeto/community/issues/34)。
