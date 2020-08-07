@@ -16,7 +16,7 @@ Kubernetes 诞生至今已经 5 年了，火爆整个社区，大家对 Kubernet
 
 ## 基于 Kubernetes 编程
 
-什么叫做基于 Kubernentes 编程呢？回想一下，我们以前听过基于 Linux 编程，基于 Windows 编程，可以放在‘基于’后面的都是通用标准的平台。基于 Kubernetes 编程有着相同的概念，Kubernetes 经过 5 年的高速发展，已经成为了容器编排调度框架的标准，直接将之成为 “云原生操作系统” 也不为过。
+什么叫做基于 Kubernentes 编程呢？回想一下，我们以前听过基于 Linux 编程，基于 Windows 编程，可以放在‘基于’后面的都是通用标准的平台。基于 Kubernetes 编程有着相同的概念，Kubernetes 经过 5 年的高速发展，已经成为了容器编排调度框架的标准，直接将之定义为 “云原生操作系统” 也不为过。
 
 基于 Kubernnetes 编程可以定义为，开发一个 Kubernetes-native 应用，它直接与 K8S API Server（K8S 的一个核心组件，后面会介绍）交互，查询资源的状态或更新状态。
 
@@ -108,7 +108,7 @@ I/O 模型的相关知识可以额外阅读《Linux/UNIX 系统编程手册》�
 
 ## The API Server
 
-Kubernetes 由一堆不同角色的节点（集群中机器）组成，如图 2-1 所示：主节点的控制面由 API Server，controller manager 和 scheduler 组成。API Server 是系统的中央管理实体（central management entity），它是系统中唯一个与分布式存储组件 etcd 进行直接交互的组件。
+Kubernetes 由一堆不同角色的节点（集群中机器）组成，如下图所示：主节点的控制面由 API Server，controller manager 和 scheduler 组成。API Server 是系统的中央管理实体（central management entity），它是系统中唯一个与分布式存储组件 etcd 进行直接交互的组件。
 
 主要完成以下任务：
 
@@ -130,7 +130,7 @@ Kubernetes 由一堆不同角色的节点（集群中机器）组成，如图 2-
 * 内部调用使用 protocol buffer ，为了更高的性能
 * 使用 API 路径参数，如 `GET /api/v1/namespaces/{namespace}/pods`
 
-使用 kubectl 指令列出当前命名空间下的 pods，`kubectl -n *THENAMESPACE* get pods`。实际上会发出 GET /api/v1/namespaces/*THENAMESPACE*/pods 的 HTTP 请求，通过 -v 参数能看到 HTTP 请求的 log。
+使用 kubectl 指令列出当前命名空间下的 pods，`kubectl -n *THENAMESPACE* get pods`。实际上会发出 GET /api/v1/namespaces/*THENAMESPACE*/pods 的 HTTP 请求，通过 -v 6 参数能看到 HTTP 请求的 log。
 
 ```log
 I0804 10:55:47.463928   23997 loader.go:375] Config loaded from file:  /root/.kube/config
