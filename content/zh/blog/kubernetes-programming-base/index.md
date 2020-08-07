@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes 编程基础知识"
-description: "从YAML工程师迈入云原生研发工程师"
+description: "如何从YAML工程师迈入云原生研发工程师。"
 author: "[金润森（gasxia）](https://jinrunsen.com)"
 date: 2020-08-05T20:16:40+08:00
 type: "post"
