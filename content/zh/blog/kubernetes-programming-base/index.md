@@ -4,7 +4,7 @@ description: "从YAML工程师迈入云原生研发工程师"
 author: "[金润森（gasxia）](https://jinrunsen.com)"
 date: 2020-08-05T20:16:40+08:00
 type: "post"
-profile: "南京云帐房-容器研发工程师，云原生社区志愿者"
+profile: "南京云帐房容器研发工程师，云原生社区志愿者。"
 image: "images/blog/kubernetes-programming-base-banner.png"
 ---
 
