@@ -12,13 +12,13 @@ profile: "爱立信上海研发工程师，云原生爱好者。"
 
 ## 前言
 
-目前在云原生社区的 kubernetes 源码研习社中和广大学友们共同学习郑东旭大佬的 [kubernetes 源码剖析](https://item.jd.com/12665791.html)这本书。当前正在开展第一期学习活动，第五章节 client-go 的学习。之所以从这一章节开始学习，主要是考虑到 client-go 在源码中相对比较独立，可以单独阅读。更主要的是它是 kubernetes 的核心处理框架，基本上运用在 kubernetes 各个组件中，因此，如果你学好了这一章节，对于后面 kubernetes 源码的阅读，将会有很大的帮助。此外随着 Operator 的盛行，一些开源的生成框架也受到广大 Operator 开发者们的青睐。例如 kubebuilder 和 operator-SDK 等。而精通了 client-go，将对你理解这些生成框架及编写 Operator 也是有很好的帮助。
+目前在云原生社区的 Kubernetes 源码研习社中和广大学友们共同学习郑东旭大佬的 [Kubernetes 源码剖析](https://item.jd.com/12665791.html)这本书。当前正在开展第一期学习活动，第五章节 client-go 的学习。之所以从这一章节开始学习，主要是考虑到 client-go 在源码中相对比较独立，可以单独阅读。更主要的是它是 Kubernetes 的核心处理框架，基本上运用在 Kubernetes 各个组件中，因此，如果你学好了这一章节，对于后面 Kubernetes 源码的阅读，将会有很大的帮助。此外随着 Operator 的盛行，一些开源的生成框架也受到广大 Operator 开发者们的青睐。例如 kubebuilder 和 operator-SDK 等。而精通了 client-go，将对你理解这些生成框架及编写 Operator 也是有很好的帮助。
 
 下面内容是在学习过程中总结的相关笔记及个人见解。
 
 ## 概括
 
-client-go 是用 golang 语言编写的官方编程式交互客户端库，提供对 k8s API server 服务的交互访问。
+client-go 是用 Golang 语言编写的官方编程式交互客户端库，提供对 Kubernetes API server 服务的交互访问。
 
 其源码目录结构如下：
 
@@ -96,7 +96,7 @@ DiscoveryClient 是一个发现客户端，它主要用于发现 K8S API Server 
 
 !["Informer class diagram"](./images/clientgo.png)
 
-该类图主要描述了 Informer 中主要的接口和类之前的调用关系。大家可以参考这个类图去阅读源码。其中每个类或接口具体功能，请参考 [kubernetes 源码剖析](https://item.jd.com/12665791.html)第五章节 client-go。
+该类图主要描述了 Informer 中主要的接口和类之前的调用关系。大家可以参考这个类图去阅读源码。其中每个类或接口具体功能，请参考 [Kubernetes 源码剖析](https://item.jd.com/12665791.html)第五章节 client-go。
 
 ### Indexer 分析
 
@@ -230,11 +230,11 @@ func (c *threadSafeMap) updateIndices(oldObj interface{}, newObj interface{}, ke
 
 ## 总结
 
-可以说 kubernetes 是当前云原生的基石。所以想要进军云原生领域，kubernetes 的学习必不可少。kubernetes 的设计理念就是通过各种控制器将系统的实际运行状态协调到声明 API 中的期待状态。而这种协调机制就是基于 client-go 实现的。同样，kubernetes 对于 ETCD 存储的缓存处理也使用到了 client-go 中的 Reflector 机制。所以学好 client-go，等于迈入了 kubernetes 的大门。
+可以说 Kubernetes 是当前云原生的基石。所以想要进军云原生领域，kubernetes 的学习必不可少。kubernetes 的设计理念就是通过各种控制器将系统的实际运行状态协调到声明 API 中的期待状态。而这种协调机制就是基于 client-go 实现的。同样，kubernetes 对于 ETCD 存储的缓存处理也使用到了 client-go 中的 Reflector 机制。所以学好 client-go，等于迈入了 Kubernetes 的大门。
 
-学习 kubernetes 及更多云原生相关技术是一个漫长的过程。所以需要一个人有极强的意志力和学习动力。如果你觉得自己缺乏这些能力，可以加入我们 [云原生社区](https://cloudnative.to/)。大家一起学习，相互督促，相互分享，相互学习，相互成长。
+学习 Kubernetes 及更多云原生相关技术是一个漫长的过程。所以需要一个人有极强的意志力和学习动力。如果你觉得自己缺乏这些能力，可以加入我们 [云原生社区](https://cloudnative.to/)。大家一起学习，相互督促，相互分享，相互学习，相互成长。
 
-最后送自己和正在学习及将要学习 kubernetes 源码的同学们一句话：**不积跬步，无以至千里；不积小流，无以成江海！**
+最后送自己和正在学习及将要学习 Kubernetes 源码的同学们一句话：**不积跬步，无以至千里；不积小流，无以成江海！**
 
 ## 参考文章
 
