@@ -1,12 +1,13 @@
 ---
-title: client-go 学习总结
-description: "client-go 源码学习总结。"
-author: "[Luffyao](https://github.com/Luffy110)"
-image: "images/blog/snow-sea-bird-water.jpg"
+title: client-go 源码学习总结
+description: "该篇博客是本人在学习 client-go 源码时的一些总结和个人感受，希望可以能够给后面的学者一些帮助。"
+author: "[姚沈结(Luffy110)](https://github.com/Luffy110)"
+image: "images/blog/k8s-client-go-banner.png"
 categories: ["学习小组"]
-tags: ["学习小组"]
+tags: ["client-go"]
 date: 2020-08-07 21:28:37
 type: "post"
+avatar: "/images/profile/luffyao.png"
 profile: "爱立信上海研发工程师，云原生爱好者。"
 ---
 
@@ -44,7 +45,7 @@ DynamicClient 是一种动态客户端，它可以动态的指定资源的组，
 
 具体使用方法，可参考官方示例：[dynamic-create-update-delete-deployment](https://github.com/kubernetes/client-go/tree/master/examples/dynamic-create-update-delete-deployment)。
 
-**注意**: 该官方示例是基于集群外的环境，如果你需要在集群内部使用（例如你需要在 container 中访问），你将需要调用`rest.InClusterConfig()` 生成一个 configuration。具体的示例请参考 [in-cluster-client-configuration](https://github.com/kubernetes/client-go/tree/master/examples/in-cluster-client-configuration)。
+**注意**: 该官方示例是基于集群外的环境，如果你需要在集群内部使用（例如你需要在 container 中访问），你将需要调用 `rest.InClusterConfig()` 生成一个 configuration。具体的示例请参考 [in-cluster-client-configuration](https://github.com/kubernetes/client-go/tree/master/examples/in-cluster-client-configuration)。
 
 ## ClientSet 客户端
 
@@ -58,17 +59,17 @@ DiscoveryClient 是一个发现客户端，它主要用于发现 K8S API Server 
 
 ## ClientSet VS DynamicClient
 
-类型化`ClientSets`使得使用预先生成的本地 API 对象与 API 服务器通信变得简单，从而获得类似`RPC`的编程体验。类型化客户端使用程序编译来强制执行数据安全性和一些验证。然而，在使用类型化客户端时，程序被迫与所使用的版本和类型紧密耦合。
+类型化 `ClientSets` 使得使用预先生成的本地 API 对象与 API 服务器通信变得简单，从而获得类似 `RPC` 的编程体验。类型化客户端使用程序编译来强制执行数据安全性和一些验证。然而，在使用类型化客户端时，程序被迫与所使用的版本和类型紧密耦合。
 
-而`DynamicClient`则使用 `unstructured.Unstructured` 表示来自 API Server 的所有对象值。`Unstructured`类型是一个嵌套的`map[string]inferface{}`值的集合来创建一个内部结构，该结构和服务端的 REST 负载非常相似。
+而 `DynamicClient` 则使用 `unstructured.Unstructured` 表示来自 API Server 的所有对象值。`Unstructured` 类型是一个嵌套的 `map[string]inferface{}` 值的集合来创建一个内部结构，该结构和服务端的 REST 负载非常相似。
 
-`DynamicClient`将所有数据绑定推迟到运行时，这意味着程序运行之前，使用`DynamicClient`的的程序将不会获取到类型验证的任何好处。对于某些需要强数据类型检查和验证的应用程序来说，这可能是一个问题。
+`DynamicClient` 将所有数据绑定推迟到运行时，这意味着程序运行之前，使用 `DynamicClient` 的的程序将不会获取到类型验证的任何好处。对于某些需要强数据类型检查和验证的应用程序来说，这可能是一个问题。
 
-然而，松耦合意味着当客户端 API 发生变化时，使用`DynamicClient`的程序不需要重新编译。客户端程序在处理 API 表面更新时具有更大的灵活性，而无需提前知道这些更改是什么。
+然而，松耦合意味着当客户端 API 发生变化时，使用 `DynamicClient` 的程序不需要重新编译。客户端程序在处理 API 表面更新时具有更大的灵活性，而无需提前知道这些更改是什么。
 
 ## Informer 分析
 
-这是一个官方图形表示，展示了客户机-go 库中的各种组件如何工作，以及它们与将要编写的自定义控制器代码的交互点。
+这是一个官方图形表示，展示了client-go 库中的各种组件如何工作，以及它们与将要编写的自定义控制器代码的交互点。
 
 !["custom controller"](./images/informer.png)
 
