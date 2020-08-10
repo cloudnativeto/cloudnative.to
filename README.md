@@ -28,7 +28,7 @@
 
 ### Hugo 安装
 
-网站使用到了 sass， 安装 [Hugo](https://gohugo.io/getting-started/installing/) 时请选择安装 `extended` 版hugo，否则无法编译sass。
+网站使用到了 sass， 安装 [Hugo](https://gohugo.io/getting-started/installing/) 时请选择安装 `extended` 版hugo，版本为 **v0.65.3**，否则无法编译sass。
 
 ### 本地开发
 
