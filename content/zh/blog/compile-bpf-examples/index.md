@@ -3,7 +3,7 @@ title: "编译运行Linux内核源码中的eBPF示例代码"
 date: 2020-08-06T19:00:00+08:00
 description: "Linux社区的大佬们为学习eBPF的同学们准备了福利 ，Linux内核源码里包含了大量的eBPF示例代码，几乎覆盖了所有种类的eBPF程序，非常适合学习者阅读和测试。今天为大家介绍如何编译运行这些eBPF示例代码。"
 author: "[李文权（nevermosby）](https://github.com/nevermosby)"
-profile: "银行IT从业者，云原生爱好者"
+profile: "银行IT从业者，云原生爱好者。"
 image: "images/blog/ebpf-workflow-101.png"
 categories: ["ebpf"]
 tags: ["源码分析","Linux内核"]
