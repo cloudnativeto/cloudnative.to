@@ -2,7 +2,7 @@
 title: "eBPF 技术简介"
 description: "eBPF 是我见过的 Linux 中最神奇的技术，没有之一，已成为 Linux 内核中顶级子模块，从 tcpdump 中用作网络包过滤的经典 cbpf，到成为通用 Linux 内核技术的 eBPF，已经完成华丽蜕变，为应用与神奇的内核打造了一座桥梁，在系统跟踪、观测、性能调优、安全和网络等领域发挥重要的角色。为 Service Mesh 打造了具备 API 感知和安全高效的容器网络方案 Cilium，其底层正是基于 eBPF 技术"
 author: "[狄卫华](https://www.do1618.com)"
-image: "images/bcc_tracing_tools_2016.png"
+image: "images/blog/bcc_tracing_tools_2016.png"
 categories: ["BPF"]
 tags: ["BPF"]
 date: 2020-08-09T14:00:00+08:00
