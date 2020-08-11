@@ -6,7 +6,7 @@ author: "[Heng Lonng](https://github.com/lonng)"
 type: "guide"
 ---
 
-本指南为 Cloud Native Community 参与 Review 的 Reviewer 提供统一规范。主要目的为保证云原生社区投稿质量，本规范主要从以下几方面规范投稿内容：
+本指南为云原生社区成员参与官网投稿 Review 提供统一规范。主要目的为保证投稿质量，本规范主要从以下几方面规范投稿内容：
 
 - 专业性
 - 准确性
@@ -25,7 +25,7 @@ type: "guide"
 
 ### 稿件拒绝范围
 
-Cloud Native Community 接受的文章投稿需要是与云原生技术相关的专业文章，不约束具体细分领域。
+云原生社区接受的文章投稿需要是与云原生技术相关的专业文章，不约束具体细分领域。
 
 除以下文章不接受投稿外，原则上不拒绝其他投稿：
 
@@ -51,7 +51,7 @@ Cloud Native Community 接受的文章投稿需要是与云原生技术相关的
 
 ### 排版规范
 
-完整的投稿文档规范请参考 [社区投稿风格指南](https://cloudnative.to/style-guides/)，如果不熟悉完整的规范，可以将以下列表作为 check list。
+完整的投稿文档规范请参考 [社区投稿风格指南](/style-guides/)，如果不熟悉完整的规范，可以将以下列表作为 check list。
 
 - 语言
     - 语法是否有误
