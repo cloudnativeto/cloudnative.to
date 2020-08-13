@@ -8,6 +8,7 @@ tags: ["BPF"]
 date: 2020-08-09T14:00:00+08:00
 type: "post"
 profile: "云原生和容器技术爱好者"
+avatar: "/images/profile/davad_di.png"
 ---
 
 ![](images/linux-bpf-book.jpeg)
