@@ -6,7 +6,7 @@ author: "[Heng Lonng](https://github.com/lonng)"
 type: "guide"
 ---
 
-本指南为 Cloud Native Community 投稿技术文档的编写提供了一套风格指南规范。主要目的为：
+本指南为 Cloud Native Community 投稿技术文档的编写提供了一套风格指南规范（属于 [云原生社区投稿 Review 标准](https://cloudnative.to/review-guides) 中对格式的详细要求）。主要目的为：
 
 - 提高中文文案可读性
 - 统一文档风格，保证社区投稿对外输出风格一致
