@@ -1,6 +1,6 @@
 ---
 title: "[社会招聘] 中信软开技术组件研发工程师（初级、中级，高级）"
-date: 2020-03-19T07:28:18+08:00
+date: 2020-08-13T17:00:00+08:00
 draft: false
 bg_image: "images/backgrounds/page-title.jpg"
 description : "Base 地：北京"
