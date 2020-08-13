@@ -72,7 +72,10 @@ layout: "contribute"
 
 ## 如何投稿
 
-请先保证您已阅读并同意以上指南，fork [云原生社区官网](https://github.com/cloudnativeto/cloudnative.to)仓库，创作文章并[提交 PR](https://github.com/cloudnativeto/cloudnative.to/pulls)，投稿文章请遵循 [投稿文章风格指南](/style-guides)。
+请先保证您已阅读并同意以上指南，按照以下步骤完成投稿：
+
+1. fork [云原生社区官网](https://github.com/cloudnativeto/cloudnative.to)仓库。
+2. 创作文章并[提交 PR](https://github.com/cloudnativeto/cloudnative.to/pulls)，投稿文章请遵循 [投稿文章风格指南](/style-guides)。
+3. Reviewer 会按照 [云原生社区投稿 Review 标准](/review-guides) 进行 Review，可以先按照文档进行 Self-Review。
 
 最终解释权归云原生社区所有。
-
