@@ -7,7 +7,7 @@ categories: ["BPF"]
 tags: ["BPF"]
 date: 2020-08-09T14:00:00+08:00
 type: "post"
-profile: "云原生和容器技术爱好者"
+profile: "云原生和容器技术爱好者，《Linux 内核观测技术 BPF》译者之一。"
 avatar: "/images/profile/davad_di.png"
 ---
 
@@ -583,4 +583,3 @@ build: ${BPFCODE.c} ${BPFLOADER}
 12. [SDN handbook](https://tonydeng.github.io/sdn-handbook/)
 
 13. Linux BPF 帮助文档 [bpf(2)](https://man7.org/linux/man-pages/man2/bpf.2.html)  [bpf-helpers(7)](https://man7.org/linux/man-pages/man7/bpf-helpers.7.html)  [tc-bpf(8)](https://man7.org/linux/man-pages/man8/tc-bpf.8.html) 
-
