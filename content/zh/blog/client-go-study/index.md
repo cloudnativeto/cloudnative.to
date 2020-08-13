@@ -239,20 +239,12 @@ func (c *threadSafeMap) updateIndices(oldObj interface{}, newObj interface{}, ke
 
 ## 参考文章
 
-[Source code](https://github.com/kubernetes/client-go)
-
-[Kubernetes client-go 库介绍和源码解析](https://github.com/opsnull/kubernetes-dev-docs/tree/master/client-go)
-
-[Client-Go informer 机制](https://tangxusc.github.io/blog/2019/05/client-go-informer%E6%9C%BA%E5%88%B6/)
-
-[informer 之 store 和 index](https://www.jianshu.com/p/76e7b1a57d2c)
-
-[Kubernetes Client-Go Informer 实现源码剖析](https://xigang.github.io/2019/09/21/client-go/)
-
-[client-go package Informer source code analysis](http://www.programmersought.com/article/6135240470/)
-
-[kube-controller-manager 源码分析（三）之 Informer 机制](https://www.huweihuang.com/kubernetes-notes/code-analysis/kube-controller-manager/sharedIndexInformer.html)
-
-[Sample-controller](https://github.com/kubernetes/sample-controller/blob/master/docs/controller-client-go.md)
-
-[Indexer](https://studygolang.com/articles/20402)
+- [Source code](https://github.com/kubernetes/client-go)
+- [Kubernetes client-go 库介绍和源码解析](https://github.com/opsnull/kubernetes-dev-docs/tree/master/client-go)
+- [Client-Go informer 机制](https://tangxusc.github.io/blog/2019/05/client-go-informer%E6%9C%BA%E5%88%B6/)
+- [informer 之 store 和 index](https://www.jianshu.com/p/76e7b1a57d2c)
+- [Kubernetes Client-Go Informer 实现源码剖析](https://xigang.github.io/2019/09/21/client-go/)
+- [client-go package Informer source code analysis](http://www.programmersought.com/article/6135240470/)
+- [kube-controller-manager 源码分析（三）之 Informer 机制](https://www.huweihuang.com/kubernetes-notes/code-analysis/kube-controller-manager/sharedIndexInformer.html)
+- [Sample-controller](https://github.com/kubernetes/sample-controller/blob/master/docs/controller-client-go.md)
+- [Indexer](https://studygolang.com/articles/20402)
