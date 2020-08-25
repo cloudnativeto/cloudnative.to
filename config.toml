@@ -218,20 +218,26 @@ copyright = "Copyright &copy; 2020 云原生社区"
 ########################### Chinese navigation ################################
 # main menu
 [[Languages.zh.menu.main]]
-name = "关于"
+name = "社区"
 weight = 2
 
 [[Languages.zh.menu.main]]
-parent = "关于"
+parent = "社区"
 name = "社区介绍"
 URL = "about"
 weight = 1
 
 [[Languages.zh.menu.main]]
-parent = "关于"
+parent = "社区"
 name = "初创成员"
 URL = "/team"
 weight = 2
+
+[[Languages.zh.menu.main]]
+parent = "社区"
+name = "城市站"
+URL = "https://github.com/cloudnativeto/community/issues/50"
+weight = 3
 
 [[Languages.zh.menu.main]]
 name = "博客"
