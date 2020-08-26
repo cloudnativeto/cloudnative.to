@@ -10,9 +10,8 @@ bg_image: "images/backgrounds/page-title-3.jpg"
 
 关注云原生社区微信公众号，点击「加入社区」。
 
-<p align="center">
-  <img src="qrcode.jpg" tile="云原生社区微信公众号二维码" alt="云原生社区微信公众号二维码" width="128px">
-</p>
+![云原生社区微信公众号二维码](qrcode.jpg)
+
 
 **加入社区你将获得**
 
