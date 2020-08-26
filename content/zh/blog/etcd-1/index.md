@@ -2,7 +2,7 @@
 title: "彻底搞懂 etcd 系列文章（一）：初识 etcd"
 description: "etcd 了解一下！"
 author: "[aoho](http://blueskykong.com)"
-image: "images/etcd-covers.png"
+image: "images/blog/etcd-covers.png"
 categories: ["Etcd"]
 tags: ["etcd"]
 date: 2020-06-09T12:00:00+08:00
@@ -27,7 +27,7 @@ etcd 是 CoreOS 团队于 2013 年 6 月发起的开源项目，它的目标是�
 
 etcd 采用 Go 语言编写，它具有出色的跨平台支持，很小的二进制文件和强大的社区。 etcd 机器之间的通信通过 Raft 算法处理。
 
-![](images/etcd.jpg)
+![](./images/etcd.jpg)
 
 etcd 是一个高度一致的分布式键值存储，它提供了一种可靠的方式来存储需要由分布式系统或机器集群访问的数据。它可以优雅地处理网络分区期间的 leader 选举，以应对机器的故障，即使是在 leader 节点发生故障时。
 
@@ -61,7 +61,7 @@ etcd leader 的延迟是要跟踪的最重要的指标，并且内置仪表板�
 
 要解决服务发现的问题，需要下面三大支柱，缺一不可。
 
-![](images/etcd-discovery.jpg)
+![](./images/etcd-discovery.png)
 
 - 强一致性、高可用的服务存储目录。
 基于 Raft 算法的 etcd 天生就是这样一个强一致性、高可用的服务存储目录。
@@ -76,7 +76,8 @@ etcd2 中引入的 etcd/raft 库，是目前最稳定、功能丰富的开源一
 ### 2.3 消息发布与订阅
 在分布式系统中，最适用的一种组件间通信方式就是消息发布与订阅。即构建一个配置共享中心，数据提供者在这个配置中心发布消息，而消息使用者则订阅他们关心的主题，一旦主题有消息发布，就会实时通知订阅者。通过这种方式可以做到分布式系统配置的集中式管理与动态更新。
 
-![](images/etcd/etcd-msg.jpg)
+![](./images/etcd-msg.jpg)
+
 应用中用到的一些配置信息放到 etcd 上进行集中管理。这类场景的使用方式通常是这样：应用在启动的时候主动从 etcd 获取一次配置信息，同时，在 etcd 节点上注册一个Watcher并等待，以后每次配置有更新的时候，etcd 都会实时通知订阅者，以此达到获取最新配置信息的目的。
 
 分布式搜索服务中，索引的元信息和服务器集群机器的节点状态存放在etcd中，供各个客户端订阅使用。使用etcd的key TTL功能可以确保机器状态是实时更新的。
@@ -92,7 +93,7 @@ etcd2 中引入的 etcd/raft 库，是目前最稳定、功能丰富的开源一
 
 通过 etcd 进行低耦合的心跳检测。检测系统和被检测系统通过 etcd 上某个目录关联而非直接关联起来，这样可以大大减少系统的耦合性。
 
-![](images/etcd-notify.jpg)
+![](./images/etcd-notify.jpg)
 
 通过 etcd 完成系统调度。某系统有控制台和推送系统两部分组成，控制台的职责是控制推送系统进行相应的推送工作。管理人员在控制台作的一些操作，实际上是修改了 etcd 上某些目录节点的状态，而 etcd 就把这些变化通知给注册了Watcher的推送系统客户端，推送系统再作出相应的推送任务。
 
@@ -107,7 +108,7 @@ etcd2 中引入的 etcd/raft 库，是目前最稳定、功能丰富的开源一
 
 因为etcd使用Raft算法保持了数据的强一致性，某次操作存储到集群中的值必然是全局一致的，所以很容易实现分布式锁。锁服务有两种使用方式，一是保持独占，二是控制时序。
 
-![](images/etcd-lock.jpg)
+![](./images/etcd-lock.jpg)
 
 保持独占即所有获取锁的用户最终只有一个可以得到。etcd 为此提供了一套实现分布式锁原子操作 CAS （CompareAndSwap）的 API。通过设置 prevExist 值，可以保证在多个节点同时去创建某个目录时，只有一个成功。而创建成功的用户就可以认为是获得了锁。
 
@@ -117,4 +118,4 @@ etcd2 中引入的 etcd/raft 库，是目前最稳定、功能丰富的开源一
 本章主要介绍了 etcd 的相关概念，以及 etcd 主要的使用场景。etcd 在分布式环境中是一个利器，在一致性存储方面有广泛的应用。下一篇将会具体介绍 etcd 的安装以及使用的实践。
 
 ### 参考
-[etcd](https://etcd.io/docs/v3.4.0/op-guide/clustering/#error-cases)
+- [etcd 官方文档](https://etcd.io/docs/v3.4.0/op-guide/clustering/#error-cases)

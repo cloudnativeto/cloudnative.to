@@ -3,7 +3,7 @@ title: "Istio 进阶学习系列 - 基于 WebAssembly 实现 Envoy 与 Istio 的
 description: "本文对 WebAssembly 和 Envoy 技术进行了介绍，通过 WASM Filter 的构建、发布和部署过程，方便读者了解 Envoy WASM Filter 的扩展方式及其实现原理。"
 author: "[孙召昌](https://github.com/sunzhaochang)"
 image: "/images/blog/envoy-wasm.png"
-categories: ["Istio"]
+categories: ["Envoy"]
 tags: ["Istio","Envoy","WASM"]
 date: 2020-06-12T12:00:00+08:00
 type: "post"

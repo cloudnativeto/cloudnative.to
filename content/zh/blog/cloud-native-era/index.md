@@ -3,7 +3,7 @@ title: "云原生时代——投资人视角下的云原生趋势思考"
 description: "我认为云原生是未来10年IT发展最重要的趋势，但是它涵盖的概念非常多，需要花很多时间研究，同时浩如烟海的资料分散在网络上各个地方，缺乏系统性的梳理。今年2月我在基金内部做过一个分享，今日成文，希望让更多的人有所了解。"
 author: "[蒋宇捷](https://www.zhihu.com/people/jiangyujie)"
 image: "/images/blog/cloud-native-era.jpg"
-categories: ["Cloud Native"]
+categories: ["云原生"]
 tags: ["Cloud Native"]
 date: 2020-06-04T14:00:00+08:00
 type: "post"

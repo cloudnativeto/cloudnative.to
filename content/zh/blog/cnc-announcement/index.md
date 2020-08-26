@@ -4,8 +4,8 @@ date: 2020-05-12T06:00:00+08:00
 description: "云原生社区今天正式成立了。"
 bg_image: "images/backgrounds/page-title.jpg"
 image: "images/blog/blog-1.jpg"
-author: "[Jimmy Song](https://jimmysong.io)"
-categories: ["其他"]
+author: "[宋净超（Jimmy Song）](https://jimmysong.io)"
+categories: ["开源社区"]
 tags: ["社区"]
 type: "post"
 avatar: "/images/profile/jimmysong.jpg"

@@ -3,7 +3,7 @@ title: "性能调优利器--火焰图"
 description: "本文主要分享火焰图使用技巧，介绍 systemtap 的原理机制，如何使用火焰图快速定位性能问题原因，同时加深对 systemtap 的理解。"
 author: "[厉辉（Yousa）](https://github.com/Miss-you)"
 image: "images/blog/flamegraph.jpg"
-categories: ["Programming"]
+categories: ["GoLang"]
 tags: ["profile","flamegraph"]
 date: 2020-06-17T12:00:00+08:00
 type: "post"

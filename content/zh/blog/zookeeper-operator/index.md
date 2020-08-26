@@ -3,7 +3,7 @@ title: "Zookeeper operator 实战"
 description: "Zookeeper作为最新完成 operator 化的组件，除了可以快速部署以外，还实现了 Operator 对 scale up/down 的进度干预，控制 rolling 的重启顺序，感知组件实际运行状态等，具体实现请阅读对于相关章节。"
 author: "[朱慧君](https://github.com/Ghostbaby)"
 image: "/images/blog/zookeeper-operator-1.png"
-categories: ["Operator"]
+categories: ["Kubernetes"]
 tags: ["zookeeper","operator","OAM"]
 date: 2020-06-08T11:00:00+08:00
 type: "post"
@@ -52,7 +52,7 @@ Operator 主要包含：Deploy、Monitor、Scale 三个大模块。
 - Deploy：主要用于生成和创建 Statefulset、Service、ConfigMap、PV 等原生资源，用于快速部署 zookeeper 集群。
 - Monitor：主要用于生成和创建 ServiceMonitor、PrometheusRule 资源，用于自动化注册 target、添加告警策略，实现对集群的监控和告警。
 - Scale：主要用于把控扩缩容以及滚动升级的进度，确保以最少的主从切换完成重启。
- 
+
 ![架构图](/images/blog/zookeeper-operator-2.png)
 
 ## 具体方案
@@ -364,22 +364,22 @@ DisableExporterProbes: false,
  StatefulSets 提供了多种升级策略：OnDelete，RollingUpdate，RollingUpdate with partition。
 #### OnDelete的一般方法
  使用 OnDelete，除非 Pod 的数量高于预期的副本数，否则 StatefulSet 控制器不会从 StatefulSet 中删除 Pod。
- 
+
  Operator 决定何时要删除 Pod。一旦删除，便会由 StatefulSet 控制器自动重新创建一个 Pod，该 Pod 具有相同的名称，但是最新的规范。
- 
+
  我们的操作员永远不会创建 Pod，但是当我们决定准备删除 Pod 时，它将负责 Pod 的删除。
-  
+
  当对 StatefulSet 进行修改时（例如，更改 Pod 资源限制），我们最终得到一个新的 revision（基于模板规范的哈希值）。
- 
+
  查看 StatefulSet 状态，我们可以获得当前的修订版（currentRevision: zookeeper-sample-7b889dd5b4），使用该修订版的容器的数量以及仍在使用旧修订版的容器的数量（updateRevision: zookeeper-sample-74597f9b9d）。
- 
+
  通过列出该 StatefulSet 中的 Pod，我们可以检查每个 Pod（metadata.labels["controller-revision-hash"]: "zookeeper-sample-7b889dd5b4"）的当前版本。
 
 #### RollingUpdate.Partition 方法
   使用此策略，我们定义了一个 partition 索引：这允许使用 StatefulSet 控制器替换序数高于此索引的 Pod。
 
   例如，如果我们有一个带有5个副本的 StatefulSet：
- 
+
 - zookeeper-sample-0
 - zookeeper-sample-1
 - zookeeper-sample-2
@@ -387,13 +387,13 @@ DisableExporterProbes: false,
 - zookeeper-sample-4
 
  如果分区索引为3，则允许 StatefulSet 控制器自动删除然后重新创建 Pod zookeeper-sample-3 和 zookeeper-sample-4。
-  
+
   在此模式下，操作员永远不会删除 Pod。它所做的就是：
   - 当应添加新容器或应除去容器时，更新 StatefulSets 副本
   - 当应更换某些 Pod 时更新分区索引
 
   要对上面的 StatefulSet 进行滚动升级，我们将从索引开始5，确保4可以安全地替换 Pod ，然后将索引更新为4。这将触发更换 Pod。
-  
+
   OnDelete 除了不显式删除 Pod 而是管理索引外，其他逻辑与适用相同。
 
 ### Agent
@@ -435,22 +435,22 @@ zk agent 作为 sidecar 伴随主容器一并启动，提供如下接口：
     "Version": "3.5.6-c11b7e26bc554b8523dc929761dd28808913f091",
     "Error": null
 }
-```
+ ```
  /runok，获取当前节点是否正常启动。
- 
+
  /health，获取 zk-agent 是否正常启动。
- 
+
  /get，获取当前 Reconfig 动态配置节点信息。
  ```json
 {
     "record": "server.1=zookeeper-sample-0.zookeeper-sample.default.svc.cluster.local:2888:3888:participant;0.0.0.0:2181\nserver.2=zookeeper-sample-1.zookeeper-sample.default.svc.cluster.local:2888:3888:participant;0.0.0.0:2181\nserver.3=zookeeper-sample-2.zookeeper-sample.default.svc.cluster.local:2888:3888:participant;0.0.0.0:2181\nversion=c00000002"
 }
-```
- 
+ ```
+
 #### POST
 
  /add，获取客户端传入需要新增的节点信息，并更新到动态节点配置中。
- 
+
  /del，获取客户端传入需要删除到节点信息，并更新到动态节点配置中。传入值参考 add 接口格式。
 ## OAM对接
 ![转自 孙健波 OAM 深入解读：OAM 为云原生应用带来哪些价值？](/images/blog/oam.jpeg)

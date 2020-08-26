@@ -3,7 +3,7 @@ title: client-go 源码学习总结
 description: "该篇博客是本人在学习 client-go 源码时的一些总结和个人感受，希望可以能够给后面的学者一些帮助。"
 author: "[姚沈结(Luffy110)](https://github.com/Luffy110)"
 image: "images/blog/k8s-client-go-banner.png"
-categories: ["学习小组"]
+categories: ["Kubernetes"]
 tags: ["client-go"]
 date: 2020-08-07 21:28:37
 type: "post"

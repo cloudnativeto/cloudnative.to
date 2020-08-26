@@ -5,7 +5,7 @@ description: "Linux社区的大佬们为学习eBPF的同学们准备了福利 �
 author: "[李文权（nevermosby）](https://github.com/nevermosby)"
 profile: "银行IT从业者，云原生爱好者。"
 image: "images/blog/ebpf-workflow-101.png"
-categories: ["ebpf"]
+categories: ["BPF"]
 tags: ["源码分析","Linux内核"]
 type: "post"
 avatar: "/images/profile/nevermosby.png"
@@ -39,7 +39,7 @@ First thing first，第一步是下载内核代码。
     	- [https://github.com/torvalds/linux/tree/v4.15](https://github.com/torvalds/linux/tree/v4.15)
     	- [https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tag/?h=v4.15](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tag/?h=v4.15)
 2. 通过Ubuntu apt仓库下载。Ubuntu官方自己维护了每个操作系统版本的背后的Linux内核代码，可以通过以下两种apt命令方式获取相关代码：
-    
+  
     ```bash
     # 第一种方式
     # 先搜索
@@ -120,14 +120,14 @@ make samples/bpf/ # or  make M=samples/bpf
 
   Makefile的第一段是初始化变量`hostprogs-y`，乍一看，好像是把所有示例程序名称都赋值给了`hostprogs-y`。官方的注释是**List of programs to build**，直译过来是，“准备构建的程序清单”、，大致能猜出这个变量的意义了，通过查询官方文档，发现一个概念叫[**Host Program support**](https://www.kernel.org/doc/html/latest/kbuild/makefiles.html#host-program-support)，意思是在编译阶段就构建出可以在本机直接运行的可执行文件，为了实现这个目的，需要经过两个步骤：
     1. 第一步告诉 **kbuild** 需要生成哪些可执行文件，这个就是通过变量`hostprogs-y`来指定。来看源码中的这一行：
-        
+      
         ```bash
         hostprogs-y := test_lru_dist
         ```
 
         程序`test_lru_dist`就是一个被指定的可执行程序名称，`kbuild`默认会去同一个目录下查找名为`test_lru_dist.c`作为构建这个可执行文件的源文件。类似代码也是同样的意义，总计有41个可执行文件赋值给了变量`hostprogs-y`中。
     2. 第二步是将显式依赖关系添加到可执行文件中。这可以通过两种方式来完成，一种是为Makefile中某个**target**添加这个可执行文件，作为**prerequisites**，形成依赖关系，这样就可以触发这个可执行文件的构建任务，另一种是直接利用变量 `always`，即无需指定第一种方式中的依赖关系，只要Makefile被执行，变量`always`中包含的可执行文件都会被构建。来看源码中的相关片段：
-   
+  
         ```bash
         # Tell kbuild to always build the programs
 		always := $(hostprogs-y)

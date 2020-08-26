@@ -3,7 +3,7 @@ title: "Tekton 的工作原理"
 description: "结合源码和场景分析 Tekton 的工作原理。"
 author: "[张晓辉](https://atbug.com)"
 image: "https://gw.alipayobjects.com/mdn/rms_95b965/afts/img/A*eUqkTKk66gkAAAAAAAAAAABkARQnAQ"
-categories: ["DevOps"]
+categories: ["Tekton"]
 tags: ["Tekton", "CICD"]
 date: 2020-05-23T22:47:14+08:00
 type: "post"
