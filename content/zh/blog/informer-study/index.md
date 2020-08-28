@@ -1,5 +1,5 @@
 ---
-title: "Informer Study"
+title: "Kubernetes Informer 机制源码解析"
 date: 2020-08-28T12:00:00+08:00
 description: "Kubernetes Informer 源码理解"
 author: "Jane Liu L"
@@ -493,5 +493,4 @@ type NamespaceInformer interface {
 # Reference
 
 《Kubernetes 源码剖析》第五章
-
 
