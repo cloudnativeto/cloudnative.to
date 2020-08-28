@@ -1,8 +1,8 @@
 ---
 title: client-go informer原理
 description: "这篇文章从Informer的初始化调用链和事件如何流向的角度分析了Informer各个组件"
-author: "[sundongmin](https://github.com/sundongmin)"
-image: "images/blog/k8s-client-go-banner.png"
+author: "[孙东民](https://github.com/sundongmin)"
+image: "images/blog/client-go-informer.png"
 categories: ["Kubernetes"]
 tags: ["client-go", "informer"]
 date: 2020-08-28T07:00:00+08:00
