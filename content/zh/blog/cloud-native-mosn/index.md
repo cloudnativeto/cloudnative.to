@@ -278,7 +278,7 @@ MOSN 中提供 Kubernes 和 非 Kubernes 体系下的 Dubbo 服务治理方案�
 <img src="https://cdn.nlark.com/yuque/0/2020/png/927285/1598523251767-3ad81005-3c31-4b75-ae95-bd46f2244b5f.png">
 </div>
 
-同时 MOSN 社区也积极地在和 Istio 社区进行沟通以及寻求合作，我们的目标是希望能成为 Istio 官方推荐的 Sidecar 产品，对此我们在 Istio Github 上提了相关 ISSUE，引发了比较大的关注，Istio 官方 Member 成员@[howardjohn](https://github.com/howardjohn) 对此问题进行了非常详细的回答和探讨。
+同时 MOSN 社区也积极地在和 Istio 社区进行沟通以及寻求合作，我们的目标是希望能成为 Istio 官方推荐的 Sidecar 产品，对此我们在 Istio Github 上提了相关 ISSUE，引发了比较大的关注，Istio 官方 Member 成员 @[howardjohn](https://github.com/howardjohn) 对此问题进行了非常详细的回答和探讨。
 
 <div align=center>
 <img src="https://cdn.nlark.com/yuque/0/2020/png/927285/1598523470936-329a7e0a-4cf1-4527-b422-e2ba7d06513e.png">
@@ -301,7 +301,7 @@ MOSN 中提供 Kubernes 和 非 Kubernes 体系下的 Dubbo 服务治理方案�
 <img src="https://cdn.nlark.com/yuque/0/2020/png/927285/1598526579971-bfcec83e-3527-4378-a2f0-42b4738db1f7.png">
 </div>
 
-2020 年 7 月 14 号 Istio TOC（Istio 技术委员会）成员@[Shriram](https://github.com/rshriram)[ ](https://github.com/rshriram)[Rajagopalan](https://github.com/rshriram) 最新[回复](https://github.com/istio/istio/issues/23753)： “也是支持 Istio 中支持多数据面的方案，而且也建议先把 MOSN 做为实验性第三方数据平面纳入到 Istio 的官方博客中，方便用户来试用”：
+2020 年 7 月 14 号 Istio TOC（Istio 技术委员会）成员 @[ShriramRajagopalan](https://github.com/rshriram) 最新[回复](https://github.com/istio/istio/issues/23753)： “也是支持 Istio 中支持多数据面的方案，而且也建议先把 MOSN 做为实验性第三方数据平面纳入到 Istio 的官方博客中，方便用户来试用”：
 
 <div align=center>
 <img src="https://cdn.nlark.com/yuque/0/2020/png/927285/1598526691184-fc34f3c7-7177-41ea-80c4-3f8c3009c15a.png">
