@@ -37,7 +37,7 @@
             -->
             <!-- contact info -->
             {{ with $data.homepage.contact }}
-            <div class="mb-5">
+            <div class="mb-5 address">
               <h4 class="text-white mb-4">{{ i18n "contact_info"}}</h4>
               <p class="text-light mb-3">{{ .address | markdownify }}</p>
               <p class="text-light mb-3">{{ .email | markdownify }}</p>
