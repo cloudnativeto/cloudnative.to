@@ -1,6 +1,6 @@
 ---
 title: "云原生网络代理 MOSN 的进化之路"
-description: "本文是 2020 年 8 月 15 号在深圳 GIAC（GLOBAL INTERNET ARCHITECTURE CONFERENCE）全球互联网架构大会，由宋进超（Jimmy）出品的 CloudNative(云原生) 专场中的现场实录。"
+description: "本文是王发康在 2020 年 8 月 15 号在深圳 GIAC（全球互联网架构大会）云原生专场上的分享现场实录。"
 author: "[王发康](https://github.com/wangfakang)"
 image: "https://cdn.nlark.com/yuque/0/2020/png/927285/1598592974424-eb7cf89e-2caa-4459-b8dd-d955bbc75805.png"
 categories: ["云原生"]
