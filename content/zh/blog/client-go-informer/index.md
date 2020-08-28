@@ -5,21 +5,21 @@ author: "[sundongmin](https://github.com/sundongmin)"
 image: "images/blog/k8s-client-go-banner.png"
 categories: ["Kubernetes"]
 tags: ["client-go", "informer"]
-date: 2020-08-28 21:28:37
+date: 2020-08-28T07:00:00+08:00
 type: "post"
 avatar: "images/profile/sundongmin.jpg"
 profile: "某教育公司研发工程师, 云原生爱好者。"
 ---
 
-# Informer原理图
+## Informer原理图
 为了便于理解, 先上两张图
-## 下面这张图为源码的调用流程
+### 下面这张图为源码的调用流程
 可以对照着图中的代码文件及代码行数跟下代码   
 注: 图中的代码行数基于`1.15`版
 ![informer](./images/informer.png)
-## 下面这张图是用到的数据结构
+### 下面这张图是用到的数据结构
 ![informer-data-structure](./images/informer-data-structure.png)
-# Informer 工厂
+## Informer 工厂
 先来看下`cmd/kube-controller-manager/app/controllermanager.go:162`的`Run`方法
 ```go
 func Run(c *config.CompletedConfig, stopCh <-chan struct{}) error {
@@ -75,7 +75,7 @@ func Run(c *config.CompletedConfig, stopCh <-chan struct{}) error {
 ...
 ```
 上面代码中比较重要的几个方法`CreateControllerContext`, `StartControllers`, `controllerContext.InformerFactory.Start`
-## 创建ControllerContext
+### 创建ControllerContext
 再次进入`CreateControllerContext`方法中, 一直跟下去, 最终会调用到`vendor/k8s.io/client-go/informers/factory.go:108`的`NewSharedInformerFactoryWithOptions`方法
 ```go
 func NewSharedInformerFactoryWithOptions(client kubernetes.Interface, defaultResync time.Duration, options ...SharedInformerOption) SharedInformerFactory {
@@ -97,7 +97,7 @@ func NewSharedInformerFactoryWithOptions(client kubernetes.Interface, defaultRes
 }
 ```
 从上面的代码中, `sharedInformerFactory`结构体中, 有一个`informers`的`map`, 这个map的key为资源类型, value为关注该资源类型的Informer
-## 启动所有内置的Controller
+### 启动所有内置的Controller
 再来看`StartControllers`方法, 调用`StartControllers`之前, 会先调用`NewControllerInitializers`方法
 ```go
 func NewControllerInitializers(loopMode ControllerLoopMode) map[string]InitFunc {
@@ -124,7 +124,7 @@ func StartControllers(ctx ControllerContext, startSATokenController InitFunc, co
 }
 ```
 这里循环`NewControllerInitializers`方法返回的所有controller, 取到map的value, 然后调用.   
-### 启动各个Controller
+#### 启动各个Controller
 再来看上一步的`initFn`, 也就是各个`startXXXController`方法, 我们以`startDeploymentController`为例,
 ```go
 func startDeploymentController(ctx ControllerContext) (http.Handler, bool, error) {
@@ -238,7 +238,7 @@ func (f *sharedInformerFactory) InformerFor(obj runtime.Object, newFunc internal
 2. 如果不存在, 则调用传进来的参数`newFunc`实例化informer(注: `newFunc`即为`defaultInformer`, 返回的类型为`cache.SharedIndexInformer`
 
 至此, DeploymentInformer被实例化，并真正的承担Informer的职责, 同时添加到Informer工厂的map中.
-## InformerFactory启动
+### InformerFactory启动
 ```go
 func (f *sharedInformerFactory) Start(stopCh <-chan struct{}) {
 	f.lock.Lock()
@@ -303,7 +303,7 @@ func (s *sharedIndexInformer) Run(stopCh <-chan struct{}) {
 5. 运行controller(此controller非XXXController)
 
 接下来, 看下这几件事情的详细过程
-### sharedIndexInformer
+#### sharedIndexInformer
 
 我们先把视线拉回到上面第一张图片的最右侧, 因为这块做了一些初始化的工作, 以便后面的逻辑使用
 
@@ -332,7 +332,7 @@ func NewSharedIndexInformer(lw ListerWatcher, objType runtime.Object, defaultEve
 4. objectType: 用来标记关注哪种特定资源类型
 5. cacheMutationDetector: 监控 Informer 的缓存
 
-#### sharedProcessor
+##### sharedProcessor
 
 ```go
 type sharedProcessor struct {
@@ -408,7 +408,7 @@ func (p *sharedProcessor) addListener(listener *processorListener) {
 }
 ```
 
-### 初始化DeltaFIFO
+#### 初始化DeltaFIFO
 
 有了前面初始化的`sharedIndexInformer`, 现在开始解析`sharedIndexInformer`的`Run`方法
 
@@ -427,7 +427,7 @@ func NewDeltaFIFO(keyFunc KeyFunc, knownObjects KeyListerGetter) *DeltaFIFO {
 }
 ```
 
-### 初始化controller(注意此处的Process字段被赋值为s.HandleDeltas)
+#### 初始化controller(注意此处的Process字段被赋值为s.HandleDeltas)
 
 ```go
 cfg := &Config{
@@ -460,7 +460,7 @@ func New(c *Config) Controller {
 }
 ```
 
-### 启动processor
+#### 启动processor
 
 ```go
 func (p *sharedProcessor) run(stopCh <-chan struct{}) {
@@ -485,7 +485,7 @@ func (p *sharedProcessor) run(stopCh <-chan struct{}) {
 
 可以看到, 主要是循环`sharedProcessor`里所有的listener, 然后调用了`listener.run`和`listener.pop`
 
-#### listener.run
+##### listener.run
 
 ```go
 func (p *processorListener) run() {
@@ -525,7 +525,7 @@ listener 包含了 Controller 注册进来的 Handler 方法，因此 listener �
 
 可以看到，`listener.run` 不停的从 `nextCh` 这个 channel 中拿到事件，但是 `nextCh` 这个 channel 里的事件又是从哪来的呢？`listener.pop` 的职责便是将事件放入 `nextCh` 中。
 
-#### listener.pop
+##### listener.pop
 
 ```go
 func (p *processorListener) pop() {
@@ -567,7 +567,7 @@ func (p *processorListener) pop() {
 
 `pop` 方法实现了一个带 buffer 的分发机制，使得事件可以源源不断的从 `addCh` 到 `nextCh`
 
-### 运行controller
+#### 运行controller
 
 ```go
 func (c *controller) Run(stopCh <-chan struct{}) {
@@ -598,11 +598,11 @@ func (c *controller) Run(stopCh <-chan struct{}) {
 }
 ```
 
-#### 初始化Reflector并启动
+##### 初始化Reflector并启动
 
 `Reflector`通过 sharedIndexInformer 里定义的 `listerWatcher` 进行 List-Watch，并将获得的事件推入 DeltaFIFO 中, `controller` 启动之后会先将 `Reflector` 启动
 
-#### 执行c.processLoop
+##### 执行c.processLoop
 
 ```go
 func (c *controller) processLoop() {
@@ -712,7 +712,7 @@ func (p *processorListener) add(notification interface{}) {
 
 至此, 整个事件流就打通了, 如下图
 ![informer-event-stream](./images/informer-event-stream.png)
-# 总结
+## 总结
 Informer机制是kubernetes的核心, 了解清楚这个机制, 后续理解controller manager就容易多了, 而且也能更得心应手的编写自定义的controller.
-# 参考资料
+## 参考资料
 - [Source code](https://github.com/kubernetes/client-go)
