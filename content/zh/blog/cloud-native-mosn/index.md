@@ -9,7 +9,7 @@ date: 2020-08-28T14:00:00+08:00
 type: "post"
 ---
 
-本文是 2020 年 8 月 15 号在深圳 GIAC（GLOBAL INTERNET ARCHITECTURE CONFERENCE）全球互联网架构大会，由宋进超（Jimmy）出品的 CloudNative(云原生) 专场中的现场实录：
+本文是 2020 年 8 月 15 号在深圳 GIAC（GLOBAL INTERNET ARCHITECTURE CONFERENCE）全球互联网架构大会，由[宋净超（Jimmy Song）](https://jimmysong.io)出品的云原生专场中的现场实录。
 
 <p align=center>
 <img src="https://cdn.nlark.com/yuque/0/2020/png/927285/1598498189773-56bcb50e-92a1-4af3-8eb3-2cb9ff8e0edc.png">
@@ -342,4 +342,3 @@ MOSN 是一个开源项目，社区中的任何人都可以使用，参与和改
 欢迎加入 MOSN 开源交流群
 
 ![image.png](https://cdn.nlark.com/yuque/0/2020/png/927285/1598530625048-d57be6ef-cdc4-409b-a1e6-6d9364e6dd39.png#align=left&display=inline&height=163&margin=%5Bobject%20Object%5D&name=image.png&originHeight=325&originWidth=320&size=95599&status=done&style=none&width=160)
-
