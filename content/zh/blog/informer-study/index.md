@@ -1,8 +1,8 @@
 ---
 title: "Kubernetes Informer 机制源码解析"
-date: 2020-08-28T12:00:00+08:00
+date: 2020-08-28 16:55:00
 description: "Kubernetes Informer 源码理解"
-author: "Jane Liu L"
+author: "[Jane Liu L(JaneLiuL)](https://github.com/JaneLiuL)"
 categories: ["Kubernetes"]
 tags: ["Kubernetes", "源码理解", "Informer"]
 type: "post"
@@ -10,69 +10,47 @@ avatar: "/images/profile/janeliul.jpg"
 profile: "刘淑娟"
 ---
 
-# Overview
+## Overview
 
 这篇文章主要是学习Informer机制并且理解Informer各个组件的设计。
 
-# 背景
+## 背景
 
 为什么Kubernetes需要Informer机制？我们知道Kubernetes各个组件都是通过REST API跟API Server交互通信的，而如果每次每一个组件都直接跟API Server交互去读取/写入到后端的etcd的话，会对API Server以及etcd造成非常大的负担。 而Informer机制是为了保证各个组件之间通信的实时性、可靠，并且减缓对API Server和etcd的负担。
 
-# Informer 流程
+## Informer 流程
 
-这个流程，建议先看看
+这个流程，建议先看看《fromcontroollerstud https://github.com/JaneLiuL/study-client-go/blob/master/fromcontrollerstudyinformer.md 
 
-[《fromcontroollerstud]: https://github.com/JaneLiuL/study-client-go/blob/master/fromcontrollerstudyinformer.md
-
-这里我们以CoreV1. Pod资源为例子
-
+这里我们以CoreV1. Pod资源为例子：
 1. 第一次启动Informer的时候，Reflector 会使用`List`从API Server主动获取CoreV1. Pod的所有资源对象信息，通过`resync`将资源存放在`Store`中 
-
 2. 持续使用`Reflector`建立长连接，去`Watch` API Server发来的资源变更事件
-
 3. 当2 监控到CoreV1.Pod的资源对象有增加删除修改之后，就把资源对象存放在`DeltaFIFO`中，
-
 4. `DeltaFIFO`是一个先进先出队列，只要这个队列有数据，就被Pop到Controller中, 将这个资源对象存储至`Indexer`中，并且将该资源对象分发至`ShareInformer`
+5. Controller会触发`Process`回调函数
 
-5. Controller会触发`Process`回调函数 
-
-   
-
-
-
-## 打脸
+### 打脸
 
 所以，我自己之前写代码的时候，一直以为是`ShareInformer`去主动watch API Server, 而现在正正打脸了，是`Reflector`做的List&Watch。
 
 
-
-## ListAndWatch 思考
+### ListAndWatch 思考
 
 为什么Kubernetes里面是使用ListAndWathc呢？我们所知道的其他分布式系统常常使用RPC来触发行为。
 
-
-
 我们来分析下如果不这样做，而是采用API Server轮询推送消息给各个组件，或者各个组件轮询去访问API Server的话，那么**实时性**就得不到保证，并且对API Server造成很大的负载，很有可能需要开启大量的端口造成端口浪费。
-
-
 
 从实时性出发的话：
 
 我们希望是有任何资源的新增/改动/删除，都需要马上获取并且放入消息队列。可以对应我们Informer中的`Reflector`组件，去主动获取消息，并且放入`DeltaFIFO`队列被消费。
 
-
-
 从减轻负载出发的话：
 
 需要上缓存，这里可以对应我们的`Store`组件。
 
-
-
 从设计扩展性出发的话：
 
 作为一个“资源管理系统”的Kubernetes，我们的对象数量可能会无线扩大，那么我们需要设计一个高效扩展的组件，去应对对象的种类无线扩大，并且同一种对象可能会被用户实例化非常多次的行为。 这里可以对应我们的`Share Informer`。
-
-
 
 从消息的可靠性出发的话：
 
@@ -80,15 +58,27 @@ profile: "刘淑娟"
 
 
 
-### Watch的实现
+#### Watch的实现
 
-`Watch`是通过HTTP 长连接接收API Server发送的资源变更事件，使用的`Chunkerd transfer coding`， 源码如下
+`Watch`是通过HTTP 长连接接收API Server发送的资源变更事件，使用的`Chunkerd transfer coding`， 代码位置`./staging/src/k8s.io/apiserver/pkg/endpoints/handlers/watch.go`，源码如下
 
-![](C:\Users\EZLIUJA\Desktop\workspace\cloudnative.to\content\zh\blog\informer-study\images\chunk.png)
+```go
+    e := streaming.NewEncoder(framer, s.Encoder)
 
-我们通过`curl`来看看, 在`response`的`Header`中设置`Transfer-Encoding`的值是`chunkerd`
+	// ensure the connection times out
+	timeoutCh, cleanup := s.TimeoutFactory.TimeoutCh()
+	defer cleanup()
 
+	// begin the stream
+	w.Header().Set("Content-Type", s.MediaType)
+	w.Header().Set("Transfer-Encoding", "chunked")
+	w.WriteHeader(http.StatusOK)
+	flusher.Flush()
 ```
+
+我们使用通过`curl`来看看, 在`response`的`Header`中设置`Transfer-Encoding`的值是`chunkerd`
+
+```bash
 # curl -i http://127.0.0.1:8001/api/v1/watch/namespaces?watch=yes
 HTTP/1.1 200 OK
 Cache-Control: no-cache, private
@@ -101,13 +91,13 @@ Transfer-Encoding: chunked
 
 
 
-# 监听事件 Reflector
+## 监听事件 Reflector
 
 我的理解，Reflector是实现对指定的类型对象的监控，既包括Kubernetes内置资源，也可以是CRD自定义资源。
 
 
 
-## 数据结构
+### 数据结构
 
 我们来看看Reflector的数据结构， 代码块`staging/src/k8s.io/client-go/tools/cache/reflector.go`
 
@@ -129,7 +119,7 @@ type Reflector struct {
 }
 ```
 
-## Run
+### Run
 
 Run是循环一直把数据存储到`DeltaFIFO`中。
 
@@ -148,7 +138,7 @@ func (r *Reflector) Run(stopCh <-chan struct{}) {
 
 
 
-## ListAndWatch
+### ListAndWatch
 
 书上把这一段讲得很详细了，我贴这段代码，是为了给下面的Kubernetes并发的章节用的，这里用到了`GetResourceVersion` `setLastSyncResourceVersion`等
 
@@ -294,7 +284,7 @@ func (r *Reflector) ListAndWatch(stopCh <-chan struct{}) error {
 
 
 
-### Kubernetes并发
+#### Kubernetes并发
 
 从ListAndWatch的代码，有一段关于`syncWith`的方法，比较重要，原来Kubernetes的并发是通过`ResourceVersion`来实现的，每次对这个对象的改动，都会把改对象的`ResourceVersion`加一。
 
@@ -302,9 +292,9 @@ func (r *Reflector) ListAndWatch(stopCh <-chan struct{}) error {
 
 
 
-# 二级缓存DeltaFIFO 和 Store
+## 二级缓存DeltaFIFO 和 Store
 
-## DeltaFIFO
+### DeltaFIFO
 
 我们通过数据结构来理解DeltaFIFO，我们先来理解一下Delta。
 
@@ -347,7 +337,7 @@ DeltaFIFO中的GET方法或者GetByKey都比较简单，接下来对queueActionL
 
 
 
-### queueActionLocked
+#### queueActionLocked
 
 ```go
 func (f *DeltaFIFO) queueActionLocked(actionType DeltaType, obj interface{}) error {
@@ -411,7 +401,7 @@ func isDup(a, b *Delta) *Delta {
 
 
 
-### 消费者方法
+#### 消费者方法
 
 ```go
 func (f *DeltaFIFO) Pop(process PopProcessFunc) (interface{}, error) {
@@ -458,13 +448,13 @@ func (f *DeltaFIFO) Pop(process PopProcessFunc) (interface{}, error) {
 
 
 
-## LocalStore
+#### LocalStore
 
 缓存机制，但LocalStore是被`Lister`的`List/Get`方法访问
 
 
 
-# Share Informer 共享机制
+## Share Informer 共享机制
 
 从流程上我们说了，因为是`DeltaFIFO`把消息分发至`Share Informer`中，因此我们可以用`Inforomer`添加自定义的回调函数，也就是我们经常看到的`OnAdd`  `OnUpdaate`和`OnDelete`
 
@@ -484,13 +474,46 @@ type NamespaceInformer interface {
 
 
 
-# Indexer
+## Indexer
 
-说人话，Indexer也是一个存储来的，不一样的是，Indexer除了存储之外，还有索引的功能。
+以下是Indexer的数据结构，清晰的看见Indexer继承了Store接口， 还增加了索引的功能。
+
+```go
+type Indexer interface {
+	Store
+	Index(indexName string, obj interface{}) ([]interface{}, error)
+...
+}
+
+```
 
 看看我们流程第四个步骤： `DeltaFIFO`是一个先进先出队列，只要这个队列有数据，就被Pop到Controller中, 将这个资源对象存储至`Indexer`中。 这个步骤说明了Indexer存储的数据来源。
 
-# Reference
+
+
+我们看看Indexer关键的几个索引函数
+
+```go
+// 索引函数，传入的是对象，返回的是检索结果的列表，例如我们可以通过IndexFunc去查某个Annotation/label的configmap
+type IndexFunc func(obj interface{}) ([]string, error)
+// 索引函数，key是索引器名词，value是索引器的实现函数
+type Indexers map[string]IndexFunc
+ // 索引函数name   对应多个索引键   多个对象键   真正对象 
+type Indices map[string]Index            
+// 索引缓存，map类型                     
+type Index map[string]sets.String 
+```
+
+总结一下：
+
+Indexers: 索引函数name --> 索引实现函数-->索引key值
+Indics: 索引函数name --> 对应多个索引key值 --> 每个索引key值对应不同的资源
+
+举个例子来说明的话：对象Pod有一个标签app=version1，这里标签就是索引键，Indexer会把相同标签的所有Pod放在一个集合里面，然后我们实现对标签分类就是我们Indexer的核心内容。
+
+
+
+## Reference
 
 《Kubernetes 源码剖析》第五章
 
