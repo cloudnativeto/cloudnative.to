@@ -1,6 +1,6 @@
 ---
-title: client-go informer原理
-description: "这篇文章从Informer的初始化调用链和事件如何流向的角度分析了Informer各个组件"
+title: "Kubernetes client-go informer原理"
+description: "这篇文章从Informer的初始化调用链和事件如何流向的角度分析了Informer各个组件。"
 author: "[孙东民](https://github.com/sundongmin)"
 image: "images/blog/kubernetes-simon-banner.jpg"
 categories: ["Kubernetes"]
@@ -8,19 +8,29 @@ tags: ["client-go", "informer"]
 date: 2020-08-28T07:00:00+08:00
 type: "post"
 avatar: "/images/profile/sundongmin.jpg"
-profile: "某教育公司研发工程师, 云原生爱好者。"
+profile: "某教育公司研发工程师，云原生爱好者。"
 ---
 
 ## Informer原理图
-为了便于理解, 先上两张图
-### 下面这张图为源码的调用流程
-可以对照着图中的代码文件及代码行数跟下代码   
-注: 图中的代码行数基于`1.15`版
+
+为了便于理解，先上两张图。
+
+### 源码的调用流程图
+
+可以对照着图中的代码文件及代码行数跟下代码。
+
+注: 图中的代码行数基于`1.15`版。
+
 ![informer](./images/informer.png)
-### 下面这张图是用到的数据结构
+
+### 数据结构图
+
 ![informer-data-structure](./images/informer-data-structure.png)
+
 ## Informer 工厂
-先来看下`cmd/kube-controller-manager/app/controllermanager.go:162`的`Run`方法
+
+先来看下`cmd/kube-controller-manager/app/controllermanager.go:162`的`Run`方法。
+
 ```go
 func Run(c *config.CompletedConfig, stopCh <-chan struct{}) error {
 ...
@@ -74,9 +84,12 @@ func Run(c *config.CompletedConfig, stopCh <-chan struct{}) error {
 }
 ...
 ```
-上面代码中比较重要的几个方法`CreateControllerContext`, `StartControllers`, `controllerContext.InformerFactory.Start`
+
+上面代码中比较重要的几个方法`CreateControllerContext`, `StartControllers`, `controllerContext.InformerFactory.Start`。
+
 ### 创建ControllerContext
-再次进入`CreateControllerContext`方法中, 一直跟下去, 最终会调用到`vendor/k8s.io/client-go/informers/factory.go:108`的`NewSharedInformerFactoryWithOptions`方法
+再次进入`CreateControllerContext`方法中, 一直跟下去, 最终会调用到`vendor/k8s.io/client-go/informers/factory.go:108`的`NewSharedInformerFactoryWithOptions`方法。
+
 ```go
 func NewSharedInformerFactoryWithOptions(client kubernetes.Interface, defaultResync time.Duration, options ...SharedInformerOption) SharedInformerFactory {
 	factory := &sharedInformerFactory{
@@ -96,9 +109,13 @@ func NewSharedInformerFactoryWithOptions(client kubernetes.Interface, defaultRes
 	return factory
 }
 ```
-从上面的代码中, `sharedInformerFactory`结构体中, 有一个`informers`的`map`, 这个map的key为资源类型, value为关注该资源类型的Informer
+
+从上面的代码中, `sharedInformerFactory`结构体中，有一个`informers`的`map`，这个map的key为资源类型，value为关注该资源类型的Informer。
+
 ### 启动所有内置的Controller
-再来看`StartControllers`方法, 调用`StartControllers`之前, 会先调用`NewControllerInitializers`方法
+
+再来看`StartControllers`方法, 调用`StartControllers`之前, 会先调用`NewControllerInitializers`方法。
+
 ```go
 func NewControllerInitializers(loopMode ControllerLoopMode) map[string]InitFunc {
 	controllers := map[string]InitFunc{}
@@ -109,8 +126,10 @@ func NewControllerInitializers(loopMode ControllerLoopMode) map[string]InitFunc 
 	return controllers
 }
 ```
-通过这个方法可以返回所有的内置controller, 这里map中的value存的只是相应的回调函数, 此时还没调用, 在`StartControllers`方法中会实际调用.   
-接下来调用StartControllers方法
+通过这个方法可以返回所有的内置controller, 这里map中的value存的只是相应的回调函数, 此时还没调用, 在`StartControllers`方法中会实际调用。
+
+接下来调用StartControllers方法。
+
 ```go
 func StartControllers(ctx ControllerContext, startSATokenController InitFunc, controllers map[string]InitFunc, unsecuredMux *mux.PathRecorderMux) error {
     ...
@@ -294,7 +313,7 @@ func (s *sharedIndexInformer) Run(stopCh <-chan struct{}) {
 	s.controller.Run(stopCh)
 }
 ```
-`sharedIndexInformer`的`Run`方法代码不多, 但是很重要, 这块逻辑即为第一张图中粉红色的地方, 主要做了下面几件事:
+`sharedIndexInformer`的`Run`方法代码不多，但是很重要，这块逻辑即为第一张图中粉红色的地方，主要做了下面几件事：
 
 1. 初始化fifo队列
 2. 初始化controller
@@ -303,9 +322,10 @@ func (s *sharedIndexInformer) Run(stopCh <-chan struct{}) {
 5. 运行controller(此controller非XXXController)
 
 接下来, 看下这几件事情的详细过程
+
 #### sharedIndexInformer
 
-我们先把视线拉回到上面第一张图片的最右侧, 因为这块做了一些初始化的工作, 以便后面的逻辑使用
+我们先把视线拉回到上面第一张图片的最右侧, 因为这块做了一些初始化的工作，以便后面的逻辑使用。
 
 ```go
 func NewSharedIndexInformer(lw ListerWatcher, objType runtime.Object, defaultEventHandlerResyncPeriod time.Duration, indexers Indexers) SharedIndexInformer {
@@ -521,7 +541,7 @@ func (p *processorListener) run() {
 }
 ```
 
-listener 包含了 Controller 注册进来的 Handler 方法，因此 listener 最重要的职能就是当事件发生时来触发这些方法.  
+listener 包含了 Controller 注册进来的 Handler 方法，因此 listener 最重要的职能就是当事件发生时来触发这些方法。
 
 可以看到，`listener.run` 不停的从 `nextCh` 这个 channel 中拿到事件，但是 `nextCh` 这个 channel 里的事件又是从哪来的呢？`listener.pop` 的职责便是将事件放入 `nextCh` 中。
 
@@ -565,7 +585,7 @@ func (p *processorListener) pop() {
 
 而另一方面，会判断 buffer 中是否还有事件，如果还有存量，则不停的传递给 `nextCh`。
 
-`pop` 方法实现了一个带 buffer 的分发机制，使得事件可以源源不断的从 `addCh` 到 `nextCh`
+`pop` 方法实现了一个带 buffer 的分发机制，使得事件可以源源不断的从 `addCh` 到 `nextCh`。
 
 #### 运行controller
 
@@ -600,7 +620,7 @@ func (c *controller) Run(stopCh <-chan struct{}) {
 
 ##### 初始化Reflector并启动
 
-`Reflector`通过 sharedIndexInformer 里定义的 `listerWatcher` 进行 List-Watch，并将获得的事件推入 DeltaFIFO 中, `controller` 启动之后会先将 `Reflector` 启动
+`Reflector`通过 sharedIndexInformer 里定义的 `listerWatcher` 进行 List-Watch，并将获得的事件推入 DeltaFIFO 中, `controller` 启动之后会先将 `Reflector` 启动。
 
 ##### 执行c.processLoop
 
@@ -621,7 +641,7 @@ func (c *controller) processLoop() {
 }
 ```
 
-通过一个死循环，不停的将从 DeltaFIFO 读出需要处理的资源事件, 然后交给`c.config.Process`函数处理, 在前面初始化controller时, `c.config.Process`被赋值为`s.HandleDeltas`
+通过一个死循环，不停的将从 DeltaFIFO 读出需要处理的资源事件, 然后交给`c.config.Process`函数处理, 在前面初始化controller时, `c.config.Process`被赋值为`s.HandleDeltas`。
 
 ```go
 func (s *sharedIndexInformer) HandleDeltas(obj interface{}) error {
@@ -656,7 +676,7 @@ func (s *sharedIndexInformer) HandleDeltas(obj interface{}) error {
 }
 ```
 
-这里调用了`s.indexer.Add` `s.indexer.Update` `s.indexer.Delete`以及`s.processor.distribute`
+这里调用了`s.indexer.Add` `s.indexer.Update` `s.indexer.Delete`以及`s.processor.distribute`。
 
 `s.indexer.Add` `s.indexer.Update` `s.indexer.Delete`最后都调用了`queueActionLocked`方法
 
@@ -708,11 +728,16 @@ func (p *processorListener) add(notification interface{}) {
 }
 ```
 
-可以看到, `distribute`方法调用`listener.add`, `listener.add`会将事件发送到`addCh`
+可以看到, `distribute`方法调用`listener.add`, `listener.add`会将事件发送到`addCh`。
 
-至此, 整个事件流就打通了, 如下图
+至此, 整个事件流就打通了，如下图。
+
 ![informer-event-stream](./images/informer-event-stream.png)
+
 ## 总结
-Informer机制是kubernetes的核心, 了解清楚这个机制, 后续理解controller manager就容易多了, 而且也能更得心应手的编写自定义的controller.
+
+Informer机制是kubernetes的核心, 了解清楚这个机制, 后续理解controller manager就容易多了, 而且也能更得心应手的编写自定义的controller。
+
 ## 参考资料
-- [Source code](https://github.com/kubernetes/client-go)
+
+- [client-go 源码](https://github.com/kubernetes/client-go)
