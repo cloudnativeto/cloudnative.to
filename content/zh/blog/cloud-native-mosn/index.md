@@ -7,6 +7,7 @@ categories: ["云原生"]
 tags: ["Cloud Native","MOSN","Istio","GIAC"]
 date: 2020-08-28T14:00:00+08:00
 type: "post"
+profile: "专注于高性能网络服务器研发，是 MOSN、Tengine 开源项目核心成员，关注云原生 ServiceMesh、Nginx、Istio 等相关领域，Istio-handbook 编委会成员、作者。"
 ---
 
 本文是 2020 年 8 月 15 号在深圳 GIAC（GLOBAL INTERNET ARCHITECTURE CONFERENCE）全球互联网架构大会，由[宋净超（Jimmy Song）](https://jimmysong.io)出品的云原生专场中的现场实录。
