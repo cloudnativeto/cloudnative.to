@@ -7,7 +7,7 @@ categories: ["Kubernetes"]
 tags: ["client-go", "informer"]
 date: 2020-08-28T07:00:00+08:00
 type: "post"
-avatar: "images/profile/sundongmin.jpg"
+avatar: "/images/profile/sundongmin.jpg"
 profile: "某教育公司研发工程师, 云原生爱好者。"
 ---
 
