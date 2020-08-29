@@ -8,7 +8,7 @@ image: "images/blog/ebpf-workflow-101.png"
 categories: ["BPF"]
 tags: ["源码分析","Linux内核"]
 type: "post"
-avatar: "/images/profile/nevermosby.png"
+avatar: "/images/profile/nevermosby.jpg"
 
 ---
 

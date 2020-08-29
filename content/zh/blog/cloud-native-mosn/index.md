@@ -269,7 +269,6 @@ MOSN 中提供 Kubernes 和 非 Kubernes 体系下的 Dubbo 服务治理方案�
 - 标准化参与和建设；
 
 
-
 针对第一点，MOSN 社区持续在进行 Istio 能力的对齐工作，包括 Istio 侧多 Sidecar 支持以及 MOSN 侧功能对齐 Istio，控制面方面支持注入 MOSN Sidecar、Pilot-agent 的适配以及 Istio 编译构建的适配、负载均衡算法、流量管理体系、流量检测、服务治理等。
 
 在标准化方面，我们也参与了 UDPA 相关规范讨论，并提出限流通用 API 规范讨论，社区会议讨论组织中。

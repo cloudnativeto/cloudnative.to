@@ -7,11 +7,9 @@ categories: ["Kubernetes"]
 tags: ["client-go"]
 date: 2020-08-07 21:28:37
 type: "post"
-avatar: "/images/profile/luffyao.png"
+avatar: "/images/profile/luffyao.jpg"
 profile: "爱立信上海研发工程师，云原生爱好者。"
 ---
-
-## 前言
 
 目前在云原生社区的 Kubernetes 源码研习社中和广大学友们共同学习郑东旭大佬的 [Kubernetes 源码剖析](https://item.jd.com/12665791.html)这本书。当前正在开展第一期学习活动，第五章节 client-go 的学习。之所以从这一章节开始学习，主要是考虑到 client-go 在源码中相对比较独立，可以单独阅读。更主要的是它是 Kubernetes 的核心处理框架，基本上运用在 Kubernetes 各个组件中，因此，如果你学好了这一章节，对于后面 Kubernetes 源码的阅读，将会有很大的帮助。此外随着 Operator 的盛行，一些开源的生成框架也受到广大 Operator 开发者们的青睐。例如 kubebuilder 和 operator-SDK 等。而精通了 client-go，将对你理解这些生成框架及编写 Operator 也是有很好的帮助。
 
