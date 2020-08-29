@@ -11,7 +11,7 @@ profile: "林许亚伦，上海交通大学学生，云原生爱好者"
 
 ---
 
-> 本文主要根据书籍 《Kubernets 源码剖析》的基础上，对 Client-go 部分的 Informer 机制进行了解与学习。
+> 本文主要根据书籍 《Kubernetes 源码剖析》的基础上，对 Client-go 部分的 Informer 机制进行了解与学习。
 
 ## Informer 机制
 
