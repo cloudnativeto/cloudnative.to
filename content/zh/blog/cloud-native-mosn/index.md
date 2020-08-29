@@ -13,9 +13,7 @@ avatar: "/images/profile/wangfakang.png"
 
 本文是 2020 年 8 月 15 号在深圳 GIAC（GLOBAL INTERNET ARCHITECTURE CONFERENCE）全球互联网架构大会，由[宋净超（Jimmy Song）](https://jimmysong.io)出品的云原生专场中的现场实录。
 
-<div style="align: center">
-<img src="./self.png">
-</div>
+![](./self.png)
 
 王发康（毅松）蚂蚁集团可信原生技术部 技术专家，专注于高性能网络服务器研发，是 MOSN、Tengine 开源项目核心成员，目前关注云原生 Service Mesh、Nginx、Istio 等相关领域，喜欢开源，乐于分享，GItHub：[https://github.com/wangfakang](https://github.com/wangfakang) 。
 
@@ -52,9 +50,7 @@ avatar: "/images/profile/wangfakang.png"
 
 **Service Mesh**：伴随着服务治理的 SDK 种类、版本、重复等一系列问题，于是把 SDK 的能力剥离到 Sidecar，和业务进行解耦，从而实现业务和中间件能力的并行迭代； 
 
-<p align="center">
-<img src="./micro-service-arch.png">
-</p>
+![](./micro-service-arch.png)
 
 **业务痛点**
 
@@ -79,17 +75,13 @@ avatar: "/images/profile/wangfakang.png"
 
 从 2017 年底开始 Service Mesh 技术调研，2018 年 3 月份 MOSN 雏形问世并进行了小规模试点，秉着让更多的用户能够享受这一技术红利的思路，于是 2018 年 6 月正式开源 MOSN。2019 年 618 进行了规模化落地，并在同年的双 11 大促达到了核心支付链路的全覆盖。在通过大规模验证后，MOSN 社区开始在其标准化以及生态方面进行发展和演进。
 
-<p align="center">
-<img src="./mosn-history.png">
-</p>
+![](./mosn-history.png)
 
 <a name="8KL46"></a>
 ### MOSN 功能视图
 MOSN 作为一个通用的数据转发平面，提供多协议卸载、动态服务发现、服务治理（Trace、限流、重试、重写、超时控制等）、丰富的负载均衡算法等功能，可用于 Sidecar、API Gateway、云原生 Ingress、Layer 4 或 Layer 7 负载均衡器等场景。
 
-<p align="center">
-<img src="./mosn-features.png">
-</p>
+![](./mosn-features.png)
 
 <a name="JWpPc"></a>
 ### MOSN 架构解析
@@ -106,22 +98,16 @@ MOSN 采用的是分层的体系结构，其系统分为 NET/IO、Protocol、Str
 
 其中，每一层通过工厂设计模式向外暴露其接口，方便用户灵活地注册自身的需求。通过协程池的方式使得用户以同步的编码风格实现异步功能特性。通过区分协程类型，MOSN 实现了 read 和 proxy worker 两大类协程，read 协程主要是处理网络的读取及协议解析，proxy worker 协程用来完成读取后数据的加工、路由、转发等。其架构如下图所示：
 
-<p align="center">
-<img src="./mosn-gorouting-arch.png">
-</p>
+![](./mosn-gorouting-arch.png)
 
 MOSN 为了降低 Runtime GC 带来的卡顿，自身做了内存池的封装方便多种对象高效地复用，另外为了提升服务网格之间的建连性能还设计了多种协议的连接池从而方便地实现连接复用及管理。
 在连接管理方面，MOSN 设计了多协议连接池， 当 Proxy 模块在 Downstream 收到 Request 的时候，在经过路由、负载均衡等模块处理获取到 Upstream Host 以及对应的转发协议时，通过 Cluster Manager 获取对应协议的连接池 ，如果连接池不存在则创建并加入缓存中，之后在长连接上创建 Stream，并发送数据，如下图所示：
 
-<p align="center">
-<img src="./mosn-connpool.png">
-</p>
+![](./mosn-connpool.png)
 
 在内存管理方面，MOSN 在 sync.Pool 之上封装了一层资源对的注册管理模块，可以方便的扩展各种类型的对象进行复用和管理。其中 bpool 是用来存储各类对象的构建方法，vpool 用来存放 bpool 中各个实例对象具体的值。运行时通过 bpool 里保存的构建方法来创建对应的对象通过 index 关联记录到 vpool 中，使用完后通过 sync.Pool 进行空闲对象的管理达到复用，如下图所示：
 
-<p align="center">
-<img src="./mosn-mempool.png">
-</p>
+![](./mosn-mempool.png)
 
 在内存管理方面，MOSN 在 sync.Pool 之上封装了一层资源对的注册管理模块，可以方便的扩展各种类型的对象进行复用和管理。其中 bpool 是用来存储各类对象的构建方法，vpool 用来存放 bpool 中各个实例对象具体的值。运行时通过 bpool 里保存的构建方法来创建对应的对象通过 index 关联记录到 vpool 中，使用完后通过 sync.Pool 进行空闲对象的管理达到复用，如下图所示：
 
@@ -133,9 +119,7 @@ MOSN 为了降低 Runtime GC 带来的卡顿，自身做了内存池的封装方
 
 服务在做了 Mesh 化后，有人可能会质疑，增加一跳 Sidecar 转发是否会导致性能下降，其实不然，在蚂蚁的部分业务场景中，部分业务上了 Mesh 后，其 CPU 消耗还比之前低了，原因是之前的一些通用 SDK 能力都下沉到 Sidecar 中，并统一做了一定的优化。另一个好处是，由于 MOSN 使用 GoLang 开发，天然具备其高开发效率，所以也大大的提升了中间件相关能力的研发速度。
 
-<p align="center">
-<img src="./mosn-practice-status.png">
-</p>
+![](./mosn-practice-status.png)
 
 <a name="eO5DX"></a>
 ## MOSN 云原生演进
@@ -148,18 +132,14 @@ MOSN 为了降低 Runtime GC 带来的卡顿，自身做了内存池的封装方
 
 如下图所示，最下面是基础设施层（物理机等），上层进行抽象出 Kubernetes 进行容器资源的调度和管理，再上层就是部署在容器里面的各种服务了，Istio 的能力（服务治理）就在这一层进行发挥的。
 
-<p align="center">
-<img src="./could-native-arch.png">
-</p>
+![](./could-native-arch.png)
 
 <a name="VgHHB"></a>
 ### Istio 简介
 
 在介绍 Istio 前，先说下它为什么会出现。10 年前，一般应用都是直接部署在物理机上的，但是随着时间的推移，机型一直变化（如 CPU 核数）就出现了机型对等、环境部署以及弹性扩容等一系列问题，于是就出现了 Docker。但是 Docker 涉及到容器编排、调度、管理等问题， Kubernetes 便随之出现。Kubernetes 在容器管理领域的用途是毋庸置疑的，但是其在微服务治理方面存在一些不足，于是 Istio 便专职解决微服务治理的问题而问世。
 
-<p align="center">
-<img src="./istio.png">
-</p>
+![](./istio.png)
 
 
 Istio 弥补了 Kubernetes 在服务治理上的短板，提供服务互连、流量安全、流量控制、可观测性功能。
@@ -170,15 +150,11 @@ Istio 弥补了 Kubernetes 在服务治理上的短板，提供服务互连、�
 
 通过 MOSN 社区几个月的努力及推进，MOSN v0.14.0 版本可以使用 Istio 1.5.x 作为云原生控制面，从而方便的进行微服务的治理。如下是 Istio 官方在 2020 年 7 月 28 号发布了[在 Istio 中使用 MOSN：另一个数据平面](https://istio.io/latest/zh/blog/2020/mosn-proxy/)博文，即 Istio 数据平面的另一个选择 —— MOSN。
 
-<p align="center">
-<img src="./mosn-istio-blog.png">
-</p>
+![](./mosn-istio-blog.png)
 
 如下是 MOSN 在 Istio 1.5 版本中的架构图，MOSN 通过 xDS 协议从 Istio 动态的获取各种服务配置，从而实现服务治理的效果。
 
-<p align="center">
-<img src="./mosn-istio-arch.png">
-</p>
+![](./mosn-istio-arch.png)
 
 在 Service Mesh 领域，使用 Istio 作为控制平面已成为主流。Istio 通过 xDS 协议和数据面进行交互，因此，通过在 MOSN 中实现 xDS，我们就可以使用 Istio 作为 MOSN 的控制面。Istio 的第三方数据平面集成可以通过以下三个步骤实现：
 
@@ -188,28 +164,20 @@ Istio 弥补了 Kubernetes 在服务治理上的短板，提供服务互连、�
 
 有了对应的改造方案后，于是我们成立了相关 Working Group ，带领社区的同学一起进行讨论和改造。
 
-<p align="center">
-<img src="./mosn-istio-xmind.png">
-</p>
+![](./mosn-istio-xmind.png)
 
 除了对 Istio 进行改造（相关能力已经合入 Istio 官方仓库），MOSN 也需要在负载均衡、服务治理及相关框架上做一些适配和增强，其适配列表如下所示：
 
-<p align="center">
-<img src="./mosn-istio-task.png">
-</p>
+![](./mosn-istio-task.png)
 
 MOSN 在功能上对齐 Istio 后，就可以使用其进行微服务治理了。在使用前，我们先看看 Istio 中的 VirtualService 等相关策略是如何和 MOSN 进行关联的。如下图所示，在 Istio 中的 VirtualService 做为一个服务的转发描述，其对应到 MOSN 中就是一个 Listener 以及一组对应的路由策略 Routes。
 
-<p align="center">
-<img src="./mosn-istio-vs.png">
-</p>
+![](./mosn-istio-vs.png)
 
 
 在初步了解 MOSN 如何同 Istio 结合后，我们来看看 MOSN 在 Bookinfo 实例中可以做什么：如下是一个经典的多语言服务使用 Istio 做服务治理，在该场景中，MOSN 不仅独立的作为 Ingress Gateway，还作为 Sidecar。
 
-<p align="center">
-<img src="./mosn-istio-bookinfo.png">
-</p>
+![](./mosn-istio-bookinfo.png)
 
 
 通过 MOSN 作为 Istio 的数据平面运行 Bookinfo 事例，实现如下服务治理通用能力：
@@ -236,34 +204,26 @@ MOSN 在对接完 Istio 的同时，也和周边的开源生态进行了紧密�
 
 MOSN 中提供 Kubernes 和 非 Kubernes 体系下的 Dubbo 服务治理方案。如下图所示，方案 1 是在非 Kubernes 体系下，MOSN 通过集成 dubbo-go 支持服务的 pub/sub，并复用原有的服务注册中心。方案 2 则是在 Kubernes 体系下使用 Istio 进行一步到位的服务治理，MOSN 通过支持 Istio 下的路由策略，实现服务的治理。
 
-<p align="center">
-<img src="./mosn-dubbo.png">
-</p>
+![](./mosn-dubbo.png)
 
 **MOSN With Sentinel**
 
 限流是微服务治理中的一个重要功能， MOSN 通过集成 Sentinel 并复用其底层的限流能力，从而实现单机限流（令牌桶/漏桶结合）、服务熔断保护（依据服务的成功率）、自适应限流（依据机器的负载），同时目前 Istio 的限流规则也没有一个成熟的 API，我们也和 UDPA 进行了一些限流规则的规范讨论。
 
-<p align="center">
-<img src="./mosn-sentinel.png">
-</p>
+![](./mosn-sentinel.png)
 
 **MOSN With Skywalking**
 
 调用依赖以及服务与服务之的调用状态是微服务管理中一个重指标，MOSN 社区通过和 Skywalking 合作，把 Skywalking 的 GoLang SDK 集成到 MOSN 中，从而实现 HTTP 系调用链路拓扑展示、QPS 监控、细粒度 RT 如下图所示，同时该功能也在持续演进，接下来会支持 Dubbo Tracing。
 
-<p align="center">
-<img src="./mosn-skywalking.png">
-</p>
+![](./mosn-skywalking.png)
 
 <a name="oDMiO"></a>
 ### 标准化演进
 
 除了开源生态的适配外，MOSN 也在其标准化方面做了一些贡献（如限流、路由的 UDPA 策略提议等）。谷歌在数据面和控制面之间标准化出 UDPA 规范，微软在控制面和应用及工具层面之间标准出 SMI 规范，这所做的一切其实都是围绕“防止锁定，方便用户灵活切换”。
 
-<p align="center">
-<img src="./smi-udpa.png">
-</p>
+![](./smi-udpa.png)
 
 可见“标准”、“规范”的重要性，当然 MOSN 社区也在其相关的标准下做了一些演进和贡献。
 
@@ -276,19 +236,14 @@ MOSN 中提供 Kubernes 和 非 Kubernes 体系下的 Dubbo 服务治理方案�
 
 在标准化方面，我们也参与了 UDPA 相关规范讨论，并提出限流通用 API 规范讨论，社区会议讨论组织中。
 
-<p align="center">
-<img src="./mosn-udpa-flow.png">
-</p>
+![](./mosn-udpa-flow.png)
 
 同时 MOSN 社区也积极地在和 Istio 社区进行沟通以及寻求合作，我们的目标是希望能成为 Istio 官方推荐的 Sidecar 产品，对此我们在 Istio Github 上提了相关 ISSUE，引发了比较大的关注，Istio 官方 Member 成员 @[howardjohn](https://github.com/howardjohn) 对此问题进行了非常详细的回答和探讨。
 
-<p align="center">
-<img src="./mosn-istio-issue.png">
-</p>
+![](./mosn-istio-issue.png)
 
-<p align="center">
-<img src="./mosn-istio-reply0.png">
-</p>
+
+![](./mosn-istio-reply0.png)
 
 综合 MOSN 社区和 Istio 官方的讨论后，MOSN 社区主导并会参与 Istio 中数据面解耦的事情（比如测试集、镜像构建等），这样使得 Istio 更容易集成第三方的数据面，即 MOSN 社区的用户更方便的集成 Istio 使用。对此 MOSN with Istio 适配的 [Roadmap](https://docs.google.com/spreadsheets/d/1fALompY9nKZNImOuxQw23xtMD-5rCBrXWziJZkj76bo/edit?usp=sharing) 中新增如下事项：
 
@@ -299,15 +254,11 @@ MOSN 中提供 Kubernes 和 非 Kubernes 体系下的 Dubbo 服务治理方案�
 
 针对第一点，MOSN 社区向 Istio 贡献 PR，并已合入主干，通过该 PR 可以更方便的让 Istio 的 proxyv2 镜像集成其它数据面。
 
-<p align="center">
-<img src="./mosn-istio-pr.png">
-</p>
+![](./mosn-istio-pr.png)
 
 2020 年 7 月 14 号 Istio TOC（Istio 技术委员会）成员 @[ShriramRajagopalan](https://github.com/rshriram) 最新[回复](https://github.com/istio/istio/issues/23753)： “也是支持 Istio 中支持多数据面的方案，而且也建议先把 MOSN 做为实验性第三方数据平面纳入到 Istio 的官方博客中，方便用户来试用”：
 
-<p align="center">
-<img src="./mosn-istio-reply1.png">
-</p>
+![](./mosn-istio-reply1.png)
 
 经过 MOSN 社区不断的努力，在 7月底，Istio 官方博客正式上线了 [在 Istio 中使用 MOSN：另一个数据平面](https://istio.io/latest/zh/blog/2020/mosn-proxy/) 博文，取到了 Istio 官方的一定认可。
 
@@ -322,9 +273,7 @@ MOSN 中提供 Kubernes 和 非 Kubernes 体系下的 Dubbo 服务治理方案�
 
 秉着借力开源，反哺开源的思想，MOSN 社区在众多的合作伙伴的共同努力下，在实践的道路上，一步步的走向标准化。
 
-<p align="center">
-<img src="./mosn-community-status.png">
-</p>
+![](./mosn-community-status.png)
 
 <a name="hvSiX"></a>
 ### 总结及未来展望
@@ -345,6 +294,4 @@ MOSN 是一个开源项目，社区中的任何人都可以使用，参与和改
 
 欢迎加入 MOSN 开源交流群
 
-<p align="center">
-<img src="./mosn-dingtalk.png">
-</p>
+![](./mosn-dingtalk.png)
