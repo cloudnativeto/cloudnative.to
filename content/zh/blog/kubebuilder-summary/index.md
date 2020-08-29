@@ -2,12 +2,12 @@
 title: Kubebuilder 总结
 description: "Kubebuilder 中文翻译总结"
 author: "[马景贺(小马哥)](https://github.com/lhb008)"
-image: "images/blog/xiaomage.png"
+image: "images/blog/kubebuilder.png"
 categories: ["Kubernetes"]
 tags: ["Kubebuilder"]
 date: 2020-08-29 21:28:37
 type: "post"
-avatar: "/images/profile/kubebuilder.png"
+avatar: "/images/profile/xiaomage.png"
 profile: "云原生技术爱好者，云原生 DevSecOps 技术推广者"
 ---
 
