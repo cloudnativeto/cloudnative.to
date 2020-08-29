@@ -2,12 +2,12 @@
 title: "Kubernetes Informer 机制源码解析"
 date: 2020-08-28 16:55:00
 description: "Kubernetes Informer 源码理解"
-author: "[Jane Liu L(JaneLiuL)](https://github.com/JaneLiuL)"
+author: "[刘淑娟(JaneLiuL)](https://github.com/JaneLiuL)"
 categories: ["Kubernetes"]
 tags: ["Kubernetes", "源码理解", "Informer"]
 type: "post"
 avatar: "/images/profile/janeliul.jpg"
-profile: "刘淑娟"
+profile: "刘淑娟,爱立信广州工程师，云原生爱好者"
 ---
 
 ## Overview
