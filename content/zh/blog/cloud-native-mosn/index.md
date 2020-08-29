@@ -17,7 +17,7 @@ avatar: "/images/profile/wangfakang.png"
 <img src="https://cdn.nlark.com/yuque/0/2020/png/927285/1598498189773-56bcb50e-92a1-4af3-8eb3-2cb9ff8e0edc.png">
 </p>
 
-王发康（毅松）蚂蚁集团可信原生技术部 技术专家，专注于高性能网络服务器研发，是 MOSN、Tengine 开源项目核心成员，目前关注云原生 ServiceMesh、Nginx、Istio 等相关领域，喜欢开源，乐于分享，GItHub：[https://github.com/wangfakang](https://github.com/wangfakang) 。
+王发康（毅松）蚂蚁集团可信原生技术部 技术专家，专注于高性能网络服务器研发，是 MOSN、Tengine 开源项目核心成员，目前关注云原生 Service Mesh、Nginx、Istio 等相关领域，喜欢开源，乐于分享，GItHub：[https://github.com/wangfakang](https://github.com/wangfakang) 。
 
 
 以下是分享全文。
