@@ -13,9 +13,9 @@ avatar: "/images/profile/wangfakang.png"
 
 本文是 2020 年 8 月 15 号在深圳 GIAC（GLOBAL INTERNET ARCHITECTURE CONFERENCE）全球互联网架构大会，由[宋净超（Jimmy Song）](https://jimmysong.io)出品的云原生专场中的现场实录。
 
-<p align="center">
+<div style="align: center">
 <img src="./self.png">
-</p>
+</div>
 
 王发康（毅松）蚂蚁集团可信原生技术部 技术专家，专注于高性能网络服务器研发，是 MOSN、Tengine 开源项目核心成员，目前关注云原生 Service Mesh、Nginx、Istio 等相关领域，喜欢开源，乐于分享，GItHub：[https://github.com/wangfakang](https://github.com/wangfakang) 。
 
@@ -96,9 +96,7 @@ MOSN 作为一个通用的数据转发平面，提供多协议卸载、动态服
 
 MOSN 采用的是分层的体系结构，其系统分为 NET/IO、Protocol、Stream、Proxy 四层：
 
-<p align="center">
-<img src="./mosn-layer-arch.png">
-</p>
+![](./mosn-layer-arch.png)
 
 - NET/IO 作为网络层，监测连接和数据包的到来，同时作为 listener filter 和 network filter 的挂载点;
 - Protocol 作为多协议引擎层，对数据包进行检测，并使用对应协议做 decode/encode 处理;
