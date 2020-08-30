@@ -7,7 +7,7 @@ categories: ["Kubernetes"]
 tags: ["Kubernetes", "源码理解", "Informer"]
 type: "post"
 avatar: "/images/profile/linxuyalun.png"
-profile: "林许亚伦，上海交通大学学生，云原生爱好者"
+profile: "林许亚伦，上海交通大学学生，云原生爱好者。"
 
 ---
 
@@ -15,7 +15,7 @@ profile: "林许亚伦，上海交通大学学生，云原生爱好者"
 
 ## Informer 机制
 
-Kubernets 中使用 http 进行通信，**如何不依赖中间件的情况下保证消息的实时性，可靠性和顺序性等呢**？答案就是利用了 Informer 机制。Informer 的机制，降低了了 Kubernetes 各个组件跟 Etcd 与 Kubernetes API Server 的通信压力。
+Kubernetes 中使用 http 进行通信，**如何不依赖中间件的情况下保证消息的实时性，可靠性和顺序性等呢**？答案就是利用了 Informer 机制。Informer 的机制，降低了了 Kubernetes 各个组件跟 Etcd 与 Kubernetes API Server 的通信压力。
 
 ### Informer 机制架构设计
 
@@ -155,7 +155,7 @@ func (r *Reflector) Run(stopCh <-chan struct{}) {
 
 2. **监控资源对象**
 
-Watch 通过 HTTP 协议与 Kubernets API Server 建立长连接，接收 Kubernets API Server 发来的资源变更事件。Watch 操作的实现机制使用 HTTP 协议的分块传输编码——当 client-go 调用 Kubernets API Server 时，Kubernets API Server 在 Response 的 HTTP Header 中设置 Transfer-Encoding 的值为 chunked，表示采用分块传输编码，客户端收到消息后，与服务端进行连接，并等待下一个数据块。
+Watch 通过 HTTP 协议与 Kubernetes API Server 建立长连接，接收 Kubernetes API Server 发来的资源变更事件。Watch 操作的实现机制使用 HTTP 协议的分块传输编码——当 client-go 调用 Kubernetes API Server 时，Kubernetes API Server 在 Response 的 HTTP Header 中设置 Transfer-Encoding 的值为 chunked，表示采用分块传输编码，客户端收到消息后，与服务端进行连接，并等待下一个数据块。
 
 **在源码中关键为 watch 和 watchHandler 函数**：
 
@@ -711,4 +711,4 @@ ByIndex 接收两个参数：indexName（索引器名字）以及 indexKey（需
 
 ## 总结
 
-本文从 Informer 的整体架构开始说起，介绍了各个核心组件的功能和作用，Kubernets 之所以设计这样一个机制架构，核心是为了减少 Ectd 和 Kubernetes API Server 的压力，增强集群的稳定性。
+本文从 Informer 的整体架构开始说起，介绍了各个核心组件的功能和作用，Kubernetes 之所以设计这样一个机制架构，核心是为了减少 Ectd 和 Kubernetes API Server 的压力，增强集群的稳定性。
