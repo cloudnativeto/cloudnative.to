@@ -7,6 +7,7 @@ categories: ["Kubernetes"]
 tags: ["Kubernetes", "源码理解", "Informer"]
 type: "post"
 avatar: "/images/profile/linxuyalun.png"
+image: "/images/blog/k8s-client-go-informer-source-code.jpg"
 profile: "林许亚伦，上海交通大学学生，云原生爱好者。"
 
 ---
