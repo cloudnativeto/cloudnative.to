@@ -145,7 +145,7 @@ testimonial:
 ################################# blog ################################################
 cta:
   enable : true
-  title : "Create the most influential cloud native community in China!"
+  title : "Be the most influential cloud native community in China, and work together to promote the enterprise's cloud native process!"
   bg_image : "images/backgrounds/cta-lg.jpg"
   button:
     enable : true
