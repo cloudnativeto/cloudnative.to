@@ -1,8 +1,8 @@
 ---
 title: Kubebuilder 中文翻译总结
 description: "Kubebuilder 中文翻译总结以及Envoy中文翻译志愿者招募。"
-author: "[马景贺(小马哥)](https://github.com/lhb008)"
-image: "images/blog/kubebuilder.png"
+author: "[马景贺（小马哥）](https://github.com/lhb008)"
+image: "images/blog/kubebuilder.jpg"
 categories: ["Kubernetes"]
 tags: ["Kubebuilder"]
 date: 2020-08-28 21:09:42
@@ -10,8 +10,6 @@ type: "post"
 avatar: "/images/profile/xiaomage.png"
 profile: "云原生技术爱好者，云原生社区大连站站长，云原生 DevSecOps 技术推广者。"
 ---
-
-## 未来已来
 
 不管你关注不关注，云原生它走来了，它乘着万丈光芒的 Kubernetes 走来了；不管你承认不承认，Kubernetes 已经成为了云计算时代的操作系统。对于 Kubernetes，最为大家所熟知的就是它强大的容器编排能力（同为容器编排的还有 Mesos、Docker Swarm，但是 Kubernetes 已成一枝独秀），其实 Kubernetes 还有一个更强大的能力——扩展能力。如果只是利用 Kubernetes 内置的资源及 controller 类型，也就只能做到将应用“挪”到 Kubernetes 上，而不是真正的 Kubernetes 原生。如果利用 Kubernetes 的扩展能力，就可以将应用变成 Kubernetes 原生的了。
 
@@ -51,4 +49,4 @@ Kubernetes 的扩展可以通过 Operator（Kubernetes API + CRD）来实现。�
 | 刘晓敏| dk-lockdown| 马景贺| lhb008 | 尚坤| skyshang1 |
 | 申红磊| shenhonglei| 宋净超| rootsongjc | 文彦| vsxen |
 | 徐龙| long0419| 许振文| helight | 姚沈结| Luffy110 |
-| 曾祥龙| alandtsang| 张浩| zhangguanzhang | 
+| 曾祥龙| alandtsang| 张浩| zhangguanzhang |

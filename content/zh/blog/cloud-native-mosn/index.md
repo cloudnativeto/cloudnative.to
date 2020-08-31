@@ -2,9 +2,9 @@
 title: "云原生网络代理 MOSN 的进化之路"
 description: "本文是王发康在 2020 年 8 月 15 号在深圳 GIAC（全球互联网架构大会）云原生专场上的分享现场实录。"
 author: "[王发康](https://github.com/wangfakang)"
-image: "images/blog/cloud-native-mosn-banner.png"
+image: "images/blog/cloud-native-mosn-banner.jpg"
 categories: ["云原生"]
-tags: ["Cloud Native","MOSN","Istio","GIAC"]
+tags: ["Cloud Native","MOSN","Istio"]
 date: 2020-08-29T09:00:00+08:00
 type: "post"
 profile: "专注于高性能网络服务器研发，是 MOSN、Tengine 开源项目核心成员，关注云原生 Service Mesh、Nginx、Istio 等相关领域，Istio Handbook 编委会成员、作者。"

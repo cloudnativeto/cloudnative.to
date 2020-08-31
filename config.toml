@@ -234,6 +234,12 @@ URL = "https://github.com/cloudnativeto/community/issues/50"
 weight = 2
 
 [[Languages.zh.menu.main]]
+parent = "社区"
+name = "参与进来"
+URL = "https://github.com/cloudnativeto/community"
+weight = 3
+
+[[Languages.zh.menu.main]]
 name = "学院"
 weight = 3
 
