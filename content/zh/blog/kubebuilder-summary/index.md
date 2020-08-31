@@ -8,7 +8,7 @@ tags: ["Kubebuilder"]
 date: 2020-08-28 21:09:42
 type: "post"
 avatar: "/images/profile/xiaomage.png"
-profile: "云原生技术爱好者，云原生 DevSecOps 技术推广者。"
+profile: "云原生技术爱好者，云原生社区大连站站长，云原生 DevSecOps 技术推广者。"
 ---
 
 ## 未来已来
@@ -52,4 +52,3 @@ Kubernetes 的扩展可以通过 Operator（Kubernetes API + CRD）来实现。�
 | 申红磊| shenhonglei| 宋净超| rootsongjc | 文彦| vsxen |
 | 徐龙| long0419| 许振文| helight | 姚沈结| Luffy110 |
 | 曾祥龙| alandtsang| 张浩| zhangguanzhang | 
-
