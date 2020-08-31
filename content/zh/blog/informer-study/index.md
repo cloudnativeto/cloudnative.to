@@ -21,10 +21,10 @@ profile: "刘淑娟，爱立信广州工程师，云原生爱好者。"
 
 ## Informer 流程
 
-这个流程，建议先看看《fromcontroollerstud https://github.com/JaneLiuL/study-client-go/blob/master/fromcontrollerstudyinformer.md 
+这个流程，建议先看看[《From Controller Study Informer》](https://github.com/JaneLiuL/study-client-go/blob/master/fromcontrollerstudyinformer.md)
 
 这里我们以CoreV1. Pod资源为例子：
-1. 第一次启动Informer的时候，Reflector 会使用`List`从API Server主动获取CoreV1. Pod的所有资源对象信息，通过`resync`将资源存放在`Store`中 
+1. 第一次启动Informer的时候，Reflector 会使用`List`从API Server主动获取CoreV1. Pod的所有资源对象信息，通过`resync`将资源存放在`Store`中
 2. 持续使用`Reflector`建立长连接，去`Watch` API Server发来的资源变更事件
 3. 当2 监控到CoreV1.Pod的资源对象有增加删除修改之后，就把资源对象存放在`DeltaFIFO`中，
 4. `DeltaFIFO`是一个先进先出队列，只要这个队列有数据，就被Pop到Controller中, 将这个资源对象存储至`Indexer`中，并且将该资源对象分发至`ShareInformer`
@@ -110,7 +110,7 @@ type Reflector struct {
     // 监控的对象类型，比如Pod
 	expectedType reflect.Type
     // 存储
-	store Store	
+	store Store
     // ListerWatcher是针对某一类对象，比如Pod
 	listerWatcher ListerWatcher
 	period       time.Duration
@@ -314,7 +314,7 @@ type DeltaType string
 const (
 	Added   DeltaType = "Added"
 	Updated DeltaType = "Updated"
-	Deleted DeltaType = "Deleted"	
+	Deleted DeltaType = "Deleted"
 	Sync DeltaType = "Sync"
 )
 ```
@@ -347,7 +347,7 @@ func (f *DeltaFIFO) queueActionLocked(actionType DeltaType, obj interface{}) err
 	if err != nil {
 		return KeyError{obj, err}
 	}
-    
+
     // 把同一个对象的不同的actionType，都添加到newDeltas列表中
 	newDeltas := append(f.items[id], Delta{actionType, obj})
     // 合并去重
@@ -357,9 +357,9 @@ func (f *DeltaFIFO) queueActionLocked(actionType DeltaType, obj interface{}) err
 		if _, exists := f.items[id]; !exists {
 			f.queue = append(f.queue, id)
 		}
-		f.items[id] = newDeltas        
+		f.items[id] = newDeltas
 		f.cond.Broadcast()
-	} else {		
+	} else {
 		delete(f.items, id)
 	}
 	return nil
@@ -398,7 +398,7 @@ func isDup(a, b *Delta) *Delta {
 
 之前群里有人问为什么dedupDeltas只是去这个列表的倒数一个跟倒数第二个去进行合并去重的操作，这里说明一下，dedupDeltas是被queueActionLocked函数调用的，而queueActionLocked为什么我们拿出来讲，是因为在Delete/Update/Add里面去调用了queueActionLocked，合并是对某一个obj的一系列操作，而去重是只针对delete。
 
-我们可以拿一个例子来看看，假设是[obj1]: [add: delta1, update: delta2, delete: delta3,  delete: delta3] 在经过queueActionLocked之后会变成[obj1]: [add: delta1, update: delta2, delete: delta3] 
+我们可以拿一个例子来看看，假设是[obj1]: [add: delta1, update: delta2, delete: delta3,  delete: delta3] 在经过queueActionLocked之后会变成[obj1]: [add: delta1, update: delta2, delete: delta3]
 
 
 
@@ -430,7 +430,7 @@ func (f *DeltaFIFO) Pop(process PopProcessFunc) (interface{}, error) {
         // 取出第一个f.queue[0]对象，从队列删除，将该对象交给process处理对象
 		delete(f.items, id)
 		err := process(item)
-        
+
 		if e, ok := err.(ErrRequeue); ok {
             // 处理失败，就重新入队
 			f.addIfNotPresent(id, item)
@@ -499,10 +499,10 @@ type Indexer interface {
 type IndexFunc func(obj interface{}) ([]string, error)
 // 索引函数，key是索引器名词，value是索引器的实现函数
 type Indexers map[string]IndexFunc
- // 索引函数name   对应多个索引键   多个对象键   真正对象 
-type Indices map[string]Index            
-// 索引缓存，map类型                     
-type Index map[string]sets.String 
+ // 索引函数name   对应多个索引键   多个对象键   真正对象
+type Indices map[string]Index
+// 索引缓存，map类型
+type Index map[string]sets.String
 ```
 
 总结一下：
