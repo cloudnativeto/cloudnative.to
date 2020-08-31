@@ -1,4 +1,5 @@
 ---
+
 title: "Kubernetes client-go informer架构介绍"
 description: "这篇文章通过对informer架构中所用到的组件,分别做了不同的介绍。"
 author: "[屈帅波](https://github.com/strive-after)"
@@ -9,6 +10,7 @@ date: 2020-08-30T07:00:00+08:00
 type: "post"
 avatar: "/images/profile/qushuaibo.jpg"
 profile: "某境外电商公司运维工程师，云原生爱好者。"
+
 ---
 
 ## 一、简介
@@ -484,10 +486,11 @@ index中的缓存数据为set集合数据结构，set本质与slice相同，但�
 
 ### 4.工作流程
 
-（1）controller manager在启动的时候会启动一个sharedInformerFactory这是一个informer的集合（informers map[reflect.Type]cache.SharedIndexInformer）。
-（2）controller manager会watch and listen api-server的event当有事件产生的时候，会接收到事件 然后并且交给对应的informer，controller在run的时候会调用reflector的run，reflector 在run的时候会listen and watch，当有event的时候插入本地缓存DeltaFIFO中并更新ResouVersion。
-（3）DeltaFIFO是一个先进先出的队列 ，通过生产者 （add等等） 消费者（pop） 之后通过 sharedProcessor.distribute分发给所有listener 然后通过controller注册的handler来做逻辑处理。
-（4）最后indexer 去做操作调用treadsafestore 也就是底层存储的操作逻辑。
+- controller manager在启动的时候会启动一个sharedInformerFactory这是一个informer的集合（informers map[reflect.Type]cache.SharedIndexInformer）。
+- controller在run的时候会调用reflector的run，reflector 在run的时候会listen and watch，当有event的时候插入本地缓存DeltaFIFO中并更新ResouVersion。
+- controller manager会watch and listen api-server的event，当有事件产生的时候，会通过reflector 插入deltafifo，
+- DeltaFIFO是一个先进先出的队列 ，通过生产者 （add等等） 消费者（pop） 之后通过 sharedProcessor.distribute分发给所有listener 然后通过不同controller注册的handler来做逻辑处理。
+- 最后indexer 去做操作调用treadsafestore 也就是底层存储的操作逻辑。
 
 ## 三、informer
 
