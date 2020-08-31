@@ -1,6 +1,6 @@
 ---
 title: Kubebuilder 中文翻译总结
-description: "Kubebuilder 中文翻译总结以及Envoy中文翻译志愿者招募"
+description: "Kubebuilder 中文翻译总结以及Envoy中文翻译志愿者招募。"
 author: "[马景贺(小马哥)](https://github.com/lhb008)"
 image: "images/blog/kubebuilder.png"
 categories: ["Kubernetes"]
@@ -8,7 +8,7 @@ tags: ["Kubebuilder"]
 date: 2020-08-28 21:09:42
 type: "post"
 avatar: "/images/profile/xiaomage.png"
-profile: "云原生技术爱好者，云原生 DevSecOps 技术推广者"
+profile: "云原生技术爱好者，云原生 DevSecOps 技术推广者。"
 ---
 
 ## 未来已来
@@ -39,7 +39,7 @@ Kubernetes 的扩展可以通过 Operator（Kubernetes API + CRD）来实现。�
 
 在此，非常感谢十多位志愿者的无私奉献，同时，为了响应社区大众想读 Envoy 中文版的要求（有[1.7中文版](https://www.servicemesher.com/envoy/)，但距离最新版，差多个版本），云原生社区决定开启Enovy最新版的中文翻译工作，我们热忱欢迎对云原生感兴趣的志愿者加入我们，我们一起搞事情（可加微信 "jimmysongio"或者"majinghe11"并注明“Enovy 翻译”，我们拉你进群)。
 
-加入云原生 社区，一起搞事情，我们等你！！！
+加入云原生社区，一起搞事情，我们等你！！！
 
 
 ## 特别感谢
