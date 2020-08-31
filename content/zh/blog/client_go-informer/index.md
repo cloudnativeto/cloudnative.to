@@ -697,7 +697,6 @@ func main() {
 
 #### 参考资料
 
-https://blog.ihypo.net/15763910382218.html
-
-http://www.broadview.com.cn/book/6104
+- https://blog.ihypo.net/15763910382218.html
+- http://www.broadview.com.cn/book/6104
 
