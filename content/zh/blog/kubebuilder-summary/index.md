@@ -5,7 +5,7 @@ author: "[马景贺（小马哥）](https://github.com/lhb008)"
 image: "images/blog/kubebuilder.jpg"
 categories: ["Kubernetes"]
 tags: ["Kubebuilder"]
-date: 2020-08-28 21:09:42
+date: 2020-08-28T21:09:42+08:00
 type: "post"
 avatar: "/images/profile/xiaomage.png"
 profile: "云原生技术爱好者，云原生社区大连站站长，云原生 DevSecOps 技术推广者。"
