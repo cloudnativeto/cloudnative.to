@@ -1,4 +1,3 @@
-```
 ---
 title: "Kubernetes client-go informer架构介绍"
 description: "这篇文章通过对informer架构中所用到的组件,分别做了不同的介绍。"
@@ -11,7 +10,6 @@ type: "post"
 avatar: "/images/profile/qushuaibo.jpg"
 profile: "某境外电商公司运维工程师，云原生爱好者。"
 ---
-```
 
 ## 一、简介
 
