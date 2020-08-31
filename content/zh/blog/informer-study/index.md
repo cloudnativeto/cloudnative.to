@@ -8,7 +8,7 @@ categories: ["Kubernetes"]
 tags: ["Kubernetes", "源码理解", "Informer"]
 type: "post"
 avatar: "/images/profile/janeliul.jpg"
-profile: "刘淑娟,爱立信广州工程师，云原生爱好者"
+profile: "刘淑娟，爱立信广州工程师，云原生爱好者。"
 ---
 
 ## Overview
@@ -517,4 +517,3 @@ Indics: 索引函数name --> 对应多个索引key值 --> 每个索引key值对�
 ## Reference
 
 《Kubernetes 源码剖析》第五章
-
