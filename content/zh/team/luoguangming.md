@@ -1,7 +1,7 @@
 ---
 title: "罗广明"
 # meta description
-description: "百度高级研发工程师，开源项目爱好者，Service Mesh 布道者，DevOps与Scrum支持者与实践者，对微服务架构、微服务治理模型、微服务配置中心等有深入研究。"
+description: "百度云原生技术专家、云原生技术布道师，ServiceMesher 社区管委会成员，Istio-handbook 作者之一，对 Spring Cloud、Istio 以及微服务中间件有深入研究。"
 # page title background image
 bg_image_webp: "images/backgrounds/page-title.webp"
 bg_image: "images/backgrounds/page-title.jpg"
