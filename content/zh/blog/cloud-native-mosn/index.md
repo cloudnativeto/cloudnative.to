@@ -109,10 +109,6 @@ MOSN 为了降低 Runtime GC 带来的卡顿，自身做了内存池的封装方
 
 ![](./mosn-mempool.png)
 
-在内存管理方面，MOSN 在 sync.Pool 之上封装了一层资源对的注册管理模块，可以方便的扩展各种类型的对象进行复用和管理。其中 bpool 是用来存储各类对象的构建方法，vpool 用来存放 bpool 中各个实例对象具体的值。运行时通过 bpool 里保存的构建方法来创建对应的对象通过 index 关联记录到 vpool 中，使用完后通过 sync.Pool 进行空闲对象的管理达到复用，如下图所示：
-
-<p align="center">
-</p>
 
 <a name="vZBAy"></a>
 ### MOSN 落地情况
