@@ -1,10 +1,14 @@
-# cloudnative.to
+# 云原生社区官网
 
-云原生社区官网源码。
+本仓库为云原生社区官网源码。
 
 ## 投稿
 
 向本站投稿请参考[投稿指南](https://cloudnative.to/contribute/)。
+
+## 招聘
+
+提交招聘需求请参考[招聘指南](https://github.com/cloudnativeto/cloudnative.to/issues/87)。
 
 ## 协议
 
@@ -15,8 +19,8 @@
 ### 图片
 
 - 团队成员照片尺寸：363 x 438
-
 - 博客图片比例：16:9（建议尺寸 1200 x 676）
+- 个人头像照片建议尺寸：800 x 800
 
 ### 主题设置
 

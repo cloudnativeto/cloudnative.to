@@ -8,7 +8,7 @@ tags: ["学习小组"]
 date: 2020-07-20T12:00:00+08:00
 type: "post"
 profile: "腾讯云研发工程师，Apache APISIX PMC"
-avatar: "/images/profile/yousa.png"
+avatar: "/images/profile/yousa.jpg"
 ---
 
 IT 技术日新月异，想必每个 IT 人都会有类似的焦虑：我该学习什么？哪些知识学到就是赚到？怎样学习才能最有效提升编程能力？

@@ -145,7 +145,7 @@ testimonial:
 ################################# blog ################################################
 cta:
   enable : true
-  title : "Create the most influential cloud native community in China!"
+  title : "Be the most influential cloud native community in China, and work together to promote the enterprise's cloud native process!"
   bg_image : "images/backgrounds/cta-lg.jpg"
   button:
     enable : true
@@ -165,4 +165,4 @@ contact:
   title : "Contact"
   image : "images/wechat-qrcode.png"
   description : "Follow us on wechat public account and join the community, to get the latest cloud native news and blogs."
-  address: "Beijing · Chengdu · London · Shanghai · Shenzhen"
+  address: "[Beijing](https://github.com/cloudnativeto/community/issues/56)|[Shanghai](https://github.com/cloudnativeto/community/issues/51)|[Chengdu](https://github.com/cloudnativeto/community/issues/58)|[Shenzhen](https://github.com/cloudnativeto/community/issues/60)|[Hangzhou](https://github.com/cloudnativeto/community/issues/53)|[Guangzhou](https://github.com/cloudnativeto/community/issues/59)|[Wuhan](https://github.com/cloudnativeto/community/issues/55)|[Nanjing](https://github.com/cloudnativeto/community/issues/57)|[Xi'an](https://github.com/cloudnativeto/community/issues/61)|[Dalian](https://github.com/cloudnativeto/community/issues/62)|[Changsha](https://github.com/cloudnativeto/community/issues/52)|[Suzhou](https://github.com/cloudnativeto/community/issues/66)|[Zhuhai](https://github.com/cloudnativeto/community/issues/67)"

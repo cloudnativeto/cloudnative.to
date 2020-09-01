@@ -147,7 +147,7 @@ testimonial:
 ################################# blog ################################################
 cta:
   enable : true
-  title : "打造中国最具影响力的云原生社区！"
+  title : "做中国最具影响力的云原生社区，共同推动企业的云原生进程！"
   bg_image_webp : "images/backgrounds/cta-lg.webp"
   bg_image : "images/backgrounds/cta-lg.jpg"
   button:
@@ -158,7 +158,7 @@ cta:
 ################################# blog ################################################
 blog:
   enable : true
-  subtitle : "PGC，企业中立"
+  subtitle : "专业用户产生的内容，企业中立"
   title : "博客"
   # blog post comes from "content/*/blog" folder
 
@@ -168,4 +168,4 @@ contact:
   title : "联系信息"
   image : "images/wechat-qrcode.png"
   description : "关注云原生社区微信公众号，加入社区并获取最新资讯。"
-  address: "[北京](https://github.com/cloudnativeto/community/issues/56)|[上海](https://github.com/cloudnativeto/community/issues/51)|[成都](https://github.com/cloudnativeto/community/issues/58)|[深圳](https://github.com/cloudnativeto/community/issues/60)|[杭州](https://github.com/cloudnativeto/community/issues/53)|[广州](https://github.com/cloudnativeto/community/issues/59)|[武汉](https://github.com/cloudnativeto/community/issues/55)|[南京](https://github.com/cloudnativeto/community/issues/57)|[西安](https://github.com/cloudnativeto/community/issues/61)|[大连](https://github.com/cloudnativeto/community/issues/62)|[长沙](https://github.com/cloudnativeto/community/issues/52)"
+  address: "[北京](https://github.com/cloudnativeto/community/issues/56)|[上海](https://github.com/cloudnativeto/community/issues/51)|[成都](https://github.com/cloudnativeto/community/issues/58)|[深圳](https://github.com/cloudnativeto/community/issues/60)|[杭州](https://github.com/cloudnativeto/community/issues/53)|[广州](https://github.com/cloudnativeto/community/issues/59)|[武汉](https://github.com/cloudnativeto/community/issues/55)|[南京](https://github.com/cloudnativeto/community/issues/57)|[西安](https://github.com/cloudnativeto/community/issues/61)|[大连](https://github.com/cloudnativeto/community/issues/62)|[长沙](https://github.com/cloudnativeto/community/issues/52)|[苏州](https://github.com/cloudnativeto/community/issues/66)|[珠海](https://github.com/cloudnativeto/community/issues/67)"

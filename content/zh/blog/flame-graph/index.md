@@ -8,7 +8,7 @@ tags: ["profile","flamegraph"]
 date: 2020-06-17T12:00:00+08:00
 type: "post"
 profile: "腾讯云研发工程师，Apache APISIX PMC，一个略逗比的 BUG hunter。"
-avatar: "/images/profile/yousa.png"
+avatar: "/images/profile/yousa.jpg"
 ---
 
 > 本文主要分享火焰图使用技巧，介绍 systemtap 的原理机制，如何使用火焰图快速定位性能问题原因，同时加深对 systemtap 的理解。
