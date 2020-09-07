@@ -46,6 +46,12 @@
 - id: related_article
   translation: 文章推荐
 
+- id: previous_article
+  translation: 上一篇
+
+- id: next_article
+  translation: 下一篇
+
 - id: category
   translation: 类别
 

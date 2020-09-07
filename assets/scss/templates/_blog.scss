@@ -162,4 +162,24 @@ ul.related {
   list-style-type: initial;
 }
 
+.link-article {
+  .pre-article {
+    display: inline-block;
+
+    i {
+      position: relative;
+      top: -1px;
+    }
+  }
+  .next-article {
+    float: right;
+    text-align: right;
+
+    i {
+      position: relative;
+      top: -1px;
+    }
+  }
+}
+
 /* /blog */
