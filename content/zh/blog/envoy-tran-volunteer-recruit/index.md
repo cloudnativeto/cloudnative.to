@@ -20,11 +20,11 @@ profile: "云原生技术爱好者，云原生社区大连站站长，云原生 
 那就加入云原生社区吧，加入译文社吧，我们一起翻译，一起嗨。
 
 参与流程：
-1）加入云原生社区组织。详情请看[这儿](https://github.com/cloudnativeto/community/issues/44)。
-2）加入 Envoy SIG 微信群（添加微信jimmysong或者majinghe11，备注**Envoy SIG**)。
-3）申请成为 Envoy 翻译志愿者（如果对翻译感兴趣）。
+* 加入云原生社区组织。详情请看[这儿](https://github.com/cloudnativeto/community/issues/44)。
+* 加入 Envoy SIG 微信群（添加微信jimmysong或者majinghe11，备注**Envoy SIG**)。
+* 申请成为 Envoy 翻译志愿者（如果对翻译感兴趣）。
 
-Envoy 中文 [GitHub 仓库](https://github.com/cloudnativeto/envoy)
+Envoy 中文仓库请看 [这儿](https://github.com/cloudnativeto/envoy)
 
 我们等你哦！！！
 
