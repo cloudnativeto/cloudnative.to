@@ -105,8 +105,8 @@ cmd.WaitSignal(stop)
 type Server struct {
   XDSServer *xds.DiscoveryServer  // Xds 服务
   environment *model.Environment  // Pilot 环境所需的 API 集合
-  kubeRegistry *kubecontroller.Controller   // 处理 K8s 主集群的注册中心
-  multicluster *kubecontroller.Multicluster // 处理 K8s 多个集群的注册中心
+  kubeRegistry *kubecontroller.Controller   // 处理 Kubernetes 主集群的注册中心
+  multicluster *kubecontroller.Multicluster // 处理 Kubernetes 多个集群的注册中心
   configController  model.ConfigStoreCache  // 统一处理配置数据（如 VirtualService 等) 的 Controller
   ConfigStores      []model.ConfigStoreCache // 不同配置信息的缓存器，提供 Get、List、Create 等方法
   serviceEntryStore *serviceentry.ServiceEntryStore // 单独处理 ServiceEntry 的 Controller
@@ -190,7 +190,7 @@ type Server struct {
     e.ServiceDiscovery = ac
     ```
     
-    首先是初始化了一份 `PushContext` ，创建 `PushContext` 所需的各种列表和 `Map` 。 其次是初始化了一个聚合所有注册中心的 `Controller` 作为 `Environment` 中的 `ServiceDiscovery` 。 该 `Controller` 提供从所有注册中心（如 `K8s, Consul, MCP` 等）获取服务和实例列表的方法。 这里传入了一个参数 `MeshHolder` 是想利用 `Environment` 中的 `mesh.Watcher` 将 `mesh` 这个配置同步过去。
+    首先是初始化了一份 `PushContext` ，创建 `PushContext` 所需的各种列表和 `Map` 。 其次是初始化了一个聚合所有注册中心的 `Controller` 作为 `Environment` 中的 `ServiceDiscovery` 。 该 `Controller` 提供从所有注册中心（如 `Kubernetes, Consul, MCP` 等）获取服务和实例列表的方法。 这里传入了一个参数 `MeshHolder` 是想利用 `Environment` 中的 `mesh.Watcher` 将 `mesh` 这个配置同步过去。
 
 2.  初始化 `Server`
 
@@ -269,7 +269,7 @@ type Server struct {
     }
     ```
     
-    配置信息大都是 `Istio` 定义的一系列 `CRD`（如 `VirtualService` 、 `DestinationRules` 等），一个控制面可以通过 `MCP` 同时接入多个 `K8s` 之外的配置数据源，也可通过文件目录（主要用来调试）挂载，默认是读取 K8s 中的配置数据：
+    配置信息大都是 `Istio` 定义的一系列 `CRD`（如 `VirtualService` 、 `DestinationRules` 等），一个控制面可以通过 `MCP` 同时接入多个 `Kubernetes` 之外的配置数据源，也可通过文件目录（主要用来调试）挂载，默认是读取 Kubernetes 中的配置数据：
     
     ```go
     func (s *Server) initK8SConfigStore(args *PilotArgs) error {
@@ -369,7 +369,7 @@ type Server struct {
     }
     ```
     
-    从之前初始化的 `environment.ServiceDiscovery` 中获取已注册的服务中心，如果是 `K8s` 则执行 `initKubeRegistry`:
+    从之前初始化的 `environment.ServiceDiscovery` 中获取已注册的服务中心，如果是 `Kubernetes` 则执行 `initKubeRegistry`:
     
     ```go
     // initKubeRegistry creates all the k8s service controllers under this pilot
@@ -383,7 +383,7 @@ type Server struct {
     }
     ```
     
-    进一步初始化 `K8s` 注册中心，方法为 `NewController` ，先看一下这个 `Controller` 的结构：
+    进一步初始化 `Kubernetes` 注册中心，方法为 `NewController` ，先看一下这个 `Controller` 的结构：
     
     ```go
     type Controller struct {
@@ -417,7 +417,7 @@ type Server struct {
     
     可以看到 `Controller` 对 `Services` 、 `Nodes` 、 `Pods` 等资源各自初始化了 `Informer` 、 Lister 以及对应的 Map，各类 Handlers 在 Informer 监听到增删改查时推送相应的事件到 queue ，再由 `onServiceEvent` 、 `onNodeEvent` 、 `c.pods.onEvent` 中更新对应的 Map 。
     
-    回到 `initServiceControllers` ，初始化完 K8s 注册中心之后，还需要关注 K8s 集群之外的服务，这些服务基本都是通过 `ServiceEntry` 注册到控制面的，所有 `ServiceEntry` 配置数据目前还都在之前初始化的 `configController` 配置中心控制器中，这里将 `ServiceEntry` 数据单独拎出来初始化一个 `ServicEntry` 注册中心，加入到 `serviceControllers` 中：
+    回到 `initServiceControllers` ，初始化完 Kubernetes 注册中心之后，还需要关注 Kubernetes 集群之外的服务，这些服务基本都是通过 `ServiceEntry` 注册到控制面的，所有 `ServiceEntry` 配置数据目前还都在之前初始化的 `configController` 配置中心控制器中，这里将 `ServiceEntry` 数据单独拎出来初始化一个 `ServicEntry` 注册中心，加入到 `serviceControllers` 中：
     
     ```go
     s.serviceEntryStore = serviceentry.NewServiceDiscovery(
@@ -685,7 +685,7 @@ s.environment.IstioConfigStore = model.MakeIstioStore(s.configController)
 
 `pilot-discovery` 的启动流程初看是比较复杂，但理清楚中间核心的步骤后结构也比较清晰。有了本篇的介绍，之后再走读几遍代码，相信就能很好的掌握 `pilot-discovery` 初始化的流程。
 
-`Pilot` 源码分析的第一部分就到这里，后续会针对重要的组件和接口做更细致的分析，如 `EnvoyXdsServer` 、`ServiceEntryStore` 等，以及梳理 `xDS` 协议的生成和下发流程，会比 `pilot-discovery` 的启动流程复杂的多，敬请期待！
+`Pilot` 源码分析的第一部分就到这里，后续会针对重要的组件和接口做更细致的分析，如 `EnvoyXdsServer` 、`ServiceEntryStore` 等，以及梳理 `xDS` 协议的生成和下发流程，会比 `pilot-discovery` 的启动流程复杂的多，敬请期待。
 
 ## 参考
 
