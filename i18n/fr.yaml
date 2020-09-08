@@ -46,6 +46,12 @@
 - id: related_article
   translation: See Also
 
+- id: previous_article
+  translation: Previous post
+
+- id: next_article
+  translation: Next post
+
 - id: category
   translation: Category
 
