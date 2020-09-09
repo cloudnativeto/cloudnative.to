@@ -2,13 +2,13 @@
 title: "Istio Pilot 源码分析（一）"
 description: "基于 Istio 1.7 源码深入分析 Istio 流量管理、安全通信等方面的流程及原理，带你揭开 Istio 的神秘面纱。"
 author: "[张海东](http://haidong.dev/)"
-image: "/images/blog/istio-pilot-banner.jpg"
+image: "/images/blog/istio-pilot-banner.jpeg"
 categories: ["Istio","Service Mesh"]
 tags: ["istio","pilot","cloudnative","servermesh"]
 date: 2020-09-08T12:00:00+08:00
 type: "post"
 avatar: "/images/profile/haidong.jpeg"
-profile: "多点生活（成都）- 云原生开发工程师"
+profile: "多点生活（成都）云原生开发工程师。"
 ---
 
 # Istio Pilot 源码分析（一）
