@@ -17,16 +17,17 @@ profile: "刘淑娟，爱立信广州工程师，云原生爱好者。"
 
 ## 背景
 
-为什么Kubernetes需要Informer机制？我们知道Kubernetes各个组件都是通过REST API跟API Server交互通信的，而如果每次每一个组件都直接跟API Server交互去读取/写入到后端的etcd的话，会对API Server以及etcd造成非常大的负担。 而Informer机制是为了保证各个组件之间通信的实时性、可靠，并且减缓对API Server和etcd的负担。
+为什么Kubernetes需要Informer机制？我们知道Kubernetes各个组件都是通过REST API跟API Server交互通信的，而如果每次每一个组件都直接跟API Server交互去读取/写入到后端的etcd的话，会对API Server以及etcd造成非常大的负担。 而Informer机制是为了保证各个组件之间通信的实时性、可靠性，并且减缓对API Server和etcd的负担。
 
 ## Informer 流程
 
 这个流程，建议先看看[《From Controller Study Informer》](https://github.com/JaneLiuL/study-client-go/blob/master/fromcontrollerstudyinformer.md)
 
 这里我们以CoreV1. Pod资源为例子：
+
 1. 第一次启动Informer的时候，Reflector 会使用`List`从API Server主动获取CoreV1. Pod的所有资源对象信息，通过`resync`将资源存放在`Store`中
 2. 持续使用`Reflector`建立长连接，去`Watch` API Server发来的资源变更事件
-3. 当2 监控到CoreV1.Pod的资源对象有增加删除修改之后，就把资源对象存放在`DeltaFIFO`中，
+3. 当2 监控到CoreV1.Pod的资源对象有增加/删除/修改之后，就把资源对象存放在`DeltaFIFO`中
 4. `DeltaFIFO`是一个先进先出队列，只要这个队列有数据，就被Pop到Controller中, 将这个资源对象存储至`Indexer`中，并且将该资源对象分发至`ShareInformer`
 5. Controller会触发`Process`回调函数
 
@@ -51,7 +52,7 @@ profile: "刘淑娟，爱立信广州工程师，云原生爱好者。"
 
 从设计扩展性出发的话：
 
-作为一个“资源管理系统”的Kubernetes，我们的对象数量可能会无限扩大，那么我们需要设计一个高效扩展的组件，去应对对象的种类无限扩大，并且同一种对象可能会被用户实例化非常多次的行为。 这里可以对应我们的`Share Informer`。
+作为一个“资源管理系统”的Kubernetes，我们的对象数量可能会无限扩大，那么我们需要设计一个高效扩展的组件，去应对对象的种类无限扩大，并且同一种对象可能会被用户实例化非常多次的行为。 这里可以对应我们的`ShareInformer`。
 
 从消息的可靠性出发的话：
 
@@ -77,7 +78,7 @@ profile: "刘淑娟，爱立信广州工程师，云原生爱好者。"
 	flusher.Flush()
 ```
 
-我们使用通过`curl`来看看, 在`response`的`Header`中设置`Transfer-Encoding`的值是`chunked`
+我们通过`curl`来看看, 在`response`的`Header`中设置`Transfer-Encoding`的值是`chunked`
 
 ```bash
 # curl -i http://127.0.0.1:8001/api/v1/watch/namespaces?watch=yes
@@ -287,7 +288,7 @@ func (r *Reflector) ListAndWatch(stopCh <-chan struct{}) error {
 
 #### Kubernetes并发
 
-从ListAndWatch的代码，有一段关于`syncWith`的方法，比较重要，原来Kubernetes的并发是通过`ResourceVersion`来实现的，每次对这个对象的改动，都会把改对象的`ResourceVersion`加一。
+从ListAndWatch的代码，有一段关于`syncWith`的方法，比较重要，原来Kubernetes的并发是通过`ResourceVersion`来实现的，每次对这个对象的改动，都会把该对象的`ResourceVersion`加一。
 
 
 
@@ -396,7 +397,7 @@ func isDup(a, b *Delta) *Delta {
 
 
 
-之前群里有人问为什么dedupDeltas只是去这个列表的倒数一个跟倒数第二个去进行合并去重的操作，这里说明一下，dedupDeltas是被queueActionLocked函数调用的，而queueActionLocked为什么我们拿出来讲，是因为在Delete/Update/Add里面去调用了queueActionLocked，合并是对某一个obj的一系列操作，而去重是只针对delete。
+之前群里有人问为什么dedupDeltas只是去这个列表的倒数第一个跟倒数第二个去进行合并去重的操作，这里说明一下，dedupDeltas是被queueActionLocked函数调用的，而queueActionLocked为什么我们拿出来讲，是因为在Delete/Update/Add里面去调用了queueActionLocked，合并是对某一个obj的一系列操作，而去重是只针对delete。
 
 我们可以拿一个例子来看看，假设是[obj1]: [add: delta1, update: delta2, delete: delta3,  delete: delta3] 在经过queueActionLocked之后会变成[obj1]: [add: delta1, update: delta2, delete: delta3]
 
@@ -457,7 +458,7 @@ func (f *DeltaFIFO) Pop(process PopProcessFunc) (interface{}, error) {
 
 ## Share Informer 共享机制
 
-从流程上我们说了，因为是`DeltaFIFO`把消息分发至`Share Informer`中，因此我们可以用`Inforomer`添加自定义的回调函数，也就是我们经常看到的`OnAdd`  `OnUpdaate`和`OnDelete`
+从流程上我们说了，因为是`DeltaFIFO`把消息分发至`ShareInformer`中，因此我们可以用`Informer`添加自定义的回调函数，也就是我们经常看到的`OnAdd`  `OnUpdate`和`OnDelete`
 
 
 
@@ -508,7 +509,7 @@ type Index map[string]sets.String
 总结一下：
 
 Indexers: 索引函数name --> 索引实现函数-->索引key值
-Indics: 索引函数name --> 对应多个索引key值 --> 每个索引key值对应不同的资源
+Indices: 索引函数name --> 对应多个索引key值 --> 每个索引key值对应不同的资源
 
 举个例子来说明的话：对象Pod有一个标签app=version1，这里标签就是索引键，Indexer会把相同标签的所有Pod放在一个集合里面，然后我们实现对标签分类就是我们Indexer的核心内容。
 
