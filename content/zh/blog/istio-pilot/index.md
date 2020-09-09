@@ -50,7 +50,7 @@ profile: "多点生活（成都）- 云原生开发工程师"
 - `Service Controller`：从不同注册中心同步服务及实例，并响应各类事件。
 - `EnvoyXdsServer`：核心的 `xDS` 协议推送服务，根据上面组件的数据生成 `xDS` 协议并下发。
 
-`Config Controller` 比较核心的就是对接 `Kubernetes`，从 `kube-apiserver` 中 `Watch` 集群中的 `VirtualService`、`ServiceEntry`、`DestinationRules` 等配置信息，有变化则生成 `PushRequest` 推送至 `EnvoyXdsServer` 中的推送队列。除此之外，还支持对接 `MCP(Mesh Configuration Protocol)` 协议的 `gRPC Server`，如 `Nacos` 的 `MCP` 服务等，不过这种方式需要 `Galley` 组件中的 `MCP Server` 支持，`Galley` 在 `Istio` 后续的版本会慢慢弱化直至删除。最后一种是基于内存的 `Config Controller` 实现，通过 `Watch` 一个文件目录，加载目录中的 `yaml` 文件生成配置数据，主要用来测试。
+`Config Controller` 比较核心的就是对接 `Kubernetes`，从 `kube-apiserver` 中 `Watch` 集群中的 `VirtualService`、`ServiceEntry`、`DestinationRules` 等配置信息，有变化则生成 `PushRequest` 推送至 `EnvoyXdsServer` 中的推送队列。除此之外，还支持对接 `MCP(Mesh Configuration Protocol)` 协议的 `gRPC Server`，如 `Nacos` 的 `MCP` 服务等，只需要在 `meshconfig` 中配置 `configSources` 即可。最后一种是基于内存的 `Config Controller` 实现，通过 `Watch` 一个文件目录，加载目录中的 `yaml` 文件生成配置数据，主要用来测试。
 
 `Service Controller` 目前原生支持 `Kubernetes` 和 `Consul`，注册在这些注册中心中的服务可以无痛接入 `Mesh`，另外一种比较特殊，就是 `ServiceEntryStore`，它本质是储存在 `Config Controller` 中的 `Istio` 配置数据，但它描述的却是集群外部的服务信息，详情可阅读文档 [ServiceEntry](https://istio.io/latest/docs/reference/config/networking/service-entry/)，`Istio` 通过它将集群外部，如部署在虚拟机中的服务、非 `Kubernetes` 的原生服务同步到 `Istio` 中，纳入网格统一进行流量控制和路由，所以 `ServiceEntryStore` 也可以视为一种注册中心。还有一种就是 `Mock Service Registry`，主要用来测试。
 
