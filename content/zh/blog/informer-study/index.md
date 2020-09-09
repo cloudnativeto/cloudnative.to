@@ -37,7 +37,7 @@ profile: "刘淑娟，爱立信广州工程师，云原生爱好者。"
 
 ### ListAndWatch 思考
 
-为什么Kubernetes里面是使用ListAndWathc呢？我们所知道的其他分布式系统常常使用RPC来触发行为。
+为什么Kubernetes里面是使用ListAndWatch呢？我们所知道的其他分布式系统常常使用RPC来触发行为。
 
 我们来分析下如果不这样做，而是采用API Server轮询推送消息给各个组件，或者各个组件轮询去访问API Server的话，那么**实时性**就得不到保证，并且对API Server造成很大的负载，很有可能需要开启大量的端口造成端口浪费。
 
@@ -51,7 +51,7 @@ profile: "刘淑娟，爱立信广州工程师，云原生爱好者。"
 
 从设计扩展性出发的话：
 
-作为一个“资源管理系统”的Kubernetes，我们的对象数量可能会无线扩大，那么我们需要设计一个高效扩展的组件，去应对对象的种类无线扩大，并且同一种对象可能会被用户实例化非常多次的行为。 这里可以对应我们的`Share Informer`。
+作为一个“资源管理系统”的Kubernetes，我们的对象数量可能会无限扩大，那么我们需要设计一个高效扩展的组件，去应对对象的种类无限扩大，并且同一种对象可能会被用户实例化非常多次的行为。 这里可以对应我们的`Share Informer`。
 
 从消息的可靠性出发的话：
 
@@ -61,7 +61,7 @@ profile: "刘淑娟，爱立信广州工程师，云原生爱好者。"
 
 #### Watch的实现
 
-`Watch`是通过HTTP 长连接接收API Server发送的资源变更事件，使用的`Chunkerd transfer coding`， 代码位置`./staging/src/k8s.io/apiserver/pkg/endpoints/handlers/watch.go`，源码如下
+`Watch`是通过HTTP 长连接接收API Server发送的资源变更事件，使用的`Chunked transfer coding`， 代码位置`./staging/src/k8s.io/apiserver/pkg/endpoints/handlers/watch.go`，源码如下
 
 ```go
     e := streaming.NewEncoder(framer, s.Encoder)
@@ -77,7 +77,7 @@ profile: "刘淑娟，爱立信广州工程师，云原生爱好者。"
 	flusher.Flush()
 ```
 
-我们使用通过`curl`来看看, 在`response`的`Header`中设置`Transfer-Encoding`的值是`chunkerd`
+我们使用通过`curl`来看看, 在`response`的`Header`中设置`Transfer-Encoding`的值是`chunked`
 
 ```bash
 # curl -i http://127.0.0.1:8001/api/v1/watch/namespaces?watch=yes
