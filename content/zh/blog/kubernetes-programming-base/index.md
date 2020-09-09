@@ -18,15 +18,15 @@ Kubernetes 诞生至今已经 5 年了，火爆整个社区，大家对 Kubernet
 
 ## 基于 Kubernetes 编程
 
-什么叫做基于 Kubernentes 编程呢？回想一下，我们以前听过基于 Linux 编程，基于 Windows 编程，可以放在‘基于’后面的都是通用标准的平台。基于 Kubernetes 编程有着相同的概念，Kubernetes 经过 5 年的高速发展，已经成为了容器编排调度框架的标准，直接将之定义为 “云原生操作系统” 也不为过。
+什么叫做基于 Kubernetes 编程呢？回想一下，我们以前听过基于 Linux 编程，基于 Windows 编程，可以放在‘基于’后面的都是通用标准的平台。基于 Kubernetes 编程有着相同的概念，Kubernetes 经过 5 年的高速发展，已经成为了容器编排调度框架的标准，直接将之定义为 “云原生操作系统” 也不为过。
 
-基于 Kubernnetes 编程可以定义为，开发一个 Kubernetes-native 应用，它直接与 K8S API Server（K8S 的一个核心组件，后面会介绍）交互，查询资源的状态或更新状态。
+基于 Kubernetes 编程可以定义为，开发一个 Kubernetes-native 应用，它直接与 K8S API Server（K8S 的一个核心组件，后面会介绍）交互，查询资源的状态或更新状态。
 
-为什么要基于 Kubernetes 编程呢？大多数基于 Kubernetes 编程的服务都属于 PaaS 层的能力，PaaS 将服务抽象成应用进行分发部署管理，并且对应用屏蔽底下 IaaS 的复杂度。PaaS 层是在 Kubernetes 诞生之前就存在的，在 Kubernetes 环境下以前很多 PaaS 层的应用都需要进行改造迁移，或者被云原生时代的新应用代替，随之诞生了服务网格、Operator 等云原生产物。
+为什么要基于 Kubernetes 编程呢？大多数基于 Kubernetes 编程的服务都属于 PaaS 层的能力，PaaS 将服务抽象成应用进行分发部署管理，并且对应用屏蔽下层 IaaS 的复杂度。PaaS 层是在 Kubernetes 诞生之前就存在的，在 Kubernetes 环境下以前很多 PaaS 层的应用都需要进行改造迁移，或者被云原生时代的新应用代替，随之诞生了服务网格、Operator 等云原生产物。
 
 这些需求都是要基于 Kubernetes 编程来实现的，因此掌握 Kubernetes 编程是做云原生开发，PaaS 平台的必备基础。
 
-学习 Kubernetes 编程后会对 Kubernetens 的各个组件有更加深刻的认知。比如你了解了 `controller 架构模式 ` 后就会知道（以下说法并不严谨，只列出组件中的部分功能）:
+学习 Kubernetes 编程后会对 Kubernetes 的各个组件有更加深刻的认知。比如你了解了 `controller 架构模式 ` 后就会知道（以下说法并不严谨，只列出组件中的部分功能）:
 
 * kube-proxy 是 Service 资源和服务发现负载之间的协调控制器。
 * kubelet 是 Pod 资源和容器运行时之间的协调控制器。
@@ -64,7 +64,7 @@ Controller 实现控制循环，通过 API Server 监听集群的共享状态，
 
 ### 控制器组件
 
-从架构的角度来看，Controller 通常使用一下数据结构:
+从架构的角度来看，Controller 通常使用以下数据结构:
 
 ![引用自 “深入剖析 Kubernetes”](./images/2.png "引用自 “深入剖析 Kubernetes”")  
 &ensp;&ensp;&ensp;&ensp;引用自 “深入剖析 Kubernetes”
@@ -72,7 +72,7 @@ Controller 实现控制循环，通过 API Server 监听集群的共享状态，
 * Informers
   从 Kubernetes API Server 里监听它所关心的对象状态，Informer 与 API 对象是一一对应的。
 * Reflector
-  连接 APIServer，使用 ListAndWatch 方法，获取并监听 API 对象实例的变化。 变化事件及对应的 API 对象，被称为为增量，放进 Delta FIFO Queue。
+  连接 APIServer，使用 ListAndWatch 方法，获取并监听 API 对象实例的变化。 变化事件及对应的 API 对象，被称为增量，放进 Delta FIFO Queue。
 * Delta FIFO Queue
   存放事件数据
 * Store
@@ -147,7 +147,7 @@ redis-cli                     1/1     Running   303        12d
 ### API 术语
 
 弄清楚什么是 [RESTful 架构](https://www.ruanyifeng.com/blog/2011/09/restful.html) 就很容易理解和区分 Kubernetes API Server 里面这些概念。
-如果一个架构符合 REST 原则，就称它为 RESTful 架，REST 是 Representational State Transfer 的缩写，可以翻译为 "表现层状态转化"，这里省略了主语 “资源”（Resources)。 **核心在于 “资源”，它是一种信息实体，可以有很多种外在表现形式，我们把 “资源” 具体呈现出来的形式，叫做它的 “表现层”（Representation）。**
+如果一个架构符合 REST 原则，就称它为 RESTful 架构，REST 是 Representational State Transfer 的缩写，可以翻译为 "表现层状态转化"，这里省略了主语 “资源”（Resources)。 **核心在于 “资源”，它是一种信息实体，可以有很多种外在表现形式，我们把 “资源” 具体呈现出来的形式，叫做它的 “表现层”（Representation）。**
 
 RESTful API 是基于 HTTP 协议且符合 REST 原则的软件架构，controller 架构也符合 REST 原则。在 Kubernetes 中同时使用了这两种架构，所以弄出来了一些术语来区分指代实体，其实都是 “资源” 这一信息实体在不同上下文中的不同表示形态。
 
@@ -206,7 +206,7 @@ spec 定义的期望状态提供了实现 "infrastructure-as-code" 的基础，�
 
 这本书是由来自 AWS 和 Red Hat 的两位高级工程师写作的，他们自 2015 年以来就一直致力于 Kubernetes 的开发，写作，教学。
 
-书中主要围绕着 “Kubernetes 扩展编程 “ 主题讲了 Kubernetes 编程基础，client-go，自定义资源（CRD），Opeator，API Servers 扩展等内容。
+书中主要围绕着 “Kubernetes 扩展编程 “ 主题讲了 Kubernetes 编程基础，client-go，自定义资源（CRD），Operator，API Servers 扩展等内容。
 
 对于接触过云原生但不想仅仅停留在使用阶段的朋友，这本书值得一读，通过学习如何在 Kubernetes 基础上做开发，能让你更加了解 Kubernetes，后续可以深入阅读 Kubernetes 源码。
 
@@ -217,9 +217,9 @@ spec 定义的期望状态提供了实现 "infrastructure-as-code" 的基础，�
 
 对 Kubernetes 编程有了基础的了解后，推荐大家阅读 [《Kubernetes 源码剖析》](https://item.jd.com/12665791.html)，由来自百度 BFE 团队的郑东旭大佬写的。
 前文说了，Kubernetes 本身的很多组件是通过 controller 模式来写的，对于我们编写 Kubernetes 扩展应用来说，是极好的样例代码。
-书中第 3 章分析了 Kubernetes 核心数据结构，第 5 章详细的分析了在扩展编程时必不可少的依赖库 client-go，有需求的同学还可以根据第 2 章的说明自己构建 Kuberntes 组件。
+书中第 3 章分析了 Kubernetes 核心数据结构，第 5 章详细的分析了在扩展编程时必不可少的依赖库 client-go，有需求的同学还可以根据第 2 章的说明自己构建 Kubernetes 组件。
 
-目前（2020-08）云原生社区正在组织 Kubernete 源码剖析精读活动，有兴趣的同学可以加入一起学习，具体信息查看 [社区 Issue](https://github.com/cloudnativeto/community/issues/34)。
+目前（2020-08）云原生社区正在组织 Kubernetes 源码剖析精读活动，有兴趣的同学可以加入一起学习，具体信息查看 [社区 Issue](https://github.com/cloudnativeto/community/issues/34)。
 
 ### 深入剖析 Kubernetes
 
