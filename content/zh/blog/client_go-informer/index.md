@@ -15,7 +15,7 @@ profile: "某境外电商公司运维工程师，云原生爱好者。"
 
 ## 一、简介
 
-在kubernetes系统中，组件之间通过http协议进行通信，通过informer来做到了消息的实时性、可靠性、顺序性， 通过infromer机制与api-server进行通信。
+在kubernetes系统中，组件之间通过http协议进行通信，通过informer来做到了消息的实时性、可靠性、顺序性， 通过informer机制与api-server进行通信。
 ## 二、架构设计
 ![infomer](./images/informer.png)
 
@@ -156,7 +156,7 @@ func (r *Reflector) ListAndWatch(stopCh <-chan struct{}) error {
 通过给NewRefector传入一个listerwatcher数据接口对象来实例化一个Reflector对象。
 Reflector具备list和watch方法 最重要的是ListAndWatch。
 list主要是用来获取资源列表数据。
-watch主要是用来监控资源对象，发生event的时候插入本地缓存DeltaFIFO中并更新ResouVersion。
+watch主要是用来监控资源对象，发生event的时候插入本地缓存DeltaFIFO中并更新ResourceVersion。
 
 ### 2.DeltaFIFO
 
