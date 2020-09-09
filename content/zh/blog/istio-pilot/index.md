@@ -11,9 +11,7 @@ avatar: "/images/profile/haidong.jpeg"
 profile: "多点生活（成都）云原生开发工程师。"
 ---
 
-# Istio Pilot 源码分析（一）
-
-`Istio` 作为目前 `ServicMesh` 方案中的翘楚，吸引着越来越多的企业及开发者。越来越多的团队想将其应用于微服务的治理，但在实际落地时却因为不了解 `Istio` 黑盒中的运行机制而左右为难，本文将基于 1.7 的源码讲解 `Istio` 的核心组件 `Pilot` 的结构及运行流程，希望对读者应用 `Istio` 有所助益。
+`Istio` 作为目前 Servic Mesh 方案中的翘楚，吸引着越来越多的企业及开发者。越来越多的团队想将其应用于微服务的治理，但在实际落地时却因为不了解 `Istio` 黑盒中的运行机制而左右为难，本文将基于 1.7 的源码讲解 `Istio` 的核心组件 `Pilot` 的结构及运行流程，希望对读者应用 `Istio` 有所助益。
 
 *注：本文基于 `istio release-1.7` 分支分析，其他版本的代码结构会有所不同。*
 
@@ -679,8 +677,6 @@ s.environment.IstioConfigStore = model.MakeIstioStore(s.configController)
 
 以上，当服务启动后，会逐个调用这些 `ConfigStoreCache` 中的 `Run` 方法处理资源的增删改事件。
 
-
-
 ## 总结
 
 `pilot-discovery` 的启动流程初看是比较复杂，但理清楚中间核心的步骤后结构也比较清晰。有了本篇的介绍，之后再走读几遍代码，相信就能很好的掌握 `pilot-discovery` 初始化的流程。
@@ -689,4 +685,4 @@ s.environment.IstioConfigStore = model.MakeIstioStore(s.configController)
 
 ## 参考
 
-[Istio Pilot 代码深度解析 - 赵化冰](https://zhaohuabing.com/post/2019-10-21-pilot-discovery-code-analysis/)
+- [Istio Pilot 代码深度解析 - 赵化冰](https://zhaohuabing.com/post/2019-10-21-pilot-discovery-code-analysis/)
