@@ -29,7 +29,7 @@ client-go 是用 Golang 语言编写的官方编程式交互客户端库，提�
 6. **plugin**: 提供 OpenStack，GCP 和 Azure 等云服务商授权插件。
 7. **rest**: 提供 RESTClient 客户端，对 K8S API Server 执行 RESTful 操作。
 8. **scale**: 提供 ScaleClient 客户端，用于扩容或缩容 Deployment, Replicaset, Replication Controller 等资源对象。
-9. **tools**: 提供常用工具，例如 SharedInformer, Relector, DealtFIFO 及 Indexers。 提供 Client 查询和缓存机制，以减少想 kube-apiserver 发起的请求数等。主要子目录为/tools/cache。
+9. **tools**: 提供常用工具，例如 SharedInformer, Reflector, DeltaFIFO 及 Indexers。 提供 Client 查询和缓存机制，以减少向 kube-apiserver 发起的请求数等。主要子目录为/tools/cache。
 10. **transport**: 提供安全的 TCP 连接，支持 HTTP Stream，某些操作需要在客户端和容器之间传输二进制流，例如 exec，attach 等操作。该功能由内部的 SPDY 包提供支持。
 11. **util**: 提供常用方法。例如 WorkQueue 工作队列，Certificate 证书管理等。
 
