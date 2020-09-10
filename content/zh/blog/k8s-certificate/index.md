@@ -20,7 +20,7 @@ type: "post"
 ![components-of-kubernetes.png](https://zhaohuabing.com/img/2020-05-19-k8s-certificate/components-of-kubernetes.png)
 kubernetes 组件，图片来源[kubernetes.io](https://kubernetes.io/zh/docs/concepts/overview/components/)
 
-从图中可以看到，Kubernetes 控制平面中包含了 etctd，kube-api-server，kube-scheduler，kube-controller-manager 等组件，这些组件会相互进行远程调用，例如 kube-api-server 会调用 etcd 接口存储数据，kube-controller-manager 会调用 kube-api-server 接口查询集群中的对象状态；同时，kube-api-server 也会和在工作节点上的 kubelet 和 kube-proxy 进行通信，以在工作节点上部署和管理应用。
+从图中可以看到，Kubernetes 控制平面中包含了 etcd，kube-api-server，kube-scheduler，kube-controller-manager 等组件，这些组件会相互进行远程调用，例如 kube-api-server 会调用 etcd 接口存储数据，kube-controller-manager 会调用 kube-api-server 接口查询集群中的对象状态；同时，kube-api-server 也会和在工作节点上的 kubelet 和 kube-proxy 进行通信，以在工作节点上部署和管理应用。
 
 以上这些组件之间的相互调用都是通过网络进行的。在进行网络通信时，通信双方需要验证对方的身份，以避免恶意第三方伪造身份窃取信息或者对系统进行攻击。为了相互验证对方的身份，通信双方中的任何一方都需要做下面两件事情：
 
@@ -29,7 +29,7 @@ kubernetes 组件，图片来源[kubernetes.io](https://kubernetes.io/zh/docs/co
 
 在 Kubernetes 中使用了数字证书来提供身份证明，我们可以把数字证书简单理解为我们在日常生活中使用的“身份证”，上面标注了证书拥有者的身份信息，例如名称，所属组织机构等。为了保证证书的权威性，会采用一个通信双方都信任的 CA（证书机构，Certificate Authority）来颁发证书。这就类似于现实生活中颁发“身份证”的政府机构。数字证书中最重要的内容实际上是证书拥有者的公钥，该公钥代表了用户的身份。本文假设读者已经了解数字证书和 CA 的基本原理，如果你对此不太清楚，或者希望重新温习一下相关知识，可以先阅读一下这篇文章[《数字证书原理》](https://zhaohuabing.com/post/2020-03-19-pki)。
 
-![](https://zhaohuabing.com/img/2020-05-19-k8s-certificate/ca.png)
+![](https://zhaohuabing.com/img/2020-05-19-k8s-certificate/ca.png)<br>
 CA （证书机构），图片来源[www.trustauth.cn](https://www.trustauth.cn/ca-question/1791.html)
 
 在 Kubernetes 的组件之间进行通信时，数字证书的验证是在协议层面通过 TLS 完成的，除了需要在建立通信时提供相关的证书和密钥外，在应用层面并不需要进行特殊处理。采用 TLS 进行验证有两种方式：
@@ -44,7 +44,7 @@ CA （证书机构），图片来源[www.trustauth.cn](https://www.trustauth.cn/
 * 客户端证书：客户端用于证明自身身份的数字证书，里面主要包含了客户端的公钥以及客户端的身份信息。
 * 客户端私钥：客户端证书中包含的公钥所对应的私钥，同理，客户端使用该私钥来向服务器端证明自己是客户端证书的拥有者。
 * 服务器端 CA 根证书：签发服务器端证书的 CA 根证书，客户端使用该 CA 根证书来验证服务器端证书的合法性。
-* 客户端端 CA 根证书：签发客户端证书的 CA 根证书，服务器端使用该 CA 根证书来验证客户端证书的合法性。
+* 客户端 CA 根证书：签发客户端证书的 CA 根证书，服务器端使用该 CA 根证书来验证客户端证书的合法性。
 
 下面这张来自[The magic of TLS, X509 and mutual authentication explained](https://medium.com/sitewards/the-magic-of-tls-x509-and-mutual-authentication-explained-b2162dec4401) 文章中的图形象地解释了双向 TLS 认证的原理。如果你需要了解更多关于 TLS 认证的原理，可以阅读一下 medium 上的原文。
 
@@ -62,7 +62,7 @@ Kubernetes 中使用到的主要证书
 
 上图中使用序号对证书进行了标注。图中的箭头表明了组件的调用方向，箭头所指方向为服务提供方，另一头为服务调用方。为了实现 TLS 双向认证，服务提供方需要使用一个服务器证书，服务调用方则需要提供一个客户端证书，并且双方都需要使用一个 CA 证书来验证对方提供的证书。为了简明起见，上图中只标注了证书使用方提供的证书，并没有标注证书的验证方验证使用的 CA 证书。图中标注的这些证书的作用分别如下：
 
-1. etcd 集群中各个节点之间相互通信使用的证书。由于一个 etctd 节点既为其他节点提供服务，又需要作为客户端访问其他节点，因此该证书同时用作服务器证书和客户端证书。
+1. etcd 集群中各个节点之间相互通信使用的证书。由于一个 etcd 节点既为其他节点提供服务，又需要作为客户端访问其他节点，因此该证书同时用作服务器证书和客户端证书。
 
 2. etcd 集群向外提供服务使用的证书。该证书是服务器证书。
 
