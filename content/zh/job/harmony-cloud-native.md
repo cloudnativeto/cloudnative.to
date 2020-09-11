@@ -1,17 +1,19 @@
 ---
-title: "[社招] 谐云科技"
+title: "[社招] 杭州谐云科技有限公司"
 date: 2020-09-11T14:52:03+08:00
 draft: false
 bg_image: "images/backgrounds/page-title.jpg"
-description: "Base 地：郑州"
+description: "Base地：杭州、郑州"
 type: "notice"
 ---
 
 ### 谐云科技简介
+
 谐云科技是国内为数不多掌握底层核心技术的容器云产品及解决方案提供商.
 杭州谐云科技有限公司成立于2016年7月，其核心团队来自浙江大学SEL实验室。2013年成为Cloud Foundry中国唯一两家核心代码贡献组织，2015年成为谷歌发起的云原生计算组织CNCF创始成员。谐云核心团队活跃在国际顶级开源社区，其中为Kubernetes等项目贡献代码1400多万行，代码贡献量曾排行国内第一，全球第四。团队曾著书国内第一本深度分析Docker技术的专业书籍《Docker：容器与容器云》，被评为人民邮电出版社2015年最受欢迎技术类新书。2020年完成由阿里巴巴集团战略领投的B轮融资。
 
-### 容器云架构师   薪资18K/月-30K/月  base郑州
+---
+### 容器云架构师   薪资18K/月-30K/月  base: 郑州
 
 #### 工作职责
 
@@ -29,6 +31,27 @@ type: "notice"
 5. 对云原生、云计算等领域有相关的行业经验，并且有深刻理解；如银行项目、医疗项目等容器云项目经验等优先考虑；
 6. 良好的沟通能力和技术文档、方案等表达能力；
 7. 5年左右工作经验、3年左右容器云项目经验者优先考虑。
+---
+
+### devops开发工程师   薪资：9K/月—18K/月   base: 杭州、郑州
+#### 工作职责
+1. 参与公司devops平台升级维护
+2. 参与公司devops平台新功能研发
+3. 支持驻场同事实施落地devops
+
+#### 职位要求
+1. java基础知识扎实
+2. 熟练使用IDEA、maven、git等开发工具
+3. 掌握mysql/oracle数据库技术
+4. 掌握Redis、MongoDB等中间件技术
+5. 掌握Mybiatis、hibernate ORM技术
+6. 熟悉Spring核心技术AOP、IOC
+7. 精通JAVA WEB技术
+8. 熟悉spring boot/spring cloud
+9. 熟悉devops文化及理念
+10. 熟悉devops常用工具链，如：jira、gitlab、Jenkins、nexus、sonarqube等
+11. 掌握docker、k8s容器化技术
+12. 熟悉敏捷开发模式
 
 #### 投递简历
 
