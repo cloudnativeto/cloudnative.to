@@ -2,7 +2,7 @@
 title: "Hui Li"
 date: 2019-09-13T10:47:55+06:00
 # meta description
-description: "Cloud native and open source enthusiast, Tencent cloud  engineer, mainly responsible for Tencent cloud API gateway forwarding component. Apache open source project distributed file system and object storage APISIX PMC."
+description: "Cloud native and open source enthusiast, Tencent cloud R & D engineer, mainly responsible for Tencent cloud API gateway forwarding components. Apache open source project, high-performance microservice gateway PMC of APISIX."
 # page title background image
 bg_image_webp: "images/backgrounds/page-title.webp"
 bg_image: "images/backgrounds/page-title.jpg"
