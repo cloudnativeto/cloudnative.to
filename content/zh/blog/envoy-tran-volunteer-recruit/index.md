@@ -21,7 +21,7 @@ profile: "云原生技术爱好者，云原生社区大连站站长，云原生 
 
 那就加入云原生社区吧，加入 Envoy SIG 吧。我们一起搞事情。
 
-## 加入 Envoy SIG 流程：
+## 加入 Envoy SIG 流程
 
 * 加入云原生社区组织，详情请看云原生社区的这个[GitHub Issue](https://github.com/cloudnativeto/community/issues/44)。
 * 加入 Envoy SIG 微信群（添加微信jimmysongio或者majinghe11，备注**Envoy SIG**)。
