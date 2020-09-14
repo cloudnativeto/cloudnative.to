@@ -1,6 +1,6 @@
 ---
 title: 云原生社区 Envoy SIG 成立啦！
-description: "Envoy 的技术交流群"
+description: "Envoy 的技术交流平台及后期翻译志愿者招募群"
 author: "[马景贺(小马哥)](https://github.com/lhb008)"
 image: "images/blog/envoy.png"
 categories: ["Envoy"]
