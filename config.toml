@@ -68,7 +68,7 @@ URL = "blog"
 weight = 4
 
 [[menu.main]]
-name = "Team"
+name = "Steering Committee"
 URL = "team"
 weight = 6
 
@@ -223,7 +223,7 @@ weight = 2
 
 [[Languages.zh.menu.main]]
 parent = "社区"
-name = "初创成员"
+name = "管理委员会"
 URL = "/team"
 weight = 1
 
