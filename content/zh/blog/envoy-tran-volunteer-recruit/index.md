@@ -1,6 +1,6 @@
 ---
-title: 云原生译文社 Envoy 翻译招新啦！
-description: "招募志愿者进行Envoy最新版本的官方文档翻译"
+title: 云原生社区 Envoy SIG 成立啦！
+description: "Envoy 的技术交流群"
 author: "[马景贺(小马哥)](https://github.com/lhb008)"
 image: "images/blog/envoy.png"
 categories: ["Envoy"]
