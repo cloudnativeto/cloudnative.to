@@ -1,7 +1,7 @@
 ---
 
 title: "云原生DevOps落地方案"
-description: "这篇文章通过对容器平台DevOps组件设计,从源码级别做了详尽介绍。"
+description: "这篇文章通过对容器平台DevOps组件设计，从源码级别做了详尽介绍。"
 author: "[陈月新](https://github.com/gophere)"
 image: "images/blog/devops-banner.jpg"
 categories: ["Kubernetes"]
@@ -10,7 +10,6 @@ date: 2020-09-15T07:00:00+08:00
 type: "post"
 avatar: "/images/profile/chenyuexin.jpg"
 profile: "某公司DevOps工程师，云原生爱好者。"
-
 ---
 
 
@@ -39,7 +38,7 @@ DevOps是PaaS平台里很关键的功能模块，包含以下重要能力：支�
 
 简单地说，云原生DevOps内部功能的设计基本上均是通过k8s提供的自定义controller功能来实现的，基本逻辑就是根据业务需要抽象出多个CRD（Custom Resource Definition，自定义资源对象），并编写对应的controller来实现业务逻辑。为了实现CI/CD功能，我们抽象出了多个CRD对象，如下图所示：
 
-![image.png](./images/1.png)
+![图1 CRD对象定义](./images/1.png)
 
 <center>图1 CRD对象定义</center>
 
@@ -56,7 +55,7 @@ DevOps是PaaS平台里很关键的功能模块，包含以下重要能力：支�
 
 pipeline步骤功能有很多种类型，包括运行脚本、构建发布镜像、发布应用模板、部署YAML、部署应用等等。为了提供这些功能，我们采用Jenkins作为底层的CI/CD工具，docker registry 作为镜像仓库中心，minio作为日志存储中心等等。这些服务是运行在pipeline所在项目的命名空间下。综上，我们设计的CI/CD系统功能的实现逻辑如图所示：
 
-![image.png](./images/2.png)
+![图2 逻辑示意图](./images/2.png)
 
 <center>图2 逻辑示意图</center>
 
@@ -67,7 +66,7 @@ pipeline步骤功能有很多种类型，包括运行脚本、构建发布镜像
 下面是详细的CRD结构体讲解，敏感信息使用了'*'代替。
 
 `pipelineSetting`：该结构体保存着整个项目下所有pipeline的运行环境信息，比如CPU/内存资源限额、缓存路径以及流水线运行的最大并行个数等等，不同功能的配置信息保存在不同的CRD下。
-```
+```go
 devops-cache-dir            12d
 executor-cpu-limit          12d
 executor-cpu-request        12d
@@ -91,12 +90,12 @@ value: "3" // 自定义设置，最多可同时运行3个pipeline，没有值会
 
 `pipeline`：该结构体记录着流水线的配置元信息，比如该流水线对接哪个项目代码、与仓库通信的认证信息以及上次该流水线运行的结果等等。如下图所示：
 
-![image.png](./images/3.png)
+![图3 流水线列表](./images/3.png)
 
 <center>图3 流水线列表</center>
 
 详细的结构字段讲解如下：
-```
+```go
 apiVersion: project.cubepaas.com/v3
 kind: Pipeline
 metadata:
@@ -130,12 +129,12 @@ status:
 
 `pipelineExecution`：流水线执行实例，每当流水线运行一次，会产生一个该对象记录着流水线的执行结果等信息。如下图所示：
 
-![image.png](./images/4.png)
+![图4 流水线执行记录列表](./images/4.png)
 
 <center>图4 流水线执行记录列表</center>
 
 详细的结构字段讲解如下：
-```
+```go
 apiVersion: project.cubepaas.com/v3
 kind: PipelineExecution
 metadata:
@@ -182,7 +181,7 @@ status: // 以下记录着pipeline每个stage和step的运行结果信息
 
 当触发流水线执行逻辑时，系统会根据pipeline CRD对象和该流水线对应的代码仓库中的配置文件（.cubepaas.devops.ymal）产生一个pipelineExecution CRD对象，这时会触发pipelineExecution对应的controller运行业务逻辑。下面只摘取重要的代码逻辑，如下所示：
 
-```
+```go
 func (l *Lifecycle) Sync(obj *v3.PipelineExecution) (runtime.Object, error) {
 
     ...
@@ -250,7 +249,7 @@ func (l *Lifecycle) Sync(obj *v3.PipelineExecution) (runtime.Object, error) {
 
 其中，deploy函数的逻辑就是第一次运行时通过判断数据面中是否存在pipeline的命名空间，如果存在就代表基础资源已经配置完成，直接走reconcileRb函数，该函数的逻辑见下面；如果不存在，就会在数据面中初始化必要的基础资源，比如：pipeline命名空间, Jenkins docker minio服务, 配置configMap, secret等等。
 
-```
+```go
 func (l *Lifecycle) deploy(projectName string) error {
     clusterID, projectID := ref.Parse(projectName)
     ns := getPipelineNamespace(clusterID, projectID)
@@ -371,7 +370,7 @@ func (l *Lifecycle) deploy(projectName string) error {
 
 reconcileRb函数的功能就是遍历所有namespace, 对其调谐rolebindings, 目的是让 pipeline serviceAccount(jenkins) 对该project下的所有namespace具有所需要的操作权限，这样Jenkins server才能够在数据面中正常提供CI/CD基础服务。
 
-```
+```go
 func (l *Lifecycle) reconcileRb(projectName string) error {
 
     ...
@@ -415,7 +414,7 @@ func (l *Lifecycle) reconcileRb(projectName string) error {
 
 goroutine（syncState）的代码逻辑比较简单，当产生新的pipeline执行实例时就会启动Jenkins server端流水线作业的运行并实时同步其运行状态到pipeline执行实例中。代码逻辑如下：
 
-```
+```go
 func (s *ExecutionStateSyncer) syncState() {
     set := labels.Set(map[string]string{utils.PipelineFinishLabel: "false"})
     allExecutions, err := s.pipelineExecutionLister.List("", set.AsSelector())
@@ -457,7 +456,7 @@ func (s *ExecutionStateSyncer) syncState() {
 
 因此，为了平衡缓存与调度间的关系，我们采用了挂载hostPath Volume方式，这样依托于k8s强大的容器调度能力，我们可以同时运行很多条流水线而不用担心资源耗尽或缓存冲突的问题，但是流水线每次运行时可能会被调度到不同的节点上，如果当前节点没有运行过流水线，则起不到缓存的作用。那么如何解决hostPath Volume缓存与调度间的尴尬关系呢？我们巧妙地利用了k8s提供的亲和性调度特性，当流水线运行时我们会记录当前运行节点，下次运行时通过设置Pod的亲和性优先调度到该节点上，随着流水线运行次数越来越多，我们会得到一个运行节点列表。如下所示：
 
-```
+```go
 // 按时间排序，最近运行流水线的节点排在最前面
 executionScheduledInfo:
     - creationTimestamp: "2020-09-02T06:42:45Z"
@@ -483,7 +482,7 @@ executionScheduledInfo:
 
 执行实例调度信息会保存到pipeline CRD对象中，每次运行流水线时，系统会根据节点列表设置Pod的亲和性，默认我们会取最近运行流水线的10个节点，原则是最近运行流水线的节点优先级越高。代码如下：
 
-```
+```go
 // 获取流水线的节点调度列表
 esi := c.pipeline.Status.ExecutionScheduledInfo
 nodes := make([]v1.PreferredSchedulingTerm, 0)
@@ -508,21 +507,21 @@ nodeAff.PreferredDuringSchedulingIgnoredDuringExecution = nodes
 
 创新性的“Hostpath Volume + 亲和性调度”缓存设计方案，不仅实现了流水线的并发性缓存功能，而且实现复杂度低，可自由配置任一阶段、步骤的缓存开关以及缓存路径。无缓存与有缓存运行的对比如下图所示，可见通过缓存加速大大提高了流水线的运行效率。
 
-![image.png](./images/5.png)
+![图5 缓存效果](./images/5.png)
 
 <center>图5 缓存效果</center>
 
 ## HCaaS DevOps使用
 
-以上设计在HCaaS平台上得到实现（https://cubepaas.com）在HCaaS控制台上点击DevOps标签，通过代码授权后，即可通过UI界面轻松地编辑流水线，也可通过编辑yaml文件配置具体的功能步骤，如图所示：
+以上设计在HCaaS平台上得到实现（<https://cubepaas.com>）在HCaaS控制台上点击DevOps标签，通过代码授权后，即可通过UI界面轻松地编辑流水线，也可通过编辑yaml文件配置具体的功能步骤，如图所示：
 
-![image.png](./images/6.png)
+![图6 流水线编辑](./images/6.png)
 
 <center>图6 流水线编辑</center>
 
 通过点击查看日志，你可以看到pipeline各个阶段运行的详细日志信息，如下图所示：
 
-![image.png](./images/7.png)
+![图7 流水线运行日志](./images/7.png)
 
 <center>图7 流水线运行日志</center>
 

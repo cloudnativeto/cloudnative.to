@@ -109,7 +109,7 @@ service:
 team:
   enable : false
   subtitle : "多样性的创始团队"
-  title : "初创成员"
+  title : " 管理委员会"
   # team member comes from "content/*/team" folder
 
 ################################# project ############################################
