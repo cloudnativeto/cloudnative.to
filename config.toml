@@ -53,39 +53,40 @@ link = "plugins/hex_md5/hex_md5.js"
 ########################### navigation ################################
 # main menu
 [[menu.main]]
-name = "About"
-URL = "about"
+name = "Community"
 weight = 2
 
-#[[menu.main]]
-#name = "Service"
-#URL = "service"
-#weight = 3
+[[menu.main]]
+parent = "Community"
+name = "About"
+URL = "about"
+weight = 1
+
+[[menu.main]]
+parent = "Community"
+name = "Steering Committee"
+URL = "team"
+weight = 2
 
 [[menu.main]]
 name = "Blog"
 URL = "blog"
-weight = 4
-
-[[menu.main]]
-name = "Steering Committee"
-URL = "team"
-weight = 6
+weight = 3
 
 [[menu.main]]
 name = "Contact"
 URL = "contact"
-weight = 7
+weight = 4
 
 [[menu.main]]
 name = "Contribute"
 URL = "contribute"
-weight = 8
+weight = 5
 
 [[menu.main]]
 name = "Job"
 URL = "job"
-weight = 9
+weight = 6
 
 # [[menu.main]]
 # weight = 8

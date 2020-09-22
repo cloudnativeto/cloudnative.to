@@ -5,7 +5,7 @@ slider:
     # slider item
     - subtitle : ""
       title : "欢迎来到云原生社区"
-      content : "云原生社区始于 2016 年成立的 Kubernetes & Cloud Native 实战群，覆盖了上千名云原生的早期拥护者。2020 年 5 月，在 CNCF 大使、开源领域意见领袖的共同倡议下升级为云原生社区。社区旨在构建一个开放、包容的交流环境，促进云原生技术的传播和普及。"
+      content : "云原生社区始于 2016 年成立的 Kubernetes & Cloud Native 实战群，覆盖了上千名云原生的早期拥护者。2020 年 5 月，在 CNCF 大使、开源领域意见领袖的共同倡议下升级为云原生社区。社区旨在构建一个开放、包容的交流环境，促进云原生技术的传播和普及。 您也可以加入所在地区的[城市站](https://github.com/cloudnativeto/community/issues/50)参与云原生社区的线下活动。"
       bg_image_webp : "images/slider/banner-1.png"
       bg_image : "images/slider/banner-1.png"
       animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
@@ -44,15 +44,15 @@ banner_feature:
 ################################## about ####################################
 about:
   enable : true
-  subtitle : "关于云原生社区"
-  title : "中立的云原生开发者社区"
-  content : "云原生社区始于 2016 年成立的 Kubernetes & Cloud Native 实战群，覆盖了上千名云原生的早期拥护者。2020 年 5 月，在 CNCF 大使、开源领域意见领袖的共同倡议下升级为云原生社区。社区旨在构建一个开放、包容的交流环境，促进云原生技术的传播和普及。"
+  title : "云原生学院"
+  subtitle : "课程、直播、兴趣小组"
+  content : "云原生学院由云原生社区主办，致力于云原生知识的传播和普及。云原生学院定期举办线上直播活动， 组织 SIG（特别兴趣小组），直播分享云原生领域的前沿知识和动向。欢迎关注我们的 Bilibili 频道和直播间。"
   bg_image : "images/backgrounds/about-us-bg.png"
   image : "images/about/about-us.png"
   button:
-    enable : true;
-    label : "查看详情"
-    link : "/blog/cnc-announcement/"
+    enable : true
+    label : "进入学院"
+    link : "https://space.bilibili.com/515485124"
 
 ################################## funfacts ###############################
 funfacts :
@@ -147,13 +147,13 @@ testimonial:
 ################################# blog ################################################
 cta:
   enable : true
-  title : "做中国最具影响力的云原生社区，共同推动企业的云原生进程！"
+  title : "云原生社区近期活动"
   bg_image_webp : "images/backgrounds/cta-lg.webp"
   bg_image : "images/backgrounds/cta-lg.jpg"
   button:
     enable : true
-    label : "加入我们"
-    link : "contact"
+    label : "了解更多"
+    link : "https://github.com/cloudnativeto/community"
 
 ################################# blog ################################################
 blog:
