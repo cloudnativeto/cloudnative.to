@@ -1,6 +1,6 @@
 ---
 title: "Istio Pilot 源码分析（二）"
-description: "本篇主要介绍 Pilot 源码中的 ServiceEntryStore 及其推送 xDS 的流程"
+description: "本篇主要介绍 Pilot 源码中的 ServiceEntryStore 及其推送 xDS 的流程。"
 author: "[张海东](http://haidong.dev/)"
 image: "/images/blog/istio-pilot-banner.jpeg"
 categories: ["Istio","Service Mesh"]
