@@ -1,6 +1,6 @@
 ---
 title: "Istio Pilot 源码分析（三）"
-description: "本篇主要介绍 Pilot 源码中的 EnvoyXdsServer 的工作流程，重点探讨了防抖、SidecarScope 等逻辑"
+description: "本篇主要介绍 Pilot 源码中的 EnvoyXdsServer 的工作流程，重点探讨了防抖、SidecarScope 等逻辑。"
 author: "[张海东](http://haidong.dev/)"
 image: "/images/blog/istio-pilot-banner.jpeg"
 categories: ["Istio","Service Mesh"]
