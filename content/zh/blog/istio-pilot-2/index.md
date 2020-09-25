@@ -30,7 +30,7 @@ profile: "多点生活（成都）云原生开发工程师。"
 
 // ServiceEntryStore communicates with ServiceEntry CRDs and monitors for changes
 type ServiceEntryStore struct {
-  XdsUpdater model.XDSUpdater  // 用来接收 EnvouXdsServer 的接口，主要用来 Push 相应的 xDS 更新请求
+  XdsUpdater model.XDSUpdater  // 用来接收 EnvoyXdsServer 的接口，主要用来 Push 相应的 xDS 更新请求
   store      model.IstioConfigStore // 保存 ServiceEntry 实例的地方
   storeMutex sync.RWMutex  // 读写 store 时需要的锁
   // 以 hostname/namespace 以及类型（是服务还是实例）等作为索引的服务实例表
@@ -105,7 +105,7 @@ if event != model.EventDelete {
 }
 ```
 
-之后将新创建的 `ServiceInstance` 传入 `ServiceEntryStore` 专门处理 `EDS` 的函数 `s.edsUpdate()` 。在做进一步处理时，需要再刷新一遍索引表，调用 `maybeRefreshIndexes()` 避免其他协程的工作导致索引表更新不及时，完成后开启读锁，从服务实例索引表 `s.Instances` 中查找我们要处理的实例。如果是删除事件，先前更新索引表的时候已经删除了，所以这里是查不到 `allInstances` 的，直接向 `EnvouXdsServer` 发送删除 `EDS` 的请求。
+之后将新创建的 `ServiceInstance` 传入 `ServiceEntryStore` 专门处理 `EDS` 的函数 `s.edsUpdate()` 。在做进一步处理时，需要再刷新一遍索引表，调用 `maybeRefreshIndexes()` 避免其他协程的工作导致索引表更新不及时，完成后开启读锁，从服务实例索引表 `s.Instances` 中查找我们要处理的实例。如果是删除事件，先前更新索引表的时候已经删除了，所以这里是查不到 `allInstances` 的，直接向 `EnvoyXdsServer` 发送删除 `EDS` 的请求。
 
 ```go
 // edsUpdate triggers an EDS update for the given instances
