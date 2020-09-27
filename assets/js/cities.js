@@ -38,6 +38,6 @@ function cloudNativeBaiduMap(mapData){
   // 隐藏所有的城市介绍
   $(".city-introduction").hide();
 
-  // 默认展示北京市的城市介绍
-  $("#beijing").show();
+  // 设置默认展示的城市
+  $(".showByDefault").show();
 }
