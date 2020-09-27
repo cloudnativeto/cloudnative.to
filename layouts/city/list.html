@@ -2,12 +2,12 @@
 
 {{ $data := index .Site.Data .Site.Language.Lang }}
 
-{{ "<!-- cities -->" | safeHTML }}
+{{ "<!-- city -->" | safeHTML }}
 <section class="section">
   <div class="container">
     <div class="row">
       <div class="col-12 text-center">
-        {{ with $data.homepage.cities }}
+        {{ with $data.homepage.city }}
         <h3 class="section-title">{{ .title | markdownify }}</h3>
         {{ end }}
       </div>
@@ -15,15 +15,15 @@
     <div class="row">
 
       {{ range .Data.Pages }}
-      {{ "<!-- cities -->" | safeHTML }}
-        {{ .Render "cities" }}
+      {{ "<!-- city -->" | safeHTML }}
+        {{ .Render "city" }}
       {{ end }}
 
       <!-- 地图展示控件 -->
-      <div id="baidu-map-container" class="col-6 col-md-offset-6 cities-map"></div> 
+      <div id="baidu-map-container" class="col-6 col-md-offset-6 city-map"></div> 
       
       {{ "<!-- JS Plugins -->" | safeHTML }}
-      <script src={{.Params.jquery_lib | safeURL}}></script>
+      <script src={{.Params.jquery_lib | relURL}}></script>
 
       {{ "<!-- 引入百度地图依赖JS库 -->" | safeHTML }}
       {{ range .Params.baidu_maps }}
@@ -31,8 +31,8 @@
       {{ end }}
 
       {{ "<!-- 引入自定义地图操作相关 -->" | safeHTML }}
-      {{ $script := resources.Get .Params.cities_script | minify}}
-      <script src="{{ $script.Permalink | safeURL }}"></script>
+      {{ $script := resources.Get .Params.city_script | minify}}
+      <script src="{{ $script.Permalink | relURL }}"></script>
 
       <script type="text/javascript">
         // 初始化所有城市信息
@@ -51,7 +51,6 @@
     </div>
   </div>
 </section>
-{{ "<!-- /cities -->" | safeHTML }}
-
+{{ "<!-- /city -->" | safeHTML }}
 
 {{ end }}

@@ -113,7 +113,7 @@ team:
   # team member comes from "content/*/team" folder
 
 ################################# team ##############################################
-cities:
+city:
   enable : false
   subtitle : "云原生社区-城市站"
   title : "云原生社区-城市站"
