@@ -112,6 +112,13 @@ team:
   title : " 管理委员会"
   # team member comes from "content/*/team" folder
 
+################################# team ##############################################
+cities:
+  enable : false
+  subtitle : "云原生社区-城市站"
+  title : "云原生社区-城市站"
+  # team member comes from "content/*/team" folder
+
 ################################# project ############################################
 project:
   enable : false
