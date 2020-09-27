@@ -43,15 +43,15 @@ banner_feature:
 ################################## about ####################################
 about:
   enable : true
-  subtitle : "ABOUT CLOUD NATIVE COMMUNITY"
-  title : "NEUTRAL CLOUD NATIVE DEVELOPER COMMUNITY"
-  content : "Cloud Native Community began with the founding of Kubernetes & CloudNative in 2016, the group covers thousands of early cloud native advocates. Building on this group, in May 2020, CNCF ambassadors and opinion leaders in the open source communities launched a new initiative to bring the Cloud Native Communtiy. The community has been upgraded to a cloud native community, aiming to build an open and inclusive communication environment to promote the spread and popularity of cloud native technology."
+  subtitle : "CLOUD NATIVE ACADEMY"
+  title : "Courses, Meetup and SIGs"
+  content : "The Cloud Native Academy is hosted by the Cloud Native community and is dedicated to the dissemination and popularization of cloud native knowledge. Cloud Native Academy will regularly host live online events, inviting community members to bring knowledge and practice sharing in the field of cloud native. Follow us on [Bilibili](https://space.bilibili.com/515485124)."
   bg_image : "images/backgrounds/about-us-bg.png"
   image : "images/about/about-us.png"
   button:
     enable : true;
-    label : "Learn more"
-    link : "/blog/cnc-announcement/"
+    label : "Enter"
+    link : "https://space.bilibili.com/515485124"
 
 ################################## funfacts ###############################
 funfacts :
@@ -145,11 +145,11 @@ testimonial:
 ################################# blog ################################################
 cta:
   enable : true
-  title : "Be the most influential cloud native community in China, and work together to promote the enterprise's cloud native process!"
+  title : "RECENT EVENTS"
   bg_image : "images/backgrounds/cta-lg.jpg"
   button:
     enable : true
-    label : "Join Us"
+    label : "Learn more"
     link : "contact"
 
 ################################# blog ################################################

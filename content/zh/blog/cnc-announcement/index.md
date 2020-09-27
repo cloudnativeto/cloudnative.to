@@ -9,7 +9,7 @@ categories: ["开源社区"]
 tags: ["社区"]
 type: "post"
 avatar: "/images/profile/jimmysong.jpg"
-profile: "蚂蚁金服云原生布道师，ServiceMesher 社区联合创始人，CNCF Ambassador，热衷开源和分享。"
+profile: "Tetrate 布道师，ServiceMesher 社区联合创始人，CNCF Ambassador，热衷开源和分享。"
 ---
 
 2020 年伊始，受新冠疫情影响，全球各地的员工开启了在家办公的模式，因此人与人之间的距离感觉被拉远了。但是云原生圈子里有我们这样一群人，因为一个共同的愿景聚集到了一起，组建了社区管理委员会，并在过去的三个月里利用业余时间，齐心协力完成了社区的筹备工作。今天我们要正式宣布云原生社区正式成立了。
@@ -42,8 +42,6 @@ profile: "蚂蚁金服云原生布道师，ServiceMesher 社区联合创始人�
 
 ## 加入社区
 
-云原生社区免费申请加入，关注云原生社区官方微信公众号，在公众号中回复关键词 `加入`，即可获得申请链接。
+关注云原生社区微信公众号，进入公众号后台，点击“加入社区”。
 
-<p align="center">
-  <img src="/contact/qrcode.jpg" tile="云原生社区微信公众号二维码" alt="云原生社区微信公众号二维码" width="128px">
-</p>
+![云原生社区公众号二维码](/contact/qrcode.jpg)
