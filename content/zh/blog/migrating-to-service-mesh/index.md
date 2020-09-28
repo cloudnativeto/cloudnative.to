@@ -1,4 +1,5 @@
-title: "翻译：迁移到服务网格"
+---
+title: "【译】迁移到服务网格"
 description: "本文翻译自 Dariusz Jędrzejczyk 的文章 Migrating to Service Mesh"
 author: "Dariusz Jędrzejczyk"
 translator: "[张晓辉](https://atbug.com)"
@@ -114,4 +115,3 @@ Envoy 社区提供了大量的支持。我们在需要的时候获得了帮助�
 > Likes to think of himself as a Platform Engineer. Leads the team responsible for Service Mesh, Service Discovery and libraries that boost developers’ productivity on the JVM.
 
 > [see 2 posts by Dariusz Jędrzejczyk](https://allegro.tech/authors/dariusz.jedrzejczyk)
-
