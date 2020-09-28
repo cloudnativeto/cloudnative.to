@@ -13,7 +13,6 @@ type: "post"
 
 本文译自[Migrating to Service Mesh](https://allegro.tech/2020/05/migrating-to-service-mesh.html)
 
----
 
 今年[Allegro.pl](https://allegro.tech/about-us/) 21 岁。 该公司在为数以百万级的波兰人提供在线购物服务的同时，还参与了许多技术进步。利用公有云的能力、机器学习来打破单体模式。即使我们使用的许多技术看起来还是在宣传阶段，但它们的采用还是有可靠的理由的支撑。
 
