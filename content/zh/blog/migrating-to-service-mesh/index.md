@@ -3,18 +3,15 @@ title: "【译】迁移到服务网格"
 description: "本文翻译自 Dariusz Jędrzejczyk 的文章 Migrating to Service Mesh"
 author: "Dariusz Jędrzejczyk"
 translator: "[张晓辉](https://atbug.com)"
-image: "https://atbug.oss-cn-hangzhou.aliyuncs.com/2020/09/28/16012823959692.jpg"
+image: "https://atbug.oss-cn-hangzhou.aliyuncs.com/2020/09/28/cloudmigration.jpg"
 categories: ["Service Mesh"]
 tags: ["Service Mesh","翻译"]
 date: 2020-09-28T16:00:00+08:00
 type: "post"
 ---
-
-
 本文译自[Migrating to Service Mesh](https://allegro.tech/2020/05/migrating-to-service-mesh.html)
 
-
-今年[Allegro.pl](https://allegro.tech/about-us/) 21 岁。 该公司在为数以百万级的波兰人提供在线购物服务的同时，还参与了许多技术进步。利用公有云的能力、机器学习来打破单体模式。即使我们使用的许多技术看起来还是在宣传阶段，但它们的采用还是有可靠的理由的支撑。
+今年[Allegro.pl](https://allegro.tech/about-us/) 已满21 岁。该公司在为数以百万计的波兰人提供在线购物服务的同时，还参与了许多技术进步。您可以使用公共云产品，机器学习来打破僵局。即使我们使用的许多技术似乎只是在大肆宣传，但他们的采用依然有可靠的理由的支持。让我告诉你一个我有幸从事的项目的故事。
 
 ## 为什么
 
@@ -28,7 +25,7 @@ type: "post"
 
 ## 复杂性
 
-类似 Allegro.pl 这样的在线市场是一个复杂的野兽。业务的许多部分都按照自己的节奏来演进并使用不同的技术。我们的服务（主要基于 JVM）主要运行在作为本地私有云解决方案的 Mesos/Marathon 上。我们刚刚开始讲服务前移到 Kubernetes（简写为 k8s）。在合理的情况下（并且需要将其与我们的技术栈集成），我们也会使用公有云。一些服务打包在 Docker 中。但是我们的架构不仅仅有微服务。我们还有：
+类似 Allegro.pl 这样的在线市场是一个复杂的野兽。业务的许多部分都按照自己的节奏来演进并使用不同的技术。我们的服务（主要基于 JVM）主要运行在作为本地私有云解决方案的 Mesos/Marathon 上。我们刚刚开始将服务前移到 Kubernetes。在合理的情况下（并且需要将其与我们的技术栈集成），我们也会使用公有云。一些服务打包在 Docker 中。但是我们的架构不仅仅有微服务。我们还有：
 * 必要的一些边缘解决方案（API 网关、边缘代理、前端后端等）
 * 外部负载均衡器
 * 反向代理
@@ -105,12 +102,12 @@ type: "post"
 Envoy 社区提供了大量的支持。我们在需要的时候获得了帮助并且 Pull Request 合并快。Envoy 的更新速度非常快，我们正在提取大量可观察性数据，而且几乎不会对我们的服务间通信带来影响。对[我自己](https://github.com/chemicL/envoy-timeouts)和我有幸一起合作的出色的团队来说，学习经验绝对是无价之宝。我们是应用程序开发人员，但是在整个过程中我们学习了很多的网络和协议知识。我们将继续回馈社区，并期待在评论中听到您使用 Service Mesh 的经历。
 
 
-> 作者介绍
-> [Dariusz Jędrzejczyk](https://allegro.tech/authors/dariusz.jedrzejczyk)
-> ![](https://allegro.tech/img/authors/dariusz.jedrzejczyk.jpg)
+作者介绍
+[Dariusz Jędrzejczyk](https://allegro.tech/authors/dariusz.jedrzejczyk)
+![](https://allegro.tech/img/authors/dariusz.jedrzejczyk.jpg)
 
-> [chemicL](https://github.com/chemicL)
+[chemicL](https://github.com/chemicL)
 
-> Likes to think of himself as a Platform Engineer. Leads the team responsible for Service Mesh, Service Discovery and libraries that boost developers’ productivity on the JVM.
+Likes to think of himself as a Platform Engineer. Leads the team responsible for Service Mesh, Service Discovery and libraries that boost developers’ productivity on the JVM.
 
-> [see 2 posts by Dariusz Jędrzejczyk](https://allegro.tech/authors/dariusz.jedrzejczyk)
+[see 2 posts by Dariusz Jędrzejczyk](https://allegro.tech/authors/dariusz.jedrzejczyk)
