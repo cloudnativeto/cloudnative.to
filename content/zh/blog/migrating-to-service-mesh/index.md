@@ -100,14 +100,3 @@ type: "post"
 ## (最后) 感谢
 
 Envoy 社区提供了大量的支持。我们在需要的时候获得了帮助并且 Pull Request 合并快。Envoy 的更新速度非常快，我们正在提取大量可观察性数据，而且几乎不会对我们的服务间通信带来影响。对[我自己](https://github.com/chemicL/envoy-timeouts)和我有幸一起合作的出色的团队来说，学习经验绝对是无价之宝。我们是应用程序开发人员，但是在整个过程中我们学习了很多的网络和协议知识。我们将继续回馈社区，并期待在评论中听到您使用 Service Mesh 的经历。
-
-
-作者介绍
-[Dariusz Jędrzejczyk](https://allegro.tech/authors/dariusz.jedrzejczyk)
-![](https://allegro.tech/img/authors/dariusz.jedrzejczyk.jpg)
-
-[chemicL](https://github.com/chemicL)
-
-Likes to think of himself as a Platform Engineer. Leads the team responsible for Service Mesh, Service Discovery and libraries that boost developers’ productivity on the JVM.
-
-[see 2 posts by Dariusz Jędrzejczyk](https://allegro.tech/authors/dariusz.jedrzejczyk)
