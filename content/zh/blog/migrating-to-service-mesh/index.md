@@ -10,7 +10,6 @@ date: 2020-09-28T16:00:00+08:00
 type: "post"
 ---
 
-# 翻译：迁移到服务网格
 
 本文译自[Migrating to Service Mesh](https://allegro.tech/2020/05/migrating-to-service-mesh.html)
 
