@@ -8,6 +8,7 @@ categories: ["Service Mesh"]
 tags: ["Service Mesh","翻译"]
 date: 2020-09-28T16:00:00+08:00
 type: "post"
+---
 
 # 翻译：迁移到服务网格
 
