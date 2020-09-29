@@ -89,7 +89,7 @@ profile: "自认为是平台工程师。领导的开发团队负责服务网格�
 * Envoy 对 HTTP 非常严格。例如，我们需要更新许多位置来使请求头名称不区分大小写
 * 我们在许多部署中发现突然增加的 503 错误。原因可能是由于连接超时（否则不会被解释为应用程序级别的问题，只能由客户端重试），或者是我们的服务注册机制中的竞争条件，偶尔发生
 * 当我们继承 Hadoop 时，我们开始遇到一个问题，即 Envoy 在接收配置时会卡住，最终无法使用。这是由于进入所谓的“集群预热”状态。当整个服务消失时，就会发生这种情况，在我们的环境中，这并不罕见。[我们更新了以前的提交](https://github.com/envoyproxy/java-control-plane/pull/128)，并[对 java-contraol-plane 做了进一步改进](https://github.com/envoyproxy/java-control-plane/pull/131)来解决我们的特定问题
-* 我们还尽早决定鼓励开发人员通过 Envoy 将流量代理到[更多域](https://en.wikipedia.org/wiki/Network_domain)。域市值不属于 mesh 但由 DNS（外部或者内部域名）表示的目标。这引起了一些意外，例如 Envoy 不支持 [HTTP CONNECT 方法](https://github.com/envoyproxy/envoy/issues/1451)[^1]或者 [H2 upgrade 机制](https://github.com/envoyproxy/envoy/issues/1451)[^2]
+* 我们还尽早决定鼓励开发人员通过 Envoy 将流量代理到[更多域](https://en.wikipedia.org/wiki/Network_domain)。这里域，我们是指不属于 mesh 但由 DNS（外部或者内部域名）表示的目标。这引起了一些意外，例如 Envoy 不支持 [HTTP CONNECT 方法](https://github.com/envoyproxy/envoy/issues/1451)[^1]或者 [H2 upgrade 机制](https://github.com/envoyproxy/envoy/issues/1451)[^2]
 * 我们发现的另一个有趣的问题是在将 Envoy 部署到 PHP 单体应用环境中之后，Envoy 的统计数据被误导。热重启后，gauges 上的还是[来自上一个实例的值](https://github.com/envoyproxy/envoy/issues/10806)
 
 [^1]: 译者注：在 HTTP 协议中，CONNECT 方法可以开启一个客户端与所请求资源之间的双向沟通的通道。它可以用来创建隧道（tunnel）
@@ -97,7 +97,7 @@ profile: "自认为是平台工程师。领导的开发团队负责服务网格�
 
 ## 演进
 
-在复杂的环境中部署Service Mesh是一项巨大的变革，数百名应用程序开发人员进行了大量工作。迁移帮助团队减少了技术债务。这种减少是迁移到提供 Service Mesh 支持的最新版本库的副产品。为 k8s 创建的现成的崭新的控制平面非常适合未开发的项目，但是对于许多存在异构技术栈的组织来说，这是无法达到的。Envoy 的主要创建者 Matt Klein 最近在[博客](https://mattklein123.dev/2020/03/15/on-the-state-of-envoy-proxy-control-planes/)中描述了这一事实 。我希望这个故事对您有所帮助，并展示在这种环境下从鸟瞰角度看生产部署的样子。我们接下来要考虑的是将现有服务与 k8s 原生解决方案集成在一起的方法，来为我们的用户提供无缝的体验。我们在稳定和优化我们的控制平面方面进行了大量工作，该控制平面现在在生产中托管了 5000多个 Envoy 实例，其中一些需要针对 Consul 中注册的近 1000 个服务实例进行配置。我们路线图上的愿景是重新访问分布式跟踪而无需修改库且让开发人员再次迁移。Envoy可以做到这一点。
+在复杂的环境中部署Service Mesh是一项巨大的变革，数百名应用程序开发人员进行了大量工作。迁移帮助团队减少了技术债务。这种减少是迁移到提供 Service Mesh 支持的最新版本库的副产品。为 k8s 创建的现成的崭新的控制平面非常适合未开发的项目，但是对于许多存在异构技术栈的组织来说，这是无法达到的。Envoy 的主要创建者 Matt Klein 最近在[博客](https://mattklein123.dev/2020/03/15/on-the-state-of-envoy-proxy-control-planes/)中描述了这一事实 。我希望这个故事对您有所帮助，并展示在这种环境下从鸟瞰角度看生产部署的样子。我们接下来要考虑的是将现有服务与 k8s 原生解决方案集成在一起的方法，来为我们的用户提供无缝的体验。我们在稳定和优化我们的控制平面方面进行了大量工作，该控制平面现在在生产中托管了 5000多个 Envoy 实例，其中一些需要针对 Consul 中注册的近 1000 个服务实例进行配置。我们的愿景以及下一步要做的是，开发人员无需修改库和迁移，就能重新访问分布式跟踪。Envoy可以做到这一点。
 
 ## (最后) 感谢
 
