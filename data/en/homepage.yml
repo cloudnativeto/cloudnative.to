@@ -6,7 +6,7 @@ slider:
     - subtitle : "WELCOME TO THE "
       title : "CLOUD NATIVE COMMUNITY"
       content : "Cloud Native Community began with the founding of Kubernetes & CloudNative in 2016, the group covers thousands of early cloud native advocates. Building on this group, in May 2020, CNCF ambassadors and opinion leaders in the open source communities launched a new initiative to bring the Cloud Native Communtiy. The community has been upgraded to a cloud native community, aiming to build an open and inclusive communication environment to promote the spread and popularity of cloud native technology."
-      bg_image : "images/slider/banner-1.png"
+      bg_image : "images/slider/banner-1.jpg"
       animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
       button:
         enable : true
