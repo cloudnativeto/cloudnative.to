@@ -1,6 +1,6 @@
 ---
 title: "【译】迁移到服务网格"
-description: "本文翻译自 Dariusz Jędrzejczyk 的文章 Migrating to Service Mesh"
+description: "本文翻译自 Dariusz Jędrzejczyk 的文章 Migrating to Service Mesh。"
 author: "Dariusz Jędrzejczyk"
 translator: "[张晓辉](https://atbug.com)"
 image: "https://atbug.oss-cn-hangzhou.aliyuncs.com/2020/09/28/cloudmigration.jpg"
