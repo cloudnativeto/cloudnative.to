@@ -65,13 +65,13 @@ profile: "Likes to think of himself as a Platform Engineer. Leads the team respo
 
 当我们使用 Envoy 作为 [sidecar](https://docs.microsoft.com/en-us/azure/architecture/patterns/sidecar) 来启动一个服务时，我们使用取巧的方式来完成服务在 Consul 中的注册。注册使用的是 Envoy 的端口，而不是服务的端口。使用这项技术，我们实现了迁移的第一步-将服务的入口流量转移到 Envoy。
 
-如果有出口流量，事情就不那么容易了。由于缺少容器化的网络隔离，iptables 一直是维护和调试的噩梦。我们为引入 Envoy 作为出口指定了长期的策略。我们决定所有服务都需要将其 SDK 更新为支持使用 Envoy 作为代理的指定的 HTTP 客户端。
+如果有出口流量，事情就不那么容易了。由于缺少容器化的网络隔离，iptables 一直是维护和调试的噩梦。我们为引入 Envoy 作为出口制定了长期的策略。我们决定所有服务都需要将其 SDK 更新为支持使用 Envoy 作为代理的指定的 HTTP 客户端。
 
-这个决定是迁移工作中的非常重要的一步。我们不想破坏现有平台的功能，比如 SDK 中实现的负载均衡。我们希望早日地凸显出 Service Mesh 的价值来引起雪球效应。同事，我们以敏捷的方式引入新的功能。
+这个决定是迁移工作中的非常重要的一步。我们不想破坏现有平台的功能，比如 SDK 中实现的负载均衡。我们希望早日地凸显出 Service Mesh 的价值来引起雪球效应。同时，我们以敏捷的方式引入新的功能。
 
-一个指定的代理是平滑迁移的关进所在。为了处理尚未在 Service Mesh 中实现或需要特定处理类型的特定场景，我们创建了一个特别的 HTTP 客户端拦截器。该拦截器将决定是否代理请求。决策基于一组标志，对于具有高度控制权的部署，我们可以覆盖这些标志并精心部署。
+一个指定的代理是平滑迁移的关键所在。为了处理尚未在 Service Mesh 中实现或需要特定处理类型的特定场景，我们创建了一个特别的 HTTP 客户端拦截器。该拦截器将决定是否代理请求。决策基于一组标志，对于具有高度控制权的部署，我们可以覆盖这些标志并精心部署。
 
-我们尚无法代理流量的一个例子是通过应用程序代码使用 [mTLS](https://en.wikipedia.org/wiki/Mutual_authentication) 的场景。我们不想破坏现有设置提供的安全性。但是，当我们准备就绪时，我们只需要翻转一个标志，然后重新部署，流量便回通过 Envoy。
+我们尚无法代理流量的一个例子是通过应用程序代码使用 [mTLS](https://en.wikipedia.org/wiki/Mutual_authentication) 的场景。我们不想破坏现有设置提供的安全性。但是，当我们准备就绪时，我们只需要翻转一个标志，然后重新部署，流量便会通过 Envoy。
 
 谈到安全性，为了对 Envoy 进行身份验证，我们不适用 [SDS 进行证书分发](https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/security/ssl#secret-discovery-service-sds)。我们的主机配备了由部署组件提供的证书。我们计划使用这些证书对 Envoy 进行身份验证，使其成为证书所述的服务。这样，我们就可以使用 Envoy 执行的访问规则所施加的权限来限制服务之间的通信。
 
