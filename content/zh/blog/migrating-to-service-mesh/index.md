@@ -44,9 +44,9 @@ profile: "自认为是平台工程师。领导的开发团队负责服务网格�
 
 我的团队负责为 JVM 开发人员提供接入平台组件的框架。我们在基于 JVM 的语言：Java 和 Kotlin 拥有丰富的经验。同样我们也对 Go 有一定的了解。Envoy 团队提供了控制平面的两种实现：一种是用 Go 编写的，另一种是用 Java 编写的。我们决定用 Kotlin 来编写我们的解决方案，并将其开源。幕后，我们使用了[java-control-plane](https://github.com/envoyproxy/java-control-plane/)库，并参与其维护。
 
-我们平台的服务发现是基于 [Hashicorp 的 Consul](https://www.consul.io/)。我们已经使用 Java 编写了与Consul高效集成的 [库](https://github.com/allegro/consul-recipes)，我们在项目中使用了该库。我们将其作为我们的控制平面 [envoy-control](https://github.com/allegro/envoy-control)。
+我们平台的服务发现是基于 [Hashicorp 的 Consul](https://www.consul.io/)。我们已经使用 Java 编写了与 Consul 高效集成的 [库](https://github.com/allegro/consul-recipes)，我们在项目中使用了该库。我们将其作为我们的控制平面 [envoy-control](https://github.com/allegro/envoy-control)。
 
-因为它使用了一种高级语言，即 Kotlin 和 JVM 生态的工具，我们可以用它做很多有趣的事情，比如使用[Testcontainers](https://www.testcontainers.org/)进行可靠性测试。这些测试模拟了集中可能的生产故障，并且可以在笔记本电脑上快速运行。该测试套件替我们节省了**大量**时间。
+因为它使用了一种高级语言，即 Kotlin 和 JVM 生态的工具，我们可以用它做很多有趣的事情，比如使用 [Testcontainers](https://www.testcontainers.org/) 进行可靠性测试。这些测试模拟了集中可能的生产故障，并且可以在笔记本电脑上快速运行。该测试套件替我们节省了**大量**时间。
 
 此外，经过一段时间的 Envoy 和 envoy-control 的维护之后，我们一直认为我们需要一个管理面板。因此我们通过支持服务实现了 GUI 组件来简化操作。从控制中心我们可以：
 * 列出服务的所有实例
@@ -81,7 +81,7 @@ profile: "自认为是平台工程师。领导的开发团队负责服务网格�
 
 应用程序开发人员可以在专有的 Dashboard 上查看其特定的服务流量特征。如果需要，甚至可以从指标角度研究特定 Envoy 实例。
 
-在此过程中，我们能够保持现有路由解决方案和数据中心之间的负载平衡，包括基于金丝雀发布、特定服务标签、或者Consule 中实例权重的特定子集。
+在此过程中，我们能够保持现有路由解决方案和数据中心之间的负载平衡，包括基于金丝雀发布、特定服务标签、或者 Consul 中实例权重的特定子集。
 
 ## 曲折
 
