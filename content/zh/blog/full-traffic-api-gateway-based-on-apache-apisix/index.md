@@ -4,7 +4,7 @@
 
 Apache顶级项目APISIX的PMC主席。
 
-Skywalking开源项目的贡献者(commiter)。
+Skywalking开源项目的贡献者(committer)。
 
 在创业之前, 在360做企业安全, 360开源委员会的发起人, 腾讯的TVP, TARS基金会的TOC成员, 在安全领域有四十多个专利。
 
