@@ -88,7 +88,7 @@ profile: "自认为是平台工程师。领导的开发团队负责服务网格�
 通过引入代理组件，我们在迁移过程中遇到了许多问题。这里仅列出一部分：
 * Envoy 对 HTTP 非常严格。例如，我们需要更新许多位置来使请求头名称不区分大小写
 * 我们在许多部署中发现突然增加的 503 错误。原因可能是由于连接超时（否则不会被解释为应用程序级别的问题，只能由客户端重试），或者是我们的服务注册机制中的竞争条件，偶尔发生
-* 当我们继承 Hadoop 是，我们开始遇到一个问题，即 Envoy 在接收配置时会卡住，最终无法使用。这是由于进入所谓的“集群预热”状态。当整个服务消失时，就会发生这种情况，在我们的环境中，这并不罕见。[我们更新了以前的提交](https://github.com/envoyproxy/java-control-plane/pull/128)，并[对 java-contraol-plane 做了进一步改进](https://github.com/envoyproxy/java-control-plane/pull/131)来解决我们的特定问题
+* 当我们继承 Hadoop 时，我们开始遇到一个问题，即 Envoy 在接收配置时会卡住，最终无法使用。这是由于进入所谓的“集群预热”状态。当整个服务消失时，就会发生这种情况，在我们的环境中，这并不罕见。[我们更新了以前的提交](https://github.com/envoyproxy/java-control-plane/pull/128)，并[对 java-contraol-plane 做了进一步改进](https://github.com/envoyproxy/java-control-plane/pull/131)来解决我们的特定问题
 * 我们还尽早决定鼓励开发人员通过 Envoy 将流量代理到[更多域](https://en.wikipedia.org/wiki/Network_domain)。域市值不属于 mesh 但由 DNS（外部或者内部域名）表示的目标。这引起了一些意外，例如 Envoy 不支持 [HTTP CONNECT 方法](https://github.com/envoyproxy/envoy/issues/1451)[^1]或者 [H2 upgrade 机制](https://github.com/envoyproxy/envoy/issues/1451)[^2]
 * 我们发现的另一个有趣的问题是在将 Envoy 部署到 PHP 单体应用环境中之后，Envoy 的统计数据被误导。热重启后，gauges 上的还是[来自上一个实例的值](https://github.com/envoyproxy/envoy/issues/10806)
 
