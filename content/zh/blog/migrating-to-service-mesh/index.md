@@ -9,7 +9,7 @@ tags: ["Service Mesh","翻译"]
 date: 2020-09-28T16:00:00+08:00
 type: "post"
 ---
-本文译自[Migrating to Service Mesh](https://allegro.tech/2020/05/migrating-to-service-mesh.html)
+本文译自[Migrating to Service Mesh](https://allegro.tech/2020/05/migrating-to-service-mesh.html)。
 
 今年[Allegro.pl](https://allegro.tech/about-us/) 已满21 岁。该公司在为数以百万计的波兰人提供在线购物服务的同时，还参与了许多技术进步。您可以使用公共云产品，机器学习来打破僵局。即使我们使用的许多技术似乎只是在大肆宣传，但他们的采用依然有可靠的理由的支持。让我告诉你一个我有幸从事的项目的故事。
 
