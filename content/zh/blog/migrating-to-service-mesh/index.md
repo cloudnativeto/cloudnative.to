@@ -38,7 +38,7 @@ profile: "Likes to think of himself as a Platform Engineer. Leads the team respo
 
 ## 怎么做
 
-旅途始于 2018年底。当时我们评估了现有的解决方案，然后发现大多数技术仅针对 k8s。我们[尝试了](https://envoy-control.readthedocs.io/en/latest/ec_vs_other_software/) [Istio](https://istio.io/)，结果证明仅要求 k8s 容器提供的网络隔离。我们需要一个定制的[控制平面](https://blog.envoyproxy.io/service-mesh-data-plane-vs-control-plane-2774e720f7fc)将所有的东西整合在一起。同时我们使用Envoy](https://www.envoyproxy.io/)作为最稳定、最先进的 L7 代理，其可以满足我们的需求。Envoy 是用 C++ 开发的，由于其内存管理且没有垃圾收集和许多令人印象深刻的架构决策（例如线程模型），提供了可预测的稳定的延迟。
+旅途始于 2018年底。当时我们评估了现有的解决方案，然后发现大多数技术仅针对 k8s。我们[尝试了](https://envoy-control.readthedocs.io/en/latest/ec_vs_other_software/) [Istio](https://istio.io/)，结果证明仅要求 k8s 容器提供的网络隔离。我们需要一个定制的[控制平面](https://blog.envoyproxy.io/service-mesh-data-plane-vs-control-plane-2774e720f7fc)将所有的东西整合在一起。同时我们使用[Envoy](https://www.envoyproxy.io/)作为最稳定、最先进的 L7 代理，其可以满足我们的需求。Envoy 是用 C++ 开发的，由于其内存管理且没有垃圾收集和许多令人印象深刻的架构决策（例如线程模型），提供了可预测的稳定的延迟。
 
 ### 控制平面
 
