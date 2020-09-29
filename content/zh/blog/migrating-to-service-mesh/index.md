@@ -13,7 +13,7 @@ profile: "自认为是平台工程师。领导的开发团队负责服务网格�
 ---
 本文译自[Migrating to Service Mesh](https://allegro.tech/2020/05/migrating-to-service-mesh.html)。
 
-今年[Allegro.pl](https://allegro.tech/about-us/) 已满21 岁。该公司在为数以百万计的波兰人提供在线购物服务的同时，还参与了许多技术进步。您可以使用公共云产品，机器学习来打破僵局。即使我们使用的许多技术似乎只是在大肆宣传，但他们的采用依然有可靠的理由的支持。让我告诉你一个我有幸从事的项目的故事。
+今年 [Allegro.pl](https://allegro.tech/about-us/) 已满21 岁。该公司在为数以百万计的波兰人提供在线购物服务的同时，还参与了许多技术进步。您可以使用公共云产品，机器学习来打破僵局。即使我们使用的许多技术似乎只是在大肆宣传，但他们的采用依然有可靠的理由的支持。让我告诉你一个我有幸从事的项目的故事。
 
 ## 为什么要迁移到服务网格
 
@@ -42,7 +42,7 @@ profile: "自认为是平台工程师。领导的开发团队负责服务网格�
 
 ### 控制平面
 
-我的团队负责为 JVM 开发人员提供接入平台组件的框架。我们在基于 JVM 的语言：Java 和 Kotlin 拥有丰富的经验。同样我们也对 Go 有一定的了解。Envoy 团队提供了控制平面的两种实现：一种是用 Go 编写的，另一种是用 Java 编写的。我们决定用 Kotlin 来编写我们的解决方案，并将其开源。幕后，我们使用了[java-control-plane](https://github.com/envoyproxy/java-control-plane/)库，并参与其维护。
+我的团队负责为 JVM 开发人员提供接入平台组件的框架。我们在基于 JVM 的语言：Java 和 Kotlin 拥有丰富的经验。同样我们也对 Go 有一定的了解。Envoy 团队提供了控制平面的两种实现：一种是用 Go 编写的，另一种是用 Java 编写的。我们决定用 Kotlin 来编写我们的解决方案，并将其开源。幕后，我们使用了 [java-control-plane](https://github.com/envoyproxy/java-control-plane/) 库，并参与其维护。
 
 我们平台的服务发现是基于 [Hashicorp 的 Consul](https://www.consul.io/)。我们已经使用 Java 编写了与 Consul 高效集成的 [库](https://github.com/allegro/consul-recipes)，我们在项目中使用了该库。我们将其作为我们的控制平面 [envoy-control](https://github.com/allegro/envoy-control)。
 
