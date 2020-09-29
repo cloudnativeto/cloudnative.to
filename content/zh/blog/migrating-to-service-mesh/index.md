@@ -15,7 +15,7 @@ profile: "Likes to think of himself as a Platform Engineer. Leads the team respo
 
 今年[Allegro.pl](https://allegro.tech/about-us/) 已满21 岁。该公司在为数以百万计的波兰人提供在线购物服务的同时，还参与了许多技术进步。您可以使用公共云产品，机器学习来打破僵局。即使我们使用的许多技术似乎只是在大肆宣传，但他们的采用依然有可靠的理由的支持。让我告诉你一个我有幸从事的项目的故事。
 
-## 为什么
+## 为什么要迁移到服务网格
 
 我不准备对 Service Mesh 的背景知识做过多的讨论，因为已经有大量关于此主题的文章。我曾写过[一篇文章](https://nofluffjobs.com/blog/jakie-korzysci-daje-service-mesh/)（波兰语），专门介绍我们为什么决定从这种方法中收益。
 
@@ -25,7 +25,7 @@ profile: "Likes to think of himself as a Platform Engineer. Leads the team respo
 * 统一服务间通信的访问控制
 * 统一服务间流量的 HTTP 层面可观察性
 
-## 复杂性
+## 系统的复杂性
 
 类似 Allegro.pl 这样的在线市场是一个复杂的野兽。业务的许多部分都按照自己的节奏来演进并使用不同的技术。我们的服务（主要基于 JVM）主要运行在作为本地私有云解决方案的 Mesos/Marathon 上。我们刚刚开始将服务前移到 Kubernetes。在合理的情况下（并且需要将其与我们的技术栈集成），我们也会使用公有云。一些服务打包在 Docker 中。但是我们的架构不仅仅有微服务。我们还有：
 * 必要的一些边缘解决方案（API 网关、边缘代理、前端后端等）
@@ -36,7 +36,7 @@ profile: "Likes to think of himself as a Platform Engineer. Leads the team respo
 * 用于批处理任务的 Hadoop 集群
 * 以及臭名昭著的独立的且仍在运行的 PHP 整体
 
-## 怎么做
+## 如何迁移到服务网格
 
 旅途始于 2018年底。当时我们评估了现有的解决方案，然后发现大多数技术仅针对 k8s。我们[尝试了](https://envoy-control.readthedocs.io/en/latest/ec_vs_other_software/) [Istio](https://istio.io/)，结果证明仅要求 k8s 容器提供的网络隔离。我们需要一个定制的[控制平面](https://blog.envoyproxy.io/service-mesh-data-plane-vs-control-plane-2774e720f7fc)将所有的东西整合在一起。同时我们使用[Envoy](https://www.envoyproxy.io/)作为最稳定、最先进的 L7 代理，其可以满足我们的需求。Envoy 是用 C++ 开发的，由于其内存管理且没有垃圾收集和许多令人印象深刻的架构决策（例如线程模型），提供了可预测的稳定的延迟。
 
