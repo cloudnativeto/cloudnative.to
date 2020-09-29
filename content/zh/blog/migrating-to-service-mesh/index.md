@@ -9,7 +9,7 @@ tags: ["Service Mesh","翻译"]
 date: 2020-09-28T16:00:00+08:00
 type: "post"
 avatar: "https://allegro.tech/img/authors/dariusz.jedrzejczyk.jpg"
-profile: "Likes to think of himself as a Platform Engineer. Leads the team responsible for Service Mesh, Service Discovery and libraries that boost developers’ productivity on the JVM."
+profile: "自认为是平台工程师。领导的开发团队负责服务网格、服务发现和提高开发人员在 JVM 上的生产力的库。"
 ---
 本文译自[Migrating to Service Mesh](https://allegro.tech/2020/05/migrating-to-service-mesh.html)。
 
