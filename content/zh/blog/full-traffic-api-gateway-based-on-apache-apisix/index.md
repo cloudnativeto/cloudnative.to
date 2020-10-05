@@ -1,13 +1,13 @@
 ---
-title: "APACHE APISIX的全流量API网关"
-description: "ApiSix 是中国唯一由初创公司贡献的 Apache 顶级项目，也是最快毕业的项目（历时9个月）。"
+title: "Apache APISIX的全流量API网关统筹集群流量"
+description: "基于 Apache APISIX 的全流量 API 网关统筹集群流量 https://www.bilibili.com/video/BV1Gt4y1q7qC"
 author: "温铭"
 image: "![book_image](images/book_image.png)"
 categories: ["gateway"]
 tags: ["gateway"]
 date: 2020-09-30T16:00:00+08:00
 type: "post"
-avatar: "![book_image](images/profile/wenming.png)"
+avatar: "/images/profile/sundongmin.jpg"
 profile: "来自一家在远程工作方式下商业化开源项目的创业公司（支流科技），担任 CEO 兼联合创始人，与支流科技 (ApiSix) 类似的公司有 Confluent（Kafka 产品）、PinCap（TiDB产品），支流科技是 Linux 基金会白银会员、Linux 微服务 TARS 基金会创始会员。Apache 顶级项目 APISIX 的 PMC 主席。Skywalking 开源项目的贡献者 (committer)。在创业之前，在360做企业安全，360开源委员会的发起人，腾讯的 TVP，TARS 基金会的 TOC 成员，在安全领域有四十多个专利。最近三年全职在做服务端的开源项目开发。在极客时间专栏著有OpenResty从入门到实战。"
 ---
 
@@ -373,8 +373,8 @@ ApiSix 只是使用了 Nginx 的网络库而并没有使用路由库，重写优
 
 欢迎大家给 Apache APISIX 贡献！
 
-项目地址：https://github.com/apache/apisix
-
-邮箱：wenming@apache.org
-
-QQ 群：578997126
+| 名称     | 地址                             |
+| -------- | -------------------------------- |
+| 项目地址 | https://github.com/apache/apisix |
+| 邮箱     | wenming@apache.org               |
+| QQ 群    | 578997126                        |
