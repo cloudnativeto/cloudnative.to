@@ -1,7 +1,7 @@
 ---
 title: "Apache APISIX的全流量API网关统筹集群流量"
 description: "基于 Apache APISIX 的全流量 API 网关统筹集群流量。"
-author: "温铭"
+author: "[温铭](https://github.com/moonming)"
 image: "/images/blog/apache_apisix.png"
 categories: ["gateway"]
 tags: ["gateway"]
@@ -9,12 +9,13 @@ date: 2020-09-30T16:00:00+08:00
 type: "post"
 avatar: "/images/profile/wenming.png"
 profile: "来自一家在远程工作方式下商业化开源项目的创业公司（支流科技），担任 CEO 兼联合创始人，与支流科技 (Apache APISIX) 类似的公司有 Confluent（Kafka 产品）、PinCap（TiDB产品），支流科技是 Linux 基金会白银会员、Linux 微服务 TARS 基金会创始会员。Apache 顶级项目 APISIX 的 PMC 主席。Skywalking 开源项目的贡献者 (committer)。在创业之前，在360做企业安全，360开源委员会的发起人，腾讯的 TVP，TARS 基金会的 TOC 成员，在安全领域有四十多个专利。最近三年全职在做服务端的开源项目开发。在极客时间专栏著有OpenResty从入门到实战。"
-
 ---
 
-本文根据我在云原生学院的分享整理而成，视频见：<https://www.bilibili.com/video/BV1Gt4y1q7qC>。
+本文根据我在云原生学院的分享整理而成，视频见 [Bilibli](https://www.bilibili.com/video/BV1Gt4y1q7qC)。
 
-> 本文将从云原生时代的机遇和挑战说起，介绍一个全新的开源高性能云原生 API 网关————Apache APISIX，探讨如何解决云原生时代 API 网关所面临的一些痛点，最后介绍该开源项目未来的规划。
+[![云原生学院](images/bilibili.jpg)](https://www.bilibili.com/video/BV1Gt4y1q7qC)
+
+本文将从云原生时代的机遇和挑战说起，介绍一个全新的开源高性能云原生 API 网关——Apache APISIX，探讨如何解决云原生时代 API 网关所面临的一些痛点，最后介绍该开源项目未来的规划。
 
 ## 背景
 
@@ -130,7 +131,7 @@ Apache 只是使用了 Nginx 的网络库而并没有使用路由库，重写优
 
 为了支持插件编排，Apache APISIX 一方面需要实现微插件、低代码，同时需要底层架构和插件足够灵活。
 
-![img](images/low-code-api-gateway-example-en-US.gif)
+![img](images/Apache-APISIX-plugin-orchestration.gif)
 
 ### 同类技术对比
 
@@ -190,8 +191,7 @@ Nginx 是一款轻量级 Web 服务器、反向代理服务器，由于它的内
 
 ### 规划
 
-- 2.0 版本（即将发布）：使用 etcd v3 替代 v2
-- 3.0 版本：废弃 admin API，分离 DP 和 CP
+- 2.0 版本（即将发布）：废弃 admin API，分离 DP 和 CP
 - 2021 年的 ﬂag：Apache APISIX 的贡献者超过 200 位
 
 ## 最后
@@ -200,7 +200,7 @@ Nginx 是一款轻量级 Web 服务器、反向代理服务器，由于它的内
 
 欢迎大家给 Apache APISIX 贡献！
 
-- 项目地址:https://github.com/apache/apisix
+- 项目地址: https://github.com/apache/apisix
 - 邮箱：<wenming@apache.org>
 - QQ 群：578997126
 
