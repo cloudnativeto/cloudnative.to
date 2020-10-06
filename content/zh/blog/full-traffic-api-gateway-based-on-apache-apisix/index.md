@@ -130,7 +130,7 @@ Apache 只是使用了 Nginx 的网络库而并没有使用路由库，重写优
 
 为了支持插件编排，Apache APISIX 一方面需要实现微插件、低代码，同时需要底层架构和插件足够灵活。
 
-![img](images/Apache-APISIX-plugin-orchestration.gif)
+![img](images/low-code-api-gateway-example-en-US.gif)
 
 ### 同类技术对比
 
