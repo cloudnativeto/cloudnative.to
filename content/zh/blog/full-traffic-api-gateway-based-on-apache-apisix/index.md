@@ -1,6 +1,6 @@
 ---
 title: "Apache APISIX的全流量API网关统筹集群流量"
-description: "基于 Apache APISIX 的全流量 API 网关统筹集群流量 https://www.bilibili.com/video/BV1Gt4y1q7qC"
+description: "基于 Apache APISIX 的全流量 API 网关统筹集群流量"
 author: "温铭"
 image: "images/blog/apache_apisix.jpg"
 categories: ["gateway"]
@@ -15,6 +15,8 @@ profile: "来自一家在远程工作方式下商业化开源项目的创业公�
 [TOC]
 
 > 本文将从云原生时代的机遇和挑战说起，介绍一个全新的开源高性能云原生 API 网关————Apache APISIX，探讨如何解决云原生时代 API 网关所面临的一些痛点，最后介绍该开源项目未来的规划。
+
+视频地址: https://www.bilibili.com/video/BV1Gt4y1q7qC
 
 ## 背景
 
