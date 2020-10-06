@@ -7,7 +7,7 @@ categories: ["gateway"]
 tags: ["gateway"]
 date: 2020-09-30T16:00:00+08:00
 type: "post"
-avatar: "/images/profile/sundongmin.jpg"
+avatar: "/images/profile/wenming.png"
 profile: "来自一家在远程工作方式下商业化开源项目的创业公司（支流科技），担任 CEO 兼联合创始人，与支流科技 (Apache APISIX) 类似的公司有 Confluent（Kafka 产品）、PinCap（TiDB产品），支流科技是 Linux 基金会白银会员、Linux 微服务 TARS 基金会创始会员。Apache 顶级项目 APISIX 的 PMC 主席。Skywalking 开源项目的贡献者 (committer)。在创业之前，在360做企业安全，360开源委员会的发起人，腾讯的 TVP，TARS 基金会的 TOC 成员，在安全领域有四十多个专利。最近三年全职在做服务端的开源项目开发。在极客时间专栏著有OpenResty从入门到实战。"
 
 ---
@@ -63,22 +63,6 @@ profile: "来自一家在远程工作方式下商业化开源项目的创业公�
 | 作用在传统API网关领域的功能                                  | 作用在云原生API网关领域的功能                                |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 让 API 请求更安全、更高效的得到处理；<br />覆盖 Nginx 的所有功能：反向代理、负载均衡；<br />动态上游、动态 SSL 证书、动态限流限速；主动/被动健康检查、服务熔断 | 对接 Prometheus、Zipkin、Skywalking；<br />gRPC 代理和协议转换 (REST <-> gRPC)；<br />身份认证：OpenID Relying Party、OP（Auth0、okta……）<br />高性能、无状态、随意扩容和缩容<br />动态配置，不用 reload 服务<br />支持多云、混合云<br />容器优先，Kubernetes 友好 |
-
-传统 API 网关	云原生 API 网关
-让 API 请求更安全、更高效的得到处理
-覆盖 Nginx 的所有功能：反向代理、负载均衡
-动态上游、动态 SSL 证书、动态限流限速
-主动/被动健康检查、服务熔断	让 API 请求更安全、更高效的得到处理
-覆盖 Nginx 的所有功能：反向代理、负载均衡
-动态上游、动态 SSL 证书、动态限流限速
-主动/被动健康检查、服务熔断
-对接 Prometheus、Zipkin、Skywalking
-gRPC 代理和协议转换 (REST <-> gRPC)
-身份认证：OpenID Relying Party、OP（Auth0、okta……）
-高性能、无状态、随意扩容和缩容
-动态配置，不用 reload 服务
-支持多云、混合云
-容器优先，Kubernetes 友好
 
 ### API 生命周期管理全景图
 
@@ -156,12 +140,6 @@ Apache 只是使用了 Nginx 的网络库而并没有使用路由库，重写优
 为了支持插件编排，Apache APISIX 一方面需要实现微插件、低代码，同时需要底层架构和插件足够灵活。
 
 ![img](images/Apache-APISIX-plugin-orchestration.gif)
-
- 同类技术对比(Kong)
-  Apache APISIX vs Kong
-  Apache APISIX vs Nginx
-   Nginx 的困境
-   Nginx 的替代者
 
 ### 同类技术对比
 
