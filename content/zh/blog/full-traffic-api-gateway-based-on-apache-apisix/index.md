@@ -12,7 +12,7 @@ profile: "来自一家在远程工作方式下商业化开源项目的创业公�
 
 ---
 
-文章出处视频: https://www.bilibili.com/video/BV1Gt4y1q7qC, 云原生学院分享的文字整理
+文章出处视频: https://www.bilibili.com/video/BV1Gt4y1q7qC, 由云原生学院整理分享的文字而成
 
 > 本文将从云原生时代的机遇和挑战说起，介绍一个全新的开源高性能云原生 API 网关————Apache APISIX，探讨如何解决云原生时代 API 网关所面临的一些痛点，最后介绍该开源项目未来的规划。
 
