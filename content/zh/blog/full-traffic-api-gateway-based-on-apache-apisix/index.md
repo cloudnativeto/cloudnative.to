@@ -1,6 +1,6 @@
 ---
 title: "Apache APISIX的全流量API网关统筹集群流量"
-description: "基于 Apache APISIX 的全流量 API 网关统筹集群流量"
+description: "基于 Apache APISIX 的全流量 API 网关统筹集群流量。"
 author: "温铭"
 image: "/images/blog/apache_apisix.png"
 categories: ["gateway"]
@@ -12,7 +12,7 @@ profile: "来自一家在远程工作方式下商业化开源项目的创业公�
 
 ---
 
-文章出处视频: https://www.bilibili.com/video/BV1Gt4y1q7qC, 由云原生学院整理分享的文字而成
+本文根据我在云原生学院的分享整理而成，视频见：<https://www.bilibili.com/video/BV1Gt4y1q7qC>。
 
 > 本文将从云原生时代的机遇和挑战说起，介绍一个全新的开源高性能云原生 API 网关————Apache APISIX，探讨如何解决云原生时代 API 网关所面临的一些痛点，最后介绍该开源项目未来的规划。
 
@@ -36,7 +36,7 @@ profile: "来自一家在远程工作方式下商业化开源项目的创业公�
 
 ![img](images/wps3.png)
 
-使用微服务进行精细管理后，服务的弹性伸缩、开发团队变得敏捷、服务之间隔离、降低故障率；在流量变动的时候，只需要对有可能变动流量的服务进行对应资源的扩缩容即可，这样可以很明显的节省服务器成本以及更高的承受度；在业务变动的时候，只需要对有可能变动业务的服务进行对应业务模块的变动即可，这样可以很明显的节省人力成本以及更高的控制力；在出现故障时不会导致整体服务不可用
+使用微服务进行精细管理后，服务的弹性伸缩、开发团队变得敏捷、服务之间隔离、降低故障率；在流量变动的时候，只需要对有可能变动流量的服务进行对应资源的扩缩容即可，这样可以很明显的节省服务器成本以及更高的承受度；在业务变动的时候，只需要对有可能变动业务的服务进行对应业务模块的变动即可，这样可以很明显的节省人力成本以及更高的控制力；在出现故障时不会导致整体服务不可用。
 
 但是落地微服务同样的带来了一些问题，比如接口之间通用的功能重复开发、膨胀的服务数量、难以管理。通常的解决方案便是使用 API 网关对其进行管理。
 
@@ -72,15 +72,11 @@ API 生命周期指的是从 API 的设计到 API 的文档和他的 SDK 以及�
 
 在上半象限都是一些巨头公司，例如 Google、IBM 等等，都是公有云的闭源项目，具有领导地位，跟各自产品深度绑定在一起。在下半象限都是援建者，都是开源项目，例如: Kong，挑战着闭源项目, 随着时间的推移我们发现——软件在吞噬世界、开源软件在吞噬软件。以下是近几年发生的很多 API 网关厂商相关的收购案例：
 
-* 2015 年，IBM 收购 StrongLoop
-
-* 2015 年，谷歌 6.25 亿美元收购 apigee
-
-* 2018 年，Salesforce 65 亿美元收购 MuleSoft
-
-* 2018 年，Broadcom 189 亿美元收购 CA Technologies
-
-* 2019 年，F5 收购 6.7 亿美元收购 NGINX
+- 2015 年，IBM 收购 StrongLoop
+- 2015 年，谷歌 6.25 亿美元收购 apigee
+- 2018 年，Salesforce 65 亿美元收购 MuleSoft
+- 2018 年，Broadcom 189 亿美元收购 CA Technologies
+- 2019 年，F5 收购 6.7 亿美元收购 NGINX
 
 说明 API 网关在云原生时代依然扮演者重要的角色
 
@@ -117,17 +113,12 @@ Apache APISIX 架构如图，其主要分为数据面和控制面。
 
 Apache 只是使用了 Nginx 的网络库而并没有使用路由库，重写优化了路由算法。
 
-* Apache APISIX 的路由复杂度是 O (k)，只和 URI 的长度有关，和路由数量无关；kong 的路由时间复杂度是 O (n) ，随着路由数量线性增长，K 指 URI 长度，和路由数量没有关系，例如有一百万条路由，ApiSix 路由的时间复杂度都是一样的，而 Kong 却不是这样的
-
-* Apache APISIX 的 IP 匹配时间复杂度是 O (1)，不会随着大量 IP 判断而导致 CPU 资源跑满；kong 的最新版本也换用了 Apache APISIX 的 IP 匹配库；不管有多少IP都是一次命中，而 Kong 却不是这样的
-
-* Apache APISIX 的路由匹配，接受 nginx 的所有变量作为条件，并且支持自定义函数；其他网关都是内置的几个条件；
-
-* Apache APISIX 使用 etcd 作为配置中心，没有单点，任意宕掉一台机器，网关集群还能正常运行。其他基于 mysql，postgres 的网关都会有单点问题
-
-* Apache APISIX 的配置下发只要 1 毫秒就能达到所有网关节点，使用的是 etcd 的 watch；其他网关是定期轮询数据库，一般需要 5 秒才能获取到最新配置
-
-* 只有 Apache APISIX 开放了自定义负载均衡的挂载点，其他网关都不支持
+- Apache APISIX 的路由复杂度是 O (k)，只和 URI 的长度有关，和路由数量无关；kong 的路由时间复杂度是 O (n) ，随着路由数量线性增长，K 指 URI 长度，和路由数量没有关系，例如有一百万条路由，ApiSix 路由的时间复杂度都是一样的，而 Kong 却不是这样的；
+- Apache APISIX 的 IP 匹配时间复杂度是 O (1)，不会随着大量 IP 判断而导致 CPU 资源跑满；kong 的最新版本也换用了 Apache APISIX 的 IP 匹配库；不管有多少IP都是一次命中，而 Kong 却不是这样的；
+- Apache APISIX 的路由匹配，接受 nginx 的所有变量作为条件，并且支持自定义函数；其他网关都是内置的几个条件；
+- Apache APISIX 使用 etcd 作为配置中心，没有单点，任意宕掉一台机器，网关集群还能正常运行。其他基于 mysql，postgres 的网关都会有单点问题；
+- Apache APISIX 的配置下发只要 1 毫秒就能达到所有网关节点，使用的是 etcd 的 watch；其他网关是定期轮询数据库，一般需要 5 秒才能获取到最新配置；
+- 只有 Apache APISIX 开放了自定义负载均衡的挂载点，其他网关都不支持。
 
 ### 独创的插件编排
 
@@ -169,51 +160,38 @@ Apache 只是使用了 Nginx 的网络库而并没有使用路由库，重写优
 
 Nginx 是一款轻量级 Web 服务器、反向代理服务器，由于它的内存占用少、启动极快、高并发能力强，故其在互联网项目中得到广泛应用，距今已经有十多年的历史。但 Nginx 在步入云原生时代后遇到了更多的挑战：
 
-* 社区不活跃：没有 github issue 和 PR
-
-* 没有跟进云原生：nginx-k8s-controller、nginx unit 的尝试都失败了
-
-* 配置不能热加载
-
-* 非 http、https 流量的兴起（微服务、物联网……）
-
-* 商业化不成功
-
-* 被 F5 收购
-
-* 后浪：API 网关比如 Kong 和 Apache APISIX，serviceMesh proxy 比如 Envoy 等
+- 社区不活跃：没有 github issue 和 PR
+- 没有跟进云原生：nginx-k8s-controller、nginx unit 的尝试都失败了
+- 配置不能热加载
+- 非 http、https 流量的兴起（微服务、物联网……）
+- 商业化不成功
+- 被 F5 收购
+- 后浪：API 网关比如 Kong 和 Apache APISIX，serviceMesh proxy 比如 Envoy 等
 
 ## 开源社区规划
 
 ### 运营 Apache 孵化器项目的经验
 
-* 为了让社区和用户保持习惯和预期，每个月一个版本，雷打不动。
-
-* 当天回复邮件列表和 github issue、PR
-
-* 频繁的布道和走访用户：每个月一次 meetup，走访过美团、腾讯、华为、贝壳、平安、又拍云、中国移动、思必驰、空中云汇、中国航信等几十家企业，深入了解用户的需求
+- 为了让社区和用户保持习惯和预期，每个月一个版本，雷打不动。
+- 当天回复邮件列表和 github issue、PR
+- 频繁的布道和走访用户：每个月一次 meetup，走访过美团、腾讯、华为、贝壳、平安、又拍云、中国移动、思必驰、空中云汇、中国航信等几十家企业，深入了解用户的需求
 
 ### The Apache Way
 
-* 不看重 github star，更关注如何吸引新的贡献者以及如何让贡献者更加活跃
-
-* 贡献不止代码，文档、测试、文章都是贡献，都可以成为 committer 和 PMC
-
-* 社区多样性：近 30 位 committer，其中两位欧洲开发者；至少 4 位大学生，甚至有 00 后的后浪贡献者，是 Apache APISIX committer
+- 不看重 github star，更关注如何吸引新的贡献者以及如何让贡献者更加活跃
+- 贡献不止代码，文档、测试、文章都是贡献，都可以成为 committer 和 PMC
+- 社区多样性：近 30 位 committer，其中两位欧洲开发者；至少 4 位大学生，甚至有 00 后的后浪贡献者，是 Apache APISIX committer
 
 ### 社区大于代码
 
-* The Apache Way
-
-* 活跃的社区，会重构坏的代码；但再好的代码，也会死于独裁的社区
-
-* 案例：Apache APISIX dashboard 的重构，社区对于 MySQL 的方案不满，“怨声载道”，然后来自 5 家公司的贡献者一起重构掉它
+- The Apache Way
+- 活跃的社区，会重构坏的代码；但再好的代码，也会死于独裁的社区
+- 案例：Apache APISIX dashboard 的重构，社区对于 MySQL 的方案不满，“怨声载道”，然后来自 5 家公司的贡献者一起重构掉它
 
 ### 规划
 
-* 2.0 版本（即将发布）：废弃 admin API，分离 DP 和 CP
-
-* 2021 年的 ﬂag：Apache APISIX 的贡献者超过 200 位
+- 2.0 版本（即将发布）：废弃 admin API，分离 DP 和 CP
+- 2021 年的 ﬂag：Apache APISIX 的贡献者超过 200 位
 
 ## 最后
 
@@ -221,8 +199,8 @@ Nginx 是一款轻量级 Web 服务器、反向代理服务器，由于它的内
 
 欢迎大家给 Apache APISIX 贡献！
 
-| 名称     | 地址                             |
-| -------- | -------------------------------- |
-| 项目地址 | https://github.com/apache/apisix |
-| 邮箱     | wenming@apache.org               |
-| QQ 群    | 578997126                        |
+- 项目地址:https://github.com/apache/apisix
+- 邮箱：<wenming@apache.org>
+- QQ 群：578997126
+
+感谢[谭世霖](https://github.com/tristan-tsl)对本文内容的整理，[厉辉](https://github.com/Miss-you)、[杨冉宁](https://github.com/hyfj44255)、[宋净超](https://github.com/rootsongjc)参与审阅。
