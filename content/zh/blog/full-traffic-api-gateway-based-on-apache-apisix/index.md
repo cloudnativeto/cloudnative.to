@@ -131,7 +131,7 @@ Apache 只是使用了 Nginx 的网络库而并没有使用路由库，重写优
 
 为了支持插件编排，Apache APISIX 一方面需要实现微插件、低代码，同时需要底层架构和插件足够灵活。
 
-![img](images/Apache-APISIX-plugin-orchestration.gif)
+![img](images/low-code-api-gateway-example-en-US.gif)
 
 ### 同类技术对比
 
@@ -191,7 +191,8 @@ Nginx 是一款轻量级 Web 服务器、反向代理服务器，由于它的内
 
 ### 规划
 
-- 2.0 版本（即将发布）：废弃 admin API，分离 DP 和 CP
+- 2.0 版本（即将发布）：使用 etcd v3 替代 v2
+- 3.0 版本：废弃 admin API，分离 DP 和 CP
 - 2021 年的 ﬂag：Apache APISIX 的贡献者超过 200 位
 
 ## 最后
