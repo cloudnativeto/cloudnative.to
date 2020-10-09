@@ -6,13 +6,6 @@
 <section class="section bg-gray bg-dots">
   <div class="container">
     <div class="row">
-      <div class="col-12 text-center">
-        {{ with $data.homepage.city }}
-        <h3 class="section-title">{{ .title | markdownify }}</h3>
-        {{ end }}
-      </div>
-    </div>
-    <div class="row">
 
       {{ range .Data.Pages }}
       {{ "<!-- city -->" | safeHTML }}
@@ -20,7 +13,7 @@
       {{ end }}
 
       <!-- 地图展示控件 -->
-      <div id="baidu-map-container" class="col-6 col-md-offset-6 border-0 rounded-0 box-shadow city-map"></div> 
+      <div id="baidu-map-container" class="col-md-9 border-0 rounded-0 box-shadow city-map"></div> 
 
       {{ "<!-- JS Plugins -->" | safeHTML }}
       <script src={{.Params.jquery_lib | relURL}}></script>

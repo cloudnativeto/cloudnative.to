@@ -1,7 +1,7 @@
 ---
 title: "城市站"
 # meta description
-description: "云原生社区城市站"
+description: "原生社区城市站分布地图"
 # page title background image
 bg_image: "/images/backgrounds/city-banner.jpg"
 jquery_lib: "/plugins/jQuery/jquery.min.js"
