@@ -1,6 +1,6 @@
 ---
 code: "chongqing"
-name: "重庆站"
+title: "重庆站"
 shortDesc: "关于重庆站"
 description: "重庆站的简介"
 detailButton: "查看详情"

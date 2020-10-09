@@ -34,7 +34,7 @@
         {{ range .Data.Pages }}
             data = {};
             data["code"] = {{ .Params.code }};
-            data["name"] = {{ .Params.name }};
+            data["title"] = {{ .Params.title }};
             data["longitude"] = {{ .Params.longitude }};
             data["latitude"] = {{ .Params.latitude }};
             mapData.push(data);

@@ -1,6 +1,6 @@
 ---
 code: "shanghai"
-name: "上海市"
+title: "上海市"
 shortDesc: "关于上海市"
 description: "上海站的简介"
 detailButton: "查看详情"

@@ -1,6 +1,6 @@
 ---
 code: "jinan"
-name: "济南站"
+title: "济南站"
 shortDesc: "关于济南站"
 description: "济南站的简介"
 detailButton: "查看详情"

@@ -1,6 +1,6 @@
 ---
 code: "changsha"
-name: "长沙站"
+title: "长沙站"
 shortDesc: "关于长沙站"
 description: "长沙站的简介"
 detailButton: "查看详情"
