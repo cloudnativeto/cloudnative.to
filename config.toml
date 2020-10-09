@@ -231,7 +231,7 @@ weight = 1
 [[Languages.zh.menu.main]]
 parent = "社区"
 name = "城市站"
-URL = "https://github.com/cloudnativeto/community/issues/50"
+URL = "/city"
 weight = 2
 
 [[Languages.zh.menu.main]]
