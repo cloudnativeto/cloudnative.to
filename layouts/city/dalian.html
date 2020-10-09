@@ -1,0 +1,21 @@
+{{ define "main" }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+<section class="section">
+<div class="container">
+  <div class="row justify-content-between align-items-center">
+    <div class="col-md-5 bg-contain" data-background="/images/backgrounds/about-us-bg.png">
+      {{ "<!-- about us image -->" | safeHTML }}
+      <img class="img-fluid w-100" src="/images/city/dalian/team.jpg" onerror="this.src='/images/city/dalian/team.jpg'" alt="About Image">
+    </div>
+    <div class="col-md-6">
+      <h2 class="section-title">核心成员</h2>
+      <h6 class="section-title-sm">大连站</h6>
+      <div class="section-title-border"></div>
+      <p class="mb-5">DALIAN</p>
+      
+    </div>
+  </div>
+</div>
+</section>
+{{ end }}
