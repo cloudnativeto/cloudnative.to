@@ -1,6 +1,6 @@
 ---
 title: "[社招]喜马拉雅容器小组"
-date: 2020-08-31T9:52:03+08:00
+date: 2020-10-10T9:52:03+08:00
 draft: false
 bg_image: "images/backgrounds/page-title.jpg"
 description: "Base 地：上海"
@@ -28,4 +28,4 @@ type: "notice"
 
 #### 投递简历
 
-欢迎[邮件简历](mailto:bert.li@ximalaya.com) 或微信liqiankun02，我们将尽快安排面试。
+欢迎[邮件简历](mailto:bert.li@ximalaya.com)或微信liqiankun02，我们将尽快安排面试。
