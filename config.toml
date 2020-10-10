@@ -1,6 +1,6 @@
 ########################### Default configuration ######################
 baseURL = "https://cloudnative.to/"
-title = "Cloud Native Community"
+title = "云原生社区"
 # post pagination
 paginate = "6"
 # post excerpt
@@ -69,6 +69,18 @@ URL = "team"
 weight = 2
 
 [[menu.main]]
+parent = "Community"
+name = "Istio SIG"
+URL = "https://github.com/cloudnativeto/sig-istio"
+weight = 3
+
+[[menu.main]]
+parent = "Community"
+name = "Envoy SIG"
+URL = "https://cloudnative.to/sig-envoy"
+weight = 4
+
+[[menu.main]]
 name = "Blog"
 URL = "blog"
 weight = 3
@@ -117,7 +129,7 @@ logo_footer = "images/logo-alt.png"
 top_header = false
 # Meta data
 description = "云原生社区始于 2016 年成立的 Kubernetes & Cloud Native 实战群，覆盖了上千名云原生的早期拥护者。2020 年 5 月，在 CNCF 大使、开源领域意见领袖的共同倡议下升级为云原生社区。社区旨在构建一个开放、包容的交流环境，促进云原生技术的传播和普及。"
-author = "Cloud Native Community"
+author = " 云原生社区"
 # contact form action
 contact_form_action = "#" # contact form works with https://formspree.io
 # Google Analitycs
@@ -236,7 +248,7 @@ weight = 2
 
 [[Languages.zh.menu.main]]
 parent = "社区"
-name = "参与进来"
+name = "社区资料"
 URL = "https://github.com/cloudnativeto/community"
 weight = 3
 
@@ -249,6 +261,18 @@ parent = "学院"
 name = "Kubernetes 源码研习社"
 URL = "https://github.com/cloudnativeto/sig-k8s-source-code"
 weight = 1
+
+[[Languages.zh.menu.main]]
+parent = "学院"
+name = "Istio 特别兴趣小组"
+URL = "https://github.com/cloudnativeto/sig-istio"
+weight = 2
+
+[[Languages.zh.menu.main]]
+parent = "学院"
+name = "Envoy 特别兴趣小组"
+URL = "https://cloudnative.to/sig-envoy"
+weight = 3
 
 [[Languages.zh.menu.main]]
 name = "博客"
