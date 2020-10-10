@@ -28,4 +28,4 @@ type: "notice"
 
 #### 投递简历
 
-欢迎[邮件简历](bert.li@ximalaya.com)，我们将尽快安排面试。
+欢迎[邮件简历](mailto:bert.li@ximalaya.com) 或微信liqiankun02，我们将尽快安排面试。
