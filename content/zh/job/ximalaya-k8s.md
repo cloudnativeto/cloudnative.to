@@ -1,10 +1,6 @@
 ---
 title: "[社招]喜马拉雅容器小组"
-<<<<<<< HEAD
-date: 2020-10-10T9:52:03+08:00
-=======
 date: 2020-10-10T09:52:03+08:00
->>>>>>> 1af715c25a6ee1aa977b66e6b3a6839446e9ed34
 draft: false
 bg_image: "images/backgrounds/page-title.jpg"
 description: "Base 地：上海"
