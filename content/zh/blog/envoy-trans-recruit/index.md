@@ -1,6 +1,6 @@
 ---
-title: 云原生社区 Envoy 官网翻译小组招募成员
-description: "Envoy 官网最新版本翻译，招募翻译小组成员"
+title: 云原生社区 Envoy 官网翻译小组成员招募中
+description: "Envoy 官网最新版本翻译，招募翻译小组成员。"
 author: "[马景贺（小马哥）](https://github.com/lhb008)"
 image: "images/blog/envoy.png"
 categories: ["Envoy"]
@@ -40,7 +40,7 @@ Istio 一直是服务网格产品中的佼佼者，其数据面的组件—— E
 
 ## Envoy 翻译仓库
 
-[cloudnativeto/envoy](https://github.com/cloudnativeto/envoy)
+Envoy 官方文档 fork 自上游，位于 [cloudnativeto/envoy](https://github.com/cloudnativeto/envoy) 仓库中。
 
 我们等你哦！！！
 
