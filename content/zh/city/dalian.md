@@ -48,7 +48,7 @@ logo_image: "/images/city/dalian/logo.jpg"
 activity_title: 往期活动
 activities:
   - name: 2020-09-24 云原生走进高校之-大连东软信息学院
-    url: 
+    url: https://mp.weixin.qq.com/s/qlclCwXstAsqdO2xPaf6-Q
     images:
       - "/images/city/dalian/activities/2020-09-neusoft-school.png"
   - name: 2020-09-19 核心成员线下聚会
@@ -62,6 +62,4 @@ join_us_title: "加入我们"
 join_us_desc: "如果你也想参与到云原生社区，一起交流，学习。 如果你想为大连云原生社区的强大贡献一份自己的力量，`请扫码关注左侧微信公众号`。 如需加入微信群，请搜索微信号: `majinghe11`, 备注云原生, 社区核心成员会将您加入群内。"
 join_us_image: "/images/city/dalian/wechat-official-account.jpg"
 
-
 ---
-
