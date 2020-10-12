@@ -129,6 +129,9 @@ blockquote {
 }
 
 .pagination{
+    flex-wrap:wrap;
+}
+.pagination{
   .page-item{
     margin: 5px;
     .page-link{

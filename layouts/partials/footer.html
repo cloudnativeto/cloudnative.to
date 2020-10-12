@@ -42,7 +42,7 @@
               <p class="text-light mb-3">{{ .address | markdownify }}</p>
               <p class="text-light mb-3">{{ .email | markdownify }}</p>
               <p class="text-light mb-3">{{ .description| markdownify }}</p>
-              <p class="text-light mb-3"><img src="{{ .image | relURL }}" width="356px"></p>
+              <p class="text-light mb-3"><img src="{{ .image | relURL }}" width="128px"></p>
             </div>
             {{ end }}
             {{ if .Site.Params.subscription.enable }}
