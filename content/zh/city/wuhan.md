@@ -1,6 +1,6 @@
 ---
 code: "wuhan"
-name: "武汉站"
+title: "武汉站"
 shortDesc: "关于武汉站"
 description: "武汉站的简介"
 detailButton: "查看详情"

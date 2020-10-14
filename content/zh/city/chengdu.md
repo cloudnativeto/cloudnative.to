@@ -1,6 +1,6 @@
 ---
 code: "chengdu"
-name: "成都站"
+title: "成都站"
 shortDesc: "关于成都站"
 description: "成都站的简介"
 detailButton: "查看详情"

@@ -1,6 +1,6 @@
 ---
 code: "xiamen"
-name: "厦门站"
+title: "厦门站"
 shortDesc: "关于厦门站"
 description: "厦门站的简介"
 detailButton: "查看详情"
