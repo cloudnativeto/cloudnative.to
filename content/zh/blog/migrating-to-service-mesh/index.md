@@ -46,7 +46,7 @@ profile: "自认为是平台工程师。领导的开发团队负责服务网格�
 
 我们平台的服务发现是基于 [Hashicorp 的 Consul](https://www.consul.io/)。我们已经使用 Java 编写了与 Consul 高效集成的 [库](https://github.com/allegro/consul-recipes)，我们在项目中使用了该库。我们将其作为我们的控制平面 [envoy-control](https://github.com/allegro/envoy-control)。
 
-因为它使用了一种高级语言，即 Kotlin 和 JVM 生态的工具，我们可以用它做很多有趣的事情，比如使用 [Testcontainers](https://www.testcontainers.org/) 进行可靠性测试。这些测试模拟了集中可能的生产故障，并且可以在笔记本电脑上快速运行。该测试套件替我们节省了**大量**时间。
+因为它使用了一种高级语言，即 Kotlin 和 JVM 生态的工具，我们可以用它做很多有趣的事情，比如使用 [Testcontainers](https://www.testcontainers.org/) 进行可靠性测试。这些测试模拟了几种可能的生产故障，并且可以在笔记本电脑上快速运行。该测试套件替我们节省了**大量**时间。
 
 此外，经过一段时间的 Envoy 和 envoy-control 的维护之后，我们一直认为我们需要一个管理面板。因此我们通过支持服务实现了 GUI 组件来简化操作。从控制中心我们可以：
 * 列出服务的所有实例
