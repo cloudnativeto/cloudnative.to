@@ -3,8 +3,8 @@ code: "shanghai"
 name: "上海市"
 shortDesc: "关于上海市"
 description: "上海站的简介"
+description: "上海站成立于2020年8月，目前拥有社区成员200百多人。上海站作为云原生总部分站，立足于上海这个经济大都市，致力于汇聚上海当地优秀云原生人才，连接云原生开源社区与开发者，促进云原生技术的交流、推广和实践！站长：郭旭东。如何加入上海站，请点击下面【查看详情】。"
 detailButton: "查看详情"
 longitude: 121.474
 latitude: 31.220
-link: "https://github.com/cloudnativeto/community/issues/51"
 ---
