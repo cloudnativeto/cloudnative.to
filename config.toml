@@ -326,8 +326,8 @@ weight = 1
 
 [[Languages.zh.menu.main]]
 parent = "资料"
-name = "幻灯片"
-URL = "https://github.com/cloudnativeto/slides"
+name = "云原生学院直播分享"
+URL = "https://github.com/cloudnativeto/academy"
 weight = 2
 
 [[Languages.zh.menu.main]]
