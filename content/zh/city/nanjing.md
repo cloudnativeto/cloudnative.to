@@ -1,6 +1,6 @@
 ---
 code: "nanjing"
-name: "南京站"
+title: "南京站"
 shortDesc: "关于南京站"
 description: "南京站的简介"
 detailButton: "查看详情"

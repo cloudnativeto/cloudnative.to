@@ -1,6 +1,6 @@
 ---
 code: "xian"
-name: "西安站"
+title: "西安站"
 shortDesc: "关于西安站"
 description: "西安站的简介"
 detailButton: "查看详情"

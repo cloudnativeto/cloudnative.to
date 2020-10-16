@@ -1,6 +1,6 @@
 ---
 code: "suzhou"
-name: "苏州站点"
+title: "苏州站点"
 shortDesc: "关于苏州站点"
 description: "苏州站的简介"
 detailButton: "查看详情"

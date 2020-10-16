@@ -13,7 +13,7 @@ function cloudNativeBaiduMap(mapData){
     var data = mapData[i];
     var point = new BMap.Point(data.longitude, data.latitude);
     var marker = new BMap.Marker(point);
-    var label = new BMap.Label(data.name, {offset:new BMap.Size(-10,20)});
+    var label = new BMap.Label(data.title, {offset:new BMap.Size(-10,20)});
     marker.setLabel(label);
     marker.setTitle(data.code);
     map.addOverlay(marker);

@@ -1,6 +1,6 @@
 ---
 code: "hangzhou"
-name: "杭州站"
+title: "杭州站"
 shortDesc: "关于杭州站"
 description: "杭州站的简介"
 detailButton: "查看详情"
