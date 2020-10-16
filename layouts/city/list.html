@@ -7,10 +7,15 @@
   <div class="container">
     <div class="row">
 
+    <div class="col-md-3 box-shadow border-0 rounded-0 city-introduction city-map" id="{{ .Params.Code }}">
+      <h2 class="section-title">城市站列表</h2>
+      <div class="section-title-border"></div>
+      <div style="height: 78%; overflow-y:auto; ">
       {{ range .Data.Pages }}
-      {{ "<!-- city -->" | safeHTML }}
         {{ .Render "city" }}
       {{ end }}
+      </div>
+    </div>
 
       <!-- 地图展示控件 -->
       <div id="baidu-map-container" class="col-md-9 border-0 rounded-0 box-shadow city-map"></div> 
