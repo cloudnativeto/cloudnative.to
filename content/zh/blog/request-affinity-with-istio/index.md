@@ -8,7 +8,7 @@ categories: ["Istio"]
 tags: ["Istio","翻译"]
 date: 2020-10-13T23:00:00+08:00
 avatar: "./images/cashapp.png"
-profile: "由 Square 公司开发的一个移动支付系统，支持用户使用一个移动手机应用转钱给其他用户"
+profile: "由 Square 公司开发的一个移动支付系统，支持用户使用手机应用转钱给其他用户。"
 type: "post"
 ---
 本文译自 [Request affinity with istio](https://cashapp.github.io/2020-08-04/request-affinity-with-istio)。
