@@ -1,7 +1,9 @@
-<div class="col-md-3 box-shadow border-0 rounded-0 {{ .Params.showByDefault }} city-display city-introduction city-map" id="{{ .Params.Code }}">
-  <h2 class="section-title">{{ .Params.City }}</h2>
-  <h6 class="section-title-sm">{{ .Params.ShortDesc }}</h6>
-  <div class="section-title-border"></div>
-  <p class="mb-5">{{ .Params.Description }}</p>
-  <a href="{{ .Params.Link }}" target="_blank" class="btn btn-primary hover-ripple">{{ .Params.DetailButton}}</a>
+<div class="row">
+  <div class="col-md-4 col-2">
+    <img class="city-image" src="{{ .Params.city_small_logo}}" />
+  </div>
+  <div class="col-8 city-margin-top-5 city-padding-left-0">
+    <h4><a href="{{ .Params.Link }}" target="_blank">{{ .Params.title }}</a></h4>
+    <p>站长：{{ .Params.site_manager}}</p>
+  </div>
 </div>
