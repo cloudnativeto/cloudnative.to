@@ -1,6 +1,6 @@
 ---
 code: "zhuhai"
-name: "珠海站"
+title: "珠海站"
 shortDesc: "关于珠海站"
 description: "珠海站的简介"
 detailButton: "查看详情"
