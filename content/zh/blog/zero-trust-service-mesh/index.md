@@ -3,7 +3,7 @@ title: "【译】服务网格的零信任安全"
 description: "本文翻译自 Rose Sawvel 的文章 Zero-Trust Security with Service Mesh"
 author: "Rose Sawvel"
 translator: "[林静](http://linjing.io)"
-image: "./images/top-banner-zero.jpg"
+image: "/images/blog/top-banner-zero-trust.jpg"
 categories: ["service-mesh"]
 tags: ["Istio","翻译"]
 date: 2020-10-18T11:00:00+08:00
