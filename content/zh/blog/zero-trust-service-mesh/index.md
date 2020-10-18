@@ -4,7 +4,7 @@ description: "本文翻译自 Rose Sawvel 的文章 Zero-Trust Security with Ser
 author: "Rose Sawvel"
 translator: "[林静](http://linjing.io)"
 image: "./images/top-banner-zero.jpg"
-categories: ["Service Mesh,Security"]
+categories: ["service-mesh"]
 tags: ["Istio","翻译"]
 date: 2020-10-18T11:00:00+08:00
 avatar: "./images/Rose-Sawvel.jpg"
