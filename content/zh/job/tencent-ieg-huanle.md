@@ -92,11 +92,11 @@ type: "notice"
 
 ### 欢乐工作室其他招聘岗位
 
-[3D 角色设计师](https://careers.tencent.com/jobdesc.html?postId=1293816820913938432)
-[3D 动作设计师](https://careers.tencent.com/jobdesc.html?postId=1267699514735599616)
-[SLG 平台运营](https://careers.tencent.com/jobdesc.html?postId=1301489409215963136)
-[SLG 游戏运营](https://careers.tencent.com/jobdesc.html?postId=1301489409765416960)
-[运营与用户研究](https://careers.tencent.com/jobdesc.html?postId=1298867945715277824)
+- [3D角色设计师](https://careers.tencent.com/jobdesc.html?postId=1293816820913938432)
+- [3D动作设计师](https://careers.tencent.com/jobdesc.html?postId=1267699514735599616)
+- [SLG平台运营](https://careers.tencent.com/jobdesc.html?postId=1301489409215963136)
+- [SLG游戏运营](https://careers.tencent.com/jobdesc.html?postId=1301489409765416960)
+- [运营与用户研究](https://careers.tencent.com/jobdesc.html?postId=1298867945715277824)
 
 ### 投递简历
   
