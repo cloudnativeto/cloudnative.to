@@ -62,7 +62,7 @@ about:
   button:
     enable : true
     label : "进入学院"
-    link : "https://space.bilibili.com/515485124"
+    link : "https://github.com/cloudnativeto/academy"
 
 ################################## funfacts ###############################
 funfacts :
