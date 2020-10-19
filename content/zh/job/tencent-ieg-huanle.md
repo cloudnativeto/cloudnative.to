@@ -30,7 +30,7 @@ type: "notice"
 
 #### 岗位要求    
 
-1. 熟悉k8s和istio下基于云原生的Go开发；
+1. 熟悉 k8s 和 istio 下基于云原生的 Go 开发；
 2. 熟悉 Unix/Linux 操作系统下的 C/C++开发；
 3. 扎实的编程基础，熟悉网络编程 / 操作系统 / 数据库 / 多线程等基础知识；
 4. 对分布式系统后台架构的典型问题有一定的认识，有高可用高并发实践经验者优先考虑；
@@ -43,7 +43,7 @@ type: "notice"
 #### 岗位描述
 
 1. 负责游戏客户端开发，实现各种功能并进行相关的测试和优化；
-2. 负责游戏研发制作相关的编辑器、基础组件等工具链的设计与开发;
+2. 负责游戏研发制作相关的编辑器、基础组件等工具链的设计与开发；
 3. 与策划、美术密切配合，进行各种必要的尝试和探索，以使功能达到设计要求并体验良好；
 4. 正确客观评估工作量，与 PM 共同制定合理工作计划并保证进度的达成。 
 
@@ -92,10 +92,10 @@ type: "notice"
 
 ### 欢乐工作室其他招聘岗位
 
-- [3D角色设计师](https://careers.tencent.com/jobdesc.html?postId=1293816820913938432)
-- [3D动作设计师](https://careers.tencent.com/jobdesc.html?postId=1267699514735599616)
-- [SLG平台运营](https://careers.tencent.com/jobdesc.html?postId=1301489409215963136)
-- [SLG游戏运营](https://careers.tencent.com/jobdesc.html?postId=1301489409765416960)
+- [3D 角色设计师](https://careers.tencent.com/jobdesc.html?postId=1293816820913938432)
+- [3D 动作设计师](https://careers.tencent.com/jobdesc.html?postId=1267699514735599616)
+- [SLG 平台运营](https://careers.tencent.com/jobdesc.html?postId=1301489409215963136)
+- [SLG 游戏运营](https://careers.tencent.com/jobdesc.html?postId=1301489409765416960)
 - [运营与用户研究](https://careers.tencent.com/jobdesc.html?postId=1298867945715277824)
 
 ### 投递简历
