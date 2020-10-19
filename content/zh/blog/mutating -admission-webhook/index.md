@@ -1,16 +1,16 @@
- title: "【译】如何构建Mutating  Admission Webhook"
+---
+title: "【译】如何构建 Kubernetes Mutating  Admission Webhook"
 description: "一个将文件注入容器的小技巧"
 author: "Adil H"
 translator: "梁斌"
-image: "https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg?cs=srgb&dl=pexels-pixabay-531756.jpg&fm=jpg"
+image: "./images/pexels-pixabay-531756.jpg"
 categories: ["Kubernetes"]
-tags: ["Kubernetes","翻译"]
+tags: ["Kubernetes"]
 date: 2020-10-17T16:00:00+08:00
 type: "post"
 avatar: "/images/profile/liangbin.jpg"
 profile: "平安智慧城容器云开发运维工程师"
-
-
+---
 
 当你在 Kubernetes 中创建 Pod 的时候，是否注意到在容器的 */var/run/secrets/kubernetes.io/serviceaccount/token*  路径上存放了一个用于认证的 token 文件？你可以通过如下命令，在 Kubernetes 集群中验证下：
 
@@ -40,7 +40,7 @@ $ kubectl run busybox --image=busybox --restart=Never -it --rm -- ls -l /var/run
 
 ![准入控制器处理流程](./images/controller.png)
 
-接下来，本文将采用 Kubernetes提供的 Mutating Admission Webhook 这一机制，来实现注入 “hello.txt” 文件到 Pod 容器中，我们每次发送请求调用 API 创建 Pod 的时候，Pod 的 spec 信息会被先修改，再存储。如此一来，工作节点上的 Kublet 创建 Pod 的时候，将会预置 “hello.txt” 文件。文件的创建流程是全自动的。一起来试试！
+接下来，本文将采用 Kubernetes 提供的 Mutating Admission Webhook 这一机制，来实现注入 “hello.txt” 文件到 Pod 容器中，我们每次发送请求调用 API 创建 Pod 的时候，Pod 的 spec 信息会被先修改，再存储。如此一来，工作节点上的 Kublet 创建 Pod 的时候，将会预置 “hello.txt” 文件。文件的创建流程是全自动的。一起来试试！
 
 ## 创建 Admission Webhook
 
