@@ -56,7 +56,7 @@ logo_image: "/images/city/shanghai/logo.png"
 activity_title: 社区活动
 activities:
   - name: 2020-10-08 核心成员线下聚会
-    url: https://mp.weixin.qq.com/s/p4HWU576-EBnoXUXjI7PtQ
+    # url: https://mp.weixin.qq.com/s/p4HWU576-EBnoXUXjI7PtQ
     images:
       - "/images/city/shanghai/activities/20201008/1.png"
       - "/images/city/shanghai/activities/20201008/2.png"
