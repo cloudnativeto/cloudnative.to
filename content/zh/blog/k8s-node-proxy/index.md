@@ -23,9 +23,9 @@ type: "post"
 
 Kubernetes 中有几种类型的代理。其中有 **node proxier** 或 `kube-proxy`，它在每个节点上反映 Kubernetes API 中定义的服务，可以跨一组后端执行简单的 TCP/UDP/SCTP 流转发 [1]。
 
-为了更好地理解节点代理模型，在这篇文章中，我们将用不同的方法设计和实现我们自己版本的`kube-proxy`; 尽管这些只是玩具程序，但从**透明流量拦截、转发、负载均衡**等方面来说，它们的工作方式与 K8S 集群中运行的普通 `kube-proxy` 基本相同。
+为了更好地理解节点代理模型，在这篇文章中，我们将用不同的方法设计和实现我们自己版本的 `kube-proxy`; 尽管这些只是 `toy-proxy`，但从**透明流量拦截、转发、负载均衡**等方面来说，它们的工作方式与 K8S 集群中运行的普通 `kube-proxy` 基本相同。
 
-通过我们的玩具代理程序，非 K8S 节点（不在 K8S 集群中）上的应用程序（无论是宿主本地应用程序，还是在 VM/容器中运行的应用程序）也可以通过 **ClusterIP** 访问 K8S 服务 -- **注意，在 kubernetes 的设计中，ClusterIP 只能在 K8S 集群节点中访问。（在某种意义上，我们的玩具代理程序将非 K8S 节点变成了 K8S 节点。)**
+通过我们的 `toy-proxy` 程序，非 K8S 节点（不在 K8S 集群中）上的应用程序（无论是宿主本地应用程序，还是在 VM/容器中运行的应用程序）也可以通过 **ClusterIP** 访问 K8S 服务 -- **注意，在 kubernetes 的设计中，ClusterIP 只能在 K8S 集群节点中访问。（在某种意义上，我们的 `toy-proxy` 程序将非 K8S 节点变成了 K8S 节点。)**
 
 ## 背景知识
 了解 Linux 内核中的流量拦截和代理需要具备以下背景知识。
@@ -290,7 +290,7 @@ $ iptables -t nat -F # delete all rules
 $ iptables -t nat -X # delete all custom chains
 ```
 #### 改进
-在这个玩具实现中，我们拦截了 `ClusterIP:80` 到 `localhost:80`，但是如果该主机上的本机应用程序也想使用 `localhost:80` 怎么办？此外，如果多个服务都公开 80 端口会怎样？显然，我们需要区分这些应用程序或服务。解决这个问题的正确方法是：为每个代理分配一个未使用的临时端口 TmpPort，拦截 `ClusterIP:Port` 到 `local:TmpPort`。例如，app1 使用 10001, app2 使用 10002。
+在这个 `toy-proxy` 实现中，我们拦截了 `ClusterIP:80` 到 `localhost:80`，但是如果该主机上的本机应用程序也想使用 `localhost:80` 怎么办？此外，如果多个服务都公开 80 端口会怎样？显然，我们需要区分这些应用程序或服务。解决这个问题的正确方法是：为每个代理分配一个未使用的临时端口 TmpPort，拦截 `ClusterIP:Port` 到 `local:TmpPort`。例如，app1 使用 10001, app2 使用 10002。
 
 其次，上面的代码只处理一个后端，如果有多个后端 pods 怎么办？因此，我们需要通过负载均衡算法将请求分发到不同的后端 pods。
 ![userspace-proxier-2](./images/proxy_userspace-proxier-2.png)
