@@ -10,7 +10,7 @@
           <div>
             {{ "<!-- 引入核心成员个人照片 -->" | safeHTML }}
             {{ range .Params.core_members }}
-            <img class="img-fluid col-3" src="{{ .image | relURL }}" title="{{ .name | markdownify }}" alt="About Image">
+            <img class="avatar avatar-user img-fluid col-3" src="{{ .image | relURL }}" title="{{ .name | markdownify }}" alt="About Image">
             {{ end }}
           </div>
       </div>
@@ -84,4 +84,21 @@
     </div>
   </div>
 </section>
+
+
+<style>
+  .avatar-user{
+    border-radius: 50%!important;
+  }
+
+  .avatar {
+    display: inline-block;
+    overflow: hidden;
+    line-height: 1;
+    vertical-align: middle;
+    border-radius: 6px;
+    box-shadow: 0 0 0 1px var(--color-avatar-border);
+  }
+</style>
+
 {{ end }}

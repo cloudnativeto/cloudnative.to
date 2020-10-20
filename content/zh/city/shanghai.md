@@ -1,4 +1,5 @@
 ---
+<<<<<<< HEAD
 ## Map Page Configurations
 ode: "shanghai"
 title: "上海站"
@@ -51,4 +52,13 @@ activities:
 join_us_title: "加入我们"
 join_us_desc: "如果你也想参与到云原生社区，一起交流，学习。 如果你想为上海云原生社区的强大贡献一份自己的力量，`请扫码关注左侧微信公众号`。 如需加入微信群，请搜索微信号: `majinghe11`, 备注云原生, 社区核心成员会将您加入群内。"
 join_us_image: "/images/wechat-qrcode.png"
+=======
+title: "上海站"
+description: "上海站的简介"
+longitude: 121.474
+latitude: 31.220
+link: "https://github.com/cloudnativeto/community/issues/51"
+site_manager: "郭旭东"
+city_small_logo: "/images/city/shanghai_small_logo.jpg"
+>>>>>>> upstream/master
 ---
