@@ -128,7 +128,7 @@ logo_footer = "images/logo-alt.png"
 # top header
 top_header = false
 # Meta data
-description = "云原生社区始于 2016 年成立的 Kubernetes & Cloud Native 实战群，覆盖了上千名云原生的早期拥护者。2020 年 5 月，在 CNCF 大使、开源领域意见领袖的共同倡议下升级为云原生社区。社区旨在构建一个开放、包容的交流环境，促进云原生技术的传播和普及。"
+description = "云原生社区是一个企业中立的云原生终端用户社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，旨在推广云原生技术，构建开发者生态。"
 author = " 云原生社区"
 # contact form action
 contact_form_action = "#" # contact form works with https://formspree.io
@@ -141,7 +141,7 @@ search = true
 map = false
 email = "[contact@cloudnative.to](mailto:contact@cloudnative.to)"
 wechat = "[jimmysongio](https://jimmysong.io/contact)"
-address = "请关注我们的全球地区合伙人计划"
+address = "请关注云原生社区城市站"
 
 # Gitalk
 enableGitalk = true
@@ -211,7 +211,7 @@ contentDir = "content/en"
 weight = 2
 #home = "Home"
 # footer content
-footer_content = "Cloud Native Community began with the founding of Kubernetes & CloudNative in 2016, the group covers thousands of early cloud native advocates. Building on this group, in May 2020, CNCF ambassadors and opinion leaders in the open source communities launched a new initiative to bring the Cloud Native Communtiy. The community has been upgraded to a cloud native community, aiming to build an open and inclusive communication environment to promote the spread and popularity of cloud native technology."
+footer_content = "Cloud Native Community is an enterprise-neutral, cloud native end user community founded on May 12, 2020 by CNCF ambassadors and open source opinion leaders to promote cloud native technologies and build a developer ecosystem."
 # copyright
 copyright = "Copyright &copy; 2020 Cloud Native Community"
 
@@ -224,7 +224,7 @@ contentDir = "content/zh"
 weight = 1
 #home = "主页"
 # footer content
-footer_content = "云原生社区始于 2016 年成立的 Kubernetes & CloudNative 实战群，覆盖了上千名早期云原生拥护者。在此基础上于 2020 年 5 月，由 CNCF 大使、开源领域意见领袖共同发起将原社群升级为云原生社区，旨在构建一个开放、包容的沟通环境，促进云原生技术的传播和普及。"
+footer_content = "云原生社区是一个企业中立的云原生终端用户社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，旨在推广云原生技术，构建开发者生态。"
 # copyright
 copyright = "Copyright &copy; 2020 云原生社区"
 
