@@ -9,18 +9,6 @@ date: 2020-10-19T16:00:00+08:00
 type: "post"
 ---
 
-## 索引
-1. 背景知识
-2. 节点代理模型
-3. 测试环境
-4. 实现：通过 userspace socket 实现 proxy
-5. 实现：通过 iptables 实现 proxy
-6. 实现：通过 ipvs/ipset 实现 proxy
-7. 实现：通过 bpf 实现 proxy
-8. 总结
-9. 参考文献
-10. 附录
-
 Kubernetes 中有几种类型的代理。其中有 **node proxier** 或 `kube-proxy`，它在每个节点上反映 Kubernetes API 中定义的服务，可以跨一组后端执行简单的 TCP/UDP/SCTP 流转发 [1]。
 
 为了更好地理解节点代理模型，在这篇文章中，我们将用不同的方法设计和实现我们自己版本的 `kube-proxy`; 尽管这些只是 `toy-proxy`，但从**透明流量拦截、转发、负载均衡**等方面来说，它们的工作方式与 K8S 集群中运行的普通 `kube-proxy` 基本相同。
