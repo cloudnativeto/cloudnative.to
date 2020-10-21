@@ -28,7 +28,7 @@ NSM 通过将加密和身份验证无缝应用于容器流量来确保零信任�
 
 NSM 有一个用于东西向（服务到服务）流量的统一数据平面，以及一个本地集成的用于南北向流量的 NGINX Plus 入口控制器，它由单独的一个控制平面进行管理。
 
-控制平面是为 NGINX Plus 数据平面设计和优化的，并定义了分配给 NGINX Plus sidecar容器的流量管理规则。
+控制平面是为 NGINX Plus 数据平面设计和优化的，并定义了分配给 NGINX Plus sidecar 容器的流量管理规则。
 
 ![image](https://user-images.githubusercontent.com/37067719/96204792-c5539680-0f97-11eb-843e-2298c9cd111b.png)
 
@@ -36,13 +36,13 @@ NSM 有一个用于东西向（服务到服务）流量的统一数据平面，�
 - Grafana —— Prometheus 指标的可视化；内置的 NSM 仪表板可帮助您入门
 - Kubernetes Ingress controllers ——管理网格的入口和出口流量
 - SPIRE ——证书颁发机构，用于管理，分发和轮换网格的证书
-- NATS ——可伸缩的消息传递平面，用于从控制平面向sidecar容器传递消息，例如路由更新
+- NATS ——可伸缩的消息传递平面，用于从控制平面向 sidecar 容器传递消息，例如路由更新
 - Open Tracing ——分布式跟踪（同时支持 Zipkin 和 Jaeger）
-- Prometheus ——从 NGINX Plus sidecar容器中收集和存储指标，例如请求数，连接数和 SSL 握手数
+- Prometheus ——从 NGINX Plus sidecar 容器中收集和存储指标，例如请求数，连接数和 SSL 握手数
 
 ## 功能和组件
 
-NGINX Plus 作为数据平面跨越了sidecar代理（东西方流量）和入口控制器（南北流量），同时拦截和管理服务容器之间的流量。功能包括：
+NGINX Plus 作为数据平面跨越了 sidecar 代理（东西方流量）和入口控制器（南北流量），同时拦截和管理服务容器之间的流量。功能包括：
 - TLS (mTLS) 身份验证
 - 负载均衡
 - 高可用性
@@ -107,7 +107,7 @@ zipkin-6f7cbf5467-ns6wc              1/1     Running   0          2d19h
 ```
 
 根据设置手动或自动注入策略的部署选项，默认情况下，NGINX Sidecar 代理会注入已部署的应用程序中。要了解如何禁用自动注入，请参阅我们的 [文档](https://docs.nginx.com/nginx-service-mesh/usage/inject-sidecar-proxy/)。
-例如，如果我们将 **sleep** 应用程序部署在**默认**名称空间中，然后检查 Pod，我们会看到两个容器正在运行—— **sleep** 应用程序和关联的 NGINX Plus sidecar容器：
+例如，如果我们将 **sleep** 应用程序部署在**默认**名称空间中，然后检查 Pod，我们会看到两个容器正在运行—— **sleep** 应用程序和关联的 NGINX Plus sidecar 容器：
 
 ```
 $ kubectl apply –f sleep.yaml 
@@ -116,7 +116,7 @@ NAME                     READY   STATUS    RESTARTS   AGE
 sleep-674f75ff4d-gxjf2   2/2     Running   0          5h23m
 ```
 
-您还可以通过运行以下命令以将 Sidecar 暴露到本地，从而使用 [本地 NGINX Plus 仪表板](https://www.nginx.com/products/nginx/live-activity-monitoring) 监视 sleep 应用程序：
+您还可以通过运行以下命令以将 sidecar 暴露到本地，从而使用 [本地 NGINX Plus 仪表板](https://www.nginx.com/products/nginx/live-activity-monitoring) 监视 sleep 应用程序：
 
 ```
 $ kubectl port-forward sleep-674f75ff4d-gxjf2 8080:8886
