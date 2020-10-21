@@ -30,9 +30,9 @@ NSM 有一个用于东西向（服务到服务）流量的统一数据平面，�
 
 控制平面是为 NGINX Plus 数据平面设计和优化的，并定义了分配给 NGINX Plus sidecar 容器的流量管理规则。
 
-![NGINX 服务网格架构图](https://user-images.githubusercontent.com/37067719/96204792-c5539680-0f97-11eb-843e-2298c9cd111b.png)
+![“NGINX 服务网格架构图”](https://user-images.githubusercontent.com/37067719/96204792-c5539680-0f97-11eb-843e-2298c9cd111b.png)
 
-通过 NSM，sidecar容器代理与网格中的每个服务一同部署，它们与以下开源解决方案集成：
+通过 NSM，sidecar 容器代理与网格中的每个服务一同部署，它们与以下开源解决方案集成：
 - Grafana —— Prometheus 指标的可视化；内置的 NSM 仪表板可帮助您入门
 - Kubernetes Ingress controllers ——管理网格的入口和出口流量
 - SPIRE ——证书颁发机构，用于管理，分发和轮换网格的证书
@@ -106,7 +106,7 @@ spire-server-0                       2/2     Running   0          2d19h
 zipkin-6f7cbf5467-ns6wc              1/1     Running   0          2d19h
 ```
 
-根据设置手动或自动注入策略的部署选项，默认情况下，NGINX Sidecar 代理会注入已部署的应用程序中。要了解如何禁用自动注入，请参阅我们的 [文档](https://docs.nginx.com/nginx-service-mesh/usage/inject-sidecar-proxy/)。
+根据设置手动或自动注入策略的部署选项，默认情况下，NGINX sidecar 代理会注入已部署的应用程序中。要了解如何禁用自动注入，请参阅我们的 [文档](https://docs.nginx.com/nginx-service-mesh/usage/inject-sidecar-proxy/)。
 例如，如果我们将 **sleep** 应用程序部署在**默认**名称空间中，然后检查 Pod，我们会看到两个容器正在运行—— **sleep** 应用程序和关联的 NGINX Plus sidecar 容器：
 
 ```bash
