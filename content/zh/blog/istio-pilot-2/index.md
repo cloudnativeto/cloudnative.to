@@ -4,7 +4,7 @@ description: "本篇主要介绍 Pilot 源码中的 ServiceEntryStore 及其推�
 author: "[张海东](http://haidong.dev/)"
 image: "/images/blog/istio-pilot-banner.jpeg"
 categories: ["Istio","Service Mesh"]
-tags: ["istio","pilot","cloudnative","servermesh"]
+tags: ["istio","service mesh"]
 date: 2020-09-23T12:00:00+08:00
 type: "post"
 avatar: "/images/profile/haidong.jpeg"

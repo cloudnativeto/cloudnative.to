@@ -4,11 +4,11 @@ philosophy:
   philosophy_item:
     # philosophy item loop
     - title : "Our Mission"
-      content : "Promote the spread and popularity of cloud native technologies."
+      content : "Promote cloud native technologies and build a developer ecosystem."
 
     # philosophy item loop
     - title : "Our Aims"
-      content : "Connecting developers with open source community: enterprise neutral, developer first, open source first."
+      content : "Acts as a bridge between open source projects and developers, enterprise neutral."
 
     # philosophy item loop
     - title : "Our Principles"

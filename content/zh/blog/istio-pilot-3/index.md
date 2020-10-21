@@ -4,7 +4,7 @@ description: "本篇主要介绍 Pilot 源码中 EnvoyXdsServer 的工作流程�
 author: "[张海东](http://haidong.dev/)"
 image: "/images/blog/istio-pilot-banner.jpeg"
 categories: ["Istio","Service Mesh"]
-tags: ["istio","pilot","cloudnative","servermesh"]
+tags: ["istio","service mesh"]
 date: 2020-09-24T12:00:00+08:00
 type: "post"
 avatar: "/images/profile/haidong.jpeg"
