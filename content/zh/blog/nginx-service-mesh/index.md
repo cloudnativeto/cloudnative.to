@@ -30,7 +30,7 @@ NSM 有一个用于东西向（服务到服务）流量的统一数据平面，�
 
 控制平面是为 NGINX Plus 数据平面设计和优化的，并定义了分配给 NGINX Plus sidecar 容器的流量管理规则。
 
-![image](https://user-images.githubusercontent.com/37067719/96204792-c5539680-0f97-11eb-843e-2298c9cd111b.png)
+![NGINX 服务网格架构图](https://user-images.githubusercontent.com/37067719/96204792-c5539680-0f97-11eb-843e-2298c9cd111b.png)
 
 通过 NSM，sidecar容器代理与网格中的每个服务一同部署，它们与以下开源解决方案集成：
 - Grafana —— Prometheus 指标的可视化；内置的 NSM 仪表板可帮助您入门
@@ -60,7 +60,7 @@ NGINX Plus 作为数据平面跨越了 sidecar 代理（东西方流量）和入
 
 要使用默认设置部署 NSM，请运行以下命令。在部署过程中，该跟踪确认网格组件的成功部署，最后确认 NSM 在其自己的命名空间中运行：
 
-```
+```bash
 $ DOCKER_REGISTRY=your-Docker-registry ; MESH_VER=0.6.0 ; \
  ./nginx-meshctl deploy  \
   --nginx-mesh-api-image "${DOCKER_REGISTRY}/nginx-mesh-api:${MESH_VER}" \
@@ -109,7 +109,7 @@ zipkin-6f7cbf5467-ns6wc              1/1     Running   0          2d19h
 根据设置手动或自动注入策略的部署选项，默认情况下，NGINX Sidecar 代理会注入已部署的应用程序中。要了解如何禁用自动注入，请参阅我们的 [文档](https://docs.nginx.com/nginx-service-mesh/usage/inject-sidecar-proxy/)。
 例如，如果我们将 **sleep** 应用程序部署在**默认**名称空间中，然后检查 Pod，我们会看到两个容器正在运行—— **sleep** 应用程序和关联的 NGINX Plus sidecar 容器：
 
-```
+```bash
 $ kubectl apply –f sleep.yaml 
 $ kubectl get pods –n default
 NAME                     READY   STATUS    RESTARTS   AGE
@@ -118,7 +118,7 @@ sleep-674f75ff4d-gxjf2   2/2     Running   0          5h23m
 
 您还可以通过运行以下命令以将 sidecar 暴露到本地，从而使用 [本地 NGINX Plus 仪表板](https://www.nginx.com/products/nginx/live-activity-monitoring) 监视 sleep 应用程序：
 
-```
+```bash
 $ kubectl port-forward sleep-674f75ff4d-gxjf2 8080:8886
 ```
 
