@@ -27,7 +27,7 @@ type: "post"
 
 从 2013 年开始，Google 取得了巨大的成功，开始过渡到将零信任实施到其网络基础架构中，并且 [BeyondCorp](https://cloud.google.com/beyondcorp) 将其努力的结果向公众开放。快进到 2020 年，采用这种新范式的计划已经遍及 [各个行业](https://www.microsoft.com/en-us/microsoft-365/blog/2019/09/18/why-banks-adopt-modern-cybersecurity-zero-trust-model/)，主要是为了应对大规模数据泄露和更严格的监管要求。
 
-为了在 2020 年迎接这些需求和挑战，有 [ 53% 的网络安全决策者](https://www.pulsesecure.net/resource/2020zero-trust-report/) 计划迁移到零信任访问功能。谁能说他们是太小心了呢？
+为了在 2020 年迎接这些需求和挑战，有 [53% 的网络安全决策者](https://www.pulsesecure.net/resource/2020zero-trust-report/) 计划迁移到零信任访问功能。谁能说他们是太小心了呢？
 
 ## 零信任安全与服务网格
 
