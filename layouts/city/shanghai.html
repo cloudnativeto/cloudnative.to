@@ -15,7 +15,7 @@
             {{ "<!-- 引入核心成员个人照片 -->" | safeHTML }}
             {{ range .Params.core_members }}
             <div class="member col-lg-4">
-              <img class="avatar avatar-member" src="{{ .image | relURL }}" title="{{ .name | markdownify }}" alt="About Image">
+              <img class="avatar avatar-member hover-ripple" src="{{ .image | relURL }}" title="{{ .name | markdownify }}" alt="About Image">
               <p class="tag">{{ .tag | markdownify }}
                 {{ if .github }}
                 <a class="badge badge-dark" href="{{ .github | relURL }}" target="_blank" rel="noopener" aria-label="GitHub">
@@ -42,7 +42,7 @@
       </div>
       <div class="col-md-5 bg-contain">
         {{ "<!-- 社区Logo -->" | safeHTML }}
-        <img class="img-fluid w-100" src="{{ .Params.logo_image | relURL }}" title="{{ .Params.logo_title | markdownify }}" alt="{{ .Params.logo_title | markdownify }}">
+        <img class="img-fluid w-100 hover-ripple" src="{{ .Params.logo_image | relURL }}" title="{{ .Params.logo_title | markdownify }}" alt="{{ .Params.logo_title | markdownify }}">
       </div>
     </div>
   </div>
@@ -116,6 +116,7 @@
     border-radius: 50%!important;
     max-width: 40%;
     height: auto;    
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
   }
 
   .avatar {
@@ -127,8 +128,17 @@
     margin: 15px;
     padding: 5px;
     transition: all .25s;
-    background-color: #fff;
-    border: 1px solid #e1e4e9;    
+    border: 1px solid #eff3f9;   
+    background: #fff;
+    color: #fff;   
+  }
+
+  .hover-ripple {
+    transition: .2s ease-in;
+  }
+
+  .hover-ripple::after {
+    animation: sonarEffect 1s ease-out 50ms;
   }
 
   .core-members .tag {
