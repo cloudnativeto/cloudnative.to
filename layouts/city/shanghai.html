@@ -1,0 +1,157 @@
+{{ define "main" }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+<!-- Team members -->
+<section class="section justify">
+  <div class="container">
+    <div class="row justify-content-between align-items-center">
+      <div class="col-md-12">
+        <h2 class="section-title">{{ .Params.core_member_title | markdownify }}</h2>
+        <div class="section-title-border"></div>
+        <p class="mb-12">{{ .Params.core_member_desc | markdownify }}</p>
+      </div>    
+      <div class="row core-members" >
+            {{ "<!-- 引入核心成员个人照片 -->" | safeHTML }}
+            {{ range .Params.core_members }}
+            <div class="member col-lg-4">
+              <img class="avatar avatar-member hover-ripple" src="{{ .image | relURL }}" title="{{ .name | markdownify }}" alt="About Image">
+              <p class="tag">{{ .tag | markdownify }}
+                {{ if .github }}
+                <a class="badge badge-dark" href="{{ .github | relURL }}" target="_blank" rel="noopener" aria-label="GitHub">
+                  GitHub
+                </a>                    
+                {{ end }}          
+              </p>
+            </div>
+            {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Logo -->
+<section class="section justify bg-gray position-relative">
+  <div class="container position-relative zindex-1">
+    <div class="row justify-content-between align-items-center">      
+      <div class="col-md-6">
+        <h2 class="section-title">{{ .Params.logo_title | markdownify }}</h2>
+        <h6 class="section-title-sm">{{ .Params.logo_short_desc | markdownify }}</h6>
+        <div class="section-title-border"></div>
+        <p class="mb-5 desc">{{ .Params.logo_detail_desc | safeHTML }}</p>
+      </div>
+      <div class="col-md-5 bg-contain">
+        {{ "<!-- 社区Logo -->" | safeHTML }}
+        <img class="img-fluid w-100 hover-ripple" src="{{ .Params.logo_image | relURL }}" title="{{ .Params.logo_title | markdownify }}" alt="{{ .Params.logo_title | markdownify }}">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Activities -->
+<section class="section justify">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="section-title">{{ .Params.activity_title | markdownify }}</h2>
+      </div>
+      <div class="col-12 mx-auto">
+        <div class="testimonial-slider">
+          {{ range .Params.activities }}
+            <div class="text-center">
+            {{ if .url }}
+              <a href="{{ .url | safeURL }}" target="_blank">
+                {{ range .images }}
+                  <img class="img-fluid box-shadow mb-3 col-5 d-inline-block" src="{{ . | relURL }}" width="400px">
+                {{ end }}
+                <div>
+                  <h4>{{ .name | markdownify }}</h4>
+                </div>
+              </a>
+            {{ else }}
+              {{ range .images }}
+                <img class="img-fluid box-shadow mb-3 col-5 d-inline-block" src="{{ . | relURL }}" width="400px">
+              {{ end }}
+              <div>
+                <h4>{{ .name | markdownify }}</h4>
+              </div>
+            {{ end }}
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Join us -->
+<section class="section justify bg-gray">
+  <div class="container">
+    <div class="row justify-content-between align-items-center">
+      <div class="col-md-5 bg-contain text-center">
+        <img class="img-fluid" style="height: 250px;" src="{{ .Params.join_us_image | relURL }}"  title="{{ .Params.join_us_title | markdownify }}" alt="About Image">
+      </div>
+      <div class="col-md-6">
+        <h2 class="section-title">{{ .Params.join_us_title | markdownify }}</h2>
+        <div class="section-title-border"></div>
+        <p class="mb-5">{{ .Params.join_us_desc | markdownify }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<style>
+  img {
+    vertical-align: middle;
+    border-style: none;
+  }
+
+  .section.justify {
+      padding-top: 80px!important;
+      padding-bottom: 80px!important;
+  }
+
+  .avatar-member{
+    border-radius: 50%!important;
+    max-width: 40%;
+    height: auto;    
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+
+  .avatar {
+    display: inline-block;
+    overflow: hidden;
+    line-height: 1;
+    vertical-align: middle;
+    border-radius: 6px;
+    margin: 15px;
+    padding: 5px;
+    transition: all .25s;
+    border: 1px solid #eff3f9;   
+    background: #fff;
+    color: #fff;   
+  }
+
+  .hover-ripple {
+    transition: .2s ease-in;
+  }
+
+  .hover-ripple::after {
+    animation: sonarEffect 1s ease-out 50ms;
+  }
+
+  .core-members .tag {
+    text-align: left;
+    margin: 15px;
+    color: #b3b6b9;
+    font-weight: 400;    
+  }
+
+  .desc{
+    color: #b3b6b9;
+    font-weight: 400;      
+  }
+</style>
+
+{{ end }}
