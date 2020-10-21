@@ -38,7 +38,7 @@
         <h2 class="section-title">{{ .Params.logo_title | markdownify }}</h2>
         <h6 class="section-title-sm">{{ .Params.logo_short_desc | markdownify }}</h6>
         <div class="section-title-border"></div>
-        <p class="mb-5">{{ .Params.logo_detail_desc | safeHTML }}</p>
+        <p class="mb-5 desc">{{ .Params.logo_detail_desc | safeHTML }}</p>
       </div>
       <div class="col-md-5 bg-contain">
         {{ "<!-- 社区Logo -->" | safeHTML }}
@@ -136,6 +136,11 @@
     margin: 15px;
     color: #b3b6b9;
     font-weight: 400;    
+  }
+
+  .desc{
+    color: #b3b6b9;
+    font-weight: 400;      
   }
 </style>
 
