@@ -1,14 +1,12 @@
----
-title: "【译】初识 NGINX 服务网格"
-description: "本文翻译自 Nginx 官方博客初识 NGINX 服务网格。"
+cription: "本文翻译自 Nginx 官方博客初识 NGINX 服务网格。"
 author: "Nginx"
-translator: "[Lis](https://github.com/hmtai)"
+translator: "[台慧敏](https://github.com/hmtai)"
 image: "/images/blog/introducing-nginx-service-mesh.png"
 categories: ["service-mesh"]
 tags: ["Service Mesh"]
 date: 2020-10-13T23:00:00+08:00
 avatar: "./images/nginx.jpeg"
-profile: "由 Nginx 公司开发，一个完全集成的轻量级服务网格，它利用 NGINX Plus 支持的数据平面来管理 Kubernetes 环境中的容器流量。"
+profile: "台慧敏，程序员， 从事私有云开发，对容器，服务网格感兴趣，希望与大家分享更多新技术，共同学习进步。"
 type: "post"
 ---
 本文译自 [Introducing NGINX Service Mesh](https://www.nginx.com/blog/introducing-nginx-service-mesh/amp/)。
@@ -30,21 +28,21 @@ NSM 通过将加密和身份验证无缝应用于容器流量来确保零信任�
 
 NSM 有一个用于东西向（服务到服务）流量的统一数据平面，以及一个本地集成的用于南北向流量的 NGINX Plus 入口控制器，它由单独的一个控制平面进行管理。
 
-控制平面是为 NGINX Plus 数据平面设计和优化的，并定义了分配给 NGINX Plus 边车容器的流量管理规则。
+控制平面是为 NGINX Plus 数据平面设计和优化的，并定义了分配给 NGINX Plus sidecar容器的流量管理规则。
 
 ![image](https://user-images.githubusercontent.com/37067719/96204792-c5539680-0f97-11eb-843e-2298c9cd111b.png)
 
-通过 NSM，边车容器代理与网格中的每个服务一同部署，它们与以下开源解决方案集成：
+通过 NSM，sidecar容器代理与网格中的每个服务一同部署，它们与以下开源解决方案集成：
 - Grafana —— Prometheus 指标的可视化；内置的 NSM 仪表板可帮助您入门
 - Kubernetes Ingress controllers ——管理网格的入口和出口流量
 - SPIRE ——证书颁发机构，用于管理，分发和轮换网格的证书
-- NATS ——可伸缩的消息传递平面，用于从控制平面向边车容器传递消息，例如路由更新
+- NATS ——可伸缩的消息传递平面，用于从控制平面向sidecar容器传递消息，例如路由更新
 - Open Tracing ——分布式跟踪（同时支持 Zipkin 和 Jaeger）
-- Prometheus ——从 NGINX Plus 边车容器中收集和存储指标，例如请求数，连接数和 SSL 握手数
+- Prometheus ——从 NGINX Plus sidecar容器中收集和存储指标，例如请求数，连接数和 SSL 握手数
 
 ## 功能和组件
 
-NGINX Plus 作为数据平面跨越了边车代理（东西方流量）和入口控制器（南北流量），同时拦截和管理服务容器之间的流量。功能包括：
+NGINX Plus 作为数据平面跨越了sidecar代理（东西方流量）和入口控制器（南北流量），同时拦截和管理服务容器之间的流量。功能包括：
 - TLS (mTLS) 身份验证
 - 负载均衡
 - 高可用性
@@ -109,7 +107,7 @@ zipkin-6f7cbf5467-ns6wc              1/1     Running   0          2d19h
 ```
 
 根据设置手动或自动注入策略的部署选项，默认情况下，NGINX Sidecar 代理会注入已部署的应用程序中。要了解如何禁用自动注入，请参阅我们的 [文档](https://docs.nginx.com/nginx-service-mesh/usage/inject-sidecar-proxy/)。
-例如，如果我们将 **sleep** 应用程序部署在**默认**名称空间中，然后检查 Pod，我们会看到两个容器正在运行—— **sleep** 应用程序和关联的 NGINX Plus 边车容器：
+例如，如果我们将 **sleep** 应用程序部署在**默认**名称空间中，然后检查 Pod，我们会看到两个容器正在运行—— **sleep** 应用程序和关联的 NGINX Plus sidecar容器：
 
 ```
 $ kubectl apply –f sleep.yaml 
