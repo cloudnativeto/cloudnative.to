@@ -7,7 +7,7 @@ categories: ["Kubernetes"]
 tags: ["Kubernetes"]
 type: "post"
 profile: "南京云帐房容器研发工程师，云原生社区志愿者。"
-image: "images/blog/kubernetes-programming-base-banner.png"
+image: "images/blog/kubernetes-programming-base-banner.jpg"
 ---
 
 Kubernetes 诞生至今已经 5 年了，火爆整个社区，大家对 Kubernetes 越来越熟悉，越来越了解。但现阶段很多人都是熟练使用 Kubernetes，甚至我们会自嘲为 “YAML 工程师”。
