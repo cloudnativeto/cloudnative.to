@@ -1,5 +1,5 @@
 ---
-title: "Cloud Native Academy Online #6"
+title: "基于 Red Hat OpenShift 4 构建 Paas、DevOps 平台"
 description: "云原生社区邀请 RHCA Level 5，红帽资深解决方案架构师魏新宇，为大家带来分享《基于 Red Hat OpenShift 4 构建 Paas、DevOps 平台》"
 author: "[厉辉](https://yousali.me)"
 image: "images/blog/academy-6.png"
@@ -22,9 +22,9 @@ OpenShift 是红帽推出的企业就绪型 Kubernetes 容器平台，可以实�
 本主题将会从容器云生态、容器安全、DevOps、微服务等领域介绍企业需求和 OpenShift 提供的企业级解决方案。
 
 - 讲师：魏新宇
-- 时间：2020 年 10 月 21 日（周四）晚 8 点 - 9 点
+- 时间：2020 年 10 月 22 日（周四）晚 8 点 - 9 点
 - 地址：https://live.bilibili.com/22230973
-- 问题收集链接：https://docs.qq.com/doc/DR1JhQlFMWFVkR1JX
+- 直播提问：大家提前在本文留言区评论，由编辑整理好在直播中提问
 
 ![](https://cdn.jsdelivr.net/gh/Miss-you/img/picgo/20201020192142.png)
 
@@ -45,6 +45,21 @@ OpenShift 是红帽推出的企业就绪型 Kubernetes 容器平台，可以实�
 5. 应用容器化方法和迁移流程
 6. 应用部署和 CI/CD 实现方式
 7. 企业微服务治理需求和解决方案
+
+## 直播福利
+
+观看直播参与互动，可获得机械工业出版社华章图书赞助，魏新宇、郭跃军撰写的《OpenShift 在企业中的实践：PaaS DevOps 微服务》。
+
+![openshift](/Users/vincentcui/Code/cloudnative.to/content/zh/blog/academy-6/static/images/blog/book-openshift.png)
+
+本书从企业数字化转型入手，介绍企业如何通过 OpenShift 构建 PaaS 平台、实现 DevOps、实现微服务治理和微服务的高级管理。
+
+全书共分为四大部分：
+
+- 第一部分 PaaS 能力建设。即本书的“PaaS 三部曲”，包含第 2-4 章的内容，分别是：基于 OpenShift 构建企业级 PaaS、OpenShift 在企业中的开发和运维实践、OpenShift 在公有云上的实践。
+- 第二部分 DevOps 能力建设。即本书的“DevOps 两部曲”，包含第5-6章的内容，分别为：在 OpenShift 上实现 DevOps、DevOps 在企业中的实践。
+- 第三部分微服务能力建设。即本书“微服务三部曲”，包含第7-9章的内容，分别为：微服务介绍及 Spring Cloud 在 OpenShift 上落地、Istio架构介绍与安装部署、基于 OpenShift 和 Istio 实现微服务落地。
+- 第四部分微服务高级管理。包含本书第 10 章的内容。介绍基于 OpenShft 和红帽其他解决方案微服务的高级管理（API管理、分布式集成和流程自动化），并最终实现企业业务中台的建设。
 
 ## 用户收获
 
