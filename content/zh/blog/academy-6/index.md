@@ -7,11 +7,11 @@ categories: ["academy"]
 tags: ["云原生学院"]
 date: 2020-10-20T14:00:00+08:00
 type: "post"
-profile: "红帽资深解决方案架构师，RHCA Level 5"
+profile: "红帽资深解决方案架构师，RHCA Level 5。"
 avatar: "/images/profile/weixinyu.png"
 ---
 
-云原生社区邀请 RHCA Level 5，红帽资深解决方案架构师魏新宇，为大家带来分享《基于 Red Hat OpenShift 4 构建 Paas、DevOps 平台》。
+云原生社区邀请 RHCA Level 5，红帽资深解决方案架构师魏新宇，为大家带来分享「基于 Red Hat OpenShift 4 构建 Paas、DevOps 平台」。
 
 DevOps、微服务、PaaS 将成为 IT 技术发展的新趋势。越来越多的日常开发和生命周期任务正在实现自动化，通过现有数据流提供 AI 支持，通过灵活的 DevOps 管道驱动和孵化。生命周期和应用开发也会更加的智能化，越来越多的企业应用部署在 PaaS 平台上，使用微服务架构。
 
@@ -23,7 +23,7 @@ OpenShift 是红帽推出的企业就绪型 Kubernetes 容器平台，可以实�
 
 - 讲师：魏新宇
 - 时间：2020 年 10 月 22 日（周四）晚 8 点 - 9 点
-- 地址：https://live.bilibili.com/22230973
+- 地址：[https://live.bilibili.com/22230973](https://live.bilibili.com/22230973)
 - 直播提问：大家提前在本文留言区评论，由编辑整理好在直播中提问
 
 ![](/images/blog/academy-6.png)
