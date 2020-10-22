@@ -1,4 +1,4 @@
-cription: "本文翻译自 Nginx 官方博客初识 NGINX 服务网格。"
+description: "本文翻译自 Nginx 官方博客初识 NGINX 服务网格。"
 author: "Nginx"
 translator: "[台慧敏](https://github.com/hmtai)"
 image: "/images/blog/introducing-nginx-service-mesh.png"
@@ -6,7 +6,7 @@ categories: ["service-mesh"]
 tags: ["Service Mesh"]
 date: 2020-10-13T23:00:00+08:00
 avatar: "./images/nginx.jpeg"
-profile: "台慧敏，程序员， 从事私有云开发，对容器，服务网格感兴趣，希望与大家分享更多新技术，共同学习进步。"
+profile: "台慧敏，程序员，从事私有云开发，对容器，服务网格感兴趣，希望与大家分享更多新技术，共同学习进步。"
 type: "post"
 ---
 本文译自 [Introducing NGINX Service Mesh](https://www.nginx.com/blog/introducing-nginx-service-mesh/amp/)。
