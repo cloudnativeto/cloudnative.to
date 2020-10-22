@@ -81,6 +81,12 @@ URL = "https://cloudnative.to/sig-envoy"
 weight = 4
 
 [[menu.main]]
+parent = "Community"
+name = "Dapr SIG"
+URL = "https://cloudnative.to/sig-dapr"
+weight = 5
+
+[[menu.main]]
 name = "Blog"
 URL = "blog"
 weight = 3
@@ -273,6 +279,12 @@ parent = "学院"
 name = "Envoy 特别兴趣小组"
 URL = "https://cloudnative.to/sig-envoy"
 weight = 3
+
+[[Languages.zh.menu.main]]
+parent = "学院"
+name = "Dapr 特别兴趣小组"
+URL = "https://cloudnative.to/sig-dapr"
+weight = 4
 
 [[Languages.zh.menu.main]]
 name = "博客"
