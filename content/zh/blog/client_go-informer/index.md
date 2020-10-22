@@ -392,7 +392,7 @@ func (p *processorListener) run() {
 
 #### (1)简介
 
-indexer是client-go用来存储资源对象并自带索引功能的本地存储，Reflector从DeltaFIFO中江晓飞出来的资源对象存储至indexer，indexer要与etcd中的数据保持一致，这样无须每次都走etcd交互式拿到数据，能减轻api-server的压力。
+indexer是client-go用来存储资源对象并自带索引功能的本地存储，Reflector从DeltaFIFO中将消费出来的资源对象存储至indexer，indexer要与etcd中的数据保持一致，这样无须每次都走etcd交互式拿到数据，能减轻api-server的压力。
 
 ![infomer](./images/indexer.png)
 
