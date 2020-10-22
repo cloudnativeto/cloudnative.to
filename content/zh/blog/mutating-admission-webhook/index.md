@@ -1,16 +1,17 @@
 ---
-title: "【译】如何构建 Kubernetes Mutating  Admission Webhook"
-description: "一个将文件注入容器的小技巧"
+title: "【译】如何构建 Kubernetes Mutating Admission Webhook"
+description: "本文译自 Adil H 的文章 Building a Kubernetes Mutating Admission Webhook，一个将文件注入容器的小技巧。"
 author: "Adil H"
-translator: "梁斌"
-image: "./images/pexels-pixabay-531756.jpg"
+translator: "[梁斌](https://github.com/hzliangbin)"
+image: "/images/blog/k8s-mutating-admission-webhook-banner.jpg"
 categories: ["Kubernetes"]
 tags: ["Kubernetes"]
 date: 2020-10-17T16:00:00+08:00
 type: "post"
-avatar: "/images/profile/liangbin.jpg"
-profile: "平安智慧城容器云开发运维工程师"
+avatar: "./images/Adil_H.jpeg"
+profile: "后台&云端开发工程师"
 ---
+本文译自 [Building a Kubernetes Mutating Admission Webhook](https://medium.com/@didil/building-a-kubernetes-mutating-admission-webhook-7e48729523ed)。
 
 当你在 Kubernetes 中创建 Pod 的时候，是否注意到在容器的 */var/run/secrets/kubernetes.io/serviceaccount/token*  路径上存放了一个用于认证的 token 文件？你可以通过如下命令，在 Kubernetes 集群中验证下：
 
@@ -20,15 +21,13 @@ $ kubectl run busybox --image=busybox --restart=Never -it --rm -- ls -l /var/run
 /var/run/secrets/kubernetes.io/serviceaccount/token
 ```
 
-注：在 Kubernetes 1.6 以上的版本，你可以[取消](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server)这一个自动注入的功能。
+注：在 Kubernetes 1.6 以上的版本，你可以 [取消](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server) 这一个自动注入的功能。
 
-现在假设有这样一个场景，需要添加一个 “hello.txt” 文件到所有（或某组）pod 的容器文件系统内，不能通过在 pod spec 中显示指定 volumeMount 的方式，我们有没有什么方法达到目的呢？
+现在假设有这样一个场景，需要添加一个 “hello.txt” 文件到所有（或某组）pod 的容器文件系统内，不能通过在 pod spec 中显式指定 volumeMount 的方式，我们有没有什么方法达到目的呢？
 
-为了让实验更具趣味性，我们用一个 ASCII “小作品” （用这个工具生成的）来作为我们的 “hello.txt” 文件:
+为了让实验更具趣味性，我们用一个 ASCII “小作品”（用这个工具生成的）来作为我们的 “hello.txt” 文件：
 
 ![hello.txt 文件内容](./images/hello1.png)
-
-
 
 ## 何为 Admission Webhook
 
@@ -44,11 +43,11 @@ $ kubectl run busybox --image=busybox --restart=Never -it --rm -- ls -l /var/run
 
 ## 创建 Admission Webhook
 
-笔者已经把下文提到的代码和命令都上传到了 [github仓库](https://github.com/didil/k8s-hello-mutating-webhook)。读者可以跟着边看边操作。
+笔者已经把下文提到的代码和命令都上传到了 [github 仓库](https://github.com/didil/k8s-hello-mutating-webhook)。读者可以跟着边看边操作。
 
 首先需要有一个正常运行的 Kubernetes 集群。读者可以通过 [Kind](https://kind.sigs.k8s.io/) 快速起一个集群。
 
-接着，定义一个包含了 “helo.txt” 文件内容的 [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/)：
+接着，定义一个包含了 “hello.txt” 文件内容的 [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/)：
 
 ```yaml
 apiVersion: v1
@@ -72,7 +71,7 @@ data:
 
 ```
 
-为了构建 webhook，我们写一个简洁的 Go API 服务端。http handler是实现 webhook 代码的最重要部分： 
+为了构建 webhook，我们写一个简洁的 Go API 服务端。http handler 是实现 webhook 代码的最重要部分： 
 
 ```go
 func (app *App) HandleMutate(w http.ResponseWriter, r *http.Request) {
@@ -173,21 +172,20 @@ func (app *App) HandleMutate(w http.ResponseWriter, r *http.Request) {
 
 上面这部分代码，和 Kubernetes 内部代码有诸多类似，都使用了 源自 https://github.com/kubernetes/api  和 https://github.com/kubernetes/apimachinery 的 schema 类型。上述代码主要做了如下事情：
 
-- 将来自 Http 请求中的 AdmissionReview  json 输入反序列化
+- 将来自 Http 请求中的 AdmissionReview  json 输入反序列化。
 - 读取 Pod 的 spec 信息。
 - 将 hello-configmap 作为数据源，添加 hello-volume 卷到 Pod。
 - 挂载卷至 Pod 容器中。
 - 以 [JSON PATCH](http://jsonpatch.com/) 的形式记录变更信息，包括卷的变更，卷挂载信息的变更。顺道为容器添加一个 “hello-added=true” 的标签。
 - 构建 json 格式的响应结果，结果中包含了这次请求中的被修改的部分。
 
-笔者[此处](https://github.com/didil/k8s-hello-mutating-webhook/blob/main/webhook/api/app_test.go)还为这个handler编写了单元/功能测试，以确保它的功能实现符合我们的预期。
+笔者 [此处](https://github.com/didil/k8s-hello-mutating-webhook/blob/main/webhook/api/app_test.go) 还为这个 handler 编写了单元/功能测试，以确保它的功能实现符合我们的预期。
 
 ## 加点改进：TLS
 
-Webhook API 服务器需要通过TLS方式通信。如果想将其部署至 Kubernetes 集群内，我们还需要证书。笔者通过 [New Relic](https://github.com/newrelic/k8s-webhook-cert-manager) 这个软件来生成 Webhook 证书。笔者创建了一个[个人分支](https://github.com/didil/k8s-webhook-cert-manager)，对代码做了点改动，以确保其可以 Job 方式部署：
+Webhook API 服务器需要通过 TLS 方式通信。如果想将其部署至 Kubernetes 集群内，我们还需要证书。笔者通过 [New Relic](https://github.com/newrelic/k8s-webhook-cert-manager) 这个软件来生成 Webhook 证书。笔者创建了一个 [个人分支](https://github.com/didil/k8s-webhook-cert-manager)，对代码做了点改动，以确保其可以 Job 方式部署：
 
 ```yaml
-
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -254,10 +252,9 @@ spec:
           secretName: hello-tls-secret
 ```
 
-然后是一个 ClusterIP 类型的 Service
+然后是一个 ClusterIP 类型的 Service：
 
 ```yaml
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -272,7 +269,7 @@ spec:
     targetPort: 8000
 ```
 
-接着，创建一个 MutatingWebhookConfiguration 将我们创建的webhook信息注册到 Kubernetes API server：
+接着，创建一个 MutatingWebhookConfiguration 将我们创建的 webhook 信息注册到 Kubernetes API server：
 
 ```yaml
 apiVersion: admissionregistration.k8s.io/v1
@@ -300,9 +297,9 @@ webhooks:
   timeoutSeconds: 10
 ```
 
-如上述的清单信息所示，我们要求 Kubernetes 把（部署了 MutatingWebhookConfiguration ）命名空间中所有的Pod创建请求，只要匹配上 “hello=true”标签的，就将其转发到 hello-webhook-service 的 “/mutate”路径下，交给其处理。标签时可选的。此处笔者通过标签匹配来说明，如果标签不匹配或者不具备标签的请求，就可以绕开  Mutating Webhook 的预处理。
+如上述的清单信息所示，我们要求 Kubernetes 把（部署了 MutatingWebhookConfiguration ）命名空间中所有的 Pod 创建请求，只要匹配上 “hello=true”标签的，就将其转发到 hello-webhook-service 的 “/mutate”路径下，交给其处理。标签是可选的。此处笔者通过标签匹配来说明，如果标签不匹配或者不具备标签的请求，就可以绕开 Mutating Webhook 的预处理。
 
-[这篇文章](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#service-reference)中提到了 “caBundle”，然而我们上面文件中  “clientConfig”  中却不存在  “caBundle” key 字段。不必感到奇怪，那是因为 webhook-cert-setup Job 会为我们自动创建这个key。
+[这篇文章](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#service-reference) 中提到了 “caBundle”，然而我们上面文件中  “clientConfig”  中却不存在  “caBundle” key 字段。不必感到奇怪，那是因为 webhook-cert-setup Job 会为我们自动创建这个 key。
 
 ## 部署 Webhook 
 
@@ -343,7 +340,7 @@ deployment.apps/hello-webhook-deployment created
 $ kubectl run busybox-1 --image=busybox  --restart=Never -l=app=busybox,hello=true -- sleep 3600
 ```
 
-看看容器内的文件系统是否有 hello.txt
+看看容器内的文件系统是否有 hello.txt：
 
 ```shell
 $ kubectl exec busybox-1 -it -- sh -c "ls /etc/config/hello.txt"
@@ -359,9 +356,7 @@ $ kubectl exec busybox-1 -it -- sh -c "cat /etc/config/hello.txt"
 
 ![The file is in the pod container !](./images/hello2.png)
 
-
-
-接下来再创建第二个容器，不带  “hello=true” 标签的。
+接下来再创建第二个容器，不带  “hello=true” 标签的：
 
 ```shell
 $ kubectl run busybox-2 --image=busybox --restart=Never -l=app=busybox -- sleep 3600
@@ -374,7 +369,7 @@ ls: /etc/config/hello.txt: No such file or directory
 
 和我们预期的一致，第一次创建的 busybox 容器，匹配上了 webhook 的标签，注入了文件。第二次创建的 busybox 容器则没有。
 
-再来检查下是否只有 buxybox-1容器具备 “hello-added” 标签：
+再来检查下是否只有 buxybox-1 容器具备 “hello-added” 标签：
 
 ```shell
 $ kubectl get pod -l=app=busybox -L=hello-added
@@ -391,4 +386,4 @@ Mutating Webhook 生效了！
 
 我们尝试用 Mutating Admission Webhooks 对 Kubernetes 进行了初次拓展。文中没有提及 Validating Admission Webhooks，如果你需要对  [OpenAPI schemas](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#validation) 之外的资源进行校验，你可以进一步深入了解。
 
-希望本文对你有所帮助，如果你有任何问题和评论，可以联系我。下篇文章，我们将讨论另一种拓展 Kubernetes的方式：实现一个 Kubernetes Operator。
+希望本文对你有所帮助，如果你有任何问题和评论，可以联系我。下篇文章，我们将讨论另一种拓展 Kubernetes 的方式：实现一个 Kubernetes Operator。
