@@ -1,13 +1,13 @@
 ---
 title: "基于 Red Hat OpenShift 4 构建 Paas、DevOps 平台"
 description: "云原生社区邀请 RHCA Level 5，红帽资深解决方案架构师魏新宇，为大家带来分享《基于 Red Hat OpenShift 4 构建 Paas、DevOps 平台》。"
-author: "[厉辉](https://yousali.me)"
+author: "魏新宇"
 image: "images/blog/academy-6.png"
 categories: ["academy"]
 tags: ["云原生学院"]
 date: 2020-10-20T14:00:00+08:00
 type: "post"
-profile: "魏新宇，红帽资深解决方案架构师，RHCA Level 5"
+profile: "红帽资深解决方案架构师，RHCA Level 5"
 avatar: "/images/profile/weixinyu.png"
 ---
 
@@ -26,7 +26,7 @@ OpenShift 是红帽推出的企业就绪型 Kubernetes 容器平台，可以实�
 - 地址：https://live.bilibili.com/22230973
 - 直播提问：大家提前在本文留言区评论，由编辑整理好在直播中提问
 
-![](https://cdn.jsdelivr.net/gh/Miss-you/img/picgo/20201020192142.png)
+![](/images/blog/academy-6.png)
 
 ## 分享主题
 
