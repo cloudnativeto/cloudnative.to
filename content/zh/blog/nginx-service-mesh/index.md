@@ -1,4 +1,5 @@
 ---
+title: "【译】初识 NGINX 服务网格"
 description: "本文翻译自 Nginx 官方博客初识 NGINX 服务网格。"
 author: "Nginx"
 translator: "[台慧敏](https://github.com/hmtai)"
