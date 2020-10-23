@@ -1,3 +1,4 @@
+---
 description: "本文翻译自 Nginx 官方博客初识 NGINX 服务网格。"
 author: "Nginx"
 translator: "[台慧敏](https://github.com/hmtai)"
@@ -9,6 +10,7 @@ avatar: "./images/nginx.jpeg"
 profile: "台慧敏，程序员，从事私有云开发，对容器，服务网格感兴趣，希望与大家分享更多新技术，共同学习进步。"
 type: "post"
 ---
+
 本文译自 [Introducing NGINX Service Mesh](https://www.nginx.com/blog/introducing-nginx-service-mesh/amp/)。
 
 此版本 NGINX Service Mesh (NSM) 是一个高度集成的轻量级的服务网格的开发版本，它利用 [NGINX Plus](https://www.nginx.com/products/nginx/) 支持的数据平面来管理 Kubernetes 环境中的容器流量。NSM 可以免费 [下载](https://downloads.f5.com/)。非常希望广大开发者们能在开发和测试环境中尝试一下，期待你们在 GitHub 仓库留下对 NSM 的反馈。
