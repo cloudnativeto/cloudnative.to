@@ -1,7 +1,7 @@
 ---
 title: "【译】深入理解 Kubernetes 网络模型：自己实现 kube-proxy 的功能"
 description: "带你一步步理解 kube-proxy。"
-author: "ArthurChiao"
+author: "赵亚楠"
 image: "/images/blog/crack-k8s-node-proxy-banner.jpeg"
 translator: "[徐鹏](https://team.jiunile.com/)"
 categories: ["kubernetes", "kube-proxy", "网络"]
