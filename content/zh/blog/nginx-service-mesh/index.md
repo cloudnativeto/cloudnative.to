@@ -8,7 +8,7 @@ categories: ["service-mesh"]
 tags: ["Service Mesh"]
 date: 2020-10-13T23:00:00+08:00
 avatar: "./images/nginx.jpeg"
-profile: "台慧敏，程序员，从事私有云开发，对容器，服务网格感兴趣，希望与大家分享更多新技术，共同学习进步。"
+profile: "Nginx是一个高性能的HTTP和反向代理服务器，具有高并发、稳定、支持热部署等特点。"
 type: "post"
 ---
 
