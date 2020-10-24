@@ -1,6 +1,6 @@
 ---
 title: "【译】如何构建 Kubernetes Mutating Admission Webhook"
-description: "本文译自 Adil H 的文章 Building a Kubernetes Mutating Admission Webhook，一个将文件注入容器的小技巧。"
+description: "本文介绍了从零开始构建 Kubernetes Mutating Admission Webhook 的详细步骤。通过使用 Mutating Admission Webhook，实现将文件注入容器的功能。"
 author: "Adil H"
 translator: "[梁斌](https://github.com/hzliangbin)"
 image: "/images/blog/k8s-mutating-admission-webhook-banner.jpg"
