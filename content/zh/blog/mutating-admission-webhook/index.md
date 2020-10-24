@@ -9,7 +9,7 @@ tags: ["Kubernetes"]
 date: 2020-10-17T16:00:00+08:00
 type: "post"
 avatar: "./images/Adil_H.jpeg"
-profile: "后台&云端开发工程师"
+profile: "后台&云端开发工程师。"
 ---
 本文译自 [Building a Kubernetes Mutating Admission Webhook](https://medium.com/@didil/building-a-kubernetes-mutating-admission-webhook-7e48729523ed)。
 
