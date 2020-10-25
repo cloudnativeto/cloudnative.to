@@ -45,15 +45,19 @@ logo_image: "/images/city/dalian/logo.jpg"
 # ACTIVITY
 activity_title: 往期活动
 activities:
-  - name: 2020-09-24 云原生走进高校之-大连东软信息学院
+  - name: 2020-10-24 云原生走进高校第二期之-大连东软信息学院
+    url: https://mp.weixin.qq.com/s/5Mc9gG6_E2cdp6cXnxzUbA
+    images:
+      - "/images/city/dalian/activities/2020-10-24/neusoft-01.png"
+  - name: 2020-09-24 云原生走进高校第一期之-大连东软信息学院
     url: https://mp.weixin.qq.com/s/qlclCwXstAsqdO2xPaf6-Q
     images:
-      - "/images/city/dalian/activities/2020-09-neusoft-school.png"
+      - "/images/city/dalian/activities/2020-09-24/2020-09-neusoft-school.png"
   - name: 2020-09-19 核心成员线下聚会
     url: https://mp.weixin.qq.com/s/p4HWU576-EBnoXUXjI7PtQ
     images: 
-      - "/images/city/dalian/activities/2020-09-19-core-member-01.jpg"
-      - "/images/city/dalian/activities/2020-09-19-core-member-02.jpg"
+      - "/images/city/dalian/activities/2020-09-19/2020-09-19-core-member-01.jpg"
+      - "/images/city/dalian/activities/2020-09-19/2020-09-19-core-member-02.jpg"
 
 # JOINT US
 join_us_title: "加入我们"
