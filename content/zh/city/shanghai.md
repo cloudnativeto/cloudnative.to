@@ -49,9 +49,14 @@ logo_detail_desc: "整体形象是融合上海著名地标建筑东方明珠，�
 logo_image: "/images/city/shanghai/logo.png"
 
 # ACTIVITY
-activity_title: 社区活动
+activity_title: "社区活动"
 activities:
-  - name: 2020-10-08 核心成员线下聚会
+  - name: "2020-10-24 1024极客文化节"
+    images:
+      - "/images/city/shanghai/activities/20201024/1.jpeg"
+      - "/images/city/shanghai/activities/20201024/2.jpeg"
+      - "/images/city/shanghai/activities/20201024/3.jpeg"
+  - name: "2020-10-08 核心成员线下聚会"
     # url: https://mp.weixin.qq.com/s/p4HWU576-EBnoXUXjI7PtQ
     images:
       - "/images/city/shanghai/activities/20201008/1.png"
