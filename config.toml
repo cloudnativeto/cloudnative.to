@@ -81,6 +81,12 @@ URL = "https://cloudnative.to/sig-envoy"
 weight = 4
 
 [[menu.main]]
+parent = "Community"
+name = "Dapr SIG"
+URL = "https://cloudnative.to/sig-dapr"
+weight = 5
+
+[[menu.main]]
 name = "Blog"
 URL = "blog"
 weight = 3
@@ -128,7 +134,7 @@ logo_footer = "images/logo-alt.png"
 # top header
 top_header = false
 # Meta data
-description = "云原生社区是一个企业中立的云原生终端用户社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，旨在推广云原生技术，构建开发者生态。"
+description = "云原生社区是一个中立的云原生终端用户社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，旨在推广云原生技术，构建开发者生态。"
 author = " 云原生社区"
 # contact form action
 contact_form_action = "#" # contact form works with https://formspree.io
@@ -211,7 +217,7 @@ contentDir = "content/en"
 weight = 2
 #home = "Home"
 # footer content
-footer_content = "Cloud Native Community is an enterprise-neutral, cloud native end user community founded on May 12, 2020 by CNCF ambassadors and open source opinion leaders to promote cloud native technologies and build a developer ecosystem."
+footer_content = "Cloud Native Community is an neutral, cloud native end user community founded on May 12, 2020 by CNCF ambassadors and open source opinion leaders to promote cloud native technologies and build a developer ecosystem."
 # copyright
 copyright = "Copyright &copy; 2020 Cloud Native Community"
 
@@ -224,7 +230,7 @@ contentDir = "content/zh"
 weight = 1
 #home = "主页"
 # footer content
-footer_content = "云原生社区是一个企业中立的云原生终端用户社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，旨在推广云原生技术，构建开发者生态。"
+footer_content = "云原生社区是一个中立的云原生终端用户社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，旨在推广云原生技术，构建开发者生态。"
 # copyright
 copyright = "Copyright &copy; 2020 云原生社区"
 
@@ -273,6 +279,12 @@ parent = "学院"
 name = "Envoy 特别兴趣小组"
 URL = "https://cloudnative.to/sig-envoy"
 weight = 3
+
+[[Languages.zh.menu.main]]
+parent = "学院"
+name = "Dapr 特别兴趣小组"
+URL = "https://cloudnative.to/sig-dapr"
+weight = 4
 
 [[Languages.zh.menu.main]]
 name = "博客"

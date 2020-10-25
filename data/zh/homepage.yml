@@ -2,28 +2,17 @@
 slider:
   enable : true
   slider_item:
-    # slider item
-    # - subtitle : ""
-    #   title : "欢迎来到云原生社区"
-    #   content : "云原生社区始于 2016 年成立的 Kubernetes & Cloud Native 实战群，覆盖了上千名云原生的早期拥护者。2020 年 5 月，在 CNCF 大使、开源领域意见领袖的共同倡议下升级为云原生社区。社区旨在构建一个开放、包容的交流环境，促进云原生技术的传播和普及。 您也可以加入所在地区的[城市站](https://github.com/cloudnativeto/community/issues/50)参与云原生社区的线下活动。"
-    #   bg_image_webp : "images/slider/banner-1.jpg"
-    #   bg_image : "images/slider/banner-1.jpg"
-    #   animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
-    #   button:
-    #     enable : true
-    #     label : "加入我们"
-    #     link : "contact"
-    #     animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
-    - subtitle : ""
-      title : ""
-      content : "2020 年云原生产业大会，敬请关注！"
-      bg_image : "images/slider/banner-2.jpg"
-      animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
-      button:
-        enable : true
-        label : "观看直播"
-        link : "https://e.vhall.com/subject/view/553258536"
-        animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
+     - subtitle : ""
+       title : "欢迎来到云原生社区"
+       content : "云原生社区是一个中立的云原生终端用户社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，旨在推广云原生技术，构建开发者生态。"
+       bg_image_webp : "images/slider/banner-1.jpg"
+       bg_image : "images/slider/banner-1.jpg"
+       animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
+       button:
+         enable : true
+         label : "加入我们"
+         link : "contact"
+         animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
 
 ################################## banner feature ############################
 banner_feature:
