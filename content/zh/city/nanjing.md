@@ -1,4 +1,5 @@
 ---
+code: "nanjing"
 title: "南京站"
 description: "南京站的简介"
 longitude: 118.803

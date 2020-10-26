@@ -11,7 +11,7 @@
         <div class="section-title-border"></div>
         <p class="mb-12">{{ .Params.core_member_desc | markdownify }}</p>
       </div>    
-      <div class="row core-members" >
+      <div class="row core-members" style="text-align: center;">
             {{ "<!-- 引入核心成员个人照片 -->" | safeHTML }}
             {{ range .Params.core_members }}
             <div class="member col-lg-4">

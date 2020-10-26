@@ -1,4 +1,5 @@
 ---
+code: "suzhou"
 title: "苏州站"
 longitude: 120.601
 latitude: 31.313

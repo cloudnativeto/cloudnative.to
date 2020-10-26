@@ -1,4 +1,5 @@
 ---
+code: "wuhan"
 title: "武汉站"
 description: "武汉站的简介"
 longitude: 114.318

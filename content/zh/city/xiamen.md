@@ -1,4 +1,5 @@
 ---
+code: "xiamen"
 title: "厦门站"
 description: "厦门站的简介"
 longitude: 118.085

@@ -1,4 +1,5 @@
 ---
+code: "qingdao"
 title: "青岛站"
 longitude: 120.380834
 latitude: 36.075261

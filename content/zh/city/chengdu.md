@@ -1,4 +1,5 @@
 ---
+code: "chengdu"
 title: "成都站"
 description: "成都站的简介"
 longitude: 104.073
