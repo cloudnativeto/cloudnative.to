@@ -519,6 +519,6 @@ spec:
 
 ## 参考文档
 
-* https://rancher.com/blog/2019/deploying-redis-cluster
-* https://medium.com/@fr33m0nk/migrating-to-redis-cluster-using-envoy-93a87ae79dc3
+* [Deploying Redis Cluster on Top of Kubernetes](https://rancher.com/blog/2019/deploying-redis-cluster)
+* [Migrating to Redis cluster using envoy proxy](https://medium.com/@fr33m0nk/migrating-to-redis-cluster-using-envoy-93a87ae79dc3)
 * [Implement REPLACE operation for EnvoyFilter patch](https://github.com/istio/istio/pull/27426/)
