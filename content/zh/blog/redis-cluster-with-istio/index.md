@@ -7,7 +7,7 @@ categories: ["Service Mesh"]
 tags: ["service mesh","Istio","Envoy","Redis"]
 date: 2020-10-26T11:00:00+08:00
 avatar: "/images/profile/zhaohuabing.png"
-profile: "腾讯云工程师，Istio Contributor。"
+profile: "腾讯云高级工程师，Istio contributor，ServiceMesher 管理委员，热衷于开源、网络和云计算。目前主要从事服务网格的开源和研发工作。"
 type: "post"
 ---
 
