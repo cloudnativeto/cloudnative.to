@@ -1,4 +1,5 @@
 ---
+code: "hangzhou"
 title: "杭州站"
 description: "杭州站的简介"
 longitude: 120.230

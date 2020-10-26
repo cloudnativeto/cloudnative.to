@@ -1,4 +1,5 @@
 ---
+code: "changsha"
 title: "长沙站"
 description: "长沙站的简介"
 longitude: 112.953

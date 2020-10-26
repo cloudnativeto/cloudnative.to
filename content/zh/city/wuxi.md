@@ -1,4 +1,5 @@
 ---
+code: "wuxi"
 title: "无锡站"
 longitude: 120.312258
 latitude: 31.506445

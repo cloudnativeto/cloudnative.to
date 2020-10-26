@@ -1,4 +1,5 @@
 ---
+code: "xian"
 title: "西安站"
 description: "西安站的简介"
 longitude: 108.952

@@ -1,4 +1,5 @@
 ---
+code: "chongqing"
 title: "重庆站"
 description: "重庆站的简介"
 longitude: 106.550
