@@ -22,7 +22,6 @@ function cloudNativeBaiduMap(mapData){
     var marker = new BMap.Marker(point);
     var label = new BMap.Label(data.title, {offset:new BMap.Size(-10,20)});
     marker.setLabel(label);
-    console.log(data.code);
     marker.setTitle(data.code);
     marker.addEventListener("click",switchToCity);
 
