@@ -1,6 +1,6 @@
 ---
 title: "在 Istio 中实现 Redis 集群的数据分片、读写分离和流量镜像"
-description: "本文将介绍如何通过 Istio 和 Envoy 实现客户端无感知的 Redis Cluster 数据分片，并实现读写分离、流量镜像等高级流量管理功能。。"
+description: "本文将介绍如何通过 Istio 和 Envoy 实现客户端无感知的 Redis Cluster 数据分片，并实现读写分离、流量镜像等高级流量管理功能。"
 author: "[赵化冰](https://zhaohuabing.com)"
 image: "https://images.pexels.com/photos/358326/pexels-photo-358326.jpeg?cs=srgb&dl=pexels-pixabay-358326.jpg&fm=jpg"
 categories: ["Service Mesh"]
@@ -17,17 +17,17 @@ Redis 是一个高性能的 key-value 存储系统，被广泛用于微服务架
 
 Redis 的一个常见用途是用作数据高速缓存。通过在应用服务器和数据库服务器之间加入一个 Redis 缓存层，可以减少应用服务器对数据库的大量读操作，避免数据库服务器在大压力下响应缓慢甚至宕机的风险，显著加强整个系统的健壮性。Redis 作为数据缓存的原理如图所示：
 
-![](/images/blog/redis-as-cache.png)
+![](images/redis-as-cache.png)
 
 在一个小规模的系统中，上图所示的单个 Redis 就可以很好地实现缓存层的功能。当系统中需要缓存的数据量较大时，一个 Redis 服务器无法承担所有应用服务器的缓存需求；同时单个 Redis 实例失效时也会导致大量读请求被直接发送到后端的数据库服务器上，导致数据库服务器瞬时压力超标，影响系统的稳定性。我们可以采用 [Redis Cluster](https://redis.io/topics/cluster-spec) 来对缓存数据进行分片，将不同的数据放到不同的 Redis 分片中，以提高 Redis 缓存层的容量能力。在每个 Redis 分片中，还可以采用多个 replica 节点对缓存的读请求进行负载分担，并实现 Redis 的高可用。采用了 Redis Cluster 的系统如下图所示：
 
-![](/images/blog/redis-cluster-no-proxy.png)
+![](images/redis-cluster-no-proxy.png)
 
 从图中可以看到，在 Redis Cluster 模式下，客户端需要根据集群的分片规则将不同 key 的读写操作发送到集群中不同的 Redis 节点上，因此客户端需要了解 Redis Cluster 的拓扑结构，这导致我们无法在不修改客户端的情况下将一个使用 Redis 独立节点模式的应用平滑迁移到 Redis Cluster 上。另外，由于客户端需要了解 Redis Cluster 的内部拓扑，也将导致客户端代码和 Redis Cluster 运维上的耦合，例如要实现读写分离或者流量镜像的话，就需要修改每个客户端的代码并重新部署。
 
 这种场景下，我们可以在应用服务器和 Redis Cluster 之间放置一个 Envoy 代理服务器，由 Envoy 来负责将应用发出的缓存读写请求路由到正确的 Redis 节点上。一个微服务系统中存在大量需要访问缓存服务器的应用进程，为了避免单点故障和性能瓶颈，我们以 Sidecar 的形式为每个应用进程部署一个 Envoy 代理。同时，为了简化对这些代理的管理工作，我们可以采用 Istio 作为控制面来统一对所有 Envoy 代理进行配置,如下图所示：
 
-![](/images/blog/redis-cluster-with-proxy.png)
+![](images/redis-cluster-with-proxy.png)
 
 在本文的后续部分，我们将介绍如何通过 Istio 和 Envoy 来管理 Redis Cluster，实现客户端无感知的数据分区，以及读写分离、流量镜像等高级路由策略。
 
@@ -219,7 +219,7 @@ envoyfilter.networking.istio.io/add-redis-proxy created
 
 根据前面创建 Redis Cluster 步骤中的命令行输出，我们可以看出该 Redis Cluster 的拓扑结构：Cluster 中有三个分片，每个分片中有一个 Master 节点，一个 Slave(Replica) 节点。客户端通过和其部署在同一个 Pod 中的 Envoy Proxy 访问 Redis Cluster，如下图所示：
 
-![](/images/blog/redis-cluster.png)
+![](images/redis-cluster.png)
 
 
 Redis Cluster 中各个分片的 Master 和 Slave 节点地址：
@@ -342,7 +342,7 @@ $ kubectl exec redis-cluster-4 -c redis -n redis -- redis-cli monitor
 ```
 
 从下图中可以看到，所有 `get` 请求都被 Envoy 发送到了 Replica 节点上。
-![](/images/blog/redis-cluster-read-policy.png)
+![](images/redis-cluster-read-policy.png)
 
 ### Redis 流量镜像
 
@@ -400,14 +400,14 @@ Slave 节点:
 $ kubectl exec redis-cluster-4 -c redis -n redis -- redis-cli monitor
 ```
 
-镜像 节点:
+镜像节点:
 
 ```bash
 $ kubectl exec -it `kubectl get pod -l app=redis-mirror -n redis -o jsonpath="{.items[0].metadata.name}"` -c redis-mirror -n redis -- redis-cli monitor
 ```
 
 从下图中可以看到，所有 `set` 请求都被 Envoy 发送到了一份镜像节点上。
-![](/images/blog/redis-cluster-mirror-policy.png)
+![](images/redis-cluster-mirror-policy.png)
 
 ## 实现原理
 
