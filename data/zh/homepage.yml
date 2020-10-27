@@ -45,7 +45,7 @@ about:
   enable : true
   title : "云原生学院"
   subtitle : "课程、直播、兴趣小组"
-  content : "云原生学院由云原生社区主办，致力于云原生知识的传播和普及。云原生学院定期举办线上直播活动， 组织 SIG（特别兴趣小组），直播分享云原生领域的前沿知识和动向。欢迎关注我们的 Bilibili 频道和直播间。"
+  content : "云原生学院由云原生社区主办，致力于云原生知识的传播和普及。云原生学院定期举办线上直播活动， 组织 SIG（特别兴趣小组），直播分享云原生领域的前沿知识和动向。欢迎关注我们的 [Bilibili 频道](https://space.bilibili.com/515485124)和[直播间](https://live.bilibili.com/22230973)。"
   bg_image : "images/backgrounds/about-us-bg.png"
   image : "images/about/about-us.png"
   button:
