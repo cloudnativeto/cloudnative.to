@@ -7,7 +7,7 @@ description: "Base 地：广州、深圳"
 type: "notice"
 ---
 
-![](https://tva1.sinaimg.cn/large/0081Kckwly1gk59z4rcq9j30xc0ataac.jpg)
+![](https://tva1.sinaimg.cn/large/0081Kckwly1gk5c39uvsej30xc0hfaa8.jpg)
 
 ### 岗位介绍
 
