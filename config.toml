@@ -185,7 +185,7 @@ distractionFreeMode= false # Enable hot key (cmd|ctrl + enter) submit comment.
 ########################### social icon ############################
 [[params.social]]
 icon = "fa-twitter"
-link = "https://twitter.com/cloudnativeto"
+link = "https://twitter.com/cloudnativecn"
 
 [[params.social]]
 icon = "fa-github"
