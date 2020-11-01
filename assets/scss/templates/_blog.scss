@@ -1,4 +1,18 @@
 /* blog */
+
+.blog {
+  .content {
+    img {
+      cursor: zoom-in;
+    }
+  }
+}
+
+// 博客文章图片放大后遮罩层
+#bp_container {
+  cursor: zoom-out;
+}
+
 .card-type {
   position: absolute;
   top: 30px;
@@ -10,7 +24,18 @@
 }
 
 .card-meta {
-  font-size: 14px;
+  font-size: 15px;
+}
+
+.card-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.card-body {
+  height: 240px;
 }
 
 .blog-shape-left {
@@ -104,6 +129,9 @@ blockquote {
 }
 
 .pagination{
+    flex-wrap:wrap;
+}
+.pagination{
   .page-item{
     margin: 5px;
     .page-link{
@@ -123,6 +151,36 @@ blockquote {
         background: $primary-color;
         color: $white;
       }
+    }
+  }
+}
+
+.content{
+  img{
+    max-width: 100%;
+  }
+}
+
+ul.related {
+  list-style-type: initial;
+}
+
+.link-article {
+  .pre-article {
+    display: inline-block;
+
+    i {
+      position: relative;
+      top: -1px;
+    }
+  }
+  .next-article {
+    float: right;
+    text-align: right;
+
+    i {
+      position: relative;
+      top: -1px;
     }
   }
 }

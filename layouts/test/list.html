@@ -1,0 +1,49 @@
+{{ define "main" }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+{{ "<!-- city -->" | safeHTML }}
+<section class="section bg-gray bg-dots">
+  <div class="container">
+    <div class="row">
+
+      {{ range .Data.Pages }}
+      {{ "<!-- city -->" | safeHTML }}
+        {{ .Render "city" }}
+      {{ end }}
+
+      <!-- 地图展示控件 -->
+      <div id="baidu-map-container" class="col-md-9 border-0 rounded-0 box-shadow city-map"></div> 
+
+      {{ "<!-- JS Plugins -->" | safeHTML }}
+      <script src={{.Params.jquery_lib | relURL}}></script>
+
+      {{ "<!-- 引入百度地图依赖JS库 -->" | safeHTML }}
+      {{ range .Params.baidu_maps }}
+      <script type="text/javascript" src="{{ .link | safeURL }}"></script>  
+      {{ end }}
+
+      {{ "<!-- 引入自定义地图操作相关 -->" | safeHTML }}
+      {{ $script := resources.Get .Params.city_script | minify}}
+      <script src="{{ $script.Permalink | relURL }}"></script>
+
+      <script type="text/javascript">
+        // 初始化所有城市信息
+        var mapData = [];
+        var data = {};
+        {{ range .Data.Pages }}
+            data = {};
+            data["code"] = {{ .Params.code }};
+            data["name"] = {{ .Params.name }};
+            data["longitude"] = {{ .Params.longitude }};
+            data["latitude"] = {{ .Params.latitude }};
+            mapData.push(data);
+        {{ end }}
+        cloudNativeBaiduMap(mapData);
+      </script>
+    </div>
+  </div>
+</section>
+{{ "<!-- /city -->" | safeHTML }}
+
+{{ end }}

@@ -1,7 +1,7 @@
 ---
-title: "团队"
+title: "管理委员会"
 # meta description
-description: "管理委员会，负责社区运营和日常事务管理。"
+description: "云原生社区的管理委员会成员。"
 # page title background image
 bg_image: "images/backgrounds/page-title-1.jpg"
 ---

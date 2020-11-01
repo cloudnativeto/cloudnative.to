@@ -4,14 +4,14 @@ philosophy:
   philosophy_item:
     # philosophy item loop
     - title : "使命"
-      content : "推动云原生技术的发展普及，帮助中国开发者走向世界。"
+      content : "推广云原生技术，构建开发者生态。"
       #bullet_point:
       #  - "Quality Services"
       #  - "Clients Satisfaction"
 
     # philosophy item loop
     - title : "宗旨"
-      content : "连接开源社区与开发者，企业中立，开发者优先，开源优先。"
+      content : "作为开源项目与开发者之间的桥梁，企业中立。"
       #bullet_point:
       #  - "Quality Services"
       #  - "Clients Satisfaction"

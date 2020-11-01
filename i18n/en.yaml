@@ -43,14 +43,23 @@
 - id: quick_contact
   translation: Quick Contact
 
-- id: latest_article
-  translation: Latest Article
+- id: related_article
+  translation: See Also
+
+- id: previous_article
+  translation: Previous post
+
+- id: next_article
+  translation: Next post
 
 - id: category
   translation: Category
 
 - id: tags
   translation: Tags
+
+- id: toc
+  translation: Toc
 
 - id: all
   translation: ALL
@@ -78,3 +87,6 @@
 
 - id: join_us
   translation: "Join us"
+
+- id: translator
+  translation: "Translator"

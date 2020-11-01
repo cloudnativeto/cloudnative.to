@@ -4,10 +4,12 @@ date: 2020-05-12T06:00:00+08:00
 description: "云原生社区今天正式成立了。"
 bg_image: "images/backgrounds/page-title.jpg"
 image: "images/blog/blog-1.jpg"
-author: "[Jimmy Song](https://jimmysong.io)"
-categories: ["其他"]
+author: "[宋净超（Jimmy Song）](https://jimmysong.io)"
+categories: ["开源社区"]
 tags: ["社区"]
 type: "post"
+avatar: "/images/profile/jimmysong.jpg"
+profile: "Tetrate 布道师，ServiceMesher 社区联合创始人，CNCF Ambassador，热衷开源和分享。"
 ---
 
 2020 年伊始，受新冠疫情影响，全球各地的员工开启了在家办公的模式，因此人与人之间的距离感觉被拉远了。但是云原生圈子里有我们这样一群人，因为一个共同的愿景聚集到了一起，组建了社区管理委员会，并在过去的三个月里利用业余时间，齐心协力完成了社区的筹备工作。今天我们要正式宣布云原生社区正式成立了。
@@ -26,7 +28,7 @@ type: "post"
 
 云原生社区是一个有技术、有温度、有情怀的开源社区。由一群开源的狂热爱好者自发成立，秉持“共识、共治、共建、共享”的原则。社区的宗旨是：连接、中立、开源。立足中国，面向世界，企业中立，关注开源，回馈开源。
 
-关于云原生社区管理委员会介绍请见[团队介绍页面](/team/)。
+关于云原生社区初创成员请查看[初创成员列表](/team/)。
 
 加入云原生社区，你将获得：
 
@@ -40,8 +42,6 @@ type: "post"
 
 ## 加入社区
 
-云原生社区免费申请加入，关注云原生社区官方微信公众号，在公众号中回复关键词 `加入`，即可获得申请链接。
+关注云原生社区微信公众号，进入公众号后台，点击“加入社区”。
 
-<p align="center">
-  <img src="/contact/qrcode.jpg" tile="云原生社区微信公众号二维码" alt="云原生社区微信公众号二维码" width="128px">
-</p>
+![云原生社区公众号二维码](/contact/qrcode.jpg)

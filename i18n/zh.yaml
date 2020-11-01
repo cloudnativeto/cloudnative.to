@@ -43,14 +43,23 @@
 - id: quick_contact
   translation: 快速联系
 
-- id: latest_article
-  translation: 最新文章
+- id: related_article
+  translation: 文章推荐
+
+- id: previous_article
+  translation: 上一篇
+
+- id: next_article
+  translation: 下一篇
 
 - id: category
   translation: 类别
 
 - id: tags
   translation: 标签
+
+- id: toc
+  translation: 目录
 
 - id: all
   translation: 所有
@@ -81,3 +90,6 @@
 
 - id: join_us
   translation: "加入我们"
+
+- id: translator
+  translation: "译者"

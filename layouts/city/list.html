@@ -1,0 +1,65 @@
+{{ define "main" }}
+
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
+{{ "<!-- city -->" | safeHTML }}
+<section class="section bg-gray bg-dots">
+  <div class="container">
+    <div class="row">
+      <!-- 城市列表 -->
+      <div class="col-md-3 box-shadow border-0 rounded-0 city-introduction city-map">
+        <h2 class="section-title city-margin-top-10">{{ .Params.city_list_title }}</h2>
+        <div class="section-title-border"></div>
+        <div class="cities-list" id="city_list">
+        {{ range .Data.Pages }}
+          {{ .Render "city" }}
+        {{ end }}
+        </div>
+      </div>
+
+      <!-- 地图展示控件 -->
+      <div id="baidu-map-container" class="col-md-9 border-0 rounded-0 box-shadow city-map"></div> 
+
+      {{ "<!-- 引入百度地图依赖JS库 -->" | safeHTML }}
+      {{ range .Params.baidu_maps }}
+      <script type="text/javascript" src="{{ .link | safeURL }}"></script>  
+      {{ end }}
+
+      {{ "<!-- 引入自定义地图操作相关 -->" | safeHTML }}
+      {{ $script := resources.Get .Params.city_script | minify}}
+      <script src="{{ $script.Permalink | relURL }}"></script>
+
+      <script type="text/javascript">
+        // 初始化所有城市信息
+        var mapData = [];
+        var data = {};
+        {{ range .Data.Pages }}
+            data = {};
+            data["code"] = {{ .Params.code }};
+            data["title"] = {{ .Params.title }};
+            data["longitude"] = {{ .Params.longitude }};
+            data["latitude"] = {{ .Params.latitude }};
+            mapData.push(data);
+        {{ end }}
+        cloudNativeBaiduMap(mapData);
+      </script>
+    </div>
+  </div>
+</section>
+
+<!-- Team members -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="section-title">{{ .Params.city_plan_title }}</h2>
+        <div class="section-title-border"></div>
+        <p class="mb-5">{{ .Params.city_plan_description | markdownify }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ "<!-- /city -->" | safeHTML }}
+
+{{ end }}

@@ -2,18 +2,17 @@
 slider:
   enable : true
   slider_item:
-    # slider item
-    - subtitle : ""
-      title : "欢迎来到云原生社区"
-      content : "云原生社区由 [Jimmy 和他的伙伴们](/team)发起于 2020 年 2 月，经过几个月时间的筹备，现在我们要向全世界宣布，[云原生社区正式成立了](/blog/cnc-announcement/)！这是一个有温度的开源社区，我们希望借助开源打破公司的边界，我们关注技术人的成长，促进社区之间的交流。让我们一起关注开源，回馈开源。"
-      bg_image_webp : "images/slider/banner-1.png"
-      bg_image : "images/slider/banner-1.png"
-      animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
-      button:
-        enable : true
-        label : "加入我们"
-        link : "contact"
-        animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
+     - subtitle : ""
+       title : "欢迎来到云原生社区"
+       content : "云原生社区是一个中立的云原生终端用户社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，旨在推广云原生技术，构建开发者生态。"
+       bg_image_webp : "images/slider/banner-1.jpg"
+       bg_image : "images/slider/banner-1.jpg"
+       animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
+       button:
+         enable : true
+         label : "加入我们"
+         link : "contact"
+         animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
 
 ################################## banner feature ############################
 banner_feature:
@@ -44,15 +43,15 @@ banner_feature:
 ################################## about ####################################
 about:
   enable : true
-  subtitle : "关于云原生社区"
-  title : "中立的云原生开发者社区"
-  content : "云原生社区是一个有技术、有温度、有情怀的开源社区。它由一群热爱开源的行业精英自发成立，秉持“共识、共治、共建、共享”的原则。社区的宗旨是：连接、中立、开源。立足中国，面向世界，企业中立，关注开源，回馈开源。"
+  title : "云原生学院"
+  subtitle : "课程、直播、兴趣小组"
+  content : "云原生学院由云原生社区主办，致力于云原生知识的传播和普及。云原生学院定期举办线上直播活动， 组织 SIG（特别兴趣小组），直播分享云原生领域的前沿知识和动向。欢迎关注我们的 [Bilibili 频道](https://space.bilibili.com/515485124)和[直播间](https://live.bilibili.com/22230973)。"
   bg_image : "images/backgrounds/about-us-bg.png"
   image : "images/about/about-us.png"
   button:
-    enable : true;
-    label : "查看详情"
-    link : "/blog/cnc-announcement/"
+    enable : true
+    label : "进入学院"
+    link : "https://github.com/cloudnativeto/academy"
 
 ################################## funfacts ###############################
 funfacts :
@@ -112,6 +111,13 @@ team:
   title : " 管理委员会"
   # team member comes from "content/*/team" folder
 
+################################# team ##############################################
+city:
+  enable : false
+  subtitle : "云原生社区-城市站"
+  title : "云原生社区-城市站"
+  # team member comes from "content/*/team" folder
+
 ################################# project ############################################
 project:
   enable : false
@@ -129,7 +135,7 @@ testimonial:
   title : "社区寄语"
   testimonial_item:
     # testimonial item loop
-    - client_image : "images/testimonial/jimmysong.png"
+    - client_image : "images/testimonial/jimmysong.jpg"
       name : "Jimmy Song"
       designation : "云原生社区联合创始人"
       content : "开源精神应该被提倡，开源成果值得被看见，云原生社区希望陪伴开发者们的终生成长。"
@@ -139,21 +145,26 @@ testimonial:
       designation : "云原生社区联合创始人"
       content : "这是一个最好的时代，人人都应该可以从开源社区与云原生技术中获益！"
 
+    - client_image : "images/testimonial/lijiansheng.jpg"
+      name : "李建盛（适兕）"
+      designation : "资深布道师"
+      content : "开源的核心来自于其背后的共同体（Community），推动云原生技术的发展和壮大，必须从 Cloud Native Community 做起！"
+
 ################################# blog ################################################
 cta:
   enable : true
-  title : "打造中国最具影响力的云原生社区！"
+  title : "云原生社区近期活动"
   bg_image_webp : "images/backgrounds/cta-lg.webp"
   bg_image : "images/backgrounds/cta-lg.jpg"
   button:
     enable : true
-    label : "加入我们"
-    link : "contact"
+    label : "了解更多"
+    link : "https://github.com/cloudnativeto/community"
 
 ################################# blog ################################################
 blog:
   enable : true
-  subtitle : "UGC，企业中立"
+  subtitle : "专业用户产生的内容，企业中立"
   title : "博客"
   # blog post comes from "content/*/blog" folder
 
@@ -163,4 +174,4 @@ contact:
   title : "联系信息"
   image : "images/wechat-qrcode.png"
   description : "关注云原生社区微信公众号，加入社区并获取最新资讯。"
-  address: "北京 · 上海 · 成都 · 伦敦 · 旧金山"
+  address: "[北京](https://github.com/cloudnativeto/community/issues/56)|[上海](/city/shanghai)|[成都](https://github.com/cloudnativeto/community/issues/58)|[深圳](https://github.com/cloudnativeto/community/issues/60)|[杭州](https://github.com/cloudnativeto/community/issues/53)|[广州](https://github.com/cloudnativeto/community/issues/59)|[武汉](https://github.com/cloudnativeto/community/issues/55)|[南京](https://github.com/cloudnativeto/community/issues/57)|[西安](https://github.com/cloudnativeto/community/issues/61)|[大连](/city/dalian)|[长沙](https://github.com/cloudnativeto/community/issues/52)|[苏州](https://github.com/cloudnativeto/community/issues/66)|[珠海](https://github.com/cloudnativeto/community/issues/67)|[重庆](https://github.com/cloudnativeto/community/issues/78)|[济南](https://github.com/cloudnativeto/community/issues/82)|[厦门](https://github.com/cloudnativeto/community/issues/83)|[无锡](https://github.com/cloudnativeto/community/issues/86)|[青岛](https://github.com/cloudnativeto/community/issues/91)|[郑州](https://github.com/cloudnativeto/community/issues/103)"

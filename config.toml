@@ -1,12 +1,10 @@
 ########################### Default configuration ######################
 baseURL = "https://cloudnative.to/"
-title = "Cloud Native Community"
+title = "云原生社区"
 # post pagination
 paginate = "6"
 # post excerpt
 summaryLength = "10"
-# disqus short name
-# disqusShortname = "bexer" # get your shortname form here : https://disqus.com
 # disable language
 disableLanguages = [] # desable language from here
 hasCJKLanguage = true
@@ -47,38 +45,66 @@ link = "plugins/search/fuse.min.js"
 link = "plugins/search/mark.js"
 [[params.plugins.js]]
 link = "plugins/search/search.js"
+[[params.plugins.js]]
+link = "plugins/bigPicture/bigPicture.js"
+[[params.plugins.js]]
+link = "plugins/hex_md5/hex_md5.js"
 
 ########################### navigation ################################
 # main menu
 [[menu.main]]
-name = "About"
-URL = "about"
+name = "Community"
 weight = 2
 
-#[[menu.main]]
-#name = "Service"
-#URL = "service"
-#weight = 3
+[[menu.main]]
+parent = "Community"
+name = "About"
+URL = "about"
+weight = 1
+
+[[menu.main]]
+parent = "Community"
+name = "Steering Committee"
+URL = "team"
+weight = 2
+
+[[menu.main]]
+parent = "Community"
+name = "Istio SIG"
+URL = "https://github.com/cloudnativeto/sig-istio"
+weight = 3
+
+[[menu.main]]
+parent = "Community"
+name = "Envoy SIG"
+URL = "https://cloudnative.to/sig-envoy"
+weight = 4
+
+[[menu.main]]
+parent = "Community"
+name = "Dapr SIG"
+URL = "https://cloudnative.to/sig-dapr"
+weight = 5
 
 [[menu.main]]
 name = "Blog"
 URL = "blog"
-weight = 4
-
-[[menu.main]]
-name = "Team"
-URL = "team"
-weight = 6
+weight = 3
 
 [[menu.main]]
 name = "Contact"
 URL = "contact"
-weight = 7
+weight = 4
 
 [[menu.main]]
 name = "Contribute"
 URL = "contribute"
-weight = 8
+weight = 5
+
+[[menu.main]]
+name = "Job"
+URL = "job"
+weight = 6
 
 # [[menu.main]]
 # weight = 8
@@ -108,8 +134,8 @@ logo_footer = "images/logo-alt.png"
 # top header
 top_header = false
 # Meta data
-description = "有技术 有温度 有情怀"
-author = "Cloud Native Community"
+description = "云原生社区是一个中立的云原生终端用户社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，旨在推广云原生技术，构建开发者生态。"
+author = " 云原生社区"
 # contact form action
 contact_form_action = "#" # contact form works with https://formspree.io
 # Google Analitycs
@@ -121,7 +147,10 @@ search = true
 map = false
 email = "[contact@cloudnative.to](mailto:contact@cloudnative.to)"
 wechat = "[jimmysongio](https://jimmysong.io/contact)"
-address = "请关注我们的全球地区合伙人计划"
+address = "请关注云原生社区城市站"
+
+# Gitalk
+enableGitalk = true
 
 # Preloader
 [params.preloader]
@@ -140,14 +169,31 @@ enable = false
 mailchimp_form_action = "https://gmail.us4.list-manage.com/subscribe/post?u=463ee871f45d2d93748e77cad&amp;id=a0a2c6d074" # replace this url with yours
 mailchimp_form_name = "b_463ee871f45d2d93748e77cad_a0a2c6d074" # replace this code with yours
 
+[params.gitalk]
+clientID = "0f001988910adcfadfb7" # Your client ID
+clientSecret = "14f7d06ee5e6575c295d18fc11616e8cb60fb84e" # Your client secret
+repo = "cloudnativeto.github.io" # The repo to store comments
+owner = "cloudnativeto" # Your GitHub ID
+admin= "rootsongjc" # Required. Github repository owner and collaborators. (Users who having write access to this repository)
+id= "location.pathname" # The unique id of the page.
+labels= "gitalk" # Github issue labels. If you used to use Gitment, you can change it
+perPage= 15 # Pagination size, with maximum 100.
+pagerDirection= "last" # Comment sorting direction, available values are 'last' and 'first'.
+createIssueManually= false # If it is 'false', it is auto to make a Github issue when the administrators login.
+distractionFreeMode= false # Enable hot key (cmd|ctrl + enter) submit comment.
+
 ########################### social icon ############################
 [[params.social]]
 icon = "fa-twitter"
-link = "https://twitter.com/cloudnativeto"
+link = "https://twitter.com/cloudnativecn"
 
 [[params.social]]
 icon = "fa-github"
 link = "https://github.com/cloudnativeto"
+
+[[params.social]]
+icon = "fa-slack"
+link = "https://cloudnativecommunity.slack.com"
 
 [[params.social]]
 icon = "fa-wechat"
@@ -171,7 +217,7 @@ contentDir = "content/en"
 weight = 2
 #home = "Home"
 # footer content
-footer_content = "Cloud Native Community is an open source community with technology, temperature and passion. It was founded spontaneously by a group of industry elites who love open source, and it adheres to the principle of 'consensus, co-governance, co-construction and sharing' to serve the global developers espcially for Ethnic Chinese."
+footer_content = "Cloud Native Community is an neutral, cloud native end user community founded on May 12, 2020 by CNCF ambassadors and open source opinion leaders to promote cloud native technologies and build a developer ecosystem."
 # copyright
 copyright = "Copyright &copy; 2020 Cloud Native Community"
 
@@ -184,51 +230,143 @@ contentDir = "content/zh"
 weight = 1
 #home = "主页"
 # footer content
-footer_content = "云原生社区是一个有技术、有温度、有情怀的开源社区。它由一群热爱开源的行业精英自发成立，秉持“共识、共治、共建、共享”的原则服务于全球华人。"
+footer_content = "云原生社区是一个中立的云原生终端用户社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，旨在推广云原生技术，构建开发者生态。"
 # copyright
 copyright = "Copyright &copy; 2020 云原生社区"
 
 ########################### Chinese navigation ################################
 # main menu
 [[Languages.zh.menu.main]]
-name = "关于"
-URL = "about"
+name = "社区"
 weight = 2
 
-#[[Languages.zh.menu.main]]
-#name = "服务"
-#URL = "service"
-#weight = 3
+[[Languages.zh.menu.main]]
+parent = "社区"
+name = "管理委员会"
+URL = "/team"
+weight = 1
 
 [[Languages.zh.menu.main]]
-name = "博客"
-URL = "blog"
+parent = "社区"
+name = "城市站"
+URL = "/city"
+weight = 2
+
+[[Languages.zh.menu.main]]
+parent = "社区"
+name = "社区资料"
+URL = "https://github.com/cloudnativeto/community"
+weight = 3
+
+[[Languages.zh.menu.main]]
+name = "学院"
+weight = 3
+
+[[Languages.zh.menu.main]]
+parent = "学院"
+name = "Kubernetes 源码研习社"
+URL = "https://github.com/cloudnativeto/sig-k8s-source-code"
+weight = 1
+
+[[Languages.zh.menu.main]]
+parent = "学院"
+name = "Istio 特别兴趣小组"
+URL = "https://github.com/cloudnativeto/sig-istio"
+weight = 2
+
+[[Languages.zh.menu.main]]
+parent = "学院"
+name = "Envoy 特别兴趣小组"
+URL = "https://cloudnative.to/sig-envoy"
+weight = 3
+
+[[Languages.zh.menu.main]]
+parent = "学院"
+name = "Dapr 特别兴趣小组"
+URL = "https://cloudnative.to/sig-dapr"
 weight = 4
 
 [[Languages.zh.menu.main]]
-name = "团队"
-URL = "team"
+name = "博客"
+weight = 4
+
+[[Languages.zh.menu.main]]
+parent = "博客"
+name = "Kubernetes"
+URL = "/categories/kubernetes"
+weight = 1
+
+[[Languages.zh.menu.main]]
+parent = "博客"
+name = "Service Mesh"
+URL = "/categories/service-mesh"
+weight = 2
+
+[[Languages.zh.menu.main]]
+parent = "博客"
+name = "Envoy"
+URL = "/categories/Envoy"
+weight = 3
+
+[[Languages.zh.menu.main]]
+parent = "博客"
+name = "OAM"
+URL = "/categories/OAM"
+weight = 4
+
+[[Languages.zh.menu.main]]
+parent = "博客"
+name = "开源社区"
+URL = "/categories/开源社区"
+weight = 5
+
+[[Languages.zh.menu.main]]
+parent = "博客"
+name = "所有"
+URL = "/blog"
 weight = 6
 
 [[Languages.zh.menu.main]]
+name = "资料"
+weight = 5
+
+[[Languages.zh.menu.main]]
+parent = "资料"
+name = "Kubebuilder 文档"
+URL = "/kubebuilder"
+weight = 1
+
+[[Languages.zh.menu.main]]
+parent = "资料"
+name = "云原生学院直播分享"
+URL = "https://github.com/cloudnativeto/academy"
+weight = 2
+
+[[Languages.zh.menu.main]]
+name = "关于"
+weight = 6
+
+[[Languages.zh.menu.main]]
+parent = "关于"
+name = "介绍"
+URL = "about"
+weight = 1
+
+[[Languages.zh.menu.main]]
+parent = "关于"
 name = "联系"
 URL = "contact"
-weight = 7
+weight = 2
 
 [[Languages.zh.menu.main]]
 name = "投稿"
 URL = "contribute"
-weight = 8
+weight = 7
 
-# [[Languages.zh.menu.main]]
-# weight = 8
-# name = "页面"
-# hasChildren = true
-#
-#   [[Languages.zh.menu.main]]
-#   parent = "页面"
-#   name = "项目"
-#   URL = "project"
+[[Languages.zh.menu.main]]
+name = "招聘"
+URL = "job"
+weight = 8
 
 # footer menu
 [[Languages.zh.menu.footer]]
@@ -236,7 +374,3 @@ name = "社区守则"
 URL = "/code-of-conduct"
 weight = 1
 
-[[Languages.zh.menu.ooter]]
-name = "隐私政策"
-URL = "privacy-policy"
-weight = 2

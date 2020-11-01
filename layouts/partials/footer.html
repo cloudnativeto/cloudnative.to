@@ -37,12 +37,12 @@
             -->
             <!-- contact info -->
             {{ with $data.homepage.contact }}
-            <div class="mb-5">
+            <div class="mb-5 address">
               <h4 class="text-white mb-4">{{ i18n "contact_info"}}</h4>
               <p class="text-light mb-3">{{ .address | markdownify }}</p>
               <p class="text-light mb-3">{{ .email | markdownify }}</p>
               <p class="text-light mb-3">{{ .description| markdownify }}</p>
-              <p class="text-light mb-3"><img src="{{ .image | relURL }}" width="356px"></p>
+              <p class="text-light mb-3"><img src="{{ .image | relURL }}" width="128px"></p>
             </div>
             {{ end }}
             {{ if .Site.Params.subscription.enable }}
@@ -103,6 +103,18 @@
 {{ "<!-- Main Script -->" | safeHTML }}
 {{ $script := resources.Get "js/script.js" | minify}}
 <script src="{{ $script.Permalink | relURL }}"></script>
+
+{{ "<!-- Algolia -->" | safeHTML }}
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.min.js"></script>
+<script>
+  docsearch({
+    apiKey: '870a8addaf7a712ecc6e33ce9def93b1',
+    indexName: 'DocSearch',
+    appId: '2506Q6I4IV',
+    inputSelector: '#js-algolia-btn',
+    debug: false,
+  });
+</script>
 
 {{ "<!-- google analitycs -->" | safeHTML }}
 {{ with .Site.Params.google_analitycs_id}}

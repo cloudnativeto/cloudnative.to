@@ -24,24 +24,18 @@ CNCF (Cloud Native Computing Foundation) holds Cloud Native conference every yea
 
 ## About
 
-Cloud Native Community is an open source community with technology, temperature and passion. It was founded spontaneously by a group of industry elites who love open source and uphold the principle of ‘consensus, co-governance, co-construction and sharing’. The aim of the community is: connection, neutral, open source. We are based in China, facing the world, enterprise neutrality, focusing on open source, and giving feedback to open source.
+Cloud Native Community is an open source community with technology, warmth and passion. It was founded spontaneously by a group of industry elites who love open source and uphold the principle of ‘consensus, co-governance, co-construction and sharing’. The aim of the community is: connection, neutral, open source. We are based in China, facing the world, enterprise neutrality, focusing on open source, and giving feedback to open source.
 
-Introduction for the Steering Community：https://cloudnative.to/en/team/
+Introduction for the founding members of the Community：https://cloudnative.to/en/team/
 
 You will gain the followings after joining the community:
 
 - Knowledge and news closer to the source
-
 - A more valuable network
-
 - More professional  and characteristic consultation
-
 - Opportunities to get closer to opinion leaders
-
 - Faster and more efficient personal growth
-
 - More knowledge sharing and exposure opportunities
-
 - More industry talent to be found
 
 ## Join
