@@ -283,7 +283,7 @@ weight = 3
 [[Languages.zh.menu.main]]
 parent = "学院"
 name = "Dapr 特别兴趣小组"
-URL = "https://cloudnative.to/sig-dapr"
+URL = "https://github.com/cloudnativeto/sig-dapr"
 weight = 4
 
 [[Languages.zh.menu.main]]

@@ -25,7 +25,7 @@ Kubernetes 中有几种类型的代理。其中有 **node proxier** 或 [kube-pr
 
 ### Netfilter
 
-Netfilter 是 Linux 内核内部的**包过滤和处理框架**。如果您不熟悉 Iptables 和 Netfilter 体系结构，请参阅 [A Deep Dive into Iptables and Netfilter Architecture](https://www.digitalocean.com/community/tutorials/a-deep-dive-into-iptables-and-netfilter-architecture)
+Netfilter 是 Linux 内核内部的**包过滤和处理框架**。如果你不熟悉 Iptables 和 Netfilter 体系结构，请参阅 [A Deep Dive into Iptables and Netfilter Architecture](https://www.digitalocean.com/community/tutorials/a-deep-dive-into-iptables-and-netfilter-architecture)
 
 一些要点：
 
@@ -68,7 +68,7 @@ VIP 总是伴随着负载均衡，因为它需要在不同的后端之间分配�
 
 ## 节点代理模型
 
-在 kubernetes 中，您可以将应用程序定义为 `Service`。`Service` 是一种抽象，它定义了一组 Pods 的逻辑集和访问它们的策略。
+在 kubernetes 中，你可以将应用程序定义为 `Service`。`Service` 是一种抽象，它定义了一组 Pods 的逻辑集和访问它们的策略。
 
 ### Service 类型
 
@@ -93,7 +93,7 @@ K8S 中定义了 4 种 `Service` 类型：
 >
 > 根据定义，**<Protocol,ClusterIP,Port>** 元组独特地定义了一个服务（因此也定义了一个拦截规则）。例如，如果一个服务被定义为 `<tcp,10.7.0.100,80>`，那么代理只处理 `tcp:10.7.0.100:80` 的流量，其他流量，例如。`tcp:10.7.0.100:8080`, `udp:10.7.0.100:80` 将不会被代理。因此，也无法访问 ClusterIP（ICMP 流量）。
 >
-> 但是，如果您使用的是带有 IPVS 模式的 `kube-proxy`，那么确实可以通过 ping 访问 `ClusterIP`。这是因为 IPVS 模式实现比定义所需要的做得更多。您将在下面几节中看到不同之处。
+> 但是，如果你使用的是带有 IPVS 模式的 `kube-proxy`，那么确实可以通过 ping 访问 `ClusterIP`。这是因为 IPVS 模式实现比定义所需要的做得更多。你将在下面几节中看到不同之处。
 
 ### 节点代理的角色：反向代理
 
@@ -341,7 +341,7 @@ $ iptables -t nat -X # delete all custom chains
 
 这种方法非常容易理解和实现，但是，它的性能会很差，因为它必须在两端以及内核和用户空间内存之间复制字节。
 
-我们没有在这上面花太多时间，如果您感兴趣，可以在这里查看用户空间 `kube-proxy` 的简单实现。
+我们没有在这上面花太多时间，如果你感兴趣，可以在这里查看用户空间 `kube-proxy` 的简单实现。
 
 接下来，让我们看看实现这个任务的另一种方法。
 
@@ -595,7 +595,7 @@ $ iptables -t nat -D OUTPUT 3
 
 > 注意：在继续之前，请确保删除了在上一节中添加的所有规则。
 
-当您有大量的 Service 时，每个节点上的 iptables 规则将相当复杂，因此您需要进行一些结构化工作来组织这些规则。
+当你有大量的 Service 时，每个节点上的 iptables 规则将相当复杂，因此你需要进行一些结构化工作来组织这些规则。
 
 在本节中，我们将在 nat 表中创建几个专用的 iptables 链，具体如下：
 
@@ -711,7 +711,7 @@ $ curl $CLUSTER_IP:$PORT
 
 成功！
 
-如果您将上面的输出与普通的 `kube-proxy` 规则进行比较，这两个规则是非常相似的，下面是从启用 `kube-proxy` 的节点提取的：
+如果你将上面的输出与普通的 `kube-proxy` 规则进行比较，这两个规则是非常相似的，下面是从启用 `kube-proxy` 的节点提取的：
 
 ```bash
 Chain OUTPUT (policy ACCEPT)
@@ -982,7 +982,7 @@ $ sudo tc qdisc del dev $NIC clsact 2>&1 >/dev/null
 
 ## 总结
 
-在这篇文章中，我们用不同的方法手工实现了 `kube-proxy` 的核心功能。希望您现在对 kubernetes 节点代理有了更好的理解，以及关于网络的其他一些配置。
+在这篇文章中，我们用不同的方法手工实现了 `kube-proxy` 的核心功能。希望你现在对 kubernetes 节点代理有了更好的理解，以及关于网络的其他一些配置。
 
 在这篇文章中使用的代码和脚本：[这里](https://github.com/icyxp/icyxp.github.io/tree/master./images/code)。
 
