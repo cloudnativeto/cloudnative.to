@@ -1,7 +1,7 @@
 ---
 title: "Envoy 调试流量的常用技巧直播分享及问答整理"
 author: "[周礼赞](https://github.com/lizan)"
-image: "images/blog/academy-7.png"
+image: "images/blog/academy-7.jpg"
 categories: ["academy"]
 description: "云原生学院第七期分享《Envoy 调试流量的常用技巧》的视频回放及问答整理。"
 tags: ["envoy","云原生学院"]
@@ -12,6 +12,8 @@ avatar: "/images/profile/lizanzhou.jpg"
 ---
 
 本期是 Envoy 系列分享的第一期，在本次分享开始前云原生社区中进行了关于 Envoy 的问卷调查，从问卷结果来看大多数同学都希望了解调试流量这个主题，所以就选了这个主题作为第一次分享。而且大多数同学都是刚开始看 Envoy，所以本次分享也会涉及到很多 Envoy 入门的内容，未来我也会在社区中给大家分享更多 Envoy 的内容。视频回放见 [B 站](https://www.bilibili.com/video/BV1Qa411A7hF)。
+
+![Envoy 直播回放地址](https://tva1.sinaimg.cn/large/0081Kckwly1gkd7z7bv71j30b40e43zi.jpg)
 
 此次分享由三部分组成：
 
