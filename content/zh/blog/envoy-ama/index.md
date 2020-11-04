@@ -3,6 +3,7 @@ title: "Envoy 调试流量的常用技巧直播分享及问答整理"
 author: "[周礼赞](https://github.com/lizan)"
 image: "images/blog/academy-7.png"
 categories: ["academy"]
+description: "云原生学院第七期分享《Envoy 调试流量的常用技巧》的视频回放及问答整理。"
 tags: ["envoy","云原生学院"]
 date: 2020-11-02T14:00:00+08:00
 type: "post"
@@ -70,7 +71,7 @@ Envoy 由社区主导，没有明确的未来计划。需要维护者来 cover �
 
 C++ 比绝大多数语言性能都好。当时没有更好的语言选择。有 GC 的语言会有大的 tail-latency。C 可能可以性能更好，但对内存管理更为苛刻，难维护。
 
-### 关于 xDS 的问题
+## 关于 xDS 的问题
 
 ### 关于 on-demand，目前已经有了 VHDS，其他 xDS 会陆续支持吗？ 比如 on-demand CDS/EDS?
 

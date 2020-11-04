@@ -164,7 +164,7 @@ cta:
 ################################# blog ################################################
 blog:
   enable : true
-  subtitle : "专业用户产生的内容，企业中立"
+  subtitle : "社区PGC（专业生产内容），欢迎[投稿](/contribute)，[点击查看全部博客](/blog)"
   title : "博客"
   # blog post comes from "content/*/blog" folder
 

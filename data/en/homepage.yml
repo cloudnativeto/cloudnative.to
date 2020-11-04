@@ -142,7 +142,7 @@ testimonial:
       designation : "Senior Developer Advocate"
       content : "The heart of open source comes from the community behind it, and driving the development and growth of cloud native technologies has to start with the Cloud Native Community!"
 
-################################# blog ################################################
+################################# event ################################################
 cta:
   enable : true
   title : "RECENT EVENTS"
@@ -155,7 +155,7 @@ cta:
 ################################# blog ################################################
 blog:
   enable : true
-  subtitle : "User Generated Content, Vendor neutral"
+  subtitle : "Professionally-generated content, [see all](/en/blog)"
   title : "Blog"
   # blog post comes from "content/*/blog" folder
 
