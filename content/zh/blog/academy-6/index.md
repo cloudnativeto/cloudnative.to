@@ -2,7 +2,7 @@
 title: "基于 Red Hat OpenShift 4 构建 Paas、DevOps 平台"
 description: "云原生社区邀请 RHCA Level 5，红帽资深解决方案架构师魏新宇，为大家带来分享《基于 Red Hat OpenShift 4 构建 Paas、DevOps 平台》。"
 author: "魏新宇"
-image: "images/blog/academy-6.png"
+image: "images/blog/academy-6.jpg"
 categories: ["academy"]
 tags: ["云原生学院"]
 date: 2020-10-20T14:00:00+08:00
