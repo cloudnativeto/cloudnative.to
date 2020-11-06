@@ -12,7 +12,16 @@ function cloudNativeBaiduMap(mapData){
   function switchToCity(e){
    var p = e.target;
    var scrollTo = document.getElementById(p.getTitle()).offsetTop - 111
+
+   // 列表跳转
    document.getElementById("city_list").scrollTop=scrollTo;
+
+   // 移除当前的Highlight
+   $(".city").css("background-color", "");
+
+   // 添加选中后的Highlight
+   $("#"+p.getTitle()).css("background-color", "rgba(8,18,109,.1)");
+
   }
 
   //将所有的城市打点在地图上
