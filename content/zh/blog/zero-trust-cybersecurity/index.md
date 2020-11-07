@@ -5,7 +5,7 @@ author: "[马景贺（小马哥）](https://github.com/majinghe)"
 image: "images/blog/zero-trust-cybersecurity.jpg"
 categories: ["Security"]
 tags: ["zero trust cybersecurity"]
-date: 2020-10-12T13:05:42+08:00
+date: 2020-11-06T13:05:42+08:00
 type: "post"
 avatar: "/images/profile/xiaomage.png"
 profile: "云原生技术爱好者，云原生社区大连站站长，云原生 DevSecOps 技术推广者。"
