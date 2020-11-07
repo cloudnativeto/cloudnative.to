@@ -1,6 +1,6 @@
 ---
 title: 零信任网络安全：“从不信任，永远验证”
-description: "Envoy 官网最新版本翻译，招募翻译小组成员。"
+description: "本文是一篇翻译文章，介绍了零信任网络安全的来源"
 author: "[马景贺（小马哥）](https://github.com/majinghe)"
 image: "images/blog/zero-trust-cybersecurity.jpg"
 categories: ["Security"]
