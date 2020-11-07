@@ -1,15 +1,18 @@
 ---
-title: 零信任网络安全：“从不信任，永远验证”
-description: "本文是一篇翻译文章，介绍了零信任网络安全的来源"
-author: "[马景贺（小马哥）](https://github.com/majinghe)"
+title: "【译】零信任网络安全：“从不信任，永远验证”"
+description: "本文翻译自 Alper Kerman 的文章 Zero Trust Cybersecurity: ‘Never Trust, Always Verify’"
+author: "Alper Kerman"
+translator: "[马景贺（小马哥）](https://github.com/majinghe)"
 image: "images/blog/zero-trust-cybersecurity.jpg"
 categories: ["Security"]
 tags: ["zero trust cybersecurity"]
 date: 2020-11-06T13:05:42+08:00
 type: "post"
-avatar: "/images/profile/xiaomage.png"
-profile: "云原生技术爱好者，云原生社区大连站站长，云原生 DevSecOps 技术推广者。"
+avatar: "/images/profile/Alper-Kerman.jpg"
+profile: "Alper Kerman 是美国国家标准技术研究所网络安全中心 (NCCoE,NIST) 的一名安全工程师和项目经理。他是零信任和其他一些与行业组织、政府部门和学术界开展的一些协同项目的技术负责人和项目经理，这些项目是为了解决美国国家安全中心的网络问题。他拥有超过30年的 IT 行业经历，涉及软件开发、应用安全以及政府机构和私营行业的项目管理。"
 ---
+
+本文译自 [Zero Trust Cybersecurity: ‘Never Trust, Always Verify’](https://www.nist.gov/blogs/taking-measure/zero-trust-cybersecurity-never-trust-always-verify)
 
 嗯哼？什么？这是我第一次听到零信任网络安全这个词时候的反应，我是从2018年秋天开始在国家标准技术研究所(NIST)的国家网络安>全中心部门(NCCoE)开始工作的。值得注意的是，我有了一个新的开始，同时也是一个巨大的转变，即从通常意义上讲的软件开发工程师
 转变为网络安全工程师。当然，在我的职业生涯中我曾经设计和开发了一些安全软件方案，甚至会做一些安全系统的平台的工作，但是>零信任网络对我来讲，完全是另一回事。一方面，它没有围栏（意指防火墙之类的网络安全，后文有介绍）。
