@@ -4,7 +4,7 @@ description: "本文介绍了 NGINX 官方新推出的服务网格方案 NGINX S
 author: "Nginx"
 translator: "[梁斌](https://github.com/hzliangbin)"
 image: "/images/blog/nginx-servicemesh-banner.jpg"
-categories: ["service-mesh"]
+categories: ["service mesh"]
 tags: ["Service Mesh"]
 date: 2020-11-02T16:00:00+08:00
 type: "post"
@@ -12,7 +12,7 @@ avatar: "./images/nginx.jpeg"
 profile: "Nginx 是一个高性能的 HTTP 和反向代理服务器，具有高并发、稳定、支持热部署等特点。"
 ---
 
-本文译自 [NGINX Steps into the Service Mesh Fray Promising a Simpler Alternative](https://thenewstack.io/nginx-steps-into-the-service-mesh-fray-promising-a-simpler-alternative/)
+本文译自 [NGINX Steps into the Service Mesh Fray Promising a Simpler Alternative](https://thenewstack.io/nginx-steps-into-the-service-mesh-fray-promising-a-simpler-alternative/)。
 
 本月初，NGINX [推出](https://www.nginx.com/blog/introducing-NGINX-service-mesh/) 了 一款服务网格 [NGINX Service Mesh（NSM）](https://www.nginx.com/products/nginx-service-mesh)。它使用了开源 [NGINX](https://nginx.org/en/) 代理的商业版本 [NGINX Plus](https://www.nginx.com/products/nginx/) 驱动其数据平面。尽管许多服务网格都是基于完全开源的组件构建的，但 NGINX 营销副总裁 [Rob Whiteley](https://www.nginx.com/people/rob-whiteley/) 认为，与其在市场上投放另一种开源解决方案，不如精力集中将 NSM 聚焦于当前市场缺失的部分。他认为客户正在为 Istio 的规模和复杂性而苦苦挣扎。
 
