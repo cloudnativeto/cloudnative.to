@@ -1,6 +1,6 @@
 ---
 title: "【译】NGINX 携新方案进军服务网格"
-description: "本文介绍了 NGINX 官方新推出的开源服务网格 NGINX Service Mesh (NSM)，阐述了 NSM 相较于现有服务网格具有轻量、简单、易上手入门的特点。最后谈及 NSM 方案后续规划的两个目标。"
+description: "本文介绍了 NGINX 官方新推出的服务网格方案 NGINX Service Mesh (NSM) 和 NSM 方案后续规划的两个目标。相较于现有服务网格，NSM 突出了轻量、简单、易上手入门的特点。"
 author: "Nginx"
 translator: "[梁斌](https://github.com/hzliangbin)"
 image: "/images/blog/nginx-servicemesh-banner.jpg"
@@ -14,7 +14,7 @@ profile: "Nginx 是一个高性能的 HTTP 和反向代理服务器，具有高�
 
 本文译自 [NGINX Steps into the Service Mesh Fray Promising a Simpler Alternative](https://thenewstack.io/nginx-steps-into-the-service-mesh-fray-promising-a-simpler-alternative/)
 
-本月初，NGINX [推出](https://www.nginx.com/blog/introducing-NGINX-service-mesh/) 了 一款免费的开源服务网格 [NGINX Service Mesh（NSM）](https://www.nginx.com/products/nginx-service-mesh)。它使用了开源 [NGINX](https://nginx.org/en/) 代理的商业版本 [NGINX Plus](https://www.nginx.com/products/nginx/) 驱动其数据平面。尽管许多服务网格都是基于完全开源的组件构建的，但 NGINX 营销副总裁 [Rob Whiteley](https://www.nginx.com/people/rob-whiteley/) 认为，与其在市场上投放另一种开源解决方案，不如精力集中将 NSM 聚焦于当前市场缺失的部分。他认为客户正在为 Istio 的规模和复杂性而苦苦挣扎。
+本月初，NGINX [推出](https://www.nginx.com/blog/introducing-NGINX-service-mesh/) 了 一款服务网格 [NGINX Service Mesh（NSM）](https://www.nginx.com/products/nginx-service-mesh)。它使用了开源 [NGINX](https://nginx.org/en/) 代理的商业版本 [NGINX Plus](https://www.nginx.com/products/nginx/) 驱动其数据平面。尽管许多服务网格都是基于完全开源的组件构建的，但 NGINX 营销副总裁 [Rob Whiteley](https://www.nginx.com/people/rob-whiteley/) 认为，与其在市场上投放另一种开源解决方案，不如精力集中将 NSM 聚焦于当前市场缺失的部分。他认为客户正在为 Istio 的规模和复杂性而苦苦挣扎。
 
 “Istio 诞生于 Google，其设计精巧复杂，以支持运行数以亿计的容器和数千种服务。但从结果上看，Istio 带来了一定数量的额外开销，也佐证了设计的复杂性。Istio 采取了一种非常偏执的开发设计方式，其所用到的开源组件关联紧密无法自由组合简化。从技术上讲，可以将其中用不到的部分精简出去，但其设计时没有做到模块化。”Whiteley 表示，“NGINX Service Mesh 更轻量，易于安装，是为那些需求逐渐不能被一个纯粹的只有流量转发的 Ingress Controller 的用户量身打造的。我们希望精简掉一些组件，NSM 也包含了被其他服务网格采用的部分组件。但没有必要把提供复杂的密钥管理、调用跟踪和可观察性等组件一口气的全部装上，这会为你当前设计的方案增加好几个数量级的复杂性。”
 
