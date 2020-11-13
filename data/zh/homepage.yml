@@ -168,6 +168,38 @@ blog:
   title : "博客"
   # blog post comes from "content/*/blog" folder
 
+################################# blog ################################################
+sponsor:
+  enable : true
+  title : "合作伙伴"
+  type:
+    project:
+      - image: "/images/sponsors/apache-skywalking.png"
+        url: "https://skywalking.apache.org/"
+      - image: "/images/sponsors/apache-apisix.png"
+        url: "https://github.com/apache/apisix"
+      - image: "/images/sponsors/apache-pulsar.png"
+        url: "https://pulsar.apache.org/"
+    org:
+      - image: "/images/sponsors/devops-china.png"
+        url: "https://github.com/DevopsChina"
+      - image: "/images/sponsors/edge-computing-community.png"
+        url: ""
+    company:
+      - image: "/images/sponsors/terate.png"
+        url: ""
+      - image: "/images/sponsors/tidb.png"
+        url: "https://pingcap.com/"
+      - image: "/images/sponsors/stream_native.png"
+        url: "https://streamnative.io/"
+    media:
+      - image: "/images/sponsors/bailinzhe.png"
+        url: "http://www.bailinzhe.com/"
+      - image: "/images/sponsors/maisibo.jpg"
+        url: ""
+      - image: "/images/sponsors/njsd.png"
+        url: ""
+
 ################################# contact ################################################
 contact:
   enable : true
