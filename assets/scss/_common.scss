@@ -584,3 +584,27 @@ textarea.form-control-sm {
 .address {
     word-break: break-all;
 }
+
+.reward-title {
+  margin-top: 40px;
+}
+
+.reward-title:before {
+    content: '';
+    width: 120px;
+    height: 1px;
+    border-bottom: 1px solid #ccc;
+    display: inline-block;
+    margin-right: 24px;
+    margin-bottom: 7px;
+}
+
+.reward-title:after {
+    content: '';
+    width: 120px;
+    height: 1px;
+    border-bottom: 1px solid #ccc;
+    display: inline-block;
+    margin-left: 24px;
+    margin-bottom: 7px;
+}

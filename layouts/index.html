@@ -233,4 +233,61 @@
 {{ end }}
 {{ "<!-- /blog -->" | safeHTML }}
 
+{{ if $data.homepage.cta.enable }}
+{{ with $data.homepage.cta }}
+{{ "<!-- call to action -->" | safeHTML }}
+<section class="section overlay-secondary bg-fixed">
+  <div class="container">
+    <div class="row">
+      <div class="col-11 text-center mx-auto">
+        <h2 class="section-title text-white">合作伙伴列表</h2>
+        <h4 class="section-title text-white reward-title">开源项目</h4>
+        <div class="container">
+          <div class="row">
+            <div class="col-12 mx-auto text-center">
+                <img src="/images/sponsors/apache-skywalking.png" style="padding-left:5px; padding-right: 5px; height: 50px; width: auto;">
+                <img src="/images/sponsors/apache-apisix.png" style="padding-left:5px; padding-right: 5px; height: 50px; width: auto;">
+                <img src="/images/sponsors/apache-pulsar.png" style="padding-left:5px; padding-right: 5px; height: 50px; width: auto;">
+            </div>
+          </div>
+        </div>
+        <h4 class="section-title text-white reward-title">开源社区</h4>
+        <div class="container">
+          <div class="row">
+            <div class="mx-auto text-center">
+                <img src="/images/sponsors/devops-china.png" style="padding-left:5px; padding-right: 5px; height: 50px; width: auto;">
+                <img src="/images/sponsors/edge-computing-community.png" style="padding-left:5px; padding-right: 5px; height: 50px; width: auto;">
+            </div>
+          </div>
+        </div>
+        <h4 class="section-title text-white reward-title">厂商合作</h4>
+        <div class="container">
+          <div class="row">
+            <div class="mx-auto text-center">
+                <img src="/images/sponsors/terate.png" style="padding-left:5px; padding-right: 5px; height: 50px; width: auto;">
+                <img src="/images/sponsors/tidb.png" style="padding-left:5px; padding-right: 5px; height: 50px; width: auto;">
+                <img src="/images/sponsors/stream_native.png" style="padding-left:5px; padding-right: 5px; height: 50px; width: auto;">
+            </div>
+          </div>
+        </div>
+        <h4 class="section-title text-white reward-title">合作媒体</h4>
+        <div class="container">
+          <div class="row">
+            <div class="mx-auto text-center">
+                <img src="/images/sponsors/bailinzhe.png" style="padding-left:5px; padding-right: 5px; height: 50px; width: auto;">
+                <img src="/images/sponsors/maisibo.jpg" style="padding-left:5px; padding-right: 5px; height: 50px; width: auto;">
+                <img src="/images/sponsors/njsd.png" style="padding-left:5px; padding-right: 5px; height: 50px; width: auto;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ "<!-- /call to action -->" | safeHTML }}
 {{ end }}
+{{ end }}
+
+{{ end }}
+
+
