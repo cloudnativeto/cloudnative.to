@@ -30,4 +30,4 @@ type: "notice"
 
 #### 投递简历
 
-欢迎[邮件简历:danlu.ld@alibaba-inc.com](mailto:danlu.ld@alibaba-inc.com)，我们将尽快安排面试。
+欢迎邮件简历至：danlu.ld@alibaba-inc.com，我们将尽快安排面试。
