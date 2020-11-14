@@ -593,7 +593,7 @@ textarea.form-control-sm {
     content: '';
     width: 120px;
     height: 1px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px outset #ccc;
     display: inline-block;
     margin-right: 24px;
     margin-bottom: 7px;
@@ -603,7 +603,7 @@ textarea.form-control-sm {
     content: '';
     width: 120px;
     height: 1px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px outset #ccc;
     display: inline-block;
     margin-left: 24px;
     margin-bottom: 7px;
