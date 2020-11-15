@@ -1,7 +1,7 @@
 ---
-title: "【译】NGINX 携新方案进军服务网格"
+title: "NGINX 携新方案进军服务网格"
 description: "本文介绍了 NGINX 官方新推出的服务网格方案 NGINX Service Mesh (NSM) 和 NSM 方案后续规划的两个目标。相较于现有服务网格，NSM 突出了轻量、简单、易上手入门的特点。"
-author: "Nginx"
+author: "[Nginx](https://thenewstack.io/nginx-steps-into-the-service-mesh-fray-promising-a-simpler-alternative/)"
 translator: "[梁斌](https://github.com/hzliangbin)"
 image: "/images/blog/nginx-servicemesh-banner.jpg"
 categories: ["service mesh"]

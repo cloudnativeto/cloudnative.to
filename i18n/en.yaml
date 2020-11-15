@@ -90,3 +90,6 @@
 
 - id: translator
   translation: "Translator"
+
+- id: see_all
+  translation: "See all"

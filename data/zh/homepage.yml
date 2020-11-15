@@ -3,15 +3,15 @@ slider:
   enable : true
   slider_item:
      - subtitle : ""
-       title : "欢迎来到云原生社区"
-       content : "云原生社区是一个中立的云原生终端用户社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，旨在推广云原生技术，构建开发者生态。"
+       title : "云原生社区 Meetup 第一期·上海站"
+       content : "11 月 28 日，星期六，我们上海见！这是云原生社区举办的第一次线下 Meetup，由云原生社区上海站、UCloud 承办，万科海外、Tetrate、电子工业出版社赞助，欢迎大家报名参加！"
        bg_image_webp : "images/slider/banner-1.jpg"
        bg_image : "images/slider/banner-1.jpg"
        animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
        button:
          enable : true
-         label : "加入我们"
-         link : "contact"
+         label : "报名"
+         link : "https://www.huodongxing.com/event/9571346308700"
          animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
 
 ################################## banner feature ############################
@@ -137,8 +137,8 @@ testimonial:
     # testimonial item loop
     - client_image : "images/testimonial/jimmysong.jpg"
       name : "Jimmy Song"
-      designation : "云原生社区联合创始人"
-      content : "开源精神应该被提倡，开源成果值得被看见，云原生社区希望陪伴开发者们的终生成长。"
+      designation : "云原生社区创始人"
+      content : "云原生是云计算的未来，我们将看到该领域更多的创新从社区里孵化，让云原生社区陪你一路同行。"
 
     - client_image : "images/testimonial/luoguangming.jpg"
       name : "罗广明"
@@ -153,18 +153,18 @@ testimonial:
 ################################# blog ################################################
 cta:
   enable : true
-  title : "云原生社区近期活动"
+  title : "云原生学院直播日程表"
   bg_image_webp : "images/backgrounds/cta-lg.webp"
   bg_image : "images/backgrounds/cta-lg.jpg"
   button:
     enable : true
-    label : "了解更多"
-    link : "https://github.com/cloudnativeto/community"
+    label : "查看"
+    link : "https://github.com/cloudnativeto/academy/issues"
 
 ################################# blog ################################################
 blog:
   enable : true
-  subtitle : "社区PGC（专业生产内容），欢迎[投稿](/contribute)，[点击查看全部博客](/blog)"
+  subtitle : "社区生产内容，[查看全部博客](/blog)"
   title : "博客"
   # blog post comes from "content/*/blog" folder
 
