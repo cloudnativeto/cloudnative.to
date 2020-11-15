@@ -171,34 +171,53 @@ blog:
 ################################# blog ################################################
 sponsor:
   enable : true
-  title : "合作伙伴"
+  title : "合作伙伴列表"
   type:
     project:
-      - image: "/images/sponsors/apache-skywalking.png"
-        url: "https://skywalking.apache.org/"
-      - image: "/images/sponsors/apache-apisix.png"
-        url: "https://github.com/apache/apisix"
-      - image: "/images/sponsors/apache-pulsar.png"
-        url: "https://pulsar.apache.org/"
+      title: "开源项目"
+      list:
+        - image: "/images/sponsors/apache-skywalking.png"
+          url: "https://skywalking.apache.org/"
+          name: "Apache SkyWalking"
+        - image: "/images/sponsors/apache-apisix.png"
+          url: "http://apisix.apache.org/"
+          name: "Apache APISIX"
+        - image: "/images/sponsors/apache-pulsar.png"
+          url: "https://pulsar.apache.org/"
+          name: "Apache Pulsar"
     org:
-      - image: "/images/sponsors/devops-china.png"
-        url: "https://github.com/DevopsChina"
-      - image: "/images/sponsors/edge-computing-community.png"
-        url: ""
+      title: "开源社区"
+      list:
+        - image: "/images/sponsors/devops-china.png"
+          url: "https://devopschina.org/"
+          name: "DevOps 中国社区"
+        - image: "/images/sponsors/edge-computing-community.png"
+          url: "http://byjs.com.cn/"
+          name: "边缘计算社区"
     company:
-      - image: "/images/sponsors/terate.png"
-        url: ""
-      - image: "/images/sponsors/tidb.png"
-        url: "https://pingcap.com/"
-      - image: "/images/sponsors/stream_native.png"
-        url: "https://streamnative.io/"
+      title: "厂商合作"
+      list:
+        - image: "/images/sponsors/tetrate.png"
+          url: "https://www.tetrate.io/"
+          name: "Tetrate"
+        - image: "/images/sponsors/tidb.png"
+          url: "https://pingcap.com/"
+          name: "TiDB"
+        - image: "/images/sponsors/stream_native.png"
+          url: "https://streamnative.io/"
+          name: "StreamNative"
     media:
-      - image: "/images/sponsors/bailinzhe.png"
-        url: "http://www.bailinzhe.com/"
-      - image: "/images/sponsors/maisibo.jpg"
-        url: ""
-      - image: "/images/sponsors/njsd.png"
-        url: ""
+      title: "合作媒体"
+      list:
+        - image: "/images/sponsors/bailinzhe.png"
+          url: "http://www.bailinzhe.com/"
+          name: "百林哲（CSD的主办方）"
+        - image: "/images/sponsors/msup.jpg"
+          url: "https://www.msup.com.cn/"
+          name: "麦斯博（GIAC 的主办方）"
+        - image: "/images/sponsors/njsd.png"
+          url: "jascript:void(0);"
+          name: "NJSD"
 
 ################################# contact ################################################
 contact:

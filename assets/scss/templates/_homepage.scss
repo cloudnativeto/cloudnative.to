@@ -663,4 +663,34 @@
   border-bottom-left-radius: 0;
 }
 
+.sponsor-title {
+  margin-top: 40px;
+}
+
+.sponsor-title:before {
+    content: '';
+    width: 120px;
+    height: 1px;
+    border-bottom: 1px outset #ccc;
+    display: inline-block;
+    margin-right: 24px;
+    margin-bottom: 7px;
+}
+
+.sponsor-title:after {
+    content: '';
+    width: 120px;
+    height: 1px;
+    border-bottom: 1px outset #ccc;
+    display: inline-block;
+    margin-left: 24px;
+    margin-bottom: 7px;
+}
+
+.sponsor-img {
+  padding:5px 5px 5px 5px;
+  height: 50px; 
+  width: auto;
+}
+
 /* /footer */

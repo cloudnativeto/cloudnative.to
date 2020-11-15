@@ -235,56 +235,52 @@
 
 {{ if $data.homepage.sponsor.enable }}
 {{ with $data.homepage.sponsor }}
-{{ "<!-- call to action -->" | safeHTML }}
+{{ "<!-- sponsors -->" | safeHTML }}
 <section class="section overlay-secondary bg-fixed">
   <div class="container">
     <div class="row">
       <div class="col-11 text-center mx-auto">
-        <h2 class="section-title text-white">合作伙伴列表</h2>
-        <h4 class="section-title text-white reward-title">开源项目</h4>
+        <h2 class="section-title text-white">{{ .title }}</h2>
+        <h4 class="section-title text-white sponsor-title">{{ .type.project.title }}</h4>
         <div class="container">
           <div class="row">
             <div class="col-12 mx-auto text-center">
-              {{ range .type.project }}
-              {{ "<!-- slider-item -->" | safeHTML }}
-              <a href="{{ .url }}"><img src="{{ .image }}"
-                style="padding-left:5px; padding-right: 5px; height: 50px; width: auto;"></a>
+              {{ range .type.project.list }}
+              {{ "<!-- sponsor-img -->" | safeHTML }}
+                <a href="{{ .url }}"><img src="{{ .image }}" title="{{ .name }}" class="sponsor-img"></a>
               {{ end }}
             </div>
           </div>
         </div>
-        <h4 class="section-title text-white reward-title">开源社区</h4>
+        <h4 class="section-title text-white sponsor-title">{{ .type.org.title }}</h4>
         <div class="container">
           <div class="row">
             <div class="mx-auto text-center">
-              {{ range .type.org }}
-              {{ "<!-- slider-item -->" | safeHTML }}
-              <a href="{{ .url }}"><img src="{{ .image }}"
-                style="padding-left:5px; padding-right: 5px; height: 50px; width: auto;"></a>
+              {{ range .type.org.list }}
+              {{ "<!-- sponsor-img -->" | safeHTML }}
+                <a href="{{ .url }}"><img src="{{ .image }}" title="{{ .name }}" class="sponsor-img"></a>
               {{ end }}
             </div>
           </div>
         </div>
-        <h4 class="section-title text-white reward-title">厂商合作</h4>
+        <h4 class="section-title text-white sponsor-title">{{ .type.company.title }}</h4>
         <div class="container">
           <div class="row">
             <div class="mx-auto text-center">
-              {{ range .type.company }}
-              {{ "<!-- slider-item -->" | safeHTML }}
-              <a href="{{ .url }}"><img src="{{ .image }}"
-                style="padding-left:5px; padding-right: 5px; height: 50px; width: auto;"></a>
+              {{ range .type.company.list }}
+              {{ "<!-- sponsor-img -->" | safeHTML }}
+                <a href="{{ .url }}"><img src="{{ .image }}" title="{{ .name }}" class="sponsor-img"></a>
               {{ end }}
             </div>
           </div>
         </div>
-        <h4 class="section-title text-white reward-title">合作媒体</h4>
+        <h4 class="section-title text-white sponsor-title">{{ .type.media.title }}</h4>
         <div class="container">
           <div class="row">
             <div class="mx-auto text-center">
-              {{ range .type.media }}
-              {{ "<!-- slider-item -->" | safeHTML }}
-              <a href="{{ .url }}"><img src="{{ .image }}"
-                style="padding-left:5px; padding-right: 5px; height: 50px; width: auto;"></a>
+              {{ range .type.media.list }}
+              {{ "<!-- sponsor-img -->" | safeHTML }}
+                <a href="{{ .url }}"><img src="{{ .image }}" title="{{ .name }}" class="sponsor-img"></a>
               {{ end }}
             </div>
           </div>
@@ -293,7 +289,7 @@
     </div>
   </div>
 </section>
-{{ "<!-- /call to action -->" | safeHTML }}
+{{ "<!-- /sponsors -->" | safeHTML }}
 {{ end }}
 {{ end }}
 
