@@ -332,15 +332,21 @@ weight = 5
 
 [[Languages.zh.menu.main]]
 parent = "资料"
-name = "Kubebuilder 文档"
-URL = "/kubebuilder"
+name = "云原生学院分享归档"
+URL = "https://github.com/cloudnativeto/academy"
 weight = 1
 
 [[Languages.zh.menu.main]]
 parent = "资料"
-name = "云原生学院直播分享"
-URL = "https://github.com/cloudnativeto/academy"
+name = "Kubebuilder 中文文档"
+URL = "/kubebuilder"
 weight = 2
+
+[[Languages.zh.menu.main]]
+parent = "资料"
+name = "Envoy 中文文档"
+URL = "/envoy"
+weight = 3
 
 [[Languages.zh.menu.main]]
 name = "关于"

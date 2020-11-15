@@ -204,7 +204,7 @@
 
 {{ "<!-- blog -->" | safeHTML }}
 {{ if $data.homepage.blog.enable }}
-<section class="section bg-gray-white position-relative">
+<section class="section">
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -223,12 +223,13 @@
       </article>
       {{ end }}
     </div>
+    <!-- mobile see all button -->
+    <div class="row">
+        <div class="col-12 text-center">
+            <a href="{{`blog` | relLangURL }}" class="btn btn-sm btn-primary-outline d-sm-none d-inline-block">{{ i18n "see_all" }}</a>
+        </div>
+    </div>
   </div>
-  {{ "<!-- background shapes -->" | safeHTML }}
-  <img class="img-fluid blog-shape-left" src="{{`images/backgrounds/blog-bg-left.webp` | relURL }}" alt=""
-    onerror="this.src='{{`images/backgrounds/blog-bg-left.png` | relURL }}'">
-  <img class="img-fluid blog-shape-right" src="{{`images/backgrounds/blog-bg-right.webp` | relURL }}" alt=""
-    onerror="this.src='{{`images/backgrounds/blog-bg-right.png` | relURL }}'">
 </section>
 {{ end }}
 {{ "<!-- /blog -->" | safeHTML }}

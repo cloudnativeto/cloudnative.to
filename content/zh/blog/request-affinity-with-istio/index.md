@@ -1,7 +1,7 @@
 ---
-title: "【译】如何使用istio处理亲和性网络请求"
+title: "如何使用 Istio 处理亲和性网络请求"
 description: "本文翻译自 Alex Holmes 的文章 Request affinity with istio。"
-author: "CashApp"
+author: "[CashApp](https://cashapp.github.io/2020-08-04/request-affinity-with-istio)"
 translator: "[苏楚霖](https://nicksu86.github.io/)"
 image: "/images/blog/request-affinity-with-istio.jpg"
 categories: ["Istio"]
