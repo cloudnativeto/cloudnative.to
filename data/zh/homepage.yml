@@ -180,7 +180,7 @@ sponsor:
           url: "https://skywalking.apache.org/"
           name: "Apache SkyWalking"
         - image: "/images/sponsors/apache-apisix.png"
-          url: "http://apisix.apache.org/"
+          url: "https://apisix.apache.org/"
           name: "Apache APISIX"
         - image: "/images/sponsors/apache-pulsar.png"
           url: "https://pulsar.apache.org/"
@@ -207,7 +207,7 @@ sponsor:
           url: "https://streamnative.io/"
           name: "StreamNative"
     media:
-      title: "合作媒体"
+      title: "合作机构"
       list:
         - image: "/images/sponsors/bailinzhe.png"
           url: "http://www.bailinzhe.com/"
@@ -215,9 +215,9 @@ sponsor:
         - image: "/images/sponsors/msup.jpg"
           url: "https://www.msup.com.cn/"
           name: "麦斯博（GIAC 的主办方）"
-        - image: "/images/sponsors/njsd.png"
-          url: "jascript:void(0);"
-          name: "NJSD"
+        - image: "/images/sponsors/xintongyuan.png"
+          url: "http://www.caict.ac.cn/"
+          name: "中国信通院"
 
 ################################# contact ################################################
 contact:
