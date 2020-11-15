@@ -237,12 +237,12 @@
 {{ if $data.homepage.sponsor.enable }}
 {{ with $data.homepage.sponsor }}
 {{ "<!-- sponsors -->" | safeHTML }}
-<section class="section overlay-secondary bg-fixed">
+<section class="section bg-gray bg-dots">
   <div class="container">
     <div class="row">
       <div class="col-11 text-center mx-auto">
-        <h2 class="section-title text-white">{{ .title }}</h2>
-        <h4 class="section-title text-white sponsor-title">{{ .type.project.title }}</h4>
+        <h2 class="section-title">{{ .title }}</h2>
+        <h4 class="section-title sponsor-title">{{ .type.project.title }}</h4>
         <div class="container">
           <div class="row">
             <div class="col-12 mx-auto text-center">
@@ -253,7 +253,7 @@
             </div>
           </div>
         </div>
-        <h4 class="section-title text-white sponsor-title">{{ .type.org.title }}</h4>
+        <h4 class="section-title sponsor-title">{{ .type.org.title }}</h4>
         <div class="container">
           <div class="row">
             <div class="mx-auto text-center">
@@ -264,7 +264,7 @@
             </div>
           </div>
         </div>
-        <h4 class="section-title text-white sponsor-title">{{ .type.company.title }}</h4>
+        <h4 class="section-title sponsor-title">{{ .type.company.title }}</h4>
         <div class="container">
           <div class="row">
             <div class="mx-auto text-center">
@@ -275,7 +275,7 @@
             </div>
           </div>
         </div>
-        <h4 class="section-title text-white sponsor-title">{{ .type.media.title }}</h4>
+        <h4 class="section-title sponsor-title">{{ .type.media.title }}</h4>
         <div class="container">
           <div class="row">
             <div class="mx-auto text-center">
