@@ -234,4 +234,64 @@
 {{ end }}
 {{ "<!-- /blog -->" | safeHTML }}
 
+{{ if $data.homepage.sponsor.enable }}
+{{ with $data.homepage.sponsor }}
+{{ "<!-- sponsors -->" | safeHTML }}
+<section class="section bg-gray bg-dots">
+  <div class="container">
+    <div class="row">
+      <div class="col-11 text-center mx-auto">
+        <h2 class="section-title">{{ .title }}</h2>
+        <h4 class="section-title sponsor-title">{{ .type.project.title }}</h4>
+        <div class="container">
+          <div class="row">
+            <div class="col-12 mx-auto text-center">
+              {{ range .type.project.list }}
+              {{ "<!-- sponsor-img -->" | safeHTML }}
+                <a href="{{ .url }}"><img src="{{ .image }}" title="{{ .name }}" class="sponsor-img"></a>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+        <h4 class="section-title sponsor-title">{{ .type.org.title }}</h4>
+        <div class="container">
+          <div class="row">
+            <div class="mx-auto text-center">
+              {{ range .type.org.list }}
+              {{ "<!-- sponsor-img -->" | safeHTML }}
+                <a href="{{ .url }}"><img src="{{ .image }}" title="{{ .name }}" class="sponsor-img"></a>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+        <h4 class="section-title sponsor-title">{{ .type.company.title }}</h4>
+        <div class="container">
+          <div class="row">
+            <div class="mx-auto text-center">
+              {{ range .type.company.list }}
+              {{ "<!-- sponsor-img -->" | safeHTML }}
+                <a href="{{ .url }}"><img src="{{ .image }}" title="{{ .name }}" class="sponsor-img"></a>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+        <h4 class="section-title sponsor-title">{{ .type.media.title }}</h4>
+        <div class="container">
+          <div class="row">
+            <div class="mx-auto text-center">
+              {{ range .type.media.list }}
+              {{ "<!-- sponsor-img -->" | safeHTML }}
+                <a href="{{ .url }}"><img src="{{ .image }}" title="{{ .name }}" class="sponsor-img"></a>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ "<!-- /sponsors -->" | safeHTML }}
+{{ end }}
+{{ end }}
+
 {{ end }}

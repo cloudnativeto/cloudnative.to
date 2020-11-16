@@ -168,6 +168,60 @@ blog:
   title : "博客"
   # blog post comes from "content/*/blog" folder
 
+################################# blog ################################################
+sponsor:
+  enable : true
+  title : "合作伙伴列表"
+  type:
+    project:
+      title: "开源项目"
+      list:
+        - image: "/images/sponsors/apache-skywalking.png"
+          url: "https://skywalking.apache.org/"
+          name: "Apache SkyWalking"
+        - image: "/images/sponsors/apache-apisix.png"
+          url: "https://apisix.apache.org/"
+          name: "Apache APISIX"
+        - image: "/images/sponsors/apache-pulsar.png"
+          url: "https://pulsar.apache.org/"
+          name: "Apache Pulsar"
+    org:
+      title: "开源社区"
+      list:
+        - image: "/images/sponsors/devops-china.png"
+          url: "https://devopschina.org/"
+          name: "DevOps 中国社区"
+        - image: "/images/sponsors/edge-computing-community.png"
+          url: "http://byjs.com.cn/"
+          name: "边缘计算社区"
+    company:
+      title: "厂商合作"
+      list:
+        - image: "/images/sponsors/tetrate.png"
+          url: "https://www.tetrate.io/"
+          name: "Tetrate"
+        - image: "/images/sponsors/tidb.png"
+          url: "https://pingcap.com/"
+          name: "TiDB"
+        - image: "/images/sponsors/stream_native.png"
+          url: "https://streamnative.io/"
+          name: "StreamNative"
+    media:
+      title: "合作机构"
+      list:
+        - image: "/images/sponsors/cncf.png"
+          url: "https://www.cncf.io/"
+          name: "CNCF"
+        - image: "/images/sponsors/bailinzhe.png"
+          url: "http://www.bailinzhe.com/"
+          name: "百林哲（CSD的主办方）"
+        - image: "/images/sponsors/msup.jpg"
+          url: "https://www.msup.com.cn/"
+          name: "麦斯博（GIAC 的主办方）"
+        - image: "/images/sponsors/xintongyuan.png"
+          url: "http://www.caict.ac.cn/"
+          name: "中国信通院"
+
 ################################# contact ################################################
 contact:
   enable : true
