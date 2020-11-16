@@ -209,6 +209,9 @@ sponsor:
     media:
       title: "合作机构"
       list:
+        - image: "/images/sponsors/cncf.png"
+          url: "https://www.cncf.io/"
+          name: "CNCF"
         - image: "/images/sponsors/bailinzhe.png"
           url: "http://www.bailinzhe.com/"
           name: "百林哲（CSD的主办方）"
