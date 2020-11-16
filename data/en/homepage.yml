@@ -155,8 +155,9 @@ cta:
 ################################# blog ################################################
 blog:
   enable : true
-  subtitle : "Professionally-generated content, [see all](/en/blog)"
+  subtitle : "Professionally-generated content"
   title : "Blog"
+  find_all: "All"
   # blog post comes from "content/*/blog" folder
 
 ################################# contact ################################################
