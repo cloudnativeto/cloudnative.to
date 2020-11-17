@@ -189,6 +189,15 @@ sponsor:
         - image: "/images/sponsors/tidb.png"
           url: "https://github.com/pingcap/tidb"
           name: "TiDB"
+        - image: "/images/sponsors/harbor.png"
+          url: "https://goharbor.io/"
+          name: "Harbor"
+        - image: "/images/sponsors/oam.png"
+          url: "https://oam.dev/"
+          name: "OAM"
+        - image: "/images/sponsors/envoy.png"
+          url: "https://envoy.com/"
+          name: "Envoy"
     org:
       title: "开源社区"
       list:
