@@ -196,7 +196,7 @@ sponsor:
           url: "https://oam.dev/"
           name: "OAM"
         - image: "/images/sponsors/envoy.png"
-          url: "https://envoy.com/"
+          url: "https://envoyproxy.io/"
           name: "Envoy"
     org:
       title: "开源社区"
@@ -222,6 +222,14 @@ sponsor:
         - image: "/images/sponsors/api7.jpg"
           url: "https://www.apiseven.com/"
           name: "API7"
+        - image: "/images/sponsors/ucloud.jpg"
+          url: "https://www.ucloud.cn/"
+          name: "UCloud"
+        - image: "/images/sponsors/aliyun.png"
+          url: "https://www.aliyun.com/"
+          name: "阿里云"
+    media:
+    media:
     media:
     media:
       title: "合作机构"
