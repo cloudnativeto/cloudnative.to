@@ -186,6 +186,9 @@ sponsor:
         - image: "/images/sponsors/apache-pulsar.png"
           url: "https://pulsar.apache.org/"
           name: "Apache Pulsar"
+        - image: "/images/sponsors/tidb.png"
+          url: "https://github.com/pingcap/tidb"
+          name: "TiDB"
     org:
       title: "开源社区"
       list:
@@ -201,7 +204,7 @@ sponsor:
         - image: "/images/sponsors/tetrate.png"
           url: "https://www.tetrate.io/"
           name: "Tetrate"
-        - image: "/images/sponsors/tidb.png"
+        - image: "/images/sponsors/pingcap.png"
           url: "https://pingcap.com/"
           name: "TiDB"
         - image: "/images/sponsors/stream_native.png"
