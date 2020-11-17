@@ -210,6 +210,10 @@ sponsor:
         - image: "/images/sponsors/stream_native.png"
           url: "https://streamnative.io/"
           name: "StreamNative"
+        - image: "/images/sponsors/api7.jpg"
+          url: "https://www.apiseven.com/"
+          name: "API7"
+    media:
     media:
       title: "合作机构"
       list:

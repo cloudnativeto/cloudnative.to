@@ -376,7 +376,7 @@ weight = 8
 
 # footer menu
 [[Languages.zh.menu.footer]]
-name = "社区守则"
+name = "声明与政策"
 URL = "/code-of-conduct"
 weight = 1
 
