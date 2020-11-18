@@ -26,7 +26,7 @@ layout: "contribute"
 - “作者”是指文章署名的作者。
 - “读者”是指阅读社区发布的文章的人。
 - “社区官网”是指 <https://cloudnative.to>。
-- “官网 Github”是指 <https://github.com/cloudnativeto/cloudnative.to>。
+- “官网 Github”是指 [cloudnativeto/cloudnative.toa](https://github.com/cloudnativeto/cloudnative.to)。
 
 ### 投稿原则
 

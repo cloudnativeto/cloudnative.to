@@ -246,6 +246,10 @@ sponsor:
         - image: "/images/sponsors/xintongyuan.png"
           url: "http://www.caict.ac.cn/"
           name: "中国信通院"
+        - image: "/images/sponsors/njsd.jpg"
+          url: "https://t.1yb.co/9ty3"
+          name: "NJSD"
+
 
 ################################# contact ################################################
 contact:
