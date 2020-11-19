@@ -177,6 +177,12 @@ sponsor:
     project:
       title: "开源项目"
       list:
+        - image: "/images/sponsors/kubernetes.jpg"
+          url: "https://kubernetes.io/"
+          name: "Kubernetes"
+        - image: "/images/sponsors/istio.png"
+          url: "https://istio.io/"
+          name: "Istio"
         - image: "/images/sponsors/apache-skywalking.png"
           url: "https://skywalking.apache.org/"
           name: "Apache SkyWalking"
@@ -207,6 +213,9 @@ sponsor:
         - image: "/images/sponsors/edge-computing-community.png"
           url: "http://byjs.com.cn/"
           name: "边缘计算社区"
+        - image: "/images/sponsors/alc-beijing.jpg"
+          url: "https://alc-beijing.github.io/alc-site/"
+          name: "ALC Beijing"
     company:
       title: "厂商合作"
       list:
