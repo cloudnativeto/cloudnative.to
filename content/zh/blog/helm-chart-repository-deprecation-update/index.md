@@ -1,7 +1,7 @@
 ---
 title: "Helm Chart 仓库弃用更新"
-description: "Helm Chart 仓库更换地址，旧仓库地址将被弃用"
-author: "Helm 官方"
+description: "Helm Chart 仓库更换地址，旧仓库地址将被弃用。"
+author: "[Helm 官方](https://www.cncf.io/blog/2020/11/05/helm-chart-repository-deprecation-update/)"
 translator: "[马景贺（小马哥）](https://github.com/majinghe)"
 image: "images/blog/helm.jpg"
 categories: ["Helm"]
