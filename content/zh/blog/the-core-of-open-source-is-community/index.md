@@ -30,7 +30,7 @@ profile: "KubeSphere 高级工程师，负责研发 DevOps 平台。"
 
 社区的特征是共识与协作。开源项目是开源社区的共识，也是开源协作的对象。社区成员质量越高、数量越多，就越能代表该领域的先进性。
 
-[![img](0081Kckwly1gkx73poai9j30j60b4abp.jpg)](https://www.chenshaowen.com/blog/images/2020/11/many-person.jpg)
+![img](0081Kckwly1gkx73poai9j30j60b4abp.jpg)
 
 在有限的人群上，可以构建无限的社区。但在无限的社区上，个人又只能投入有限的精力和时间。这就是开源项目之间争夺的焦点。
 
@@ -52,7 +52,7 @@ profile: "KubeSphere 高级工程师，负责研发 DevOps 平台。"
 
 一个企业软件的发布是一群人共同努力的结果。需要产品经理、设计师、研发、测试、文档、市场、运营等人员的通力合作，才能交付一个可靠的版本。
 
-[![img](0081Kckwly1gkx73q6rr1j30nj0cj74c.jpg)](https://www.chenshaowen.com/blog/images/2020/11/agile-development-lifecycle.png)
+![img](0081Kckwly1gkx73q6rr1j30nj0cj74c.jpg)
 
 可以将整个开源协作理解为一条供应链，需要社区分工协作，人人参与，人人贡献，最终完成组装达成目标。管理开源项目，就是管理这样一条供应链。
 
