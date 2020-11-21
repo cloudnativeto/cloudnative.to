@@ -2,7 +2,7 @@
 title: "一文带你彻底厘清 Isito 中的证书工作机制"
 description: "Istio 为微服务提供了无侵入，可插拔的安全框架。应用不需要修改代码，就可以利用 Istio 提供的双向 TLS 认证实现服务身份认证，并基于服务身份信息提供细粒度的访问控制。本文将为你揭秘 Istio 双向 TLS 认证的实现机制。"
 author: "[赵化冰](https://zhaohuabing.com)"
-image: "https://zhaohuabing.com/img/2020-05-25-istio-certificate/background-cloudnativeto.jpg"
+image: "/images/blog/blog-3.jpg"
 categories: ["Istio"]
 tags: ["Istio"]
 date: 2020-05-25T06:00:00+08:00
@@ -17,7 +17,7 @@ type: "post"
 
 Istio 为微服务提供了无侵入，可插拔的安全框架。应用不需要修改代码，就可以利用 Istio 提供的双向 TLS 认证实现服务身份认证，并基于服务身份信息提供细粒度的访问控制。Istio 安全的高层架构如下图所示：
 
-![](https://istio.io/docs/concepts/security/arch-sec.svg)
+![](arch-sec.svg)
 图1. Istio Security Architecture，图片来源[istio.io](https://istio.io/docs/concepts/security/#high-level-architecture)
 
 图中展示了 Istio 中的服务认证和授权两部分内容。让我们暂时忽略掉授权部分，先关注认证部分。服务认证是通过控制面和数据面一起实现的：
@@ -28,7 +28,7 @@ Istio 为微服务提供了无侵入，可插拔的安全框架。应用不需�
 
 图1是对 Istio 安全架构的一个高度概括的描述，让我们把图1中控制面的交互展开，看一下其中的细节。
 
-![](https:/zhaohuabing.com/img/2020-05-25-istio-certificate/istio-ca.svg)
+![](istio-ca.svg)
 图2. Istio 证书分发流程
 
 我们先暂时忽略图中右边蓝色虚线的部分（稍后会在 [控制面身份认证](#heading1) 部分讲到），图中左半部分描述了 Istio 控制面向 Envoy 签发证书的流程：
@@ -66,7 +66,7 @@ Istio 为微服务提供了无侵入，可插拔的安全框架。应用不需�
 
 和其他 [xDS](https://www.envoyproxy.io/docs/envoy/latest/api-docs/xds_protocol) 接口一样，SDS 也是 Envoy 支持的一种动态配置服务接口。Envoy 可以通过 [SDS（secret discovery service）](https://www.envoyproxy.io/docs/envoy/latest/configuration/security/secret) 接口从 SDS 服务器自动获取证书。和之前的方式相比，SDS 最大的好处就是简化了证书管理。在没有使用 SDS 前，Istio 中的服务证书被创建为 Kubernetes secret，并挂载到代理容器中。如果证书过期了，则需要更新 secret 并重启 Envoy 容器，以启用新的证书。使用SDS后，SDS 服务器（Pilot-agent充当了 SDS 服务器的角色）将向 Envoy 实例主动推送证书。如果证书过期，SDS 服务器只需将新的证书推送到 Envoy 例中，Envoy 会使用新的证书来创建链接，无需重新启动。
 
-![](https://zhaohuabing.com/img/2020-05-25-istio-certificate/envoy-sds.svg)
+![](envoy-sds.svg)
 图3. Envoy SDS 服务
 
 可以看到，Istio 采用 SDS 后，避免了在证书更新后重启 Envoy，大大减少了证书更新对业务的影响。同时，由于 Pilot-agent 和 Envoy 处于同一容器中，私钥只存在于本地容器，避免了在网络中传递私钥，也降低了私钥泄露的安全风险。
@@ -501,7 +501,7 @@ Istio 将此配置通过 xDS 接口下发到 Ingress Gateway Pod 中的 Envoy �
 1. Ingress Gateway 用于和网格内其他服务通信的服务身份证书还是由 Istio CA 颁发的，其证书获取的流程同图2。
 2. Egress Gateway 未使用 SDS 获取用于访问外部服务的客户端证书（1.6 现状，后续也许会修改）。
 
-![](https://zhaohuabing.com/img/2020-05-25-istio-certificate/ingress-gateway-ca-sds.svg)
+![](ingress-gateway-ca-sds.svg)
 图4. Ingress Gateway 证书获取流程
 
 ## 数据面使用的所有证书
@@ -512,7 +512,7 @@ Istio 将此配置通过 xDS 接口下发到 Ingress Gateway Pod 中的 Envoy �
 
 除了 Ingress Gateway 对外提供服务的服务器证书和 Egress Gateway 访问第三方服务的客户端证书之外，其他证书都是 Envoy 通过 SDS 服务从 Istio CA 获取的，因此都使用 Istio Root CA 证书进行验证。这两个第三方证书则需要采用第三方 CA 根证书进行验证。
 
-![](https://zhaohuabing.com/img/2020-05-25-istio-certificate/bookinfo-ca.svg)
+![](bookinfo-ca.svg)
 图5. Istio 数据面使用到的所有证书
 
 ## 小结
