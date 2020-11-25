@@ -71,19 +71,19 @@ weight = 2
 [[menu.main]]
 parent = "Community"
 name = "Istio SIG"
-URL = "https://github.com/cloudnativeto/sig-istio"
+URL = "https://i.cloudnative.to/istio/"
 weight = 3
 
 [[menu.main]]
 parent = "Community"
 name = "Envoy SIG"
-URL = "https://cloudnative.to/sig-envoy"
+URL = "https://i.cloudnative.to/envoy/"
 weight = 4
 
 [[menu.main]]
 parent = "Community"
 name = "Dapr SIG"
-URL = "https://cloudnative.to/sig-dapr"
+URL = "https://i.cloudnative.to/dapr/"
 weight = 5
 
 [[menu.main]]
@@ -271,19 +271,19 @@ weight = 1
 [[Languages.zh.menu.main]]
 parent = "学院"
 name = "Istio 特别兴趣小组"
-URL = "https://github.com/cloudnativeto/sig-istio"
+URL = "https://i.cloudnative.to/istio/"
 weight = 2
 
 [[Languages.zh.menu.main]]
 parent = "学院"
 name = "Envoy 特别兴趣小组"
-URL = "https://cloudnative.to/sig-envoy"
+URL = "https://i.cloudnative.to/envoy/"
 weight = 3
 
 [[Languages.zh.menu.main]]
 parent = "学院"
 name = "Dapr 特别兴趣小组"
-URL = "https://github.com/cloudnativeto/sig-dapr"
+URL = "https://i.cloudnative.to/dapr/"
 weight = 4
 
 [[Languages.zh.menu.main]]
