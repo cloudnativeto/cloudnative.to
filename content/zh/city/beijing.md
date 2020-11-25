@@ -19,8 +19,6 @@ core_members:
     image: "/images/city/beijing/members/luoguangming.png"
   - name: "王殿进"
     image: "/images/city/beijing/members/wangdianjin.png"
-  - name: "王福印"
-    image: "/images/city/nanjing/members/wangfuyin.png"
 core_member_title: 核心成员
 core_member_desc: 社区由核心成员罗广明、王殿进、王福印来组织与筹划社区发展与线下活动等事宜。我们热爱开源事业，热爱云原生技术。希望有更多人加入社区，一起组织线下活动，在北京推广云原生技术。
 
@@ -34,7 +32,7 @@ logo_image: "/images/city/beijing/logo.jpg"
 # ACTIVITY
 activity_title: 往期活动
 activities:
-  - name: 2020-08-31 成员线下聚会
+  - name: 2020-08-30 成员线下聚会
     images: 
       - "/images/city/beijing/activities/2020-8-31/1.jpg"
 
