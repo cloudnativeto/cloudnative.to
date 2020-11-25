@@ -36,7 +36,7 @@ activity_title: 往期活动
 activities:
   - name: 2020-08-31 成员线下聚会
     images: 
-      - "/images/city/beijing/activities/2020-08-31/1.jpg"
+      - "/images/city/beijing/activities/2020-8-31/1.jpg"
 
 # JOINT US
 join_us_title: "加入我们"
