@@ -16,9 +16,9 @@ bg_image: "/images/backgrounds/city-banner-beijing.jpg"
 # CORE MEMBERS
 core_members:
   - name: "罗广明"
-    image: "/images/city/nanjing/members/luoguangming.png"
+    image: "/images/city/beijing/members/luoguangming.png"
   - name: "王殿进"
-    image: "/images/city/nanjing/members/wangdianjin.png"
+    image: "/images/city/beijing/members/wangdianjin.png"
   - name: "王福印"
     image: "/images/city/nanjing/members/wangfuyin.png"
 core_member_title: 核心成员
@@ -36,11 +36,11 @@ activity_title: 往期活动
 activities:
   - name: 2020-08-31 成员线下聚会
     images: 
-      - "/images/city/nanjing/activities/2020-08-31/1.jpg"
+      - "/images/city/beijing/activities/2020-08-31/1.jpg"
 
 # JOINT US
 join_us_title: "加入我们"
-join_us_desc: "如果你也想参与到云原生社区，一起交流，学习。 如果你想为北京云原生社区的强大贡献一份自己的力量，`请扫码关注下方微信公众号`。 如需加入微信群，请搜索微信号: `lgm674531927`, 备注云原生, 站长将邀请您加入北京站群。"
+join_us_desc: "如果你也想参与到云原生社区，一起交流，学习。 如果你想为北京云原生社区的强大贡献一份自己的力量，`请扫码关注下方微信公众号`。 如需加入微信群，请通过公众号后台回复「北京站」, 站长将邀请您加入北京站群。"
 
 
 ---
