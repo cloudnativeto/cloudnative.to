@@ -27,8 +27,8 @@ core_member_desc: 社区由核心成员罗广明、王殿进、王福印来组�
 
 # LOGO PART
 logo_title: 社区 Logo
-logo_short_desc: 北京站 Logo 来自于xxx与 Kubernetes Logo 的融合。
-logo_detail_desc: xxx源于xxx，象征着xxx，如今如火如荼的云原生技术也正值青春，活力尽现，两者结合相得益彰。我们社区将起着xxx一样的作用，连接沟通着北京的IT与云原生。"
+logo_short_desc: 北京站 Logo 来自于天坛与 Kubernetes Logo 的融合。
+logo_detail_desc: 天坛是北京的标志建筑，不仅具有丰厚的历史底蕴，还具有精神的象征。如今如火如荼的云原生技术也正值青春，活力尽现，两者结合相得益彰。我们社区将连接沟通北京的 IT 与云原生，共同促进云原生的落地与繁荣。"
 logo_image: "/images/city/beijing/logo.jpg"
 
 # ACTIVITY
