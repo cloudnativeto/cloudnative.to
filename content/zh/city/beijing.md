@@ -8,8 +8,8 @@ latitude: 39.915
 link: "/city/beijing/"
 type: "city"
 layout: "beijing"
-site_manager: "罗广明，王殿进"
-city_small_logo: "/images/city/beijing_small_logo.jpg"
+site_manager: "罗广明、王殿进"
+city_small_logo: "/images/city/beijing_small_logo.png"
 bg_image: "/images/backgrounds/city-banner-beijing.jpg"
 
 ## Details Page
@@ -27,14 +27,14 @@ core_member_desc: 社区由核心成员罗广明、王殿进、王福印来组�
 logo_title: 社区 Logo
 logo_short_desc: 北京站 Logo 来自于天坛与 Kubernetes Logo 的融合。
 logo_detail_desc: 天坛是北京的标志建筑，不仅具有丰厚的历史底蕴，还具有精神的象征。如今如火如荼的云原生技术也正值青春，活力尽现，两者结合相得益彰。我们社区将连接沟通北京的 IT 与云原生，共同促进云原生的落地与繁荣。"
-logo_image: "/images/city/beijing/logo.jpg"
+logo_image: "/images/city/beijing/logo.png"
 
 # ACTIVITY
 activity_title: 往期活动
 activities:
   - name: 2020-08-30 成员线下聚会
     images: 
-      - "/images/city/beijing/activities/2020-8-31/1.jpg"
+      - "/images/city/beijing/activities/2020-08-31.jpg"
 
 # JOINT US
 join_us_title: "加入我们"
