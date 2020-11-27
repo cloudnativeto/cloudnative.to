@@ -70,21 +70,33 @@ weight = 2
 
 [[menu.main]]
 parent = "Community"
+name = "Kubernetes SIG"
+URL = "https://i.cloudnative.to/kubernetes/"
+weight = 3
+
+[[menu.main]]
+parent = "Community"
 name = "Istio SIG"
 URL = "https://i.cloudnative.to/istio/"
-weight = 3
+weight = 4
 
 [[menu.main]]
 parent = "Community"
 name = "Envoy SIG"
 URL = "https://i.cloudnative.to/envoy/"
-weight = 4
+weight = 5
 
 [[menu.main]]
 parent = "Community"
 name = "Dapr SIG"
 URL = "https://i.cloudnative.to/dapr/"
-weight = 5
+weight = 6
+
+[[menu.main]]
+parent = "Community"
+name = "OAM SIG"
+URL = "https://i.cloudnative.to/oam/"
+weight = 7
 
 [[menu.main]]
 name = "Blog"
@@ -118,14 +130,9 @@ weight = 6
 
 # footer menu
 [[menu.footer]]
-name = "Code of Conduct"
+name = "Announcement and Policy"
 URL = "/code-of-conduct"
 weight = 1
-
-[[menu.footer]]
-name = "Privacy Policy"
-URL = "privacy-policy"
-weight = 2
 
 ########################### Default parameters ######################
 [params]
@@ -191,9 +198,9 @@ link = "https://twitter.com/cloudnativecn"
 icon = "fa-github"
 link = "https://github.com/cloudnativeto"
 
-[[params.social]]
-icon = "fa-slack"
-link = "https://cloudnativecommunity.slack.com"
+#[[params.social]]
+#icon = "fa-slack"
+#link = "https://cloudnativecommunity.slack.com"
 
 [[params.social]]
 icon = "fa-wechat"
@@ -255,7 +262,7 @@ weight = 2
 [[Languages.zh.menu.main]]
 parent = "社区"
 name = "社区资料"
-URL = "https://github.com/cloudnativeto/community"
+URL = "https://i.cloudnative.to/community/"
 weight = 3
 
 [[Languages.zh.menu.main]]
