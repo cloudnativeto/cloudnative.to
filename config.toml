@@ -255,15 +255,21 @@ weight = 1
 
 [[Languages.zh.menu.main]]
 parent = "社区"
+name = "云原生学院"
+URL = "https://i.cloudnative.to/academy/"
+weight = 2
+
+[[Languages.zh.menu.main]]
+parent = "社区"
 name = "城市站"
 URL = "/city"
-weight = 2
+weight = 3
 
 [[Languages.zh.menu.main]]
 parent = "社区"
 name = "社区资料"
 URL = "https://i.cloudnative.to/community/"
-weight = 3
+weight = 4
 
 [[Languages.zh.menu.main]]
 name = "兴趣小组"
