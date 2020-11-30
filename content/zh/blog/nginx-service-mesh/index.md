@@ -1,7 +1,7 @@
 ---
-title: "【译】初识 NGINX 服务网格"
+title: "初识 NGINX 服务网格"
 description: "本文翻译自 Nginx 官方博客初识 NGINX 服务网格。"
-author: "Nginx"
+author: "[Nginx](https://www.nginx.com/blog/introducing-nginx-service-mesh/amp/)"
 translator: "[台慧敏](https://github.com/hmtai)"
 image: "/images/blog/introducing-nginx-service-mesh.png"
 categories: ["service-mesh"]

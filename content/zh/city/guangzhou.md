@@ -1,4 +1,5 @@
 ---
+code: "guangzhou"
 title: "广州站"
 description: "广州站的简介"
 longitude: 113.267

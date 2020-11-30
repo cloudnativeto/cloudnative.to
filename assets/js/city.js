@@ -8,6 +8,22 @@ function cloudNativeBaiduMap(mapData){
 
   var pointArray = new Array();
 
+  // 当点击地图城市之后，切换城市介绍信息
+  function switchToCity(e){
+   var p = e.target;
+   var scrollTo = document.getElementById(p.getTitle()).offsetTop - 111
+
+   // 列表跳转
+   document.getElementById("city_list").scrollTop=scrollTo;
+
+   // 移除当前的Highlight
+   $(".city").css("background-color", "");
+
+   // 添加选中后的Highlight
+   $("#"+p.getTitle()).css("background-color", "rgba(8,18,109,.1)");
+
+  }
+
   //将所有的城市打点在地图上
   for(var i=0;i<mapData.length;i++){
     var data = mapData[i];
@@ -16,6 +32,8 @@ function cloudNativeBaiduMap(mapData){
     var label = new BMap.Label(data.title, {offset:new BMap.Size(-10,20)});
     marker.setLabel(label);
     marker.setTitle(data.code);
+    marker.addEventListener("click",switchToCity);
+
     map.addOverlay(marker);
 
     pointArray[i] = point;

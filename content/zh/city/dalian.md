@@ -1,5 +1,6 @@
 ---
 ## Map Page Configurations
+code: "dalian"
 title: "大连站"
 description: "大连站成立于2020年9月，有核心组织者9人，社区活跃人数数百人。曾多次举办各种线上线下活动。致力于汇聚优秀人才，活跃大连的IT氛围，推广云原生技术！"
 longitude: 121.638
@@ -45,19 +46,22 @@ logo_image: "/images/city/dalian/logo.jpg"
 # ACTIVITY
 activity_title: 往期活动
 activities:
-  - name: 2020-09-24 云原生走进高校之-大连东软信息学院
+  - name: 2020-10-24 云原生走进高校第二期之-大连东软信息学院
+    url: https://mp.weixin.qq.com/s/5Mc9gG6_E2cdp6cXnxzUbA
+    images:
+      - "/images/city/dalian/activities/2020-10-24/neusoft-01.png"
+  - name: 2020-09-24 云原生走进高校第一期之-大连东软信息学院
     url: https://mp.weixin.qq.com/s/qlclCwXstAsqdO2xPaf6-Q
     images:
-      - "/images/city/dalian/activities/2020-09-neusoft-school.png"
+      - "/images/city/dalian/activities/2020-09-24/2020-09-neusoft-school.png"
   - name: 2020-09-19 核心成员线下聚会
     url: https://mp.weixin.qq.com/s/p4HWU576-EBnoXUXjI7PtQ
     images: 
-      - "/images/city/dalian/activities/2020-09-19-core-member-01.jpg"
-      - "/images/city/dalian/activities/2020-09-19-core-member-02.jpg"
+      - "/images/city/dalian/activities/2020-09-19/2020-09-19-core-member-01.jpg"
+      - "/images/city/dalian/activities/2020-09-19/2020-09-19-core-member-02.jpg"
 
 # JOINT US
 join_us_title: "加入我们"
-join_us_desc: "如果你也想参与到云原生社区，一起交流，学习。 如果你想为大连云原生社区的强大贡献一份自己的力量，`请扫码关注左侧微信公众号`。 如需加入微信群，请搜索微信号: `majinghe11`, 备注云原生, 社区核心成员会将您加入群内。"
-join_us_image: "/images/wechat-qrcode.png"
+join_us_desc: "如果你也想参与到云原生社区，一起交流，学习。 如果你想为大连云原生社区的强大贡献一份自己的力量，`请扫码关注下侧微信公众号`。 如需加入微信群，请搜索微信号: `majinghe11`, 备注云原生, 社区核心成员会将您加入群内。"
 
 ---

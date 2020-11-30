@@ -11,7 +11,7 @@
         <div class="section-title-border"></div>
         <p class="mb-12">{{ .Params.core_member_desc | markdownify }}</p>
       </div>    
-      <div class="row core-members" >
+      <div class="row core-members">
             {{ "<!-- 引入核心成员个人照片 -->" | safeHTML }}
             {{ range .Params.core_members }}
             <div class="member col-lg-4">
@@ -88,10 +88,7 @@
 <section class="section justify bg-gray">
   <div class="container">
     <div class="row justify-content-between align-items-center">
-      <div class="col-md-5 bg-contain text-center">
-        <img class="img-fluid" style="height: 250px;" src="{{ .Params.join_us_image | relURL }}"  title="{{ .Params.join_us_title | markdownify }}" alt="About Image">
-      </div>
-      <div class="col-md-6">
+      <div class="col-md-12">
         <h2 class="section-title">{{ .Params.join_us_title | markdownify }}</h2>
         <div class="section-title-border"></div>
         <p class="mb-5">{{ .Params.join_us_desc | markdownify }}</p>
@@ -141,7 +138,14 @@
     animation: sonarEffect 1s ease-out 50ms;
   }
 
-  .core-members .tag {
+  .core-members {
+    text-align: center;
+    margin: 15px;
+    color: #b3b6b9;
+    font-weight: 400;    
+  }
+
+  .tag {
     text-align: left;
     margin: 15px;
     color: #b3b6b9;

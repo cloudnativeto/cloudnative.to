@@ -1,7 +1,7 @@
 ---
-title: "【译】服务网格的零信任安全"
+title: "服务网格的零信任安全"
 description: "本文翻译自 Rose Sawvel 的文章 Zero-Trust Security with Service Mesh。"
-author: "Rose Sawvel"
+author: "[Rose Sawvel](https://thenewstack.io/zero-trust-security-with-service-mesh/)"
 translator: "[林静](http://linjing.io)"
 image: "/images/blog/top-banner-zero-trust.jpg"
 categories: ["Service Mesh"]

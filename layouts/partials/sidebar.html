@@ -40,7 +40,7 @@
       <p class="avatar-name">
         <strong class="text-dark ">{{ .Params.Author | markdownify }}</strong> 
       </p>
-      <p>{{ .Params.Profile }}</p>
+      <p>{{ .Params.Profile | markdownify }}</p>
     </div>
   </div>
   {{- end }}

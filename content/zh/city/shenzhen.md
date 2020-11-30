@@ -1,4 +1,5 @@
 ---
+code: "shenzhen"
 title: "深圳站"
 description: "深圳站的简介"
 longitude: 114.062
