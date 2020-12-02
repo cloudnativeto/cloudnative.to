@@ -51,7 +51,7 @@ about:
   button:
     enable : true;
     label : "Enter"
-    link : "https://github.com/cloudnativeto/academy"
+    link : "https://i.cloudnative.to/academy"
 
 ################################## funfacts ###############################
 funfacts :

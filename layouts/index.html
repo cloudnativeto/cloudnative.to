@@ -251,45 +251,53 @@
         <h4 class="section-title sponsor-title">{{ .type.project.title }}</h4>
         <div class="container">
           <div class="row">
-            <div class="col-12 mx-auto text-center">
-              {{ range .type.project.list }}
-              {{ "<!-- sponsor-img -->" | safeHTML }}
-              <a href="{{ .url }}"><img src="{{ .image }}" title="{{ .name }}" class="sponsor-img"></a>
-              {{ end }}
+            {{ range .type.project.list }}
+            {{ "<!-- sponsor-img -->" | safeHTML }}
+            <div class="col-6 col-sm-6 col-md-3">
+              <div class=sponsor-img-adopter>
+                <a href="{{ .url }}" target="_blank"><img src="{{ .image }}" title="{{ .name }}"></a>
+              </div>
             </div>
+            {{ end }}
           </div>
         </div>
         <h4 class="section-title sponsor-title">{{ .type.org.title }}</h4>
         <div class="container">
           <div class="row">
-            <div class="mx-auto text-center">
-              {{ range .type.org.list }}
-              {{ "<!-- sponsor-img -->" | safeHTML }}
-              <a href="{{ .url }}"><img src="{{ .image }}" title="{{ .name }}" class="sponsor-img"></a>
-              {{ end }}
+            {{ range .type.org.list }}
+            {{ "<!-- sponsor-img -->" | safeHTML }}
+            <div class="col-6 col-sm-6 col-md-3">
+              <div class=sponsor-img-adopter>
+                <a href="{{ .url }}" target="_blank"><img src="{{ .image }}" title="{{ .name }}"></a>
+              </div>
             </div>
+            {{ end }}
           </div>
         </div>
         <h4 class="section-title sponsor-title">{{ .type.company.title }}</h4>
         <div class="container">
           <div class="row">
-            <div class="mx-auto text-center">
-              {{ range .type.company.list }}
-              {{ "<!-- sponsor-img -->" | safeHTML }}
-              <a href="{{ .url }}"><img src="{{ .image }}" title="{{ .name }}" class="sponsor-img"></a>
-              {{ end }}
+            {{ range .type.company.list }}
+            {{ "<!-- sponsor-img -->" | safeHTML }}
+            <div class="col-6 col-sm-6 col-md-3">
+              <div class=sponsor-img-adopter>
+                <a href="{{ .url }}" target="_blank"><img src="{{ .image }}" title="{{ .name }}"></a>
+              </div>
             </div>
+            {{ end }}
           </div>
         </div>
         <h4 class="section-title sponsor-title">{{ .type.media.title }}</h4>
         <div class="container">
           <div class="row">
-            <div class="mx-auto text-center">
-              {{ range .type.media.list }}
-              {{ "<!-- sponsor-img -->" | safeHTML }}
-              <a href="{{ .url }}"><img src="{{ .image }}" title="{{ .name }}" class="sponsor-img"></a>
-              {{ end }}
+            {{ range .type.media.list }}
+            {{ "<!-- sponsor-img -->" | safeHTML }}
+            <div class="col-6 col-sm-6 col-md-3">
+              <div class=sponsor-img-adopter>
+                <a href="{{ .url }}" target="_blank"><img src="{{ .image }}" title="{{ .name }}"></a>
+              </div>
             </div>
+            {{ end }}
           </div>
         </div>
       </div>

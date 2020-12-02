@@ -21,7 +21,7 @@ bg_image: "/images/backgrounds/city-banner-shanghai.jpg"
 core_members:
   - name: "郭旭东"
     image: "/images/city/shanghai/avatars/guoxudong.jpeg"
-    tag: "郭旭东，云原生社区上海站站长。凯京科技运维负责人，阿里云MVP，主要负责 devops 及云原生领域建设，涉及各种云原生工具、Kubernetes、Istio、OAM 等，致力于提升研发及运维效率，优化交付的质量及体验。"
+    tag: "郭旭东，云原生社区上海站站长。爱乐奇云原生技术专家，阿里云MVP，主要负责 devops 及云原生领域建设，涉及各种云原生工具、Kubernetes、Istio、OAM 等，致力于提升研发及运维效率，优化交付的质量及体验。"
     github: "https://github.com/sunny0826"
   - name: "张海立"
     image: "/images/city/shanghai/avatars/haili.jpg"

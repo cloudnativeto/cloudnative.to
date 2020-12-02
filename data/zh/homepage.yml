@@ -4,14 +4,14 @@ slider:
   slider_item:
      - subtitle : ""
        title : "云原生社区 Meetup 第一期·上海站"
-       content : "11 月 28 日，星期六，我们上海见！这是云原生社区举办的第一次线下 Meetup，由云原生社区上海站、UCloud 承办，万科海外、Tetrate、电子工业出版社赞助，欢迎大家报名参加！"
+       content : "11 月 28 日，星期六，这是云原生社区举办的第一次线下 Meetup，由云原生社区上海站、UCloud 承办，万科海外、Tetrate、电子工业出版社赞助！"
        bg_image_webp : "images/slider/banner-1.jpg"
        bg_image : "images/slider/banner-1.jpg"
        animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
        button:
          enable : true
-         label : "报名"
-         link : "https://www.huodongxing.com/event/9571346308700"
+         label : "查看回顾"
+         link : "https://i.cloudnative.to/academy/meetup/01-shanghai"
          animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
 
 ################################## banner feature ############################
@@ -51,7 +51,7 @@ about:
   button:
     enable : true
     label : "进入学院"
-    link : "https://github.com/cloudnativeto/academy"
+    link : "https://i.cloudnative.to/academy"
 
 ################################## funfacts ###############################
 funfacts :
@@ -159,7 +159,7 @@ cta:
   button:
     enable : true
     label : "查看"
-    link : "https://github.com/cloudnativeto/academy/issues"
+    link : "https://i.cloudnative.to/academy/webinar"
 
 ################################# blog ################################################
 blog:
