@@ -204,6 +204,9 @@ sponsor:
         - image: "/images/sponsors/envoy.png"
           url: "https://envoyproxy.io/"
           name: "Envoy"
+        - image: "/images/sponsors/kubesphere.svg"
+          url: "https://kubesphere.io"
+          name: "Kubesphere"
     org:
       title: "开源社区"
       list:
