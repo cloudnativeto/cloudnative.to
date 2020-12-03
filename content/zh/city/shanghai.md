@@ -68,8 +68,8 @@ activities:
   - name: "2020-10-08 核心成员线下聚会"
     # url: https://mp.weixin.qq.com/s/p4HWU576-EBnoXUXjI7PtQ
     images:
-      - "/images/city/shanghai/activities/20201008/1.png"
-      - "/images/city/shanghai/activities/20201008/2.png"
+      - "/images/city/shanghai/activities/20201008/1.jpg"
+      - "/images/city/shanghai/activities/20201008/2.jpg"
 
 # JOINT US
 join_us_title: "加入上海站"
