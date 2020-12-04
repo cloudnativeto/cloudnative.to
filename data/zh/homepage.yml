@@ -169,7 +169,7 @@ blog:
   find_all: "查看全部"
   # blog post comes from "content/*/blog" folder
 
-################################# blog ################################################
+################################# sponsors ################################################
 sponsor:
   enable : true
   title : "合作伙伴列表"
@@ -214,8 +214,6 @@ sponsor:
           url: "https://shardingsphere.apache.org"
           name: "ShardingSphere"
     org:
-    org:
-    org:
       title: "开源社区"
       list:
         - image: "/images/sponsors/devops-china.png"
@@ -228,7 +226,7 @@ sponsor:
           url: "https://alc-beijing.github.io/alc-site/"
           name: "ALC Beijing"
     company:
-      title: "厂商合作"
+      title: "合作企业"
       list:
         - image: "/images/sponsors/tetrate.png"
           url: "https://www.tetrate.io/"
