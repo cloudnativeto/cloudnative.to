@@ -207,6 +207,10 @@ sponsor:
         - image: "/images/sponsors/kubesphere.svg"
           url: "https://kubesphere.io"
           name: "Kubesphere"
+        - image: "/images/sponsors/chubaofs.jpg"
+          url: "https://chubao.io"
+          name: "ChubaoFS"
+    org:
     org:
       title: "开源社区"
       list:
