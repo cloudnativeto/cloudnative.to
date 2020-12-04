@@ -210,6 +210,10 @@ sponsor:
         - image: "/images/sponsors/chubaofs.jpg"
           url: "https://chubao.io"
           name: "ChubaoFS"
+        - image: "/images/sponsors/shardingsphere.jpg"
+          url: "https://shardingsphere.apache.org"
+          name: "ShardingSphere"
+    org:
     org:
     org:
       title: "开源社区"
