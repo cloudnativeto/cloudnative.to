@@ -70,21 +70,33 @@ weight = 2
 
 [[menu.main]]
 parent = "Community"
-name = "Istio SIG"
-URL = "https://github.com/cloudnativeto/sig-istio"
+name = "Kubernetes SIG"
+URL = "https://i.cloudnative.to/kubernetes/"
 weight = 3
 
 [[menu.main]]
 parent = "Community"
-name = "Envoy SIG"
-URL = "https://cloudnative.to/sig-envoy"
+name = "Istio SIG"
+URL = "https://i.cloudnative.to/istio/"
 weight = 4
 
 [[menu.main]]
 parent = "Community"
-name = "Dapr SIG"
-URL = "https://cloudnative.to/sig-dapr"
+name = "Envoy SIG"
+URL = "https://i.cloudnative.to/envoy/"
 weight = 5
+
+[[menu.main]]
+parent = "Community"
+name = "Dapr SIG"
+URL = "https://i.cloudnative.to/dapr/"
+weight = 6
+
+[[menu.main]]
+parent = "Community"
+name = "OAM SIG"
+URL = "https://i.cloudnative.to/oam/"
+weight = 7
 
 [[menu.main]]
 name = "Blog"
@@ -118,14 +130,9 @@ weight = 6
 
 # footer menu
 [[menu.footer]]
-name = "Code of Conduct"
+name = "Announcement and Policy"
 URL = "/code-of-conduct"
 weight = 1
-
-[[menu.footer]]
-name = "Privacy Policy"
-URL = "privacy-policy"
-weight = 2
 
 ########################### Default parameters ######################
 [params]
@@ -191,9 +198,9 @@ link = "https://twitter.com/cloudnativecn"
 icon = "fa-github"
 link = "https://github.com/cloudnativeto"
 
-[[params.social]]
-icon = "fa-slack"
-link = "https://cloudnativecommunity.slack.com"
+#[[params.social]]
+#icon = "fa-slack"
+#link = "https://cloudnativecommunity.slack.com"
 
 [[params.social]]
 icon = "fa-wechat"
@@ -248,43 +255,55 @@ weight = 1
 
 [[Languages.zh.menu.main]]
 parent = "社区"
-name = "城市站"
-URL = "/city"
+name = "云原生学院"
+URL = "https://i.cloudnative.to/academy/"
 weight = 2
 
 [[Languages.zh.menu.main]]
 parent = "社区"
+name = "城市站"
+URL = "/city"
+weight = 3
+
+[[Languages.zh.menu.main]]
+parent = "社区"
 name = "社区资料"
-URL = "https://github.com/cloudnativeto/community"
+URL = "https://i.cloudnative.to/community/"
+weight = 4
+
+[[Languages.zh.menu.main]]
+name = "兴趣小组"
 weight = 3
 
 [[Languages.zh.menu.main]]
-name = "学院"
-weight = 3
-
-[[Languages.zh.menu.main]]
-parent = "学院"
-name = "Kubernetes 源码研习社"
-URL = "https://github.com/cloudnativeto/sig-k8s-source-code"
+parent = "兴趣小组"
+name = "Kubernetes SIG"
+URL = "https://i.cloudnative.to/kubernetes/"
 weight = 1
 
 [[Languages.zh.menu.main]]
-parent = "学院"
-name = "Istio 特别兴趣小组"
-URL = "https://github.com/cloudnativeto/sig-istio"
+parent = "兴趣小组"
+name = "Istio SIG"
+URL = "https://i.cloudnative.to/istio/"
 weight = 2
 
 [[Languages.zh.menu.main]]
-parent = "学院"
-name = "Envoy 特别兴趣小组"
-URL = "https://cloudnative.to/sig-envoy"
+parent = "兴趣小组"
+name = "Envoy SIG"
+URL = "https://i.cloudnative.to/envoy/"
 weight = 3
 
 [[Languages.zh.menu.main]]
-parent = "学院"
-name = "Dapr 特别兴趣小组"
-URL = "https://cloudnative.to/sig-dapr"
+parent = "兴趣小组"
+name = "Dapr SIG"
+URL = "https://i.cloudnative.to/dapr/"
 weight = 4
+
+[[Languages.zh.menu.main]]
+parent = "兴趣小组"
+name = "OAM SIG"
+URL = "https://i.cloudnative.to/oam/"
+weight = 5
 
 [[Languages.zh.menu.main]]
 name = "博客"
@@ -332,15 +351,27 @@ weight = 5
 
 [[Languages.zh.menu.main]]
 parent = "资料"
-name = "Kubebuilder 文档"
-URL = "/kubebuilder"
+name = "云原生生态图景"
+URL = "http://landscape.opensourcecloud.cn/"
 weight = 1
 
 [[Languages.zh.menu.main]]
 parent = "资料"
-name = "云原生学院直播分享"
+name = "云原生学院分享归档"
 URL = "https://github.com/cloudnativeto/academy"
 weight = 2
+
+[[Languages.zh.menu.main]]
+parent = "资料"
+name = "Kubebuilder 中文文档"
+URL = "/kubebuilder"
+weight = 3
+
+[[Languages.zh.menu.main]]
+parent = "资料"
+name = "Envoy 中文文档"
+URL = "/envoy"
+weight = 4
 
 [[Languages.zh.menu.main]]
 name = "关于"
@@ -370,7 +401,7 @@ weight = 8
 
 # footer menu
 [[Languages.zh.menu.footer]]
-name = "社区守则"
+name = "声明与政策"
 URL = "/code-of-conduct"
 weight = 1
 

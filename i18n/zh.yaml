@@ -93,3 +93,6 @@
 
 - id: translator
   translation: "译者"
+
+- id: see_all
+  translation: "查看所有"

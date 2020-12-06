@@ -3,15 +3,15 @@ slider:
   enable : true
   slider_item:
      - subtitle : ""
-       title : "欢迎来到云原生社区"
-       content : "云原生社区是一个中立的云原生终端用户社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，旨在推广云原生技术，构建开发者生态。"
+       title : "云原生社区 Meetup 第一期·上海站"
+       content : "11 月 28 日，星期六，这是云原生社区举办的第一次线下 Meetup，由云原生社区上海站、UCloud 承办，万科海外、Tetrate、电子工业出版社赞助！"
        bg_image_webp : "images/slider/banner-1.jpg"
        bg_image : "images/slider/banner-1.jpg"
        animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
        button:
          enable : true
-         label : "加入我们"
-         link : "contact"
+         label : "查看回顾"
+         link : "https://i.cloudnative.to/academy/meetup/01-shanghai"
          animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
 
 ################################## banner feature ############################
@@ -51,7 +51,7 @@ about:
   button:
     enable : true
     label : "进入学院"
-    link : "https://github.com/cloudnativeto/academy"
+    link : "https://i.cloudnative.to/academy"
 
 ################################## funfacts ###############################
 funfacts :
@@ -137,8 +137,8 @@ testimonial:
     # testimonial item loop
     - client_image : "images/testimonial/jimmysong.jpg"
       name : "Jimmy Song"
-      designation : "云原生社区联合创始人"
-      content : "开源精神应该被提倡，开源成果值得被看见，云原生社区希望陪伴开发者们的终生成长。"
+      designation : "云原生社区创始人"
+      content : "云原生是云计算的未来，我们将看到该领域更多的创新从社区里孵化，让云原生社区陪你一路同行。"
 
     - client_image : "images/testimonial/luoguangming.jpg"
       name : "罗广明"
@@ -153,20 +153,121 @@ testimonial:
 ################################# blog ################################################
 cta:
   enable : true
-  title : "云原生社区近期活动"
+  title : "云原生学院直播日程表"
   bg_image_webp : "images/backgrounds/cta-lg.webp"
   bg_image : "images/backgrounds/cta-lg.jpg"
   button:
     enable : true
-    label : "了解更多"
-    link : "https://github.com/cloudnativeto/community"
+    label : "查看"
+    link : "https://i.cloudnative.to/academy/webinar"
 
 ################################# blog ################################################
 blog:
   enable : true
-  subtitle : "专业用户产生的内容，企业中立"
+  subtitle : "社区生产内容"
   title : "博客"
+  find_all: "查看全部"
   # blog post comes from "content/*/blog" folder
+
+################################# sponsors ################################################
+sponsor:
+  enable : true
+  title : "合作伙伴列表"
+  type:
+    project:
+      title: "开源项目"
+      list:
+        - image: "/images/sponsors/kubernetes.jpg"
+          url: "https://kubernetes.io/"
+          name: "Kubernetes"
+        - image: "/images/sponsors/istio.png"
+          url: "https://istio.io/"
+          name: "Istio"
+        - image: "/images/sponsors/apache-skywalking.png"
+          url: "https://skywalking.apache.org/"
+          name: "Apache SkyWalking"
+        - image: "/images/sponsors/apache-apisix.png"
+          url: "https://apisix.apache.org/"
+          name: "Apache APISIX"
+        - image: "/images/sponsors/apache-pulsar.png"
+          url: "https://pulsar.apache.org/"
+          name: "Apache Pulsar"
+        - image: "/images/sponsors/tidb.png"
+          url: "https://github.com/pingcap/tidb"
+          name: "TiDB"
+        - image: "/images/sponsors/harbor.png"
+          url: "https://goharbor.io/"
+          name: "Harbor"
+        - image: "/images/sponsors/oam.png"
+          url: "https://oam.dev/"
+          name: "OAM"
+        - image: "/images/sponsors/envoy.png"
+          url: "https://envoyproxy.io/"
+          name: "Envoy"
+        - image: "/images/sponsors/kubesphere.svg"
+          url: "https://kubesphere.io"
+          name: "Kubesphere"
+        - image: "/images/sponsors/chubaofs.jpg"
+          url: "https://chubao.io"
+          name: "ChubaoFS"
+        - image: "/images/sponsors/shardingsphere.jpg"
+          url: "https://shardingsphere.apache.org"
+          name: "ShardingSphere"
+    org:
+      title: "开源社区"
+      list:
+        - image: "/images/sponsors/devops-china.png"
+          url: "https://devopschina.org/"
+          name: "DevOps 中国社区"
+        - image: "/images/sponsors/edge-computing-community.png"
+          url: "http://byjs.com.cn/"
+          name: "边缘计算社区"
+        - image: "/images/sponsors/alc-beijing.jpg"
+          url: "https://alc-beijing.github.io/alc-site/"
+          name: "ALC Beijing"
+    company:
+      title: "合作企业"
+      list:
+        - image: "/images/sponsors/tetrate.png"
+          url: "https://www.tetrate.io/"
+          name: "Tetrate"
+        - image: "/images/sponsors/pingcap.png"
+          url: "https://pingcap.com/"
+          name: "TiDB"
+        - image: "/images/sponsors/stream_native.png"
+          url: "https://streamnative.io/"
+          name: "StreamNative"
+        - image: "/images/sponsors/api7.jpg"
+          url: "https://www.apiseven.com/"
+          name: "API7"
+        - image: "/images/sponsors/ucloud.jpg"
+          url: "https://www.ucloud.cn/"
+          name: "UCloud"
+        - image: "/images/sponsors/aliyun.png"
+          url: "https://www.aliyun.com/"
+          name: "阿里云"
+    media:
+    media:
+    media:
+    media:
+      title: "合作机构"
+      list:
+        - image: "/images/sponsors/cncf.png"
+          url: "https://www.cncf.io/"
+          name: "CNCF"
+        - image: "/images/sponsors/bailinzhe.png"
+          url: "http://www.bailinzhe.com/"
+          name: "百林哲（CSD的主办方）"
+        - image: "/images/sponsors/msup.jpg"
+          url: "https://www.msup.com.cn/"
+          name: "麦斯博（GIAC 的主办方）"
+        - image: "/images/sponsors/xintongyuan.png"
+          url: "http://www.caict.ac.cn/"
+          name: "中国信通院"
+        - image: "/images/sponsors/njsd.jpg"
+          url: "https://t.1yb.co/9ty3"
+          name: "NJSD"
+
 
 ################################# contact ################################################
 contact:
@@ -174,4 +275,4 @@ contact:
   title : "联系信息"
   image : "images/wechat-qrcode.png"
   description : "关注云原生社区微信公众号，加入社区并获取最新资讯。"
-  address: "[北京](https://github.com/cloudnativeto/community/issues/56)|[上海](/city/shanghai)|[成都](https://github.com/cloudnativeto/community/issues/58)|[深圳](https://github.com/cloudnativeto/community/issues/60)|[杭州](https://github.com/cloudnativeto/community/issues/53)|[广州](https://github.com/cloudnativeto/community/issues/59)|[武汉](https://github.com/cloudnativeto/community/issues/55)|[南京](https://github.com/cloudnativeto/community/issues/57)|[西安](https://github.com/cloudnativeto/community/issues/61)|[大连](/city/dalian)|[长沙](https://github.com/cloudnativeto/community/issues/52)|[苏州](https://github.com/cloudnativeto/community/issues/66)|[珠海](https://github.com/cloudnativeto/community/issues/67)|[重庆](https://github.com/cloudnativeto/community/issues/78)|[济南](https://github.com/cloudnativeto/community/issues/82)|[厦门](https://github.com/cloudnativeto/community/issues/83)|[无锡](https://github.com/cloudnativeto/community/issues/86)|[青岛](https://github.com/cloudnativeto/community/issues/91)|[郑州](https://github.com/cloudnativeto/community/issues/103)"
+  address: "[北京](/city/beijing)|[上海](/city/shanghai)|[成都](https://github.com/cloudnativeto/community/issues/58)|[深圳](https://github.com/cloudnativeto/community/issues/60)|[杭州](https://github.com/cloudnativeto/community/issues/53)|[广州](https://github.com/cloudnativeto/community/issues/59)|[武汉](https://github.com/cloudnativeto/community/issues/55)|[南京](/city/nanjing)|[西安](https://github.com/cloudnativeto/community/issues/61)|[大连](/city/dalian)|[长沙](https://github.com/cloudnativeto/community/issues/52)|[苏州](https://github.com/cloudnativeto/community/issues/66)|[珠海](https://github.com/cloudnativeto/community/issues/67)|[重庆](https://github.com/cloudnativeto/community/issues/78)|[济南](https://github.com/cloudnativeto/community/issues/82)|[厦门](https://github.com/cloudnativeto/community/issues/83)|[无锡](https://github.com/cloudnativeto/community/issues/86)|[青岛](https://github.com/cloudnativeto/community/issues/91)|[郑州](https://github.com/cloudnativeto/community/issues/103)|[合肥](https://github.com/cloudnativeto/community/issues/107)"

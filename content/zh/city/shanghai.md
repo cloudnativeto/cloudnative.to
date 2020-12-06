@@ -21,7 +21,7 @@ bg_image: "/images/backgrounds/city-banner-shanghai.jpg"
 core_members:
   - name: "郭旭东"
     image: "/images/city/shanghai/avatars/guoxudong.jpeg"
-    tag: "郭旭东，云原生社区上海站站长。凯京科技运维负责人，阿里云MVP，主要负责 devops 及云原生领域建设，涉及各种云原生工具、Kubernetes、Istio、OAM 等，致力于提升研发及运维效率，优化交付的质量及体验。"
+    tag: "郭旭东，云原生社区上海站站长。爱乐奇云原生技术专家，阿里云MVP，主要负责 devops 及云原生领域建设，涉及各种云原生工具、Kubernetes、Istio、OAM 等，致力于提升研发及运维效率，优化交付的质量及体验。"
     github: "https://github.com/sunny0826"
   - name: "张海立"
     image: "/images/city/shanghai/avatars/haili.jpg"
@@ -51,6 +51,15 @@ logo_image: "/images/city/shanghai/logo.png"
 # ACTIVITY
 activity_title: "社区活动"
 activities:
+  - name: "2020-11-28 云原生社区第一期 meetup 上海站(Meetup演讲嘉宾PPT下载)"
+    url: https://i.cloudnative.to/academy/meetup/01-shanghai
+    images:
+      - "/images/city/shanghai/activities/20201128/1.jpg"
+      - "/images/city/shanghai/activities/20201128/2.jpg"
+      - "/images/city/shanghai/activities/20201128/3.jpg"
+      - "/images/city/shanghai/activities/20201128/20.jpg"
+      - "/images/city/shanghai/activities/20201128/21.jpg"
+      - "/images/city/shanghai/activities/20201128/22.jpg"
   - name: "2020-10-24 1024极客文化节"
     images:
       - "/images/city/shanghai/activities/20201024/1.jpeg"
@@ -59,10 +68,10 @@ activities:
   - name: "2020-10-08 核心成员线下聚会"
     # url: https://mp.weixin.qq.com/s/p4HWU576-EBnoXUXjI7PtQ
     images:
-      - "/images/city/shanghai/activities/20201008/1.png"
-      - "/images/city/shanghai/activities/20201008/2.png"
+      - "/images/city/shanghai/activities/20201008/1.jpg"
+      - "/images/city/shanghai/activities/20201008/2.jpg"
 
 # JOINT US
-join_us_title: "加入我们"
-join_us_desc: '如果你也想参与到云原生社区，一起交流，学习。 如果你想为上海云原生社区的强大贡献一份自己的力量，`请扫码关注下方微信公众号`。 如需加入微信群，请搜索微信号: `gxd_weixin`, 并备注"云原生", 社区核心成员会将您加入群内。'
+join_us_title: "加入上海站"
+join_us_desc: "如果你也想参与到云原生社区，一起交流，学习。 如果你想为云原生社区上海站贡献自己的一份力量，扫描页面底部的二维码关注云原生社区公众号，在后台回复`上海站`即可加入上海站交流群。"
 ---
