@@ -1,5 +1,17 @@
 <div class="card border-0 rounded-0 position-relative box-shadow">
-  {{ with .Params.Categories }}{{range first 1 .}} <div class="card-type">{{ . | title }}</div>{{ end }}{{ end }}
+  {{ $tag := "" }}
+  {{ $category := "" }}
+  {{ with .Params.Tags }}
+    {{range first 1 .}}
+      {{ $tag = . }}
+    {{ end }}
+  {{ end }}
+  {{ with .Params.Categories }}
+    {{range first 1 .}}
+      {{ $category = . }}
+    {{ end }}
+  {{ end }}
+  <div class="card-type"><a style="color: white;" href='/tags/{{ replace $tag " " "-" | lower }}/' target="_blank">{{ $category | title }}</a></div>
   <img class="card-img-top rounded-0" src="{{ .Params.Image_webp | relURL }}"
     onerror="this.src='{{.Params.Image | relURL }}'" alt="{{ .Title }}">
   <div class="card-body">
