@@ -213,6 +213,12 @@ sponsor:
         - image: "/images/sponsors/shardingsphere.jpg"
           url: "https://shardingsphere.apache.org"
           name: "ShardingSphere"
+        - image: "/images/sponsors/dapr.png"
+          url: "https://dapr.io"
+          name: "dapr"
+        - image: "/images/sponsors/chaosmesh.png"
+          url: "https://chaos-mesh.org"
+          name: "Chaos Mesh"
     org:
       title: "开源社区"
       list:
