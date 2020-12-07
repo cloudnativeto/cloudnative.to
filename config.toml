@@ -147,6 +147,8 @@ author = " 云原生社区"
 contact_form_action = "#" # contact form works with https://formspree.io
 # Google Analitycs
 google_analitycs_id = "UA-93485976-4" # your id
+# Baidu tongji
+baidu_tongji_id = "f3dc895ea3bd6186cd835841d365c103"
 # page sidebar quick contact form
 quick_contact = false
 # search

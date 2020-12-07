@@ -116,6 +116,19 @@
   });
 </script>
 
+{{ "<!-- baidu tongji-->" | safeHTML }}
+{{ with .Site.Params.baidu_tongji_id}}
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?{{ . }}";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+{{ end }}
+
 {{ "<!-- google analitycs -->" | safeHTML }}
 {{ with .Site.Params.google_analitycs_id}}
 <script>
@@ -133,4 +146,5 @@
   ga('create', '{{ . }}', 'auto');
   ga('send', 'pageview');
 </script>
+
 {{ end }}
