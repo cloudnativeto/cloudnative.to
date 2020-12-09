@@ -9,7 +9,7 @@ tags: ["Envoy"]
 date: 2020-12-08T10:03:00+08:00
 type: "post"
 avatar: "/images/profile/default.jpg"
-profile: "Envoy"
+profile: "Envoy 是一款开源的边缘和服务代理，转为云原生应用而设计。"
 ---
 
 Envoy 是为面向大型现代服务架构而设计的 L7 代理和通信总线。该项目源于以下理念：
