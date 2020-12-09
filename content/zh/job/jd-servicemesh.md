@@ -35,4 +35,4 @@ RPC通信框架、服务注册中心、动态配置中心、API网关等系统�
 
 #### 投递简历
 
-欢迎[邮件简历给yiyanghua@jd.com](mailto:yiyanghua@jd.com)，我们将尽快安排面试。
+欢迎邮件简历给 yiyanghua@jd.com，我们将尽快安排面试。
