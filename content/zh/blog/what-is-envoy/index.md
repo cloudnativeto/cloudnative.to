@@ -1,6 +1,6 @@
 ---
 title: Envoy 是什么？
-description: "Envoy 是什么？"
+description: "本文翻译自 Envoy 官方文档，从高层介绍 Envoy。"
 author: "[Envoy 官方文档](https://www.envoyproxy.io/)"
 translator: "[李震（dyingbleed）](https://dyingbleed.com)"
 image: "images/blog/envoy.png"
