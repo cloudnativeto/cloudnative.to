@@ -228,6 +228,9 @@ sponsor:
         - image: "/images/sponsors/chaosmesh.png"
           url: "https://chaos-mesh.org"
           name: "Chaos Mesh"
+        - image: "/images/sponsors/kubevela.png"
+          url: "https://kubevela.io"
+          name: "KubeVela"
     org:
       title: "开源社区"
       list:
