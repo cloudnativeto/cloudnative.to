@@ -316,7 +316,7 @@ weight = 5
 [[Languages.zh.menu.main]]
 parent = "兴趣小组"
 name = "稳定性 SIG"
-URL = "https://i.cloudnative.to/oam/"
+URL = "https://i.cloudnative.to/stability/"
 weight = 6
 
 [[Languages.zh.menu.main]]
