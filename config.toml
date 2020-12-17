@@ -99,6 +99,12 @@ URL = "https://i.cloudnative.to/oam/"
 weight = 7
 
 [[menu.main]]
+parent = "Community"
+name = "Stability SIG"
+URL = "https://i.cloudnative.to/stability/"
+weight = 8
+
+[[menu.main]]
 name = "Blog"
 URL = "blog"
 weight = 3
@@ -306,6 +312,12 @@ parent = "兴趣小组"
 name = "OAM SIG"
 URL = "https://i.cloudnative.to/oam/"
 weight = 5
+
+[[Languages.zh.menu.main]]
+parent = "兴趣小组"
+name = "稳定性 SIG"
+URL = "https://i.cloudnative.to/oam/"
+weight = 6
 
 [[Languages.zh.menu.main]]
 name = "博客"
