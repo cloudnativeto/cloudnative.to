@@ -37,7 +37,7 @@ profile: "一位软件开发人员，自由作家和研究顾问。"
 
 提到社区的 PR 需要 一些 Kubernetes 组织成员的校对才能批准合并。这是一个很好的做法，因为文档中含有代码，可以把格式调整的很完美，找合适的人来帮忙校对也很难，因为校对工作也很费时费力。从第一次提交到最后合并，这些 PR 用了我 26 天，好在最后都 [成功了](https://github.com/kubernetes/community/pull/5003)。
 
-像写 Markdown 文档还不是最难的，因为 Kubernetes 更新很快 ，开发者对写文档还额外不感冒，还会遇到比如，对 Kubernetes 子系统的如何工作的关键描述，被我们的 [开发牛人](https://github.com/amwat) 藏在他们迷宫一样的大脑里，当需要更新入门文档以进行端到端 (e2e) 测试时，我遇到了这个问题。
+因为 Kubernetes 是一个快速推进的项目，然而通常来说，开发人员对于写文档是不感冒的，那时候我就遇到了这样的问题，对 Kubernetes 子系统的如何工作的关键描述，被我们的 [开发牛人](https://github.com/amwat) 藏在他们迷宫一样的大脑里，而不是放在平铺直叙的 Markdown 文件里面。当需要更新入门文档以进行端到端 (e2e) 测试时，我遇到了这个问题。
 
 因为这些我的角色换了，脱离了编写文档的领域，成为了某些未完成软件的全新用户。我最终与新的 [kubetest2 框架](https://github.com/kubernetes-sigs/kubetest2) 的一名开发人员合作，记录了 e2e 测试启动和运行的最新过程，但是这需要我做很多事情。 大家可以看哪些我已 [完成的 PR](https://github.com/kubernetes/community/pull/5045)，就能知道有多难了。
 
