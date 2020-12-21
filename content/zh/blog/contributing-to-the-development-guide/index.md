@@ -23,7 +23,7 @@ profile: "一位软件开发人员，自由作家和研究顾问。"
 
 当我和 Kubernetes 社区合作，这些来自客户方的压力都烟消云散了，我觉得非常惊喜。
 
-我第一次加入到 Kubernetes 社区一个叫 #sig-contribex 的 slack 聊天群，当时我说我将着手编写[《Kubernetes 开发指南》](https://github.com/kubernetes/community/blob/master/contributors/devel/development.md)，我脑子闪过了很多问题，像“我得多精细”，“我搞砸了怎么办？”，“把开发者们惹火了怎么办，这不就有仇家了吗！”，一想到这些我就感觉如履薄冰。
+当我第一次加入到 Kubernetes 社区一个叫 #sig-contribex 的 slack 聊天群时，我说我将着手编写[《Kubernetes 开发指南》](https://github.com/kubernetes/community/blob/master/contributors/devel/development.md)，我脑子闪过了很多问题，像“我得多精细”，“我搞砸了怎么办？”，“把开发者们惹火了怎么办，这不就有仇家了吗！”，一想到这些我就感觉如履薄冰。
 
 ![img](images/jorge-castro-code-of-conduct.jpg)
 
