@@ -51,6 +51,15 @@ logo_image: "/images/city/shanghai/logo.png"
 # ACTIVITY
 activity_title: "社区活动"
 activities:
+  - name: "2020-11-28 云原生社区第一期 meetup 上海站(Meetup演讲嘉宾PPT下载)"
+    url: https://i.cloudnative.to/academy/meetup/01-shanghai
+    images:
+      - "/images/city/shanghai/activities/20201128/1.jpg"
+      - "/images/city/shanghai/activities/20201128/2.jpg"
+      - "/images/city/shanghai/activities/20201128/3.jpg"
+      - "/images/city/shanghai/activities/20201128/20.jpg"
+      - "/images/city/shanghai/activities/20201128/21.jpg"
+      - "/images/city/shanghai/activities/20201128/22.jpg"
   - name: "2020-10-24 1024极客文化节"
     images:
       - "/images/city/shanghai/activities/20201024/1.jpeg"
@@ -59,10 +68,10 @@ activities:
   - name: "2020-10-08 核心成员线下聚会"
     # url: https://mp.weixin.qq.com/s/p4HWU576-EBnoXUXjI7PtQ
     images:
-      - "/images/city/shanghai/activities/20201008/1.png"
-      - "/images/city/shanghai/activities/20201008/2.png"
+      - "/images/city/shanghai/activities/20201008/1.jpg"
+      - "/images/city/shanghai/activities/20201008/2.jpg"
 
 # JOINT US
 join_us_title: "加入上海站"
-join_us_desc: '如果你也想参与到云原生社区，一起交流，学习。 如果你想为云原生社区上海站贡献自己的一份力量，扫描页面底部的二维码关注云原生社区公众号，在后台回复`上海站`即可加入上海站交流群。'
+join_us_desc: "如果你也想参与到云原生社区，一起交流，学习。 如果你想为云原生社区上海站贡献自己的一份力量，扫描页面底部的二维码关注云原生社区公众号，在后台回复`上海站`即可加入上海站交流群。"
 ---

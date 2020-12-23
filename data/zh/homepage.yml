@@ -3,9 +3,18 @@ slider:
   enable : true
   slider_item:
      - subtitle : ""
+       title : "云原生社区 Meetup 第二期·北京站"
+       content : "12 月 20 日，北京国贸见！本次 meetup 将为大家带来云原生监控、存储、微服务与服务网格等主题的精彩分享，更有《云原生操作系统 Kubernetes》作者现场签售，欢迎大家报名参加！"
+       bg_image : "images/slider/banner-2.jpg"
+       animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
+       button:
+         enable : true
+         label : "立即报名"
+         link : "http://hdxu.cn/u0VSQ"
+         animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
+     - subtitle : ""
        title : "云原生社区 Meetup 第一期·上海站"
        content : "11 月 28 日，星期六，这是云原生社区举办的第一次线下 Meetup，由云原生社区上海站、UCloud 承办，万科海外、Tetrate、电子工业出版社赞助！"
-       bg_image_webp : "images/slider/banner-1.jpg"
        bg_image : "images/slider/banner-1.jpg"
        animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
        button:
@@ -169,7 +178,7 @@ blog:
   find_all: "查看全部"
   # blog post comes from "content/*/blog" folder
 
-################################# blog ################################################
+################################# sponsors ################################################
 sponsor:
   enable : true
   title : "合作伙伴列表"
@@ -204,6 +213,24 @@ sponsor:
         - image: "/images/sponsors/envoy.png"
           url: "https://envoyproxy.io/"
           name: "Envoy"
+        - image: "/images/sponsors/kubesphere.svg"
+          url: "https://kubesphere.io"
+          name: "Kubesphere"
+        - image: "/images/sponsors/chubaofs.jpg"
+          url: "https://chubao.io"
+          name: "ChubaoFS"
+        - image: "/images/sponsors/shardingsphere.jpg"
+          url: "https://shardingsphere.apache.org"
+          name: "ShardingSphere"
+        - image: "/images/sponsors/dapr.png"
+          url: "https://dapr.io"
+          name: "dapr"
+        - image: "/images/sponsors/chaosmesh.png"
+          url: "https://chaos-mesh.org"
+          name: "Chaos Mesh"
+        - image: "/images/sponsors/kubevela.png"
+          url: "https://kubevela.io"
+          name: "KubeVela"
     org:
       title: "开源社区"
       list:
@@ -217,7 +244,7 @@ sponsor:
           url: "https://alc-beijing.github.io/alc-site/"
           name: "ALC Beijing"
     company:
-      title: "厂商合作"
+      title: "合作企业"
       list:
         - image: "/images/sponsors/tetrate.png"
           url: "https://www.tetrate.io/"

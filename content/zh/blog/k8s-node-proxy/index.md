@@ -68,14 +68,14 @@ VIP 总是伴随着负载均衡，因为它需要在不同的后端之间分配�
 
 ## 节点代理模型
 
-在 kubernetes 中，你可以将应用程序定义为 `Service`。`Service` 是一种抽象，它定义了一组 Pods 的逻辑集和访问它们的策略。
+在 kubernetes 中，你可以将应用程序定义为 `Service`。`Service` 是一种抽象，它定义了一组 pod 的逻辑集和访问它们的策略。
 
 ### Service 类型
 
 K8S 中定义了 4 种 `Service` 类型：
 
 - `ClusterIP`：通过 VIP 访问 Service，但该 VIP 只能在此集群内访问
-- `NodePort`：通过 NodeIP:NodePort 访问 Service，这意味着该端口将保留在集群内的所有节点上
+- `NodePort`：通过 NodeIP:NodePort 访问 Service，这意味着该端口将暴露在集群内的所有节点上
 - `ExternalIP`：与 `ClusterIP` 相同，但是这个 VIP 可以从这个集群之外访问
 - `LoadBalancer`
 
@@ -83,7 +83,7 @@ K8S 中定义了 4 种 `Service` 类型：
 
 ### 节点代理
 
-一个 Service 有一个 VIP（本文中的 `ClusterIP`）和多个端点（后端 pods）。每个 pod 或节点都可以通过 VIP 直接访问应用程序。要做到这一点，节点代理程序需要在每个节点上运行，它应该能够透明地拦截到任何 `ClusterIP:Port`[注解 1] 的流量，并将它们重定向到一个或多个后端 pods。
+一个 Service 有一个 VIP（本文中的 `ClusterIP`）和多个端点（后端 pod）。每个 pod 或节点都可以通过 VIP 直接访问应用程序。要做到这一点，节点代理程序需要在每个节点上运行，它应该能够透明地拦截到任何 `ClusterIP:Port`[注解 1] 的流量，并将它们重定向到一个或多个后端 pod。
 
 ![Kubernetes proxier model](./images/proxy_k8s-proxier-model.png)
 
@@ -99,7 +99,7 @@ K8S 中定义了 4 种 `Service` 类型：
 
 想想节点代理的作用，在 K8S 网络模型中，它实际上是一个反向代理，也就是说，在每个节点上，它将：
 
-- 将所有后端 Pods 隐藏到客户端
+- 将所有后端 pod 隐藏到客户端
 - 过滤所有出口流量（对后端的请求）
 
 对于 ingress traffic，它什么也不做。
@@ -128,11 +128,11 @@ K8S 中定义了 4 种 `Service` 类型：
 
 ![test env](./images/proxy_test-env.png)
 
-我们将在工作节点上部署 Pods，并从 test 节点通过 `ClusterIP` 访问 Pods 中的应用程序。
+我们将在工作节点上部署 pod，并从 test 节点通过 `ClusterIP` 访问 pod 中的应用程序。
 
 ### 创建一个 Service
 
-创建一个简单的 `Statefulset`，其中包括一个 `Service`，该 `Service` 将有一个或多个后端 Pods:
+创建一个简单的 `Statefulset`，其中包括一个 `Service`，该 `Service` 将有一个或多个后端 pod:
 
 ```bash
 # see appendix for webapp.yaml
@@ -177,7 +177,7 @@ $ curl 10.7.111.132:80
 最容易理解的实现是在此主机上的通信路径中插入我们的 `toy-proxy` 作为中间人：对于从本地客户端到 ClusterIP:Port 的每个连接，**我们拦截该连接并将其分割为两个单独的连接**:
 
 - 本地客户端和 `toy-proxy` 之间的连接
-- 连接 `toy-proxy` 和后端 pods
+- 连接 `toy-proxy` 和后端 pod
 
 实现此目的的最简单方法是在用户空间中实现它：
 
@@ -333,7 +333,7 @@ $ iptables -t nat -X # delete all custom chains
 
 在这个 `toy-proxy` 实现中，我们拦截了 `ClusterIP:80` 到 `localhost:80`，但是如果该主机上的本机应用程序也想使用 `localhost:80` 怎么办？此外，如果多个服务都公开 80 端口会怎样？显然，我们需要区分这些应用程序或服务。解决这个问题的正确方法是：为每个代理分配一个未使用的临时端口 TmpPort，拦截 `ClusterIP:Port` 到 `local:TmpPort`。例如，app1 使用 10001, app2 使用 10002。
 
-其次，上面的代码只处理一个后端，如果有多个后端 pods 怎么办？因此，我们需要通过负载均衡算法将请求分发到不同的后端 pods。
+其次，上面的代码只处理一个后端，如果有多个后端 pod 怎么办？因此，我们需要通过负载均衡算法将请求分发到不同的后端 pod。
 
 ![userspace-proxier-2](./images/proxy_userspace-proxier-2.png)
 
@@ -478,7 +478,7 @@ $ iptables -t nat -D OUTPUT 2
 
 #### 伸缩 webapp
 
-首先扩大我们的服务到 2 个后端 pods:
+首先扩大我们的服务到 2 个后端 pod:
 
 ```bash
 $ kubectl scale sts webapp --replicas=2
@@ -491,7 +491,7 @@ webapp-1   2/2     Running   0   11s     10.5.41.5      node1    <none> <none>
 
 #### 通过负载平衡添加 DNAT 规则
 
-我们需要 `iptables` 中的 `statistic` 模块以概率的方式将请求分发到后端 Pods，这样才能达到负载均衡的效果：
+我们需要 `iptables` 中的 `statistic` 模块以概率的方式将请求分发到后端 pod，这样才能达到负载均衡的效果：
 
 ```bash
 # -m <module>
@@ -503,7 +503,7 @@ $ iptables -t nat -A OUTPUT -p $PROTO --dport $PORT -d $CLUSTER_IP \
     -j DNAT --to-destination $POD2_IP:$PORT
 ```
 
-上面的命令指定在两个 Pods 之间随机分配请求，每个都有 50% 的概率。
+上面的命令指定在两个 pod 之间随机分配请求，每个都有 50% 的概率。
 
 现在检查这些规则：
 

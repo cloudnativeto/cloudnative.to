@@ -3,8 +3,8 @@
 code: "nanjing"
 title: "南京站"
 description: "南京站成立于2020年9月，目前拥有本地社群成员100多人，聚集了一群对云原生技术感兴趣的朋友，线上我们一起讨论技术、交流想法，线下我们经常组织聚会活动。大家的目标是在娱乐中学习，在学习中进步。从而推广南京云原生技术社群，活跃的氛围，吸引更多热衷研究云原生技术的朋友，相继加入，让我们的队伍越来越壮大！"
-longitude: 121.638
-latitude: 38.928
+longitude: 118.803
+latitude: 32.078
 link: "/city/nanjing/"
 type: "city"
 layout: "nanjing"

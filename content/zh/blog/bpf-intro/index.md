@@ -559,27 +559,15 @@ build: ${BPFCODE.c} ${BPFLOADER}
 ## 5. 参考资料
 
 1. [The BSD Packet Filter: A New Architecture for User-level Packet Capture](https://www.tcpdump.org/papers/bpf-usenix93.pdf)
-
 2. [[译] Cilium：BPF 和 XDP 参考指南（2019） ](http://arthurchiao.art/blog/cilium-bpf-xdp-reference-guide-zh/)   [Cillum BPF and XDP Reference Guide](https://docs.cilium.io/en/v1.8/bpf/)
-
 3. [Cloudflare架构以及BPF如何占据世界](https://blog.cloudflare.com/zh/cloudflare-architecture-and-how-bpf-eats-the-world-zh/)
-
 4. [關於 BPF 和 eBPF 的筆記](https://www.luoow.com/dc_tw/106805603)
-
 5. [Dive into BPF: a list of reading material](https://qmonnet.github.io/whirl-offload/2016/09/01/dive-into-bpf/)  [中文](https://blog.csdn.net/F8qG7f9YD02Pe/article/details/79815702)
-
 6. [eBPF 简史](https://www.ibm.com/developerworks/cn/linux/l-lo-eBPF-history/index.html)
-
 7. https://www.youtube.com/watch?v=znBGt7oHJyQ
-
 8. [BPF Documentation](https://www.infradead.org/~mchehab/kernel_docs/bpf/index.html)  [HOWTO interact with BPF subsystem](https://www.kernel.org/doc/html/latest/bpf/bpf_devel_QA.html#q-how-do-i-indicate-which-tree-bpf-vs-bpf-next-my-patch-should-be-applied-to)
-
 9. [Linux 内核 BPF 文档](https://www.infradead.org/~mchehab/kernel_docs/bpf/index.html)
-
 10. [Linux Extended BPF (eBPF) Tracing Tools](http://www.brendangregg.com/ebpf.html)  Brendan Gregg
-
 11. [性能提升40%: 腾讯 TKE 用 eBPF绕过 conntrack 优化K8s Service](https://mp.weixin.qq.com/s/3BQU9AYh1ScZ_1V17BJ4wg)
-
 12. [SDN handbook](https://tonydeng.github.io/sdn-handbook/)
-
 13. Linux BPF 帮助文档 [bpf(2)](https://man7.org/linux/man-pages/man2/bpf.2.html)  [bpf-helpers(7)](https://man7.org/linux/man-pages/man7/bpf-helpers.7.html)  [tc-bpf(8)](https://man7.org/linux/man-pages/man8/tc-bpf.8.html) 
