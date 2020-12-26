@@ -5,7 +5,7 @@ slider:
      - subtitle : ""
        title : "云原生社区 Meetup 第二期·北京站"
        content : "12 月 20 日，北京国贸，本次 meetup 将为大家带来云原生监控、存储、微服务与服务网格等主题的精彩分享，更有《云原生操作系统 Kubernetes》作者现场签售。"
-       bg_image : "images/slider/banner-2.jpg"
+       bg_image : "images/slider/beijing.jpg"
        animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
        button:
          enable : true
@@ -251,7 +251,7 @@ sponsor:
           name: "Tetrate"
         - image: "/images/sponsors/pingcap.png"
           url: "https://pingcap.com/"
-          name: "TiDB"
+          name: "PingCAP"
         - image: "/images/sponsors/stream_native.png"
           url: "https://streamnative.io/"
           name: "StreamNative"
@@ -264,6 +264,10 @@ sponsor:
         - image: "/images/sponsors/aliyun.png"
           url: "https://www.aliyun.com/"
           name: "阿里云"
+        - image: "/images/sponsors/tencent-cloud.jpg"
+          url: "https://cloud.tencent.com/"
+          name: "腾讯云"
+    media:
     media:
     media:
     media:
