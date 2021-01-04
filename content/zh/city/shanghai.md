@@ -34,7 +34,7 @@ core_members:
     tag: "刘德涵（韵达运维)，Docker，Linux、Kubernetes运维，Devops，CI/CD，微服务应用部署，链路监控、helm，基础架构设计，快速定位运维相关问题，多年的运维操作经验，协助社区成员解决相关问题。"
   - name: "沈旭"
     image: "/images/city/shanghai/avatars/shenxu.jpg"
-    tag: "沈旭（UCloud云原生产品经理），工作涉及领域包括CKA、PMP、kubernetes、docker、云原生、serverless等；可以协助社区成员解决操作、原理、知识及布道相关问题。"
+    tag: "沈旭（巨人网络中台产品经理），CKA、PMP，工作涉及领域包括kubernetes、docker、云原生、serverless等；可以协助社区成员解决操作、原理、知识及布道相关问题。"
   - name: "任增刚"
     image: "/images/city/shanghai/avatars/renzenggang.jpg"
     tag: "任增刚（企源科技股份有限公司金融行业技术总监），主要工作领域涉及金融行业的云原生架构（Docker、Kubernets、PCF、OpenShift）、DevOPS、Jenkins（Pipeline）、微服务应用架构及部署实践、NPM等等。"
