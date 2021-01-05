@@ -158,5 +158,5 @@ Envoy 支持处理 3xx 内部重定向，捕获可配置的 3xx 重定向响应�
 
 ## 超时
 
-各种可配置的超时适用于 HTTP 连接及其组成的流。有关重要超时配置的概述，请参考 [此 FQA 条目](https://cloudnative.to/envoy/faq/configuration/timeouts.html#faq-configuration-timeouts)。
+各种可配置的超时适用于 HTTP 连接及其组成的流。有关重要超时配置的概述，请参考 [此 FAQ 条目](https://cloudnative.to/envoy/faq/configuration/timeouts.html#faq-configuration-timeouts)。
 
