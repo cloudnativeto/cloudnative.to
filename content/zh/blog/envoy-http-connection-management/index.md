@@ -2,7 +2,7 @@
 title: "Envoy HTTP 连接管理"
 description: "本文翻译自 Envoy 官方文档，介绍内置网路层过滤器 HTTP 连接管理器。"
 author: "[Envoy 官方](https://www.envoyproxy.io/)"
-translator: "[杨子锋(Curtis)](https://github.com/fallingyang)"
+translator: "[杨子锋 (Curtis)](https://github.com/fallingyang)"
 image: "images/blog/envoy.png"
 categories: ["Envoy"]
 tags: ["Envoy"]
@@ -16,13 +16,13 @@ profile: "Envoy 是一种开放源代码边缘和服务代理，专为原生云�
 
 ## HTTP 连接管理
 
-HTTP 是现代面向服务体系架构的重要组成部分，Envoy 实现了大量的 HTTP 特定功能。Envoy内置了一个叫 [HTTP 连接管理器](https://cloudnative.to/envoy/configuration/http/http_conn_man/http_conn_man.html#config-http-conn-man) 的网络层过滤器。 此过滤器将原始字节转换为 HTTP 协议的消息和事件（例如，请求头接收、请求体数据接收、请求标尾（trailers）接收等）。 过滤器同时处理所有 HTTP 连接和请求 的通用功能，例如 [访问日志](https://cloudnative.to/envoy/intro/arch_overview/observability/access_logging.html#arch-overview-access-logs)、 [请求 ID 生成与追踪](https://cloudnative.to/envoy/intro/arch_overview/observability/tracing.html#arch-overview-tracing)、 [请求头/响应头的操作](https://cloudnative.to/envoy/configuration/http/http_conn_man/headers.html#config-http-conn-man-headers)、 [路由表](https://cloudnative.to/envoy/intro/arch_overview/http/http_routing.html#arch-overview-http-routing) 管理和 [统计](https://cloudnative.to/envoy/configuration/http/http_conn_man/stats.html#config-http-conn-man-stats)。
+HTTP 是现代面向服务体系架构的重要组成部分，Envoy 实现了大量的 HTTP 特定功能。Envoy 内置了一个叫 [HTTP 连接管理器](https://cloudnative.to/envoy/configuration/http/http_conn_man/http_conn_man.html#config-http-conn-man) 的网络层过滤器。 此过滤器将原始字节转换为 HTTP 协议的消息和事件，例如，请求头接收、请求体数据接收、请求标尾 (trailers) 接收等。 过滤器同时处理所有 HTTP 连接和请求的通用功能，例如 [访问日志](https://cloudnative.to/envoy/intro/arch_overview/observability/access_logging.html#arch-overview-access-logs)、 [请求 ID 生成与追踪](https://cloudnative.to/envoy/intro/arch_overview/observability/tracing.html#arch-overview-tracing)、 [请求头/响应头的操作](https://cloudnative.to/envoy/configuration/http/http_conn_man/headers.html#config-http-conn-man-headers)、 [路由表](https://cloudnative.to/envoy/intro/arch_overview/http/http_routing.html#arch-overview-http-routing) 管理和 [统计](https://cloudnative.to/envoy/configuration/http/http_conn_man/stats.html#config-http-conn-man-stats)。
 
 HTTP 连接管理器 [配置](https://cloudnative.to/envoy/configuration/http/http_conn_man/http_conn_man.html#config-http-conn-man)。
 
 ## HTTP 协议
 
-Envoy 的 HTTP 连接管理器原生支持 HTTP/1.1、WebSockets 和 HTTP/2。现在还不支持 SPDY。Envoy HTTP 设计的首要目标是成为一个 HTTP/2 多路复用代理。在内部， HTTP/2 术语用于描述系统组件。例如，一个 HTTP 请求和响应发生在 流 上。一个编解码 API 被用来将不同的电报协议转换为流、请求、响应等协议无关的格式。 对于 HTTP/1.1 来说，编解码器将协议的串行/流功能转换成像 HTTP/2 的某些东西提供给更高层级。这意味着大部分代码不需要理解一个流是来自 HTTP/1.1 还是 HTTP/2 连接。
+Envoy 的 HTTP 连接管理器原生支持 HTTP/1.1、WebSockets 和 HTTP/2。现在还不支持 SPDY。Envoy HTTP 设计的首要目标是成为一个 HTTP/2 多路复用代理。在内部， HTTP/2 术语用于描述系统组件。例如，一个 HTTP 请求和响应发生在流上。一个编解码 API 被用来将不同的电报协议转换为流、请求、响应等协议无关的格式。 对于 HTTP/1.1 来说，编解码器将协议的串行/流功能转换成像 HTTP/2 的某些东西提供给更高层级。这意味着大部分代码不需要理解一个流是来自 HTTP/1.1 还是 HTTP/2 连接。
 
 ## HTTP 头清理
 
@@ -121,7 +121,7 @@ Envoy 支持处理 3xx 内部重定向，捕获可配置的 3xx 重定向响应�
 要成功地处理重定向，必须通过以下检查：
 
 1. 响应码匹配到配置的 [redirect_response_codes](https://cloudnative.to/envoy/api-v3/config/route/v3/route_components.proto.html#envoy-v3-api-field-config-route-v3-internalredirectpolicy-redirect-response-codes)，默认是 302， 或者其他的 3xx 状态码（301, 302, 303, 307, 308）。
-2. 拥有一个有效的、完全限定的URL的 location 头。
+2. 拥有一个有效的、完全限定的 URL 的 location 头。
 3. 该请求必须已被 Envoy 完全处理。
 4. 请求不能包含请求体。
 5. [allow_cross_scheme_redirect](https://cloudnative.to/envoy/api-v3/config/route/v3/route_components.proto.html#envoy-v3-api-field-config-route-v3-internalredirectpolicy-allow-cross-scheme-redirect) 是 true（默认是 false）， 或者下游请求的 scheme 和 location 头一致。
@@ -136,7 +136,7 @@ Envoy 支持处理 3xx 内部重定向，捕获可配置的 3xx 重定向响应�
 2. 或者当重定向链命中的路由的 [最大重定向次数](https://cloudnative.to/envoy/api-v3/config/route/v3/route_components.proto.html#envoy-v3-api-field-config-route-v3-internalredirectpolicy-max-internal-redirects) 小于等于重定向链的长度。
 3. 或者路由被 [谓词](https://cloudnative.to/envoy/api-v3/config/route/v3/route_components.proto.html#envoy-v3-api-field-config-route-v3-internalredirectpolicy-predicates) 拒绝。
 
-有两个谓词可以创建一个有向无环图（DAG）来定义一个过滤器链，他们是 [先前的路由](https://cloudnative.to/envoy/api-v3/extensions/internal_redirect/previous_routes/v3/previous_routes_config.proto.html#envoy-v3-api-msg-extensions-internal-redirect-previous-routes-v3-previousroutesconfig) 谓词 和 [allow_listed_routes](https://cloudnative.to/envoy/api-v3/extensions/internal_redirect/allow_listed_routes/v3/allow_listed_routes_config.proto.html#envoy-v3-api-msg-extensions-internal-redirect-allow-listed-routes-v3-allowlistedroutesconfig)。 具体来说，*allow listed routes* 谓词定义的有向无环图（DAG）中各个节点的边，而 先前的路由 谓词定义了边的“访问”状态，如果是这样就可以避免循环。
+有两个谓词可以创建一个有向无环图 (DAG) 来定义一个过滤器链，他们是 [先前的路由](https://cloudnative.to/envoy/api-v3/extensions/internal_redirect/previous_routes/v3/previous_routes_config.proto.html#envoy-v3-api-msg-extensions-internal-redirect-previous-routes-v3-previousroutesconfig) 谓词 和 [allow_listed_routes](https://cloudnative.to/envoy/api-v3/extensions/internal_redirect/allow_listed_routes/v3/allow_listed_routes_config.proto.html#envoy-v3-api-msg-extensions-internal-redirect-allow-listed-routes-v3-allowlistedroutesconfig)。 具体来说，*allow listed routes* 谓词定义的有向无环图（DAG）中各个节点的边，而 先前的路由 谓词定义了边的“访问”状态，如果是这样就可以避免循环。
 
 第三个谓词 [safe_cross_scheme](https://cloudnative.to/envoy/api-v3/extensions/internal_redirect/safe_cross_scheme/v3/safe_cross_scheme_config.proto.html#envoy-v3-api-msg-extensions-internal-redirect-safe-cross-scheme-v3-safecrossschemeconfig) 被用来防止 HTTP -> HTTPS 的重定向。
 
@@ -147,11 +147,11 @@ Envoy 支持处理 3xx 内部重定向，捕获可配置的 3xx 重定向响应�
 
 修改后的请求头将选择一个新的路由，通过一个新的过滤器链发送，然后把所有正常的 Envoy 请求都发送到上游进行清理。
 
-> 请注意，HTTP连接管理器头清理（例如清除不受信任的标头）仅应用一次。即使原始路由和第二个路由相同，每个路由的头修改也将同时应用于原始路由和第二路由，因此请谨慎配置头修改规则， 以避免重复不必要的请求头值。
+> 请注意，HTTP 连接管理器头清理（例如清除不受信任的标头）仅应用一次。即使原始路由和第二个路由相同，每个路由的头修改也将同时应用于原始路由和第二路由，因此请谨慎配置头修改规则， 以避免重复不必要的请求头值。
 
 一个简单的重定向流如下所示：
 
-1. 客户端发送GET请求以获取 *http://foo.com/bar*
+1. 客户端发送 GET 请求以获取 *http://foo.com/bar*
 2. 上游 1 发送 302 响应码并携带 “*location: http://baz.com/eep*”
 3. Envoy 被配置为允许原始路由上重定向，并发送新的 GET 请求到上游 2，携带请求头 “*x-envoy-original-url: http://foo.com/bar*” 获取 *http://baz.com/eep*
 4. Envoy 将 *http://baz.com/eep* 的响应数据代理到客户端，作为对原始请求的响应。
@@ -159,4 +159,3 @@ Envoy 支持处理 3xx 内部重定向，捕获可配置的 3xx 重定向响应�
 ## 超时
 
 各种可配置的超时适用于 HTTP 连接及其组成的流。有关重要超时配置的概述，请参考 [此 FAQ 条目](https://cloudnative.to/envoy/faq/configuration/timeouts.html#faq-configuration-timeouts)。
-
