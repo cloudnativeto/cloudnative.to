@@ -10,5 +10,5 @@ link: "/city/hangzhou/"
 type: "city"
 layout: "hangzhou"
 site_manager: "杨宙"
-city_small_logo: "https://cdn.pt-jq.cn/hangzhou_logo_radio.jpg"
+city_small_logo: "/images/city/hangzhou/hangzhou_logo.png"
 ---
