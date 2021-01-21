@@ -46,8 +46,8 @@ about:
   subtitle : "CLOUD NATIVE ACADEMY"
   title : "Courses, Meetup and SIGs"
   content : "The Cloud Native Academy is hosted by the Cloud Native community and is dedicated to the dissemination and popularization of cloud native knowledge. Cloud Native Academy will regularly host live online events, inviting community members to bring knowledge and practice sharing in the field of cloud native. Follow us on [Bilibili](https://space.bilibili.com/515485124)."
-  bg_image : "images/backgrounds/about-us-bg.png"
-  image : "images/about/about-us.png"
+  #bg_image : "images/backgrounds/about-us-bg.png"
+  image : "images/about/about-us-1.jpg"
   button:
     enable : true;
     label : "Enter"

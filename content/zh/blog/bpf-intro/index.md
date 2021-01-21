@@ -11,7 +11,7 @@ profile: "云原生和容器技术爱好者，《Linux 内核观测技术 BPF》
 avatar: "/images/profile/davad_di.png"
 ---
 
-![](images/linux-bpf-book.jpeg)
+![Linux 年内和观测技术 BPF](images/linux-bpf-book.jpeg)
 
 由范老师和我一起翻译的图书 《Linux内核观测技术BPF》 已经在 JD 上有现货，欢迎感兴趣 BPF 技术的同学选购。链接地址 [https://item.jd.com/72110825905.html](https://item.jd.com/72110825905.html)
 
