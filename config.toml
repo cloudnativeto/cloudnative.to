@@ -234,7 +234,7 @@ weight = 2
 # footer content
 footer_content = "Cloud Native Community is an neutral, cloud native end user community founded on May 12, 2020 by CNCF ambassadors and open source opinion leaders to promote cloud native technologies and build a developer ecosystem."
 # copyright
-copyright = "Copyright &copy; 2020 Cloud Native Community"
+copyright = "Copyright &copy; {year} Cloud Native Community"
 
 
 ################################### Chinese language #####################################
@@ -247,7 +247,7 @@ weight = 1
 # footer content
 footer_content = "云原生社区是一个中立的云原生终端用户社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，旨在推广云原生技术，构建开发者生态。"
 # copyright
-copyright = "Copyright &copy; 2020 云原生社区"
+copyright = "Copyright &copy; {year} 云原生社区"
 
 ########################### Chinese navigation ################################
 # main menu
