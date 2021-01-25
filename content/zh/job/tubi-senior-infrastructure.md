@@ -50,10 +50,7 @@ Tubi 是美国福克斯娱乐集团下独立运营的流媒体服务公司，总
 
 希望了解我们更多？欢迎查阅以下：
 
-[Tubi 主站](https://tubi.tv)
+- [Tubi 主站](https://tubi.tv)
+- [Tubi 技术博客](https://code.tubitv.com)
+- [Tubi 中国团队](http://chinateam.tubi.tv)
 
-[Tubi 技术博客](https://code.tubitv.com)
-
-[Tubi 中国团队](http://chinateam.tubi.tv)
-
-微信公众号：比图科技
