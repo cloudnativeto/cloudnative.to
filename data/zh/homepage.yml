@@ -267,6 +267,10 @@ sponsor:
         - image: "/images/sponsors/tencent-cloud.jpg"
           url: "https://cloud.tencent.com/"
           name: "腾讯云"
+        - image: "/images/sponsors/netease-shufan.png"
+          url: "https://www.163yun.com/"
+          name: "网易数帆"
+    media:
     media:
     media:
     media:
