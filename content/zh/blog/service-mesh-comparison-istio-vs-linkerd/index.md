@@ -3,20 +3,20 @@ title: "服务网格比较：Istio 与 Linkerd"
 description: "本文翻译自 Anjul Sahu 的文章 Service Mesh Comparison: Istio vs Linkerd。"
 author: "[Anjul Sahu](https://dzone.com/users/4381641/anjulsahu.html)"
 translator: "[张晓辉](https://atbug.com)"
-image: "https://atbug.oss-cn-hangzhou.aliyuncs.com/2021/01/26/comparision.jpg"
+image: "/images/blog/comparision.jpg"
 categories: ["Service Mesh"]
-tags: ["Service Mesh","翻译"]
+tags: ["Istio"]
 date: 2021-01-25T21:00:00+08:00
 type: "post"
 avatar: "https://secure.gravatar.com/avatar/880d40362a10a980919f93bb116b1cd3"
 profile: "InfraCloud 解决方案架构师"
 ---
 
-本文译自 [Service Mesh Comparison: Istio vs Linkerd](https://dzone.com/articles/service-mesh-comparison-istio-vs-linkerd)
+本文译自 [Service Mesh Comparison: Istio vs Linkerd](https://dzone.com/articles/service-mesh-comparison-istio-vs-linkerd)。
 
 根据 [CNCF](https://www.cncf.io/wp-content/uploads/2020/03/CNCF_Survey_Report.pdf) 的[最新年度调查](https://www.cncf.io/wp-content/uploads/2020/03/CNCF_Survey_Report.pdf)，很明显，很多人对在他们的项目中使用服务网格表现出了极大的兴趣，并且许多人已经在他们的生产中使用它们。将近 69％ 的人正在评估 Istio，64％ 的人正在研究 Linkerd。Linkerd 是市场上第一个服务网格，但是 Istio 的服务网格更受欢迎。这两个项目都是最前沿的，而且竞争非常激烈，因此选择哪一个是一个艰难的选择。在此博客文章中，我们将了解有关 Istio 和 Linkerd 的架构，其及组件的更多信息，并比较其特性以帮你做出明智的决定。
 
-![](https://dzone.com/storage/temp/13816813-1596629136427.png)
+![](13816813-1596629136427.png)
 
 ## 服务网格简介
 
@@ -32,7 +32,7 @@ Istio 是一个提供了作为服务网格的整套解决方案的开源平台�
 
 ### 架构
 
-![Istio架构](https://istio.io/latest/docs/ops/deployment/architecture/arch.svg)
+![Istio架构](arch.svg)
 
 *Istio架构来源：[istio.io](https://istio.io/latest/docs/concepts/what-is-istio/)*
 
@@ -76,7 +76,7 @@ Linkerd 是 Buoyant 为 Kubernetes 设计的开源超轻量级的服务网格。
 
 Linkerd 具有三个组件 — UI、数据平面和控制平面。它通过在每个服务实例旁边安装轻量级透明代理来工作。
 
-![](https://linkerd.io/images/architecture/control-plane.png)
+![](control-plane.png)
 
 ### 控制平面
 
