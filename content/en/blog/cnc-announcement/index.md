@@ -8,6 +8,8 @@ author: "[Jimmy Song](https://jimmysong.io)"
 categories: ["Other"]
 tags: ["Community"]
 type: "post"
+profile: "Cloud Native Community founder"
+avatar: "/images/profile/jimmysong.jpg"
 ---
 
 At the beginning of 2020, due to the outbreak of the Crona-19 pandemic, employees around the world began to work at home. Though the distance between people grew farer, there was a group of people, who were us working in the cloud native area,  gathered together for a common vision. During the past three months, we have set up the community management committee and used our spare time working together to complete the preparatory work for the community. Today we are here to announce the establishment of the Cloud Native Community.
