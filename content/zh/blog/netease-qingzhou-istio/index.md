@@ -39,7 +39,7 @@ Service Mesh是云原生体系下重要的微服务技术，可以有效的解�
 
 网易轻舟Service Mesh整体架构如下。
 
-![](https://tva1.sinaimg.cn/large/008eGmZEly1gna7mmf7otj311s0u0wk1.jpg)
+![](008eGmZEly1gna7mmf7otj311s0u0wk1.jpg)
 
 **架构设计要点**：
 
@@ -88,7 +88,7 @@ Istio落地过程中，业务需要网格整体视图及快速治理能力，为
 
 ##### 场景扩展：支撑API网关
 
-![网易轻舟API网关](008eGmZEly1gn9gb4oef0j30d40bj0tj.jpg)
+![网易轻舟 API 网关](008eGmZEly1gnaivfvbvuj30w60s4n1i.jpg)
 
 **设计要点**：
 
