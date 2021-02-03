@@ -18,7 +18,7 @@ type: "notice"
 1. 本科及以上学历，精通Linux环境下的 Go/Java/C++/C 中一门或者多门语言。
 2、深入理解Service Mesh，有istio、envoy，sidecar，servicecomb-mesh，sofa-mesh研发经验者优先。
 3、深入理解微服务治理领域技术组件，如hystrix，sentinel，nacos等。
-4、熟悉RPC原理和相关开源框架，如gRPC/brpc/thrift等；
+4、熟悉RPC原理和相关开源框架，如gRPC/brpc/thrift等。
 5、具备扎实的操作系统、数据结构与算法能力，代码风格良好，可扩展性强。
 6、具有混沌工程经验的优先。
 
