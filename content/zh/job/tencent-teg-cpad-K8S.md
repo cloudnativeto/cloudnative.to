@@ -5,8 +5,8 @@ draft: false
 bg_image: "images/backgrounds/page-title.png"
 description : "Base 地：深圳、北京"
 type: "notice"
-
 ---
+
 ### 腾讯云架构平台部简介
 
 云架构平台部，作为TEG技术工程事业群的核心部门，在腾讯的业务中发挥着水和电一般不可或缺的重要作用，主要负责着当今互联网时代发展最前端的海量信息存储、计算和接入（云服务）。
