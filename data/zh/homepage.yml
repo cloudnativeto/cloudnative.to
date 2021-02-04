@@ -271,11 +271,6 @@ sponsor:
           url: "https://www.163yun.com/"
           name: "网易数帆"
     media:
-    media:
-    media:
-    media:
-    media:
-    media:
       title: "合作机构"
       list:
         - image: "/images/sponsors/cncf.png"
@@ -293,7 +288,12 @@ sponsor:
         - image: "/images/sponsors/njsd.jpg"
           url: "https://t.1yb.co/9ty3"
           name: "NJSD"
-
+        - image: "/images/sponsors/broadview.jpg"
+          url: "http://www.broadview.com.cn/"
+          name: "电子工业出版社博文视点"
+        - image: "/images/sponsors/huazhang.jpg"
+          url: "http://www.hzbook.com/"
+          name: "机械工业出版社华章图书"
 
 ################################# contact ################################################
 contact:
