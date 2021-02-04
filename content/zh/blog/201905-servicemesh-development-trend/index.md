@@ -7,9 +7,7 @@ author: "敖小剑"
 authorlink: "https://skyao.io/"
 description: "介绍Service Mesh最新的产品动态，分析其发展趋势和未来走向；结合蚂蚁的上云实践，阐述在云原生背景下Service Mesh的核心价值，和对云原生落地的关键作用。"
 tags: ["Istio","service mesh"]
-categories: ["service mesh"]
 keywords: ["service mesh","Istio"]
-tags: ["service mesh"]
 categories: ["service mesh"]
 keywords: ["service mesh","服务网格","微服务","架构"]
 type: "post"
