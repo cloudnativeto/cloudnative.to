@@ -172,32 +172,32 @@ Kubernetes 源码研习社是由 云原生社区 组织的 Kubernetes 源码特�
 
 （排名不分先后）
 
-- 刘硕然
-- 张城（元乙）
-- 赵新（于雨）
-- 孙召昌
-- 程亮
-- 侯诗军
-- 杨可奥
-- 高洪涛
-- 高鹏
-- 苏夏
-- 王炜
-- 边鹏远
-- 张慧
-- 赵化冰
-- 秦金卫
-- 范建明
-- 王院生
-- 邹佳
-- 周正喜
-- 周礼赞
-- 魏新宇
-- 翟佳
-- 王夕宁
-- 温铭
-- 付业成
-- 吴晟
+- [刘硕然](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/刘硕然.png)
+- [张城（元乙）](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/张城（元乙）.png)
+- [赵新（于雨）](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/赵新（于雨）.png)
+- [孙召昌](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/孙召昌.png)
+- [程亮](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/程亮.png)
+- [侯诗军](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/侯诗军.png)
+- [杨可奥](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/杨可奥.png)
+- [高洪涛](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/高洪涛.png)
+- [高鹏](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/高鹏.png)
+- [苏夏](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/苏夏.png)
+- [王炜](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/王炜.png)
+- [边鹏远](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/边鹏远.png)
+- [张慧](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/张慧.png)
+- [赵化冰](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/赵化冰.png)
+- [秦金卫](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/秦金卫.png)
+- [范建明](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/范建明.png)
+- [王院生](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/王院生.png)
+- [邹佳](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/邹佳.png)
+- [周正喜](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/周正喜.png)
+- [周礼赞](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/周礼赞.png)
+- [魏新宇](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/魏新宇.png)
+- [翟佳](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/翟佳.png)
+- [王夕宁](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/王夕宁.png)
+- [温铭](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/温铭.png)
+- [付业成](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/付业成.png)
+- [吴晟](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/吴晟.png)
 
 ### 优秀志愿者
 
