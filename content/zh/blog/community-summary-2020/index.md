@@ -87,7 +87,11 @@ profile: "云原生社区创始人。"
 
 ### 线上直播
 
-云原生学院的线上直播选题范围包括但不限于容器、Kubernetes、Service Mesh、Ingress、可观测性、Devops等领域。2020年云原生学院邀请了17位来自于国内外多家（谷歌、Tetrate、阿里云、腾讯云、网易、VMWare、PingCAP、支流科技、StreamNative、IBM、京东、Coding等）公司的技术专家来进行线上分享。线上直播的回放链接以及嘉宾分享PPT均可以在云原生学院Github项目中找到，Github链接：https://github.com/cloudnativeto/academy，欢迎大家持续关注。
+云原生学院的线上直播选题范围包括但不限于容器、Kubernetes、Service Mesh、Ingress、可观测性、DevOps等领域。2020年云原生学院邀请了17位来自于国内外多家（谷歌、Tetrate、阿里云、腾讯云、网易、VMWare、PingCAP、支流科技、StreamNative、IBM、京东、Coding等）公司的技术专家来进行线上分享。线上直播的回放链接以及嘉宾分享PPT均可以在云原生学院Github项目中找到，Github链接：<https://github.com/cloudnativeto/academy>，欢迎大家持续关注。
+
+![](008eGmZEly1gnfzjkn5kgj31fe0t8b29.jpg)
+
+转到[云原生社区 B 站空间](https://space.bilibili.com/515485124)查看分享回放。
 
 云原生学院的线上直播后续会聚焦于云原生领域、Kubernetes、服务网格领域，希望能够给大家带来更多更丰富更有价值的端到端的云原生落地案例以及体系化的线上直播分享，敬请期待。
 
