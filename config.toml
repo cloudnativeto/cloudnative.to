@@ -291,43 +291,43 @@ weight = 3
 
 [[Languages.zh.menu.main]]
 parent = "兴趣小组"
-name = "Kubernetes"
+name = "Kubernetes SIG"
 URL = "https://i.cloudnative.to/kubernetes/"
 weight = 1
 
 [[Languages.zh.menu.main]]
 parent = "兴趣小组"
-name = "Istio"
+name = "Istio SIG"
 URL = "https://i.cloudnative.to/istio/"
 weight = 2
 
 [[Languages.zh.menu.main]]
 parent = "兴趣小组"
-name = "Envoy"
+name = "Envoy SIG"
 URL = "https://i.cloudnative.to/envoy/"
 weight = 3
 
 [[Languages.zh.menu.main]]
 parent = "兴趣小组"
-name = "Dapr"
+name = "Dapr SIG"
 URL = "https://i.cloudnative.to/dapr/"
 weight = 4
 
 [[Languages.zh.menu.main]]
 parent = "兴趣小组"
-name = "OAM"
+name = "OAM SIG"
 URL = "https://i.cloudnative.to/oam/"
 weight = 5
 
 [[Languages.zh.menu.main]]
 parent = "兴趣小组"
-name = "稳定性"
+name = "稳定性 SIG"
 URL = "https://i.cloudnative.to/stability/"
 weight = 6
 
 [[Languages.zh.menu.main]]
 parent = "兴趣小组"
-name = "可观察性"
+name = "可观察性 SIG"
 URL = "https://i.cloudnative.to/observability/"
 weight = 7
 

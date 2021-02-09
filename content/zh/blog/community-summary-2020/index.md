@@ -17,7 +17,7 @@ profile: "云原生社区创始人。"
 
 ## 城市站
 
-云原生社区相继成立了北京站、上海站、成都站、杭州站、深圳站等 20 个[城市站](/city/)。
+云原生社区相继成立了北京站、上海站、成都站、深圳站、南京站、杭州站等 20 个[城市站](/city/)。
 
 ### 北京站
 
@@ -80,6 +80,30 @@ profile: "云原生社区创始人。"
 2020 年 12 月 12 日：线下 webinar
 
 原定于 2020 年 1 月 16 日的第一次线下 meetup 由于大连疫情的原因，被迫取消，敬请期待春节过后的活动。
+
+### 深圳站
+
+![image-20210209110142156](https://tva1.sinaimg.cn/large/008eGmZEly1gnh3nyvbrlj318y0tyhdu.jpg)
+
+2020 年 8 月 15 日，云原生社区深圳站成立
+
+### 成都站
+
+![](chengdu.jpg)
+
+![image-20210209110052123](https://tva1.sinaimg.cn/large/008eGmZEly1gnh3n3l2nvj30v80kux39.jpg)
+
+2020 年 8 月 22 日，云原生社区成都站成立
+
+### 南京站
+
+![](nanjing.png)
+
+![image-20210209110305455](https://tva1.sinaimg.cn/large/008eGmZEly1gnh3pev9tyj31900u04qq.jpg)
+
+2020 年 9 月 6 日，云原生社区南京站成立
+
+更多城市站信息请访问[云原生社区官网城市站页面](/city/)。
 
 ## 云原生学院
 
@@ -176,32 +200,32 @@ Kubernetes 源码研习社是由 云原生社区 组织的 Kubernetes 源码特�
 
 （排名不分先后）
 
-- [刘硕然](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/刘硕然.png)
-- [张城（元乙）](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/张城（元乙）.png)
-- [赵新（于雨）](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/赵新（于雨）.png)
-- [孙召昌](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/孙召昌.png)
-- [程亮](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/程亮.png)
-- [侯诗军](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/侯诗军.png)
-- [杨可奥](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/杨可奥.png)
-- [高洪涛](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/高洪涛.png)
-- [高鹏](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/高鹏.png)
-- [苏夏](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/苏夏.png)
-- [王炜](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/王炜.png)
-- [边鹏远](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/边鹏远.png)
-- [张慧](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/张慧.png)
-- [赵化冰](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/赵化冰.png)
-- [秦金卫](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/秦金卫.png)
-- [范建明](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/范建明.png)
-- [王院生](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/王院生.png)
-- [邹佳](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/邹佳.png)
-- [周正喜](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/周正喜.png)
-- [周礼赞](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/周礼赞.png)
-- [魏新宇](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/魏新宇.png)
-- [翟佳](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/翟佳.png)
-- [王夕宁](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/王夕宁.png)
-- [温铭](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/温铭.png)
-- [付业成](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/付业成.png)
-- [吴晟](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/lecturer/吴晟.png)
+- [刘硕然](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/刘硕然.png)
+- [张城（元乙）](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/张城（元乙）.png)
+- [赵新（于雨）](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/赵新（于雨）.png)
+- [孙召昌](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/孙召昌.png)
+- [程亮](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/程亮.png)
+- [侯诗军](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/侯诗军.png)
+- [杨可奥](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/杨可奥.png)
+- [高洪涛](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/高洪涛.png)
+- [高鹏](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/高鹏.png)
+- [苏夏](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/苏夏.png)
+- [王炜](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/王炜.png)
+- [边鹏远](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/边鹏远.png)
+- [张慧](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/张慧.png)
+- [赵化冰](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/赵化冰.png)
+- [秦金卫](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/秦金卫.png)
+- [范建明](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/范建明.png)
+- [王院生](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/王院生.png)
+- [邹佳](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/邹佳.png)
+- [周正喜](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/周正喜.png)
+- [周礼赞](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/周礼赞.png)
+- [魏新宇](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/魏新宇.png)
+- [翟佳](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/翟佳.png)
+- [王夕宁](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/王夕宁.png)
+- [温铭](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/温铭.png)
+- [付业成](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/付业成.png)
+- [吴晟](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/lecturer/吴晟.png)
 
 ### 优秀志愿者
 
@@ -211,18 +235,18 @@ Kubernetes 源码研习社是由 云原生社区 组织的 Kubernetes 源码特�
 
 | 编号                                                         | 姓名   |
 | ------------------------------------------------------------ | ------ |
-| [V20200001](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/volunteer/V20200001.png) | 沈旭   |
-| [V20200002](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/volunteer/V20200002.png) | 任增刚 |
-| [V20200003](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/volunteer/V20200003.png) | 刘德涵 |
-| [V20200004](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/volunteer/V20200004.png) | 詹骏南 |
-| [V20200005](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/volunteer/V20200005.png) | 李可卉 |
-| [V20200006](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/volunteer/V20200006.png) | 周亚珊 |
-| [V20200009](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/volunteer/V20200009.png) | 张凯   |
-| [V20200010](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/volunteer/V20200010.png) | 刘戎   |
-| [V20200011](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/volunteer/V20200011.png) | 刘洋   |
-| [V20200012](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/volunteer/V20200012.png) | 侯超英 |
-| [V20200013](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/volunteer/V20200013.png) | 段帅星 |
-| [V20200014](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/volunteer/V20200014.png) | 张桂元 |
+| [V20200001](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/volunteer/V20200001.png) | 沈旭   |
+| [V20200002](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/volunteer/V20200002.png) | 任增刚 |
+| [V20200003](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/volunteer/V20200003.png) | 刘德涵 |
+| [V20200004](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/volunteer/V20200004.png) | 詹骏南 |
+| [V20200005](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/volunteer/V20200005.png) | 李可卉 |
+| [V20200006](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/volunteer/V20200006.png) | 周亚珊 |
+| [V20200009](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/volunteer/V20200009.png) | 张凯   |
+| [V20200010](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/volunteer/V20200010.png) | 刘戎   |
+| [V20200011](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/volunteer/V20200011.png) | 刘洋   |
+| [V20200012](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/volunteer/V20200012.png) | 侯超英 |
+| [V20200013](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/volunteer/V20200013.png) | 段帅星 |
+| [V20200014](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/volunteer/V20200014.png) | 张桂元 |
 
 ### 优秀贡献者
 
@@ -230,39 +254,43 @@ Kubernetes 源码研习社是由 云原生社区 组织的 Kubernetes 源码特�
 
 （排名不分先后）
 
+感谢在社区的贡献，根据 2020 年的突出表现，经社区管委会考评，选出 **“2020 年度优秀贡献者”**。
+
+（排名不分先后）
+
 | 编号                                                         | 姓名   |
 | ------------------------------------------------------------ | ------ |
-| [C20200001](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200001.png) | 许振文 |
-| [C20200002](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200002.png) | 张晓辉 |
-| [C20200003](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200003.png) | 刘金欣 |
-| [C20200004](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200004.png) | 梁斌   |
-| [C20200005](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200005.png) | 李云龙 |
-| [C20200006](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200006.png) | 王泓智 |
-| [C20200007](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200007.png) | 张海立 |
-| [C20200008](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200008.png) | 包仁义 |
-| [C20200009](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200009.png) | 黄晓芬 |
-| [C20200010](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200010.png) | 孟显超 |
-| [C20200011](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200011.png) | 官余鹏 |
-| [C20200012](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200012.png) | 申红磊 |
-| [C20200013](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200013.png) | 徐龙   |
-| [C20200014](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200014.png) | 曾祥龙 |
-| [C20200015](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200015.png) | 姚沈结 |
-| [C20200016](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200016.png) | 尚坤   |
-| [C20200017](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200017.png) | 文彦   |
-| [C20200018](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200018.png) | 刘晓敏 |
-| [C20200019](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200019.png) | 杨冉宁 |
-| [C20200020](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200020.png) | 柯维星 |
-| [C20200021](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200021.png) | 崔皓   |
-| [C20200022](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200022.png) | 黄乐平 |
-| [C20200023](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200023.png) | 王冬   |
-| [C20200024](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200024.png) | 赵卫国 |
-| [C20200025](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200025.png) | 王文虎 |
-| [C20200026](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200026.png) | 赵卫国 |
-| [C20200027](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200027.png) | 金润森 |
-| [C20200028](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200028.png) | 梁远鹏 |
-| [C20200029](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200029.png) | 刘娟   |
-| [C20200030](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200030.png) | 丁晓华 |
-| [C20200031](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/contributor/C20200031.png) | 王博峰 |
+| [C20200001](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200001.png) | 许振文 |
+| [C20200002](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200002.png) | 张晓辉 |
+| [C20200003](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200003.png) | 刘金欣 |
+| [C20200004](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200004.png) | 梁斌   |
+| [C20200005](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200005.png) | 李云龙 |
+| [C20200006](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200006.png) | 王泓智 |
+| [C20200007](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200007.png) | 张海立 |
+| [C20200008](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200008.png) | 包仁义 |
+| [C20200009](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200009.png) | 黄晓芬 |
+| [C20200010](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200010.png) | 孟显超 |
+| [C20200011](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200011.png) | 官余鹏 |
+| [C20200012](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200012.png) | 申红磊 |
+| [C20200013](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200013.png) | 徐龙   |
+| [C20200014](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200014.png) | 曾祥龙 |
+| [C20200015](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200015.png) | 姚沈结 |
+| [C20200016](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200016.png) | 尚坤   |
+| [C20200017](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200017.png) | 文彦   |
+| [C20200018](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200018.png) | 刘晓敏 |
+| [C20200019](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200019.png) | 杨冉宁 |
+| [C20200020](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200020.png) | 柯维星 |
+| [C20200021](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200021.png) | 崔皓   |
+| [C20200022](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200022.png) | 黄乐平 |
+| [C20200023](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200023.png) | 王冬   |
+| [C20200024](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200024.png) | 赵卫国 |
+| [C20200025](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200025.png) | 王文虎 |
+| [C20200026](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200026.png) | 赵卫国 |
+| [C20200027](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200027.png) | 金润森 |
+| [C20200028](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200028.png) | 梁远鹏 |
+| [C20200029](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200029.png) | 刘娟   |
+| [C20200030](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200030.png) | 丁晓华 |
+| [C20200031](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/contributor/C20200031.png) | 王博峰 |
 
 ### 优秀 SIG 组织者
 
@@ -272,10 +300,10 @@ Kubernetes 源码研习社是由 云原生社区 组织的 Kubernetes 源码特�
 
 | 编号                                                         | 姓名   |
 | ------------------------------------------------------------ | ------ |
-| [S20200001](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/sig-owner/S20200001.png) | 厉辉   |
-| [S20200002](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/sig-owner/S20200002.png) | 张慧   |
-| [S20200003](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/sig-owner/S20200003.png) | 杨鼎瑞 |
-| [S20200004](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/sig-owner/S20200004.png) | 陈晨   |
+| [S20200001](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/sig-owner/S20200001.png) | 厉辉   |
+| [S20200002](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/sig-owner/S20200002.png) | 张慧   |
+| [S20200003](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/sig-owner/S20200003.png) | 杨鼎瑞 |
+| [S20200004](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/sig-owner/S20200004.png) | 陈晨   |
 
 ### 优秀城市站站长
 
@@ -285,17 +313,17 @@ Kubernetes 源码研习社是由 云原生社区 组织的 Kubernetes 源码特�
 
 | 编号                                                         | 姓名   | 城市站 |
 | ------------------------------------------------------------ | ------ | ------ |
-| [M20200001](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/city-manager/M20200001.png) | 郭旭东 | 上海站 |
-| [M20200002](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/city-manager/M20200002.png) | 马景贺 | 大连站 |
-| [M20200003](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/city-manager/M20200003.png) | 李震   | 大连站 |
-| [M20200004](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/city-manager/M20200004.png) | 杨宙   | 杭州站 |
-| [M20200005](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/city-manager/M20200005.png) | 王福印 | 北京站 |
-| [M20200006](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/city-manager/M20200006.png) | 王殿进 | 北京站 |
-| [M20200007](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/city-manager/M20200007.png) | 朱慧君 | 南京站 |
-| [M20200008](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/city-manager/M20200008.png) | 粟伟   | 成都站 |
-| [M20200009](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/city-manager/M20200009.png) | 龙恒   | 成都站 |
-| [M20200010](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/city-manager/M20200010.png) | 徐龙   | 武汉站 |
-| [M20200011](https://github.com/cloudnativeto/community/tree/8bc3a6e711ca29df892b86badc50aabab21f474d/certificate/2020/city-manager/M20200011.png) | 王红阳 | 武汉站 |
+| [M20200001](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/city-manager/M20200001.png) | 郭旭东 | 上海站 |
+| [M20200002](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/city-manager/M20200002.png) | 马景贺 | 大连站 |
+| [M20200003](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/city-manager/M20200003.png) | 李震   | 大连站 |
+| [M20200004](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/city-manager/M20200004.png) | 杨宙   | 杭州站 |
+| [M20200005](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/city-manager/M20200005.png) | 王福印 | 北京站 |
+| [M20200006](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/city-manager/M20200006.png) | 王殿进 | 北京站 |
+| [M20200007](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/city-manager/M20200007.png) | 朱慧君 | 南京站 |
+| [M20200008](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/city-manager/M20200008.png) | 粟伟   | 成都站 |
+| [M20200009](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/city-manager/M20200009.png) | 龙恒   | 成都站 |
+| [M20200010](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/city-manager/M20200010.png) | 徐龙   | 武汉站 |
+| [M20200011](https://raw.githubusercontent.com/cloudnativeto/community/master/certificate/2020/city-manager/M20200011.png) | 王红阳 | 武汉站 |
 
 ## 展望 2021
 
