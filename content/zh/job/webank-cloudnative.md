@@ -10,7 +10,7 @@ type: "notice"
 ### 简介
 
 微众银行中间件团队，为全行亿级客户提供高可靠的金融服务基础平台支撑，构建了分布式多中心多活架构。
-当前涉及使用和研发的产品和技术包括RocketMQ，Redis，Nginx，Kubernetes，SpringCloud，Nacos，Sentinel，ServiceMesh，ElasticAPM，AIOps等
+当前涉及使用和研发的产品和技术包括RocketMQ，Redis，Nginx，Kubernetes，SpringCloud，Nacos，Sentinel，ServiceMesh，ElasticAPM，AIOps等。
 已经开源的产品有：DeFiBus，EventMesh，Dockin
 
 ### 云原生中间件高级研发工程师（深圳）
@@ -19,7 +19,7 @@ type: "notice"
 
 1. 负责云原生中间件相关技术（消息、缓存、容器、微服务、服务网格、AIOps等）的研发；
 2. 负责云原生中间件技术对业务场景的落地；
-3. 负责云原生技术的开源。
+3. 负责云原生中间件技术的开源推广。
 
 #### 职位要求
 
