@@ -3,8 +3,7 @@ title: "2020 年 Service Mesh 技术展望"
 date: 2020-02-02T10:36:06+08:00
 draft: false
 image: "/images/blog/006tKfTcgy1ftpp63o2m2j31ji15okjm.jpg"
-author: "罗广明"
-authorlink: "https://guangmingluo.github.io/guangmingluo.io/"
+author: "[罗广明](https://guangmingluo.github.io/guangmingluo.io/)"
 description: "本文由 ServiceMesher 社区治理委员与业界知名大牛针对 Service Mesh 技术发表的看法汇总而成。"
 tags: ["service mesh"]
 categories: ["service mesh"]

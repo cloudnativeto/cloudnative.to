@@ -3,12 +3,12 @@ title: "为《Kubernetes 开发指南》提交贡献"
 description: "一个新的贡献者讲述为《Kubernetes 开发指南》做贡献的经验。"
 author: "[Erik L. Arneson](https://www.linkedin.com/in/elarneson/)"
 translator: "[杨冉宁](https://github.com/hyfj44255)"
-image: "images/blog/contributing-k8s.jpeg"
-categories: ["Kubernetes","贡献开源"]
-tags: ["Kubernetes","贡献开源"]
+image: "/images/blog/contributing-k8s.jpeg"
+categories: ["open source"]
+tags: ["Kubernetes","open source"]
 date: 2020-12-17T13:05:42+08:00
 type: "post"
-avatar: "/images/profile/Erik-L-Arneson.jpeg"
+avatar: "/profile/Erik-L-Arneson.jpeg"
 profile: "一位软件开发人员，自由作家和研究顾问。"
 ---
 
@@ -25,7 +25,7 @@ profile: "一位软件开发人员，自由作家和研究顾问。"
 
 当我第一次加入到 Kubernetes 社区一个叫 #sig-contribex 的 slack 聊天群时，我说我将着手编写[《Kubernetes 开发指南》](https://github.com/kubernetes/community/blob/master/contributors/devel/development.md)，我脑子闪过了很多问题，像“我得多精细”，“我搞砸了怎么办？”，“把开发者们惹火了怎么办，这不就有仇家了吗！”，一想到这些我就感觉如履薄冰。
 
-![img](images/jorge-castro-code-of-conduct.jpg)
+![img](jorge-castro-code-of-conduct.jpg)
 
 >“《Kubernetes 行为准则》已经生效，因此请彼此做到卓越。” — SIG ContribEx 联合主席 Jorge Castro
 

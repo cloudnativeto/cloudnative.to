@@ -5,7 +5,7 @@ author: "[Dariusz Jędrzejczyk](https://allegro.tech/2020/05/migrating-to-servi
 translator: "[张晓辉](https://atbug.com)"
 image: "https://atbug.oss-cn-hangzhou.aliyuncs.com/2020/09/28/cloudmigration.jpg"
 categories: ["Service Mesh"]
-tags: ["Service Mesh","翻译"]
+tags: ["Service Mesh"]
 date: 2020-09-28T16:00:00+08:00
 type: "post"
 avatar: "https://allegro.tech/img/authors/dariusz.jedrzejczyk.jpg"

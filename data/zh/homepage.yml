@@ -173,7 +173,7 @@ cta:
 ################################# blog ################################################
 blog:
   enable : true
-  subtitle : "社区生产内容"
+  subtitle : "云原生社区博客"
   title : "博客"
   find_all: "查看全部"
   # blog post comes from "content/*/blog" folder

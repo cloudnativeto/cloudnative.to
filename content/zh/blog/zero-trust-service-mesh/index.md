@@ -5,7 +5,7 @@ author: "[Rose Sawvel](https://thenewstack.io/zero-trust-security-with-service-m
 translator: "[林静](http://linjing.io)"
 image: "/images/blog/top-banner-zero-trust.jpg"
 categories: ["Service Mesh"]
-tags: ["service mesh","Security","翻译"]
+tags: ["service mesh","Security"]
 date: 2020-10-18T11:00:00+08:00
 avatar: "/images/profile/Rose-Sawvel.jpeg"
 profile: "Rose 是 Aspen Mesh 的内容营销主管。她是一位专注于创新和教育的技术传播者，致力于开源和云原生生态系统。她热衷于发现好的想法并将其转化为可访问的、相关的内容并及时发布出来，以帮助人们更好地理解技术。除了关注服务网格或微服务之外，她还活跃在世界各地的歌剧界。"

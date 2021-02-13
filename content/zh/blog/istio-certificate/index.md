@@ -7,6 +7,7 @@ categories: ["Istio"]
 tags: ["Istio"]
 date: 2020-05-25T06:00:00+08:00
 type: "post"
+avatar: "/images/profile/default.jpg"
 ---
 
 在上一篇文章[一文带你彻底厘清 Kubernetes 中的证书工作机制](/blog/k8s-certificate/)中，我们介绍了 Kubernetes 中证书的工作机制。在这篇文章中，我们继续探讨 Istio 是如何使用证书来实现网格中服务的身份认证和安全通信的。

@@ -4,15 +4,14 @@ date: 2020-08-28T08:00:00+08:00
 description: "Kubernetes Client-go Informer 机制及源码理解"
 author: "[林许亚伦](https://github.com/linxuyalun)"
 categories: ["Kubernetes"]
-tags: ["Kubernetes", "源码理解", "Informer"]
+tags: ["Kubernetes" ]
 type: "post"
-avatar: "/images/profile/linxuyalun.png"
+avatar: "/profile/linxuyalun.png"
 image: "/images/blog/k8s-client-go-informer-source-code.jpg"
 profile: "林许亚伦，上海交通大学学生，云原生爱好者。"
-
 ---
 
-> 本文主要根据书籍 《Kubernetes 源码剖析》的基础上，对 Client-go 部分的 Informer 机制进行了解与学习。
+本文主要根据书籍 《Kubernetes 源码剖析》的基础上，对 Client-go 部分的 Informer 机制进行了解与学习。
 
 ## Informer 机制
 
@@ -20,7 +19,7 @@ Kubernetes 中使用 http 进行通信，**如何不依赖中间件的情况下�
 
 ### Informer 机制架构设计
 
-![](images/01.jpg)
+![](01.jpg)
 
 图片源自 [Client-go under the hood](https://github.com/kubernetes/sample-controller/blob/master/docs/controller-client-go.md)
 
@@ -329,7 +328,7 @@ itmes   │ObjKey1: [{"Added",Obj1} {"Updated",Obj1}]                   │
 
 DeltaFIFO 队列中的资源对象在调用 Added，Updated，Deleted 等事件时都调用了 queueActionLocked 函数：
 
-![](images/02.png)
+![](02.png)
 
 它是 DeltaFIFO 实现的关键：
 

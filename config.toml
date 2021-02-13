@@ -1,8 +1,9 @@
 ########################### Default configuration ######################
 baseURL = "https://cloudnative.to/"
 title = "云原生社区"
+homePageTitle = "云原生社区 | Cloud Native Community(China)"
 # post pagination
-paginate = "6"
+paginate = "10"
 # post excerpt
 summaryLength = "10"
 # disable language
@@ -152,6 +153,7 @@ logo = "images/logo.png"
 logo_footer = "images/logo-alt.png"
 # top header
 top_header = false
+homePageTitle = "云原生社区 | Cloud Native Community(China)"
 # Meta data
 description = "云原生社区是一个中立的云原生终端用户社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，旨在推广云原生技术，构建开发者生态。"
 author = " 云原生社区"
@@ -219,7 +221,7 @@ link = "https://github.com/cloudnativeto"
 [[params.social]]
 icon = "fa-wechat"
 # change the link after the public announcement
-link = "/contact"
+link = "https://mp.weixin.qq.com/s/vWlSdzz2MNdXRr0sd2-LFg"
 
 [[params.social]]
 icon = "fa-envelope"

@@ -8,7 +8,7 @@ categories: ["Kubernetes"]
 tags: ["Kubernetes"]
 date: 2020-10-17T16:00:00+08:00
 type: "post"
-avatar: "./images/Adil_H.jpeg"
+avatar: "/images/profile/Adil_H.jpg"
 profile: "后台&云端开发工程师。"
 ---
 本文译自 [Building a Kubernetes Mutating Admission Webhook](https://medium.com/@didil/building-a-kubernetes-mutating-admission-webhook-7e48729523ed)。
@@ -27,7 +27,7 @@ $ kubectl run busybox --image=busybox --restart=Never -it --rm -- ls -l /var/run
 
 为了让实验更具趣味性，我们用一个 ASCII “小作品”（用这个工具生成的）来作为我们的 “hello.txt” 文件：
 
-![hello.txt 文件内容](./images/hello1.png)
+![hello.txt 文件内容](hello1.png)
 
 ## 何为 Admission Webhook
 
@@ -37,7 +37,7 @@ $ kubectl run busybox --image=busybox --restart=Never -it --rm -- ls -l /var/run
 
 下文这张借用自 [Kubernetes.io blog post](https://kubernetes.io/blog/2019/03/21/a-guide-to-kubernetes-admission-controllers/) 的流程图可以帮助我们理解 Admission Webhook 的概念。
 
-![准入控制器处理流程](./images/controller.png)
+![准入控制器处理流程](controller.png)
 
 接下来，本文将采用 Kubernetes 提供的 Mutating Admission Webhook 这一机制，来实现注入 “hello.txt” 文件到 Pod 容器中，我们每次发送请求调用 API 创建 Pod 的时候，Pod 的 spec 信息会被先修改，再存储。如此一来，工作节点上的 Kublet 创建 Pod 的时候，将会预置 “hello.txt” 文件。文件的创建流程是全自动的。一起来试试！
 
@@ -354,7 +354,7 @@ $ kubectl exec busybox-1 -it -- sh -c "ls /etc/config/hello.txt"
 $ kubectl exec busybox-1 -it -- sh -c "cat /etc/config/hello.txt"
 ```
 
-![The file is in the pod container !](./images/hello2.png)
+![The file is in the pod container !](hello2.png)
 
 接下来再创建第二个容器，不带  “hello=true” 标签的：
 

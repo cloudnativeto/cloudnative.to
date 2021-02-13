@@ -4,12 +4,14 @@ description: "本文翻译自 Envoy 官方文档，介绍内置网路层过滤�
 author: "[Envoy 官方](https://www.envoyproxy.io/)"
 translator: "[杨子锋 (Curtis)](https://github.com/fallingyang)"
 image: "images/blog/envoy.png"
-categories: ["Envoy"]
+categories: ["service mesh"]
 tags: ["Envoy"]
 date: 2020-12-31T10:03:00+08:00
 type: "post"
 avatar: "/images/profile/envoy.png"
 profile: "Envoy 是一种开放源代码边缘和服务代理，专为原生云应用程序而设计。"
+type: "post"
+avatar: "/images/profile/default.jpg"
 ---
 
 本文译自 Envoy 官方文档 [HTTP connection management](https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/http/http_connection_management)

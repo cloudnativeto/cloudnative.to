@@ -4,7 +4,6 @@ date: 2020-04-11T11:40:00+08:00
 draft: false
 image: "/images/blog/006tKfTcly1g0avw2aq99j31an0u0u0y.jpg"
 author: "王佰平"
-authorlink: ""
 reviewer: ["宋净超"]
 reviewerlink: ["https://jimmysong.io"]
 description: "Istio 1.5 回归单体架构，并抛却原有的 out-of-process 的数据面（Envoy）扩展方式，转而拥抱基于 WASM 的 in-proxy 扩展，以期获得更好的性能。本文基于网易杭州研究院轻舟云原生团队的调研与探索，介绍 WASM 的社区发展与实践。"

@@ -5,7 +5,7 @@ author: "[Alper Kerman](https://www.nist.gov/blogs/taking-measure/zero-trust-cyb
 translator: "[马景贺（小马哥）](https://github.com/majinghe)"
 image: "images/blog/zero-trust-cybersecurity.jpg"
 categories: ["Security"]
-tags: ["zero trust cybersecurity","security"]
+tags: ["zero trust","security"]
 date: 2020-11-06T13:05:42+08:00
 type: "post"
 avatar: "/images/profile/Alper-Kerman.jpg"

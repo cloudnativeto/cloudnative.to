@@ -3,12 +3,12 @@ title: "云安全策略的创建"
 description: "本文翻译自 Andreja Velimirovic 的文章 Creating a Cloud Security Policy"
 author: "Andreja Velimirovic"
 translator: "[马景贺（小马哥）](https://github.com/majinghe)"
-image: "images/blog/cloud-security.jpg"
+image: "/images/blog/cloud-security.jpg"
 categories: ["Security"]
 tags: ["cloud security","security"]
 date: 2020-12-18T13:05:42+08:00
 type: "post"
-avatar: "/images/profile/Andreja-Velimirovic.jpg"
+avatar: "/profile/Andreja-Velimirovic.jpg"
 profile: "Andreja Velimirovic 是一个内容专家，由超过 5 年的经验都是在将所知内容沉淀到网络上。以对尖端 IT 技术的热情为动力，他在 phoenixNAP 找到了自我，在这儿他剖析复杂的技术主题，并将其分解成实用的、易于消化的文章。"
 ---
 
@@ -32,7 +32,7 @@ profile: "Andreja Velimirovic 是一个内容专家，由超过 5 年的经验�
 
 云安全策略是一个公司安全项目中的重要组成部分。安全策略能够保证信息的完整性和私密性，而且能够帮助团队快速作出正确的决定。
 
-![img](images/what-is-a-cloud-security-policy.png)
+![img](what-is-a-cloud-security-policy.png)
 
 ## 云安全策略的必要性
 
@@ -100,7 +100,7 @@ profile: "Andreja Velimirovic 是一个内容专家，由超过 5 年的经验�
 
 定期检查和升级组件，以确保走在最新威胁之前。因此，对厂商的 [SLA](https://phoenixnap.com/blog/service-level-agreement-best-practices) 做例行检查就不会使你因为一个有问题的更新而被蒙蔽了双眼。
 
-![img](images/how-to-create-a-cloud-security-policy.png)
+![img](how-to-create-a-cloud-security-policy.png)
 
 ## 云安全策略应遵守的原则
 

@@ -3,8 +3,8 @@ title: "云原生初学者入门必读"
 description: "这篇文章将助于各位有志于从事云原生领域工作或需要了解该领域背景的人群快速入门 Kubernetes 和云原生。"
 date: 2020-10-23T14:18:40+08:00
 draft: false
-tags: ["云原生","Kubernetes","Docker","Service Mesh"]
-categories: ["云原生"]
+tags: ["Cloud Native","Kubernetes","Docker","Service Mesh"]
+categories: ["Open Source"]
 type: "post"
 author: "[宋净超](https://jimmysong.io)"
 avatar: "/images/profile/jimmysong.jpg"

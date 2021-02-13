@@ -5,7 +5,7 @@ description: "这篇文章我看了之后非常想翻译，为什么呢？一方
 author: "[Christian Posta](https://blog.christianposta.com/envoy/guidance-for-building-a-control-plane-to-manage-envoy-proxy-based-infrastructure/)"
 image: "images/blog/envoy.png"
 bg_image: "images/backgrounds/sea-banner.jpg"
-categories: ["Envoy"]
+categories: ["service mesh"]
 tags: ["Envoy"]
 type: "post"
 translator: "[许振文](https://github.com/helight)"
