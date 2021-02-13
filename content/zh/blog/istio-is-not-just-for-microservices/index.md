@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://github.com/todkap/istio-index-conf2018/blob/master/README.md>。
+本文为翻译文章，[点击查看原文](https://github.com/todkap/istio-index-conf2018/blob/master/README.md)。
 
 通过使用 Istio Service Mesh 来保障 Kubernetes 平台服务。通常可以运行示例代码有助于用户更清晰的理解并将概念应用到实际的案例中。该项目围绕一个简单的 Node.js 应用程序演示了以 Istio Service Mesh 为 ETCD 的持久化数据服务的能力。
 

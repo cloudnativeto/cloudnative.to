@@ -15,7 +15,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://meteatamel.wordpress.com/2019/01/07/application-metrics-in-istio/>。
+本文为翻译文章，[点击查看原文](https://meteatamel.wordpress.com/2019/01/07/application-metrics-in-istio/)。
 
 ## 背景
 

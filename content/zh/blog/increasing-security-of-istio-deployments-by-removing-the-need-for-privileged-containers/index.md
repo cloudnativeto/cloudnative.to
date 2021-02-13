@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://blog.openshift.com/increasing-security-of-istio-deployments-by-removing-the-need-for-privileged-containers/>。
+本文为翻译文章，[点击查看原文](https://blog.openshift.com/increasing-security-of-istio-deployments-by-removing-the-need-for-privileged-containers/)。
 
 随着 Istio 1.0 版本的发布，Istio 正在为开发云原生应用并希望采用服务网格解决方案的公司准备黄金时间。但是，有一个潜在的问题可能会降低这些公司的采用率：服务网格内的 Pod 需要提升权限才能正常运行。
 

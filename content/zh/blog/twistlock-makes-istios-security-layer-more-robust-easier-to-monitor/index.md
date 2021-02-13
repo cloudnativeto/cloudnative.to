@@ -14,7 +14,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://thenewstack.io/twistlock-makes-istios-security-layer-more-robust-easier-to-monitor/>。
+本文为翻译文章，[点击查看原文](https://thenewstack.io/twistlock-makes-istios-security-layer-more-robust-easier-to-monitor/)。
 
 Istio已经成为一种流行且可靠的服务网格管理平台，使用它可以更轻松地部署、操作和扩展跨云部署的微服务。作为保证这些服务网格的一种方式，Twistlock已经与Istio集成，以丰富平台的连接机器学习功能。 Twistlock通过使用Twistlock数据来隔离受损服务并提供合规策略来执行安全配置，以及Istio运行的其他堆栈。
 

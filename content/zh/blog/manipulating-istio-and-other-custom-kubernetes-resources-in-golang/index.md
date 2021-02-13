@@ -18,7 +18,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://dwmkerr.com/manipulating-istio-and-other-custom-kubernetes-resources-in-golang>。
+本文为翻译文章，[点击查看原文](https://dwmkerr.com/manipulating-istio-and-other-custom-kubernetes-resources-in-golang)。
 
 在本文中，我将演示如何使用Golang来操作Kubernetes Custom Resources，以Istio为例。 不需要您了解Istio，我只是用它来展示概念！
 

@@ -12,7 +12,7 @@ avatar: "/images/profile/default.jpg"
 profile: "Istio 是当前最流行的服务网格项目之一。"
 ---
 
-原文地址：<https://istio.io/latest/news/releases/1.9.x/announcing-1.9/>
+本文为翻译文章，[点击查看原文](https://istio.io/latest/news/releases/1.9.x/announcing-1.9/)。
 
 Istio 1.9 版本的重点是改善用户在生产中运行 Istio 的 Day2 操作。在用户体验工作组收集到的反馈意见的基础上，我们希望改善用户的稳定性和整体升级体验。稳定性的一个关键是明确 Istio 核心 API 和功能发布的功能状态，并增强它们的稳定性，使用户能够放心使用 Istio 的这些功能，这是 1.9 版本的另一个重点。
 

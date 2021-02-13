@@ -15,7 +15,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://glasnostic.com/blog/service-mesh-istio-limits-and-benefits-part-1>。
+本文为翻译文章，[点击查看原文](https://glasnostic.com/blog/service-mesh-istio-limits-and-benefits-part-1)。
 
 ## 编者按
 

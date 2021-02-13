@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://blog.getambassador.io/rate-limiting-for-api-gateways-892310a2da02>。
+本文为翻译文章，[点击查看原文](https://blog.getambassador.io/rate-limiting-for-api-gateways-892310a2da02)。
 
 在本速率限制系列的[第一篇文章](rate-limiting-a-useful-tool-with-distributed-systems-part1.md)中，介绍了实施速率限制的动机，并讨论了几种实施方案（取决于你是否同时作为通信的发送端和接收端）以及相关的权衡。本文会更加深入地探讨 API 网关速率限制的需求。
 

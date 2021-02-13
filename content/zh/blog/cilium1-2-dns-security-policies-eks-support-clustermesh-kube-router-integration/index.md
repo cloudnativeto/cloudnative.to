@@ -17,7 +17,7 @@ avatar: "/images/profile/default.jpg"
 
 ![Cilium](006tNbRwly1fuohqoaw4wj310o0qegwa.jpg)
 
-查看原文：<https://cilium.io/blog/2018/08/21/cilium-12/>。
+本文为翻译文章，[点击查看原文](https://cilium.io/blog/2018/08/21/cilium-12/)。
 
 我们很高兴地宣布推出Cilium 1.2。该版本引入了几个新功能实现了Cilium用户和社区成员最迫切想要的功能。其中最吸引人的功能之一是引入基于DNS 名称的安全策略，目的是保护对集群外服务的访问。另一个最受关注的问题是加入了连接和保护多个Kubernetes集群的能力。我们将ClusterMesh功能进入Alpha版本。它可以连接和保护在多个Kubernetes集群中运行的pod。Kube-router与Cilium的集成同等重要。DigitalOcean团队的努力使kube-router提供BGP网络与Cilium提供的基于BPF的安全性和负载均衡相结合。整个Cilium开发者社区贡献者总数已增加到85个，在1.1到1.2版本内贡献了579个PR。
 

@@ -18,7 +18,7 @@ avatar: "/images/profile/default.jpg"
 
 ![Jenkins x](006tNbRwly1fxupra5gsfj30bx0epgn0.jpg)
 
-查看原文：<https://medium.com/@jdrawlings/serverless-jenkins-with-jenkins-x-9134cbfe6870>。
+本文为翻译文章，[点击查看原文](https://medium.com/@jdrawlings/serverless-jenkins-with-jenkins-x-9134cbfe6870)。
 
 Jenkins服务来源于创建自2004年的Hudson。在软件行业中，Jenkins已经是家喻户晓的明星产品，并且已经是CI和CD的领头羊。到目前为止有超过2050万的Jenkins任务，以及将近20万的Jenkins服务在运行中。这真的是非常惊人的增长速度。
 

@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://dzone.com/articles/serverless-vs-containers>。
+本文为翻译文章，[点击查看原文](https://dzone.com/articles/serverless-vs-containers)。
 
 让我们来看看Serverless与容器的采用率、工具支持以及围绕Serverless和容器化的其他争论。
 

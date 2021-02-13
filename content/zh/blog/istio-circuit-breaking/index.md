@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-原文地址：<https://banzaicloud.com/blog/istio-circuit-breaking/>。
+本文为翻译文章，[点击查看原文](https://banzaicloud.com/blog/istio-circuit-breaking/)。
 
 ## 编者按
 

@@ -15,7 +15,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://medium.com/solo-io/building-a-control-plane-for-envoy-7524ceb09876>。
+本文为翻译文章，[点击查看原文](https://medium.com/solo-io/building-a-control-plane-for-envoy-7524ceb09876)。
 
 ### 编者案
 

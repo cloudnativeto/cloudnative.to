@@ -13,7 +13,7 @@ categories: ["service mesh"]
 keywords: ["service mesh","速率限制","分布式系统"]
 ---
 
-查看原文：<"https://blog.getambassador.io/designing-a-rate-limiting-service-for-ambassador-f460e9fabedb">。
+本文为翻译文章，[点击查看原文](https://blog.getambassador.io/designing-a-rate-limiting-service-for-ambassador-f460e9fabedb)。
 
 [先前](https://blog.getambassador.io/rate-limiting-a-useful-tool-with-distributed-systems-6be2b1a4f5f4)关于速率限制文章主要描述如何构建并部署基于Java的速率限制服务，该服务可以和开源的Ambassador API网关以及Kubernetes集成（文章的[第1部分](/blog/rate-limiting-a-useful-tool-with-distributed-systems-part1)和[第2部分](/blog/rate-limiting-for-api-gateway-daniel-bryant-part2)请见这里）。 大家或许会疑惑怎么样才能更好地设计速率限制服务，尤其是如何保证Ambassador以及其底层的Envoy代理的灵活性？这篇文章将给大家启发。
 

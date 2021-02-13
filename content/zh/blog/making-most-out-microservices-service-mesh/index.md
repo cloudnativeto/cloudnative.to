@@ -19,7 +19,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://www.linux.com/blog/event/kubecon/2018/4/making-most-out-microservices-service-mesh>。
+本文为翻译文章，[点击查看原文](https://www.linux.com/blog/event/kubecon/2018/4/making-most-out-microservices-service-mesh)。
 
 Aspen Mesh的Andrew Jenkins说，转向微服务本身并不能消除复杂性。
 

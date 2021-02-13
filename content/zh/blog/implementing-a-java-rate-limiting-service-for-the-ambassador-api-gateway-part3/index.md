@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://blog.getambassador.io/implementing-a-java-rate-limiting-service-for-the-ambassador-api-gateway-e09d542455da>。
+本文为翻译文章，[点击查看原文](https://blog.getambassador.io/implementing-a-java-rate-limiting-service-for-the-ambassador-api-gateway-e09d542455da)。
 
 基于Kubernetes云原生的[Ambassador API](https://www.getambassador.io/)网关所提供的速率限制功能是完全可定制的，其允许任何实现gRPC服务端点的服务自行决定是否需要对请求进行限制。本文在先前[第1部分](rate-limiting-a-useful-tool-with-distributed-systems-part1.md)和[第2部分](rate-limiting-for-api-gateway-daniel-bryant-part2.md)的基础上，阐述如何为Ambassador API网关创建和部署简单的基于Java的速率限制服务。
 

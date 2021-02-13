@@ -19,7 +19,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://akomljen.com/kubernetes-service-mesh/>。
+本文为翻译文章，[点击查看原文](https://akomljen.com/kubernetes-service-mesh/)。
 
 编者按
 

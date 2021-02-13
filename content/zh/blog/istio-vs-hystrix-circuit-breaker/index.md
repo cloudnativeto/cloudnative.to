@@ -18,7 +18,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-原文地址：<https://www.exoscale.com/syslog/istio-vs-hystrix-circuit-breaker/>。
+本文为翻译文章，[点击查看原文](https://www.exoscale.com/syslog/istio-vs-hystrix-circuit-breaker/)。
 
 ## 编者按
 

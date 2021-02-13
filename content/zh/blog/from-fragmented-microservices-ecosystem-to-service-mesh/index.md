@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-原文地址：<https://blog.avinetworks.com/from-fragmented-microservices-ecosystem-to-service-mesh>。
+本文为翻译文章，[点击查看原文](https://blog.avinetworks.com/from-fragmented-microservices-ecosystem-to-service-mesh)。
 
 在过去几年中，我们注意到应用程序架构正在迅速转变为分布式微服务架构——单体和庞大的应用程序被分解为更小的单个服务，其可被独立修改、构建、部署和管理。这种模式的主要优点就是简洁和快速，同时由于其对其他服务的依赖性很小或者完全没有依赖，更易于升级和独立扩展。这与敏捷和DevOps理念非常吻合，这种模式也已经被许多规模化的Web公司成功采用。过去的许多年中，这些公司中的大多数都能够很好地采用这种模式，但是近几年中成功将这种模式发扬光大的两大推手非Docker和Kubernetes莫属。Docker简化了将微服务构建为Linux容器的过程，Kubernetes则能够以资源优化的方式来部署、管理和扩展服务。
 

@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://venilnoronha.io/set-sail-a-production-ready-istio-adapter>。
+本文为翻译文章，[点击查看原文](https://venilnoronha.io/set-sail-a-production-ready-istio-adapter)。
 
 你已经浏览了Istio Mixer Adapter的[指南](https://github.com/istio/istio/wiki/Mixer-Out-Of-Process-Adapter-Dev-Guide) ，现在想要发布自己的Adapter？这篇文章将教你创建自己的Adapter，在生产环境的海洋中扬帆起航。
 

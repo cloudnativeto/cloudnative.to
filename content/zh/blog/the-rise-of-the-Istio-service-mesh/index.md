@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://www.infoworld.com/article/3273547/containers/the-rise-of-the-istio-service-mesh.html>。
+本文为翻译文章，[点击查看原文](https://www.infoworld.com/article/3273547/containers/the-rise-of-the-istio-service-mesh.html)。
 
 如何确保微服务之间网络通信的可靠性、安全性和可管理性？ 使用服务网格吧！
 

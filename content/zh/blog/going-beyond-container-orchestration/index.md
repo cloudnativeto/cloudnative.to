@@ -17,7 +17,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://aspenmesh.io/2018/09/going-beyond-container-orchestration/>。
+本文为翻译文章，[点击查看原文](https://aspenmesh.io/2018/09/going-beyond-container-orchestration/)。
 
 最近的几次关于容器使用情况的调研都得到了相似的结果，开发团队不仅采用而且开始拥抱容器技术。大多数人并没有像超大型组织那样大规模的使用容器。在一项思科赞助的调研中发现有超过8000家企业在生产环境中使用容器。这听起来令人印象深刻，但他们使用容器的规模有限。在戴尔EMC，英特尔和红帽委托的Forrester报告中，63％使用容器的企业运行的实例超过100个，82％预计到2019年会达到这一规模。这与超大型技术公司使用的数十万的规模相距甚远。
 

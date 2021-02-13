@@ -11,7 +11,7 @@ categories: ["service mesh"]
 keywords: ["service mesh","服务网格","istio"]
 ---
 
-查看原文：<http://hbchen.com/post/servicemesh/2019-03-09-istio-rbac-quick-start/>。
+本文为翻译文章，[点击查看原文](http://hbchen.com/post/servicemesh/2019-03-09-istio-rbac-quick-start/)。
 
 Istio提供了非常易用的安全解决方案，包括服务间身份验证`mTLS`，服务间访问控制`RBAC`，以及终端用户身份验证`JWT`等，本文主要介绍如何使用服务间访问控制，同时涉及`双向TLS`。
 

@@ -18,7 +18,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://bani.com.br/2018/11/istio-what-happens-when-control-plane-is-down/>。
+本文为翻译文章，[点击查看原文](https://bani.com.br/2018/11/istio-what-happens-when-control-plane-is-down/)。
 
 大家好！我在Istio上做了一些实验，禁用控制平面的组件，并观察应用和服务网格会发生什么。下面是我的笔记。
 

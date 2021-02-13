@@ -18,7 +18,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://medium.com/google-cloud/istio-routing-basics-14feab3c040e>。
+本文为翻译文章，[点击查看原文](https://medium.com/google-cloud/istio-routing-basics-14feab3c040e)。
 
 当学习像[Istio](istio.io)这样的新技术时，我推荐看一看项目自带的示例。Istio包含了一些[示例程序](https://github.com/istio/istio/tree/master/samples)，但都有各种各样的不足。比如说[BookInfo](https://github.com/istio/istio/tree/master/samples/bookinfo)就是很好的一个应用。但是对我来说，它太冗长，服务太多，而且文档似乎专注于管理BookInfo应用程序，而不是从头构建。另外还有一个小一点的示例-[helloworld](https://github.com/istio/istio/tree/master/samples/helloworld)，但是它仅关注于自动伸缩。
 

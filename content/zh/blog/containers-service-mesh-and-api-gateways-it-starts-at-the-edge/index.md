@@ -15,7 +15,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-原文地址：<https://devops.com/containers-service-mesh-and-api-gateways-it-starts-at-the-edge/>。
+本文为翻译文章，[点击查看原文](https://devops.com/containers-service-mesh-and-api-gateways-it-starts-at-the-edge/)。
 
 [Docker](https://www.docker.com/) 和 [Kubernetes](https://kubernetes.io/) 为代表的容器技术炙手可热，熟知这一技术领域的用户，一定都知道下一个热点：Service Mesh，它承诺将微服务之间的内部网络通信均一化，并解决一系列监控、故障隔离等通用非功能性需求。底层的代理服务器技术是 Service Mesh 的立身之本，这种技术在 Service Mesh 之外，还能以 API 网关的形式在边缘为业务系统提供一系列的增强。
 

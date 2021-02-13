@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://www.allthingsdistributed.com/2019/03/redefining-application-communications-with-aws-app-mesh.html>。
+本文为翻译文章，[点击查看原文](https://www.allthingsdistributed.com/2019/03/redefining-application-communications-with-aws-app-mesh.html)。
 
 原文发表于2019年3月27日。
 

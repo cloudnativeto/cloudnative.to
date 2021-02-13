@@ -15,7 +15,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-原文地址：<https://medium.com/microsoftazure/canary-release-strategy-using-kubernetes-istio-helm-fb49c0406f07>。
+本文为翻译文章，[点击查看原文](https://medium.com/microsoftazure/canary-release-strategy-using-kubernetes-istio-helm-fb49c0406f07)。
 # 编者按
 
 本文阐述了如何使用Helm和Istio实现手动金丝雀发布。

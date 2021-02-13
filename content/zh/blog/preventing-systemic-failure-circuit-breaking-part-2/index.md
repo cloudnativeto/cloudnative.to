@@ -18,7 +18,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://glasnostic.com/blog/preventing-systemic-failure-circuit-breaking-part-2>。
+本文为翻译文章，[点击查看原文](https://glasnostic.com/blog/preventing-systemic-failure-circuit-breaking-part-2)。
 
 **编者按**
 

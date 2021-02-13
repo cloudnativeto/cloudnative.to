@@ -15,7 +15,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-原文地址：<https://blog.aspenmesh.io/blog/2018/01/building-istio-with-minikube-in-a-container-and-jenkins/>。
+本文为翻译文章，[点击查看原文](https://blog.aspenmesh.io/blog/2018/01/building-istio-with-minikube-in-a-container-and-jenkins/)。
 
 AspenMesh提供一种Istio的分布式架构支持，这意味着即使与上游Istio项目无关，我们也需要能够测试和修复Bug。为此我们已开发构建了我们自己的打包和测试基础架构方案。如果你对Istio的CI（持续集成）也感兴趣，请参考我们已经投入使用，可能有用但还没有提交给Circle CI或GKE的组件。
 

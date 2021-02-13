@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://blog.jdriven.com/2018/11/transcoding-grpc-to-http-json-using-envoy/>。
+本文为翻译文章，[点击查看原文](https://blog.jdriven.com/2018/11/transcoding-grpc-to-http-json-using-envoy/)。
 
 试用gRPC构建服务时要在.proto文件中定义消息（message）和服务（service）。gRPC支持多种语言自动生成客户端、服务端和DTO实现。在读完这篇文章后，你将了解到使用Envoy作为转码代理，使gRPC API也可以通过HTTP/JSON的方式访问。你可以通过github代码库中的Java代码来测试它。有关gRPC的介绍请参阅[blog.jdriven.com/2018/10/grpc-as-an-alternative-to-rest/](https://blog.jdriven.com/2018/10/grpc-as-an-alternative-to-rest/)。
 

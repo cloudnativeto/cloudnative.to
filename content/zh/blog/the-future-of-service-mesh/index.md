@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://blogs.vmware.com/opensource/2018/10/23/service-mesh-whats-next>。
+本文为翻译文章，[点击查看原文](https://blogs.vmware.com/opensource/2018/10/23/service-mesh-whats-next)。
 
 在服务网格系列的第一部分中，我们认为服务网格是微服务体系架构发展的必然和有益的结果。随着 Istio 1.0 的发布，我们在服务网格领域已经经过了一个重要的里程碑，在这个重要的的时间节点上，我们需要思考服务网格的未来将如何发展。
 

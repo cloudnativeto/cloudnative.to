@@ -15,7 +15,8 @@ keywords: ["service mesh","服务网格","Envoy","gloo"]
 type: "post"
 avatar: "/images/profile/default.jpg"
 ---
-原文地址：<https://blog.christianposta.com/envoy/guidance-for-building-a-control-plane-for-envoy-identify-components/>。
+
+本文为翻译文章，[点击查看原文](https://blog.christianposta.com/envoy/guidance-for-building-a-control-plane-for-envoy-identify-components/)。
 
 编者按
 

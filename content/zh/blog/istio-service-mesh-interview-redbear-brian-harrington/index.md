@@ -18,7 +18,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://jaxenter.com/istio-service-mesh-interview-harrington-148638.html>。
+本文为翻译文章，[点击查看原文](https://jaxenter.com/istio-service-mesh-interview-harrington-148638.html)。
 
 Istio正在引发大量的关注，特别是1.0版本发布后。但它是否成为Kubernetes之上的事实的服务网络标准呢？ 我们采访了Red Hat的Istio产品经理“红胡子”Brian Harrington，他的答案是肯定的。“有了Istio，部署很简单，与Kubernetes的集成也是浑然一体的。感觉就应该是这样。“
 

@@ -17,7 +17,7 @@ avatar: "/images/profile/default.jpg"
 
 ![](61411417ly1g1bke0q1bnj20m80bqwm6.jpg)
 
-原文地址：<https://medium.com/google-cloud/back-to-microservices-with-istio-part-2-authentication-authorization-b079f77358ac>。
+本文为翻译文章，[点击查看原文](https://medium.com/google-cloud/back-to-microservices-with-istio-part-2-authentication-authorization-b079f77358ac)。
 
 *这篇文章是使用Istio打造微服务*的第二部分，如果没有看第一篇的话，请先看[第一部分内容](http://www.servicemesher.com/blog/back-to-microservices-with-istio-p1/)，因为这篇博客是以第一篇博客为基础进行进一步深入的。
 

@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://dzone.com/articles/the-importance-of-control-planes-with-service-mesh>。
+本文为翻译文章，[点击查看原文](https://dzone.com/articles/the-importance-of-control-planes-with-service-mesh)。
 
 本文将带您了解为什么服务网格和边缘代理如此重要以及它们与持续交付的关系。
 

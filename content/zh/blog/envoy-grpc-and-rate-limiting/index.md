@@ -15,7 +15,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-原文地址：<https://venilnoronha.io/envoy-grpc-and-rate-limiting>。
+本文为翻译文章，[点击查看原文](https://venilnoronha.io/envoy-grpc-and-rate-limiting)。
 
 [Envoy](https://www.envoyproxy.io/)是专为Cloud Native应用设计的轻量级服务代理，也是为数不多的支持[gRPC](https://grpc.io/)的代理之一。gRPC是一个基于[HTTP/2](https://en.wikipedia.org/wiki/HTTP/2)的高性能RPC（[远程过程调用](https://en.wikipedia.org/wiki/Remote_procedure_call)）框架，支持多种语言。
 

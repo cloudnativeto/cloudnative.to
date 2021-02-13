@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://hackernoon.com/traffic-routing-between-fn-functions-using-fn-project-and-istio-fd56607913b8>。
+本文为翻译文章，[点击查看原文](https://hackernoon.com/traffic-routing-between-fn-functions-using-fn-project-and-istio-fd56607913b8)。
 
 在本文中，我将解释如何在 [Fn 函数](https://fnproject.io)之间使用 [Istio](http://istio.io) 服务网格实现基于版本的流量路由。
 

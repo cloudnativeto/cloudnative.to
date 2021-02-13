@@ -18,7 +18,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://jaxenter.com/microprofile-microservices-istio-151156.html>。
+本文为翻译文章，[点击查看原文](https://jaxenter.com/microprofile-microservices-istio-151156.html)。
 
 ## 编者按
 

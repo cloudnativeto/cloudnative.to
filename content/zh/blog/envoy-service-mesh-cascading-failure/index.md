@@ -17,7 +17,7 @@ avatar: "/images/profile/default.jpg"
 
 ![Envoy Lyft](006tNbRwgy1fuv5nathu3j318g0ii0uc.jpg)
 
-原文地址：<https://www.infoq.com/articles/envoy-service-mesh-cascading-failure>。
+本文为翻译文章，[点击查看原文](https://www.infoq.com/articles/envoy-service-mesh-cascading-failure)。
 
 ## 关键要点
 

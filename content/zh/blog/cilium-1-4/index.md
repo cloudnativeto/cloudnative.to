@@ -18,7 +18,7 @@ avatar: "/images/profile/default.jpg"
 
 ![发布概述](61411417ly1g05xmk6vqhj20jg08odga.jpg)
 
-原文地址：<https://cilium.io/blog/2019/02/12/cilium-14/>。
+本文为翻译文章，[点击查看原文](https://cilium.io/blog/2019/02/12/cilium-14/)。
 
 我们很高兴地宣布Cilium 1.4版本。 该版本引入了几项新功能以及优化和可扩展性工作。 重点包括增加全局服务，提供跨多个集群的Kubernetes服务路由、DNS请求/响应感知授权和可见性、透明加密（beta）、IPVLAN支持以获得更好的性能和延迟（beta）、与Flannel集成、GKE在COS上支持、基于AWS元数据的策略实施（alpha）以及优化内存和CPU使用的重要工作。
 

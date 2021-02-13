@@ -18,7 +18,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://thenewstack.io/myth-cloud-native-portability/>。
+本文为翻译文章，[点击查看原文](https://thenewstack.io/myth-cloud-native-portability/)。
 
 > 本文最初发表于2017年5月24日。
 

@@ -15,7 +15,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://istio.io/blog/2020/wasm-announce/>。
+本文为翻译文章，[点击查看原文](https://istio.io/blog/2020/wasm-announce/)。
 
 译者注：Istio的架构在1.5版本中发生了翻天覆地的变化，控制平面从微服务回归单体，pilot、citadel、galley等控制平面组件整合成了单一的istiod二进制文件，同时饱受诟病的mixer同志终于在1.5中deprecated了，社区呼声很高的Wasm以Proxy-Wasm plugins的方式登上历史舞台，官方承诺在1.6版本中提供标准的wasm插件配置API，甚至还推出了webassemblyhub这样的类似应用商店的服务，构建wasm plugin生态的野心不可谓不大。结合代理无关的ABI标准，只能说谷歌又在下一盘大棋。mixer的两大核心功能，check和report，分别使用Proxy-Wasm plugins和telemetry V2替代，曾经所谓的Mixer V2计划也渐渐烟消云散，湮没在历史尘埃中。本文翻译官方的技术博客，来一探本次的划时代变更proxy-wasm plugin的究竟。
 

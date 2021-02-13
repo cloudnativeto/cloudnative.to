@@ -18,7 +18,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://kublr.com/blog/implementing-a-service-mesh-with-istio-to-simplify-microservices-communication/>。
+本文为翻译文章，[点击查看原文](https://kublr.com/blog/implementing-a-service-mesh-with-istio-to-simplify-microservices-communication/)。
 
 > 本文为该教程的第1部分。
 

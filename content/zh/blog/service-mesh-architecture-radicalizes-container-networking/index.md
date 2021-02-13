@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://searchitoperations.techtarget.com/feature/Service-mesh-architecture-radicalizes-container-networking>。
+本文为翻译文章，[点击查看原文](https://searchitoperations.techtarget.com/feature/Service-mesh-architecture-radicalizes-container-networking)。
 
 > **容器是IT行业的超级英雄，它与服务网格是最佳组合。它们联手对抗混乱的网络管理。**
 

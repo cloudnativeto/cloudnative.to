@@ -43,7 +43,7 @@ core_member_title: 核心成员
 core_member_desc: 目前社区已经有一个初步建立的管委会成员小组来组织和筹划社区的发展及相关社区活动。我们渴望有更多的核心成员加入，一起来努力把上海云原生社区发展壮大，为云原生的普及撒播知识的种子，促进云原生落地，开花，结果。
 
 # LOGO PART
-logo_title: 社区Logo
+logo_title: 上海站徽章
 logo_short_desc: 上海站专属Logo融合上海市地标“东方明珠“，寓意立足上海这个国际化金融中心，以社区化的方式布道云原生。
 logo_detail_desc: "整体形象是融合上海著名地标建筑东方明珠，本意立足上海，叠加Kubernets、云等元素，寓意发挥上海云原生社区优势普及云原生技术并形成云原生技术的知识“辐射” 。<br/> "
 logo_image: "/images/city/shanghai/logo.png"

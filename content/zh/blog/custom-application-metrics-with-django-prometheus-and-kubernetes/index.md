@@ -14,7 +14,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-原文地址：<https://labs.meanpug.com/custom-application-metrics-with-django-prometheus-and-kubernetes/>。
+本文为翻译文章，[点击查看原文](https://labs.meanpug.com/custom-application-metrics-with-django-prometheus-and-kubernetes/)。
 
 ## 编者按
 

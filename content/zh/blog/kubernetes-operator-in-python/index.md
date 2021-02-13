@@ -18,7 +18,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://medium.com/flant-com/kubernetes-operator-in-python-451f2d2e33f3>。
+本文为翻译文章，[点击查看原文](https://medium.com/flant-com/kubernetes-operator-in-python-451f2d2e33f3)。
 
 ## 编者按
 

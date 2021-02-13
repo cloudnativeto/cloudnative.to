@@ -16,7 +16,7 @@ avatar: "/images/profile/default.jpg"
 
 ![第一届Kong Summit](006tNbRwgy1fvfula2g2aj31kw16k7jg.jpg)
 
-查看原文：<https://thenewstack.io/kong-at-1-0-a-service-control-platform/>。
+本文为翻译文章，[点击查看原文](https://thenewstack.io/kong-at-1-0-a-service-control-platform/)。
 
 _图片：Kong公司员工们在庆祝第一届Kong Summit举办（来自Kong官方Twitter）_
 

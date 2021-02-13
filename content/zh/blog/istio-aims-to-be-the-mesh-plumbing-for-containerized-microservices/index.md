@@ -20,7 +20,7 @@ avatar: "/images/profile/default.jpg"
 
 ![](0069RVTdly1fupfdbzbm4j30iu0altbn.jpg)
 
-查看原文：<https://www.nextplatform.com/2018/08/15/istio-aims-to-be-the-mesh-plumbing-for-containerized-microservices/>。
+本文为翻译文章，[点击查看原文](https://www.nextplatform.com/2018/08/15/istio-aims-to-be-the-mesh-plumbing-for-containerized-microservices/)。
 
 > 本文原标题为：Istio目标是成为容器化微服务的网状管道
 

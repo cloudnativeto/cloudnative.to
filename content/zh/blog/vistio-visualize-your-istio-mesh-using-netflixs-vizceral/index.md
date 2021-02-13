@@ -17,9 +17,7 @@ avatar: "/images/profile/default.jpg"
 
 ![vistio全局级别可视化视图](00704eQkgy1fshfooas1oj318g0wrq9y.jpg)
 
-> 原文：https://itnext.io/vistio-visualize-your-istio-mesh-using-netflixs-vizceral-b075c402e18e
->
-> 译者：[宋净超](https://jimmysong.io)
+本文为翻译文章，[点击查看原文](https://itnext.io/vistio-visualize-your-istio-mesh-using-netflixs-vizceral-b075c402e18e)。
 
 Vistio GitHub地址：https://github.com/nmnellis/vistio
 

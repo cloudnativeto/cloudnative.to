@@ -11,7 +11,7 @@ date: 2019-06-03T11:20:34+08:00
 image: "/images/blog/123.jpg"
 ---
 
-查看原文：<https://jpetazzo.github.io/2019/05/17/containers-microservices-service-meshes/>。
+本文为翻译文章，[点击查看原文](https://jpetazzo.github.io/2019/05/17/containers-microservices-service-meshes/)。
 
 ## 编者按
 

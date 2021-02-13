@@ -15,7 +15,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-原文地址：<https://medium.com/@ustela101/envoy-service-mesh-and-observability-best-practices-for-enterprises-6b72bbaa723c>。
+本文为翻译文章，[点击查看原文](https://medium.com/@ustela101/envoy-service-mesh-and-observability-best-practices-for-enterprises-6b72bbaa723c)。
 
 **编者按**
 

@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://dzone.com/articles/faas-vs-microservices>。
+本文为翻译文章，[点击查看原文](https://dzone.com/articles/faas-vs-microservices)。
 
 在做项目的云原生改造时我们可以采用微服务架构。DevOps和自动化构建两方面的成功经验对微服务的实践很有帮助。经过一段时间的实践，你可能会有将微服务架构推广到其他部门的想法。而你担心微服务本身的复杂性和分布式系统的高维护成本会让其他部门难以接受它。可能在我们想方设法解决微服务带来的问题时，总会有些人觉得这样做毫无意义。因为现在技术发展如此之快，总会出现更好的技术方案，你能保证自己在微服务领域所做的工作最后没有白费吗？
 

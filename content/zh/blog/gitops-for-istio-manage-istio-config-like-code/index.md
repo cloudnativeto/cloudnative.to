@@ -14,7 +14,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://www.weave.works/blog/gitops-for-istio-manage-istio-config-like-code>。
+本文为翻译文章，[点击查看原文](https://www.weave.works/blog/gitops-for-istio-manage-istio-config-like-code)。
 
 在今年的哥本哈根 Kubecon 大会上，Weaveworks 的 CEO Alexis Richardson 与 Varun Talwar（来自一家隐形创业公司）谈到了 GitOps 工作流程和 Istio。会后 Weaveworks 的 Stefan Prodan 进行了的演示，介绍如何使用 GitOps 上线和管理 Istio 的金丝雀部署。
 

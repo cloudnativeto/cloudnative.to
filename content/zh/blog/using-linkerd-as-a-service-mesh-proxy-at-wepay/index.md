@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://wecode.wepay.com/posts/using-l5d-as-a-service-mesh-proxy-at-wepay>。
+本文为翻译文章，[点击查看原文](https://wecode.wepay.com/posts/using-l5d-as-a-service-mesh-proxy-at-wepay)。
 
 在接下来的几个月中，我们将撰写一系列文章来记录从传统负载均衡器到[谷歌Kubernetes引擎](https://cloud.google.com/kubernetes-engine/)（GKE）之上服务网格的[WePay工程化](https://wecode.wepay.com/)之路。
 

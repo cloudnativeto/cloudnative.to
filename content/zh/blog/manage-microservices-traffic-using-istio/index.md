@@ -15,7 +15,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://developer.ibm.com/code/patterns/manage-microservices-traffic-using-istio/>。
+本文为翻译文章，[点击查看原文](https://developer.ibm.com/code/patterns/manage-microservices-traffic-using-istio/)。
 
 ## 说明
 

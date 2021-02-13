@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-原文地址：<https://blog.aspenmesh.io/blog/2018/03/service-mesh-architectures/>。
+本文为翻译文章，[点击查看原文](https://blog.aspenmesh.io/blog/2018/03/service-mesh-architectures/)。
 
 *注：这是介绍服务网格的软件架构方面系列的第二篇文章。要了解更多，请查看[服务网格之路](/blog/the-path-to-service-mesh/)。*
 

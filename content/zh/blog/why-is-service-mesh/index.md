@@ -15,7 +15,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://medium.com/@tak2siva/why-is-service-mesh-8ebcd6ed9eb5>。
+本文为翻译文章，[点击查看原文](https://medium.com/@tak2siva/why-is-service-mesh-8ebcd6ed9eb5)。
 
 除非你长期与世隔绝，否则你应该听说过Kubernetes，他已经称为高速发展的互联网公司的一条准则。最近又有一个热门话题--Service Mesh（服务网格），它已经被这些高速发展公司用来解决一些特定的问题。所以如果你想了解什么是Service Mesh，接下来我可以给你一个更好的解释。
 
@@ -145,4 +145,4 @@ Envoy拥有许多方便的功能
 
 所以通过从服务中抽象出整个网络，使用Envoy作为SideCar形成网格组成数据平面，允许我们控制上面列出的能力。
 
-欢迎反馈，谢谢！
+欢迎反馈，谢谢！

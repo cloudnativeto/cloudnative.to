@@ -18,7 +18,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://caylent.com/kubernetes-autoscaling>。
+本文为翻译文章，[点击查看原文](https://caylent.com/kubernetes-autoscaling)。
 
 ## 编者按
 

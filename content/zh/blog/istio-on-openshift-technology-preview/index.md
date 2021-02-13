@@ -17,7 +17,7 @@ avatar: "/images/profile/default.jpg"
 
 ![](006tNbRwgy1fvlunzpjrsj30lq0c00v0.jpg)
 
-查看原文：<https://blog.openshift.com/istio-on-openshift/>。
+本文为翻译文章，[点击查看原文](https://blog.openshift.com/istio-on-openshift/)。
 
 Red Hat的OpenShift服务网格技术预览版上线，基于Istio。
 

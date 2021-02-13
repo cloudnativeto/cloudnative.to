@@ -18,9 +18,9 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-原文地址：<https://medium.com/solo-io/guidance-for-building-a-control-plane-to-manage-envoy-proxy-at-the-edge-as-a-gateway-or-in-a-mesh-badb6c36a2af>。
+本文为翻译文章，[点击查看原文](https://medium.com/solo-io/guidance-for-building-a-control-plane-to-manage-envoy-proxy-at-the-edge-as-a-gateway-or-in-a-mesh-badb6c36a2af)。
 
-\[**编者案**\]
+### 编者案
 
 > Envoy 作为最受欢迎的早期网络组件，现在已经可以说是云原生架构中的通用数据平面。本文作者指引我们更方便的使用Envoy，及其定制控制平面，作者通过收集到的数据给出定制控制平面不同的意见，非常中肯，后续系列会更深入，欢迎关注该系列文章。
 

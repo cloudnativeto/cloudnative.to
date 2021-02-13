@@ -13,7 +13,7 @@ categories: ["service mesh"]
 keywords: ["service mesh","istio","kubernetes","监控"]
 ---
 
-原文地址：<https://www.circonus.com/2018/06/comprehensive-container-based-service-monitoring-with-kubernetes-and-istio/>。
+本文为翻译文章，[点击查看原文](https://www.circonus.com/2018/06/comprehensive-container-based-service-monitoring-with-kubernetes-and-istio/)。
 
 运营容器化基础设施给我们带来了一系列新的挑战。您需要对容器进行测试，评估您的 API 端点性能，并确定您的基础架构中的不良的组件。Istio 服务网格可在不更改代码的情况下实现 API 的检测，并且可以自由的设置服务延迟。但是，我们该如何理解所有这些数据？用数学的方式，对，就是这样。
 

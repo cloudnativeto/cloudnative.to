@@ -17,7 +17,7 @@ avatar: "/images/profile/default.jpg"
 
 ![Cilium Kubernetes](006tNbRwly1fwqjul334zj30je07p0t1.jpg)
 
-原文地址：<https://cilium.io/blog/2018/10/23/cilium-13-envoy-go/>。
+本文为翻译文章，[点击查看原文](https://cilium.io/blog/2018/10/23/cilium-13-envoy-go/)。
 
 我们很高兴地宣布Cilium 1.3发布了。这个版本加入了几个新特性。主要的亮点是实现了Cassandra和带有策略执行能力的Memcached协议解析器，作为[Envoy](https://github.com/envoyproxy/envoy)的Go语言扩展包。
 

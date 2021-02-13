@@ -15,7 +15,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://thenewstack.io/distributed-tracing-istio-and-your-applications/>。
+本文为翻译文章，[点击查看原文](https://thenewstack.io/distributed-tracing-istio-and-your-applications/)。
 
 在微服务领域，分布式跟踪正逐渐成为调试和跟踪应用程序最重要的依赖工具。
 

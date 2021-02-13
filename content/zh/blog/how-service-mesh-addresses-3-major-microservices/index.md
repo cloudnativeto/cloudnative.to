@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://dzone.com/articles/how-service-mesh-addresses-3-major-microservices-c>。
+本文为翻译文章，[点击查看原文](https://dzone.com/articles/how-service-mesh-addresses-3-major-microservices-c)。
 
 **我们都知道微服务会增加复杂性。 了解服务网络如何解决这一问题和其他挑战。**
 

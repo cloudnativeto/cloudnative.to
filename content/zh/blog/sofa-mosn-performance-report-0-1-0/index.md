@@ -16,7 +16,7 @@ avatar: "/images/profile/default.jpg"
 
 以下的的性能报告为 SOFAMosn 0.1.0 在做 Bolt 与 HTTP1.x 协议的纯 TCP 转发上与 envoy 的一些性能对比数据，主要表现在 QPS、RTT、失败率/成功率等。
 
-本文原文来自：https://github.com/alipay/sofa-mosn/blob/master/docs/reference/PerformanceReport.md
+本文原文来自 [GitHub](https://github.com/sofastack/mosn/blob/master/docs/reference/PerformanceReport.md)。
 
 这里需要强调的是，为了提高 SOFAMosn 的转发性能，在 0.1.0 版本中，我们做了如下的一些优化手段：
 

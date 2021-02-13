@@ -18,7 +18,7 @@ avatar: "/images/profile/default.jpg"
 
 ![](007ackX3ly1frux62q06sj333415oqv5.jpg)
 
-查看原文：<https://blog.aspenmesh.io/blog/2018/03/the-path-to-service-mesh/>。
+本文为翻译文章，[点击查看原文](https://blog.aspenmesh.io/blog/2018/03/the-path-to-service-mesh/)。
 
 当我们谈论服务网格的时候，有几个问题经常被提及。这些问题的范围覆盖从简单的了解服务网格的历史，到产品和架构相关的比较深入的技术问题。
 

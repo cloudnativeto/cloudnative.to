@@ -15,7 +15,8 @@ keywords: ["service mesh","istio","telemetry"]
 type: "post"
 avatar: "/images/profile/default.jpg"
 ---
-查看原文：<https://banzaicloud.com/blog/istio-telemetry/>。
+
+本文为翻译文章，[点击查看原文](https://banzaicloud.com/blog/istio-telemetry/)。
 
 **编者按**
 

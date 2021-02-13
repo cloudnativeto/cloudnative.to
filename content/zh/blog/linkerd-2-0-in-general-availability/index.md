@@ -17,7 +17,7 @@ avatar: "/images/profile/default.jpg"
 
 ![Linkerd](006tNbRwgy1fven4mbx0kj30db02xmxa.jpg)
 
-查看原文：<https://www.cncf.io/blog/2018/09/18/linkerd-2-0-in-general-availability/>。
+本文为翻译文章，[点击查看原文](https://www.cncf.io/blog/2018/09/18/linkerd-2-0-in-general-availability/)。
 
 今天，[云原生计算基金会](https://www.cncf.io/)（CNCF）和[Linkerd的维护者](https://linkerd.io/)很高兴地宣布Linkerd 2.0 GA发布。
 

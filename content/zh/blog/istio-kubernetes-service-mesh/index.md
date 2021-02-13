@@ -18,7 +18,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://blog.aquasec.com/istio-kubernetes-service-mesh>。
+本文为翻译文章，[点击查看原文](https://blog.aquasec.com/istio-kubernetes-service-mesh)。
 
 2017年5月，谷歌面向大规模容器化应用管理的开源项目Istio正式发布了。此后经过快速的发展，于2018年7月发布了里程碑式的1.0版本。本文的主要内容包括：Istio是什么、Istio的工作原理以及落地方式。在本系列的后续文章中我们还会深入了解Istio的安全和流量管理功能。
 

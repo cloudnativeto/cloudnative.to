@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-原文地址：<https://medium.com/@michael_87395/benchmarking-istio-linkerd-cpu-c36287e32781>。
+本文为翻译文章，[点击查看原文](https://medium.com/@michael_87395/benchmarking-istio-linkerd-cpu-c36287e32781)。
 
 ### 编者按
 

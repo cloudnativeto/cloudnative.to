@@ -15,7 +15,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-原文地址：<https://dzone.com/articles/design-patterns-for-microservices-1>。
+本文为翻译文章，[点击查看原文](https://dzone.com/articles/design-patterns-for-microservices-1)。
 
 一篇杂烩文，虽然结构比较混乱，但是对微服务相关概念的介绍还是较为全面的。
 

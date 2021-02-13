@@ -15,7 +15,7 @@ categories: ["service mesh"]
 keywords: ["service mesh","服务网格","envoy"]
 ---
 
-原文地址：<https://blog.envoyproxy.io/envoy-threading-model-a8d44b922310>。
+本文为翻译文章，[点击查看原文](https://blog.envoyproxy.io/envoy-threading-model-a8d44b922310)。
 
 > 编者注：原文于 2017 年 7 月 30 日发布于 Envoy 博客上。
 
@@ -115,12 +115,3 @@ Envoy 的线程模型旨在支持编程的简单性和大规模并行性，但�
 正如我在 [Twitter](https://twitter.com/mattklein123/status/872291252695293952) 上简要提到的那样，该设计也适合在 DPDK 之类的完整用户模式网络堆栈上运行，这可能导致商用服务器在执行完整的 L7 处理时每秒处理数百万个请求。看看未来几年建成什么会非常有趣。
 
 最后一个快速评论：我多次被问到为什么我们为 Envoy 选择 C++。 原因仍然是它仍然是唯一广泛部署的生产级语言，使用该语言中可以构建本文中描述的架构。 C++ 当然不适合所有项目，甚至许多项目，但对于某些用例，它仍然是完成工作的唯一工具。
-
-### 代码链接
-
-本文中讨论的一些接口和实现头的一些链接：
-
-- [https://github.com/lyft/envoy/blob/master/include/envoy/thread\_local/thread\_local.h](https://github.com/lyft/envoy/blob/master/include/envoy/thread_local/thread_local.h)
-- [https://github.com/lyft/envoy/blob/master/source/common/thread\_local/thread\_local_impl.h](https://github.com/lyft/envoy/blob/master/source/common/thread_local/thread_local_impl.h)
-- [https://github.com/lyft/envoy/blob/master/include/envoy/upstream/cluster_manager.h](https://github.com/lyft/envoy/blob/master/include/envoy/upstream/cluster_manager.h)
-- [https://github.com/lyft/envoy/blob/master/source/common/upstream/cluster\_manager\_impl.h](https://github.com/lyft/envoy/blob/master/source/common/upstream/cluster_manager_impl.h)

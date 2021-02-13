@@ -17,7 +17,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://medium.com/@dnivra26/service-mesh-with-envoy-101-e6b2131ee30b>。
+本文为翻译文章，[点击查看原文](https://medium.com/@dnivra26/service-mesh-with-envoy-101-e6b2131ee30b)。
 
 本文将简单的讨论下我们经常听到的 “Service Mesh” 是什么，以及如何使用 “Envoy” 构建服务网格(Service Mesh)。
 

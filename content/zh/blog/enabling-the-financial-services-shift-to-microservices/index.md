@@ -17,7 +17,7 @@ avatar: "/images/profile/default.jpg"
 
 ![](https://raw.githubusercontent.com/servicemesher/website/master/content/blog/enabling-the-financial-services-shift-to-microservices/0069RVTdgy1fu2n6mulo0j30p70cdmzh.jpg)
 
-原文地址：<https://aspenmesh.io/2018/08/enabling-the-financial-services-shift-to-microservices/>。
+本文为翻译文章，[点击查看原文](https://aspenmesh.io/2018/08/enabling-the-financial-services-shift-to-microservices/)。
 
 金融服务公司通常都拥有沉重的历史包袱，当然对于想要进入这个行业的新秀来说也算是商业壁垒，因为他们很难突破低利润和严苛的监管规则。曾占主导地位的大型金融企业的市场份额正面临着比起小巧、灵活的小金融科技公司的蚕食。这些小科技公司技术嗅觉灵敏、专业、注重客户用户体验。为了保持良好的竞争优势，金融服务公司都计划将自己原有的繁杂的技术架构向更具适应性的方向转变。最近对金融机构的一项调查发现大约85％的人认为他们的核心技术过于僵化和缓慢。因此，预计在未来五年内约有80％的金融机构打算替换其核心银行系统架构。
 

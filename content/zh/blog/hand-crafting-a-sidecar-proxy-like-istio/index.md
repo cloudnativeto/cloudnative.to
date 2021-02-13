@@ -18,7 +18,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-原文地址：<https://venilnoronha.io/hand-crafting-a-sidecar-proxy-like-istio>。
+本文为翻译文章，[点击查看原文](https://venilnoronha.io/hand-crafting-a-sidecar-proxy-like-istio)。
 
 Sidecar代理模式是一个重要的概念，它允许[Istio](https://istio.io/)为[服务网格](https://en.wikipedia.org/wiki/Microservices#Service_Mesh)中运行的服务提供路由、度量、安全和其他功能。在这篇文章中，我将解释为Istio提供支持的关键技术，同时还将向您展示一种构建简单的HTTP流量嗅探sidecar代理的方法。
 

@@ -15,7 +15,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://www.infoq.com/articles/vp-microservices-communication-governance-using-service-mesh>。
+本文为翻译文章，[点击查看原文](https://www.infoq.com/articles/vp-microservices-communication-governance-using-service-mesh)。
 
 ### 关键点
 

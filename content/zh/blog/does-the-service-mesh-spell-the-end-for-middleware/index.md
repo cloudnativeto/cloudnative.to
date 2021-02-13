@@ -15,7 +15,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://www.cloudops.com/2018/09/does-the-service-mesh-spell-the-end-for-middleware/>。
+本文为翻译文章，[点击查看原文](https://www.cloudops.com/2018/09/does-the-service-mesh-spell-the-end-for-middleware/)。
 
 在Istio和相关技术持续获得增势之时，中间件在Service Mesh中的地位正在逐渐减弱。尽管它们都可以用来监管不同应用和服务之间的通信，但是在运维和范式方面却大不相同。在今天以容器为中心的世界里，面向服务的架构体系盛行，中间件会变得无关紧要吗？
 

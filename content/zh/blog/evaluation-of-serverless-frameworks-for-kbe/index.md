@@ -18,7 +18,7 @@ avatar: "/images/profile/default.jpg"
 
 ![](61411417ly1fwtshzvvdnj20m808ct8v.jpg)
 
-原文地址：<https://rancher.com/blog/2018/2018-04-23-evaluation-of-serverless-frameworks-for-kbe/>。
+本文为翻译文章，[点击查看原文](https://rancher.com/blog/2018/2018-04-23-evaluation-of-serverless-frameworks-for-kbe/)。
 
 Rancher 1.6和Rancher 2.0底层容器编排引擎的术语和概念略微有所不同。想要了解这些差异就需要先了解Cattle和Kubernetes之间的根本区别。对于使用过Cattle或者Kubernetes的新手来说，这篇文章比较适合您。同时你也可以从这里获取到容器编排引擎 Cattle 到 Kubernetes 的对应关系词汇表cheatsheet。
 

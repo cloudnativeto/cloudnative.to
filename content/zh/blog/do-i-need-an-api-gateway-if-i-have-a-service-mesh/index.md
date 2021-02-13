@@ -14,7 +14,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://blog.christianposta.com/microservices/do-i-need-an-api-gateway-if-i-have-a-service-mesh/>。
+本文为翻译文章，[点击查看原文](https://blog.christianposta.com/microservices/do-i-need-an-api-gateway-if-i-have-a-service-mesh/)。
 
 ## 编者按
 

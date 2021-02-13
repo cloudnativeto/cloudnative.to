@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-原文地址：<https://dzone.com/users/468979/rajesh.bhojwani.html>。
+本文为翻译文章，[点击查看原文](https://dzone.com/users/468979/rajesh.bhojwani.html)。
 
 在我的上一篇博客中，我谈到了[微服务的设计模式](https://dzone.com/articles/design-patterns-for-microservices)。现在我想更深入地探讨微服务架构中最重要的模式：微服务之间的相互通信。我仍然记得我们过去开发单一应用时通讯是一项艰巨的任务。在那时我们必须小心的设计数据库表和对象模型映射之间的关系。而现在在微服务中，我们已经将它们分解为独立的服务，并创建网格来彼此通信。让我们来谈谈迄今为止为解决这个问题而发展起来的所有通信方式和模式。
 

@@ -15,7 +15,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-原文地址：<https://blog.christianposta.com/challenges-of-adopting-service-mesh-in-enterprise-organizations/>。
+本文为翻译文章，[点击查看原文](https://blog.christianposta.com/challenges-of-adopting-service-mesh-in-enterprise-organizations/)。
 
 ## 编者按
 

@@ -15,7 +15,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-原文地址：<https://blog.envoyproxy.io/envoy-and-grpc-web-a-fresh-new-alternative-to-rest-6504ce7eb880>。
+本文为翻译文章，[点击查看原文](https://blog.envoyproxy.io/envoy-and-grpc-web-a-fresh-new-alternative-to-rest-6504ce7eb880)。
 
 [gRPC-Web](https://www.npmjs.com/package/grpc-web)作为gRPC的JavaScript客户端库，使Web应用可以不用自定义HTTP服务器为中介，直接通过Envoy与gRPC服务交互。经过了约两年的活跃开发，上周（2018年10月底，译者注）gRPC团队在CNCF博客宣布gRPC-Web的GA版本正式发布。
 

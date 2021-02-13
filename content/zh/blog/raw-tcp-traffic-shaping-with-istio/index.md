@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://venilnoronha.io/raw-tcp-traffic-shaping-with-istio-1.1.0>。
+本文为翻译文章，[点击查看原文](https://venilnoronha.io/raw-tcp-traffic-shaping-with-istio-1.1.0)。
 
 [Istio](https://istio.io/)通过[虚拟服务](https://istio.io/docs/reference/config/istio.networking.v1alpha3/#VirtualService), [目标规则](https://istio.io/docs/reference/config/istio.networking.v1alpha3/#DestinationRule), [Gateway](https://istio.io/docs/reference/config/istio.networking.v1alpha3/#Gateway)等概念提供了复杂的路由机制。Istio 1.0通过[加权路由定义](https://istio.io/docs/tasks/traffic-management/traffic-shifting/#apply-weight-based-routing)启用了HTTP流量转移。我提交的[Envoy](https://github.com/envoyproxy/envoy/pull/4430) 和[Istio](https://github.com/istio/istio/pull/9112)的pull request为TCP/TLS服务提供了类似的特性。这一特性已经在Envoy [1.8.0](https://www.envoyproxy.io/docs/envoy/latest/intro/version_history#oct-4-2018)中发布了。Istio中的这一特性也会在即将发布的[1.1.0](https://github.com/istio/istio/releases/)版本中提供使用。
 

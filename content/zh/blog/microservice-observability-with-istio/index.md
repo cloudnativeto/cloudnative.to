@@ -20,7 +20,7 @@ avatar: "/images/profile/default.jpg"
 
 ![](006tNc79gy1fvmzdkbqh3j30rs0fmta7.jpg)
 
-查看原文：<https://www.trulia.com/blog/tech/microservice-observability-with-istio/>。
+本文为翻译文章，[点击查看原文](https://www.trulia.com/blog/tech/microservice-observability-with-istio/)。
 
 > [Trulia](https://www.trulia.com)是一个多功能的房地产网站，为您提供有关待售房屋、出租公寓、邻里洞察、市场和趋势的本地独家新闻，以帮助您确切了解房屋购买、出售或出租的内容、地点和时间。您还可以找到房地产经纪人，查看最近售出的房屋的价格，并查看您所在社区的房屋价值。
 

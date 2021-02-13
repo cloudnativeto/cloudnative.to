@@ -17,8 +17,7 @@ keywords: ["service mesh","cilium","BPF"]
 
 ![](0069RVTdly1fu84zi0tigj30td0gk75e.jpg)
 
-查看原文：<https://cilium.io/blog/2018/08/07/istio-10-cilium/>。
-
+本文为翻译文章，[点击查看原文](https://cilium.io/blog/2018/08/07/istio-10-cilium/)。
 
 8月1日Istio 1.0 发布，Cilium社区感谢所有Istio贡献者为此付出的巨大努力。我们很幸运能够参与社区活动，为Istio做出贡献，并帮助一些用户通过Istio和Cilium进行生产部署。如果您有兴趣在深入了解技术细节之前了解Istio + Cilium的用户故事，请考虑阅读HP FitStation团队（最大的Cilium + Istio用户之一）发布的以下Istio博客: [Istio是惠普FitStation平台的游戏规则的改变者](https://istio.io/blog/2018/hp/)。
 

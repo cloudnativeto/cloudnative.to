@@ -14,7 +14,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-原文地址：<https://www.hashicorp.com/blog/consul-1-2-service-mesh>。
+本文为翻译文章，[点击查看原文](https://www.hashicorp.com/blog/consul-1-2-service-mesh)。
 
 本文译自 HashiCorp 官网关于 Consul 1.2 支持 Service Mesh 发布的博客文章。
 

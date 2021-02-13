@@ -18,7 +18,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://thenewstack.io/how-to-map-cloud-native-workloads-to-kubernetes-controllers/>。
+本文为翻译文章，[点击查看原文](https://thenewstack.io/how-to-map-cloud-native-workloads-to-kubernetes-controllers/)。
 
 Kubernetes [不仅仅是一个容器管理工具](https://thenewstack.io/how-kubernetes-is-transforming-into-a-universal-scheduler/)。它是一个平台，旨在处理包装在任意数量的容器和组合中的各种工作负载。Kubernetes内置了多个控制器，可映射到云原生架构的各个层。
 

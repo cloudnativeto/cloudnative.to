@@ -16,7 +16,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-查看原文：<https://www.nginx.com/blog/do-i-need-a-service-mesh/>。
+本文为翻译文章，[点击查看原文](https://www.nginx.com/blog/do-i-need-a-service-mesh/)。
 
 “服务网格”是一个热点话题。似乎去年每一个与容器相关的大会都包含了一个“服务网格”议题，世界各地有影响力的业内人士都在谈论这项革命性的技术带来的好处。
 
