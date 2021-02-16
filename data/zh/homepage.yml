@@ -4,13 +4,13 @@ slider:
   slider_item:
      - subtitle : ""
        title : "云原生社区 Meetup 第二期·北京站"
-       content : "12 月 20 日，北京国贸见！本次 meetup 将为大家带来云原生监控、存储、微服务与服务网格等主题的精彩分享，更有《云原生操作系统 Kubernetes》作者现场签售，欢迎大家报名参加！"
-       bg_image : "images/slider/banner-2.jpg"
+       content : "12 月 20 日，北京国贸，本次 meetup 将为大家带来云原生监控、存储、微服务与服务网格等主题的精彩分享，更有《云原生操作系统 Kubernetes》作者现场签售。"
+       bg_image : "images/slider/beijing.jpg"
        animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
        button:
          enable : true
-         label : "立即报名"
-         link : "http://hdxu.cn/u0VSQ"
+         label : "查看回顾"
+         link : "https://i.cloudnative.to/academy/meetup/02-beijing"
          animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
      - subtitle : ""
        title : "云原生社区 Meetup 第一期·上海站"
@@ -55,8 +55,8 @@ about:
   title : "云原生学院"
   subtitle : "课程、直播、兴趣小组"
   content : "云原生学院由云原生社区主办，致力于云原生知识的传播和普及。云原生学院定期举办线上直播活动， 组织 SIG（特别兴趣小组），直播分享云原生领域的前沿知识和动向。欢迎关注我们的 [Bilibili 频道](https://space.bilibili.com/515485124)和[直播间](https://live.bilibili.com/22230973)。"
-  bg_image : "images/backgrounds/about-us-bg.png"
-  image : "images/about/about-us.png"
+  #bg_image : "images/backgrounds/about-us-bg.png"
+  image : "images/about/about-us.jpg"
   button:
     enable : true
     label : "进入学院"
@@ -173,7 +173,7 @@ cta:
 ################################# blog ################################################
 blog:
   enable : true
-  subtitle : "社区生产内容"
+  subtitle : "云原生社区博客"
   title : "博客"
   find_all: "查看全部"
   # blog post comes from "content/*/blog" folder
@@ -228,6 +228,9 @@ sponsor:
         - image: "/images/sponsors/chaosmesh.png"
           url: "https://chaos-mesh.org"
           name: "Chaos Mesh"
+        - image: "/images/sponsors/kubevela.png"
+          url: "https://kubevela.io"
+          name: "KubeVela"
     org:
       title: "开源社区"
       list:
@@ -248,7 +251,7 @@ sponsor:
           name: "Tetrate"
         - image: "/images/sponsors/pingcap.png"
           url: "https://pingcap.com/"
-          name: "TiDB"
+          name: "PingCAP"
         - image: "/images/sponsors/stream_native.png"
           url: "https://streamnative.io/"
           name: "StreamNative"
@@ -261,9 +264,12 @@ sponsor:
         - image: "/images/sponsors/aliyun.png"
           url: "https://www.aliyun.com/"
           name: "阿里云"
-    media:
-    media:
-    media:
+        - image: "/images/sponsors/tencent-cloud.jpg"
+          url: "https://cloud.tencent.com/"
+          name: "腾讯云"
+        - image: "/images/sponsors/netease-shufan.png"
+          url: "https://www.163yun.com/"
+          name: "网易数帆"
     media:
       title: "合作机构"
       list:
@@ -282,7 +288,12 @@ sponsor:
         - image: "/images/sponsors/njsd.jpg"
           url: "https://t.1yb.co/9ty3"
           name: "NJSD"
-
+        - image: "/images/sponsors/broadview.jpg"
+          url: "http://www.broadview.com.cn/"
+          name: "电子工业出版社博文视点"
+        - image: "/images/sponsors/huazhang.jpg"
+          url: "http://www.hzbook.com/"
+          name: "机械工业出版社华章图书"
 
 ################################# contact ################################################
 contact:
@@ -290,4 +301,4 @@ contact:
   title : "联系信息"
   image : "images/wechat-qrcode.png"
   description : "关注云原生社区微信公众号，加入社区并获取最新资讯。"
-  address: "[北京](/city/beijing)|[上海](/city/shanghai)|[成都](https://github.com/cloudnativeto/community/issues/58)|[深圳](https://github.com/cloudnativeto/community/issues/60)|[杭州](https://github.com/cloudnativeto/community/issues/53)|[广州](https://github.com/cloudnativeto/community/issues/59)|[武汉](https://github.com/cloudnativeto/community/issues/55)|[南京](/city/nanjing)|[西安](https://github.com/cloudnativeto/community/issues/61)|[大连](/city/dalian)|[长沙](https://github.com/cloudnativeto/community/issues/52)|[苏州](https://github.com/cloudnativeto/community/issues/66)|[珠海](https://github.com/cloudnativeto/community/issues/67)|[重庆](https://github.com/cloudnativeto/community/issues/78)|[济南](https://github.com/cloudnativeto/community/issues/82)|[厦门](https://github.com/cloudnativeto/community/issues/83)|[无锡](https://github.com/cloudnativeto/community/issues/86)|[青岛](https://github.com/cloudnativeto/community/issues/91)|[郑州](https://github.com/cloudnativeto/community/issues/103)|[合肥](https://github.com/cloudnativeto/community/issues/107)"
+  address: "[北京](/city/beijing)|[上海](/city/shanghai)|[成都](https://github.com/cloudnativeto/community/issues/58)|[深圳](/city/shenzhen)|[杭州](/city/hangzhou/)|[广州](https://github.com/cloudnativeto/community/issues/59)|[武汉](https://github.com/cloudnativeto/community/issues/55)|[南京](/city/nanjing)|[西安](https://github.com/cloudnativeto/community/issues/61)|[大连](/city/dalian)|[长沙](https://github.com/cloudnativeto/community/issues/52)|[苏州](https://github.com/cloudnativeto/community/issues/66)|[珠海](https://github.com/cloudnativeto/community/issues/67)|[重庆](https://github.com/cloudnativeto/community/issues/78)|[济南](https://github.com/cloudnativeto/community/issues/82)|[厦门](https://github.com/cloudnativeto/community/issues/83)|[无锡](https://github.com/cloudnativeto/community/issues/86)|[青岛](https://github.com/cloudnativeto/community/issues/91)|[郑州](https://github.com/cloudnativeto/community/issues/103)|[合肥](https://github.com/cloudnativeto/community/issues/107)"

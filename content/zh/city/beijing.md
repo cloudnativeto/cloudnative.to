@@ -7,8 +7,8 @@ longitude: 116.404
 latitude: 39.915
 link: "/city/beijing/"
 type: "city"
-layout: "beijing"
-site_manager: "罗广明、王殿进"
+layout: "shanghai"
+site_manager: "罗广明、王殿进、王福印"
 city_small_logo: "/images/city/beijing_small_logo.png"
 bg_image: "/images/backgrounds/city-banner-beijing.jpg"
 
@@ -16,16 +16,21 @@ bg_image: "/images/backgrounds/city-banner-beijing.jpg"
 # CORE MEMBERS
 core_members:
   - name: "罗广明"
-    image: "/images/city/beijing/members/luoguangming.png"
+    image: "/images/city/beijing/members/luoguangming.jpg"
+    tag: "罗广明，云原生社区管委会成员，百度云原生技术专家、云原生技术布道师，ServiceMesher 社区管委会成员，Istio Handbook 作者之一，对 Spring Cloud、Istio 以及微服务中间件有深入研究。"
   - name: "王殿进"
-    image: "/images/city/beijing/members/wangdianjin.png"
-core_member_title: 核心成员
-core_member_desc: 社区由核心成员罗广明、王殿进、王福印来组织与筹划社区发展与线下活动等事宜。我们热爱开源事业，热爱云原生技术。希望有更多人加入社区，一起组织线下活动，在北京推广云原生技术。
+    image: "/images/city/beijing/members/wangdianjin.jpg"
+    tag: "王殿进，StreamNative 社区负责人。"
+  - name: "王福印"
+    image: "/images/city/beijing/members/wangfuyin.jpg"
+    tag: "王福印"
+core_member_title: "核心成员"
+core_member_desc: "社区由核心成员罗广明、王殿进、王福印来组织与筹划社区发展与线下活动等事宜。我们热爱开源事业，热爱云原生技术。希望有更多人加入社区，一起组织线下活动，在北京推广云原生技术。"
 
 
 # LOGO PART
-logo_title: 社区 Logo
-logo_short_desc: 北京站 Logo 来自于天坛与 Kubernetes Logo 的融合。
+logo_title: 北京站徽章
+logo_short_desc: 北京站徽章来自于天坛与 Kubernetes Logo 的融合。
 logo_detail_desc: 天坛是北京的标志建筑，不仅具有丰厚的历史底蕴，还具有精神的象征。如今如火如荼的云原生技术也正值青春，活力尽现，两者结合相得益彰。我们社区将连接沟通北京的 IT 与云原生，共同促进云原生的落地与繁荣。"
 logo_image: "/images/city/beijing/logo.png"
 
@@ -35,10 +40,13 @@ activities:
   - name: 2020-08-30 成员线下聚会
     images: 
       - "/images/city/beijing/activities/2020-08-31.jpg"
+  - name: 2020-12-20 云原生社区 meetup 第二期北京站
+    url: https://i.cloudnative.to/academy/meetup/02-beijing
+    images:
+      - "/images/city/beijing/activities/2020-12-20.jpg"
 
 # JOINT US
 join_us_title: "加入我们"
-join_us_desc: "如果你也想参与到云原生社区，一起交流，学习。 如果你想为北京云原生社区的强大贡献一份自己的力量，`请扫码关注下方微信公众号`。 如需加入微信群，请通过公众号后台回复「北京站」, 站长将邀请您加入北京站群。"
-
+join_us_desc: "如果你也想参与到云原生社区，一起交流，学习。 如果你想为北京云原生社区的强大贡献一份自己的力量，请扫码关注下方微信公众号。 如需加入微信群，请通过公众号后台回复`北京站`， 站长将邀请您加入北京站群。"
 
 ---

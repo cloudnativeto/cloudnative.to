@@ -1,8 +1,9 @@
 ########################### Default configuration ######################
 baseURL = "https://cloudnative.to/"
 title = "云原生社区"
+homePageTitle = "云原生社区 | Cloud Native Community(China)"
 # post pagination
-paginate = "6"
+paginate = "10"
 # post excerpt
 summaryLength = "10"
 # disable language
@@ -99,6 +100,18 @@ URL = "https://i.cloudnative.to/oam/"
 weight = 7
 
 [[menu.main]]
+parent = "Community"
+name = "Stability SIG"
+URL = "https://i.cloudnative.to/stability/"
+weight = 8
+
+[[menu.main]]
+parent = "Community"
+name = "Observability SIG"
+URL = "https://i.cloudnative.to/observability/"
+weight = 9
+
+[[menu.main]]
 name = "Blog"
 URL = "blog"
 weight = 3
@@ -140,6 +153,7 @@ logo = "images/logo.png"
 logo_footer = "images/logo-alt.png"
 # top header
 top_header = false
+homePageTitle = "云原生社区 | Cloud Native Community(China)"
 # Meta data
 description = "云原生社区是一个中立的云原生终端用户社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，旨在推广云原生技术，构建开发者生态。"
 author = " 云原生社区"
@@ -207,7 +221,7 @@ link = "https://github.com/cloudnativeto"
 [[params.social]]
 icon = "fa-wechat"
 # change the link after the public announcement
-link = "/contact"
+link = "https://mp.weixin.qq.com/s/vWlSdzz2MNdXRr0sd2-LFg"
 
 [[params.social]]
 icon = "fa-envelope"
@@ -228,7 +242,7 @@ weight = 2
 # footer content
 footer_content = "Cloud Native Community is an neutral, cloud native end user community founded on May 12, 2020 by CNCF ambassadors and open source opinion leaders to promote cloud native technologies and build a developer ecosystem."
 # copyright
-copyright = "Copyright &copy; 2020 Cloud Native Community"
+copyright = "Copyright &copy; {year} Cloud Native Community"
 
 
 ################################### Chinese language #####################################
@@ -241,7 +255,7 @@ weight = 1
 # footer content
 footer_content = "云原生社区是一个中立的云原生终端用户社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，旨在推广云原生技术，构建开发者生态。"
 # copyright
-copyright = "Copyright &copy; 2020 云原生社区"
+copyright = "Copyright &copy; {year} 云原生社区"
 
 ########################### Chinese navigation ################################
 # main menu
@@ -306,6 +320,18 @@ parent = "兴趣小组"
 name = "OAM SIG"
 URL = "https://i.cloudnative.to/oam/"
 weight = 5
+
+[[Languages.zh.menu.main]]
+parent = "兴趣小组"
+name = "稳定性 SIG"
+URL = "https://i.cloudnative.to/stability/"
+weight = 6
+
+[[Languages.zh.menu.main]]
+parent = "兴趣小组"
+name = "可观察性 SIG"
+URL = "https://i.cloudnative.to/observability/"
+weight = 7
 
 [[Languages.zh.menu.main]]
 name = "博客"

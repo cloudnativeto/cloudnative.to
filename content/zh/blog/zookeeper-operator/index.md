@@ -7,6 +7,7 @@ categories: ["Kubernetes"]
 tags: ["zookeeper","operator","OAM"]
 date: 2020-06-08T11:00:00+08:00
 type: "post"
+avatar: "/images/profile/default.jpg"
 ---
 
 ## 导言

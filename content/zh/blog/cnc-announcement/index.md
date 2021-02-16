@@ -2,11 +2,10 @@
 title: "云原生社区成立"
 date: 2020-05-12T06:00:00+08:00
 description: "云原生社区今天正式成立了。"
-bg_image: "images/backgrounds/page-title.jpg"
 image: "images/blog/blog-1.jpg"
 author: "[宋净超（Jimmy Song）](https://jimmysong.io)"
-categories: ["开源社区"]
-tags: ["社区"]
+categories: ["open source"]
+tags: ["open source"]
 type: "post"
 avatar: "/images/profile/jimmysong.jpg"
 profile: "Tetrate 布道师，ServiceMesher 社区联合创始人，CNCF Ambassador，热衷开源和分享。"

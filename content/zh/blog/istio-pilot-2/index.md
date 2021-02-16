@@ -3,7 +3,7 @@ title: "Istio Pilot 源码分析（二）"
 description: "本篇主要介绍 Pilot 源码中的 ServiceEntryStore 及其推送 xDS 的流程。"
 author: "[张海东](http://haidong.dev/)"
 image: "/images/blog/istio-pilot-banner.jpeg"
-categories: ["Istio","Service Mesh"]
+categories: ["Service Mesh"]
 tags: ["istio","service mesh"]
 date: 2020-09-23T12:00:00+08:00
 type: "post"
@@ -53,7 +53,7 @@ func (s *ServiceEntryStore) serviceEntryHandler(old, curr model.Config, event mo
 
 这两个 `handler` 的业务逻辑后文中再详细讨论，先来回忆下 `ServiceEntryStore` 的初始化流程：
 
-![img](./images/serviceentrystore-init.png)
+![img](serviceentrystore-init.png)
 
 在 `Server` 初始化 `ServiceController` 的时候，通过调用 `NewServiceDiscovery()` 方法初始化 `ServiceEntryStore` ，这里除了将 `EnvoyXdsServer` 和 `IstioConfigStore` 与 `ServiceEntryStore` 关联起来外，最重要的就是向 `ConfigController` 注册了 `ServiceEntry` 和 `WorkloadEntry` 的事件 `Handler`:
 
@@ -81,7 +81,7 @@ func NewServiceDiscovery(configController model.ConfigStoreCache, store model.Is
 
 首先来分析服务实例 `WorkloadEntry` 的更新是如何下发 `xDS` 的：
 
-![img](./images/workloadentry-update-sequence.png)
+![img](workloadentry-update-sequence.png)
 
 `seWithSelectorByNamespace` 和 `instances` 如上述 `ServiceEntryStore` 结构介绍中的注释，前者缓存了各个 `namespace` 中所有的 `ServiceEntry` ，后者则是所有服务节点 `WorkloadEntry` 的缓存。
 
@@ -242,7 +242,7 @@ func (s *DiscoveryServer) EDSUpdate(clusterID, serviceName string, namespace str
 
 了解了 `WorkloadEntry` 的更新是如何处理之后，我们再来看下 `serviceEntryHandler` 是如何处理 `ServiceEntry` 的：
 
-![img](./images/serviceentryhandler-sequence.png)
+![img](serviceentryhandler-sequence.png)
 
 `serviceEntryHandler` 会将 `ServiceEntry` 转化为一组 `Pilot` 内部抽象的服务，每个不同的 `Hosts` 、 `Address` 都会对应一个 `Service` ，并且初始化一个名为 `configsUpdated` 的 `map` 来保存是否有 `ServiceEntry` 需要更新，以及创建了多个 `slice` 分别保存该新增、删除、更新和没有变化的服务：
 

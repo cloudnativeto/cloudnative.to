@@ -73,7 +73,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
-          <p class="mb-0 text-white">{{ .Site.Params.copyright | markdownify }}</p>
+          <p class="mb-0 text-white">{{ replace .Site.Params.copyright "{year}" now.Year | markdownify }}</p>
         </div>
         <div class="col-md-6 text-center text-md-right">
           <ul class="list-inline">

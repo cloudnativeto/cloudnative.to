@@ -4,12 +4,13 @@ description: "本文翻译自 Alex Holmes 的文章 Request affinity with istio�
 author: "[CashApp](https://cashapp.github.io/2020-08-04/request-affinity-with-istio)"
 translator: "[苏楚霖](https://nicksu86.github.io/)"
 image: "/images/blog/request-affinity-with-istio.jpg"
-categories: ["Istio"]
-tags: ["Istio","翻译"]
+categories: ["service mesh"]
+tags: ["Istio"]
 date: 2020-10-13T23:00:00+08:00
-avatar: "./images/cashapp.png"
+avatar: "/images/profile/cashapp.png"
 profile: "由 Square 公司开发的一个移动支付系统，支持用户使用手机应用转钱给其他用户。"
 type: "post"
+avatar: "/images/profile/default.jpg"
 ---
 本文译自 [Request affinity with istio](https://cashapp.github.io/2020-08-04/request-affinity-with-istio)。
 

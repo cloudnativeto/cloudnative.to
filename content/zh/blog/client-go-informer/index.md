@@ -21,11 +21,11 @@ profile: "某教育公司研发工程师，云原生爱好者。"
 
 注: 图中的代码行数基于`1.15`版。
 
-![informer](./images/informer.png)
+![informer](informer.png)
 
 ### 数据结构图
 
-![informer-data-structure](./images/informer-data-structure.png)
+![informer-data-structure](informer-data-structure.png)
 
 ## Informer 工厂
 
@@ -732,7 +732,7 @@ func (p *processorListener) add(notification interface{}) {
 
 至此, 整个事件流就打通了，如下图。
 
-![informer-event-stream](./images/informer-event-stream.png)
+![informer-event-stream](informer-event-stream.png)
 
 ## 总结
 

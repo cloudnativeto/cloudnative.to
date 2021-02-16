@@ -34,7 +34,7 @@ core_members:
     tag: "刘德涵（韵达运维)，Docker，Linux、Kubernetes运维，Devops，CI/CD，微服务应用部署，链路监控、helm，基础架构设计，快速定位运维相关问题，多年的运维操作经验，协助社区成员解决相关问题。"
   - name: "沈旭"
     image: "/images/city/shanghai/avatars/shenxu.jpg"
-    tag: "沈旭（UCloud云原生产品经理），工作涉及领域包括CKA、PMP、kubernetes、docker、云原生、serverless等；可以协助社区成员解决操作、原理、知识及布道相关问题。"
+    tag: "沈旭（巨人网络中台产品经理），CKA、PMP，工作涉及领域包括kubernetes、docker、云原生、serverless等；可以协助社区成员解决操作、原理、知识及布道相关问题。"
   - name: "任增刚"
     image: "/images/city/shanghai/avatars/renzenggang.jpg"
     tag: "任增刚（企源科技股份有限公司金融行业技术总监），主要工作领域涉及金融行业的云原生架构（Docker、Kubernets、PCF、OpenShift）、DevOPS、Jenkins（Pipeline）、微服务应用架构及部署实践、NPM等等。"
@@ -43,7 +43,7 @@ core_member_title: 核心成员
 core_member_desc: 目前社区已经有一个初步建立的管委会成员小组来组织和筹划社区的发展及相关社区活动。我们渴望有更多的核心成员加入，一起来努力把上海云原生社区发展壮大，为云原生的普及撒播知识的种子，促进云原生落地，开花，结果。
 
 # LOGO PART
-logo_title: 社区Logo
+logo_title: 上海站徽章
 logo_short_desc: 上海站专属Logo融合上海市地标“东方明珠“，寓意立足上海这个国际化金融中心，以社区化的方式布道云原生。
 logo_detail_desc: "整体形象是融合上海著名地标建筑东方明珠，本意立足上海，叠加Kubernets、云等元素，寓意发挥上海云原生社区优势普及云原生技术并形成云原生技术的知识“辐射” 。<br/> "
 logo_image: "/images/city/shanghai/logo.png"

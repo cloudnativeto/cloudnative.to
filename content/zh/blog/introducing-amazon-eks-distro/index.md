@@ -2,7 +2,7 @@
 title: 亚马逊 EKS 发行版（EKS-D）介绍
 description: "本文介绍 EKS Distro，并使用合作伙伴生态系统中的例子来解释开始使用 EKS Distro 的不同方法。"
 author: "[AWS 官方博客](https://amazonaws-china.com/blogs/opensource/introducing-amazon-eks-distro/)"
-translator: "[宋净超（Jimmy Song）](https://jimmysong.io)"
+translator: "[宋净超](https://jimmysong.io)"
 image: "images/blog/eks-d.jpg"
 categories: ["Kubernetes"]
 tags: ["Kubernetes"]
@@ -10,6 +10,7 @@ date: 2020-12-01T10:03:00+08:00
 type: "post"
 avatar: "/images/profile/default.jpg"
 profile: "亚马逊 AWS"
+profile: "云原生社区创始人"
 ---
 
 今天，我们发布了 [Amazon EKS Distro](https://distro.eks.amazonaws.com/)（EKS-D），这是一个基于 [Amazon Elastic Kubernetes Service](https://amazonaws-china.com/eks/)（Amazon EKS）的 Kubernetes 发行版，并由 Amazon EKS 用于创建可靠和安全的 Kubernetes 集群。通过 EKS-D，你可以依赖 EKS 部署的相同版本的 Kubernetes 及其依赖项。这包括最新的上游更新以及扩展的安全补丁支持。EKS-D 遵循与亚马逊 EKS 相同的 Kubernetes 版本发布周期，我们以 [GitHub 上的开源项目的方式](https://github.com/aws/eks-distro) 提供。
@@ -22,7 +23,7 @@ profile: "亚马逊 AWS"
 
 在过去两年大规模运营 Amazon EKS 之后（我们说的是全球数百万个各种规模的集群），我们现在能够确定哪些工作、[哪些组件要运行以及如何运行](https://kccncna19.sched.com/event/Uaav/living-with-the-pathology-of-the-cloud-how-aws-runs-lots-of-clusters-micah-hausler-amazon)。我们已经了解到，客户希望在企业内部和云端获得一致的体验，以便进行迁移或实现混合云设置。例如，客户有一个用例，由于数据主权的原因，部分工作负载驻留在内部的 Kubernetes 集群中，而其他部分则运行在 EKS 上。现在你手头就有了基于 EKS 的解决方案参考系。
 
-![](https://tva1.sinaimg.cn/large/0081Kckwgy1glhwzwpf3fj30rs0fst9y.jpg)
+![](0081Kckwgy1glhwzwpf3fj30rs0fst9y.jpg)
 
 对于 EC2 上的 EKS，你可以 [自己](https://docs.aws.amazon.com/eks/latest/userguide/worker.html) 管理节点，也可以使用 [托管节点组](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html)。
 
@@ -30,7 +31,7 @@ profile: "亚马逊 AWS"
 
 从高层的角度来看，EKS Distro 的情况如下（考虑到一些上游的开源项目，包括 Kubernetes 和 etcd）。
 
-![](https://tva1.sinaimg.cn/large/0081Kckwgy1glhwzx24n5j30sg0p1q45.jpg)
+![](0081Kckwgy1glhwzx24n5j30sg0p1q45.jpg)
 
 通过 EKS Distro，你可以通过单一供应商安全地访问可安装、可复制的 Kubernetes 构建，以创建集群，并在社区支持到期后提供 Kubernetes 版本的扩展安全补丁支持。我们将根据 Amazon EKS 版本生命周期政策提供长达 14 个月的 Kubernetes 扩展维护支持，为你提供必要的时间窗口来更新你的基础设施，使其与你的软件生命周期保持一致。
 

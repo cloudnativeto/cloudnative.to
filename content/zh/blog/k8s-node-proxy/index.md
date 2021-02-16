@@ -4,7 +4,7 @@ description: "带你一步步理解 kube-proxy。"
 author: "[赵亚楠](https://arthurchiao.art/blog/cracking-k8s-node-proxy/)"
 image: "/images/blog/crack-k8s-node-proxy-banner.jpeg"
 translator: "[徐鹏](https://team.jiunile.com/)"
-categories: ["kubernetes", "kube-proxy", "网络"]
+categories: ["kubernetes"]
 tags: ["iptables", "ipvs", "bpf", "netfilter", "kube-proxy"]
 date: 2020-10-19T16:00:00+08:00
 type: "post"
@@ -34,7 +34,7 @@ Netfilter 是 Linux 内核内部的**包过滤和处理框架**。如果你不�
 - 命令行工具 `iptables` 可用于**动态地将规则插入到钩子点中**
 - 可以通过组合各种 `iptables` 规则来操作数据包（接受/重定向/删除/修改，等等）
 
-![The 5 hook points in netfilter framework](./images/proxy_hooks.png)
+![The 5 hook points in netfilter framework](proxy_hooks.png)
 此外，这 5 个钩子点还可以与内核的其他网络设施，如内核路由子系统进行协同工作。
 
 此外，在每个钩子点中，规则被组织到具有预定义优先级的不同链中。为了按目的管理链，链被进一步组织到表中。现在有 5 个表：
@@ -47,7 +47,7 @@ Netfilter 是 Linux 内核内部的**包过滤和处理框架**。如果你不�
 
 将表/链添加到上图中，我们可以得到更详细的视图：
 
-![iptables table/chains inside hook points](./images/proxy_hooks-and-tables.png)
+![iptables table/chains inside hook points](proxy_hooks-and-tables.png)
 
 ### VIP 与负载均衡 (LB)
 
@@ -55,7 +55,7 @@ Netfilter 是 Linux 内核内部的**包过滤和处理框架**。如果你不�
 
 VIP 总是伴随着负载均衡，因为它需要在不同的后端之间分配流量。
 
-![VIP and load balancing](./images/proxy_vip-and-lb.png)
+![VIP and load balancing](proxy_vip-and-lb.png)
 
 ### Cross-host 网络模型
 
@@ -85,7 +85,7 @@ K8S 中定义了 4 种 `Service` 类型：
 
 一个 Service 有一个 VIP（本文中的 `ClusterIP`）和多个端点（后端 pod）。每个 pod 或节点都可以通过 VIP 直接访问应用程序。要做到这一点，节点代理程序需要在每个节点上运行，它应该能够透明地拦截到任何 `ClusterIP:Port`[注解 1] 的流量，并将它们重定向到一个或多个后端 pod。
 
-![Kubernetes proxier model](./images/proxy_k8s-proxier-model.png)
+![Kubernetes proxier model](proxy_k8s-proxier-model.png)
 
 > 注解 1：
 >
@@ -126,7 +126,7 @@ K8S 中定义了 4 种 `Service` 类型：
     - 网络解决方案：直接路由（PodIP 可直接路由）
 - 一个非 k8s 节点，但是它可以到达工作节点和 Pod（得益于直接路由网络方案）
 
-![test env](./images/proxy_test-env.png)
+![test env](proxy_test-env.png)
 
 我们将在工作节点上部署 pod，并从 test 节点通过 `ClusterIP` 访问 pod 中的应用程序。
 
@@ -187,7 +187,7 @@ $ curl 10.7.111.132:80
 
 对于我们上面的测试应用 `webapp`，数据流程如下图：
 
-![userspace-proxier](./images/proxy_userspace-proxier.png)
+![userspace-proxier](proxy_userspace-proxier.png)
 
 ### POC 实现
 
@@ -335,7 +335,7 @@ $ iptables -t nat -X # delete all custom chains
 
 其次，上面的代码只处理一个后端，如果有多个后端 pod 怎么办？因此，我们需要通过负载均衡算法将请求分发到不同的后端 pod。
 
-![userspace-proxier-2](./images/proxy_userspace-proxier-2.png)
+![userspace-proxier-2](proxy_userspace-proxier-2.png)
 
 #### 优缺点
 
@@ -364,7 +364,7 @@ $ iptables -t nat -X # delete all custom chains
 
 通过 curl 查看出口数据包路径（下图展示了数据流向过程）：
 
-![host-to-clusterip-dnat](./images/proxy_host-to-clusterip-dnat.png)
+![host-to-clusterip-dnat](proxy_host-to-clusterip-dnat.png)
 
 ```bash
 <curl process> -> raw -> CT -> mangle -> dnat -> filter -> security -> snat -> <ROUTING> -> mangle -> snat -> NIC
@@ -453,7 +453,7 @@ $ curl $CLUSTER_IP:$PORT
 
 但是等等！我们期望出口的交通应该是正确的，但我们没有添加任何 NAT 规则的入口路径，怎么可能交通是正常的两个方向？事实证明，当你为一个方向添加一个 NAT 规则时，Linux 内核会自动为另一个方向添加保留规则！这与 conntrack (CT，连接跟踪）模块协同工作。
 
-![host-to-clusterip-dnat-ct](./images/proxy_host-to-clusterip-dnat-ct.png)
+![host-to-clusterip-dnat-ct](proxy_host-to-clusterip-dnat-ct.png)
 
 #### 清理
 
@@ -516,7 +516,7 @@ DNAT    tcp  --  0.0.0.0/0   10.7.111.132  tcp dpt:80 statistic mode random prob
 DNAT    tcp  --  0.0.0.0/0   10.7.111.132  tcp dpt:80 statistic mode random probability 1.00000000000 to:10.5.41.5:80
 ```
 
-![host-to-clusterip-lb-ct](./images/proxy_host-to-clusterip-lb-ct.png)
+![host-to-clusterip-lb-ct](proxy_host-to-clusterip-lb-ct.png)
 
 #### 验证
 
@@ -578,7 +578,7 @@ $ iptables -t nat -D OUTPUT 3
 
 下图展示了隧道的情况：
 
-![tunneling](./images/proxy_tunneling.png)
+![tunneling](proxy_tunneling.png)
 
 代理与隧道相关的职责包括：
 
@@ -984,7 +984,7 @@ $ sudo tc qdisc del dev $NIC clsact 2>&1 >/dev/null
 
 在这篇文章中，我们用不同的方法手工实现了 `kube-proxy` 的核心功能。希望你现在对 kubernetes 节点代理有了更好的理解，以及关于网络的其他一些配置。
 
-在这篇文章中使用的代码和脚本：[这里](https://github.com/icyxp/icyxp.github.io/tree/master./images/code)。
+在这篇文章中使用的代码和脚本：[这里](https://github.com/icyxp/icyxp.github.io/tree/mastercode)。
 
 ### 参考文献
 

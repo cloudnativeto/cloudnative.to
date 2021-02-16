@@ -59,14 +59,14 @@ Controller 实现控制循环，通过 API Server 监听集群的共享状态，
 3. 通过 API server 更新步骤 1 中的资源状态（status），存储到 etcd 中。
 4. 重复循环，返回步骤 1。
 
-![引用自《Programming Kubernetes》](./images/1.png)  
+![引用自《Programming Kubernetes》](1.png)  
 &ensp;&ensp;&ensp;&ensp;引用自《Programming Kubernetes》
 
 ### 控制器组件
 
 从架构的角度来看，Controller 通常使用以下数据结构:
 
-![引用自 “深入剖析 Kubernetes”](./images/2.png "引用自 “深入剖析 Kubernetes”")  
+![引用自 “深入剖析 Kubernetes”](2.png "引用自 “深入剖析 Kubernetes”")  
 &ensp;&ensp;&ensp;&ensp;引用自 “深入剖析 Kubernetes”
 
 * Informers
@@ -122,7 +122,7 @@ Kubernetes 由一堆不同角色的节点（集群中机器）组成，如下图
   * Kubernetes dashboard
   * 代理 kubectl exec 会话
 
-![引用自《Programming Kubernetes》](./images/3.png "引用自《Programming Kubernetes》")  
+![引用自《Programming Kubernetes》](3.png "引用自《Programming Kubernetes》")  
 &ensp;&ensp;&ensp;&ensp;引用自《Programming Kubernetes》
 
 ### API Server HTTP 协议接口
@@ -185,7 +185,7 @@ RESTful API 是基于 HTTP 协议且符合 REST 原则的软件架构，controll
 
 Resource 和 API group、Version 一起称为 GroupVersionResource（GVR），来唯一标示一个 HTTP 路径。
 
-![引用自《Programming Kubernetes》](./images/4.png "引用自《Programming Kubernetes》")  
+![引用自《Programming Kubernetes》](4.png "引用自《Programming Kubernetes》")  
 &ensp;&ensp;&ensp;&ensp;引用自《Programming Kubernetes》
 
 ### 声明式状态管理
@@ -200,7 +200,7 @@ spec 定义的期望状态提供了实现 "infrastructure-as-code" 的基础，�
 
 ### [Programming Kubernetes](https://www.amazon.com/Programming-Kubernetes-Developing-Cloud-Native-Applications/dp/1492047104/ref=sr_1_1?dchild=1&keywords=Programming+Kubernetes&qid=1595852427&sr=8-1)
 
-![Programming Kubernetes](./images/5.png)
+![Programming Kubernetes](5.png)
 
 本文是阅读《Programming Kubernetes》书籍前两章时做的笔记与总结。
 

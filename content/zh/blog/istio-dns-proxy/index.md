@@ -4,7 +4,7 @@ description: "本文将向你介绍 Istio 1.8 中新增的智能 DNS 代理功�
 author: "[Shriram Rajagopalan](https://github.com/rshriram)"
 translator: "[宋净超（Jimmy Song）](https://jimmysong.io)"
 image: "images/blog/istio-dns.jpg"
-categories: ["Istio"]
+categories: ["service mesh"]
 tags: ["Istio"]
 date: 2020-11-15T12:00:00+08:00
 type: "post"

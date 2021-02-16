@@ -20,8 +20,8 @@
                 {{ if .github }}
                 <a class="badge badge-dark" href="{{ .github | relURL }}" target="_blank" rel="noopener" aria-label="GitHub">
                   GitHub
-                </a>                    
-                {{ end }}          
+                </a>
+                {{ end }}
               </p>
             </div>
             {{ end }}
@@ -40,9 +40,9 @@
         <div class="section-title-border"></div>
         <p class="mb-5 desc">{{ .Params.logo_detail_desc | safeHTML }}</p>
       </div>
-      <div class="col-md-5 bg-contain">
+      <div class="col-md-5 bg-contain" align="center">
         {{ "<!-- 社区Logo -->" | safeHTML }}
-        <img class="img-fluid w-100 hover-ripple" src="{{ .Params.logo_image | relURL }}" title="{{ .Params.logo_title | markdownify }}" alt="{{ .Params.logo_title | markdownify }}">
+        <img class="img-fluid w-50 hover-ripple" src="{{ .Params.logo_image | relURL }}" title="{{ .Params.logo_title | markdownify }}" alt="{{ .Params.logo_title | markdownify }}">
       </div>
     </div>
   </div>
@@ -112,7 +112,7 @@
   .avatar-member{
     border-radius: 50%!important;
     max-width: 40%;
-    height: auto;    
+    height: auto;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
   }
 
@@ -125,9 +125,9 @@
     margin: 15px;
     padding: 5px;
     transition: all .25s;
-    border: 1px solid #eff3f9;   
+    border: 1px solid #eff3f9;
     background: #fff;
-    color: #fff;   
+    color: #fff;
   }
 
   .hover-ripple {
@@ -142,19 +142,19 @@
     text-align: center;
     margin: 15px;
     color: #b3b6b9;
-    font-weight: 400;    
+    font-weight: 400;
   }
 
   .tag {
     text-align: left;
     margin: 15px;
     color: #b3b6b9;
-    font-weight: 400;    
+    font-weight: 400;
   }
 
   .desc{
     color: #b3b6b9;
-    font-weight: 400;      
+    font-weight: 400;
   }
 </style>
 
