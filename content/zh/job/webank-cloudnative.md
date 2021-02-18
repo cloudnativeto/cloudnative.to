@@ -1,6 +1,6 @@
 ---
 title: "[社招] 微众银行-中间件平台团队"
-date: 2021-2-09T14:52:03+08:00
+date: 2021-02-09T14:52:03+08:00
 draft: false
 bg_image: "images/backgrounds/page-title.jpg"
 description: "Base 地：深圳"
