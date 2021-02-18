@@ -4,7 +4,7 @@ description: "网易轻舟使用 Istio 的实践分享。"
 author: "网易轻舟"
 image: "images/blog/hand.jpg"
 categories: ["Service Mesh"]
-tags: ["Istio"]
+tags: ["Istio","Istio案例"]
 date: 2021-02-02T10:03:00+08:00
 type: "post"
 avatar: "/images/profile/default.jpg"

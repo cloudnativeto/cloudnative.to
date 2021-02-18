@@ -4,7 +4,7 @@ description: "eBay 的 Istio 使用实践分享。"
 author: "孟凡杰"
 image: "images/blog/sports.jpg"
 categories: ["Service Mesh"]
-tags: ["Istio"]
+tags: ["Istio","Istio案例"]
 date: 2021-02-01T10:03:00+08:00
 type: "post"
 avatar: "/images/profile/default.jpg"
