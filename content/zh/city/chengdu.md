@@ -22,7 +22,7 @@ core_members:
     tag: "粟伟，云原生社区管委会成员，AWS 解决方案架构师, 开源项目爱好者， 主要负责容器类云原生相关产品及服务, 具有丰富的公有云经验。"
   - name: "龙恒"
     image: "/images/city/chengdu/members/longheng.jpg"
-    tag: "龙恒，PingCAP 社区负责人。"
+    tag: "龙恒，TiDB Cloud 架构团队负责人，TiDB/TiKV Commiter，擅长分布式系统架构设计。"
 core_member_title: "核心成员"
 core_member_desc: "社区由核心成员粟伟、龙恒来组织与筹划社区发展与线下活动等事宜。我们热爱开源事业，热爱云原生技术。希望有更多人加入社区，一起组织线下活动，在成都推广云原生技术。"
 
