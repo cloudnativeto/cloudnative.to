@@ -231,6 +231,9 @@ sponsor:
         - image: "/images/sponsors/kubevela.png"
           url: "https://kubevela.io"
           name: "KubeVela"
+        - image: "/images/sponsors/nocalhost.png"
+          url: "https://nocalhost.dev"
+          name: "Nocalhost"
     org:
       title: "开源社区"
       list:
