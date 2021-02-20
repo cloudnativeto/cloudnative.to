@@ -163,7 +163,6 @@ testimonial:
 cta:
   enable : true
   title : "云原生学院直播日程表"
-  bg_image_webp : "images/backgrounds/cta-lg.webp"
   bg_image : "images/backgrounds/cta-lg.jpg"
   button:
     enable : true
