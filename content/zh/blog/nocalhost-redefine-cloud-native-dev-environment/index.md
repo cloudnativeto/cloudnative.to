@@ -7,7 +7,8 @@ categories: ["Kubernetes"]
 tags: ["Kubernetes","Nocalhost"]
 date: 2021-02-20T13:56:00+08:00
 type: "post"
-avatar: "/images/profile/default.jpg"
+avatar: "/images/profile/wangwei.png"
+profile: "CKA CKAD，云原生社区深圳站站长，CNCF Landscape 项目 Nocalhost 核心成员"
 ---
 
 ## 前言
@@ -141,6 +142,6 @@ nhctl init -n nocalhost -t nodeport --set mariadb.primary.persistence.enabled=fa
 目前，腾讯云 CODING DevOps（近 200 微服务）正在使用 Nocalhost 进行开发，实践验证 Nocalhost 能够大大提高开发效率，缩短循环反馈。
 
 ## 开源与社区共建
-Nocalhost 目前是 100% 开源的，代码托管在 Github：https://github.com/nocalhost/nocalhost.git，并遵循 Apache-2.0 开源协议，可以免费使用。
+Nocalhost 目前是 100% 开源的，代码托管在 Github：[https://github.com/nocalhost/nocalhost.git](https://github.com/nocalhost/nocalhost.git)，并遵循 Apache-2.0 开源协议，可以免费使用。
 
-想了解更多关于 Nocalhost 的信息，欢迎访问官网：https://nocalhost.dev 获取。
+想了解更多关于 Nocalhost 的信息，欢迎访问官网：[https://nocalhost.dev](https://nocalhost.dev) 获取。
