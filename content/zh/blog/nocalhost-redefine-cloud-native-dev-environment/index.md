@@ -142,7 +142,7 @@ nhctl init -n nocalhost -t nodeport --set mariadb.primary.persistence.enabled=fa
 目前，腾讯云 CODING DevOps（近 200 微服务）正在使用 Nocalhost 进行开发，实践验证 Nocalhost 能够大大提高开发效率，缩短循环反馈。
 
 ## 开源与社区共建
-Nocalhost 目前是完全开源的，并已进入 CNCF Landscape: [https://landscape.cncf.io/](https://landscape.cncf.io/)
+Nocalhost 目前是完全开源的，并已进入 CNCF Landscape: [https://landscape.cncf.io/](https://landscape.cncf.io/?selected=nocalhost)
 
 Github 地址：[https://github.com/nocalhost/nocalhost.git](https://github.com/nocalhost/nocalhost.git)。
 
