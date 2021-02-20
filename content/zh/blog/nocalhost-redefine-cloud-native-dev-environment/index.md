@@ -130,7 +130,7 @@ nhctl init -n nocalhost -t nodeport --set mariadb.primary.persistence.enabled=fa
 
 ![Nocalhost Init 初始化](1-9.png)
 
-打开登陆地址，使用默认管理员用户名 `admin@admin.com` 和密码 `123456` 登陆 Web 控制台，控制台能够管理用户、集群和应用。`init` 阶段自动使用部署 Nocalhost 的集群作为开发集群，同时创建了 `Bookinfo` 应用和开发者，并为开发者分配了 `Bookinfo` 应用的开发空间。
+打开登陆地址，使用默认管理员用户名 admin@admin.com 和密码 `123456` 登陆 Web 控制台，控制台能够管理用户、集群和应用。`init` 阶段自动使用部署 Nocalhost 的集群作为开发集群，同时创建了 `Bookinfo` 应用和开发者，并为开发者分配了 `Bookinfo` 应用的开发空间。
 
 现在打开 VS Code ，进入 Nocalhost 插件，点击上方的“地球”按钮，同样输入 Web 控制台的地址，回车确定。
 
