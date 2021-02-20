@@ -3,12 +3,12 @@ title: Nocalhost - 重新定义云原生开发环境
 description: "“微服务”带来便利的同时，对开发人员而言，还带来了额外的挑战：如何快速启动完整的开发环境？开发的需求依赖于其他同事怎么联调？如何快速调试这些微服务？"
 author: "[王炜](https://www.github.com/lyzhang1999)"
 image: "images/blog/goodbye-localhost.png"
-categories: ["Kubernetes"]
+categories: ["cloud native"]
 tags: ["Kubernetes","Nocalhost"]
-date: 2021-02-20T13:56:00+08:00
+date: 2021-19T13:56:00+08:00
 type: "post"
 avatar: "/images/profile/wangwei.png"
-profile: "CKA CKAD，云原生社区深圳站站长，CNCF Landscape 项目 Nocalhost 核心成员"
+profile: "CKA CKAD，云原生社区深圳站站长，CNCF Landscape 项目 Nocalhost 核心成员。"
 ---
 
 ## 前言
@@ -112,17 +112,17 @@ Nocalhost 重新梳理了开发过程所涉及到的角色和资源：
 * 已配置好 `kubectl` 且能访问 Kubernetes 集群
 * 集群开启了 RBAC
 * 安装 Visual Studio Code（1.52+） 和 Nocalhost 插件
-* 安装 nhctl cli 工具（https://nocalhost.dev/installation/）
+* 安装 nhctl cli 工具（<https://nocalhost.dev/installation/>）
 
 对于 TKE 等支持 LoadBalancer 的集群，运行以下命令来快速初始化：
 
-```
+```bash
 nhctl init -n nocalhost -p 7000
 ```
 
 对于 Minikube、Kind、K3S、MicroK8s 等，运行以下命令：
 
-```
+```bash
 nhctl init -n nocalhost -t nodeport --set mariadb.primary.persistence.enabled=false
 ```
 
@@ -144,8 +144,9 @@ nhctl init -n nocalhost -t nodeport --set mariadb.primary.persistence.enabled=fa
 ## 开源与社区共建
 Nocalhost 目前是完全开源的，并已进入 CNCF Landscape: [https://landscape.cncf.io/](https://landscape.cncf.io/?selected=nocalhost)
 
-Github 地址：[https://github.com/nocalhost/nocalhost.git](https://github.com/nocalhost/nocalhost.git)。
+Github 地址：[https://github.com/nocalhost/nocalhost](https://github.com/nocalhost/nocalhost)。
 
 使用 Apache-2.0 开源协议，可以无限制免费使用。
 
 想了解更多关于 Nocalhost 的信息，欢迎访问官网：[https://nocalhost.dev](https://nocalhost.dev) 获取。
+

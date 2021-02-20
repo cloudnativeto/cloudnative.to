@@ -8,7 +8,7 @@ bg_image: "images/backgrounds/page-title-3.jpg"
 
 ### 加入云原生社区
 
-关注云原生社区微信公众号，点击「加入社区」。
+关注云原生社区微信公众号，点击「加入我们」。
 
 ![云原生社区微信公众号二维码](qrcode.jpg)
 

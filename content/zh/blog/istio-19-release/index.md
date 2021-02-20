@@ -5,7 +5,7 @@ image: "images/blog/istio-pilot-banner.jpeg"
 categories: ["Service Mesh"]
 tags: ["Istio"]
 author: "[Istio 团队](https://istio.io/latest/news/releases/1.9.x/announcing-1.9/)"
-translator: "[Jimmy Song](https://jimmysong.io)"
+translator: "[宋净超（Jimmy Song）](https://jimmysong.io)"
 date: 2021-02-10T10:03:00+08:00
 type: "post"
 avatar: "/images/profile/default.jpg"

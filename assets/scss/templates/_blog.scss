@@ -21,6 +21,9 @@
   color: $white;
   background: $primary-color;
   z-index: 1;
+  a {
+      color: $white;
+  }
 }
 
 .card-meta {
