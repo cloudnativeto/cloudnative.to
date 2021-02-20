@@ -23,7 +23,7 @@ profile: "CKA CKAD，云原生社区深圳站站长，CNCF Landscape 项目 Noca
 试想一下，要开发由 200 个“微服务”组成的云原生应用，会遇到哪些困难呢？
 
 ## Localhost 时代
-在单体应用的时代，对于开发者来说是极为友好的，开发者使用本机运行应用，修改代码后实时生效，通过浏览器访问 `Localhost` 实时查看代码效果。
+在单体应用的时代，对于开发者来说是极为友好的，开发者使用本机运行应用，修改代码后实时生效，通过浏览器访问 `Localhost` 实时查看代码效果。
 
 ![Localhost 开发](1-1.png)
 
@@ -142,6 +142,10 @@ nhctl init -n nocalhost -t nodeport --set mariadb.primary.persistence.enabled=fa
 目前，腾讯云 CODING DevOps（近 200 微服务）正在使用 Nocalhost 进行开发，实践验证 Nocalhost 能够大大提高开发效率，缩短循环反馈。
 
 ## 开源与社区共建
-Nocalhost 目前是 100% 开源的，代码托管在 Github：[https://github.com/nocalhost/nocalhost.git](https://github.com/nocalhost/nocalhost.git)，并遵循 Apache-2.0 开源协议，可以免费使用。
+Nocalhost 目前是完全开源的，并已进入 CNCF Landscape: [https://landscape.cncf.io/](https://landscape.cncf.io/)
+
+Github 地址：[https://github.com/nocalhost/nocalhost.git](https://github.com/nocalhost/nocalhost.git)。
+
+使用 Apache-2.0 开源协议，可以无限制免费使用。
 
 想了解更多关于 Nocalhost 的信息，欢迎访问官网：[https://nocalhost.dev](https://nocalhost.dev) 获取。
