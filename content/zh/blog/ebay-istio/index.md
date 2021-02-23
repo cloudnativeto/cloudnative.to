@@ -2,7 +2,7 @@
 title: "eBay 基于 Istio 的统一流量管理实践"
 description: "eBay 的 Istio 使用实践分享。"
 author: "孟凡杰"
-image: "images/blog/sports.jpg"
+image: "images/blog/ebay.jpg"
 categories: ["Service Mesh"]
 tags: ["Istio","Istio案例"]
 date: 2021-02-01T10:03:00+08:00

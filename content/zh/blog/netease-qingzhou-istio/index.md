@@ -2,7 +2,7 @@
 title: "网易轻舟如何基于 Istio 实现微服务架构演进"
 description: "网易轻舟使用 Istio 的实践分享。"
 author: "网易轻舟"
-image: "images/blog/hand.jpg"
+image: "images/blog/netease.jpg"
 categories: ["Service Mesh"]
 tags: ["Istio","Istio案例"]
 date: 2021-02-02T10:03:00+08:00
