@@ -35,4 +35,4 @@ type: "notice"
 
 ### 投递简历
 
-欢迎邮件简历至：qinglin.dql@alibaba-inc.com，我们将尽快安排面试。
+欢迎邮件简历至：<qinglin.dql@alibaba-inc.com>，我们将尽快安排面试。
