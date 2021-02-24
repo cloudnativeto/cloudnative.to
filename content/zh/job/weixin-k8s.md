@@ -25,4 +25,4 @@ type: "notice"
 
 #### 投递简历
 
-欢迎邮件简历：sharkdtu@tencent.com，我们将尽快安排面试。
+欢迎邮件简历：<sharkdtu@tencent.com>，我们将尽快安排面试。
