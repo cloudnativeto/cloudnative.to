@@ -1,16 +1,15 @@
 ---
 title: "在生产环境使用 Istio 前的若干考虑要素"
-date: 2020-02-25T08:00:00+08:00
+date: 2021-02-25T08:00:00+08:00
 description: "深度落地 Istio 两年的若干思考"
-author: "[陈 鹏](https://github.com/smwyzi)"
+author: "[陈鹏](https://github.com/smwyzi)"
+image: "images/blog/the-facts-of-using-istio-banner.jpg"
 categories : ["Service Mesh"]
 tags : ["Istio", "Service Mesh", "Cloud Native"]
 type: "post"
 avatar: "/images/profile/KenshinChen.jpg"
-profile: "百度工程师"
+profile: "陈鹏，百度研发工程师，现就职于百度基础架构部云原生团队，主导和参与了服务网格在百度内部手机百度、Feed、百度地图等多个百亿量级核心业务的大规模落地，对云原生、Service Mesh、Isito 等方向有深入的研究和实践经验。"
 ---
-
-> 作者简介：陈鹏，百度研发工程师，现就职于百度基础架构部云原生团队，主导和参与了服务网格在百度内部手机百度、Feed、百度地图等多个百亿量级核心业务的大规模落地，对云原生、Service Mesh、Isito 等方向有深入的研究和实践经验。
 
 ## 前言
 2021 年伊始，如果你想要在生产环境中落地 Service Mesh，那 Istio 一定已经已经在你的考虑范围之内。
