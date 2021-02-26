@@ -1,7 +1,7 @@
 ---
 title: "在生产环境使用 Istio 前的若干考虑要素"
 date: 2021-02-25T08:00:00+08:00
-description: "深度落地 Istio 两年的若干思考"
+description: "深度落地 Istio 两年的若干思考。"
 author: "[陈鹏](https://github.com/smwyzi)"
 image: "images/blog/the-facts-of-using-istio-banner.jpg"
 categories : ["Service Mesh"]
