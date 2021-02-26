@@ -5,6 +5,7 @@ draft: false
 author: "陈鹏"
 type: "post"
 avatar: "/images/profile/roc.jpg"
+image: "images/blog/use-clion-read-envoy-source-banner.jpg"
 authorlink: "https://imroc.io"
 originallink: "https://imroc.io/post/202102/use-clion-read-envoy-source-code/"
 summary: "想要深入学习 istio? 数据面的 envoy 代码太难读? 本文介绍了如何使用 CLion 来阅读和开发 istio-proxy (envoy) 的代码，包含源码结构分析、环境搭建，以及生成 CLion 所需要的 `CMakeLists.txt` 文件的方法，最后也展示了效果，希望对你有所帮助。"
