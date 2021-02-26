@@ -1,12 +1,10 @@
 ---
 title: "使用 CLion 搭建 istio-proxy(envoy) 开发环境"
 date: 2021-02-26T12:00:00+08:00
-draft: false
-author: "陈鹏"
+author: "[陈鹏](https://imroc.io)"
 type: "post"
 avatar: "/images/profile/roc.jpg"
 image: "images/blog/use-clion-read-envoy-source-banner.jpg"
-authorlink: "https://imroc.io"
 originallink: "https://imroc.io/post/202102/use-clion-read-envoy-source-code/"
 description: "本文介绍如何使用 CLion 来阅读和开发 istio-proxy (envoy) 的代码。"
 tags: ["Envoy", "Istio"]
