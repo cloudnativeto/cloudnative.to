@@ -3,12 +3,15 @@ title: "使用 CLion 搭建 istio-proxy(envoy) 开发环境"
 date: 2021-02-26T12:00:00+08:00
 draft: false
 author: "陈鹏"
+type: "post"
+avatar: "/images/profile/roc.jpg"
 authorlink: "https://imroc.io"
 originallink: "https://imroc.io/post/202102/use-clion-read-envoy-source-code/"
 summary: "想要深入学习 istio? 数据面的 envoy 代码太难读? 本文介绍了如何使用 CLion 来阅读和开发 istio-proxy (envoy) 的代码，包含源码结构分析、环境搭建，以及生成 CLion 所需要的 `CMakeLists.txt` 文件的方法，最后也展示了效果，希望对你有所帮助。"
-tags: ["envoy", "istio"]
-categories: ["envoy"]
-keywords: ["service mesh","envoy", "istio"]
+tags: ["Envoy", "Istio"]
+categories: ["Envoy"]
+keywords: ["Service Mesh","Envoy", "Istio"]
+profile: "陈鹏，腾讯高级工程师，现就职与腾讯云容器团队，对云原生、Kubernetes、Service Mesh、Isito 等方向有深入的研究和实践经验。"
 ---
 
 ## 背景
