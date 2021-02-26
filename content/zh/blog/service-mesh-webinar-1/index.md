@@ -3,7 +3,7 @@ title: "Service Mesh Webinar #1"
 date: 2020-05-18T20:12:18+08:00
 draft: false
 image: "/images/blog/006tNbRwly1fwbgfw9rc0j30rs0ku7m5.jpg"
-author: "Jimmy Song"
+author: "[宋净超（Jimmy Song）](https://jimmysong.io)"
 authorlink: "https://jimmysong.io"
 description: "B 站直播：多点生活在 Service Mesh 上的实践——Istio + MOSN 在 Dubbo 场景下的探索之路。"
 tags: ["istio","mosn","dubbo"]
@@ -19,9 +19,8 @@ Service Mesh Webinar#1，邀请多点生活平台架构组研发工程师陈鹏�
 
 随着多点生活的业务发展，传统微服务架构的面临升级困难的问题。在云原生的环境下，Service Mesh 能给我们带来什么好处。如何使用社区解决方案兼容现有业务场景，落地成符合自己的 Service Mesh 成为一个难点。服务之间主要通过 Dubbo 交互，本次分享将探索 Istio + MOSN 在 Dubbo 场景下的改造方案。
 
-**直播时间：**2020年5月28日（周四）20:00-21:00
-
-**直播地址：**<https://live.bilibili.com/21954520>（欢迎关注直播间）
+- 直播时间：2020年5月28日（周四）20:00-21:00
+- 直播地址：<https://live.bilibili.com/21954520>（欢迎关注直播间）
 
 ## 分享主题
 
@@ -49,7 +48,7 @@ Service Mesh Webinar#1，邀请多点生活平台架构组研发工程师陈鹏�
 - Istio 技术点介绍
 - 在 Dubbo 场景下的改造分析
   - 对比 MOSN 和 Envoy 对现有场景的支持
-  - Istio+MOSN 和 Istio+Envoy 在 Dubbo 场景下如何改造\
+  - Istio+MOSN 和 Istio+Envoy 在 Dubbo 场景下如何改造
 - MOSN + Istio 具体实现探索
   - MOSN 配置文件介绍、从一个流量进来到转发到具体的远端的流程分析
   - Provider 配置信息如何下发到 Sidecar
