@@ -1,5 +1,5 @@
 ---
-title: "使用 CLion 搭建 istio-proxy(envoy) 开发环境"
+title: "使用 CLion 搭建 istio-proxy (envoy) 开发环境"
 date: 2021-02-26T12:00:00+08:00
 author: "[陈鹏](https://imroc.io)"
 type: "post"
@@ -17,7 +17,7 @@ profile: "陈鹏，腾讯高级工程师，现就职与腾讯云容器团队，�
 
 要想深入学习 istio，还得学习下数据面的实现，istio 的数据面使用了 envoy，在 istio group 下有个叫 [proxy](https://github.com/istio/proxy) 的仓库，包含了一些 istio 用到的一些 envoy 扩展，编译时将 envoy 代码作为库来引用，最终使用 bazel 编译出 istio 版本的 Envoy。
 
-代码量非常庞大，如果没有智能的代码跳转、查找引用与实现，阅读和开发起来简直低效的要命。如何更加高效呢？关键在于 IDE/编辑器 的代码索引能力要好，需要能够准确跳转和查询，vscode 用的同学比较多，但它的 c/c++ 插件不够智能，很多情况无法跳转，而且效率较低；它还有个 clangd 的插件，基于 LSP，但不够成熟。这方面做的最好的目前还是来自 JetBrains CLion，不过它需要依赖 `CMakeLists.txt` 文件来解析项目结构，由于 c/c++ 没有统一的结构标准，不同项目结构千差万别，不太好自动生成 `CMakeLists.txt`，需要我们先理解项目结构，然后编写 `CMakeLists.txt` 来让 CLion 进行解析。
+代码量非常庞大，如果没有智能的代码跳转、查找引用与实现，阅读和开发起来简直低效的要命。如何更加高效呢？关键在于 IDE/编辑器 的代码索引能力要好，需要能够准确跳转和查询，vscode 用的同学比较多，但它的 c/c++ 插件不够智能，很多情况无法跳转，而且效率较低；它还有个 clangd 的插件，基于 LSP，但不够成熟。这方面做的最好的目前还是来自 JetBrains 的 CLion，不过它需要依赖 `CMakeLists.txt` 文件来解析项目结构，由于 c/c++ 没有统一的结构标准，不同项目结构千差万别，不太好自动生成 `CMakeLists.txt`，需要我们先理解项目结构，然后编写 `CMakeLists.txt` 来让 CLion 进行解析。
 
 虽然社区有人针对 bazel 构建的项目写了一个通用脚本 [bazel-cmakelists](https://github.com/lizan/bazel-cmakelists) ，但很久没维护，测试了用它来生成最新 envoy 的 `CMakeLists.txt` ，由于代码量庞大，最终会 OOM 而失败。
 
@@ -25,13 +25,13 @@ profile: "陈鹏，腾讯高级工程师，现就职与腾讯云容器团队，�
 
 ## 克隆代码
 
-首先克隆 [istio-proxy](https://github.com/istio/proxy) 的代码:
+首先克隆 [istio-proxy](https://github.com/istio/proxy) 的代码：
 
 ``` bash
 git clone https://github.com/istio/proxy.git istio-proxy
 ```
 
-最好切到某个稳定的 release 分支上:
+最好切到某个稳定的 release 分支上：
 
 ``` bash
 cd istio-proxy
@@ -40,7 +40,7 @@ git checkout -b release-1.9 origin/release-1.9
 
 ## 项目分析
 
-istio-proxy 代码库中主要只包含了在 istio 里用到的一些 envoy 扩展，代码量不大，源码主要分布在 src 与 extensions 目录，但编译需要很久，因为它实际编译的是 envoy，只是利用 bazel 将自身代码作为扩展编译进 envoy (得益于 envoy 的扩展机制)，从这个 bazel 的 [BUILD 文件](https://github.com/istio/proxy/blob/master/src/envoy/BUILD) 就能看得出来:
+istio-proxy 代码库中主要只包含了在 istio 里用到的一些 envoy 扩展，代码量不大，源码主要分布在 src 与 extensions 目录，但编译需要很久，因为它实际编译的是 envoy，只是利用 bazel 将自身代码作为扩展编译进 envoy（得益于 envoy 的扩展机制），从这个 bazel 的 [BUILD 文件](https://github.com/istio/proxy/blob/master/src/envoy/BUILD) 就能看得出来：
 
 ``` txt
 envoy_cc_binary(
@@ -65,7 +65,7 @@ envoy_cc_binary(
 )
 ```
 
-其中 `@envoy` 表示引用 envoy 代码库，main 函数也位于 envoy 代码库中。那么 envoy 代码库从哪儿来的呢？bazel 在构建时会自动下载指定的依赖，envoy 的代码来源在 [WORKSPACE](https://github.com/istio/proxy/blob/master/WORKSPACE) 中有指定:
+其中 `@envoy` 表示引用 envoy 代码库，main 函数也位于 envoy 代码库中。那么 envoy 代码库从哪儿来的呢？bazel 在构建时会自动下载指定的依赖，envoy 的代码来源在 [WORKSPACE](https://github.com/istio/proxy/blob/master/WORKSPACE) 中有指定：
 
 ``` txt
 http_archive(
@@ -78,7 +78,7 @@ http_archive(
 
 bazel 会自动下载指定版本的源码包来编译。
 
-## 如果获取依赖源文件?
+## 如果获取依赖源文件？
 
 由于 istio-proxy 依赖了大量的第三方源文件，我们要阅读代码需要将这些源文件都下下来，只要将它编译一次，所有依赖源文件以及 generated 的代码都可以自动给你备好，所以我们需要对它进行一次编译。
 
@@ -86,9 +86,9 @@ bazel 会自动下载指定版本的源码包来编译。
 
 ## 安装 bazelisk
 
-不用容器编译就需要本机环境基本满足工具链要求，首先是需要安装 bazel，由于 bazel 版本很多，不同 istio-proxy(envoy) 版本依赖的 bazel 版本也不一样，我们可以直接安装 [bazelisk](https://github.com/bazelbuild/bazelisk) ，一个用于 bazel 多版本管理的工具，它可以自动识别项目中 [.bazelversion](https://github.com/istio/proxy/blob/master/.bazelversion) 文件，选取指定版本的 bazel 来进行构建(可以自动下载对应版本的 bazel 二进制)。
+不用容器编译就需要本机环境基本满足工具链要求，首先是需要安装 bazel，由于 bazel 版本很多，不同 istio-proxy (envoy) 版本依赖的 bazel 版本也不一样，我们可以直接安装 [bazelisk](https://github.com/bazelbuild/bazelisk) ，一个用于 bazel 多版本管理的工具，它可以自动识别项目中 [.bazelversion](https://github.com/istio/proxy/blob/master/.bazelversion) 文件，选取指定版本的 bazel 来进行构建（可以自动下载对应版本的 bazel 二进制文件）。
 
-如果是 macOS 用户，安装很简单:
+如果是 macOS 用户，安装很简单：
 
 ``` bash
 brew install bazelisk
@@ -96,23 +96,23 @@ brew install bazelisk
 
 > 如果之前已安装过 bazel，可以使用 `brew link --overwrite bazelisk` 强制覆盖。
 
-其它平台的可以在 [release](https://github.com/bazelbuild/bazelisk/releases) 页面下载最新的二进制，重命名为 `bazel` 然后放到 `PATH` 下。
+其它平台的可以在 [release](https://github.com/bazelbuild/bazelisk/releases) 页面下载最新的二进制文件，重命名为 `bazel` 然后放到 `PATH` 下。
 
 ## 其它依赖
 
-如果是 macOS 用户，确保务必安装好 xcode，方便跳转系统库函数，安装命令:
+如果是 macOS 用户，确保务必安装好 xcode，方便跳转系统库函数，安装命令：
 
 ``` bash
 xcode-select --install
 ```
 
-另外主要还有 python3 (macOS 自带)，其它依赖通常都系统自带，可以先不用管，等如果编译报错了再看。
+另外主要还有 python3（macOS 自带），其它依赖通常都系统自带，可以先不用管，等如果编译报错了再看。
 
 更多依赖可参考 [官方文档](https://www.envoyproxy.io/docs/envoy/latest/start/building#requirements) 。
 
 ## 编译
 
-在 istio-proxy 代码根目录执行以下命令进行编译:
+在 istio-proxy 代码根目录执行以下命令进行编译：
 
 ``` bash
 make build_envoy
@@ -120,19 +120,19 @@ make build_envoy
 
 环境没问题的话会经过漫长的构建和编译，通常可能几十分钟，取决于电脑配置。
 
-编译完后会发现 bazel 为我们生成了一些目录软链:
+编译完后会发现 bazel 为我们生成了一些目录软链：
 
 ![](use-clion-read-envoy-source-code-1.png)
 
 > bazel 输出目录结构可参考官方文档 [Output Directory Layout](https://docs.bazel.build/versions/master/output_directories.html#layout-diagram) 。
 
-我们主要关注以下两个目录:
-* **bazel-istio-proxy**: 包含构建 istio-proxy 用到的源文件(包含依赖)。
-* **bazel-bin**: 包含一些 generated 代码。
+我们主要关注以下两个目录：
+* **bazel-istio-proxy**：包含构建 istio-proxy 用到的源文件（包含依赖）。
+* **bazel-bin**：包含一些 generated 代码。
 
 ## 生成源码文件列表
 
-在 istio-proxy 根目录创建脚本文件 `generate-srcs.sh`:
+在 istio-proxy 根目录创建脚本文件 `generate-srcs.sh`：
 
 ``` bash
 #!/bin/bash
@@ -144,9 +144,9 @@ bazel_dir="bazel-${PWD##*/}"
 find -L -E $bazel_dir/external src extensions -regex '.*\.(cc|c|cpp)' > sourcefiles.txt
 ```
 
-执行此脚本可以生成 istio-proxy 及其依赖的源文件列表 (`sourcefiles.txt`)，用于在 `CMakeLists.txt` 中引用。
+执行此脚本可以生成 istio-proxy 及其依赖的源文件列表（`sourcefiles.txt`），用于在 `CMakeLists.txt` 中引用。
 
-**注:** `$bazel_dir/external` 下包含内容较多，全部索引的话 CLion 可能会比较卡，很多代码基本也都不会看，可以适当缩小范围，按需来配置，比如先只添加 `$bazel_dir/external/envoy`，后续有需要再添加其它目录，然后 `Reload Cmake Project` 重新索引。
+**注：** `$bazel_dir/external` 下包含内容较多，全部索引的话 CLion 可能会比较卡，很多代码基本也都不会看，可以适当缩小范围，按需来配置，比如先只添加 `$bazel_dir/external/envoy`，后续有需要再添加其它目录，然后 `Reload Cmake Project` 重新索引。
 
 ## 生成 CMakeLists.txt
 
@@ -218,9 +218,9 @@ set(istio_include_dirs
 target_include_directories(istio-proxy PUBLIC ${istio_include_dirs})
 ```
 
-解释一下:
+解释一下：
 * `add_executable` 将需要索引的源文件列表 (`sourcefiles.txt`) 加进索引。
-* `target_include_directories` 将用到的一些纯头文件目录加进索引 (不包含实现代码，主要是一些接口)，这里也是可以按需进行增删。
+* `target_include_directories` 将用到的一些纯头文件目录加进索引（不包含实现代码，主要是一些接口），这里也是可以按需进行增删。
 
 ## 使用 CLion 阅读
 
@@ -228,19 +228,19 @@ target_include_directories(istio-proxy PUBLIC ${istio_include_dirs})
 
 ![](use-clion-read-envoy-source-code-2.png)
 
-弹出 `Load Project` 时不要勾选 `Clean project`，不然退出 CLion 时会执行 `make clean`，导致把 bazel 生成的源文件都给删除掉，就没法跳转了:
+弹出 `Load Project` 时不要勾选 `Clean project`，不然退出 CLion 时会执行 `make clean`，导致把 bazel 生成的源文件都给删除掉，就没法跳转了：
 
 ![](use-clion-read-envoy-source-code-6.png)
 
-然后就会开始索引，完成后就可以愉快的看代码了，先从 main 看起吧(`bazel-istio-proxy/external/envoy/source/exe/main.cc`):
+然后就会开始索引，完成后就可以愉快的看代码了，先从 main 看起吧 (`bazel-istio-proxy/external/envoy/source/exe/main.cc`):
 
 ![](use-clion-read-envoy-source-code-3.gif)
 
-查找引用:
+查找引用：
 
 ![](use-clion-read-envoy-source-code-4.png)
 
-跳转到实现:
+跳转到实现：
 
 ![](use-clion-read-envoy-source-code-5.gif)
 
