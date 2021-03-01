@@ -33,7 +33,6 @@ type: "notice"
 5. 熟练掌握golang、python，前端相关技术有一定设计能力；
 6. 良好的沟通能力和技术文档、方案等表达能力；
 
----
 #### 投递简历
 
 欢迎邮件到 [hao.zeng@handpay.com.cn](hao.zeng@handpay.com.cn)，我们将尽快安排面试。
