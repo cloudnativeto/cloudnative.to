@@ -112,6 +112,12 @@ URL = "https://i.cloudnative.to/observability/"
 weight = 9
 
 [[menu.main]]
+parent = "Community"
+name = "Edge Computing SIG"
+URL = "https://i.cloudnative.to/edge/"
+weight = 10
+
+[[menu.main]]
 name = "Blog"
 URL = "blog"
 weight = 3
@@ -332,6 +338,12 @@ parent = "兴趣小组"
 name = "可观察性 SIG"
 URL = "https://i.cloudnative.to/observability/"
 weight = 7
+
+[[Languages.zh.menu.main]]
+parent = "兴趣小组"
+name = "边缘计算 SIG"
+URL = "https://i.cloudnative.to/edge/"
+weight = 8
 
 [[Languages.zh.menu.main]]
 name = "博客"
