@@ -9,7 +9,6 @@ date: 2021-03-05T11:00:00+08:00
 avatar: "/images/profile/zhaohuabing.png"
 profile: "腾讯云高级工程师，Istio contributor，ServiceMesher 管理委员，热衷于开源、网络和云计算。目前主要从事服务网格的开源和研发工作。"
 type: "post"
-avatar: "/images/profile/default.jpg"
 ---
 
 备注：本文根据腾讯云赵化冰和知乎唐阳在 IstioCon 2021 中的演讲 [“How to Manage Any Layer-7 Traffic in an Istio Service Mesh?”](https://events.istio.io/istiocon-2021/sessions/how-to-manage-any-layer-7-traffic-in-an-istio-service-mesh/) 整理而成。
