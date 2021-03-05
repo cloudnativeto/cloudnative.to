@@ -1,6 +1,6 @@
 ---
 title: "[社招] 有赞容器、中间件开发"
-date: 2020-11-27T22:42:00+08:00
+date: 2020-03-04T21:00:00+08:00
 draft: false
 bg_image: "images/backgrounds/page-title.jpg"
 description: "Base 地：杭州"
@@ -34,7 +34,7 @@ type: "notice"
 
 #### 投递简历
 
-欢迎邮件到 <wangbo@youzan.com>，我们将尽快安排面试。
+欢迎邮件到 <liuyan@youzan.com>，我们将尽快安排面试。
 
 
 
