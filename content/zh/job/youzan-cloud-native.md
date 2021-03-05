@@ -34,7 +34,7 @@ type: "notice"
 
 #### 投递简历
 
-欢迎邮件到 <wangbo@youzan.com>，我们将尽快安排面试。
+欢迎邮件到 <liuyan@youzan.com>，我们将尽快安排面试。
 
 
 
