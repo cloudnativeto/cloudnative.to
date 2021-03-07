@@ -1,5 +1,5 @@
 ---
-title: "IstioCon 2021 演讲分享：如何在 Isito 中支持 Dubbo、Thrift、Redis，以及任何七层协议？"
+title: "在 Isito 中支持 Dubbo、Thrift、Redis，以及任何七层协议？"
 description: "本文根据腾讯云赵化冰和知乎唐阳在 IstioCon 2021 中的演讲 “How to Manage Any Layer-7 Traffic in an Istio Service Mesh?” 整理而成。"
 author: "[赵化冰](https://zhaohuabing.com)"
 image: "/images/blog/papership.jpg"
