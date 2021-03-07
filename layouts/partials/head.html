@@ -30,11 +30,11 @@
   {{ "<!--Algolia-->" | safeHTML }}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.min.css">
   {{ "<!--Twitter card-->" | safeHTML }}
-  <meta name="twitter:card" content="{{ with .Description }}{{ . }}{{ end }}" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="Cloud Native Community|云原生社区" />
   <meta name="twitter:creator" content="@CloudNativeCN" />
   <meta property="og:url" content="{{ with .Permalink }}{{ . }}{{ end }}" />
   <meta property="og:title" content="{{ .Title }}" />
   <meta property="og:description" content="{{ with .Description }}{{ . }}{{ end }}" />
-  <meta property="og:image" content="{{ `images/favicon.png` | absURL }}" />
+  <meta property="og:image" content="{{ with .Params.image }} {{.| absURL}}{{ end }}" />
 </head>
