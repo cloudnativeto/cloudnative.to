@@ -1,4 +1,9 @@
 {{ "<!-- header -->" | safeHTML }}
+<!-- 让微信朋友圈显示缩略图，详见 https://my.oschina.net/corwien/blog/660824 -->
+<img src="images/logo-square.jpg" width="0" height="0" />
+<div style='margin:0 auto;width:0px;height:0px;overflow:hidden;'>
+     <img src="" width='700'>
+</div>
 <header>
   {{ if .Site.Params.top_header }}
   {{ "<!-- top header -->" | safeHTML }}
