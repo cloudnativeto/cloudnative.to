@@ -2,7 +2,7 @@
 title: "IstioCon 2021 演讲分享：如何在 Isito 中支持 Dubbo、Thrift、Redis，以及任何七层协议？"
 description: "本文根据腾讯云赵化冰和知乎唐阳在 IstioCon 2021 中的演讲 “How to Manage Any Layer-7 Traffic in an Istio Service Mesh?” 整理而成。"
 author: "[赵化冰](https://zhaohuabing.com)"
-image: "https://images.pexels.com/photos/194094/pexels-photo-194094.jpeg?cs=srgb&dl=pexels-miguel-%C3%A1-padri%C3%B1%C3%A1n-194094.jpg&fm=jpg"
+image: "/images/blog/papership.jpg"
 categories: ["Service Mesh"]
 tags: ["service mesh","Istio","Envoy","Redis","Dubbo","Thrift","Aeraki"]
 date: 2021-03-05T11:00:00+08:00
@@ -11,7 +11,7 @@ profile: "腾讯云高级工程师，Istio contributor，ServiceMesher 管理委
 type: "post"
 ---
 
-备注：本文根据腾讯云赵化冰和知乎唐阳在 IstioCon 2021 中的演讲 [“How to Manage Any Layer-7 Traffic in an Istio Service Mesh?”](https://events.istio.io/istiocon-2021/sessions/how-to-manage-any-layer-7-traffic-in-an-istio-service-mesh/) 整理而成。
+本文根据腾讯云赵化冰和知乎唐阳在 IstioCon 2021 中的演讲 [“How to Manage Any Layer-7 Traffic in an Istio Service Mesh?”](https://events.istio.io/istiocon-2021/sessions/how-to-manage-any-layer-7-traffic-in-an-istio-service-mesh/) 整理而成。
 
 大家好，今天我们想和大家分享的主题是如何扩展 Istio 以支持任何七层协议？作为云原生领域中一个人气非常高的开源项目， Istio 目前已经基本成为了 Service Mesh 的事实标准。腾讯云上也提供了基于 Istio 进行增强，和 Istio API 完全兼容的 Service Mesh 管理服务 TCM（Tencent Cloud Mesh），以帮助我们的用户以较小的迁移成本和维护代价快速利用到 Service Mesh 提供的流量管理和服务治理能力。今天非常高兴能够有这个机会来和大家一起分享一下我们在此过程中的一些经验。
 
