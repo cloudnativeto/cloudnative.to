@@ -36,5 +36,5 @@
   <meta property="og:url" content="{{ with .Permalink }}{{ . }}{{ end }}" />
   <meta property="og:title" content="{{ .Title }}" />
   <meta property="og:description" content="{{ with .Description }}{{ . }}{{ end }}" />
-  <meta property="og:image" content="{{ with .Params.image }} {{.| absURL}}{{ end }}" />
+  <meta property="og:image" content="{{ with .Params.image }}{{.| absURL}}{{ end }}" />
 </head>
