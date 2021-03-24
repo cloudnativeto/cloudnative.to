@@ -5,7 +5,7 @@ author: "[王炜](https://www.github.com/lyzhang1999)"
 image: "images/blog/goodbye-localhost.png"
 categories: ["cloud native"]
 tags: ["Kubernetes","Nocalhost"]
-date: 2021-02-19T13:56:00+08:00
+date: 2021-03-24T10:54:00+08:00
 type: "post"
 avatar: "/images/profile/wangwei.png"
 profile: "CKA CKAD，云原生社区深圳站站长，CNCF Landscape 项目 Nocalhost 核心成员。"
