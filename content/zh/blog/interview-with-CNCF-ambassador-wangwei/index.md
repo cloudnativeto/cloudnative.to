@@ -112,7 +112,7 @@ Nocalhost 工作示意图：
 
 当有了应用之后，我们便能够为该仓库创建 `.nocalhost/config.yaml` 来为 Nocalhost 提供开发参数。例如，这是 Bookinfo 应用以及 `productpage` 服务的部分开发参数：
 
-```
+```yaml
 configProperties:
   version: v2
 
