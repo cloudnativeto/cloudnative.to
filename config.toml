@@ -118,6 +118,12 @@ URL = "https://i.cloudnative.to/edge/"
 weight = 10
 
 [[menu.main]]
+parent = "Community"
+name = "Machine Learning SIG"
+URL = "https://i.cloudnative.to/machine-learning/"
+weight = 11
+
+[[menu.main]]
 name = "Blog"
 URL = "blog"
 weight = 3
@@ -344,6 +350,12 @@ parent = "兴趣小组"
 name = "边缘计算 SIG"
 URL = "https://i.cloudnative.to/edge/"
 weight = 8
+
+[[Languages.zh.menu.main]]
+parent = "兴趣小组"
+name = "机器学习 SIG"
+URL = "https://i.cloudnative.to/edge/"
+weight = 9
 
 [[Languages.zh.menu.main]]
 name = "博客"
