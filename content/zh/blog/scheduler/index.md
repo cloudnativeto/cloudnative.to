@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes Scheduler Cache 架构设计源码阅读"
-date: 2021-3-25T21:50:05+08:00
+date: 2021-03-25T21:50:05+08:00
 draft: false
 image: "/images/blog/blog-2.jpg"
 author: "[Abser Ari](https://yuque.com/abser)"
