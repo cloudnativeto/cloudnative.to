@@ -354,7 +354,7 @@ weight = 8
 [[Languages.zh.menu.main]]
 parent = "兴趣小组"
 name = "机器学习 SIG"
-URL = "https://i.cloudnative.to/edge/"
+URL = "https://i.cloudnative.to/machine-learning/"
 weight = 9
 
 [[Languages.zh.menu.main]]
