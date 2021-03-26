@@ -1,5 +1,5 @@
 ---
-title: "Kubernetes Scheduler Cache 源码架构设计阅读"
+title: "Kubernetes Scheduler Cache 架构设计源码阅读"
 date: 2021-3-25T21:50:05+08:00
 draft: false
 image: "/images/blog/blog-2.jpg"
