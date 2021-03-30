@@ -49,3 +49,6 @@ AddNode 方法执行时，需要传入一个 Node 实例。首先，根据 Node.
 ## Schedule
 ### Update Snapshot
 ![kube-scheduler-cache-update-snapshot.png](update-snapshot.png)
+
+# Summary
+本文研究了 Kubernetes 中 Scheduler Cache 部分的源码，进度在 1/5，接下来将整理 Kubernetes 1.18 版本下的全部源码设计图。 预计会有五个大模块，分别是 API Server，Client，Proxy，Controllers 和 Scheduler，和一些辅助工具如 Docker，Go Basic 和 Network 方面统共 123 张源码设计图。敬请期待吧。
