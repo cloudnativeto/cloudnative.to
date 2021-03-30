@@ -10,7 +10,7 @@ categories: ["kubernetes"]
 keywords: ["Kubernetes","Scheduler"]
 type: "post"
 avatar: "/images/profile/abserari.png"
-profile: "华北电力大学大四学生"
+profile: "华北电力大学大四学生。"
 ---
 本文研究了 Kubernetes 中 Scheduler Cache 部分的源码，通过画图表现其设计思想，希望读者能自行配备源码进行进一步理解，学会自己进行相关设计。
 ## Nodes
