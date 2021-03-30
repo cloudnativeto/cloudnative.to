@@ -9,7 +9,7 @@ tags: ["Kubernetes", "service mesh", "cloud native"]
 date: 2021-03-29T22:30:00+08:00
 type: "post"
 avatar: "/images/profile/bilgin.png"
-profile: "红帽公司的产品经理和前架构师，Apache 软件基金会的成员"
+profile: "红帽公司的产品经理和前架构师，Apache 软件基金会成员。"
 ---
 
 本文译自 [The Evolution of Distributed Systems on Kubernetes](https://www.infoq.com/articles/distributed-systems-kubernetes/)。
