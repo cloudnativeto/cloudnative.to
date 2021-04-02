@@ -36,11 +36,11 @@ logo_detail_desc: 猎德大桥，是珠江上的名珠桥梁，桥上可以一�
 logo_image: "/images/city/guangzhou/logo.png"
 
 # ACTIVITY
-# activity_title: 往期活动
-# activities:
-#   - name: TODO
-#     images: 
-#       - "/images/city/guangzhou/activities/xxxx.jpeg"
+activity_title: 社区活动
+activities:
+  - name: 即将到来
+    images: 
+      - "/images/city/guangzhou/activities/comming-soon.jpeg"
 
 # JOINT US
 join_us_title: "加入我们"
