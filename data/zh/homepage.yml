@@ -3,6 +3,16 @@ slider:
   enable : true
   slider_item:
      - subtitle : ""
+       title : "云原生社区 Meetup 第三期·杭州站"
+       content : "4 月 17 日，杭州西溪首座，。本次活动特别邀请了云原生社区稳定性 SIG、Envoy SIG、OAM SIG、Istio SIG 的核心贡献者为大家带来精彩演讲！"
+       bg_image : "images/slider/hangzhou.jpg"
+       animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
+       button:
+         enable : true
+         label : "立即报名"
+         link : "https://www.huodongxing.com/event/5591624242600"
+         animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
+     - subtitle : ""
        title : "云原生社区 Meetup 第二期·北京站"
        content : "12 月 20 日，北京国贸，本次 meetup 将为大家带来云原生监控、存储、微服务与服务网格等主题的精彩分享，更有《云原生操作系统 Kubernetes》作者现场签售。"
        bg_image : "images/slider/beijing.jpg"
