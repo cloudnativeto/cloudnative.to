@@ -4,7 +4,7 @@ title: "声明与政策"
 description: "欢迎来到云原生社区。您需要阅读并同意相关政策条款放可加入云原生社区。"
 # page title background image
 bg_image: "images/backgrounds/page-title.jpg"
-layout: "code-of-conduct"
+aliases: ["/code-of-conduct"]
 ---
 
 欢迎您来到云原生社区。

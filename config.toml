@@ -155,8 +155,8 @@ weight = 6
 
 # footer menu
 [[menu.footer]]
-name = "Announcement and Policy"
-URL = "/code-of-conduct"
+name = "Policy"
+URL = "/policy"
 weight = 1
 
 ########################### Default parameters ######################
@@ -460,6 +460,6 @@ weight = 8
 # footer menu
 [[Languages.zh.menu.footer]]
 name = "声明与政策"
-URL = "/code-of-conduct"
+URL = "/policy"
 weight = 1
 
