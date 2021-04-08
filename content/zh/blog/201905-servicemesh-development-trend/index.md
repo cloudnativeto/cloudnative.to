@@ -1,4 +1,4 @@
----
+~~---
 title: "Service Mesh发展趋势：云原生中流砥柱"
 date: 2019-05-28T7:15:43+08:00
 draft: false
@@ -12,7 +12,7 @@ categories: ["service mesh"]
 keywords: ["service mesh","服务网格","微服务","架构"]
 type: "post"
 avatar: "/images/profile/default.jpg"
----
+---~~
 
 ![](logo.jpg)
 
