@@ -83,7 +83,7 @@ profile: "来自同程旅行数据中心集群研发部，云原生爱好者，T
 起初准备用`hostpath`+`nodename`的方式来做到节点不漂移，但是`nodename` 会跳过 Scheduler update 步骤，并不会进行 `bind` pvc等步骤。详情可以参考 [issue 93145](https://github.com/kubernetes/kubernetes/issues/93145)。
 
 ### DNS 问题
-大数据里面很多组件节点都采用 `hostname` 作为节点标识，比如NodeManager采用`hostname`注册。`Hbase`组件要支持域名反解，`Kudu`的master节点依赖自身的域名通信。这些都违背了Kubernetes的设计理念，容器创建出来后，才会从CNI分配得到IP,进程启动OK，Service域名才能通信。
+大数据里面很多组件节点都采用 `hostname` 作为节点标识，比如`NodeManager`采用`hostname`注册，`Hbase`组件要支持域名反解，`Kudu`的master节点依赖自身的域名提前通信。这些都违背了Kubernetes的设计理念，`Kubernetes` 创建容器，CNI分配得到IP，进程启动OK，容器变成Ready状态，Pod的Service域名才能通信。
 
 同程大数据选择用`Host`网络部署大部分的存储组件，沿用宿主机网络，除了`Kubernetes`集群子域外再创建一个子域用于组件本身标识，这样组件迁移会很方便，也不有网络损耗的烦恼。但是要做好宿主机端口的管理划分。
 
