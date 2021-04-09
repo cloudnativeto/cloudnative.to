@@ -189,3 +189,44 @@ ul.related {
 }
 
 /* /blog */
+
+/* pager*/
+
+.pager {
+    padding-left: 0;
+    padding-bottom: 40px;
+    margin: 20px 0;
+    text-align: center;
+    list-style: none
+}
+
+.pager li {
+    display: inline
+}
+
+.pager li>a, .pager li>span {
+    display: inline-block;
+    padding: 5px 14px;
+    background-color: #fff;
+    border: 1px solid $primary-color;
+}
+
+.pager li>a:focus, .pager li>a:hover {
+    text-decoration: none;
+    background-color: $primary-color;
+    color: $white;
+}
+
+.pager .next>a, .pager .next>span {
+    float: right
+}
+
+.pager .previous>a, .pager .previous>span {
+    float: left
+}
+
+.pager .disabled>a, .pager .disabled>a:focus, .pager .disabled>a:hover, .pager .disabled>span {
+    color: $primary-color;
+    cursor: not-allowed;
+    background-color: $primary-color;
+}
