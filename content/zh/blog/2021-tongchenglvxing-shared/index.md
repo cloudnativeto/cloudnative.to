@@ -2,7 +2,7 @@
 title: "同程旅行大数据集群在 Kubernetes 上的服务化实践"
 date: 2021-04-09T02:40:00+08:00
 draft: false
-image: "/images/blog/tongchenglvxing-shared.png"
+image: "/images/blog/tongchenglvxing-article-shared.png"
 author: "[程威](https://github.com/mikechengwei)"
 description: "本文介绍同程旅行大数据集群在 Kubernetes 上的服务化实践。"
 categories: ["Kubernetes"]
