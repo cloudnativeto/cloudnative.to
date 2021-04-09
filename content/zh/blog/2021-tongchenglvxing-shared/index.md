@@ -10,13 +10,10 @@ tags: ["大数据"]
 keywords: ["大数据上云","云原生","大数据","Devops","服务化"]
 type: "post"
 avatar: "/images/profile/default.jpg"
+profile: "来自同程旅行数据中心集群研发部，云原生爱好者，TiDB Operator ，Prometheus Operator 核心贡献者。"
 ---
 
-# 同程旅行大数据集群在 Kubernetes 上的服务化实践
-## 自我介绍
-大家好，我是来自同程旅行数据中心集群研发部的程威。我个人是一位云原生爱好者，github ID: `mikechengwei`，TiDB Operator ，Prometheus Operator 核心贡献者。
-
-今天会向大家介绍同程旅行大数据集群在Kubernetes上服务化建设的一些实践和经验。
+本文将向大家介绍同程旅行大数据集群在Kubernetes上服务化建设的一些实践和经验。
 
 ## 前言
 同程旅行大数据集群从 2017 年开始容器化改造，经历了自研调度 docker 容器 ，到现在的`云舱`平台,采用 `Kubernetes` 调度编排工具管理大数据集群服务。
