@@ -8,7 +8,7 @@ translator: "[宋净超](https://jimmysong.io)"
 description: "本文是 Weaveworks 的 CEO 对 GitOps 工作流程和 Istio 的看法。本文还介绍了如何使用 GitOps 上线和管理 Istio 的金丝雀部署。以上观点来自哥本哈根 Kubecon 上的 Weaveworks 的分享。"
 originallink: "https://www.weave.works/blog/gitops-for-istio-manage-istio-config-like-code"
 tags: ["istio","gitops"]
-categories: ["practice","istio"]
+categories: ["istio"]
 keywords: ["gitops","kubecon","git","CI/CD","Istio","weavecloud"]
 type: "post"
 avatar: "/images/profile/default.jpg"

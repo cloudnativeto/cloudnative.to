@@ -6,7 +6,7 @@ image: "/images/blog/006tNc79gy1fts3vcjc02j31ji15ob2b.jpg"
 author: "[宋净超](https://jimmysong.io)"
 description: "2018年7月29日，北京，中关村e世界，由ServiceMesher社区和蚂蚁金服联合举办的，Sharding-Sphere社区、Apache SkyWalking社区、SOFA社区、新浪微博协办的第二届Service Mesh Meetup北京站圆满落幕。"
 tags: ["meetup"]
-categories: ["service mesh"]
+categories: ["其他"]
 keywords: ["service mesh","线下沙龙","meetup"]
 type: "post"
 avatar: "/images/profile/default.jpg"

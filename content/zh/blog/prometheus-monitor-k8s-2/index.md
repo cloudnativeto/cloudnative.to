@@ -9,7 +9,7 @@ reviewerlink: ["https://github.com/haiker2011”,”https://github.com/si7eka”
 originallink: "http://xianyuluo.com/post/prometheus%E7%9B%91%E6%8E%A7k8s%E4%BA%8C%E7%9B%91%E6%8E%A7%E9%83%A8%E7%BD%B2/"
 description: "本文介绍 Prometheus 监控的部署。"
 tags: ["prometheus","kubernetes"]
-categories: ["monitoring"]
+categories: ["可观察性"]
 keywords: ["service mesh","服务网格","prometheus","kubernetes"]
 type: "post"
 avatar: "/images/profile/default.jpg"

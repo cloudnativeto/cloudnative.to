@@ -6,7 +6,7 @@ image: "/images/blog/006tNbRwly1fuoa8b64wqj31ji15mx6s.jpg"
 author: "[宋净超](https://jimmysong.io)"
 description: "ServiceMesher社区和蚂蚁金服联合主办、SOFAStack社区协办的第三届Service Mesh Meetup深圳站收官，华为张超盟、蚂蚁金服熊啸、JEX杨文、联邦车网朱经惠给大家带来分享。"
 tags: ["meetup"]
-categories: ["meetup"]
+categories: ["其他"]
 keywords: ["service mesh","meetup"]
 type: "post"
 avatar: "/images/profile/default.jpg"

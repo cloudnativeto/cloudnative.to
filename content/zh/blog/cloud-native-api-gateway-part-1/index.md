@@ -6,7 +6,7 @@ image: "/images/blog/blur-daylight-depth-of-field.jpg"
 author: "[陆培尔](https://lupeier.com)"
 description: "在微服务架构中，API网关是一个十分重要的存在。在云原生时代，API网关有了新的定义和发展。本系列文章尝试分析目前主流的云原生微服务网关，并比较各自的优劣。"
 tags: ["ambassador","api gateway"]
-categories: ["service mesh"]
+categories: ["Service Mesh"]
 keywords: ["ambassador","kubernetes native"]
 type: "post"
 avatar: "/images/profile/default.jpg"

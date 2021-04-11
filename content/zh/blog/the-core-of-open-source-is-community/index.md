@@ -5,7 +5,7 @@ description: "这是云原生的机会，更是开源社区的机会。"
 author: "[陈少文](https://chenshaowen.com)"
 image: "images/blog/open-source.jpg"
 bg_image: "images/backgrounds/sea-banner.jpg"
-categories: ["open source"]
+categories: ["开源社区"]
 tags: ["open source"]
 type: "post"
 avatar: "/images/profile/default.jpg"

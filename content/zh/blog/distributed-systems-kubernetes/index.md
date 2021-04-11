@@ -4,7 +4,7 @@ description: "本文翻译自 Bilgin Ibryam 的文章 The Evolution of Distribut
 author: "[Bilgin Ibryam](https://www.infoq.com/articles/distributed-systems-kubernetes/)"
 translator: "[张晓辉](https://atbug.com)"
 image: "/images/blog/evolution.jpg"
-categories: ["cloud native"]
+categories: ["Kubernetes"]
 tags: ["Kubernetes", "service mesh", "cloud native"]
 date: 2021-03-29T22:30:00+08:00
 type: "post"

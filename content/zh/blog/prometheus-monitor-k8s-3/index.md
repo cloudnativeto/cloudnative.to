@@ -8,7 +8,7 @@ reviewer: ["孙海洲","李征","吴钧泽"]
 reviewerlink: ["https://github.com/haiker2011”,”https://github.com/si7eka”,”https://www.wujunze.com/"]
 description: "本文介绍 Prometheus 如何采集业务指标。"
 tags: ["prometheus","kubernetes"]
-categories: ["monitoring"]
+categories: ["可观察性"]
 keywords: ["service mesh","服务网格","prometheus","kubernetes"]
 type: "post"
 avatar: "/images/profile/default.jpg"

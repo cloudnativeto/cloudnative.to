@@ -8,7 +8,7 @@ reviewer:  ["宋净超"]
 reviewerlink:  ["https://jimmysong.io"]
 title: "使用Django，Prometheus，和Kubernetes定制应用指标"
 description: "本文演示如果为一个Django应用添加Prometheus自定义指标。"
-categories: ["monitoring"]
+categories: ["可观察性"]
 tags: ["Prometheus"]
 type: "post"
 avatar: "/images/profile/default.jpg"

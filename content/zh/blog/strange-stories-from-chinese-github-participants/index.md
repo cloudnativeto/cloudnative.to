@@ -6,7 +6,7 @@ image: "/images/blog/006tNbRwly1fyk8jr9w7fj31400u0e84.jpg"
 author: "我把玲玲打一顿"
 description: "本文谈论了一些 GitHub 上中式开源的怪象，希望从事开源的读者引以为戒。"
 tags: ["open source"]
-categories: ["open source"]
+categories: ["开源社区"]
 keywords: ["开源","GitHub"]
 type: "post"
 avatar: "/images/profile/default.jpg"

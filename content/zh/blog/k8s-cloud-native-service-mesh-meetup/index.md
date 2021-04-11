@@ -7,7 +7,7 @@ author: "ServiceMesher"
 authorlink: "https://www.servicemesher.com"
 description: "11月24日（周日），北京，Service Mesh Meetup#8 双十一特别场邀您参加，本期联合 CNCF、阿里巴巴及蚂蚁金服共同举办。"
 tags: ["service  mesh","kubernetes","meetup"]
-categories: ["meetup"]
+categories: ["其他"]
 keywords: ["service mesh","meetup","kubernetes"]
 type: "post"
 avatar: "/images/profile/default.jpg"

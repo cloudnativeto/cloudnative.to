@@ -8,7 +8,7 @@ image: "/images/blog/142.jpg"
 author: "[宋净超](https://jimmysong.io)"
 description: "因为疫情的原因，ServiceMesher 社区暂时无法举办线下 meetup，因此我们将活动改为线上，将采用 B 站直播的形式。"
 tags: ["meetup"]
-categories: ["meetup"]
+categories: ["其他"]
 keywords: ["service mesh","meetup"]
 type: "post"
 avatar: "/images/profile/default.jpg"

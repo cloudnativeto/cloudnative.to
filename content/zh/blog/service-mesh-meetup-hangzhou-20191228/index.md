@@ -7,7 +7,7 @@ author: "宋净超"
 authorlink: "https://jimmysong.io"
 description: "本期 Meetup 与滴滴联合举办，将深入 Service Mesh 的落地实践，并带领大家探索 Service Mesh 在更广阔领域的应用。"
 tags: ["meetup"]
-categories: ["meetup"]
+categories: ["其他"]
 keywords: ["service mesh","meetup"]
 type: "post"
 avatar: "/images/profile/default.jpg"

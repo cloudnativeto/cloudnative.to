@@ -1,10 +1,9 @@
 ---
-
 title: "云原生DevOps落地方案"
 description: "这篇文章通过对容器平台DevOps组件设计，从源码级别做了详尽介绍。"
 author: "[陈月新](https://github.com/gophere)"
 image: "images/blog/devops-banner.jpg"
-categories: ["Kubernetes"]
+categories: ["云原生"]
 tags: ["DevOps", "CICD"]
 date: 2020-09-15T07:00:00+08:00
 type: "post"

@@ -5,7 +5,7 @@ description: "Linux社区的大佬们为学习eBPF的同学们准备了福利 �
 author: "[李文权（nevermosby）](https://github.com/nevermosby)"
 profile: "银行IT从业者，云原生爱好者。"
 image: "images/blog/ebpf-workflow-101.png"
-categories: ["Linux"]
+categories: ["其他"]
 tags: ["Linux","eBPF"]
 type: "post"
 avatar: "/images/profile/nevermosby.jpg"

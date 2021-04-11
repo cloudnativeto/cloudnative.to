@@ -4,7 +4,7 @@ description: "作者总结了她见过的云原生失败的各种经验教训，
 author: "[Holly Cummins](https://www.infoq.com/articles/cloud-native-culture)"
 translator: "[宋净超（Jimmy Song）](https://jimmysong.io)"
 image: "/images/blog/cloud-native-culture.jpg"
-categories: ["cloud native"]
+categories: ["云原生"]
 tags: ["cloud native","culture"]
 date: 2021-03-18T11:00:00+08:00
 type: "post"

@@ -4,7 +4,7 @@ date: 2020-05-12T06:00:00+08:00
 description: "我们很高兴地宣布，云原生社区今天正式成立了。"
 image: "images/blog/blog-1.jpg"
 author: "[宋净超（Jimmy Song）](https://jimmysong.io)"
-categories: ["open source"]
+categories: ["开源社区"]
 tags: ["open source"]
 type: "post"
 avatar: "/images/profile/jimmysong.jpg"

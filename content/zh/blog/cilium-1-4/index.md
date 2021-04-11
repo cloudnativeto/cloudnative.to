@@ -9,7 +9,7 @@ reviewer: ["宋净超"]
 reviewerlink: ["https://jimmysong.io"]
 description: "Cilium 1.4：多集群服务路由，DNS授权，IPVLAN支持，透明加密，Flannel集成，与其他CNI的基准测试。"
 tags: ["cilium"]
-categories: ["service mesh"]
+categories: ["其他"]
 keywords: ["service mesh","服务网格"]
 aliases: "/blog/cilium-1.4/"
 type: "post"

@@ -3,7 +3,7 @@ title: Nocalhost - 重新定义云原生开发环境
 description: "“微服务”带来便利的同时，对开发人员而言，还带来了额外的挑战：如何快速启动完整的开发环境？开发的需求依赖于其他同事怎么联调？如何快速调试这些微服务？"
 author: "[王炜](https://www.github.com/lyzhang1999)"
 image: "images/blog/goodbye-localhost.png"
-categories: ["cloud native"]
+categories: ["持续交付"]
 tags: ["Kubernetes","Nocalhost"]
 date: 2021-02-19T13:56:00+08:00
 type: "post"

@@ -10,7 +10,7 @@ reviewerlink: ["https://jimmysong.io"]
 originallink: "https://medium.com/@jdrawlings/serverless-jenkins-with-jenkins-x-9134cbfe6870"
 description: "本文主要介绍了serverless Jenkins起源和基本使用，Jenkins X是可供团队使用的一站式服务，可用来进行Prow ChatOps编排静态、无服务器或Knative构建作业，其中包括用于Kubernetes工作负载的自动化CI/CD以及更多自动化。"
 tags: ["jenkins","knative","ci-cd","serverless"]
-categories: ["serverless","knative"]
+categories: ["serverless"]
 keywords: ["jenkins","serverless","knative"]
 type: "post"
 avatar: "/images/profile/default.jpg"

@@ -7,7 +7,7 @@ author: "[宋净超（Jimmy Song）](https://jimmysong.io)"
 authorlink: "https://jimmysong.io"
 description: "B 站直播：多点生活在 Service Mesh 上的实践——Istio + MOSN 在 Dubbo 场景下的探索之路。"
 tags: ["istio","mosn","dubbo"]
-categories: ["meetup"]
+categories: ["其他"]
 keywords: ["service mesh","istio","服务网格","mosn"]
 type: "post"
 avatar: "/images/profile/default.jpg"

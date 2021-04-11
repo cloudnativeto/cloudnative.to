@@ -102,3 +102,6 @@
 
 - id: nextPost
   translation: "下一篇"
+
+- id: categories
+  translation: "分类"

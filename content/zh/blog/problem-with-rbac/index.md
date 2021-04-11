@@ -4,7 +4,7 @@ description: "本文主要讲述了 RBAC 面临的主要挑战。"
 author: "[Oren Harel](https://blog.plainid.com/problem-with-rbac)"
 translator: "[宋净超（Jimmy Song）](https://jimmysong.io)"
 image: "images/blog/security.jpg"
-categories: ["security"]
+categories: ["其他"]
 tags: ["security","RBAC"]
 date: 2020-12-25T10:03:00+08:00
 type: "post"

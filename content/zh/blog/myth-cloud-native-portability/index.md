@@ -12,7 +12,7 @@ reviewerlink:  ["https://jimmysong.io"]
 originallink: "https://thenewstack.io/myth-cloud-native-portability/"
 description: "本文介绍了云原生的可移植性，告诫读者应该看重生态系统而不是某个具体平台。"
 tags: ["cloud native","kubernetes"]
-categories: ["cloud native"]
+categories: ["云原生"]
 keywords: ["service mesh","服务网格","cloud native","云原生","kubernetes"]
 type: "post"
 avatar: "/images/profile/default.jpg"

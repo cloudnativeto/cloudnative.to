@@ -4,7 +4,7 @@ description: "一个新的贡献者讲述为《Kubernetes 开发指南》做贡�
 author: "[Erik L. Arneson](https://www.linkedin.com/in/elarneson/)"
 translator: "[杨冉宁](https://github.com/hyfj44255)"
 image: "/images/blog/contributing-k8s.jpeg"
-categories: ["open source"]
+categories: ["开源社区"]
 tags: ["Kubernetes","open source"]
 date: 2020-12-17T13:05:42+08:00
 type: "post"

@@ -3,7 +3,7 @@ title: 专访 CNCF 大使王炜：让云原生开发回归原始而又简单
 description: "Nocalhost 的开源，又会给 K8s 生态带来哪些影响呢？带着这些问题，我们与 Nocalhsot 的设计者之一、新晋 CNCF 大使、云原生社区成员，来自腾讯云 CODING DevOps 的王炜，详细聊聊关于 Nocalhost 的产品、技术和生态。"
 author: "[王炜](https://www.github.com/lyzhang1999)"
 image: "images/blog/goodbye-localhost.png"
-categories: ["cloud native"]
+categories: ["云原生"]
 tags: ["Kubernetes","Nocalhost"]
 date: 2021-03-24T10:54:00+08:00
 type: "post"

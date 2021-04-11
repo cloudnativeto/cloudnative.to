@@ -7,7 +7,7 @@ author: "宋净超"
 authorlink: "https://jimmysong.io"
 description: "本期 Meetup 邀请社区大咖，从服务网格下微服务架构设计、在 5G 时代的应用、如何使用开源的 Traefik 构建云原生边缘路由及蚂蚁金服的服务网格代理演进角度给大家带来精彩分享。"
 tags: ["meetup"]
-categories: ["meetup"]
+categories: ["其他"]
 keywords: ["service mesh","meetup"]
 type: "post"
 avatar: "/images/profile/default.jpg"

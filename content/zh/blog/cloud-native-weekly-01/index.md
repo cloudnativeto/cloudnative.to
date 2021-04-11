@@ -6,7 +6,7 @@ image: "/images/blog/006tNc79ly1g24pvm761jj30rs0ku4e2.jpg"
 author: "云原生编辑部"
 description: "这是 Cloud Native 周报第一期。"
 tags: ["cloud native"]
-categories: ["cloud native"]
+categories: ["云原生"]
 keywords: ["service mesh","服务网格","云原生","cloud native"]
 type: "post"
 avatar: "/images/profile/default.jpg"

@@ -99,3 +99,6 @@
 
 - id: nextPost
   translation: "Next Post"
+
+- id: categories
+  translation: "Categories"

@@ -4,7 +4,7 @@ description: "这篇文章将助于各位有志于从事云原生领域工作或
 date: 2020-10-23T14:18:40+08:00
 draft: false
 tags: ["Cloud Native","Kubernetes","Docker","Service Mesh"]
-categories: ["Open Source"]
+categories: ["云原生"]
 type: "post"
 author: "[宋净超](https://jimmysong.io)"
 avatar: "/images/profile/jimmysong.jpg"

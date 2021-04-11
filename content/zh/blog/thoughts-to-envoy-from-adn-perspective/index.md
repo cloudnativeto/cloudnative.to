@@ -10,7 +10,7 @@ reviewerlink:  ["https://github.com/SataQiu"]
 originallink: "https://www.cnadn.net/post/2947.htm"
 description: "Envoy 是云原生时代的明星，其本质是反向代理负载均衡类软件，领域上归于应用交付，那么作为应用交付领域的老兵如何看待 Envoy，Envoy 又引发了哪些关于传统应用交付领域的思考？"
 tags: ["envoy","nginx"]
-categories: ["servicem mesh"]
+categories: ["Envoy"]
 keywords: ["envoy","f5","nginx","ADN"]
 type: "post"
 avatar: "/images/profile/default.jpg"
