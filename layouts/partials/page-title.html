@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h2 class="text-white mb-3">{{ .Title }}</h2>
+        <h2 class="text-white mb-3 text-capitalize">{{ .Title | title | humanize }}</h2>
         {{ "<!-- breadcrumb -->" | safeHTML }}
         <!--
         <nav aria-label="breadcrumb">
