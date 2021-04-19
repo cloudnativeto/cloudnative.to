@@ -43,6 +43,10 @@ activities:
     images: 
       - "/images/city/nanjing/activities/2020-09-06/1.jpg"
       - "/images/city/nanjing/activities/2020-09-06/2.jpg"
+  - name: 2021-04-10 成员线下聚会
+    images: 
+      - "/images/city/nanjing/activities/2021-04-10/1.jpg"
+      - "/images/city/nanjing/activities/2021-04-10/2.jpg"
 
 # JOINT US
 join_us_title: "加入我们"
