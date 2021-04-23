@@ -1,6 +1,6 @@
 ---
 title: "基准测试五宗罪"
-date: 2021-04-22T10:40:00+08:00
+date: 2021-04-23T11:40:00+08:00
 image : "/images/blog/006tKfTcly1g17wfaklnhj31400u04qq.jpg"
 author: "[Gernot Heiser](http://gernot-heiser.org)"
 translator: "[王泓智](https://github.com/WisWang)"
