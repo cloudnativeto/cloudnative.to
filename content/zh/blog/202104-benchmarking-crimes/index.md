@@ -10,7 +10,7 @@ tags: ["基准测试"]
 categories: ["基准测试"]
 keywords: ["基准测试","基准测试最佳实践"]
 type: "post"
-avatar: "/images/profile/gernot-heiser.jpg"
+avatar: "/images/profile/gernot-heiser.png"
 profile: "Gernot Heiser（出生于1957年）是新南威尔士大学（UNSW）的 Scientia 教授和操作系统的 John Lions 主席。他还是 NICTA 软件系统研究小组（SSRG）的负责人。"
 ---
 
