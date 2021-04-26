@@ -6,7 +6,7 @@ author: "[Gernot Heiser](http://gernot-heiser.org)"
 translator: "[王泓智](https://github.com/WisWang)"
 originallink: "https://www.cse.unsw.edu.au/~gernot/benchmarking-crimes.html"
 description : "在审阅系统论文时（有时甚至在阅读已发表的论文时），我经常会遇到对基准测试极具误导性的使用。我并不是说作者有意误导读者，这大概率是作者能力有限。但这不是借口。"
-tags: ["基准测试"，“测试","稳定性"]
+tags: ["基准测试","测试","稳定性"]
 categories: ["稳定性"]
 keywords: ["基准测试","基准测试最佳实践"]
 type: "post"
