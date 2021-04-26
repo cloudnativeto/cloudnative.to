@@ -3,7 +3,7 @@ title: "彻底搞懂 etcd 系列文章（一）：初识 etcd"
 description: "etcd 了解一下！"
 author: "[aoho](http://blueskykong.com)"
 image: "images/blog/etcd-covers.png"
-categories: ["Etcd"]
+categories: ["其他"]
 tags: ["etcd"]
 date: 2020-06-09T12:00:00+08:00
 type: "post"

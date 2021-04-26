@@ -3,7 +3,7 @@ title: "解读：云原生下的可观察性发展方向"
 description: "本文来自云原生社区 meetup 北京站的分享。"
 author: "张城（元乙）"
 image: "/images/blog/keguanchaxing.jpg"
-categories: ["observability"]
+categories: ["可观察性"]
 tags: ["observability"]
 date: 2021-01-06T10:47:14+08:00
 type: "post"

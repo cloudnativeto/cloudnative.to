@@ -6,7 +6,7 @@ image: "/images/blog/006tNc79ly1fyyzcxasgvj31400u01l1.jpg"
 author: "[宋净超](https://jimmysong.io)"
 description: "ServiceMesher社区和蚂蚁金服联合主办、SOFAStack社区协办的第五届Service Mesh Meetup广州站收官，唯品会郑德惠、蚂蚁金服陈逸凡、HPE的崔秀龙给大家带来分享并增加Roundtable环节。"
 tags: ["meetup"]
-categories: ["meetup"]
+categories: ["其他"]
 keywords: ["service mesh","meetup"]
 type: "post"
 avatar: "/images/profile/default.jpg"

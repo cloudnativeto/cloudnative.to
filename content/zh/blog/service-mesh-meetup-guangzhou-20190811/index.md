@@ -6,7 +6,7 @@ image: "/images/blog/140.jpg"
 author: "[宋净超](https://jimmysong.io)"
 description: "ServiceMesher社区和蚂蚁金服联合主办的第六届Service Mesh Meetup广州站收官，来自虎牙的张波、慧择网的涂小刚、蚂蚁金服的彭泽文、敖小剑为社区带来精彩分享。"
 tags: ["meetup"]
-categories: ["meetup"]
+categories: ["其他"]
 keywords: ["service mesh","meetup"]
 type: "post"
 avatar: "/images/profile/default.jpg"

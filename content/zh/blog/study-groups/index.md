@@ -3,7 +3,7 @@ title: "如何学习开源项目源码"
 description: "读源码如读书，积累的越多，越熟练，读得越快。"
 author: "[厉辉（Yousa）](https://github.com/Miss-you)"
 image: "images/blog/snow-sea-bird-water.jpg"
-categories: ["open source"]
+categories: ["开源社区"]
 tags: ["Kubernetes"]
 date: 2020-07-20T12:00:00+08:00
 type: "post"

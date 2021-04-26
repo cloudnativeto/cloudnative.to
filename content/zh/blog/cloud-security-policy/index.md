@@ -4,7 +4,7 @@ description: "本文翻译自 Andreja Velimirovic 的文章 Creating a Cloud Sec
 author: "Andreja Velimirovic"
 translator: "[马景贺（小马哥）](https://github.com/majinghe)"
 image: "/images/blog/cloud-security.jpg"
-categories: ["Security"]
+categories: ["其他"]
 tags: ["cloud security","security"]
 date: 2020-12-18T13:05:42+08:00
 type: "post"

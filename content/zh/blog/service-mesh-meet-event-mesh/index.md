@@ -9,7 +9,7 @@ reviewer: ["王凯"]
 reviewerlink: ["https://github.com/yiduwangkai"]
 originallink: "https://solace.com/blog/event-mesh"
 description: "本文主要介绍了 Event Mesh 是什么，Event-Driven 型企业为什么需要 Event Mesh 层。"
-tags: ["service mesh"]
+tags: ["服务网格"]
 categories: ["service mesh"]
 keywords: ["service mesh","服务网格","event mesh","event driven"]
 type: "post"

@@ -10,7 +10,7 @@ reviewerlink: ["https://github.com/haiker2011", "https://github.com/SataQiu"]
 originallink: "https://zhaohuabing.com/post/2019-06-25-kubecon-cncf-oss-2019/"
 description: "奇妙的 2019 KubeCon + ClondNativeCon + Open Source Summit 大会！在这里，我近距离接触了大神 Linus；见到了来自 ServiceMesher 社区的很多朋友；还遇到了搞 Kubernetes 的恩格斯后人！"
 tags: ["kubecon"]
-categories: ["culture"]
+categories: ["开源社区"]
 keywords: ["KubeCon China"]
 type: "post"
 avatar: "/images/profile/default.jpg"

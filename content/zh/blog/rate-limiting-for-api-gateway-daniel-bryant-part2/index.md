@@ -18,7 +18,7 @@ avatar: "/images/profile/default.jpg"
 
 本文为翻译文章，[点击查看原文](https://blog.getambassador.io/rate-limiting-for-api-gateways-892310a2da02)。
 
-在本速率限制系列的[第一篇文章](rate-limiting-a-useful-tool-with-distributed-systems-part1.md)中，介绍了实施速率限制的动机，并讨论了几种实施方案（取决于你是否同时作为通信的发送端和接收端）以及相关的权衡。本文会更加深入地探讨 API 网关速率限制的需求。
+在本速率限制系列的[第一篇文章](/blog/rate-limiting-a-useful-tool-with-distributed-systems-part1)中，介绍了实施速率限制的动机，并讨论了几种实施方案（取决于你是否同时作为通信的发送端和接收端）以及相关的权衡。本文会更加深入地探讨 API 网关速率限制的需求。
 
 ## 为什么 API 网关需要速率限制
 在第一篇文章中，我讨论了在何处实施速率限制的几个选项：发送端、接收端或中间层（字面意思可以理解为发送端和接收端中间的服务）。
@@ -31,7 +31,7 @@ Stripe 博客有一篇精彩的关于“[用限速器扩展你的 API](https://s
 * 某位用户制造了流量洪峰，导致你的应用过载，而你的应用此时还需要为其他用户提供服务。
 * 某位用户因为使用了行为不当的脚本，无意中向你发送了很多请求（相信我，这比你想象的要更频繁 - 我曾经亲自创建的压测脚本就意外触发了拒绝服务！）。又或者，更糟的情况是，某位用户试图故意让你的服务器过载。
 * 用户向你发送很多优先级较低的请求，而你需要确保它不会影响高优先级的通信。例如，发送大量分析数据请求的用户可能会影响其他用户的关键事务。
-* 系统中的出现了某些内部问题，因此无法提供所有常规流量服务，并且需要丢弃低优先级的请求。
+* 系统中出现了某些内部问题，因此无法提供所有常规流量服务，并且需要丢弃低优先级的请求。
 
 在 Datawire 工作期间，我们通常能够第一手地发现以上这些情况，特别是在那些暴露 “免费” 公共 API 的公司或者组织中，同时在这些组织中，也存在着明确的业务需求，即让付费用户优先使用流量，并且防止不良行为者（无论是有意或无意）。
 
@@ -49,7 +49,7 @@ Stripe 博客有一篇精彩的关于“[用限速器扩展你的 API](https://s
 
 我见过一些开发人员试图通过使用粘性会话或将可允许请求的总数除以速率限制实例的数量来解决此限制。但是，这样做的问题在于，在高度动态的“云原生”环境中部署和运行应用程序时，这些方法都无法可靠地工作，因为在这种环境中，实例随时会被销毁并按需重建，或是动态扩容的。
 
-克服此限制的最佳解决方案是使用某种形式的高性能集中式数据存储来管理请求计数。例如，在 Lyft，该团队使用 [Redis](https://redis.io/)（大概是作为高可用的 Redis Sentinel 集群运行），通过他们的 Envoy 代理统计[速率限制的指标](https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/global_rate_limiting.html)，而该代理通过边车模式部署到所有服务和数据存储上。这种方法需要注意一些潜在的问题，特别是在 Redis 的检查和设置操作的原子性方面。出于性能原因通常建议避免使用锁机制，而 [Stripe](https://gist.github.com/ptarjan/e38f45f2dfe601419ca3af937fff574d) 和 [Figma](https://blog.figma.com/an-alternative-approach-to-rate-limiting-f8a06cf7c94c) 通过在 Redis 引擎中使用 Lua 脚本功能保证原子性。
+克服此限制的最佳解决方案是使用某种形式的高性能集中式数据存储来管理请求计数。例如，在 Lyft，该团队使用 [Redis](https://redis.io/)（大概是作为高可用的 Redis Sentinel 集群运行），通过他们的 Envoy 代理统计[速率限制的指标](https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/global_rate_limiting.html)，而该代理通过 sidecar 模式部署到所有服务和数据存储上。这种方法需要注意一些潜在的问题，特别是在 Redis 的检查和设置操作的原子性方面。出于性能原因通常建议避免使用锁机制，而 [Stripe](https://gist.github.com/ptarjan/e38f45f2dfe601419ca3af937fff574d) 和 [Figma](https://blog.figma.com/an-alternative-approach-to-rate-limiting-f8a06cf7c94c) 通过在 Redis 引擎中使用 Lua 脚本功能保证原子性。
 
 另一个经常遇到的挑战涉及如何提取请求（元）数据用于决策速率限制，或者指定（或实现）用于确定是否应该拒绝特定请求的相关算法。理想情况下，你希望能够通过客户端属性（例如请求HTTP方法，位置，设备等）和后台属性（例如服务端点，由用户还是应用程序发起的请求等类似的语义信息以及期望的有效负载）来决策速率限制。
 

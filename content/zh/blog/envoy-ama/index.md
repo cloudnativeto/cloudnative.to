@@ -2,7 +2,7 @@
 title: "Envoy 调试流量的常用技巧直播分享及问答整理"
 author: "[周礼赞](https://github.com/lizan)"
 image: "images/blog/academy-7.jpg"
-categories: ["academy"]
+categories: ["Envoy"]
 description: "云原生学院第七期分享《Envoy 调试流量的常用技巧》的视频回放及问答整理。"
 tags: ["envoy","云原生学院"]
 date: 2020-11-02T14:00:00+08:00

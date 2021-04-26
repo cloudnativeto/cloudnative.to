@@ -3,6 +3,16 @@ slider:
   enable : true
   slider_item:
      - subtitle : ""
+       title : "云原生社区 Meetup 第三期·杭州站"
+       content : "4 月 17 日，杭州西溪首座。本次活动特别邀请了云原生社区稳定性 SIG、Envoy SIG、OAM SIG、Istio SIG 的核心贡献者为大家带来精彩演讲！"
+       bg_image : "images/slider/hangzhou.jpg"
+       animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
+       button:
+         enable : true
+         label : "查看回顾"
+         link : "https://i.cloudnative.to/academy/meetup/03-hangzhou"
+         animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
+     - subtitle : ""
        title : "云原生社区 Meetup 第二期·北京站"
        content : "12 月 20 日，北京国贸，本次 meetup 将为大家带来云原生监控、存储、微服务与服务网格等主题的精彩分享，更有《云原生操作系统 Kubernetes》作者现场签售。"
        bg_image : "images/slider/beijing.jpg"
@@ -303,4 +313,4 @@ contact:
   title : "联系信息"
   image : "images/wechat-qrcode.png"
   description : "关注云原生社区微信公众号，加入社区并获取最新资讯。"
-  address: "[北京](/city/beijing)|[上海](/city/shanghai)|[成都](/city/chengdu)|[深圳](/city/shenzhen)|[杭州](/city/hangzhou/)|[广州](https://github.com/cloudnativeto/community/issues/59)|[武汉](https://github.com/cloudnativeto/community/issues/55)|[南京](/city/nanjing)|[西安](https://github.com/cloudnativeto/community/issues/61)|[大连](/city/dalian)|[长沙](https://github.com/cloudnativeto/community/issues/52)|[苏州](https://github.com/cloudnativeto/community/issues/66)|[珠海](https://github.com/cloudnativeto/community/issues/67)|[重庆](https://github.com/cloudnativeto/community/issues/78)|[济南](https://github.com/cloudnativeto/community/issues/82)|[厦门](https://github.com/cloudnativeto/community/issues/83)|[无锡](https://github.com/cloudnativeto/community/issues/86)|[青岛](https://github.com/cloudnativeto/community/issues/91)|[郑州](https://github.com/cloudnativeto/community/issues/103)|[合肥](https://github.com/cloudnativeto/community/issues/107)"
+  address: "[北京](/city/beijing)|[上海](/city/shanghai)|[成都](/city/chengdu)|[深圳](/city/shenzhen)|[杭州](/city/hangzhou/)|[广州](/city/guangzhou/)|[武汉](https://github.com/cloudnativeto/community/issues/55)|[南京](/city/nanjing)|[西安](https://github.com/cloudnativeto/community/issues/61)|[大连](/city/dalian)|[长沙](https://github.com/cloudnativeto/community/issues/52)|[苏州](https://github.com/cloudnativeto/community/issues/66)|[珠海](https://github.com/cloudnativeto/community/issues/67)|[重庆](https://github.com/cloudnativeto/community/issues/78)|[济南](https://github.com/cloudnativeto/community/issues/82)|[厦门](https://github.com/cloudnativeto/community/issues/83)|[无锡](https://github.com/cloudnativeto/community/issues/86)|[青岛](https://github.com/cloudnativeto/community/issues/91)|[郑州](https://github.com/cloudnativeto/community/issues/103)|[合肥](https://github.com/cloudnativeto/community/issues/107)"

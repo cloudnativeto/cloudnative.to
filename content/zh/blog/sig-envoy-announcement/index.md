@@ -3,7 +3,7 @@ title: 云原生社区 Envoy SIG 成立啦！
 description: "Envoy SIG 成立公告及成员招募。"
 author: "[马景贺（小马哥）](https://github.com/lhb008)"
 image: "images/blog/envoy.png"
-categories: ["open source"]
+categories: ["开源社区"]
 tags: ["Envoy"]
 date: 2020-09-14T18:05:42+08:00
 type: "post"

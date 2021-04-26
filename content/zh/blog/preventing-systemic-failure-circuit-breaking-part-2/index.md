@@ -12,7 +12,7 @@ reviewerlink:  "https://github.com/haiker2011"
 originallink: "https://glasnostic.com/blog/preventing-systemic-failure-circuit-breaking-part-2"
 description: "本文介绍了开发人员和运维人员两种不同视角下的微服务典型应用场景，对比了熔断功能的三种不同实现：Hystrix, Service Mesh (Istio、Linkerd) 和 Glasnostic。"
 tags: ["Circuit Breaking","Hystrix", "Glasnostic", "Istio", "Linkerd"]
-categories: ["microservices"]
+categories: ["其他"]
 keywords: ["Circuit Breaking","Hystrix", "Glasnostic", "Istio", "Linkerd"]
 type: "post"
 avatar: "/images/profile/default.jpg"

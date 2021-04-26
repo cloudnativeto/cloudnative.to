@@ -9,7 +9,7 @@ translator: "[宋净超](https://jimmysong.io)"
 originallink: "https://www.cncf.io/blog/2018/09/18/linkerd-2-0-in-general-availability/"
 description: "Linkerd 2.0版本为Linkerd带来了性能、资源消耗和易用性方面的显着改进。它还将项目从集群范围的service mesh转换为可组合的service sidecar，旨在为开发人员和服务所有者提供在云原生环境中成功所需的关键工具。"
 tags: ["linkerd","service mesh"]
-categories: ["linkerd"]
+categories: ["Service Mesh"]
 keywords: ["service mesh","服务网格","linkerd"]
 type: "post"
 avatar: "/images/profile/default.jpg"

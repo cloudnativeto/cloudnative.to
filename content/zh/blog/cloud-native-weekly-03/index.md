@@ -6,7 +6,7 @@ image: "/images/blog/006tNc79ly1g2cdisc93uj313z0u0qv6.jpg"
 author: "云原生编辑部"
 description: "这是 Cloud Native 周报第3期。"
 tags: ["cloud native"]
-categories: ["cloud native"]
+categories: ["云原生"]
 keywords: ["service mesh","服务网格","云原生","cloud native"]
 type: "post"
 avatar: "/images/profile/default.jpg"

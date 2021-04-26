@@ -6,7 +6,7 @@ image: "/images/blog/006tKfTcly1g06wxmbeeej31420u0kjm.jpg"
 author: "[宋净超](https://jimmysong.io)"
 description: "本文是对 CNCF（云原生计算基金会）2018年年度报告的解读。"
 tags: ["cloud native","cncf"]
-categories: ["open source"]
+categories: ["开源社区"]
 keywords: ["service mesh","服务网格","CNCF","云原生","cloud native"]
 type: "post"
 avatar: "/images/profile/default.jpg"

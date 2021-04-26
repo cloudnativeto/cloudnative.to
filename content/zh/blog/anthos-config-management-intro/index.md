@@ -6,7 +6,7 @@ image: "/images/blog/00704eQkgy1fs3o6ljkknj30rs0ku4qp.jpg"
 author: "钟成"
 description: "简单说，当你修改某个git管理下的yaml配置文件，里面描述了某个GKE私有集群某个cluster的node数量，然后Anthos Config Management会帮你自动的发命令并让节点数量变成你想要的那个。"
 tags: ["istio","anthos"]
-categories: ["gitops"]
+categories: ["持续交付"]
 keywords: ["service mesh","istio","gitops","混合云","antnos","google"]
 type: "post"
 avatar: "/images/profile/default.jpg"

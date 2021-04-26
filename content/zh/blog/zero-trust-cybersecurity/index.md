@@ -4,7 +4,7 @@ description: "本文翻译自 Alper Kerman 的文章 Zero Trust Cybersecurity: '
 author: "[Alper Kerman](https://www.nist.gov/blogs/taking-measure/zero-trust-cybersecurity-never-trust-always-verify)"
 translator: "[马景贺（小马哥）](https://github.com/majinghe)"
 image: "images/blog/zero-trust-cybersecurity.jpg"
-categories: ["Security"]
+categories: ["其他"]
 tags: ["zero trust","security"]
 date: 2020-11-06T13:05:42+08:00
 type: "post"

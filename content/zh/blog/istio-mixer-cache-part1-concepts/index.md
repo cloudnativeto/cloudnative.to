@@ -8,7 +8,7 @@ authorlink: "https://skyao.io"
 originallink: "https://skyao.io/post/201804-istio-mixer-cache-concepts/"
 description: "本系列文章将详细介绍Istio中Mixer Cache的工作原理，为了避免空谈，将引入广大程序员同学喜闻乐见的源码分析环节，并结合Mixer的接口API，详细展现Mixer Cache的各种细节。"
 tags: ["istio","source code"]
-categories: ["istio mixer cache"]
+categories: ["istio"]
 keywords: ["service mesh","istio","源码解析"]
 type: "post"
 avatar: "/images/profile/default.jpg"

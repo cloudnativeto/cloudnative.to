@@ -9,7 +9,7 @@ reviewerlink: ["https://github.com/haiker2011”,”https://github.com/si7eka”
 originallink: "https://xianyuluo.com/post/prometheus%E7%9B%91%E6%8E%A7k8s1.html"
 description: "本文旨在于寻找一套能够胜任kubernetes集群监控的架构。"
 tags: ["prometheus","kubernetes"]
-categories: ["monitoring"]
+categories: ["可观察性"]
 keywords: ["service mesh","服务网格","prometheus","kubernetes"]
 type: "post"
 avatar: "/images/profile/default.jpg"

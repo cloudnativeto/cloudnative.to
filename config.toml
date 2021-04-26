@@ -155,8 +155,8 @@ weight = 6
 
 # footer menu
 [[menu.footer]]
-name = "Announcement and Policy"
-URL = "/code-of-conduct"
+name = "Policy"
+URL = "/policy"
 weight = 1
 
 ########################### Default parameters ######################
@@ -272,8 +272,28 @@ copyright = "Copyright &copy; {year} 云原生社区"
 ########################### Chinese navigation ################################
 # main menu
 [[Languages.zh.menu.main]]
-name = "社区"
+name = "博客"
+weight = 1
+URL = "/blog/"
+
+[[Languages.zh.menu.main]]
+name = "兴趣小组"
 weight = 2
+URL = "https://i.cloudnative.to/community/sig/"
+
+[[Languages.zh.menu.main]]
+name = "投稿"
+URL = "contribute"
+weight = 4
+
+[[Languages.zh.menu.main]]
+name = "招聘"
+URL = "job"
+weight = 5
+
+[[Languages.zh.menu.main]]
+name = "社区"
+weight = 6
 
 [[Languages.zh.menu.main]]
 parent = "社区"
@@ -300,106 +320,8 @@ URL = "https://i.cloudnative.to/community/"
 weight = 4
 
 [[Languages.zh.menu.main]]
-name = "兴趣小组"
-weight = 3
-
-[[Languages.zh.menu.main]]
-parent = "兴趣小组"
-name = "Kubernetes SIG"
-URL = "https://i.cloudnative.to/kubernetes/"
-weight = 1
-
-[[Languages.zh.menu.main]]
-parent = "兴趣小组"
-name = "Istio SIG"
-URL = "https://i.cloudnative.to/istio/"
-weight = 2
-
-[[Languages.zh.menu.main]]
-parent = "兴趣小组"
-name = "Envoy SIG"
-URL = "https://i.cloudnative.to/envoy/"
-weight = 3
-
-[[Languages.zh.menu.main]]
-parent = "兴趣小组"
-name = "Dapr SIG"
-URL = "https://i.cloudnative.to/dapr/"
-weight = 4
-
-[[Languages.zh.menu.main]]
-parent = "兴趣小组"
-name = "OAM SIG"
-URL = "https://i.cloudnative.to/oam/"
-weight = 5
-
-[[Languages.zh.menu.main]]
-parent = "兴趣小组"
-name = "稳定性 SIG"
-URL = "https://i.cloudnative.to/stability/"
-weight = 6
-
-[[Languages.zh.menu.main]]
-parent = "兴趣小组"
-name = "可观察性 SIG"
-URL = "https://i.cloudnative.to/observability/"
-weight = 7
-
-[[Languages.zh.menu.main]]
-parent = "兴趣小组"
-name = "边缘计算 SIG"
-URL = "https://i.cloudnative.to/edge/"
-weight = 8
-
-[[Languages.zh.menu.main]]
-parent = "兴趣小组"
-name = "机器学习 SIG"
-URL = "https://i.cloudnative.to/machine-learning/"
-weight = 9
-
-[[Languages.zh.menu.main]]
-name = "博客"
-weight = 4
-
-[[Languages.zh.menu.main]]
-parent = "博客"
-name = "Kubernetes"
-URL = "/categories/kubernetes"
-weight = 1
-
-[[Languages.zh.menu.main]]
-parent = "博客"
-name = "Service Mesh"
-URL = "/categories/service-mesh"
-weight = 2
-
-[[Languages.zh.menu.main]]
-parent = "博客"
-name = "Envoy"
-URL = "/categories/Envoy"
-weight = 3
-
-[[Languages.zh.menu.main]]
-parent = "博客"
-name = "OAM"
-URL = "/categories/OAM"
-weight = 4
-
-[[Languages.zh.menu.main]]
-parent = "博客"
-name = "开源社区"
-URL = "/categories/开源社区"
-weight = 5
-
-[[Languages.zh.menu.main]]
-parent = "博客"
-name = "所有"
-URL = "/blog"
-weight = 6
-
-[[Languages.zh.menu.main]]
 name = "资料"
-weight = 5
+weight = 7
 
 [[Languages.zh.menu.main]]
 parent = "资料"
@@ -409,51 +331,19 @@ weight = 1
 
 [[Languages.zh.menu.main]]
 parent = "资料"
-name = "云原生学院分享归档"
-URL = "https://github.com/cloudnativeto/academy"
-weight = 2
-
-[[Languages.zh.menu.main]]
-parent = "资料"
 name = "Kubebuilder 中文文档"
 URL = "/kubebuilder"
-weight = 3
+weight = 2
 
 [[Languages.zh.menu.main]]
 parent = "资料"
 name = "Envoy 中文文档"
 URL = "/envoy"
-weight = 4
-
-[[Languages.zh.menu.main]]
-name = "关于"
-weight = 6
-
-[[Languages.zh.menu.main]]
-parent = "关于"
-name = "介绍"
-URL = "about"
-weight = 1
-
-[[Languages.zh.menu.main]]
-parent = "关于"
-name = "联系"
-URL = "contact"
-weight = 2
-
-[[Languages.zh.menu.main]]
-name = "投稿"
-URL = "contribute"
-weight = 7
-
-[[Languages.zh.menu.main]]
-name = "招聘"
-URL = "job"
-weight = 8
+weight = 3
 
 # footer menu
 [[Languages.zh.menu.footer]]
 name = "声明与政策"
-URL = "/code-of-conduct"
+URL = "/policy"
 weight = 1
 

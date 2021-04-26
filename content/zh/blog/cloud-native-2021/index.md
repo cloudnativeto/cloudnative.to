@@ -3,7 +3,7 @@ title: “寒武纪大爆发” 之后的云原生，2021 年走向何处？
 description: "本文为应 CSDN《云原生人物志》栏目专访，知微见著，窥见云原生价值与趋势。"
 author: "[宋净超（Jimmy Song）](https://jimmysong.io)"
 image: "images/blog/2021.jpg"
-categories: ["cloud native"]
+categories: ["云原生"]
 tags: ["cloud native"]
 date: 2021-01-28T11:03:00+08:00
 type: "post"

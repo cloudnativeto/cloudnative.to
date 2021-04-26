@@ -93,3 +93,12 @@
 
 - id: see_all
   translation: "See all"
+
+- id: previousPost
+  translation: "Previous Post"
+
+- id: nextPost
+  translation: "Next Post"
+
+- id: categories
+  translation: "Categories"

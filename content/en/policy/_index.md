@@ -4,7 +4,7 @@ title: "Code of Conduct"
 description: "In order to maintain a good community environment, we need a code of conduct that everyone follows."
 # page title background image
 bg_image: "images/backgrounds/page-title.jpg"
-layout: "code-of-conduct"
+aliases: ["/code-of-conduct"]
 ---
 
 As contributors and maintainers of the Cloud Native Community, and in the interest of fostering an open and welcoming community, we pledge to respect all people who contribute through reporting issues, posting feature requests, updating documentation, submitting pull requests or patches, and other activities.

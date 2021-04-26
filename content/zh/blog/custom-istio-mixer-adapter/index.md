@@ -6,7 +6,7 @@ image: "/images/blog/006tKfTcly1g0t48v09auj31400u0x6q.jpg"
 author: "[陈洪波](http://hbchen.com/)"
 description: "研究Istio下构建简洁的微服务架构，对Istio的研究也更深入，自定义Mixer Adapter必不可少，以下结合使用场景做一个自定义适配器的实践分享。"
 tags: ["istio"]
-categories: ["service mesh"]
+categories: ["Istio"]
 keywords: ["service mesh","服务网格","istio","mixer"]
 type: "post"
 avatar: "/images/profile/default.jpg"
