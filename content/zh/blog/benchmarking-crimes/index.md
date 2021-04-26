@@ -15,7 +15,7 @@ profile: "Gernot Heiser（出生于1957年）是新南威尔士大学（UNSW）�
 ---
 
 ## 译者注
-这边论文是我在翻译 [Envoy 官方文档](https://www.envoyproxy.io/docs/envoy/latest/)的 FAQ：[Envoy 基准测试最佳实践](https://www.envoyproxy.io/docs/envoy/latest/faq/performance/how_to_benchmark_envoy)时看到的，这篇论文学术气息非常浓厚，作者思维之缜密，态度之严谨，令人折服。这篇文章中对基准测试的一些常见误区，还有考虑问题的角度，在我们平时处理问题的时候，我觉得很有借鉴意义。所以翻译过来和大家共同学习。
+这篇论文是我在翻译 [Envoy 官方文档](https://www.envoyproxy.io/docs/envoy/latest/)的 FAQ：[Envoy 基准测试最佳实践](https://www.envoyproxy.io/docs/envoy/latest/faq/performance/how_to_benchmark_envoy)时看到的，这篇论文学术气息非常浓厚，作者思维之缜密，态度之严谨，令人折服。这篇文章中对基准测试的一些常见误区，还有考虑问题的角度，在我们平时处理问题的时候，我觉得很有借鉴意义。所以翻译过来和大家共同学习。
 
 ## 基准测试五宗罪
 
