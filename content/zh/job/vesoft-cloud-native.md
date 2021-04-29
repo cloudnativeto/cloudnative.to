@@ -1,5 +1,5 @@
 ---
-title: "[社招] 欧若数网"
+title: "[社招] 欧若数网 云产品团队招聘"
 date: 2021-03-08T12:00:00+08:00
 draft: false
 bg_image: "images/backgrounds/page-title.jpg"
