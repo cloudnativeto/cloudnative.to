@@ -255,6 +255,10 @@ sponsor:
         - image: "/images/sponsors/alc-beijing.jpg"
           url: "https://alc-beijing.github.io/alc-site/"
           name: "ALC Beijing"
+        - image: "/images/sponsors/dbaplus.png"
+          url: "http://dbaplus.cn/"
+          name: "DBAPlus 社群"
+    company:
     company:
       title: "合作企业"
       list:
