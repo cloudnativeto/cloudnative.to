@@ -1,12 +1,12 @@
 ---
 title: "云上细粒度访问管理的参考架构"
 description: "本文翻译自 Manav Mital 的文章 A Reference Architecture for Fine-Grained Access Management on the Cloud。"
-author: "[Manav Mital]()"
+author: "[Manav Mital](https://www.infoq.com/articles/access-management-reference-architecture/)"
 translator: "[张晓辉](https://atbug.com)"
 image: "/images/blog/cloudnative-security.jpeg"
 categories: ["云原生"]
 tags: ["Kubernetes", "Security", "OPA"]
-date: 2021-05-04T20:30:00+08:00
+date: 2021-05-08T10:30:00+08:00
 type: "post"
 avatar: "/images/profile/manav.jpg"
 profile: "Cyral 的联合创始人兼首席执行官。"
@@ -46,12 +46,6 @@ profile: "Cyral 的联合创始人兼首席执行官。"
 
 * 通过跨所有服务的会话记录和活动监视来满足 FedRamp 和 SOC2 等合规性标准的可审核性
 * 基于访问者的身份，通过细粒度的授权策略来限制或清除敏感数据，从而实现隐私和数据治理
-
-The architecture is built upon the following three core principles, whose implementation allows DevOps and Security teams to exercise full control over all of their environment while improving user productivity with a simple and consistent experience.
-
-  * Establishing a non-repudiable identity for users accessing resources
-  * Using short-lived ephemeral tokens and certificates in place of static credentials and keys
-  * Centralizing fine-grained access policies across all resources types in a single place
 
 该架构建立在以下三个核心原则的基础上，这些原则的实现使 DevOps 和 Security 团队可以在对所有环境进行全面控制的同时，通过简单而一致的体验来提高用户的工作效率。
 
@@ -179,15 +173,6 @@ The next policy shows an example of enforcing zero standing privileges -- a para
 ![](https://atbug.oss-cn-hangzhou.aliyuncs.com/2021/04/27/16195356881012.jpg)
 
 ## 隐私和数据保护
-
-The last policy shows an example of data governance involving data scrubbing:
-
-  * If anyone from Marketing is accessing PII (social security number (SSN), credit card number (CCN), age), scrub the data before returning
-  * If anyone is accessing PII using the Looker or Tableau services, also scrub the data
-  * Scrubbing rules are defined by the specific type of the PII
-    * For SSNs, scrub the first 5 digits
-    * For CCNs, scrub the last  4 digits
-    * For ages, scrub the last digit i.e., the requestor will know the age brackets but never the actual ages
 
 最后一条策略显示了涉及数据清理的数据治理示例：
 
