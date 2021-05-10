@@ -61,16 +61,15 @@ profile: "华北电力大学大四学生。"
 
 
 ## 目录
-暂时只有 Client 和 Scheduler 部分
 
-[1] Others
+[1] Others (暂无)
 - [Docker Networking](/blog/kubernetes-client-sharedinformer/)
 - [Common Tools Go Routine Tools](/blog/kubernetes-client-sharedinformer/)
 - [Common Tools Async](/blog/kubernetes-client-sharedinformer/)
 - [Common Tools Time Budget](/blog/kubernetes-client-sharedinformer/)
 - [Common Tools Widgets](/blog/kubernetes-client-sharedinformer/)
 
-[2] Basics
+[2] Basics (暂无)
 - [Core & Tools Scheme](/blog/kubernetes-client-sharedinformer/)
 - [Core & Tools The Basics](/blog/kubernetes-client-sharedinformer/)
 - [Core & Tools Cacheable Object](/blog/kubernetes-client-sharedinformer/)
@@ -79,32 +78,32 @@ profile: "华北电力大学大四学生。"
 - [Core & Tools Network](/blog/kubernetes-client-sharedinformer/)
 
 [3] API Server
-- [API Server Routes](/blog/kubernetes-client-sharedinformer/)
-- [API Server API Group](/blog/kubernetes-client-sharedinformer/)
-- [API Server Storage](/blog/kubernetes-client-sharedinformer/)
-- [API Server Cacher](/blog/kubernetes-client-sharedinformer/)
-- [API Server Etcd](/blog/kubernetes-client-sharedinformer/)
-- [API Server Generic API Server](/blog/kubernetes-client-sharedinformer/)
-- [API Server CustomResourceDefinitions](/blog/kubernetes-client-sharedinformer/)
-- [API Server Master Server](/blog/kubernetes-client-sharedinformer/)
-- [API Server Aggregator Server](/blog/kubernetes-client-sharedinformer/)
-- [API Server API Server Deprecated](/blog/kubernetes-client-sharedinformer/)
+- [API Server Routes](/blog/kubernetes-apiserver-route/)
+- [API Server API Group](/blog/kubernetes-apiserver-apigroup/)
+- [API Server Storage](/blog/kubernetes-apiserver-storage/)
+- [API Server Cacher](/blog/kubernetes-apiserver-cacher/)
+- [API Server Etcd](/blog/kubernetes-apiserver-etcd/)
+- [API Server Generic API Server](/blog/kubernetes-apiserver-generic-api-server/)
+- [API Server CustomResourceDefinitions](/blog/kubernetes-apiserver-crd/)
+- [API Server Master Server](/blog/kubernetes-apiserver-master-server/)
+- [API Server Aggregator Server](/blog/kubernetes-apiserver-aggregator-server/)
+- [API Server API Server Deprecated (暂无)](/blog/kubernetes-apiserver-route/)
 
 [4] Client 
 - [Client Shared Informer](/blog/kubernetes-client-sharedinformer/)
 - [Client Controller](/blog/kubernetes-client-sharedinformer/)
 
-[5] Proxy 
+[5] Proxy (暂无)
 - [Proxy Framework](/blog/kubernetes-client-sharedinformer/)
 - [Proxy IPTable Proxier](/blog/kubernetes-client-sharedinformer/)
 - [Proxy IPVS](/blog/kubernetes-client-sharedinformer/)
 
 [6] Controllers
-- [Controllers Queue](/blog/kubernetes-client-sharedinformer/)
-- [Controllers](/blog/kubernetes-client-sharedinformer/)
-- [Endporint Controller](/blog/kubernetes-client-sharedinformer/)
-- [Namespace Controller](/blog/kubernetes-client-sharedinformer/)
-- [Node Controller](/blog/kubernetes-client-sharedinformer/)
+- [Controllers Queue](/blog/kubernetes-controller-queue/)
+- [Controllers](/blog/kubernetes-controller-controllers/)
+- [Endporint Controller](/blog/kubernetes-controller-endpoint-controller/)
+- [Namespace Controller](/blog/kubernetes-controller-namespace-controller/)
+- [Node Controllers](/blog/kubernetes-controller-node-controllers/)
 
 [7] Scheduler
 - [Scheduler Cache](/blog/kubernetes-scheduler-cache/)
