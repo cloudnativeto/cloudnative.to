@@ -154,15 +154,7 @@ profile: "Cyral 的联合创始人兼首席执行官。"
 
 ## 零特权（ZSP）执行
 
-The next policy shows an example of enforcing zero standing privileges -- a paradigm where no one has access to an infrastructure or data service by default. Access may be obtained only upon satisfying one or more qualifying criteria:
-
-  * Only individuals belonging to the Support group are allowed access
-  * An individual must be on-call to gain access. On call status may be determined by checking their schedule in an incident response service such as PagerDuty
-  * A multi-factor authentication (MFA) check is triggered upon successful authentication
-  * They must use TLS to connect to the infrastructure or data service
-  * Lastly, if a data service is being accessed, full table scans (e.g. SQL requests lacking a WHERE or a LIMIT clause that end up reading an entire dataset) are disallowed.
-
-下一个策略显示了一个实施零特权的示例 -- 一种默认情况下没有人可以访问基础设施或数据服务的范例。只有满足一个或多个合格标准，才能获得访问权限：
+下一个策略显示了一个实施零特权的示例——一种默认情况下没有人可以访问基础设施或数据服务的范例。只有满足一个或多个合格标准，才能获得访问权限：
 
 * 只允许属于支持组的个人访问
 * 个人必须 on-call 才能获得访问权限。可以通过检查事件响应服务（例如 PagerDuty）中的时间表来确定通话状态
