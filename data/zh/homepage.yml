@@ -3,6 +3,16 @@ slider:
   enable : true
   slider_item:
      - subtitle : ""
+       title : "云原生社区 Meetup 第四期·广州站"
+       content : "5 月 22 日， 周六，活动主题关于 Dapr、研发效能、APISIX 和微服务， 广州见！"
+       bg_image : "images/slider/guangzhou.jpg"
+       animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
+       button:
+         enable : true
+         label : "立即报名"
+         link : "https://3372087382093.huodongxing.com/event/4597232086200"
+         animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
+     - subtitle : ""
        title : "云原生社区 Meetup 第三期·杭州站"
        content : "4 月 17 日，杭州西溪首座。本次活动特别邀请了云原生社区稳定性 SIG、Envoy SIG、OAM SIG、Istio SIG 的核心贡献者为大家带来精彩演讲！"
        bg_image : "images/slider/hangzhou.jpg"
@@ -255,6 +265,10 @@ sponsor:
         - image: "/images/sponsors/alc-beijing.jpg"
           url: "https://alc-beijing.github.io/alc-site/"
           name: "ALC Beijing"
+        - image: "/images/sponsors/dbaplus.png"
+          url: "http://dbaplus.cn/"
+          name: "DBAPlus 社群"
+    company:
     company:
       title: "合作企业"
       list:
