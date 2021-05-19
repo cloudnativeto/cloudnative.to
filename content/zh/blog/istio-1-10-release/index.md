@@ -1,69 +1,90 @@
 ---
-title: "Istio 1.10 版本更新预览"
-description: "Istio 1.10 版本本月即将发布，让我们看看有哪些变化。"
-author: "[Istio Team](https://istio.io/latest/news/releases/1.10.x/announcing-1.10/upgrade-notes/)"
+title: "Istio 1.10 版本发布并改版官网"
+description: "我们很高兴地宣布Istio 1.10的发布！我们要特别感谢我们的发布经理Sam Naser和张之晗，以及整个测试和发布工作组在1.10中的工作。"
+author: "[Istio Team](https://istio.io/latest/news/releases/1.10.x/announcing-1.10/)"
 image: "images/blog/istio-110.jpg"
 categories: ["Istio"]
 tags: ["Istio"]
-date: 2021-05-12T13:05:42+08:00
+date: 2021-05-19T09:05:42+08:00
 type: "post"
 ---
 
-当你从 Istio 1.9 升级到 Istio 1.10 时，你需要考虑这个页面上的变化。这些说明详细介绍了有目的地打破与 Istio 1.9 的向后兼容性的变化。这些说明还提到了在引入新行为的同时保留向后兼容性的变化。只有当新的行为对 Istio 1.9 的用户来说是意想不到的，才会包括这些变化。
+本文译自 [Istio 官方文档](https://istio.io/latest/news/releases/1.10.x/announcing-1.10/)，有部分修改。
 
-## 入站转发配置
+北京时间 5 月 19 日，我们很高兴地宣布 Istio 1.10 的发布！我们要特别感谢我们的发布经理 [Sam Naser](https://github.com/Monkeyanator) 和 [张之晗](https://github.com/ZhiHanZ)，以及整个测试和发布工作组在 1.10 中的工作。
 
-Istio 1.10 版的入站转发行为已被修改。在 Istio 1.10 中，这一变化是默认启用的，可以通过在 Istiod 中配置 `PILOT_ENABLE_INBOUND_PASSTHROUGH=false` 环境变量来禁用它。
+这是我们 2021 年的第二个版本，和过去几个版本一样，我们继续为 Istio 用户改善 Day 2 操作。
 
-以前，请求会被转发到 localhost。这导致了与运行没有 Istio 的应用程序相比的两个重要区别：
+该版本的亮点如下。
 
-- 绑定到 `localhost` 的应用程序将被暴露给外部 pod。
-- 绑定到 `<POD_IP>` 的应用程序将不会暴露给外部 pod。
+## 发现选择器
 
-后者是采用 Istio 时常见的摩擦源，特别是对于有状态的服务来说，这很常见。
+在以前的 Istio 版本中，Istio 的控制平面一直在观察和处理集群中它所关心的所有 Kubernetes 资源的更新。这在大型集群或配置快速变化的集群中可能是一个可扩展性瓶颈。发现选择器（Discovery Selector）限制了 Istiod 监视的资源集，所以你可以很容易地忽略那些与网格无关的命名空间的变化（例如一组 Spark Job）。
 
-新的行为是按原样转发请求。这与没有安装 Istio 的用户所看到的行为一致。然而，这会导致那些依赖 localhost 被 Istio 暴露在外部的应用程序可能会停止工作。
+你可以认为它们有点像 Istio 的 Sidecar API 资源，但对于 Istiod 本身来说：Sidecar 资源限制了 Istiod 将发送至 Envoy 的配置集。发现选择器限制了 Istio 从 Kubernetes 接收和处理的配置集。
 
-为了帮助检测这些情况，我们已经添加了一个检查，以找到将被影响的 pod。你可以运行 `istioctl experimental precheck` 命令来获得任何在服务中暴露的端口上绑定到 localhost 的 pod 的报告。这个命令在 Istio 1.10 + 中可用。如果不采取行动，这些端口在升级后将不再被访问。
+请看 Lin、Christian 和 Harvey 的[精彩文章](https://istio.io/latest/blog/2021/discovery-selectors/)，深入了解这项新功能的情况。
 
-```
-istioctl experimental precheck
-Error [IST0143] (Pod echo-local-849647c5bd-g9wxf.default) Port 443 is exposed in a Service but listens on localhost. It will not be exposed to other pods.
-Error [IST0143] (Pod echo-local-849647c5bd-g9wxf.default) Port 7070 is exposed in a Service but listens on localhost. It will not be exposed to other pods.
-Error: Issues found when checking the cluster. Istio may not be safe to install or upgrade.
-See https://istio.io/latest/docs/reference/config/analysis for more information about causes and resolutions. 
-```
+## 稳定的修订版标签
 
-无论 Istio 版本如何，行为都可以由 Sidecar 明确控制。例如，将 9080 端口配置为显式发送至 localhost。
+早在 [1.6 版本](https://istio.io/latest/blog/2020/multiple-control-planes/)中，Istio 就增加了对安全部署多个控制平面的支持，并且我们一直在稳步提高支持度。关于修订版的一个主要的可用性抱怨是需要大量的命名空间重新标记来改变修订版（revision），因为一个标签（label）直接映射到一个特定的 Istio 控制平面部署。
 
-```yaml
-apiVersion: networking.istio.io/v1beta1
-kind: Sidecar
-metadata:
-  name: ratings
-spec:
-  workloadSelector:
-    labels:
-      app: ratings
-  ingress:
-  - port:
-      number: 9080
-      protocol: HTTP
-      name: http
-    defaultEndpoint: 127.0.0.1:9080
-```
+有了修订版标签，现在有了一个间接层：你可以创建像 `canary` 和 `prod` 这样的标签，把使用这些标签的命名空间标记为修订版（即 `istio.io/rev=prod`），并把特定的 Istiod 修订版与该标签联系起来。
 
-## Sidecar 注入变更
+例如，假设你有两个修订版，`1-7-6` 和 `1-8-0`。你创建一个指向 `1-7-6` 版本的修订标签 `prod`，并创建一个指向较新的 `1-8-0` 版本的修订标签 `canary`
 
-为了利用 Kubernetes 的新特性，决定一个 pod 是否需要 sidecar 注入的逻辑已经更新。以前，webhook 是在一个粗粒度的水平上触发的，选择命名空间中任何具有匹配的 `istio-injection=enabled` 标签的 pod。
+![](008i3skNly1gqngrkysi4j30wu0p0n0g.jpg)
 
-这有两个限制：
+命名空间 A 和 B 指向 `1-7-6`，命名空间 C 指向 `1-8-0`。
 
-- 用 `sidecar.istio.io/inject` 注解选择出单个 pod，仍然会触发 webhook，只是被 Istio 过滤掉了。这可能会产生意想不到的影响，即在没有预期的情况下增加对 Istio 的依赖性。
-- 如果不对整个命名空间进行注入，就没有办法通过 `sidecar.istio.io/inject` 来选择加入单个 pod。
+现在，当你准备将 `1-8-0` 修订版从 `canary` 推到 `prod` 时，你可以将 `prod` 标签与 `1-8-0` Istiod 修订版重新关联。现在，所有使用 `istio.io/rev=prod` 的命名空间将使用较新的 `1-8-0` 版本进行注入。
 
-这些限制都已经解决了。因此，额外的 pod 可能会被注入，如果它们存在于一个没有设置 `istio-injection` 标签的命名空间中，但在 pod 上的 sidecar.istio.io/inject 注解被设置为 true，则在以前的版本中没有。这种情况并不常见，所以对大多数用户来说，现有的 pod 不会有任何行为上的变化。
+![](008i3skNly1gqngtj5qyej30vm0oujut.jpg)
 
-如果不需要这种行为，可以用 `--set values.sidecarInjectorWebhook.useLegacySelectors=true` 来暂时禁用它。这个选项将在未来的版本中被删除。
+命名空间 A、B 和 C 指向 `1-8-0`
 
-更多信息请参见更新后的[自动 sidecar 注入](https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/)文档。
+请查看[更新后的 Canary 升级指南](https://istio.io/latest/docs/setup/upgrade/canary/#stable-revision-labels-experimental)。
+
+## Sidecar 网络变化
+
+在以前的 Istio 版本中，Istio 已经重写了 pod 网络，从 `eth0` 捕获流量，并将其发送到 `lo` 上的应用程序。大多数应用程序都绑定了这两个接口，并没有注意到任何区别；但有些应用程序被特别编写为只期望在其中一个接口上获得特定的流量（例如，通常只在 `lo` 上暴露管理端点，而从不通过 `eth0`，或者有状态的应用程序只绑定 `eth0`）。这些应用程序的行为可能会受到 Istio 引导流量进入 pod 的影响。
+
+在 1.10 版本中，Istio 正在更新 Envoy，默认在 `eth0` 而不是 `lo` 上向应用程序发送流量。对于新用户来说，这应该只是一个改进。对于现有的用户，`istioctl experimental precheck` 将识别出监听 localhost 的 pod，并可能受到影响，如 [IST0143](https://istio.io/latest/docs/reference/config/analysis/ist0143/)。
+
+请参阅 John Howard 的[文章](https://istio.io/latest/blog/2021/upcoming-networking-changes/)，以更深入地了解这一变化，如何以及为什么它可能会影响你，以及如何实现无缝迁移。
+
+## Istio.io 改版
+
+我们对 Istio.io 进行了改造，采用了全新的外观！这是 Istio 项目启动近四年以来，网站的第一个重大变化（我们将在 5 月 24 日，北京时间 5 月 25 日，庆祝这个周年纪念日！）。我们希望这些变化有助于使网站更方便用户，更容易浏览，总体上更有可读性。
+
+Istio 官网全新改版，效果如图。
+
+![](008i3skNly1gqngin11o0j31m30u0n78.jpg)
+
+网站左下角有中英文切换功能。
+
+![](008i3skNly1gqngjq6xz6j31le0u0dnd.jpg)
+
+感谢云原生社区 Istio SIG 翻译和维护了 Istio 官网中文文档。
+
+这项工作由 Google Cloud 赞助，我们要特别感谢 [Craig Box](https://twitter.com/craigbox)、[Aizhamal Nurmamat kyzy](https://twitter.com/iamaijamal) 和 Srinath Padmanabhan 推动这项工作，并感谢所有帮助审查和提供早期修订反馈的人们。
+
+请在 [istio.io 资源库](https://github.com/istio/istio.io)上提交问题，给我们任何反馈。
+
+## 开放我们的设计文件
+
+从 2021 年 5 月 20 日开始，Istio 的设计和规划文件将向互联网上的所有人开放，无需登录。此前，查看这些文件需要谷歌登录和群组成员资格。这一变化将使技术文件的分享更容易、更开放。文件将保持在与以前相同的 URL，但 Community Drive 及其文件夹将改变位置。我们将在本周内联系所有的贡献者和 Drive 成员，并告知新的细节。
+
+## 弃用
+
+在 1.10 版本中，有两个功能将被废弃。
+
+- Kubernetes 第一方 JWT 支持（`values.global.jwtPolicy=first-party-jwt`）将被删除；它的安全性较低，仅用于向后兼容旧版 Kubernetes。
+- `values.global.arch` 选项已经被 Kubernetes 配置中的 Affinity 设置所取代。
+
+请参阅 1.10 [变更说明](https://istio.io/latest/news/releases/1.10.x/announcing-1.10/change-notes/)以了解这些废弃的详细情况。
+
+## 反馈
+
+如果你已经将你的服务网格升级到 Istio 1.10，我们想听听你的意见！请考虑参加这个简短的（约 2 分钟）[调查](https://docs.google.com/forms/d/e/1FAIpQLSfzonL4euvGgUM7kyXjsucP4UV8mH9M2snKVFQnT-L7eIXp_g/viewform?resourcekey=0-pWz7V0MsuFrdfJ_-NTQwXQ)，以帮助我们了解我们在哪些方面做得好，以及在哪些方面还需要改进。
+
