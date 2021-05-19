@@ -88,3 +88,10 @@ Istio 官网全新改版，效果如图。
 
 如果你已经将你的服务网格升级到 Istio 1.10，我们想听听你的意见！请考虑参加这个简短的（约 2 分钟）[调查](https://docs.google.com/forms/d/e/1FAIpQLSfzonL4euvGgUM7kyXjsucP4UV8mH9M2snKVFQnT-L7eIXp_g/viewform?resourcekey=0-pWz7V0MsuFrdfJ_-NTQwXQ)，以帮助我们了解我们在哪些方面做得好，以及在哪些方面还需要改进。
 
+## Istio 大咖说 B 站直播：Istio 开源四周年回顾与展望
+
+想了解 Istio 的来历吗？想知道 Istio 自我救赎般的架构重构吗？想窥探 Istio 开发背后的趣事吗？想一起解读最新版本的新特性吗？北京时间 5 月 25 日晚上 8 点，相约 B 站，让我们一起回顾 Istio发布四周年的点点滴滴，[B 站直播间](https://live.bilibili.com/23095515)不见不散！
+
+![](bilibili.jpg)
+
+《Istio 大咖说》是由 Tetrate 冠名的以 Istio 和服务网格为主题的直播活动，分享开源技术及实践。第一期直播将在 Istio 开源四周年之际，邀请 Istio 大咖马若飞，共同回顾 Istio 开源走过的历程及展望未来，主持人宋净超（Jimmy Song）。
