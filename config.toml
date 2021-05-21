@@ -341,6 +341,12 @@ name = "Envoy 中文文档"
 URL = "/envoy"
 weight = 3
 
+[[Languages.zh.menu.main]]
+parent = "资料"
+name = "Istio 中文文档"
+URL = "https://istio.io/latest/zh/"
+weight = 4
+
 # footer menu
 [[Languages.zh.menu.footer]]
 name = "声明与政策"
