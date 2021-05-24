@@ -38,9 +38,10 @@ logo_image: "/images/city/guangzhou/logo.png"
 # ACTIVITY
 activity_title: 社区活动
 activities:
-  - name: 即将到来
+  - name: "2021-05-22 云原生社区 meetup 第四期 广州站(Meetup演讲嘉宾PPT下载)"
+    url: https://i.cloudnative.to/academy/meetup/04-guangzhou
     images: 
-      - "/images/city/guangzhou/activities/comming-soon.jpeg"
+      - "/images/city/guangzhou/activities/20210522/guangzhou.jpeg"
 
 # JOINT US
 join_us_title: "加入我们"
