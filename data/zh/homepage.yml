@@ -4,13 +4,13 @@ slider:
   slider_item:
      - subtitle : ""
        title : "云原生社区 Meetup 第四期·广州站"
-       content : "5 月 22 日， 周六，活动主题关于 Dapr、研发效能、APISIX 和微服务， 广州见！"
+       content : "5 月 22 日，周六，活动主题关于 Dapr、研发效能、APISIX 和微服务。"
        bg_image : "images/slider/guangzhou.jpg"
        animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
        button:
          enable : true
-         label : "立即报名"
-         link : "https://3372087382093.huodongxing.com/event/4597232086200"
+         label : "查看回顾"
+         link : "https://i.cloudnative.to/academy/meetup/04-guangzhou"
          animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
      - subtitle : ""
        title : "云原生社区 Meetup 第三期·杭州站"
