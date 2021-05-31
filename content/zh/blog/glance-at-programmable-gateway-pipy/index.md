@@ -4,7 +4,7 @@ description: "初探 Flomesh 的数据平面 Pipy，一个可编程、高性能�
 author: "[张晓辉](https://atbug.com)"
 image: "/images/blog/glance-at-gateway-pipy.jpg"
 categories: ["云原生"]
-tags: ["Mesh", "Gateway"]
+tags: ["service mesh", "gateway"]
 date: 2021-05-31T7:13:54+08:00
 type: "post"
 avatar: "/images/profile/zhangxiaohui.jpeg"
