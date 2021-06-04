@@ -42,7 +42,7 @@ profile: "信天创投合伙人，前腾讯、创新工场、百度。"
 
 有一本非常有名的书，叫《集装箱改变世界》，说的是看起来平淡无奇的铁箱子，如何从二十世纪起永久性的改变了这个世界，并促进了全球化和全球分工。集装箱的出现和发展是实体货物包装、运输、交付方式的一次革命。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhcsfj4ojj30a00dr0t9.jpg)
+![img](007S8ZIlly1gfhcsfj4ojj30a00dr0t9.jpg)
 
 《经济学家》杂志曾经评价说“没有集装箱，不可能有全球化”。集装箱为什么具有革命性？
 
@@ -56,7 +56,7 @@ profile: "信天创投合伙人，前腾讯、创新工场、百度。"
 
 随着虚拟化技术的成熟和分布式框架的普及，在容器技术、可持续交付、编排系统等开源社区的推动下，以及微服务等开发理念的带动下，应用上云已经是不可逆转的趋势。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhcshblgnj30o805odgc.jpg)
+![img](007S8ZIlly1gfhcshblgnj30o805odgc.jpg)
 
 云原生的发展史，来自CNCF基金会执行董事Dan Kohn
 
@@ -64,7 +64,7 @@ profile: "信天创投合伙人，前腾讯、创新工场、百度。"
 
 云原生（Cloud Native）这个概念，是由Pivotal的Matt Stine于2013年首次提出，他还在2015年出版了《Migrating to Cloud-Native Application Architectures（[迁移到云原生应用架构](https://jimmysong.io/migrating-to-cloud-native-application-architectures)）》一书。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhcsgvptkj30u00mgmyl.jpg)
+![img](007S8ZIlly1gfhcsgvptkj30u00mgmyl.jpg)
 
 Gartner提到云原生的定义尚不明确，但含义丰富。云原生对于不同的人和组织来讲，有着不同的理解。众多顶级技术的铸造者、Matt Stine的东家Pivotal[如此](https://tanzu.vmware.com/de/cloud-native)定义云原生。
 
@@ -74,7 +74,7 @@ CNCF云原生计算基金会[如此](https://github.com/cncf/toc/blob/master/DEF
 
 “云原生技术有利于各组织在公有云、私有云和混合云等新型动态环境中，构建和运行可弹性扩展的应用。云原生的代表技术包括容器、服务网格（Service Mesh）、微服务、不可变基础设施和声明式API。这些技术能够构建容错性好、易于管理和便于观察的松耦合系统。结合可靠的自动化手段，云原生技术使工程师能够轻松地对系统作出频繁和可预测的重大变更。”
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhcsk5hxbj30bs0bjq34.jpg)
+![img](007S8ZIlly1gfhcsk5hxbj30bs0bjq34.jpg)
 
 其中服务网格和声明式API是新加入的内容，而不可变基础设施指的是应用的基础设施应是不可变的，是一个自包含、自描述可以完全在不同环境中迁移的东西，容器技术正是这一理念实现的基石。
 
@@ -98,11 +98,11 @@ Microservices-oriented. Applications are segmented into microservices. This sign
 
 下表列举了云原生应用和传统应用的有哪些主要区别。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhcsj8rqej30lr08v3zl.jpg)
+![img](007S8ZIlly1gfhcsj8rqej30lr08v3zl.jpg)
 
 要转向云原生应用需要以新的云原生方法开展工作，云原生有利于各组织在公有云、私有云和混合云等新型动态环境中，构建和运行可弹性扩展的应用。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhcsi9yqzj30l103daab.jpg)云原生的发展脉络
+![img](007S8ZIlly1gfhcsi9yqzj30l103daab.jpg)云原生的发展脉络
 
 云原生背后的价值主张有哪些？
 
@@ -129,13 +129,13 @@ Microservices-oriented. Applications are segmented into microservices. This sign
 
 全球主流的科技企业和云计算厂商绝大部分都是CNCF会员，其中不乏多家来自中国的科技巨头。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhcsjo4tmj30u009a0td.jpg)CNCF黄金、白金会员
+![img](007S8ZIlly1gfhcsjo4tmj30u009a0td.jpg)CNCF黄金、白金会员
 
 截止2020年4月，CNCF 基金会共托管49个云原生项目，每个CNCF项目都对应一个成熟度等级，申请成为CNCF项目的时候需要确定项目的成熟度级别，Kubernetes和 Envoy等项目基于生产可用和高稳定性首先成为毕业项目（9个），其他项目则根据其成熟度分别位于孵化（17个）和沙箱（23个）阶段。CNCF目前托管的项目共同构成了云原生生态的基石。
 
 值得注意的是其中有三个来自中国的项目：VMware中国团队为企业用户设计的 Registry Server开源项目Harbor，PingCap贡献的分布式事务键值数据库TiKV以及阿里自研的P2P文件分发系统Dragonfly。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhcskme7fj30n309gwex.jpg)
+![img](007S8ZIlly1gfhcskme7fj30n309gwex.jpg)
 
 CNCF项目成熟度等级划分
 
@@ -143,7 +143,7 @@ CNCF项目成熟度等级划分
 
 [CNCF全景图](https://www.cncf.io/)则列举了和云原生相关的产品及服务的完整名单，这1381个项目共同构成了恢弘庞大的云原生世界。整个全景图按照功能分为29个模块，分别归属于9种大的类别（应用定义与开发、编排与管理、运行时、配置、平台、可观察性与分析、Serverless、会员和其它）。值得注意的是其中专门有一种分类是[Cards from China](https://landscape.cncf.io)，列举了来自中国的145个项目，其中不乏许多大家耳熟能详的知名项目，可惜的是数据并不完整。感兴趣的朋友可以自行研究。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhcsfsuijj30u00gkjw6.jpg)
+![img](007S8ZIlly1gfhcsfsuijj30u00gkjw6.jpg)
 
 从CNCF的理念及野心来看，基于云原生的基础设施正在壮大和蚕食非云的市场，未来极有可能成为整个IT生态事实上的意见领袖和领导者。
 
@@ -151,11 +151,11 @@ CNCF项目成熟度等级划分
 
 上面提到云原生的代表技术包括容器、服务网格（Service Mesh）、微服务、不可变基础设施和声明式API。另外一种比较主流的说法是云原生=微服务+DevOps+持续交付+容器化，广泛的见诸于各种文章和资料。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhcsht0v9j30dc0d53zc.jpg)
+![img](007S8ZIlly1gfhcsht0v9j30dc0d53zc.jpg)
 
 在接下来的《云原生时代》系列报告中，我们将依照这些概念，分成DevOps与CI/CD；微服务、API管理与集成；容器与Docker；Kubernetes与容器编排之战四个部分全面介绍云原生各个组成部分。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhcsir2frj30u00jkjsw.jpg)
+![img](007S8ZIlly1gfhcsir2frj30u00jkjsw.jpg)
 
 ## 第二部分：DevOps与CI/CD
 
@@ -165,7 +165,7 @@ DevOps（Development & Operations，开发和运维）是09年提出来的概念
 
 对于DevOps，微服务不是必须的，但微服务为DevOps提供了最好的架构支撑，对于组织和流程的要求也是一致的。所以，也有人称微服务是DevOps架构。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhcxhljhcj30iy067dg2.jpg)
+![img](007S8ZIlly1gfhcxhljhcj30iy067dg2.jpg)
 
 DevOps流程示意图
 
@@ -175,7 +175,7 @@ DevOps与下面提到的CI、CD不同，DevOps更偏向于一种对于文化氛�
 
 持续集成（CONTINUOUS INTEGRATION，CI）指的是开发人员频繁的（一天多次的）将所有开发者的工作合并到主干上。这些新提交在最终合并到主线之前，都需要通过编译和自动化测试流进行验证，以保障所有的提交在合并主干之后的质量问题，对可能出现的一些问题进行预警。持续集成的核心在于确保新增的代码能够与原先代码正确的集成。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhcxh6j37j30rs0c874y.jpg)
+![img](007S8ZIlly1gfhcxh6j37j30rs0c874y.jpg)
 
 持续集成流程示意图
 
@@ -190,7 +190,7 @@ DevOps与下面提到的CI、CD不同，DevOps更偏向于一种对于文化氛�
 
 与持续集成相比，持续交付（CONTINUOUS DELIVERY，CD）的侧重点在于交付，其核心对象不在于代码，而在于可交付的产物。由于持续集成仅仅针对于新旧代码的集成过程执行了一定的测试，其变动到持续交付后还需要一些额外的流程。与持续集成相比较，持续交付添加了测试Test->模拟Staging->生产Production的流程，也就是为新增的代码添加了一个保证：确保新增的代码在生产环境中是可用的。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhcxgfn6sj30rs0kkta3.jpg)
+![img](007S8ZIlly1gfhcxgfn6sj30rs0kkta3.jpg)
 
 持续交付流程示意图
 
@@ -204,7 +204,7 @@ DevOps与下面提到的CI、CD不同，DevOps更偏向于一种对于文化氛�
 
 持续部署（CONTINUOUS DEPLOYMENT）指的是通过自动化部署的手段将软件功能频繁的进行交付。与持续交付以及持续集成相比，持续部署强调了通过自动部署的手段，对新的软件功能进行集成。同持续交付相比持续集成的区别体现在对生产的自动化。从开发人员提交代码到编译、测试、部署的全流程不需要人工的干预，完全通过自动化的方式执行。这一策略加快了代码提交到功能上线的速度，保证新的功能能够第一时间部署到生产环境并被使用。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhcxi2ytgj30rs0kkmyj.jpg)
+![img](007S8ZIlly1gfhcxi2ytgj30rs0kkmyj.jpg)
 
 持续部署流程示意图
 
@@ -232,7 +232,7 @@ DevOps与下面提到的CI、CD不同，DevOps更偏向于一种对于文化氛�
 
 下图是传统单体应用的技术及对应的组织架构，Martin Fowler称之为大家已熟知的Siloed Architectures-烟囱式（也称为谷仓）架构。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd08f2z0j30fz0coaax.jpg)
+![img](007S8ZIlly1gfhd08f2z0j30fz0coaax.jpg)
 
 传统单体应用的架构及对应的职能型组织架构
 
@@ -252,13 +252,13 @@ DevOps与下面提到的CI、CD不同，DevOps更偏向于一种对于文化氛�
 
 下图左边是传统的单体应用，右边是微服务模式，图中每种颜色代表一种可拆分的微服务应用。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhczr2klvj30hr0bzjse.jpg)
+![img](007S8ZIlly1gfhczr2klvj30hr0bzjse.jpg)
 
 单体应用和微服务
 
 一个比较形象的例子是装配式建筑。传统建筑（单体应用）的施工周期（开发时间）很长，往往依赖于建筑公司（开发团队）的能力和水平，修建完成后难以搬迁和复用，而装配式建筑（微服务）的梁、板、柱、墙等构件（单个服务）可以事先批量化的在工厂（容器）生产，而在建造过程中，我们可以把构件想象成一块块乐高积木，在施工现场只需把它们拼合在一起，大大提升了施工进度和建筑质量。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhczxm11oj30b408c3yf.jpg)
+![img](007S8ZIlly1gfhczxm11oj30b408c3yf.jpg)
 
 装配式建筑：乐高积木
 
@@ -269,11 +269,11 @@ DevOps与下面提到的CI、CD不同，DevOps更偏向于一种对于文化氛�
 - 轻：轻量级通信机制，通常是HTTP Restful的接口。此处区别于传统的SOA（面向服务的架构）
 - 松：松耦合，可以独立部署。每个微服务可以独立编译、独立部署、独立运行
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd001wjrj30l20ccgmg.jpg)
+![img](007S8ZIlly1gfhd001wjrj30l20ccgmg.jpg)
 
 微服务采用独立的数据库服务，数据去中心化
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhczsykmpj30lm0a3wfa.jpg)
+![img](007S8ZIlly1gfhczsykmpj30lm0a3wfa.jpg)
 
 微服务运行在独立的进程中，部署去中心化
 
@@ -288,7 +288,7 @@ DevOps与下面提到的CI、CD不同，DevOps更偏向于一种对于文化氛�
 
 微服务的实践有两个重要问题：什么时候选择微服务架构，以及颗粒度如何拆分，与经验和实际情况息息相关。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd02ry2mj30q10khwfs.jpg)
+![img](007S8ZIlly1gfhd02ry2mj30q10khwfs.jpg)
 
 上图来自Martin Fowler另一篇叫《[微服务进阶](https://martinfowler.com/bliki/MicroservicePremium.html)》的文章，揭示了生产率和复杂度的一个关系。在复杂度较小时采用单体应用的生产率更高，复杂度到了一定规模时，单体应用的生产率开始急剧下降，这时对其进行微服务化的拆分才是合算的。
 
@@ -298,7 +298,7 @@ DevOps与下面提到的CI、CD不同，DevOps更偏向于一种对于文化氛�
 
 下图是一个典型的微服务技术架构图。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhczzj84wj30u00i0wfx.jpg)
+![img](007S8ZIlly1gfhczzj84wj30u00i0wfx.jpg)
 
 微服务架构最常见、最广泛使用的框架是基于Java的Spring Cloud（集成了上图里的Netflix OSS技术栈），提供了服务发现、负载均衡、故障转移、动态扩展和数据分区等功能，已经成为微服务的最佳实践。
 
@@ -306,7 +306,7 @@ DevOps与下面提到的CI、CD不同，DevOps更偏向于一种对于文化氛�
 
 下面我们举一个例子。传统的电商的技术架构如下图所示，这是一个单体应用。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfkqzedtg2j30ir09vgm0.jpg)
+![img](007S8ZIlly1gfkqzedtg2j30ir09vgm0.jpg)
 
 所带来的常见问题包括：
 
@@ -318,7 +318,7 @@ DevOps与下面提到的CI、CD不同，DevOps更偏向于一种对于文化氛�
 
 下面我们用微服务重构整个系统：
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd01uivsj30jw0ex3z5.jpg)
+![img](007S8ZIlly1gfhd01uivsj30jw0ex3z5.jpg)
 
 改造之后，去除了大量冗余代码，系统复用性得到提升；不同的团队专注于不同的微服务，代码和工程质量得到保证；数据库不再存在单点问题，系统健壮性得以提升；前后端分离，业务逻辑更加清晰；降低了系统耦合性，不同的微服务可以分开部署上线，相互之间并不影响。
 
@@ -328,15 +328,15 @@ DevOps与下面提到的CI、CD不同，DevOps更偏向于一种对于文化氛�
 
 曾经有一张非常有名的组织架构图，如下图所示。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhczqcikwj30r80qjtd9.jpg)
+![img](007S8ZIlly1gfhczqcikwj30r80qjtd9.jpg)
 
 对一家企业来说，能一步步不断发展壮大，进入一个领域就能迅速突破，这其中的根本核心必然是组织模式。在粗放发展的年代，很少有企业强调内部效率，组织模式绝大部分都类似单体应用，按照职能划分的方式进行管理，从而创造了无数的烟囱/谷仓。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhczucghvj30u00fzdgq.jpg)
+![img](007S8ZIlly1gfhczucghvj30u00fzdgq.jpg)
 
 单体架构和职能型组织模式相似
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd07y5d0j30f00bb75h.jpg)
+![img](007S8ZIlly1gfhd07y5d0j30f00bb75h.jpg)
 
 一张著名的图：技术组织造就了难以逾越的谷仓
 
@@ -348,7 +348,7 @@ DevOps与下面提到的CI、CD不同，DevOps更偏向于一种对于文化氛�
 
 新的组织设计理念认为传统的烟囱形式会成为创建有效增长和盈利途径的障碍，需要解构组织孤岛，采用跨职能组织的形式以支持增长。企业组织设计是非常专业的领域，有许多文章讨论，例如《[战胜组织孤岛的战略之路](https://flevy.com/blog/winning-your-way-against-organizational-silos-the-strategic-way/)》，本文不延伸讨论。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd08un2nj30u00iqq3s.jpg)
+![img](007S8ZIlly1gfhd08un2nj30u00iqq3s.jpg)
 
 职能组织与跨职能组织
 
@@ -360,7 +360,7 @@ DevOps与下面提到的CI、CD不同，DevOps更偏向于一种对于文化氛�
 
 康威定律可谓软件架构设计中的第一定律，本质是对商业世界的规律总结，但是因为投稿到编程相关的杂志，后经过《人月神话》这本软件界圣经的引用，并命名为康威定律（Conway's law），因此得以推广。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhczv9nl7j30n50f7dhk.jpg)
+![img](007S8ZIlly1gfhczv9nl7j30n50f7dhk.jpg)
 
 只通过简单的描述可能无法理解康威定律的精髓所在，原文中康威定律可总结为四项：
 
@@ -373,7 +373,7 @@ DevOps与下面提到的CI、CD不同，DevOps更偏向于一种对于文化氛�
 
 康威定律可以上升到哲学的高度进行讨论，但是过于复杂。简言之，微服务架构与组织模式互相决定和影响，协同才能发挥出最大价值。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhczyn0ihj30ks0byq3k.jpg)
+![img](007S8ZIlly1gfhczyn0ihj30ks0byq3k.jpg)
 
 跨职能组织-微服务架构/团队边界强化服务边界
 
@@ -392,7 +392,7 @@ DevOps与下面提到的CI、CD不同，DevOps更偏向于一种对于文化氛�
 
 在这样一个以蜂巢为理念搭建的企业圈层里面，各个独立团队能够得到更好的协助与支撑，不断扩大视野，提高眼界，掌握话语权，团队成员也会更有归属感。这样的团队乃至蜂巢本身，也一定会更有活力和变革力，更加能适应市场的变化。蜂巢型组织有四个突出特点，所谓活系统的特质也正是由此而来：没有强制性的中心控制；次级单位具有自治的特质；次级单位之间彼此高度连接；点对点间的影响通过网络形成了非线性因果关系。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd053on0j30c10ftab4.jpg)
+![img](007S8ZIlly1gfhd053on0j30c10ftab4.jpg)
 
 微服务：筑巢
 
@@ -402,13 +402,13 @@ DevOps与下面提到的CI、CD不同，DevOps更偏向于一种对于文化氛�
 
 国外著名的代表案例是微服务先驱Netflix。Netflix是一家技术强大的互联网公司，但是它却没有CTO职位，产品团队和技术团队(包括UI前端工程团队、Discovery搜索工程团队和Platform平台团队等)全部汇报首席产品CPO，产品驱动是该公司的核心文化要素之一，Netflix称其为BusDevOps组织架构。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhcztwultj30l50giq4c.jpg)
+![img](007S8ZIlly1gfhcztwultj30l50giq4c.jpg)
 
 Netflix：BusDevOps组织
 
 在整个系列第二部分中，我们介绍了DevOps，现在我们可以理解，DevOps是配合微服务的理念组织构建团队协作的方式，各团队可以独立开发，测试、发布和迭代各自的微服务，互不干扰，沟通协调成本小。全部业务、研发和运维围绕产品开展工作，统一目标，大家都是产品驱动，分别服务于内外不同客户，避免技术驱动 vs 业务驱动的陷阱。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd06mlidj30nm0e2wfs.jpg)
+![img](007S8ZIlly1gfhd06mlidj30nm0e2wfs.jpg)
 
 传统水平组织 vs DevOps驱动的垂直组织
 
@@ -418,7 +418,7 @@ Netflix：BusDevOps组织
 
 可能有人会问，中台的目标不也是为了解决企业内部业务系统烟囱林立，数据孤岛严重，各自为战，缺乏复用性，所以要充分提取业务共性，从而及时应对需求变化，听起来和微服务的目标和理念非常相似，那它们之间有什么异同呢？
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd01dzu0j30pu0e4abk.jpg)
+![img](007S8ZIlly1gfhd01dzu0j30pu0e4abk.jpg)
 
 阿里巴巴中台战略架构图
 
@@ -446,7 +446,7 @@ Netflix：BusDevOps组织
 
 简单来说，API管理就是解决以上这些问题的。我们来看看Gartner全生命周期API管理领域魔力象限，许多巨头都在里面。值得注意的是，Google之所以排名第一，是因为它在2016年用6.5亿美元收购了刚上市一年左右的Apigee。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhczqlzltj30pf0qidh0.jpg)
+![img](007S8ZIlly1gfhczqlzltj30pf0qidh0.jpg)
 
 2019年全生命周期API管理魔力象限
 
@@ -460,13 +460,13 @@ API网关的流行，源于近几年来，移动应用与企业间互联需求�
 
 API网关作为企业能力开放的一个门户，除了具备基本的请求转发、协议转换、路由等功能，以及高性能和高稳定性外，还需具备良好的扩展性，已便于网关能力的不断增强。在网关实施过程中，要规划好网关层与服务层的交互方式，尽量使得网关层与服务层解耦，便于各个团队工作的独立性。另外，在API的管理上，需要提供API全生命周期的发布、配置、鉴权、流控、监控等配套的管理功能。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd00vmcjj30rf0b30tg.jpg)
+![img](007S8ZIlly1gfhd00vmcjj30rf0b30tg.jpg)
 
 API网关：微服务基础设施
 
 例如Uber，在传统的单体架构遇到越来越大挑战的时候，决定改变自己的架构，效仿亚马逊、Netflix、Twitter等其他超级增长公司，将其整体架构拆分为多个代码库，以形成一个微服务架构。其主要变化是引入了API网关，所有的司机和乘客都是通过这个网关连接的。从API网关，所有的内部点都连接在一起，如乘客管理、司机管理、行程管理等。每个单元是单独的可部署单元，执行单独的功能。例如：如果你想在账单微服务中更改任何内容，那么只需部署账单微服务，而不必部署其他服务。所有的功能都是单独扩展的，即每个特征之间的相互依赖被移除。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhcztehgnj30lc0l6jsx.jpg)
+![img](007S8ZIlly1gfhcztehgnj30lc0l6jsx.jpg)
 
 Uber的微服务架构
 
@@ -482,11 +482,11 @@ API网关带来的的好处包括：
 
 API网关常见的解决方案包括Spring Cloud Gateway、Zuul、Tyk以及下文要介绍的Kong。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhczshp2sj309c0aqq3p.jpg)CNCF Landscape：API Gateway
+![img](007S8ZIlly1gfhczshp2sj309c0aqq3p.jpg)CNCF Landscape：API Gateway
 
 3、Kong：API网关独角兽
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhczx5107j30k50a2aa7.jpg)
+![img](007S8ZIlly1gfhczx5107j30k50a2aa7.jpg)
 
 Kong是我去年起就在关注的一家公司，它的创业历程非常有意思。“Kong的创始人Augusto Marietti（简称Aghi）出生在罗马，因为意大利创业环境很弱，在2009年飞来了旧金山。Aghi刚来就参加了一个早期创业者的小聚会，聚会上参加的人不多，但现在都是如雷贯耳的名字：Uber的创始人Travis，Airbnb的CEO Brian，Dropbox的CEO Drew和Box的CEO Aaron。Aghi当时为了省钱，借住在Uber创始人Travis家，每天睡沙发。
 
@@ -494,7 +494,7 @@ Kong是我去年起就在关注的一家公司，它的创业历程非常有意�
 
 后来，公司关于API管理的代码模块，在GitHub上被疯狂下载，Kong也接到客户要求，希望购买相应的付费企业版。Kong敏锐地发现了这个大机会，迅速转型成了一个开源软件公司。”如果在CSDN博客上搜索，关于Kong开源版本的教程比比皆是。这是一个成功的开源软件商业化的案例，听起来经历和Docker非常相似。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd0385pwj30n308twff.jpg)
+![img](007S8ZIlly1gfhd0385pwj30n308twff.jpg)
 
 Kong开源版本Github主页
 
@@ -502,13 +502,13 @@ Kong成长的大背景是软件开发技术正在经历革命性变化，全球5
 
 同时开源软件初期具有的优势也在逐渐显现。Kong本身基于开源的Openresty（Nginx+lua），但比Nginx提供了更简单的配置方式，数据采用了Apache Cassandra/PostgreSQL存储，由于底层使用Nginx，所以性能比基于Java的Spring Cloud Gateway及Zuul更为出色。Kong另外一个非常诱人的地方就是提供了大量的插件来扩展应用，通过设置不同的插件可以为服务提供各种增强的功能。Kong默认插件包括：身份认证、安全、流量控制、分析监控、转换等等。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhczz0tuzj30u00ftmxs.jpg)
+![img](007S8ZIlly1gfhczz0tuzj30u00ftmxs.jpg)
 
 Kong的插件功能
 
 Kong提供开源的Kong Gateway和商业版Kong Enterprise两个产品。例如在插件功能上，商业版本提供更多的选择。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd03s2uwj30qz0kmabu.jpg)
+![img](007S8ZIlly1gfhd03s2uwj30qz0kmabu.jpg)
 
 Kong的部分插件功能
 
@@ -520,7 +520,7 @@ Kong通过云原生、混合和本地部署无缝连接API和微服务，便于�
 
 和Kong紧密相关的另外一家企业是RapidAPI，2017年，Kong的母公司Mashape将其API市场业务与[RapidAPI](https://rapidapi.com/)合并，从而组成了世界上最大的API市场。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhczy3s35j30ca09mwet.jpg)
+![img](007S8ZIlly1gfhczy3s35j30ca09mwet.jpg)
 
 市场研究机构Ovum Research曾经表示，API经济在迅迅猛发展，到2018年将成为产值高达2.2万亿美元的市场。合并后，RapidAPI成为了这个市场的主要提供商之一。
 
@@ -532,11 +532,11 @@ RapidAPI的首席执行官吉纳在宣布合并的博文中表示，“软件相
 
 RapidAPI的市场里包括各种各样类型的API，例如天气、体育、科技、通讯、图像处理等等，例如获取新闻信息、实时体育比赛比分、天气信息，甚至还包括新冠病毒API分类。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd05lhlxj30n30ehta1.jpg)
+![img](007S8ZIlly1gfhd05lhlxj30n30ehta1.jpg)
 
 开发商可以自由的为自己的API接口定价，下图是Twilio SMS接口的报价方案。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhczwpo62j30u008e0tk.jpg)
+![img](007S8ZIlly1gfhczwpo62j30u008e0tk.jpg)
 
 2019年，RapidAPI完成了由微软领投、A16Z等跟投的2500万美元B轮融资，历史累计融资达到3750万美元。RapidAPI表示，它将利用这笔新筹集的资金扩大其API市场规模，并推动其新发布的RapidAPI for Teams产品。它是一个自助服务平台，使开发人员能够发布，管理和协调API和微服务，这些是用于构建现代应用程序的常用组件。
 
@@ -564,7 +564,7 @@ RapidAPI的市场里包括各种各样类型的API，例如天气、体育、科
 
 为了解决这个新问题，ESB（Enterprise Service Bus，企业服务总线）的概念被提出来了，就是把每个系统的服务接口都对接到ESB上，这样在系统集成的时候，只需要跟总线打交道，而不再需要直接跟所有其它系统打交道了，从而大大简化了集成的复杂度。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhczrjx9cj30u00e03z6.jpg)
+![img](007S8ZIlly1gfhczrjx9cj30u00e03z6.jpg)
 
 使用ESB前后
 
@@ -572,23 +572,23 @@ RapidAPI的市场里包括各种各样类型的API，例如天气、体育、科
 
 2018年3月，美国SaaS巨头Salesforce花费65亿美元收购iPaaS代表企业Mulesoft，Mulesoft于2017年在纽交所上市，市值约30亿美元。Mulesoft的核心产品是企业软件集成平台Anypoint Platform（旧称Mule ESB），客户可以在Anypoint上集成所有业务系统的服务，实现本地系统与云、以及云与云服务的集成。Anypoint Platform/Mule ESB是世界上使用最广泛的开源ESB产品，已拥有超过数百万的下载量，以及来自世界各地数十万个开发人员，财富500强中35%的企业、全球10大银行中的5家均使用了该平台。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhczs0sxbj30m80bkq3q.jpg)
+![img](007S8ZIlly1gfhczs0sxbj30m80bkq3q.jpg)
 
 Mule ESB
 
 尽管只有一个产品，但从Gartner的划分标准来看，Mulesoft同时踩在了两个领域里：全生命周期API管理和企业集成平台即服务（iPaaS，Enterprise Integration Platform as a Service）。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd04q4fyj30i20ivt9b.jpg)
+![img](007S8ZIlly1gfhd04q4fyj30i20ivt9b.jpg)
 
 Gartner魔力象限：全生命周期API管理
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd063o41j30h70iowfd.jpg)
+![img](007S8ZIlly1gfhd063o41j30h70iowfd.jpg)
 
 Gartner魔力象限：企业集成平台即服务
 
 Mule ESB同时包括开源和商业版本，在各个技术论坛上遍布其技术教程。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd00gjhhj30jd0gyacl.jpg)
+![img](007S8ZIlly1gfhd00gjhhj30jd0gyacl.jpg)
 
 Mule开源版讨论文章
 
@@ -601,7 +601,7 @@ Mule ESB的常见应用场景例如：
 - 旧系统改造，开放系统的服务能力。举个例子，企业有一个电商系统，需要调用SAP ERP的订单接口来创建订单，这个时候需要将SAP的订单服务暴露成流行的Restful API，以方便电商系统调用。使用Mule ESB可以轻松实现。
 - 系统集成。企业之间的数据交换，竟然有一半以上是文件的形态进行的，这在互联网思维普及的今天，是不容易想象的。在10年前，企业间交换数据采用文件形态的比重占60%，当时普遍认为这个比重会迅速下降，最终以接口服务形态进行交换的比重会占绝大多数。然而10年后直至今天，采用文件形态的依然占51%的比重。其实仔细想想，也不无合理。两个对等企业之间，行业上下游多个企业之间，不同系统之间的进行数据交换，采用文件的形式，可能是最简单便捷的方式。举个例子，很多系统之间数据交互可能还是用FTP目录。尤其是企业跟企业之间的数据交互，比如，A企业丢一个EDI文件到B企业的FTP目录，然后B企业会从FTP目录下载解析并放置到数据库。这个场景用Mule ESB实现也很方便。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfkr0b0eq5j30e604pdfv.jpg)
+![img](007S8ZIlly1gfkr0b0eq5j30e604pdfv.jpg)
 
 4）Salesforce为什么收购Mulesoft
 
@@ -640,7 +640,7 @@ ESB是一种集中式服务治理的架构，看上去微服务中不需要ESB�
 
 为了解决上述问题，号称微服务2.0的服务网格（Service Mesh）应运而生。服务网格这个词最早由著名开源服务网格项目Linkerd所在的Buoyant公司CEO William Morgan所提出。按照他的定义，服务网格是一个软件基础设施层，用于控制和监视微服务应用程序中的内部、服务到服务的流量。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd04denmj30u00d8myl.jpg)
+![img](007S8ZIlly1gfhd04denmj30u00d8myl.jpg)
 
 服务网格架构
 
@@ -648,19 +648,19 @@ Sidecar是服务网格中的核心组成部分，可以看到，上图中每一�
 
 服务网格和API网关是两个联系非常紧密的概念，它们的用途既不同，但是在某些方面又相互重叠。在某种程度上，我们可以认为服务网格是一个**分布式的、微观层面的API网关**，解决微服务服务发现、负债均衡、流量控制等需求。在具体用途上，API网关处理的是所谓南北向流量即内外部请求；而服务网格处理的是东西向流量即内部服务相互间的访问。想深入了解两者区别的读者可以仔细阅读《[Service Mesh和API Gateway关系深度探讨](https://www.infoq.cn/article/4FJXNTHJMio6g75uSX0h%3Ffrom%3Dtimeline)》这篇文章。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhczvrqm9j30u00cu3za.jpg)
+![img](007S8ZIlly1gfhczvrqm9j30u00cu3za.jpg)
 
 南北向流量 vs 东西向流量
 
 服务网格相关的著名项目包括Linkerd、Envoy和最受欢迎的服务网格框架Istio。Kong也于2019年发布了基于Envoy的开源服务网格产品Kuma。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd02bfu3j30ox0etaap.jpg)
+![img](007S8ZIlly1gfhd02bfu3j30ox0etaap.jpg)
 
 Kong的服务网格产品：Kuma
 
 下图是CNCF Landscape里服务网格分类所罗列的项目，其中Linkerd正由CNCF进行孵化。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhczuu6edj309j0asdgl.jpg)
+![img](007S8ZIlly1gfhczuu6edj309j0asdgl.jpg)
 
 2、Serverless
 
@@ -672,11 +672,11 @@ Serverless通常适用于实时性要求不高、无状态的场景，例如突�
 
 相较服务网格，Serverless概念更为超前，虽然AWS Lambda、阿里云等许多平台都已经提供对其的支持，但是目前仍处于发展早期，无论是成熟项目数量和企业应用程度都相对有限。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd070ovgj30u00gwdi1.jpg)
+![img](007S8ZIlly1gfhd070ovgj30u00gwdi1.jpg)
 
 FaaS Landscape
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhczw88rrj30u00b6jsp.jpg)
+![img](007S8ZIlly1gfhczw88rrj30u00b6jsp.jpg)
 
 CNCF Serverless Landscape
 
@@ -684,7 +684,7 @@ CNCF Serverless Landscape
 
 最近，Uber支付体验平台的工程经理Gergely Orosz发布推文表示他们的架构方向已经发生了变化。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd07jalej30kd0epgn0.jpg)
+![img](007S8ZIlly1gfhd07jalej30kd0epgn0.jpg)
 
 > “声明一下，在Uber，我们正将许多微服务转移到@copyconstruct所称的Macroservices宏服务（大小适中的服务）。
 > 确切地说，B/C测试和维护成千上万的微服务不仅很难——它可能会带来更多的长期麻烦，而不是解决短期问题。
@@ -710,7 +710,7 @@ CNCF Serverless Landscape
 
 虚拟机虽然可以隔离出很多“子电脑”，但占用空间大，启动慢，虚拟机软件可能还要花钱（例如VMware）。而容器技术恰好没有这些缺点，它不需要虚拟出整个操作系统，只需要虚拟一个小规模的环境（类似“沙箱”），启动时间很快，几秒钟就能完成。而且，它对资源的利用率很高（一台主机可以同时运行几千个Docker容器）。此外它占的空间很小，虚拟机一般要几GB到几十GB的空间，而容器只需要MB级甚至KB级。虚拟机和以Docker为代表的容器都是虚拟化技术，不过容器属于轻量级的虚拟化。下面是两者的主要对比。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd1pt1mfj30k20b4wf5.jpg)
+![img](007S8ZIlly1gfhd1pt1mfj30k20b4wf5.jpg)
 
 **Docker的源起**
 
@@ -720,17 +720,17 @@ Docker本来是做PaaS的公司，原来叫做DotCloud，成立于2010年。但�
 
 Docker一词意为码头工人，而它的logo则是一个托着许多集装箱的鲸鱼，非常形象：Docker是鲸鱼，而集装箱则是一个个的容器。在Docker的官网上，对于容器有一个一句话的解释“A standardized unit of software”，即“软件的一个标准化单元”。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd1q9cxsj308c08caa3.jpg)
+![img](007S8ZIlly1gfhd1q9cxsj308c08caa3.jpg)
 
 下面的图片比较了Docker和传统虚拟化的不同之处，容器是在操作系统层面上实现虚拟化，而传统方式是在硬件层面实现，所以导致两者的特性有很大区别，Docker更小更轻。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd1rmwc1j30u00chab5.jpg)
+![img](007S8ZIlly1gfhd1rmwc1j30u00chab5.jpg)
 
 Docker vs 虚拟化
 
 而Docker与传统的Linux容器也并不完全一致。Docker技术最初是建立在LXC技术之上的，大多数人都把LXC技术与传统的Linux容器联系在一起，尽管后来它已经摆脱了这种依赖性。LXC作为轻量级虚拟化很有用，但它没有很好的开发人员或用户体验。Docker技术带来的不仅仅是运行容器的能力，它还简化了创建和构建容器、加载镜像和镜像版本控制等过程。传统的Linux容器使用可以管理多个进程的init系统，这意味着整个应用可以作为一个整体运行。Docker鼓励将应用程序分解为它们各自的进程，并提供了实现这一点的工具，这种粒度有不少优点。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd1t19epj30u00c03zp.jpg)
+![img](007S8ZIlly1gfhd1t19epj30u00c03zp.jpg)
 
 传统Linux容器 vs Docker
 
@@ -738,29 +738,29 @@ Docker vs 虚拟化
 
 众所周知，Linux上我们不愉快的经历之一就是安装软件。因为系统硬件、操作系统环境不一样，软件包有不同的依赖性，所以必须要安装完软件依赖路径上的所有包，这个链条之长，往往要耗费几小时甚至几天的时间。例如下面的案例，我要安装Docker，系统提示我必须要先安装selinux-policy、selinux-policy-base、selinux-policy-targeted三个相关模块。而我安装selinux-policy的时候，又提示要先安装python；安装python的时候，又提示我要先安装_bz2、_curses、_curses_panel等等模块…
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd1vzikgj30n30463zc.jpg)
+![img](007S8ZIlly1gfhd1vzikgj30n30463zc.jpg)
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd1wfhauj30n309ewf7.jpg)
+![img](007S8ZIlly1gfhd1wfhauj30n309ewf7.jpg)
 
 这就是由于环境不统一带来的巨大问题，每天在世界各地的数千万台机器上都会重复上演无数次。那么，如果服务器环境能够标准化，那我们安装任何软件只需要一个版本就可以解决问题。
 
 同时，如果所有服务器环境统一、标准化，还能保留上面的配置、安装的软件和应用，对于我们来讲就更加有用。Docker正是在操作系统之上实现了这个标准化、统一化的运行环境，并且把各种不同的配置和应用存储成镜像，供未来使用。这有点类似于我们熟悉的Ghost或者虚拟光驱，把需要的环境和状态保留为镜像，随时恢复、随时使用。不过Ghost基于操作系统，镜像是一个大文件，管理起来并不方便，恢复速度也很慢，同时不支持跨平台的镜像恢复；而虚拟光驱则是基于软件层面，使用范围有限；而Docker正处于两者之间，能完成更多功能的同时，还实现了镜像的快速加载和运行。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd1s43n7j30is0cuaay.jpg)
+![img](007S8ZIlly1gfhd1s43n7j30is0cuaay.jpg)
 
 Ghost软件
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd1sjye9j30in0cujsb.jpg)
+![img](007S8ZIlly1gfhd1sjye9j30in0cujsb.jpg)
 
 虚拟光驱软件
 
 我们在上一部分讲微服务的时候，将其比喻成装配式建筑。把这个比喻用在Docker上的话，我们只要提前设计好模板（配置环境、部署软件或服务），就能在工厂（Docker）里批量化生产（说复制可能更加合适）出楼板、墙板、楼梯、阳台等构件和配件（容器所装载的、不同的微服务），这些构件在建筑施工现场经过组装拼合（API访问），就能成为各种各样的建筑（各种类型的产品和应用）。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd1vf0mtj30kc0d8my2.jpg)
+![img](007S8ZIlly1gfhd1vf0mtj30kc0d8my2.jpg)
 
 装配式建筑由各种构件组成
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd1omhx0j30eo09lq3l.jpg)
+![img](007S8ZIlly1gfhd1omhx0j30eo09lq3l.jpg)
 
 Docker与各种概念的关系
 
@@ -782,17 +782,17 @@ Docker镜像是一个特殊的文件系统。它除了提供容器运行时所�
 
 Docker官方提供了[Docker Hub](https://hub.docker.com)来维护管理所有的镜像，只是对于免费用户而言,只能创建一个私有仓库。Docker Hub里提供了大量高质量的官方镜像，例如Oracle、MySQL、redis、Ubuntu、Nginx、python、Docker（Docker in Docker！）等等，开发人员需要一个环境的时候，可以直接到Docker镜像仓库去查找，减少了大量无谓的环境安装工作。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd1r6q52j30c507qjs1.jpg)
+![img](007S8ZIlly1gfhd1r6q52j30c507qjs1.jpg)
 
 Docker Hub
 
 Docker创始人曾经公布过一个相关数据，Docker Hub里镜像的下载数量从2014年的100万次，3年内猛增到了120亿次。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd1pbl3pj30u00hpmy6.jpg)
+![img](007S8ZIlly1gfhd1pbl3pj30u00hpmy6.jpg)
 
 下面是我从Docker Hub上拉取一个hello world演示镜像，并且运行的示例。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd1qpe32j30lp0g1ac7.jpg)
+![img](007S8ZIlly1gfhd1qpe32j30lp0g1ac7.jpg)
 
 **Docker的好处**
 
@@ -830,13 +830,13 @@ Docker使用的分层存储以及镜像的技术，使得应用重复部分的�
 
 容器是微服务和云原生架构的最佳实现载体。微服务与容器几乎是完美的搭配。单体式架构（Monolithic）变成微服务架构（Microservices），相当于一个全能型变成N个专能型，每个专能型分配一个隔离的容器，赋予了最大程度的灵活。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd1u6cs4j30ia06t74w.jpg)
+![img](007S8ZIlly1gfhd1u6cs4j30ia06t74w.jpg)
 
 服务器势必会走上虚拟化的道路，因为虚拟化有太多的优势，例如前文所说的低成本、高利用率、充分灵活、动态调度等等。而采用容器之后，只需要一台服务器，创建十几个容器，用不同的容器，来分别运行不同用途的服务程序。这些容器，随时可以创建，也可以随时销毁。还能够在不停机的情况下，随意变大，随意变小，随意变强，随意变弱，在性能和功耗之间动态平衡。**所以容器化是云计算的终极形态。**
 
 如果把传统IT架构比作传统工厂，容器化比作现代化工厂，那么下一部分我们要讲到的Kubernetes则会将现代化工厂进一步提升为智能化无人工厂。那么当Docker遇到Kubernetes之后将会发生什么有趣的事情？让我们拭目以待。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd1uwnt5j30pu0ejq3q.jpg)
+![img](007S8ZIlly1gfhd1uwnt5j30pu0ejq3q.jpg)
 
 ## 第五部分：Kubernetes与容器编排之战
 
@@ -846,19 +846,19 @@ Docker使用的分层存储以及镜像的技术，使得应用重复部分的�
 
 Orchestration这个词来自于音乐领域，是指一种将不同乐器、音色加以合理的编排等手法营造出一个听感交融、平衡的艺术，它完美地描述了容器编排的含义：为单个应用程序（乐队中的每种乐器）提供协同工作的模式。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd41k6qpj30k00b9q3k.jpg)
+![img](007S8ZIlly1gfhd41k6qpj30k00b9q3k.jpg)
 
 在IT领域编排可以理解为一种工作流，它能把整个IT系统都串接起来，然后自动化运作。在云原生时代，整体式的应用早已成为过去时，应用一般由单独容器化的组件即微服务组成，而这些组件需要通过相互间的协同合作，才能使既定的应用按照设计运作。
 
 2014年6月，IT基础设施领域的领先者Google发布了[Kubernetes](https://kubernetes.io)（简写为K8S）。编排概念并不是由Kubernetes第一个提出的，Kubernetes这个单词来自于希腊语，含义是舵手或领航员。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd42l2yjj30u00goq3l.jpg)
+![img](007S8ZIlly1gfhd42l2yjj30u00goq3l.jpg)
 
 Kubernetes是基于Docker的开源容器集群管理系统，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等整一套功能，因为容器本身可移植，所以Kubernetes容器集群能跑在私有云、公有云或者混合云上。
 
 Kubernetes属于主从的分布式集群架构，包含Master和Nodes。Master作为控制节点，调度管理整个系统；Nodes是运行节点，负责运行应用。Pod是Kubernetes创建或部署的最小单位。一个Pod封装一个或多个容器（Container）、存储资源（Volume）、一个独立的网络IP以及管理控制容器运行方式的策略选项。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd413an7j30mb0gc3zv.jpg)
+![img](007S8ZIlly1gfhd413an7j30mb0gc3zv.jpg)
 
 Kubernetes的主要功能包括：
 
@@ -881,7 +881,7 @@ Kubernetes的主要功能包括：
 
 下图是滚动发布的流程示意图，Load Balance是前端的负载均衡器，橙色是正在运行旧版本服务的节点，紫色是正在更新及更新完毕新版本服务的节点。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd44v38lj30u00irgmr.jpg)滚动发布流程示意图
+![img](007S8ZIlly1gfhd44v38lj30u00irgmr.jpg)滚动发布流程示意图
 
 可以看到，滚动发布开始后（Step 2），负载均衡器将服务器A从集群里摘除，服务器A进行新版本的发布，由服务器B和服务器C对外提供版本1.0的服务；Step 3，服务器A更新完毕，部署验证成功，负载均衡器将其加入集群，开始和服务器C一起对外提供不同版本的服务，同时服务器B开始发布；直至服务器ABC全部发布完成（Step 5），服务都更新到最新的2.0版本。
 
@@ -889,41 +889,41 @@ Kubernetes的主要功能包括：
 
 Kubernetes通用的编排模式是控制循环，用伪代码表示如下：
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd3zpj25j30gb05z3yr.jpg)
+![img](007S8ZIlly1gfhd3zpj25j30gb05z3yr.jpg)
 
 解释一下，Kubernetes集群本身状态就是实际状态，而期望状态来自于用户提交的配置文件。滚动发布的时候，Kubernetes将会根据这个控制循环，使用一个叫做Deployment的控制器，通过创建新的集群（下图中的v2版本ReplicaSet复制集）将其控制的Pod副本从0个逐渐变成3个，与此同时旧的集群（下图中v1版本的ReplicaSet）管理的Pod副本数则从3个逐渐变成0个，以此将一个集群中正在运行的多个Pod交替的逐一升级，实现滚动发布的效果。
 
 如果在发布刚开始的时候，集群里只有1个新版本的Pod，这个Pod有问题启动不起来，那么滚动发布就会停止，开发和运维可以及时介入解决问题。而应用本身还有旧版本的集群和Pod在线，所以服务不会受到任何影响。关于滚动发布的详细介绍和互动教程可以阅读[这里](https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro/)。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd40nxcyj30cj0e9t95.jpg)
+![img](007S8ZIlly1gfhd40nxcyj30cj0e9t95.jpg)
 
 下面这张图展示了使用Kubernetes，配合代码仓库GitLab、Docker镜像仓库Harbor、构建工具Jenkins，实现自动化的CI/CD流程。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd422bxhj30iu0drgmc.jpg)
+![img](007S8ZIlly1gfhd422bxhj30iu0drgmc.jpg)
 
 上一部分结束时我们提到，传统IT架构好比传统工厂，容器化好比现代化工厂，而Kubernetes则是智能化的无人工厂，让容器和应用能够高效自动、井然有序的被控制和管理；Kubernetes还实现了服务的抽象、解耦、高扩展、统一调度与集中化管理，例如用户可以专注用同样的方式在不同硬件上的应用，比如GPU节点池和低优先级的CPU节点池。Kubernetes不仅解决了容器的编排问题，让容器应用进入大规模工业生产，更进一步对云原生应用提供了定义规范，CNCF整个技术栈都是围绕Kubernetes建立，所以Kubernetes是云原生生态最重要的基石，可以说“Kubernetes是云原生时代的Linux”，即云原生应用的操作系统。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd43148zj30k509rjs6.jpg)
+![img](007S8ZIlly1gfhd43148zj30k509rjs6.jpg)
 
 高扩展的Kubernetes：兼容不同的硬件节点
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd407j40j30u00ia775.jpg)
+![img](007S8ZIlly1gfhd407j40j30u00ia775.jpg)
 
 Kubernetes：云原生应用的大规模工业生产
 
 回到本文第一部分，我们曾经用集装箱革命比喻云原生。现在大家已经理解，货船可以类比操作系统，集装箱类比容器，里面装的货物则是一个个的微服务，吊臂、吊桥、起重机等自动化操作设备是Kubernetes，而一整套集装箱的操作方法和流程则是DevOps。所有这些加起来构成了现代PaaS所具备的能力：操作系统、集群管理、应用编排、应用发布、持续集成等等。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd44ecwrj30f90a9my3.jpg)
+![img](007S8ZIlly1gfhd44ecwrj30f90a9my3.jpg)
 
 **容器编排之战**
 
 意识到容器编排的重要性，Docker在2014年发布了Docker Swarm（Swarm是蜂群的意思），以一个整体来对外提供集群管理功能，最大的亮点就是全部使用Docker项目原来的容器管理API来完成集群管理。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd43i9u3j30u00h9dgh.jpg)
+![img](007S8ZIlly1gfhd43i9u3j30u00h9dgh.jpg)
 
 同时从2014年底开始，Docker收购了最先提出容器编排概念的Fig项目，并改名为Compose（Compose是作曲的意思），它可以用来组装多容器的应用，并在Swarm集群中部署分布式应用。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd43zdckj30u00fojt2.jpg)
+![img](007S8ZIlly1gfhd43zdckj30u00fojt2.jpg)
 
 2014年Kubernetes发布之后，为了与Swarm竞争，在容器编排地位取得绝对的优势，Google、RedHat等开源基础设施公司共同发起了CNCF基金会，希望以Kubernetes为基础，建立一个由开源基础设施领域厂商主导、按照独立基金会方式运营的平台社区，来对抗以Docker公司为核心的容器商业生态。
 
@@ -931,7 +931,7 @@ Kubernetes：云原生应用的大规模工业生产
 
 企业服务大厂也纷纷加入Kubernetes平台战局，在公有云或者私有PaaS平台上来发展自己的Kubernetes产品。像微软直接找来Kubernetes联合创始人Brendan Burns负责领导Azure容器服务团队，自身的混合云产品Azure Stack也大力支持Kubernetes。IBM同样也靠以Kubernetes为核心的PaaS软件IBM Cloud Private来抢占企业私有云容器平台市场，尤其是微服务的管理需求。很早就支持Kubernetes的Redhat，在2015年推出的OpenShift 3.0版中，不惜放弃自己的容器调度工具，开始支持Kubernetes，现在更成为了支持跨多云、混合云架构，以及裸机、容器和虚拟机的企业级通用应用管理平台。而虚拟化龙头VMware也改为力推主打通吃多家IaaS和Kubernetes集群管理的容器服务软件，甲骨文也在旗下云端服务支持Kubernetes。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd3zfu5hj30u00hagno.jpg)
+![img](007S8ZIlly1gfhd3zfu5hj30u00hagno.jpg)
 
 在用户、社区和大厂的支持中，Kubernetes逐步成为企业基础架构的部署标准和新一代的应用服务层。
 
@@ -962,13 +962,13 @@ Docker在最重要的容器编排之战中失败，带给我们的教训包括�
 
 而云原生是一种理念和架构，用于以针对云环境优化的方式组装上述所有基于云的组件。因此云原生也是一个目的地：对于那些希望实现基础设施和流程现代化，甚至组织文化现代化的企业来说，最终的目标是仔细选择最适合其具体情况的云技术。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd57rbruj30oz0gigme.jpg)
+![img](007S8ZIlly1gfhd57rbruj30oz0gigme.jpg)
 
 要从云计算中获得最佳效果，需要使用云原生架构；云原生的普及又会促进云计算的加速发展。
 
 从统计数据和发展趋势来看，云原生被接受的程度和普及速度正在大大加快，例如下图显示，自从2016年以来容器的使用量每年都在快速上升。IDC预计，到2022年90%的应用程序将采用微服务架构和第三方代码，35%的生产应用程序将诞生于云端。由于容器和敏捷方法的采用，预计2018-2023年间将诞生5亿个新应用程序。由数字化转型，以及接受和采用新技术的需求驱动，云原生将更深入地渗透到大型企业组织中。这意味着云原生技术和方法可能会遵循敏捷和DevOps的模式，越来越多地吸引更多的利益相关者，包括管理者和业务线领导人，在未来几年内覆盖一半或更多的组织。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd58nr5hj30k80ec74x.jpg)
+![img](007S8ZIlly1gfhd58nr5hj30k80ec74x.jpg)
 
 各种场景容器使用量都在逐步上升
 
@@ -982,7 +982,7 @@ Docker在最重要的容器编排之战中失败，带给我们的教训包括�
 
 CNCF全景图呈现了比较完整的云原生项目和分类，我们可以将其简化成如下图所示的几种大的分类：
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd51e679j30ka0bywfe.jpg)
+![img](007S8ZIlly1gfhd51e679j30ka0bywfe.jpg)
 
 一共分为AppDev & DevOps；Management；Runtimes；Infrastructure and Services；Serverless；Observability；Security八个大的模块。
 
@@ -1011,21 +1011,21 @@ CNCF全景图呈现了比较完整的云原生项目和分类，我们可以将�
 
 下面的表格里代表性的列举了云原生技术层的几个领域及相关项目。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd56cr01j30lq0e6q49.jpg)
+![img](007S8ZIlly1gfhd56cr01j30lq0e6q49.jpg)
 
 下图展示了当前这些项目的市场占有率情况。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd54h5y7j30ju0e60te.jpg)
+![img](007S8ZIlly1gfhd54h5y7j30ju0e60te.jpg)
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd532sxaj30jt0dnaax.jpg)
+![img](007S8ZIlly1gfhd532sxaj30jt0dnaax.jpg)
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd5amzu8j30lm0fejs6.jpg)
+![img](007S8ZIlly1gfhd5amzu8j30lm0fejs6.jpg)
 
 可以看到技术层涉及的范围非常广，机会非常多，本文仅展开介绍其中我比较看好的一个领域-云原生安全。
 
 据CNCF统计，采用容器技术的挑战中，开发团队面临的文化挑战、安全性、复杂性、就绪性和监控分别排在前五位。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd51n0kyj30kd0g3q3t.jpg)
+![img](007S8ZIlly1gfhd51n0kyj30kd0g3q3t.jpg)
 
 使用容器的挑战
 
@@ -1044,7 +1044,7 @@ CNCF全景图呈现了比较完整的云原生项目和分类，我们可以将�
 
 因此，像Netflix、Lyft和Square等组织已经开始将云原生安全作为工程问题来处理，使用自动化来避免这些陷阱，并使安全团队更加有效。他们还规避了将检测、响应和开发团队分开的烟囱式结构，在构建安全检测机制并将它们与响应编排集成时遵循DevOps的思想。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd53kdrqj30u00g1wgq.jpg)
+![img](007S8ZIlly1gfhd53kdrqj30u00g1wgq.jpg)
 
 来自Netflix的安全检测组件示例
 
@@ -1052,15 +1052,15 @@ CNCF全景图呈现了比较完整的云原生项目和分类，我们可以将�
 
 云原生的安全分为4C，即代码、容器、集群、云四个层级。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd55vxnwj30u00hb0to.jpg)
+![img](007S8ZIlly1gfhd55vxnwj30u00hb0to.jpg)
 
 CNCF全景图中安全与合规子分类里包含的项目如下图所示。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd524cl8j30u00codhc.jpg)
+![img](007S8ZIlly1gfhd524cl8j30u00codhc.jpg)
 
 像在我多篇文章里曾经提及的新一代云安全公司，市值189亿美金的CrowdStrike，直接将自己定义为云原生的端点保护平台（Cloud-Native Endpoint Protection Platform），以此同传统的端点保护产品区分开来。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd524cl8j30u00codhc.jpg)
+![img](007S8ZIlly1gfhd524cl8j30u00codhc.jpg)
 
 下面我介绍几家和云原生安全相关的初创企业。
 
@@ -1078,13 +1078,13 @@ Capsule8开发了业界第一个也是唯一一个针对Linux的实时0day攻击
 
 Capsules8平台整体架构图如下所示：
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd59mw2tj30ow09lgm7.jpg)
+![img](007S8ZIlly1gfhd59mw2tj30ow09lgm7.jpg)
 
 假设客户生产环境是一个混合云环境，服务器部署于客户侧数据中心、公有云AWS和Azure中。Capsule8的整个工作流程主要分为感知、检测、阻断、调查四步。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd57cxruj30kk0arab3.jpg)
+![img](007S8ZIlly1gfhd57cxruj30kk0arab3.jpg)
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd56utpsj30m804uaan.jpg)
+![img](007S8ZIlly1gfhd56utpsj30m804uaan.jpg)
 
 **2、Aqua Security（C轮）**
 
@@ -1098,13 +1098,13 @@ Aqua Security的云原生安全平台使用现代化的零接触方法来检测�
 
 提供可行建议：Aqua提供了有关漏洞的具体可行建议，通常是建议升级到特定的版本或者改变配置和环境变量。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd55don4j30rs0eswft.jpg)
+![img](007S8ZIlly1gfhd55don4j30rs0eswft.jpg)
 
 **3、Twistlock（被收购）**
 
 位于CNCF全景图里的Twistlock创立于2015年。曾经在以色列著名的网安黄埔8200部队服役，并在微软企业安全部门工作的Ben Bernstein以不到30万美元的种子轮开始起家，定位容器安全。Twistlock自己贴的标签除了容器安全，就是云原生安全。Twistlock的融资节奏很好，2015年5月天使轮280万美元，2016年7月A轮1000万美元，2017年4月B轮1700万美元，2018年8月C轮3300万美元，2019年就被Palo Alto Networks以4.1亿美金的价格收购。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd5a46f4j30n30f8wfg.jpg)
+![img](007S8ZIlly1gfhd5a46f4j30n30f8wfg.jpg)
 
 Twistlock产品界面
 
@@ -1118,11 +1118,11 @@ Twistlock产品界面
 
 在本文第一部分我们提过Rancher（中文意思是放牧人）这家公司，它的创始人梁胜职业生涯贯穿软件开发与云计算的发展历史。作为耶鲁大学计算机博士、Java语言J2SE平台核心组件JNI的作者、JVM的领导设计与开发者，梁胜2000年离开Sun创办了应用防火墙软件公司Teros Networks并担任CTO，2001年公司被Citrix收购。2008年梁胜第二次创业创建了[Cloud.com](http://Cloud.com)，并推出了著名的云计算管理软件CloudStack，他也因此被誉为“CloudStack之父”，2011年[Cloud.com](http://Cloud.com)被Citrix又以2亿美金收购，他成为Citrix首位华人CTO。随后2014年梁胜创立了容器管理公司Rancher Labs。[这是](https://rancher.com/why-were-building-a-container-infrastructure-platform-at-rancher-labs/)他创建公司的初衷。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd5866lfj30n308ngml.jpg)
+![img](007S8ZIlly1gfhd5866lfj30n308ngml.jpg)
 
 Rancher是一个容器管理平台，通过Rancher可以实现Docker和Kubernetes的轻松部署。Rancher由基础设施编排、容器编排与调度、应用商店、企业级权限管理组成。下图展示了Rancher的主要组件和功能。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd52js77j30u00ci401.jpg)
+![img](007S8ZIlly1gfhd52js77j30u00ci401.jpg)
 
 今年3月份，Rancher对外公布了4000万美元的D轮融资，由此Rancher累计融资高达9500万美元。
 
@@ -1130,7 +1130,7 @@ Rancher是一个容器管理平台，通过Rancher可以实现Docker和Kubernete
 
 HashiCorp（简称为Hashi，日语“桥梁”的含义）是我一直非常看好的一家云原生技术企业，不过最近因为禁止中国企业使用其商业产品而被刷屏。它成立于2012年，主要开发DevOps和云管理基础设施相关产品，日裔创始人及CTO Mitchell Hashimoto从12岁就开始创业，目前年仅30岁，公司主要产品都出自于他的手笔。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd5azfe4j30u00k0ta9.jpg)
+![img](007S8ZIlly1gfhd5azfe4j30u00k0ta9.jpg)
 
 HashiCorp旗下包含多款知名的云原生相关开源产品，我们自上而下的来看：
 
@@ -1151,7 +1151,7 @@ Snowflake成立于2012年，创始人Bob Muglia曾在微软工作23年，拥有�
 
 作为一个类别，云原生的数据仓库提供了许多好处。首先，它们使公司摆脱了对设备和机器的担忧：在过去的物理服务器时代，公司需要操心服务器机房，或者至少是运行软件或存储数据的特定机器。构建这个物理基础设施是启动或扩展软件公司的一个巨大障碍。现在，服务器成本要低得多，只需点击几下鼠标就可以创建云端数据仓库。公司只需要按需处理和存储数据，并为他们使用的东西付费。云的使用还可以为公司提供更多的冗余和支持，因为他们不再需要担心单个服务器的故障和整个操作的崩溃。大型云服务提供商拥有多个备份系统，可以在全球数据中心之间自动扩展，以保持一切正常运行。这对客户公司来说是双赢的。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd5429q0j30l109rjs1.jpg)
+![img](007S8ZIlly1gfhd5429q0j30l109rjs1.jpg)
 
 作为一个基于云的数据仓库，Snowflake具有很强的灵活性和可伸缩性。Snowflake基于订阅的模型将存储和计算服务分离，允许它们独立运行。当用户构建插入Snowflake的新解决方案时，他们只支付存储数据或根据需要分析数据的费用。此外，该系统还构建了一个相互连接的云服务器阵列，将数据分散，允许组织内的单个用户或组访问他们需要的特定数据，而无需复杂的数据传输，简化了连接和分析。
 
@@ -1191,7 +1191,7 @@ Snowflake在今年2月份完成了4.79亿美元的G轮融资，估值高达124�
 
 例如，游戏长期以来通过出售改变玩家外观或周围世界的化妆品来赚钱。由于云提供无限的数据、处理能力和最小的客户端-服务器延迟，人工智能可以实时生成完全动态的环境。以下是基于Nvidia深度学习系统的剪辑，显示用户在AI的帮助下修改了一个逼真的虚拟环境：
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlly1gfhd59dajrj30sg0ebgnv.jpg)
+![img](007S8ZIlly1gfhd59dajrj30sg0ebgnv.jpg)
 
 将来，实时内容生成可能会催生新的、沉浸式的故事讲述方法。下一代的“选择你自己的冒险”可能是一个虚拟世界，实时适应你的选择。为了使这些虚拟世界货币化、个性化，自发性的广告可能会出现，类似于《少数派报告》中的生物识别广告。
 

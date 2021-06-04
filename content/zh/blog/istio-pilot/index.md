@@ -3,7 +3,7 @@ title: "Istio Pilot 源码分析（一）"
 description: "基于 Istio 1.7 源码深入分析 Istio 流量管理、安全通信等方面的流程及原理，带你揭开 Istio 的神秘面纱。"
 author: "[张海东](http://haidong.dev/)"
 image: "/images/blog/istio-pilot-banner.jpeg"
-categories: ["Istio","Service Mesh"]
+categories: ["Service Mesh"]
 tags: ["istio","service mesh"]
 date: 2020-09-08T12:00:00+08:00
 type: "post"
@@ -40,7 +40,7 @@ profile: "多点生活（成都）云原生开发工程师。"
 ## 宏观架构
 
 `pilot-discovery` 的核心组件如图：
-![pilot-discovery-struct](./images/pilot-discovery-struct.png)
+![pilot-discovery-struct](pilot-discovery-struct.png)
 
 其中 `Server` 为 `pilot-discovery` 的主服务，包含了三个比较重要的组件：
 
@@ -54,7 +54,7 @@ profile: "多点生活（成都）云原生开发工程师。"
 
 `ServiceEntryStore` 从 `Config Controller` 到 `Service Controller` 的转化流程大致如图（后续会做详细的代码分析，这里简单了解一下即可）：
 
-![pilot-discovery-serviceentrystore](./images/pilot-discovery-serviceentrystore.png)
+![pilot-discovery-serviceentrystore](pilot-discovery-serviceentrystore.png)
 
 `ConfigStores` 是一个列表，里面存储了各类 `Istio` 配置文件，包括 `ServiceEntry` 、`WorkloadEntry` 等服务数据，也包括 `VirtualService`、`DestinationRules`、`Sidecar` 等流量控制、路由规则的配置数据，`pilot-discovery` 将这些 `ConfigStores` 聚合成一个 `configController` 统一进行管理，之后再从其中衍生出 `IstioConfigStore`，将其作为 `serviceEntryStore` 的配置源。`serviceEntryStore` 其实就是 `ServiceEntry Controller`，响应 `ServiceEntry` 和 `WorkloadEntry` 这类服务信息的变化。
 
@@ -63,7 +63,7 @@ profile: "多点生活（成都）云原生开发工程师。"
 理解了这三个核心组件的定义，就能比较好的理解下面分析的各类流程了。
 
 `pilot-discovery` 的整个业务流程梳理如下，可以先大概浏览一遍，之后我们逐一进行分析:
-![pilot-discovery-sequence-all](./images/pilot-discovery-sequence-all.png)
+![pilot-discovery-sequence-all](pilot-discovery-sequence-all.png)
 
 ## 启动流程梳理
 
@@ -91,7 +91,7 @@ cmd.WaitSignal(stop)
 ```
 
 启动流程如图所示：
-![pilot-discovery-init](./images/pilot-discovery-sequence-init.png)
+![pilot-discovery-init](pilot-discovery-sequence-init.png)
 
 ### 初始化流程
 

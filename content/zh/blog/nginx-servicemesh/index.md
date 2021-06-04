@@ -1,14 +1,14 @@
 ---
-title: "【译】NGINX 携新方案进军服务网格"
+title: "NGINX 携新方案进军服务网格"
 description: "本文介绍了 NGINX 官方新推出的服务网格方案 NGINX Service Mesh (NSM) 和 NSM 方案后续规划的两个目标。相较于现有服务网格，NSM 突出了轻量、简单、易上手入门的特点。"
-author: "Nginx"
+author: "[Nginx](https://thenewstack.io/nginx-steps-into-the-service-mesh-fray-promising-a-simpler-alternative/)"
 translator: "[梁斌](https://github.com/hzliangbin)"
 image: "/images/blog/nginx-servicemesh-banner.jpg"
 categories: ["service mesh"]
 tags: ["Service Mesh"]
 date: 2020-11-02T16:00:00+08:00
 type: "post"
-avatar: "./images/nginx.jpeg"
+avatar: "/images/profile/nginx.jpg"
 profile: "Nginx 是一个高性能的 HTTP 和反向代理服务器，具有高并发、稳定、支持热部署等特点。"
 ---
 
@@ -20,7 +20,7 @@ profile: "Nginx 是一个高性能的 HTTP 和反向代理服务器，具有高�
 
 NSM 不会直接集成各种组件，而是部署 Sidecar 代理进行集成。截至 NSM 发布时，这些受支持的组件已经包括 Grafana，Kubernetes Ingress Controller，SPIRE，NATS，Open Tracing 和 Prometheus。在 NSM 中，NGINX Plus 用作数据平面管理东西流量，并且还担当了 Ingress Controller 的角色管理南北流量。这样一来，用户可以获得 NGINX Plus 的所有标准特性，同时还能轻松入门，进行配置和管理。
 
-![img](./images/b614d2b7-nginx-service-mesh-intro_architecture.png)
+![img](b614d2b7-nginx-service-mesh-intro_architecture.png)
 
 “NGINX 已经是市场上主流的 Ingress Controller，如果你已经在使用 NGINX 管理集群的进出流量，那么你接下可能要关心的是集群内服务间调用的问题，开始着手东西流量而不是南北流量的处理。所以，NGINX Service Mesh 的真正目的是提供南北流量问题解决后，接下来一步的解决方案。”Whiteley 表示。
 

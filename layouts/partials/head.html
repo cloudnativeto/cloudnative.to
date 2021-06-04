@@ -1,6 +1,11 @@
 <head>
   <meta charset="utf-8">
+  {{ if .IsHome }}
+  <!--<title>云原生社区 | Cloud Native Community(China)</title>-->
+  <title>{{ .Site.Params.homePageTitle }}</title>
+  {{ else }}
   <title>{{ .Title }} | {{ i18n "site_name" }}</title>
+  {{ end }}
 
   {{ "<!-- mobile responsive meta -->" | safeHTML }}
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -24,4 +29,12 @@
   <meta property="og:image" content="{{ `images/favicon.png` | absURL }}">
   {{ "<!--Algolia-->" | safeHTML }}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.min.css">
+  {{ "<!--Twitter card-->" | safeHTML }}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="Cloud Native Community|云原生社区" />
+  <meta name="twitter:creator" content="@CloudNativeCN" />
+  <meta property="og:url" content="{{ with .Permalink }}{{ . }}{{ end }}" />
+  <meta property="og:title" content="{{ .Title }}" />
+  <meta property="og:description" content="{{ with .Description }}{{ . }}{{ end }}" />
+  <meta property="og:image" content="{{ with .Params.image }}{{.| absURL}}{{ end }}" />
 </head>

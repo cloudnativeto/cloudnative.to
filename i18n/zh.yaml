@@ -93,3 +93,15 @@
 
 - id: translator
   translation: "译者"
+
+- id: see_all
+  translation: "查看所有"
+
+- id: previousPost
+  translation: "上一篇"
+
+- id: nextPost
+  translation: "下一篇"
+
+- id: categories
+  translation: "分类"

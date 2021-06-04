@@ -4,7 +4,7 @@ description: "读源码如读书，积累的越多，越熟练，读得越快。
 author: "[厉辉（Yousa）](https://github.com/Miss-you)"
 image: "images/blog/snow-sea-bird-water.jpg"
 categories: ["开源社区"]
-tags: ["学习小组"]
+tags: ["Kubernetes"]
 date: 2020-07-20T12:00:00+08:00
 type: "post"
 profile: "腾讯云研发工程师，Apache APISIX PMC"

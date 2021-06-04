@@ -3,7 +3,7 @@ title: "Istio Pilot 源码分析（三）"
 description: "本篇主要介绍 Pilot 源码中 EnvoyXdsServer 的工作流程，重点探讨了防抖、SidecarScope 等逻辑。"
 author: "[张海东](http://haidong.dev/)"
 image: "/images/blog/istio-pilot-banner.jpeg"
-categories: ["Istio","Service Mesh"]
+categories: ["Service Mesh"]
 tags: ["istio","service mesh"]
 date: 2020-09-24T12:00:00+08:00
 type: "post"
@@ -52,7 +52,7 @@ type DiscoveryServer struct {
 
 回忆一下 pilot-discovery 的启动流程：
 
-![pilot-discovery init](./images/pilot-discovery-sequence-init.png)
+![pilot-discovery init](pilot-discovery-sequence-init.png)
 
 在初始化 grpcServer 的时候，调用了 `DiscoveryServer.Register()` 方法，向 grpcServer 注册了以下几个服务（以 v2 版本为例）：
 
@@ -92,7 +92,7 @@ func (s *DiscoveryServer) Start(stopCh <-chan struct{}) {
 
 当服务实例的代理（ Sidecar 模式） 启动的时候，会和 grpcServer 建立连接并调用 `StreamAggregatedResources` 方法：
 
-![EnvoyXdsServer Receive Connection](./images/envoyxdsserver-reveive-conn.png)
+![EnvoyXdsServer Receive Connection](envoyxdsserver-reveive-conn.png)
 
 `StreamAggregatedResources` 会和当前的 Proxy 创建一个连接，并创建一个接受请求的 `reqChannel` 。同时开启一个新的协程 `receiveThread` 处理客户端主动发起的请求：
 
@@ -111,7 +111,7 @@ func (s *DiscoveryServer) StreamAggregatedResources(stream discovery.AggregatedD
 
 一切准备就绪之后， `EnvoyXdsServer` 开始接收来自 `configController` 和 `serviceController` 的配置变化事件，包括服务数据的变化和配置数据的变化，都会创建 PushRequest 发送至 `EnvoyXdsServer` 的 `pushChannel` :
 
-![EnvoyXdsServer Receive Change](./images/envoyxdsserver-receive-change.png)
+![EnvoyXdsServer Receive Change](envoyxdsserver-receive-change.png)
 
 PushRequest 包含是否全量推送的标识以及主要更改的资源类型。全部统一推送到 `pushChannel` 之后，就由 `EnvoyXdsServer` 启动时创建的协程 `handleUpdates` 来处理了。
 
@@ -130,7 +130,7 @@ func (s *DiscoveryServer) handleUpdates(stopCh <-chan struct{}) {
 }
 ```
 
-![EnvoyXdsServer Handle Update](./images/envoyxdsserver-handleudpate.png)
+![EnvoyXdsServer Handle Update](envoyxdsserver-handleudpate.png)
 
 什么是防抖（ `Debounce` ）呢？举一个简单的例子，我们每天上班都要坐电梯，当你第一个进电梯后，想上 5 楼，按下了 5 楼并关闭了电梯门，门还没关上的时候，突然碰到一个同事，电梯门又打开，同事进来后你们一起去了 5 楼。这样两个人两次去 5 楼的事件，电梯跑了一趟就解决了。试想如果电梯的门都是秒关不等人，每次只装一个人，第二个人必须等电梯把上一个人送到之后才能重新乘坐，就算写字楼有很多电梯也会在早高峰的时候产生拥挤。
 
@@ -299,7 +299,7 @@ const (
 
 这里做一个小的拓展：追踪上面所有的原因，可以查询到所有可能发送到 `pushChannel` 的来源：
 
-![PushChannel Source](./images/push-channel-source.png)
+![PushChannel Source](push-channel-source.png)
 
 
 
@@ -437,7 +437,7 @@ func (s *DiscoveryServer) sendPushes(stopCh <-chan struct{}) {
 
 这里传入了节流的参数 `s.concurrentPushLimit` ，它是由环境变量 `PILOT_PUSH_THROTTLE` 控制的，默认为 100 。 `doSendPushes` 的逻辑如图：
 
-![EnvoyXdsServer Send Pushes](./images/envoyxdsserver-sendpushes.png)
+![EnvoyXdsServer Send Pushes](envoyxdsserver-sendpushes.png)
 
 首先从 `pushQueue` 中通过 `Dequeue()` 方法获取需要处理的代理客户端和对应的 PushRequest ，再根据 PushRequest 生成 Event 传入客户端的 `pushChannel` 中，注意和 `EnvoyXdsServer` 的 `pushChannel` 不同，这里的是针对当前客户端连接的 `pushChannel` 。
 
@@ -823,7 +823,7 @@ if !pushEv.full {
 
 这部分的内容比较简单，核心推送和上面的 `sendPushes` 一样，流程先是从 `reqChannel` 中获取 `DiscoveryRequest` 看客户端订阅了哪些 xDS ，组装推送即可。
 
-![EnvoyXdsServer Client Request](./images/envoyxdsserver-client-requests.png)
+![EnvoyXdsServer Client Request](envoyxdsserver-client-requests.png)
 
 ```go
 func (s *DiscoveryServer) processRequest(discReq *discovery.DiscoveryRequest, con *Connection) error {

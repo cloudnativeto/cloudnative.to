@@ -3,8 +3,8 @@ title: "Apache APISIX的全流量API网关统筹集群流量"
 description: "基于 Apache APISIX 的全流量 API 网关统筹集群流量。"
 author: "[温铭](https://github.com/moonming)"
 image: "/images/blog/apache_apisix.png"
-categories: ["gateway"]
-tags: ["gateway"]
+categories: ["其他"]
+tags: ["API Gateway"]
 date: 2020-09-30T16:00:00+08:00
 type: "post"
 avatar: "/images/profile/wenming.png"
@@ -13,7 +13,7 @@ profile: "来自一家在远程工作方式下商业化开源项目的创业公�
 
 本文根据我在云原生学院的分享整理而成，视频见 [Bilibli](https://www.bilibili.com/video/BV1Gt4y1q7qC)。
 
-[![云原生学院](images/bilibili.jpg)](https://www.bilibili.com/video/BV1Gt4y1q7qC)
+[![云原生学院](bilibili.jpg)](https://www.bilibili.com/video/BV1Gt4y1q7qC)
 
 本文将从云原生时代的机遇和挑战说起，介绍一个全新的开源高性能云原生 API 网关——Apache APISIX，探讨如何解决云原生时代 API 网关所面临的一些痛点，最后介绍该开源项目未来的规划。
 
@@ -27,15 +27,15 @@ profile: "来自一家在远程工作方式下商业化开源项目的创业公�
 
 从 2014-2015 年，谷歌搜索引擎上“微服务”关键字的搜索趋势呈直线上升。
 
-![img](images/wps1.png)
+![img](wps1.png)
 
 在单体架构上，任一请求都会负载到整个的单体服务集群上。
 
-![img](images/wps2.png)
+![img](wps2.png)
 
 在微服务架构上，对应请求会负载到微服务中对应的的子服务集群上。
 
-![img](images/wps3.png)
+![img](wps3.png)
 
 使用微服务进行精细管理后，服务的弹性伸缩、开发团队变得敏捷、服务之间隔离、降低故障率；在流量变动的时候，只需要对有可能变动流量的服务进行对应资源的扩缩容即可，这样可以很明显的节省服务器成本以及更高的承受度；在业务变动的时候，只需要对有可能变动业务的服务进行对应业务模块的变动即可，这样可以很明显的节省人力成本以及更高的控制力；在出现故障时不会导致整体服务不可用。
 
@@ -45,19 +45,19 @@ profile: "来自一家在远程工作方式下商业化开源项目的创业公�
 
 使用 API 网关进行管理，通常的做法是将微服务框架中功能型的功能统一放到网关上，例如可观测性 metrics、应用性能 apm tracing、限速、身份认证、日志等等。
 
-![img](images/wps4.png)
+![img](wps4.png)
 
 #### 灰度发布
 
 灰度发布也叫金丝雀发布，起源是，矿井工人发现，金丝雀对瓦斯气体很敏感，矿工会在下井之前，先放一只金丝雀到井中，如果金丝雀不叫了，就代表瓦斯浓度高。灰度发布会将流量按比例划分给已经上线的版本（比如1.0，占比90%）以及正在上线的版本（比如1.01，占比10%），若观测没有问题，逐步调整二者的流量占比直到流量完全切到1.01版本。Apache APISIX 内置的灰度发布支持读取到的 HTTP 请求参数中包含了 NGINX 的所有变量，可以依据变量进行灰度，甚至支持 LUA 代码去运算处理请求的请求体、请求参数。
 
-![img](images/wps6.png)
+![img](wps6.png)
 
 #### 服务熔断
 
 如图所示，当 Invoices 服务出现大量常见错误达到配置的熔断阈值就可以直接熔断不接收请求了。
 
-![img](images/wps7.png)
+![img](wps7.png)
 
 #### Apache APISIX 在传统和云原生领域的支持粒度
 
@@ -69,7 +69,7 @@ profile: "来自一家在远程工作方式下商业化开源项目的创业公�
 
 API 生命周期指的是从 API 的设计到 API 的文档和他的 SDK 以及他的 API 的上线之类，甚至还包括 API 的市场等等一整套的解决方案，网关在其中是核心角色。
 
-![image-20200929155124157](images/image-20200929155124157.png)
+![image-20200929155124157](image-20200929155124157.png)
 
 在上半象限都是一些巨头公司，例如 Google、IBM 等等，都是公有云的闭源项目，具有领导地位，跟各自产品深度绑定在一起。在下半象限都是援建者，都是开源项目，例如: Kong，挑战着闭源项目, 随着时间的推移我们发现——软件在吞噬世界、开源软件在吞噬软件。以下是近几年发生的很多 API 网关厂商相关的收购案例：
 
@@ -104,11 +104,11 @@ Apache APISIX 架构如图，其主要分为数据面和控制面。
 - 数据面：以 Nginx 的网络库为基础，（弃用 Nginx 的路由匹配、静态配置和 C 模块），使用 Lua 和 Nginx 动态控制请求流量，通过插件机制来实现各种流量处理和分发的功能：限流限速、日志记录、安全检测、故障注入等，同时支持用户编写自定义插件来对数据面进行扩充。
 - 控制面：使用 etcd 来存储和同步网关的配置数据，管理员通过 admin API 或者 dashboard 可以在毫秒级别内通知到所有的数据面节点，同时 etcd 集群也保证了系统的高可用。
 
-![img](images/wps15.png)
+![img](wps15.png)
 
 因为 Apache APISIX 使用了 ETCD 作为配置中心，在对应其他组件时会非常方便，可以把 ETCD 直接就当做服务注册发现中心来使用（服务注册、发现），当然同时也支持 Consul、Eureka、Nacos 等服务注册中心。
 
-![img](images/wps16.png)
+![img](wps16.png)
 
 ### 高性能
 
@@ -131,7 +131,7 @@ Apache 只是使用了 Nginx 的网络库而并没有使用路由库，重写优
 
 为了支持插件编排，Apache APISIX 一方面需要实现微插件、低代码，同时需要底层架构和插件足够灵活。
 
-![img](images/low-code-api-gateway-example-en-US.gif)
+![img](low-code-api-gateway-example-en-US.gif)
 
 ### 同类技术对比
 

@@ -204,14 +204,19 @@
 
 {{ "<!-- blog -->" | safeHTML }}
 {{ if $data.homepage.blog.enable }}
-<section class="section bg-gray-white position-relative">
+<section class="section">
   <div class="container">
     <div class="row">
       <div class="col-12">
         {{ with $data.homepage.blog }}
         <h2 class="section-title">{{ .title }}</h2>
-        <h4 class="section-title-sm">{{ .subtitle | markdownify }}</h4>
-        <div class="section-title-border"></div>
+        <div style="display: flex; flex-direction: row; justify-content: space-between;margin-bottom: 10px;">
+          <div style="display: flex; flex-direction: column; justify-content: center;">
+            <h4 class="section-title-sm">{{ .subtitle }}</h4>
+            <div class="section-title-border" style="margin-bottom: 0px;"></div>
+          </div>
+          <a href="/blog" class="btn btn-primary hover-ripple" style="padding: 10px 25px 10px 25px;">{{ .find_all }}</a>
+        </div>
         {{ end }}
       </div>
     </div>
@@ -223,14 +228,84 @@
       </article>
       {{ end }}
     </div>
+    <!-- mobile see all button -->
+    <div class="row">
+      <div class="col-12 text-center">
+        <a href="{{`blog` | relLangURL }}"
+          class="btn btn-sm btn-primary-outline d-sm-none d-inline-block">{{ i18n "see_all" }}</a>
+      </div>
+    </div>
   </div>
-  {{ "<!-- background shapes -->" | safeHTML }}
-  <img class="img-fluid blog-shape-left" src="{{`images/backgrounds/blog-bg-left.webp` | relURL }}" alt=""
-    onerror="this.src='{{`images/backgrounds/blog-bg-left.png` | relURL }}'">
-  <img class="img-fluid blog-shape-right" src="{{`images/backgrounds/blog-bg-right.webp` | relURL }}" alt=""
-    onerror="this.src='{{`images/backgrounds/blog-bg-right.png` | relURL }}'">
 </section>
 {{ end }}
 {{ "<!-- /blog -->" | safeHTML }}
+
+{{ if $data.homepage.sponsor.enable }}
+{{ with $data.homepage.sponsor }}
+{{ "<!-- sponsors -->" | safeHTML }}
+<section class="section bg-gray bg-dots">
+  <div class="container">
+    <div class="row">
+      <div class="col-11 text-center mx-auto">
+        <h2 class="section-title">{{ .title }}</h2>
+        <h4 class="section-title sponsor-title">{{ .type.project.title }}</h4>
+        <div class="container">
+          <div class="row">
+            {{ range .type.project.list }}
+            {{ "<!-- sponsor-img -->" | safeHTML }}
+            <div class="col-6 col-sm-6 col-md-3">
+              <div class=sponsor-img-adopter>
+                <a href="{{ .url }}" target="_blank"><img src="{{ .image }}" title="{{ .name }}"></a>
+              </div>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+        <h4 class="section-title sponsor-title">{{ .type.org.title }}</h4>
+        <div class="container">
+          <div class="row">
+            {{ range .type.org.list }}
+            {{ "<!-- sponsor-img -->" | safeHTML }}
+            <div class="col-6 col-sm-6 col-md-3">
+              <div class=sponsor-img-adopter>
+                <a href="{{ .url }}" target="_blank"><img src="{{ .image }}" title="{{ .name }}"></a>
+              </div>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+        <h4 class="section-title sponsor-title">{{ .type.company.title }}</h4>
+        <div class="container">
+          <div class="row">
+            {{ range .type.company.list }}
+            {{ "<!-- sponsor-img -->" | safeHTML }}
+            <div class="col-6 col-sm-6 col-md-3">
+              <div class=sponsor-img-adopter>
+                <a href="{{ .url }}" target="_blank"><img src="{{ .image }}" title="{{ .name }}"></a>
+              </div>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+        <h4 class="section-title sponsor-title">{{ .type.media.title }}</h4>
+        <div class="container">
+          <div class="row">
+            {{ range .type.media.list }}
+            {{ "<!-- sponsor-img -->" | safeHTML }}
+            <div class="col-6 col-sm-6 col-md-3">
+              <div class=sponsor-img-adopter>
+                <a href="{{ .url }}" target="_blank"><img src="{{ .image }}" title="{{ .name }}"></a>
+              </div>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ "<!-- /sponsors -->" | safeHTML }}
+{{ end }}
+{{ end }}
 
 {{ end }}

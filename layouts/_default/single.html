@@ -8,7 +8,7 @@
         {{ "<!-- post thumb -->" | safeHTML }}
         <div class="position-relative mb-5">
           <img src="{{ .Params.Image_webp | relURL }}"  onerror="this.src='{{.Params.Image | relURL }}'" alt="post thumb" class="img-fluid w-100">
-          {{ with .Params.Categories }}{{range first 1 .}} <div class="card-type">{{ . | title }}</div>{{ end }}{{ end }}
+          {{ with .Params.Categories }}{{range first 1 .}} <div class="card-type"><a href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}">{{ . | title }}</a></div>{{ end }}{{ end }}
         </div>
         <div class="card-meta mb-2">{{ i18n "author" }}  <strong class="text-dark">{{ .Params.Author | markdownify }}</strong>
           {{ if .Params.translator }}

@@ -69,7 +69,7 @@ DiscoveryClient 是一个发现客户端，它主要用于发现 K8S API Server 
 
 这是一个官方图形表示，展示了client-go 库中的各种组件如何工作，以及它们与将要编写的自定义控制器代码的交互点。
 
-!["custom controller"](./images/informer.png)
+!["custom controller"](informer.png)
 
 下面对图中每个组件进行简单介绍：
 
@@ -93,7 +93,7 @@ DiscoveryClient 是一个发现客户端，它主要用于发现 K8S API Server 
 
 ### Informer 源码类图
 
-!["Informer class diagram"](./images/clientgo.png)
+!["Informer class diagram"](clientgo.png)
 
 该类图主要描述了 Informer 中主要的接口和类之前的调用关系。大家可以参考这个类图去阅读源码。其中每个类或接口具体功能，请参考 [Kubernetes 源码剖析](https://item.jd.com/12665791.html)第五章节 client-go。
 
@@ -107,7 +107,7 @@ DiscoveryClient 是一个发现客户端，它主要用于发现 K8S API Server 
 
 下面为具体的类图展示：
 
-!["indexer"](./images/indexer.png)
+!["indexer"](indexer.png)
 
 ### threadSafeMap 分析
 
@@ -150,7 +150,7 @@ type Indices map[string]Index
 
 这是一个 threadSafeMap 存储结构的示例图：
 
-!["threadSafeMapStorageStructure"](./images/threadSafeMapStorageStructure.png)
+!["threadSafeMapStorageStructure"](threadSafeMapStorageStructure.png)
 
 最后以添加一个新的对象到 threadSafeMap 为例，分析具体需要哪些操作。
 
@@ -219,7 +219,7 @@ func (c *threadSafeMap) updateIndices(oldObj interface{}, newObj interface{}, ke
 
 下面是相关类图：
 
-!["workqueue"](./images/workqueue.png)
+!["workqueue"](workqueue.png)
 
 ## 示例参考
 

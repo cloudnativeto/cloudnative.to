@@ -9,6 +9,7 @@ date: 2020-10-26T11:00:00+08:00
 avatar: "/images/profile/zhaohuabing.png"
 profile: "腾讯云高级工程师，Istio contributor，ServiceMesher 管理委员，热衷于开源、网络和云计算。目前主要从事服务网格的开源和研发工作。"
 type: "post"
+avatar: "/images/profile/default.jpg"
 ---
 
 Redis 是一个高性能的 key-value 存储系统，被广泛用于微服务架构中。如果我们想要使用 Redis 集群模式提供的高级特性，则需要对客户端代码进行改动，这带来了应用升级和维护的一些困难。利用 Istio 和 Envoy ，我们可以在不修改客户端代码的前提下实现客户端无感知的 Redis Cluster 数据分片，并提供读写分离、流量镜像等高级流量管理功能。
@@ -449,7 +450,7 @@ spec:
             enable_redirection: true
             enable_command_stats: true
             read_policy: REPLICA               # Send read requests to replica
-   ```
+```
 
 下面的 EnvoyFilter 在 Pilot 下发的 CDS 中创建了一个 "envoy.clusters.redis" 类型的 Cluster： "custom-redis-cluster"，该 Cluster 会采用 [CLUSTER SLOTS 命令](https://redis.io/commands/cluster-slots) 向 Redis 集群中的一个随机节点查询集群的拓扑结构，并在本地保存该拓扑结构，以将来自客户端的请求分发到集群中正确的 Redis 节点上。
 
@@ -511,7 +512,7 @@ spec:
               cluster_refresh_timeout: 3s
               redirect_refresh_interval: 5s
               redirect_refresh_threshold: 5
-   ```
+```
 
 ## 小结
 

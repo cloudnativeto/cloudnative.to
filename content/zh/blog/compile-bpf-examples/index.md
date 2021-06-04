@@ -5,11 +5,10 @@ description: "Linux社区的大佬们为学习eBPF的同学们准备了福利 �
 author: "[李文权（nevermosby）](https://github.com/nevermosby)"
 profile: "银行IT从业者，云原生爱好者。"
 image: "images/blog/ebpf-workflow-101.png"
-categories: ["BPF"]
-tags: ["源码分析","Linux内核"]
+categories: ["其他"]
+tags: ["Linux","eBPF"]
 type: "post"
 avatar: "/images/profile/nevermosby.jpg"
-
 ---
 
 ## TL;DR
@@ -94,7 +93,7 @@ make samples/bpf/ # or  make M=samples/bpf
 
 如下截图看结果，生成了一大堆的文件，有`.o`后缀的目标文件，还有绿色高亮的可执行文件，挑两个执行下，效果符合期待。
 
-![kernel-bpf-examples](images/bpf-kernel-examples.png)
+![kernel-bpf-examples](bpf-kernel-examples.png)
 
 ## 分析**samples/bpf/Makefile**文件
 如果你是个喜欢打破砂锅问到底的同学，可以跟我一起看看最后的make命令到底用了什么魔法？当然你也可以跳过这个章节。本次分析的Makefile是基于内核版本[v4.15.0](https://elixir.bootlin.com/linux/v4.15/source/samples/bpf/Makefile)，不同内核版本的Makefile内容会有差异，但总体逻辑是一致的。

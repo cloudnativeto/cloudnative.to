@@ -1,9 +1,9 @@
 <div class="card border-0 rounded-0 position-relative box-shadow">
-  {{ with .Params.Categories }}{{range first 1 .}} <div class="card-type">{{ . | title }}</div>{{ end }}{{ end }}
+    {{ with .Params.Categories }}{{range first 1 .}} <div class="card-type"><a href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}">{{ . | title }}</a></div>{{ end }}{{ end }}
   <img class="card-img-top rounded-0" src="{{ .Params.Image_webp | relURL }}"
     onerror="this.src='{{.Params.Image | relURL }}'" alt="{{ .Title }}">
   <div class="card-body">
-      <div class="card-meta mb-2"> {{ i18n "author" }} <strong class="text-dark">{{ .Params.Author | markdownify }}</strong> 
+      <div class="card-meta mb-2"> {{ i18n "author" }} <strong class="text-dark">{{ .Params.Author | markdownify }}</strong>
           {{ if .Params.translator }}
           {{ i18n "translator" }}
           <strong class="text-dark">

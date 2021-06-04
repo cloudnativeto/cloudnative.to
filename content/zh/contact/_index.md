@@ -8,7 +8,7 @@ bg_image: "images/backgrounds/page-title-3.jpg"
 
 ### 加入云原生社区
 
-关注云原生社区微信公众号，点击「加入社区」。
+关注云原生社区微信公众号，点击「加入我们」，加入社区表示您已同意[社区守则](/policy)。
 
 ![云原生社区微信公众号二维码](qrcode.jpg)
 
@@ -26,6 +26,10 @@ bg_image: "images/backgrounds/page-title-3.jpg"
 ### 志愿者
 
 云原生社区致力于要建立一个面向全球华人、厂商中立，在中国最具影响力的云原生开发者社区，因此我们需要拥有各方面技能的志愿者，如果您有以下方面的技能：开源达人、平面设计、视频剪辑、网站设计、活动策划、社区运营、国际化翻译等。详见[志愿者计划](https://github.com/cloudnativeto/community/issues/65)。
+
+### 兴趣小组（SIG）
+
+详见[社区页面](https://i.cloudnative.to/community/)。
 
 ### 城市站
 

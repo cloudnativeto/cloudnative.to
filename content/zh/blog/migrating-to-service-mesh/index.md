@@ -1,11 +1,11 @@
 ---
-title: "【译】迁移到服务网格"
+title: "迁移到服务网格"
 description: "本文翻译自 Dariusz Jędrzejczyk 的文章 Migrating to Service Mesh。"
-author: "Dariusz Jędrzejczyk"
+author: "[Dariusz Jędrzejczyk](https://allegro.tech/2020/05/migrating-to-service-mesh.html)"
 translator: "[张晓辉](https://atbug.com)"
 image: "https://atbug.oss-cn-hangzhou.aliyuncs.com/2020/09/28/cloudmigration.jpg"
 categories: ["Service Mesh"]
-tags: ["Service Mesh","翻译"]
+tags: ["Service Mesh"]
 date: 2020-09-28T16:00:00+08:00
 type: "post"
 avatar: "https://allegro.tech/img/authors/dariusz.jedrzejczyk.jpg"

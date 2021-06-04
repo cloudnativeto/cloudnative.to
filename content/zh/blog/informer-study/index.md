@@ -5,7 +5,7 @@ description: "Kubernetes Informer 源码理解"
 author: "[刘淑娟(JaneLiuL)](https://github.com/JaneLiuL)"
 image: "images/blog/informer-study-banner.png"
 categories: ["Kubernetes"]
-tags: ["Kubernetes", "源码理解", "Informer"]
+tags: ["Kubernetes"]
 type: "post"
 avatar: "/images/profile/janeliul.jpg"
 profile: "刘淑娟，爱立信广州工程师，云原生爱好者。"
@@ -58,8 +58,6 @@ profile: "刘淑娟，爱立信广州工程师，云原生爱好者。"
 
 刚刚说了这么多，都是进行长连接去Watch的，万一网络出错怎么办？这个时候我们的List机制就很明显发挥作用，一旦感知跟API Server中断，或者第一次启动，都是使用List机制的， List作为一个短连接去获取资源信息，Watch 作为长连接去持续接收资源的变更并且处理。（用List&Watch可以保证不会漏掉任何事件）
 
-
-
 #### Watch的实现
 
 `Watch`是通过HTTP 长连接接收API Server发送的资源变更事件，使用的`Chunked transfer coding`， 代码位置`./staging/src/k8s.io/apiserver/pkg/endpoints/handlers/watch.go`，源码如下
@@ -91,13 +89,9 @@ Transfer-Encoding: chunked
 {"type":"ADDED","object":{"kind":"Namespace","apiVersion":"v1","metadata":{"name":"...
 ```
 
-
-
 ## 监听事件 Reflector
 
 我的理解，Reflector是实现对指定的类型对象的监控，既包括Kubernetes内置资源，也可以是CRD自定义资源。
-
-
 
 ### 数据结构
 
@@ -137,8 +131,6 @@ func (r *Reflector) Run(stopCh <-chan struct{}) {
 ```
 
 也就是说，Reflector是一直在执行ListAndWatch, 除非收到消息stopCh要被关闭，Run才会退出。
-
-
 
 ### ListAndWatch
 
@@ -284,15 +276,9 @@ func (r *Reflector) ListAndWatch(stopCh <-chan struct{}) error {
 
 ```
 
-
-
 #### Kubernetes并发
 
 从ListAndWatch的代码，有一段关于`syncWith`的方法，比较重要，原来Kubernetes的并发是通过`ResourceVersion`来实现的，每次对这个对象的改动，都会把该对象的`ResourceVersion`加一。
-
-
-
-
 
 ## 二级缓存DeltaFIFO 和 Store
 
@@ -336,8 +322,6 @@ type Queue interface {
 结合起来，DeltaFIFO其实就是一个先进先出的Kubernetes对象变化的队列，这个队列中存储不同操作类型的同一个资源对象。
 
 DeltaFIFO中的GET方法或者GetByKey都比较简单，接下来对queueActionLocked()函数重点说明。
-
-
 
 #### queueActionLocked
 
@@ -395,13 +379,9 @@ func isDup(a, b *Delta) *Delta {
 }
 ```
 
-
-
 之前群里有人问为什么dedupDeltas只是去这个列表的倒数第一个跟倒数第二个去进行合并去重的操作，这里说明一下，dedupDeltas是被queueActionLocked函数调用的，而queueActionLocked为什么我们拿出来讲，是因为在Delete/Update/Add里面去调用了queueActionLocked，合并是对某一个obj的一系列操作，而去重是只针对delete。
 
 我们可以拿一个例子来看看，假设是[obj1]: [add: delta1, update: delta2, delete: delta3,  delete: delta3] 在经过queueActionLocked之后会变成[obj1]: [add: delta1, update: delta2, delete: delta3]
-
-
 
 #### 消费者方法
 
@@ -444,23 +424,13 @@ func (f *DeltaFIFO) Pop(process PopProcessFunc) (interface{}, error) {
 }
 ```
 
-
-
-
-
-
-
 #### LocalStore
 
 缓存机制，但LocalStore是被`Lister`的`List/Get`方法访问
 
-
-
 ## Share Informer 共享机制
 
 从流程上我们说了，因为是`DeltaFIFO`把消息分发至`ShareInformer`中，因此我们可以用`Informer`添加自定义的回调函数，也就是我们经常看到的`OnAdd`  `OnUpdate`和`OnDelete`
-
-
 
 Kubernetes内部的每一个资源都实现了Informer机制，如下是一个Namespace的Informer的例子
 
@@ -473,8 +443,6 @@ type NamespaceInformer interface {
 }
 
 ```
-
-
 
 ## Indexer
 
@@ -490,8 +458,6 @@ type Indexer interface {
 ```
 
 看看我们流程第四个步骤： `DeltaFIFO`是一个先进先出队列，只要这个队列有数据，就被Pop到Controller中, 将这个资源对象存储至`Indexer`中。 这个步骤说明了Indexer存储的数据来源。
-
-
 
 我们看看Indexer关键的几个索引函数
 
@@ -512,8 +478,6 @@ Indexers: 索引函数name --> 索引实现函数-->索引key值
 Indices: 索引函数name --> 对应多个索引key值 --> 每个索引key值对应不同的资源
 
 举个例子来说明的话：对象Pod有一个标签app=version1，这里标签就是索引键，Indexer会把相同标签的所有Pod放在一个集合里面，然后我们实现对标签分类就是我们Indexer的核心内容。
-
-
 
 ## Reference
 

@@ -1,10 +1,10 @@
 ---
-title: "【译】深入理解 Kubernetes 网络模型：自己实现 kube-proxy 的功能"
+title: "深入理解 Kubernetes 网络模型：自己实现 kube-proxy 的功能"
 description: "带你一步步理解 kube-proxy。"
-author: "赵亚楠"
+author: "[赵亚楠](https://arthurchiao.art/blog/cracking-k8s-node-proxy/)"
 image: "/images/blog/crack-k8s-node-proxy-banner.jpeg"
 translator: "[徐鹏](https://team.jiunile.com/)"
-categories: ["kubernetes", "kube-proxy", "网络"]
+categories: ["kubernetes"]
 tags: ["iptables", "ipvs", "bpf", "netfilter", "kube-proxy"]
 date: 2020-10-19T16:00:00+08:00
 type: "post"
@@ -34,7 +34,7 @@ Netfilter 是 Linux 内核内部的**包过滤和处理框架**。如果你不�
 - 命令行工具 `iptables` 可用于**动态地将规则插入到钩子点中**
 - 可以通过组合各种 `iptables` 规则来操作数据包（接受/重定向/删除/修改，等等）
 
-![The 5 hook points in netfilter framework](./images/proxy_hooks.png)
+![The 5 hook points in netfilter framework](proxy_hooks.png)
 此外，这 5 个钩子点还可以与内核的其他网络设施，如内核路由子系统进行协同工作。
 
 此外，在每个钩子点中，规则被组织到具有预定义优先级的不同链中。为了按目的管理链，链被进一步组织到表中。现在有 5 个表：
@@ -47,7 +47,7 @@ Netfilter 是 Linux 内核内部的**包过滤和处理框架**。如果你不�
 
 将表/链添加到上图中，我们可以得到更详细的视图：
 
-![iptables table/chains inside hook points](./images/proxy_hooks-and-tables.png)
+![iptables table/chains inside hook points](proxy_hooks-and-tables.png)
 
 ### VIP 与负载均衡 (LB)
 
@@ -55,7 +55,7 @@ Netfilter 是 Linux 内核内部的**包过滤和处理框架**。如果你不�
 
 VIP 总是伴随着负载均衡，因为它需要在不同的后端之间分配流量。
 
-![VIP and load balancing](./images/proxy_vip-and-lb.png)
+![VIP and load balancing](proxy_vip-and-lb.png)
 
 ### Cross-host 网络模型
 
@@ -68,14 +68,14 @@ VIP 总是伴随着负载均衡，因为它需要在不同的后端之间分配�
 
 ## 节点代理模型
 
-在 kubernetes 中，你可以将应用程序定义为 `Service`。`Service` 是一种抽象，它定义了一组 Pods 的逻辑集和访问它们的策略。
+在 kubernetes 中，你可以将应用程序定义为 `Service`。`Service` 是一种抽象，它定义了一组 pod 的逻辑集和访问它们的策略。
 
 ### Service 类型
 
 K8S 中定义了 4 种 `Service` 类型：
 
 - `ClusterIP`：通过 VIP 访问 Service，但该 VIP 只能在此集群内访问
-- `NodePort`：通过 NodeIP:NodePort 访问 Service，这意味着该端口将保留在集群内的所有节点上
+- `NodePort`：通过 NodeIP:NodePort 访问 Service，这意味着该端口将暴露在集群内的所有节点上
 - `ExternalIP`：与 `ClusterIP` 相同，但是这个 VIP 可以从这个集群之外访问
 - `LoadBalancer`
 
@@ -83,9 +83,9 @@ K8S 中定义了 4 种 `Service` 类型：
 
 ### 节点代理
 
-一个 Service 有一个 VIP（本文中的 `ClusterIP`）和多个端点（后端 pods）。每个 pod 或节点都可以通过 VIP 直接访问应用程序。要做到这一点，节点代理程序需要在每个节点上运行，它应该能够透明地拦截到任何 `ClusterIP:Port`[注解 1] 的流量，并将它们重定向到一个或多个后端 pods。
+一个 Service 有一个 VIP（本文中的 `ClusterIP`）和多个端点（后端 pod）。每个 pod 或节点都可以通过 VIP 直接访问应用程序。要做到这一点，节点代理程序需要在每个节点上运行，它应该能够透明地拦截到任何 `ClusterIP:Port`[注解 1] 的流量，并将它们重定向到一个或多个后端 pod。
 
-![Kubernetes proxier model](./images/proxy_k8s-proxier-model.png)
+![Kubernetes proxier model](proxy_k8s-proxier-model.png)
 
 > 注解 1：
 >
@@ -99,7 +99,7 @@ K8S 中定义了 4 种 `Service` 类型：
 
 想想节点代理的作用，在 K8S 网络模型中，它实际上是一个反向代理，也就是说，在每个节点上，它将：
 
-- 将所有后端 Pods 隐藏到客户端
+- 将所有后端 pod 隐藏到客户端
 - 过滤所有出口流量（对后端的请求）
 
 对于 ingress traffic，它什么也不做。
@@ -126,13 +126,13 @@ K8S 中定义了 4 种 `Service` 类型：
     - 网络解决方案：直接路由（PodIP 可直接路由）
 - 一个非 k8s 节点，但是它可以到达工作节点和 Pod（得益于直接路由网络方案）
 
-![test env](./images/proxy_test-env.png)
+![test env](proxy_test-env.png)
 
-我们将在工作节点上部署 Pods，并从 test 节点通过 `ClusterIP` 访问 Pods 中的应用程序。
+我们将在工作节点上部署 pod，并从 test 节点通过 `ClusterIP` 访问 pod 中的应用程序。
 
 ### 创建一个 Service
 
-创建一个简单的 `Statefulset`，其中包括一个 `Service`，该 `Service` 将有一个或多个后端 Pods:
+创建一个简单的 `Statefulset`，其中包括一个 `Service`，该 `Service` 将有一个或多个后端 pod:
 
 ```bash
 # see appendix for webapp.yaml
@@ -177,7 +177,7 @@ $ curl 10.7.111.132:80
 最容易理解的实现是在此主机上的通信路径中插入我们的 `toy-proxy` 作为中间人：对于从本地客户端到 ClusterIP:Port 的每个连接，**我们拦截该连接并将其分割为两个单独的连接**:
 
 - 本地客户端和 `toy-proxy` 之间的连接
-- 连接 `toy-proxy` 和后端 pods
+- 连接 `toy-proxy` 和后端 pod
 
 实现此目的的最简单方法是在用户空间中实现它：
 
@@ -187,7 +187,7 @@ $ curl 10.7.111.132:80
 
 对于我们上面的测试应用 `webapp`，数据流程如下图：
 
-![userspace-proxier](./images/proxy_userspace-proxier.png)
+![userspace-proxier](proxy_userspace-proxier.png)
 
 ### POC 实现
 
@@ -333,9 +333,9 @@ $ iptables -t nat -X # delete all custom chains
 
 在这个 `toy-proxy` 实现中，我们拦截了 `ClusterIP:80` 到 `localhost:80`，但是如果该主机上的本机应用程序也想使用 `localhost:80` 怎么办？此外，如果多个服务都公开 80 端口会怎样？显然，我们需要区分这些应用程序或服务。解决这个问题的正确方法是：为每个代理分配一个未使用的临时端口 TmpPort，拦截 `ClusterIP:Port` 到 `local:TmpPort`。例如，app1 使用 10001, app2 使用 10002。
 
-其次，上面的代码只处理一个后端，如果有多个后端 pods 怎么办？因此，我们需要通过负载均衡算法将请求分发到不同的后端 pods。
+其次，上面的代码只处理一个后端，如果有多个后端 pod 怎么办？因此，我们需要通过负载均衡算法将请求分发到不同的后端 pod。
 
-![userspace-proxier-2](./images/proxy_userspace-proxier-2.png)
+![userspace-proxier-2](proxy_userspace-proxier-2.png)
 
 #### 优缺点
 
@@ -364,7 +364,7 @@ $ iptables -t nat -X # delete all custom chains
 
 通过 curl 查看出口数据包路径（下图展示了数据流向过程）：
 
-![host-to-clusterip-dnat](./images/proxy_host-to-clusterip-dnat.png)
+![host-to-clusterip-dnat](proxy_host-to-clusterip-dnat.png)
 
 ```bash
 <curl process> -> raw -> CT -> mangle -> dnat -> filter -> security -> snat -> <ROUTING> -> mangle -> snat -> NIC
@@ -453,7 +453,7 @@ $ curl $CLUSTER_IP:$PORT
 
 但是等等！我们期望出口的交通应该是正确的，但我们没有添加任何 NAT 规则的入口路径，怎么可能交通是正常的两个方向？事实证明，当你为一个方向添加一个 NAT 规则时，Linux 内核会自动为另一个方向添加保留规则！这与 conntrack (CT，连接跟踪）模块协同工作。
 
-![host-to-clusterip-dnat-ct](./images/proxy_host-to-clusterip-dnat-ct.png)
+![host-to-clusterip-dnat-ct](proxy_host-to-clusterip-dnat-ct.png)
 
 #### 清理
 
@@ -478,7 +478,7 @@ $ iptables -t nat -D OUTPUT 2
 
 #### 伸缩 webapp
 
-首先扩大我们的服务到 2 个后端 pods:
+首先扩大我们的服务到 2 个后端 pod:
 
 ```bash
 $ kubectl scale sts webapp --replicas=2
@@ -491,7 +491,7 @@ webapp-1   2/2     Running   0   11s     10.5.41.5      node1    <none> <none>
 
 #### 通过负载平衡添加 DNAT 规则
 
-我们需要 `iptables` 中的 `statistic` 模块以概率的方式将请求分发到后端 Pods，这样才能达到负载均衡的效果：
+我们需要 `iptables` 中的 `statistic` 模块以概率的方式将请求分发到后端 pod，这样才能达到负载均衡的效果：
 
 ```bash
 # -m <module>
@@ -503,7 +503,7 @@ $ iptables -t nat -A OUTPUT -p $PROTO --dport $PORT -d $CLUSTER_IP \
     -j DNAT --to-destination $POD2_IP:$PORT
 ```
 
-上面的命令指定在两个 Pods 之间随机分配请求，每个都有 50% 的概率。
+上面的命令指定在两个 pod 之间随机分配请求，每个都有 50% 的概率。
 
 现在检查这些规则：
 
@@ -516,7 +516,7 @@ DNAT    tcp  --  0.0.0.0/0   10.7.111.132  tcp dpt:80 statistic mode random prob
 DNAT    tcp  --  0.0.0.0/0   10.7.111.132  tcp dpt:80 statistic mode random probability 1.00000000000 to:10.5.41.5:80
 ```
 
-![host-to-clusterip-lb-ct](./images/proxy_host-to-clusterip-lb-ct.png)
+![host-to-clusterip-lb-ct](proxy_host-to-clusterip-lb-ct.png)
 
 #### 验证
 
@@ -578,7 +578,7 @@ $ iptables -t nat -D OUTPUT 3
 
 下图展示了隧道的情况：
 
-![tunneling](./images/proxy_tunneling.png)
+![tunneling](proxy_tunneling.png)
 
 代理与隧道相关的职责包括：
 
@@ -984,7 +984,7 @@ $ sudo tc qdisc del dev $NIC clsact 2>&1 >/dev/null
 
 在这篇文章中，我们用不同的方法手工实现了 `kube-proxy` 的核心功能。希望你现在对 kubernetes 节点代理有了更好的理解，以及关于网络的其他一些配置。
 
-在这篇文章中使用的代码和脚本：[这里](https://github.com/icyxp/icyxp.github.io/tree/master./images/code)。
+在这篇文章中使用的代码和脚本：[这里](https://github.com/icyxp/icyxp.github.io/tree/mastercode)。
 
 ### 参考文献
 

@@ -3,7 +3,7 @@ title: "性能调优利器--火焰图"
 description: "本文主要分享火焰图使用技巧，介绍 systemtap 的原理机制，如何使用火焰图快速定位性能问题原因，同时加深对 systemtap 的理解。"
 author: "[厉辉（Yousa）](https://github.com/Miss-you)"
 image: "images/blog/flamegraph.jpg"
-categories: ["GoLang"]
+categories: ["其他"]
 tags: ["profile","flamegraph"]
 date: 2020-06-17T12:00:00+08:00
 type: "post"
@@ -24,7 +24,7 @@ avatar: "/images/profile/yousa.jpg"
 
 火焰图（Flame Graph）是由 Linux 性能优化大师 Brendan Gregg 发明的，和所有其他的 profiling 方法不同的是，火焰图以一个全局的视野来看待时间分布，它从底部往顶部，列出所有可能导致性能瓶颈的调用栈。
 
-![](./images/flame.png)
+![](flame.png)
 
 火焰图整个图形看起来就像一个跳动的火焰，这就是它名字的由来。
 
@@ -44,7 +44,7 @@ avatar: "/images/profile/yousa.jpg"
 
 这里笔者主要使用到的是 On-CPU、Off-CPU 以及 Memory 火焰图，所以这里仅仅对这三种火焰图作比较，也欢迎大家补充和斧正。
 
-![](./images/flame2.png)
+![](flame2.png)
 
 ### **火焰图分析技巧**
 
@@ -100,7 +100,7 @@ kernel-debuginfo-3.10.107-1-tlinux2-0046.x86_64
 
 Systemtap 执行流程如下：
 
-![](./images/flame3.png)
+![](flame3.png)
 
 * parse：分析脚本语法
 * elaborate：展开脚本 中定义的探针和连接预定义脚本库，分析内核和内核模块的调试信息
@@ -149,7 +149,7 @@ staprun -x {进程号} {内核模块名} > demo.bt
 ```
 这样便获得了 off-cpu 火焰图：
 
-![mark](./images/flame4.png)
+![mark](flame4.png)
 
 ## **看图说话**
 
@@ -161,7 +161,7 @@ staprun -x {进程号} {内核模块名} > demo.bt
 
 #### **Apache APISIX QPS急剧下降问题**
 
-![mark](./images/flame5.png)
+![mark](flame5.png)
 
 Apache APISIX 是一个开源国产的高性能 API 网关，之前在进行选型压测时，发现当 Route 匹配不中场景下， QPS 急剧下降，在其 CPU （四十八核）占用率几乎达到100%的情况下只有几千 QPS，通过绘制火焰图发现，其主要耗时在一个 table 插入阶段(`lj_cf_table_insert`)，分析代码发现是该 table 一直没有释放，每次匹配不中时，路由会向一张用于统计的表中插入一条数据，导致该表越来越大，后续插入耗时过长导致 QPS 下降。
 
@@ -169,13 +169,13 @@ Apache APISIX 是一个开源国产的高性能 API 网关，之前在进行选�
 
 #### **nginx 互斥锁问题**
 
-![](./images/flame6.png)
+![](flame6.png)
 
 这是一张 nginx 的 off-cpu 火焰图，我们可以很快锁定到 `ngx_common_set_cache_fs_size -> ngx_shmtx_lock -> sem_wait` 这段逻辑使用到了互斥锁，它让 nginx 进程绝大部分阻塞等待时间花费在获取该锁。
 
 #### **agent 监控上报断点问题**
 
-![](./images/flame7.png)
+![](flame7.png)
 
 这是一张 agent 的 off-cpu 火焰图，它是一个多线程异步事件模型，主线程处理各个消息，多个线程分别负责配置下发或者监控上报。当前问题出现在监控上报性能差，无法在周期（一分钟）内完成监控数据上报，导致监控断点，通过 off-cpu 火焰图我们可以分析出，该上报线程花费了大量的时间使用 curl_easy_perform 接口收发 http 监控数据消息。
 

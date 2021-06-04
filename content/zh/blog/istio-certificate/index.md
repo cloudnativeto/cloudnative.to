@@ -1,12 +1,13 @@
 ---
-title: "一文带你彻底厘清 Isito 中的证书工作机制"
+title: "一文带你彻底厘清 Istio 中的证书工作机制"
 description: "Istio 为微服务提供了无侵入，可插拔的安全框架。应用不需要修改代码，就可以利用 Istio 提供的双向 TLS 认证实现服务身份认证，并基于服务身份信息提供细粒度的访问控制。本文将为你揭秘 Istio 双向 TLS 认证的实现机制。"
 author: "[赵化冰](https://zhaohuabing.com)"
-image: "https://zhaohuabing.com/img/2020-05-25-istio-certificate/background-cloudnativeto.jpg"
+image: "/images/blog/blog-3.jpg"
 categories: ["Istio"]
 tags: ["Istio"]
 date: 2020-05-25T06:00:00+08:00
 type: "post"
+avatar: "/images/profile/default.jpg"
 ---
 
 在上一篇文章[一文带你彻底厘清 Kubernetes 中的证书工作机制](/blog/k8s-certificate/)中，我们介绍了 Kubernetes 中证书的工作机制。在这篇文章中，我们继续探讨 Istio 是如何使用证书来实现网格中服务的身份认证和安全通信的。
@@ -17,7 +18,7 @@ type: "post"
 
 Istio 为微服务提供了无侵入，可插拔的安全框架。应用不需要修改代码，就可以利用 Istio 提供的双向 TLS 认证实现服务身份认证，并基于服务身份信息提供细粒度的访问控制。Istio 安全的高层架构如下图所示：
 
-![](https://istio.io/docs/concepts/security/arch-sec.svg)
+![](arch-sec.svg)
 图1. Istio Security Architecture，图片来源[istio.io](https://istio.io/docs/concepts/security/#high-level-architecture)
 
 图中展示了 Istio 中的服务认证和授权两部分内容。让我们暂时忽略掉授权部分，先关注认证部分。服务认证是通过控制面和数据面一起实现的：
@@ -28,7 +29,7 @@ Istio 为微服务提供了无侵入，可插拔的安全框架。应用不需�
 
 图1是对 Istio 安全架构的一个高度概括的描述，让我们把图1中控制面的交互展开，看一下其中的细节。
 
-![](https:/zhaohuabing.com/img/2020-05-25-istio-certificate/istio-ca.svg)
+![](istio-ca.svg)
 图2. Istio 证书分发流程
 
 我们先暂时忽略图中右边蓝色虚线的部分（稍后会在 [控制面身份认证](#heading1) 部分讲到），图中左半部分描述了 Istio 控制面向 Envoy 签发证书的流程：
@@ -41,7 +42,7 @@ Istio 为微服务提供了无侵入，可插拔的安全框架。应用不需�
 
 从图2可以看到，Istio 证书签发的过程中涉及到了三个组件： Istiod (Istio CA) ---> Pilot-agent ---> Enovy。为什么其他 xDS 接口都是由 Istiod 直接向 Envoy 提供，但 SDS 却要通过 Pilot-agent 进行一次中转，而不是直接由 Envoy 通过 SDS 接口从 Istiod 获取证书呢？这样做主要有两个原因。
 
-首先，在 Istio 的证书签发流程中，由 Pilot-agent 生成私钥和 CSR，再通过 CSR 向 Istiod 中的 CA 申请证书。在整个过程中，私钥只存在于本地的 Istio-proxy 容器中。如果去掉中间 Pilot-agent 这一步，直接由 Envoy 向 Isitod 申请证书，则需要由 Istiod 生成私钥，并将私钥和证书一起通过网络返回给 Envoy，这将大大增加私钥泄露的风险。
+首先，在 Istio 的证书签发流程中，由 Pilot-agent 生成私钥和 CSR，再通过 CSR 向 Istiod 中的 CA 申请证书。在整个过程中，私钥只存在于本地的 Istio-proxy 容器中。如果去掉中间 Pilot-agent 这一步，直接由 Envoy 向 Istiod 申请证书，则需要由 Istiod 生成私钥，并将私钥和证书一起通过网络返回给 Envoy，这将大大增加私钥泄露的风险。
 
 另一方面，通过 Pilot-agent 来提供 SDS 服务，由 Pilot-agent 生成标准的 CSR 证书签名请求，可以很容易地对接不同的 CA 服务器，方便 Istio 和其他证书机构进行集成。
 
@@ -66,7 +67,7 @@ Istio 为微服务提供了无侵入，可插拔的安全框架。应用不需�
 
 和其他 [xDS](https://www.envoyproxy.io/docs/envoy/latest/api-docs/xds_protocol) 接口一样，SDS 也是 Envoy 支持的一种动态配置服务接口。Envoy 可以通过 [SDS（secret discovery service）](https://www.envoyproxy.io/docs/envoy/latest/configuration/security/secret) 接口从 SDS 服务器自动获取证书。和之前的方式相比，SDS 最大的好处就是简化了证书管理。在没有使用 SDS 前，Istio 中的服务证书被创建为 Kubernetes secret，并挂载到代理容器中。如果证书过期了，则需要更新 secret 并重启 Envoy 容器，以启用新的证书。使用SDS后，SDS 服务器（Pilot-agent充当了 SDS 服务器的角色）将向 Envoy 实例主动推送证书。如果证书过期，SDS 服务器只需将新的证书推送到 Envoy 例中，Envoy 会使用新的证书来创建链接，无需重新启动。
 
-![](https://zhaohuabing.com/img/2020-05-25-istio-certificate/envoy-sds.svg)
+![](envoy-sds.svg)
 图3. Envoy SDS 服务
 
 可以看到，Istio 采用 SDS 后，避免了在证书更新后重启 Envoy，大大减少了证书更新对业务的影响。同时，由于 Pilot-agent 和 Envoy 处于同一容器中，私钥只存在于本地容器，避免了在网络中传递私钥，也降低了私钥泄露的安全风险。
@@ -383,7 +384,7 @@ spec:
   }
 ```
 
-通过上面的配置，我们可以看到，虽然需要在 Enovy sidecar配置文件中不同的位置为 Envoy 配置服务器、客户端证书以及验证对方的 CA 根证书，但 Istio 中实际上只采用了一个服务证书和 CA 根证书。Isito 将名称为 default 的证书被同时用于 Inbound Listener 的服务器证书和 Outbound Cluster 的客户端证书，并将名称为 ROOTCA 的证书被用于验证下游客户端证书和上游服务器证书的根证书。
+通过上面的配置，我们可以看到，虽然需要在 Enovy sidecar配置文件中不同的位置为 Envoy 配置服务器、客户端证书以及验证对方的 CA 根证书，但 Istio 中实际上只采用了一个服务证书和 CA 根证书。Istio 将名称为 default 的证书被同时用于 Inbound Listener 的服务器证书和 Outbound Cluster 的客户端证书，并将名称为 ROOTCA 的证书被用于验证下游客户端证书和上游服务器证书的根证书。
 
 ## Gateway 证书配置
 
@@ -501,7 +502,7 @@ Istio 将此配置通过 xDS 接口下发到 Ingress Gateway Pod 中的 Envoy �
 1. Ingress Gateway 用于和网格内其他服务通信的服务身份证书还是由 Istio CA 颁发的，其证书获取的流程同图2。
 2. Egress Gateway 未使用 SDS 获取用于访问外部服务的客户端证书（1.6 现状，后续也许会修改）。
 
-![](https://zhaohuabing.com/img/2020-05-25-istio-certificate/ingress-gateway-ca-sds.svg)
+![](ingress-gateway-ca-sds.svg)
 图4. Ingress Gateway 证书获取流程
 
 ## 数据面使用的所有证书
@@ -512,7 +513,7 @@ Istio 将此配置通过 xDS 接口下发到 Ingress Gateway Pod 中的 Envoy �
 
 除了 Ingress Gateway 对外提供服务的服务器证书和 Egress Gateway 访问第三方服务的客户端证书之外，其他证书都是 Envoy 通过 SDS 服务从 Istio CA 获取的，因此都使用 Istio Root CA 证书进行验证。这两个第三方证书则需要采用第三方 CA 根证书进行验证。
 
-![](https://zhaohuabing.com/img/2020-05-25-istio-certificate/bookinfo-ca.svg)
+![](bookinfo-ca.svg)
 图5. Istio 数据面使用到的所有证书
 
 ## 小结
