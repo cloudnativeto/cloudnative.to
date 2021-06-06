@@ -21,7 +21,7 @@ core_members:
     tag: "韦正清，IBM 高级 IT 架构师。长期从事 Unix/Linux、虚拟化、云计算方面的技术咨询工作；当前工作涉及金融行业开源系统及云原生应用的建设与推广。"
   - name: "张晓辉"
     image: "/images/city/guangzhou/members/zhangxiaohui.jpeg"
-    tag: "张晓辉，小鹏汽车云原生技术专家，CNCF Guangzhou Organizer。主要工作涉及微服务、Docker、Kubernetes、DevOps 等，有丰富的基础架构、云原生实践经验。"
+    tag: "张晓辉，小鹏汽车云原生技术专家，云原生社区广州站站长。主要工作涉及微服务、Docker、Kubernetes、DevOps 等，有丰富的基础架构、云原生实践经验。"
   - name: "周纪海"
     image: "/images/city/guangzhou/members/zhoujihai.jpeg"
     tag: "周纪海，英国伦敦帝国理工学院博士毕业。毕业后在多家大型国际银行（巴克莱银行，汇丰银行等）从事 DevOps 和 DevSecOps 的转型工作。2019 年加入腾讯。从 2018 到 2020 年间，受邀在国内外 30 多场技术峰会上分享 DevOps 和 DevSecOps 经验。"  
@@ -31,8 +31,8 @@ core_member_desc: "社区由核心成员韦正清、张晓辉、周纪海组织�
 
 # LOGO PART
 logo_title: 广州站徽章
-logo_short_desc: 广州站专属 logo 融合了地标建筑广州塔和猎德大桥，同时加入了 Kubernetes logo。
-logo_detail_desc: 猎德大桥，是珠江上的名珠桥梁，桥上可以一览珠江胜景，视野开阔！广州塔，广州新八景之一，也是广州精神的象征。寓意广州社区以开放、进取、拼搏的态度拥抱云原生，促进云原生的繁荣。
+logo_short_desc: 广州站专属 Logo 融合了地标建筑广州塔和 Kubernetes Logo。
+logo_detail_desc: 广州塔，广州新八景之一，也是广州精神的象征。寓意广州社区以开放、进取、拼搏的态度拥抱云原生，促进云原生的繁荣。
 logo_image: "/images/city/guangzhou/logo.png"
 
 # ACTIVITY
