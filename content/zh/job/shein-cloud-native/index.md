@@ -1,6 +1,6 @@
 ---
 title: "[社招]SHEIN招聘Kubernetes专家、容器平台开发工程师、devops平台产品经理"
-date: 2020-11-13T11:52:03+08:00
+date: 2021-06-07T17:52:03+08:00
 draft: false
 bg_image: "images/backgrounds/page-title.jpg"
 description: "Base 地：南京、深圳"
