@@ -1,6 +1,6 @@
 ---
 title: "Pinterest如何有把握地扩展Kubernetes"
-description: "本文翻译自Pinterest Cloud Runtime团队Anson Qian的博文《Scaling Kubernetes with Assurance at Pinterest》，讲述了Pinterest在扩展大规模Kubernetes过程中的一些工程实践"
+description: "本文讲述了Pinterest在扩展大规模Kubernetes过程中的一些工程实践。"
 image: "https://img.stackshare.io/stack/854315/dbfda7e52265753be22b28a05efed6825e6a2eef.png"
 author: "Anson Qian"
 translator: "[冯旭松](https://github.com/fengxsong)"
