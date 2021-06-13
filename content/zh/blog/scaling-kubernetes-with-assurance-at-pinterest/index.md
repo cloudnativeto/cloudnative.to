@@ -22,11 +22,11 @@ type: "post"
 
 随着用户采用率增长，工作负载的多样性和数量也不断增加。这要求Kubernetes平台需要更具可扩展性才能跟上工作负载管理，Pod调度以及节点分配上持续增长的负载。随着越来越多的关键业务登上Kubernetes，对平台可靠性的期望自然而然地提升到了一个新的水平。
 
-平台范围内的中断确实发生过。2020年初，我们的一个集群由于Pod创建数猛增（比计划容量高出3倍），导致了集群的autoscaler一下就启动了900个节点。kube-apiserver组件开始出现延迟峰值和错误率增加，然后由于资源的限制引发了OOMKilled。来自Kubelet的非绑定重试导致了kube-apiserver负载跃升了7倍。爆发性的写入操作使etcd达到其总数据量大小限制并开始拒绝所有的写入请求，于是平台在工作负载管理方面丢失了可用性。为了缓解这一事故，我们不得不在etcd上执行一些操作，如执行版本压缩，整理过多碎片的空间，以及禁用告警来恢复它（参考[Maintenance | etcd](https://etcd.io/docs/v3.4/op-guide/maintenance/)）。此外，我们不得不暂时扩大承载kube-apiserver和etcd的Kubernetes主节点，以减少资源限制影响。
+平台范围内的中断确实发生过。2020年初，我们的一个集群由于Pod创建数猛增（比计划容量高出3倍），导致了集群的autoscaler一下就启动了900个节点。kube-apiserver组件开始出现延迟峰值和错误率增加，然后由于资源的限制引发了OOMKilled。来自Kubelet的非绑定重试导致了kube-apiserver负载跃升了7倍。爆发性的写入操作使etcd达到其总数据量大小限制并开始拒绝所有的写入请求，于是平台在工作负载管理方面丢失了可用性。为了缓解这一事故，我们不得不在etcd上执行一些操作，如执行版本压缩，整理过多碎片的空间，以及禁用告警来恢复它（参考[Maintenance|etcd](https://etcd.io/docs/v3.4/op-guide/maintenance/)章节）。此外，我们不得不暂时扩大承载kube-apiserver和etcd的Kubernetes主节点，以减少资源限制影响。
 
 ![kube-apiserver-request-latency-spikes](https://img.stackshare.io/featured_posts/pinterest/scaling-kubernetes-with-assurance-at-pinterest/scaling-kubernetes-with-assurance-at-pinterest-000.png "image_tooltip")
 
-2020年晚些时候，一个基础组件在与kube-apiserver集成时出现bug，导致向kube-apiserver发起大量请求（获取所有Pod跟节点）。这引起K8s主节点资源使用率激增，然后触发OOMKilled。幸运的是这个有问题的组件很快被发现并回退。但此次事件中，平台的性能下降了，包括工作负载执行延迟和请求状态过期。
+2020年晚些时候，一个基础组件在与kube-apiserver集成时出现bug，导致向kube-apiserver发起大量请求（获取所有Pod跟节点）。这引起Kubernetes主节点资源使用率激增，然后触发OOMKilled。幸运的是这个有问题的组件很快被发现并回退。但此次事件中，平台的性能下降了，包括工作负载执行延迟和请求状态过期。
 
 ![kube-apiserver-OOMKilled](https://img.stackshare.io/featured_posts/pinterest/scaling-kubernetes-with-assurance-at-pinterest/scaling-kubernetes-with-assurance-at-pinterest-001.png "image_tooltip")
 
@@ -42,7 +42,7 @@ type: "post"
 
 Kubernetes已提供[资源配额](https://kubernetes.io/docs/concepts/policy/resource-quotas/)管理，以确保没有任何命名空间可以请求或占用大部分维度的未被占用的资源，例如Pod个数，CPU，内存等等。在之前的事故中提及到，在单个命名空间中创建大量Pod可能使kube-apiserver超负荷并导致级联故障。为了确保稳定性，在每个命名空间中对资源的使用进行约束是关键。
 
-强制在每个命名空间中执行资源配额面临的一个挑战是所有Pod都需要显式地指定[资源请求与限制](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits)。在Pinterest的K8s平台上，不同命名空间的工作负载是由不同项目的不同团队所拥有，平台用户使用Pinterest CRD来配置他们的工作负载。我们通过在CRD的转换层给所有Pod和容器都添加上默认的资源请求与限制，额外的，我们在CRD校验层就拒绝任何没有配置资源请求与限制定义的Pod。
+强制在每个命名空间中执行资源配额面临的一个挑战是所有Pod都需要显式地指定[资源请求与限制](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits)。在Pinterest的Kubernetes平台上，不同命名空间的工作负载是由不同项目的不同团队所拥有，平台用户使用Pinterest CRD来配置他们的工作负载。我们通过在CRD的转换层给所有Pod和容器都添加上默认的资源请求与限制，额外的，我们在CRD校验层就拒绝任何没有配置资源请求与限制定义的Pod。
 
 我们克服的另一个挑战是简化团队与组织的配额管理。为了安全地启用资源配额，我们通过研究历史资源使用情况，在峰值的基础上增加了20%的缓冲，将其设定为每个项目的资源配额初始值。同时我们创建了一个定时任务去监控配额使用情况并在项目使用达到一定限制时向该项目团队发送警报。该措施鼓励项目所有者更好地进行能力规划，并提出资源配额变更需求。资源配额变更会在人工审查通过后自动完成。
 
