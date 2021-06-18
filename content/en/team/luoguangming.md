@@ -8,7 +8,7 @@ bg_image: "images/backgrounds/page-title.jpg"
 # portrait
 image: "images/team/luoguangming.jpg"
 # designation
-designation: "Baidu"
+designation: "Bytedance"
 social:
   - icon : "fa-twitter" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
     link : "https://twitter.com/IvanLuo10"
