@@ -3,6 +3,16 @@ slider:
   enable : true
   slider_item:
      - subtitle : ""
+       title : "云原生社区 Meetup 第五期· 成都站"
+       content : "7 月 3 日，周六。"
+       bg_image : "images/slider/chengdu.jpg"
+       animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
+       button:
+         enable : true
+         label : "敬请期待"
+         link : "/city/chengdu/"
+         animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
+     - subtitle : ""
        title : "云原生社区 Meetup 第四期·广州站"
        content : "5 月 22 日，周六，活动主题关于 Dapr、研发效能、APISIX 和微服务。"
        bg_image : "images/slider/guangzhou.jpg"
