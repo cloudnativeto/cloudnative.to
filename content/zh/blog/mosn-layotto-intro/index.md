@@ -1,5 +1,5 @@
 ---
-title: "蚂蚁开源 MOSN 子项目 Layotto 简介"
+title: "蚂蚁开源多运行时项目 Layotto 简介"
 description: "本文来自上周六的SOFAMeetup#6 北京站分享。"
 author: "马振军"
 image: "images/blog/high-tech.jpg"
