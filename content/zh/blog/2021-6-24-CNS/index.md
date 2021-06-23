@@ -31,7 +31,7 @@ profile: "张凯现任 SmartX 联合创始人兼 CTO。张凯硕士毕业于清�
 
 ## 云原生的存储方案
 
-"/images/blog/cloud-native-storage/container-challenge.png"
+![](container-challenge.png)
 
 图 1. 使用/部署容器的主要挑战（图片来源于 CNCF 报告）
 
@@ -75,7 +75,7 @@ profile: "张凯现任 SmartX 联合创始人兼 CTO。张凯硕士毕业于清�
 
 ### 总结
 
-"/images/blog/cloud-native-storage/storage-solution.png"
+![](storage-solution.png)
 
 图 2. 不同存储方案对比
 
@@ -107,7 +107,7 @@ OLAP 系统对敏捷性没有特殊的需求，一旦部署好后，最常见的
 
 ### 总结
 
-"/images/blog/cloud-native-storage/oltp-olap.png"
+![](oltp-olap.png)
 
 图 3. OLTP 和 OLAP 对存储系统的不同要求
 
@@ -127,7 +127,7 @@ OLAP 系统对敏捷性没有特殊的需求，一旦部署好后，最常见的
 
 此处我们以 IOMesh 的架构图作为示例，说明云原生存储的特点。
 
-"/images/blog/cloud-native-storage/iomesh-arch.png"
+![](iomesh-arch.png)
 
 图 4. IOMesh 产品架构图
 
@@ -165,13 +165,13 @@ OLAP 系统对敏捷性没有特殊的需求，一旦部署好后，最常见的
 
 在测试中，我们采用最常见的 MySQL 数据库作为有状态应用，并使用 sysbench-tpcc 模拟业务负载。下表提供了四个云原生存储系统在 TPC-C MySQL 测试中的 TPS、QPS 以及 P95 延迟数据。
 
-"/images/blog/cloud-native-storage/tpcc-mysql-test-data1.png"
+![](tpcc-mysql-test-data1.png)
 
 图 5. TPC-C MySQL 综合性能测试
 
 下图对比了四个云原生存储系统的性能测试结果。图中横轴代表测试时间，纵轴分别代表：TPS、QPS、以及 P95 延迟的瞬时值。
 
-"/images/blog/cloud-native-storage/tpcc-mysql-test-data2.png"
+![](tpcc-mysql-test-data2.png)
 
 图 6. TPC-C MySQL 性能稳定性测试
 
