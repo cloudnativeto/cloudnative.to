@@ -8,7 +8,7 @@ image: "/images/blog/cloud-native-storage-banner.png"
 categories: ["云原生"]
 tags: ["云原生", "云原生存储", "云原生数据库"]
 type: "post"
-avatar: "/images/profile/kylezh.jpg"
+avatar: "/images/profile/kylezh.png"
 profile: "张凯现任 SmartX 联合创始人兼 CTO。张凯硕士毕业于清华大学计算机系，拥有十余年分布式存储研究与产品经验。在创立 SmartX 之前，张凯曾就职于 Baidu，负责大数据平台基础设施建设、稳定性和性能优化。"
 ---
 ```
