@@ -171,7 +171,7 @@ OLAP 系统对敏捷性没有特殊的需求，一旦部署好后，最常见的
 
 下图对比了四个云原生存储系统的性能测试结果。图中横轴代表测试时间，纵轴分别代表：TPS、QPS、以及 P95 延迟的瞬时值。
 
-![](tpcc-mysql-test-data2.png)
+![](tpcc-mysql-test-data2.jpg)
 
 图 6. TPC-C MySQL 性能稳定性测试
 
