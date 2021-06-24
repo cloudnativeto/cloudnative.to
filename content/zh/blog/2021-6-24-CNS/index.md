@@ -3,7 +3,7 @@
 title: "云原生时代需要什么样的存储系统"
 date: 2021-06-22T19:51:43+08:00
 description: "本文介绍了目前云原生环境下，支持有状态应用的几种典型存储方案的特点，并对市场主流的几个云原生存储产品实际测试性能进行对比。"
-author: "[Kyle Zhang](https://github.com/kylezh)"
+author: "[张凯（Kyle Zhang）](https://github.com/kylezh)"
 image: "/images/blog/cloud-native-storage-banner.png"
 categories: ["云原生"]
 tags: ["云原生", "云原生存储", "云原生数据库"]
