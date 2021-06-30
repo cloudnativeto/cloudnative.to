@@ -12,7 +12,9 @@ type: "post"
 
 ## 前言
 
-TODO
+这篇内容篇幅比较长，如果不想深入探讨或时间有限，这是全文简述：
+在默认设置下，扩展 Kubernetes 集群中的 pod 和节点可能需要几分钟时间。 
+了解如何调整集群节点的大小、配置水平和集群自动缩放器以及过度配置集群以加快扩展速度。
 
 ## 目录
 
@@ -26,9 +28,9 @@ TODO
 - [为什么不基于内存或CPU进行自动伸缩](#为什么不基于内存或CPU进行自动伸缩)
 
 在 Kubernetes 中, 自动伸缩功能包括:
-- [Pod水平自动伸缩（Horizontal Pod Autoscaler，HPA）](#Horizontal-Pod-Autoscaler)
-- [Pod垂直自动伸缩（Vertical Pod Autoscaler，VPA）](#Vertical-Pod-Autoscaler)
-- [集群自动伸缩（Cluster Autoscaler，CA）](#Cluster-Autoscaler)
+- [Pod水平自动伸缩（Horizontal Pod Autoscaler，HPA）](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)
+- [Pod垂直自动伸缩（Vertical Pod Autoscaler，VPA）](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler)
+- [集群自动伸缩（Cluster Autoscaler，CA）](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler)
 
 这些自动伸缩组件属于不同的类别，关注点也不同。
 
@@ -50,7 +52,7 @@ Vertical Pod Autoscaler 的使用场景是，当资源不足无法创建更多�
 想象一下，有一个应用程序始终需要并使用 1.5GB 内存和 0.25 个 vCPU。
 你配置了一个具有 8GB 和 2 个 vCPU 的单个节点的集群 —— 它应该能够完美地容纳四个 pod（并且还有一点额外的空间）。
 
-![](single-node.png)
+![](single-node.png ':size=700')
 
 现在，你部署了一个 Pod 并且配置如下：
 1. HPA 配置每 10 个请求进来就添加一个 Pod 副本（例如：如果有 40 个并发请求涌入，会扩容到 4 个 Pod 副本）。
@@ -65,7 +67,7 @@ Vertical Pod Autoscaler 的使用场景是，当资源不足无法创建更多�
 
 这很好理解，因为现在有足够的内存和 CPU 资源来支持更多的 Pod。
 
-![](node-enogh.png)
+![](node-enogh.png ':size=700')
 
 你进一步将流量增加到 40 个并发请求，并再次观察：
 1. HPA 又创建了一个 Pod。
@@ -73,7 +75,8 @@ Vertical Pod Autoscaler 的使用场景是，当资源不足无法创建更多�
 3. CA 触发创建了一个新的 Node 节点。
 4. 新 Node 节点启动 4 分钟后开始工作。之后，pending Pod 也成功被部署了。
 
-![](pending-pod.svg)
+![](pending-pod.png ':size=700')
+![](pending-pod-2.png ':size=700')
 
 为什么第四个 Pod 没有部署在第一个 Node 节点上呢？
 Pod部署在集群上需要消耗内存，CPU，硬盘空间等资源，在同一个 Node 上，操作系统和 kubelet 组件也需要消耗内存和 CPU 资源。
@@ -83,7 +86,7 @@ Kubernetes 中一个 Worker Node 节点的内存和 CPU 等资源使用分布如
 3. 需要运行 Pod。
 4. 需要保留一些资源用来[驱逐阀值](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/#eviction-thresholds) 之用。
 
-![](eviction-threshold.svg)
+![](eviction-threshold.svg ':size=700')
 
 你猜的没错，所有这些配额都是可定制的，但你需要好好计算一下。
 
@@ -100,7 +103,7 @@ Kubernetes 中一个 Worker Node 节点的内存和 CPU 等资源使用分布如
 
 在统计完所有其他的资源占用情况后，集群的剩余空间就只够运行三个 Pod 了。
 
-![](left-space-pod.png)
+![](left-space-pod.png ':size=700')
 
 所以第四个会一直保持 “pending” 状态，直到它被调度到其他的 Node 节点上。
 
@@ -156,16 +159,16 @@ Horizontal Pod Autoscaler 控制器负责检查指标并决定扩大或缩小副
 - 在少于 100 个节点且每个节点最多 30 个 Pod 的集群上不超过 30 秒。 平均延迟应该是大约 5 秒。
 - 在具有 100 到 1000 个节点的集群上不超过 60 秒。 平均延迟应约为 15 秒。 
 
-![](hpa-ca-time.png)
+![](hpa-ca-time.png ':size=700')
 
 然后是节点配置时间，这主要取决于云提供商。在 3-5 分钟内供应新的计算资源是非常标准的。 
 
-![](hpa-ca-time-2.png)
+![](hpa-ca-time-2.png ':size=700')
 
 最后，Pod 必须由容器运行时创建。启动一个容器应该不会超过几毫秒，但下载容器镜像可能需要几秒钟。
 如果没有缓存容器映像，则从容器注册表下载映像可能需要几秒钟到一分钟的时间，具体取决于层的大小和数量。
 
-![](hpa-ca-time-3.png)
+![](hpa-ca-time-3.png ':size=700')
 
 因此，当集群中没有空间而触发自动伸缩的时间消耗如下：
 1. Horizontal Pod Autoscaler 可能需要长达 1min30s 来增加副本数量。
@@ -175,7 +178,7 @@ Horizontal Pod Autoscaler 控制器负责检查指标并决定扩大或缩小副
 
 如果你的集群规模不是很大，在最坏的情况下，时间消耗：
 
-![](hpa-ca-time-4.png)
+![](hpa-ca-time-4.png ':size=700')
 
 对于超过 100 个节点的集群，总延迟可能高达 7 分钟。在有更多 Pod 来处理突然激增的流量之前，您是否愿意等待这 7 分钟？
 
@@ -201,7 +204,7 @@ Horizontal Pod Autoscaler 控制器负责检查指标并决定扩大或缩小副
 在为操作系统、kubelet 和驱逐阀值保留内存和 CPU 后，将拥有约 2.5GB 的内存资源和 0.7 vCPU 可用于运行 Pod。
 所以你的 Node 节点只能承载 2 个 Pod 的运行。
 
-![](k8s-node-instance.png)
+![](k8s-node-instance.png ':size=700')
 
 每次扩展 Pod 副本时，都可能会产生最多 7 分钟的延迟（触发 HPA，CA 和云提供商配置计算资源的前置时间）。
 
@@ -211,7 +214,7 @@ Horizontal Pod Autoscaler 控制器负责检查指标并决定扩大或缩小副
 
 Node 节点可以承载 58 个 Pod 的运行，只有超过 58 个 Pod 副本时，才需要一个新的节点。
 
-![](k8s-node-instance-2.png)
+![](k8s-node-instance-2.png ':size=700')
 
 此外，每次向集群中添加节点时，都可以部署多个 Pod。再次触发 Cluster Autoscaler 的机会更少。
 
@@ -219,7 +222,7 @@ Node 节点可以承载 58 个 Pod 的运行，只有超过 58 个 Pod 副本时
 为 kubelet 预留的资源、操作系统和驱逐阀值与运行 Pod 的可用资源之间的比率更大。
 看看这张图，它描绘了 Pod 可用的内存。
 
-![](node-available-to-pod.png)
+![](node-available-to-pod.png ':size=700')
 
 随着 Node 实例大小的增加，你可以注意到（按比例）可用于 Pod 的资源增加。换句话说，与拥有两个大小一半的实例相比，可以更高效地利用资源。
 
@@ -267,7 +270,7 @@ Node 节点可以承载 58 个 Pod 的运行，只有超过 58 个 Pod 副本时
 
 可以使用运行永久休眠的 pod 的部署来配置过度配置。
 
-![](overprovision.png)
+![](overprovision.png ':size=700')
 
 上图中，你需要特别关注内存和 CPU 配置。Scheduler 会使用这些值来决定部署 Pod 的位置。在这种特殊情况下，它们用于保留空间。
 
@@ -275,7 +278,7 @@ Node 节点可以承载 58 个 Pod 的运行，只有超过 58 个 Pod 副本时
 
 如果你的节点实例是 2 vCPU 和 8GB 内存，并且 pod 的可用空间是 1.73 vCPU 和 ~5.9GB 内存，则该节点就无法承载这个 Pod，因为实际的 Pod 可用资源是要小于所需资源的。
 
-![](placeholder.png)
+![](placeholder.png ':size=700')
 
 为了确保在创建真正的 Pod 时能快速的驱逐占位Pod，可以使用[优先级和抢占](https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/)。
 
@@ -285,7 +288,7 @@ Pod Priority 表示一个 Pod 相对于其他 Pod 的重要性。
 
 可以使用 PodPriorityClass 在集群中配置 Pod 优先级：
 
-![](podpriority.png)
+![](podpriority.png ':size=700')
 
 由于 Pod 的默认优先级为 0，而过度配置的 PriorityClass 值为 -1，因此当集群空间不足时，这些 Pod 将首先被逐出。
 
@@ -295,7 +298,7 @@ PriorityClass 还有两个可选字段：globalDefault 和 description。
 
 你可以使用下面的命令为你的 Pod 指定优先级：
 
-![](priorityClassName.png)
+![](priorityClassName.png ':size=700')
 
 设置完成！
 
@@ -319,7 +322,7 @@ Kubernetes Scheduler 根据 Node 节点的内存和 CPU 负载情况决定将 Po
 - 在平均负载下，应用程序消耗 512MB 内存和 0.25 vCPU。
 - 在高峰期，应用程序应最多消耗 4GB 内存和 1 vCPU。
 
-![](app-workload.png)
+![](app-workload.png ':size=700')
 
 你的容器的限制应该是 4GB 内存和 1 个 vCPU。但是，请求呢？
 
@@ -330,13 +333,15 @@ Scheduler 在创建 Pod 之前使用 Pod 的内存和 CPU 请求来选择最佳�
 2. 保守一点，分配更接近限制的请求。
 3. 设置请求以匹配实际的限制。
 
-![](https://learnk8s.io/a/27a58b9c37d2e1ba3386f02c85c110ab.svg)
+![](cpu-requests-1.png ':size=700')
+![](cpu-requests-2.png ':size=700')
+![](cpu-requests-3.png ':size=700')
 
 定义低于实际使用的请求是有问题的，因为你的节点经常会被过度使用。
 
 例如，你可以分配 256MB 的内存作为内存请求。Scheduler 可以为每个节点安装两倍的 Pod。然而，Pod 在实践中使用两倍的内存并开始竞争资源 (CPU) 并被驱逐（节点上没有足够的内存）。
 
-![](https://learnk8s.io/a/22fdf4559d43e563b3b9b0472ea68969.svg)
+![](https://learnk8s.io/a/22fdf4559d43e563b3b9b0472ea68969.svg ':size=700')
 
 过度使用节点会导致过多的驱逐、更多的 kubelet 工作和大量的重新调度。
 
@@ -346,7 +351,7 @@ Scheduler 在创建 Pod 之前使用 Pod 的内存和 CPU 请求来选择最佳�
 
 如果你的应用平均使用 512MB 的内存，但为它预留了 4GB，那么大部分时间有 3.5GB 未使用。
 
-![](https://learnk8s.io/a/3661626fe6a72a79770b9f8e2139e015.svg)
+![](https://learnk8s.io/a/3661626fe6a72a79770b9f8e2139e015.svg ':size=700')
 
 这值得么？
 
