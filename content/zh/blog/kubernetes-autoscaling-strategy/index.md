@@ -18,14 +18,14 @@ type: "post"
 
 ## 目录
 
-- [当自动伸缩的 Pod 报错](#当自动伸缩的-Pod-报错)
-- [Kubernetes 的 Cluster Autoscaler 是如何工作的](#Kubernetes-的-Cluster-Autoscaler-是如何工作的)
-- [探索 Pod 自动伸缩提前期](#探索-Pod-自动伸缩前置期)
-- [为 Kubernetes 节点选择最佳实例大小](#为-Kubernetes-节点选择最佳实例大小)
-- [在 Kubernetes 集群中过度配置节点](#在-Kubernetes-集群中过度配置节点)
-- [为 Pod 选择正确的内存和CPU资源](#为-Pod-选择正确的内存和CPU资源)
-- [关于集群的缩容](#关于集群的缩容)
-- [为什么不基于内存或CPU进行自动伸缩](#为什么不基于内存或CPU进行自动伸缩)
+- 当自动伸缩的-Pod-报错
+- Kubernetes 的 Cluster Autoscaler 是如何工作的
+- 探索 Pod 自动伸缩提前期
+- 为 Kubernetes 节点选择最佳实例大小
+- 在 Kubernetes 集群中过度配置节点
+- 为 Pod 选择正确的内存和CPU资源
+- 关于集群的缩容
+- 为什么不基于内存或CPU进行自动伸缩
 
 在 Kubernetes 中, 自动伸缩功能包括:
 - [Pod水平自动伸缩（Horizontal Pod Autoscaler，HPA）](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)
