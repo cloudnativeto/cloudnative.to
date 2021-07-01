@@ -18,7 +18,7 @@ type: "post"
 
 ## 目录
 
-- 当自动伸缩的-Pod-报错
+- 当自动伸缩的 Pod 报错
 - Kubernetes 的 Cluster Autoscaler 是如何工作的
 - 探索 Pod 自动伸缩提前期
 - 为 Kubernetes 节点选择最佳实例大小
@@ -79,7 +79,9 @@ Vertical Pod Autoscaler 的使用场景是，当资源不足无法创建更多�
 ![](pending-pod-2.png ':size=700')
 
 为什么第四个 Pod 没有部署在第一个 Node 节点上呢？
-Pod部署在集群上需要消耗内存，CPU，硬盘空间等资源，在同一个 Node 上，操作系统和 kubelet 组件也需要消耗内存和 CPU 资源。
+
+Pod 部署在集群上需要消耗内存，CPU，硬盘空间等资源，在同一个 Node 上，操作系统和 kubelet 组件也需要消耗内存和 CPU 资源。
+
 Kubernetes 中一个 Worker Node 节点的内存和 CPU 等资源使用分布如下：
 1. 需要运行操作系统和一些系统级的守护进程，例如 SSH，Systemd 等。
 2. 需要运行 Kubernetes Agent 组件，例如 Kubelet，Container Runtime，[Node Problem Detector](https://github.com/kubernetes/node-problem-detector) 等。
