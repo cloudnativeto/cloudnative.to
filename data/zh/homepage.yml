@@ -4,13 +4,13 @@ slider:
   slider_item:
      - subtitle : ""
        title : "云原生社区 Meetup 第五期· 成都站"
-       content : "7 月 3 日，周六，这次 meetup 邀请了 AWS、PingCAP、量化投资的宽邦和蚂蚁的嘉宾来分享，欢迎报名参加。"
+       content : "7 月 3 日，周六，这次 meetup 邀请了 AWS、PingCAP、量化投资的宽邦和蚂蚁的嘉宾来分享。"
        bg_image : "images/slider/chengdu.jpg"
        animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
        button:
          enable : true
-         label : "立即报名"
-         link : "https://3372087382093.huodongxing.com/event/1603306878100"
+         label : "查看回顾"
+         link : "https://i.cloudnative.to/academy/meetup/05-chengdu"
          animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
      - subtitle : ""
        title : "云原生社区 Meetup 第四期·广州站"
