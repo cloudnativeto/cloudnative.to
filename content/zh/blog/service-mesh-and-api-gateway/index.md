@@ -1,11 +1,10 @@
 ---
 author: "敖小剑"
-authorlink: "https://skyao.io"
 title: "Service Mesh和API Gateway关系深度探讨"
 description: "本文就Service Mesh和API Gateway关系进行了深度探讨。"
 image: "/images/blog/006tNbRwly1fx5dtjdrmbj31ji15mqva.jpg"
 categories: ["Service Mesh"]
-tags: ["API  Gateway","service mesh"]
+tags: ["API Gateway","service mesh"]
 date: 2020-04-28T11:20:46+08:00
 type: "post"
 avatar: "/images/profile/default.jpg"
@@ -47,7 +46,7 @@ avatar: "/images/profile/default.jpg"
 ![](directions.png)
 
 - **东西向**通讯：指服务间的相互访问，其通讯流量在服务间流转，流量都位于系统内部
-- **南北向**通讯：指服务对外部提供访问，通常是通过API Gateway提供的API对外部保罗，其通讯流量是从系统外部进入系统内部。
+- **南北向**通讯：指服务对外部提供访问，通常是通过API Gateway提供的API对外部暴露，其通讯流量是从系统外部进入系统内部。
 
 > 解释一下“东西南北”的由来：如上图所示，通常在地图上习惯性的遵循“上北下南，左东右西”的原则。
 
@@ -99,7 +98,7 @@ avatar: "/images/profile/default.jpg"
 
 **如何融合东西向和南北向的通讯方案？**
 
-其中的一个做法就是基于Service Mesh的Sidecar来实现API Gateway，从而在南北向通讯中引入Service Mesh这种东西向通讯的方案。这里我们不展开细节，我这里援引一个图片(鸣谢赵化冰同学)来解释这个方案的思路：
+其中的一个做法就是基于Service Mesh的Sidecar来实现API Gateway，从而在南北向通讯中引入Service Mesh这种东西向通讯的方案。这里我们不展开细节，我这里援引一个图片（鸣谢赵化冰同学）来解释这个方案的思路：
 
 ![](api-gateway-with-service-mesh.png)
 
@@ -126,7 +125,7 @@ avatar: "/images/profile/default.jpg"
 
 ## BFF：把融合进行到底
 
-BFF(Backend For Frontend)的引入会让Service Mesh和API Gateway走到一个更加亲密的地步。
+BFF（Backend For Frontend）的引入会让Service Mesh和API Gateway走到一个更加亲密的地步。
 
 先来看看常规的BFF的玩法：
 
@@ -173,7 +172,7 @@ BFF(Backend For Frontend)的引入会让Service Mesh和API Gateway走到一个�
 
 ![](antfin-mesh-gateway.png)
 
-> 强烈推荐阅读：附录中我的同事 贾岛 的文章 “蚂蚁金服 API Gateway Mesh 思考与实践” 对此有深入介绍和详细描述。
+> 强烈推荐阅读：附录中我的同事贾岛的文章 “蚂蚁金服 API Gateway Mesh 思考与实践” 对此有深入介绍和详细描述。
 
 ## 总结
 
