@@ -1,15 +1,14 @@
 ---
 author: "[Andrew Lock](https://andrewlock.net/deploying-asp-net-core-applications-to-kubernetes-part-7-running-database-migrations/)"
-date: "2021-07-10T10:42:00+08:00"
+date: "2021-07-15T10:42:00+08:00"
 draft: false
-image: "/images/blog/006tKfTcly1g0t1i9oxo4j31400u0npe.jpg"
+image: "/images/blog/database-k8s.jpg"
 translator: "[苏楚霖](https://github.com/nicksu-kdkd)"
 title: "在 Kubernetes 上部署应用时如何更新数据库"
 description: "作者分析了如何在部署应用时更新数据库并给出了相应解决办法。"
 categories: ["Kubernetes"]
 tags: ["Kubernetes"]
 type: "post"
-avatar: "/images/profile/default.jpg"
 ---
 
 本文为翻译文章，[点击查看原文](https://andrewlock.net/deploying-asp-net-core-applications-to-kubernetes-part-7-running-database-migrations/)。
@@ -57,13 +56,13 @@ avatar: "/images/profile/default.jpg"
 - 未创建 categories 表和 category_id 列
 - 已创建 categories 表和 category_id 列
 
-那如何应用数据库更新就有了两种选择：
+那如何应用数据库迁移就有了两种选择：
 
 部署新应用，然后执行数据库变更。这样应用的第一种状态就只需要处理数据库的第一种状态，但是第二种状态的应用则需要处理混合两种状态的数据库
 
 执行数据库变更，然后部署新应用。这样应用的第一种状态需要处理数据库的两种状态，但是第二种状态的应用则可以确保所需的表已经添加。
 
-![database-migration](./pics/database-migrations.png)
+![数据库迁移](./pics/database-migrations.png)
 
 以上两种方式都适用于数据库变更，但是我偏向于后者。因为数据库的变更通常是整个部署流程中最麻烦的一步，因此我希望能优先处理这一步，如果发生什么问题，整个部署流程会终止，那新版本的应用也就不会部署上去了。
 
@@ -71,7 +70,7 @@ avatar: "/images/profile/default.jpg"
 
 总的来说，只要你了解了这些方法，数据库的变更不应该会给你带来很大的麻烦。当准备数据库变更的时候，问自己 **”如果只是执行数据库的数据变更，会不会破坏现有的应用运行？“**， 如果这个问题的答案是不会的话，那这次变更就不会有什么麻烦。
 
-## 什么时候执行数据库更新
+## 什么时候执行数据库迁移
 
 现在我们同意在新应用启动之前执行数据库的数据更新，但是这还是不够具体清晰，因为我看到了三种不同的做法：
 
@@ -81,9 +80,9 @@ avatar: "/images/profile/default.jpg"
 
 每种做法都各有利弊，接下来让我们逐个讨论。
 
-让我们接着上面的例子，假设你的博客应用部署在 Kubernetes 里面，你会有一个 ingress, 一个 service 和一个 deployment, 就像我在[这篇文章](https://andrewlock.net/deploying-asp-net-core-applications-to-kubernetes-part-1-an-introduction-to-kubernetes/)提到过的. Deployment 会确保在任何时候都有三个应用的副本来处理网页的流量。
+让我们接着上面的例子，假设你的博客应用部署在 Kubernetes 里面，你会有一个 ingress，一个 service 和一个 deployment，就像我在[这篇文章](https://andrewlock.net/deploying-asp-net-core-applications-to-kubernetes-part-1-an-introduction-to-kubernetes/)提到过的。Deployment 会确保在任何时候都有三个应用的副本来处理网页的流量。
 
-![blog-engine](./pics/blog-engine.png)
+![数据库引擎](./pics/blog-engine.png)
 
 你需要在部署新版本应用的时候，执行数据库 schema 更新，让我们分析一下几个不同方案。
 
@@ -115,7 +114,7 @@ public static void Main(string[] args)
 
 当然并非没有办法去确认只有一个副本会修改数据库，但是我并不打算介绍任何一种，因为我不愿意因为任何一种原因导致应用有机会破坏我的数据库。
 
-第二点其实是安全相关的，数据库更新是一项很危险的操作，因为它有机会导致数据丢失或者毁坏。比较安全的做法是日常应用运行时跟数据库更新时使用不同的数据库账户， 这样能减少应用运行时意外（或者恶意）的数据丢失的发生机率。 如果应用没有权限执行 `DROP` 表的动作，那就几乎没有这种意外发生的机会了。
+第二点其实是安全相关的，数据库迁移是一项很危险的操作，因为它有机会导致数据丢失或者毁坏。比较安全的做法是日常应用运行时跟数据库迁移时使用不同的数据库账户， 这样能减少应用运行时意外（或者恶意）的数据丢失的发生机率。 如果应用没有权限执行 `DROP` 表的动作，那就几乎没有这种意外发生的机会了。
 
 如果你的应用除了运行业务代码外还要执行数据库变更的操作，那无法避免的是它一定需要特殊权限。这时候最好的做法就是确保只有在需要执行数据库 schema 更新的时候才使用那些特权账号，当然最最安全的做法就是不允许它使用特权账户。
 
@@ -123,7 +122,7 @@ public static void Main(string[] args)
 
 另外一个常见的做法是将数据库 schema 更新作为部署流程的一部分， 比如说 Octopus Deploy 的部署方案。它解决了我上面描述的两个问题，能确保 Octopus 不会并发的去修改数据库 schema, 而且当数据库的变更完成后，才会部署应用的代码。因为这两个部署的步骤被拆分开了，使得不同的权限账户的使用变得更加方便容易。
 
-![octopus deploy](./pics/deployment-process.png)
+![Octopus 部署](./pics/deployment-process.png)
 
 可能大家会问，Octopus 是如何执行数据库的 schema 更新了，怎么确认这些更新完成了呢？上面的例子里，Octopus 需要一个更新脚本并直接执行这个脚本。好的一面是这样很容易执行你的更新任务，而且不需要在你的应用代码里去解决这些更新的问题。但是它却让你高度依赖 Octopus ，这可能会是你不想看到的一点。
 
@@ -139,7 +138,7 @@ public static void Main(string[] args)
 
 ### 使用 Kuberentes Job 和初始化容器来执行数据库 schema 更新
 
-我喜欢的 Kubernetes 原生的解决方案，使用 Job 和初始化容器
+我喜欢的 Kubernetes 原生的解决方案，使用 Job 和初始化容器。
 
 #### Job
 
@@ -147,35 +146,35 @@ Kubernetes Job 会运行一个或者多个 pod 来处理工作负载，如果 po
 
 这正是我们想要用来做数据库数据更新的办法，创建一个 job 来执行数据库的 CLI 工具，出现网络问题时可以有选择的重试。因为它是一个 Kubernetes 原生概念，因此我们可以利用 Helm 的功能來模板化管理，将它包含在我们应用的 helm chart 里面。 从下面的图片可以看到，我给 test-app 添加了一个 CLI 项目，主要是一个 job.yaml。
 
-![charts](./pics/charts.png)
+![Helm chart](./pics/charts.png)
 
 这个方案难在如何在应用启动之前确保 Job 已经完成，我是通过使用 Kubernetes 的初始化容器來解決这个问题的。
 
 #### 初始化容器 (Init Container)
 
-如果你还记得这一系列文章里的第一篇，我讲过 Pod 是 Kubernetes 里包含一个或者多个容器的最小的调度单位。大部分情况下，Pod 会有一个主容器提供应用的主要功能，可能还会有一个或者多个 sidecar 容器提供一些附加的功能，比如说 metrics 或者 service-mesh。
+如果你还记得这一系列文章里的第一篇，我讲过 Pod 是 Kubernetes 里包含一个或者多个容器的最小的调度单位。大部分情况下，Pod 会有一个主容器提供应用的主要功能，可能还会有一个或者多个 sidecar 容器提供一些附加的功能，比如说 metrics 或者 service mesh。
 
 我们也可以选择在 Pod 里使用初始化容器，这样 Kubernetes 部署 pod 的时候，就会先运行所有的初始化容器。只有当所有的初始化容器都正常运作并退出时，主容器才会开始运行，通常这样的功能会被用于下载或者做一些主容器要求的预先配置，这样可以让你的主容器只负责运行业务代码而不须关注环境配置。
 
 #### 使用 Job 和初始化容器来处理数据库数据更新
 
-当我刚开始探索初始化容器的时候，我尝试过直接使用初始化容器来负责数据库数据更新，但是这又碰到了那个问题，在应用运行的时候无法避免的出现了同时间几个应用副本都去修改数据库的问题。因此我决定使用两步走的方案：使用初始化容器来延迟主容器启动直至确认数据库更新的 Job 顺利完成。
+当我刚开始探索初始化容器的时候，我尝试过直接使用初始化容器来负责数据库数据更新，但是这又碰到了那个问题，在应用运行的时候无法避免的出现了同时间几个应用副本都去修改数据库的问题。因此我决定使用两步走的方案：使用初始化容器来延迟主容器启动直至确认数据库迁移的 Job 顺利完成。
 
 主要步骤看起来像是这样：
 
-- 应用的 Helm chart 包含了应用的部署和数据库数据更新的 Job
-- 每个应用的 Pod 都会包含一个初始化容器，这个初始化容器会一直休眠直至相关的 Job 成功完成。当初始化容器发现 Job 完成时，它自己会正常退出，这样主容器才会开始运行
-- 作为滚动更新的一部分，数据库更新的 Job 一旦部署会马上执行，新版本的应用也会被创建出来但是不会运行，因为数据库数据更新的 Job 还在运行，初始化容器也就还处于休眠状态中，这样新版本的 Pod 就会被推迟运行。而且旧版本的 Pod 不会受到影响，还能继续处理业务流量。
-- 当数据库数据更新完成时，Job 就会正常结束
+- 应用的 Helm chart 包含了应用的部署和数据库数据更新的 Job。
+- 每个应用的 Pod 都会包含一个初始化容器，这个初始化容器会一直休眠直至相关的 Job 成功完成。当初始化容器发现 Job 完成时，它自己会正常退出，这样主容器才会开始运行。
+- 作为滚动更新的一部分，数据库迁移的 Job 一旦部署会马上执行，新版本的应用也会被创建出来但是不会运行，因为数据库数据更新的 Job 还在运行，初始化容器也就还处于休眠状态中，这样新版本的 Pod 就会被推迟运行。而且旧版本的 Pod 不会受到影响，还能继续处理业务流量。
+- 当数据库数据更新完成时，Job 就会正常结束。
 - 当初始化容器发现相关的 Job 正常结束了，它自己也就会退出。这样应用的容器才会开始启动并处理业务流量。
-- 旧版本的 pod 会根据滚动更新的策略被移除
+- 旧版本的 pod 会根据滚动更新的策略被移除。
 
-![jobs-init-1](./pics/jobs-and-init-containers-1.png)
-![jobs-init-2](./pics/jobs-and-init-containers-2.png)
+![Job init](./pics/jobs-and-init-containers-1.png)
+![Job int](./pics/jobs-and-init-containers-2.png)
 
 就像我说过的，这个方案我已经成功的使用了好几年，因此我觉得它是一个合适的解决方案。我在下一篇文章会详细的解释如何实施这个方案。
 
-在我们完成本次探讨之前，我想再聊聊最后的一个做法：使用 Helm Chart Hooks
+在我们完成本次探讨之前，我想再聊聊最后的一个做法：使用 Helm Chart Hooks。
 
 #### Helm Chart Hooks
 
@@ -195,7 +194,7 @@ metadata:
 
 只要添加上这一行就能确保 Helm 不会将这一部分作为主要的安装或者升级流程，相反，它会在部署主应用之前先运行 job ，并等待这个 job 完成。只要这个 job 顺利完成， 这整个 chart 就会开始安装，并对你的应用执行滚动更新。如果 Job 失败了，这个 chart 不会继续安装，正在运行的应用也不会受影响。
 
-我刚开始测试这个方案的时候是可以的，但是有个意外。 如果数据库的更新耗时较长超过了 Helm 的 timeout 时间， Helm 会 timeout退出, 这样整个部署就不会继续，但是并不知道数据库更新到底成功了还是失败了。
+我刚开始测试这个方案的时候是可以的，但是有个意外。 如果数据库的更新耗时较长超过了 Helm 的 timeout 时间， Helm 会 timeout退出，这样整个部署就不会继续，但是并不知道数据库迁移到底成功了还是失败了。
 
 事实上生产环境通常有更多的数据量更更高的负载，因此对于数据库的变更很大机率会变得很慢，结果会导致上面的意外发生，所以最终我们还是选择了前面描述的初始化容器的方式。
 
