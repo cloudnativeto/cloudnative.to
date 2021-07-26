@@ -1,6 +1,6 @@
 ---
 title: "[社招]字节基础架构招聘 Service Mesh 研发工程师"
-date: 2021-07-26T17:30:00+08:00
+date: 2021-07-26T17:00:00+08:00
 draft: false
 bg_image: "images/backgrounds/page-title.jpg"
 description: "Base 地：北京"
