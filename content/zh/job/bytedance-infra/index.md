@@ -5,6 +5,7 @@ draft: false
 bg_image: "images/backgrounds/page-title.jpg"
 description: "Base 地：北京"
 type: "notice"
+aliases: "/job/baidu-cloud-native"
 ---
 
 
