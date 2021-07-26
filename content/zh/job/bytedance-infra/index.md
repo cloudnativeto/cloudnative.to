@@ -32,4 +32,4 @@ type: "notice"
 
 #### 投递简历
 
-欢迎[投递简历](https://job.toutiao.com/referral/mobile/position/detail/?token=MTsxNjI3Mjg5MzA5NDAxOzY5NzQ5NTQ5NjU3MzUzMTA4NTU7NjcwNDU3OTE3Nzc3NDg0NDE2NA)，我们将尽快安排面试。
+欢迎[邮件简历](mailto:luoguangming.ivan@bytedance.com)，我们将尽快安排面试。
