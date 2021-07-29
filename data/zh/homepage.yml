@@ -175,7 +175,7 @@ testimonial:
   testimonial_item:
     # testimonial item loop
     - client_image : "images/testimonial/jimmysong.jpg"
-      name : "Jimmy Song"
+      name : " 宋净超（Jimmy Song）"
       designation : "云原生社区创始人"
       content : "云原生是云计算的未来，我们将看到该领域更多的创新从社区里孵化，让云原生社区陪你一路同行。"
 

@@ -167,7 +167,7 @@ logo_footer = "images/logo-alt.png"
 top_header = false
 homePageTitle = "云原生社区 | Cloud Native Community(China)"
 # Meta data
-description = "云原生社区是一个中立的云原生终端用户社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，提供云原生领域的专业资讯，推动云原生产业发展，目标成为中国云原生领域最具影响力的开源社区。"
+description = "云原生社区是国内最大的独立第三方云原生终端用户和泛开发者社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，提供云原生专业资讯，促进云原生产业发展。"
 author = " 云原生社区"
 # contact form action
 contact_form_action = "#" # contact form works with https://formspree.io
@@ -265,7 +265,7 @@ contentDir = "content/zh"
 weight = 1
 #home = "主页"
 # footer content
-footer_content = "云原生社区是一个中立的云原生终端用户社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，旨在推广云原生技术，构建开发者生态。"
+footer_content = "云原生社区是国内最大的独立第三方云原生终端用户和泛开发者社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，提供云原生专业资讯，促进云原生产业发展。"
 # copyright
 copyright = "Copyright &copy; {year} 云原生社区"
 
