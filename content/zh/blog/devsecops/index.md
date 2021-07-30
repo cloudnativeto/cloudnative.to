@@ -3,6 +3,7 @@ title: "DevSecOps——在多云环境中确保供应链安全的关键"
 description: "本文翻译自 Johnathan Hunt 的文章 'DevSecOps: the Key to Securing Your Supply Chain in a Multi-Cloud Threatscape'"
 author: "[Johnathan Hunt](https://www.infoq.com/articles/devsecops-supply-chain/)"
 translator: "[马景贺（小马哥）](https://github.com/majinghe)"
+image: "images/blog/devsecops.png"
 categories: ["DevSecOps"]
 tags: ["DevOps","security"]
 date: 2021-07-30T13:05:42+08:00
