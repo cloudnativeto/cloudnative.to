@@ -28,7 +28,7 @@ profile: "Johnathan Hunt，[GitLab](https://about.gitlab.com/)公司安全 VP，
 
 ## DevSecOps 恰逢其时
 
-*随着近期的供应链和云攻击，企业现在正在需求开发人员来增强企业安全*。
+*随着近期的供应链和云攻击，企业现在正在寻求开发人员来增强企业安全*。
 
 由于迅速转变为远程和混合工作模式，我们看到了所有部门在云计算应用和数字转型方面的爆炸式增长。这种转变本质上并不坏，但是企业需要记住的是——使用的服务越多，可以暴漏的[漏洞](https://www.infoq.com/news/2021/05/aqua-security-report/)和风险也就越多。随着漏洞暴露数量的增多，企业正在寻求新的方法来增强安全。2021 年的 [Gartner 预测](https://www.gartner.com/en/newsroom/press-releases/2021-05-17-gartner-forecasts-worldwide-security-and-risk-managem)中，全世界花费在信息安全和风险管理技术和服务上的费用将增长 12.4%，达到了 $1504 亿。
 
@@ -127,7 +127,7 @@ IT、安全和企业领导必须通力协作来确保他们的组织是一个成
 
 以被动的方式来应对安全是有缺陷的。伴随着大面积的向云迁移，攻击面比以往更大了，组织需要在他们的开发中认真考虑安全所处的角色。企业越积极主动，他们及他们的用户就会得到更好的回报。
 
-公有和私有部门在网络安全方面采取了比以往更强硬的立场。五月份，拜登政府宣布了[行政命令](https://www.whitehouse.gov/briefing-room/presidential-actions/2021/05/12/executive-order-on-improving-the-nations-cybersecurity），旨在为整个私营和公共部门建立新的安全标准。随着网络安全标准和审查的增加，强制性报告和信息共享，企业将被期望，甚至更多，给予安全他们应有的注意。公司一直有自己的安全和客户的安全需要考虑，但在国家安全方面也要发挥越来越大的作用。企业不能等待。他们需要一个决定性的转变。他们需要一个 DevSecOps 框架。
+公有和私有部门在网络安全方面采取了比以往更强硬的立场。五月份，拜登政府宣布了[行政命令](https://www.whitehouse.gov/briefing-room/presidential-actions/2021/05/12/executive-order-on-improving-the-nations-cybersecurity)，旨在为整个私营和公共部门建立新的安全标准。随着网络安全标准和审查的增加，强制性报告和信息共享，企业将被期望，甚至更多，给予安全他们应有的注意。公司一直有自己的安全和客户的安全需要考虑，但在国家安全方面也要发挥越来越大的作用。企业不能等待。他们需要一个决定性的转变。他们需要一个 DevSecOps 框架。
 
 这是一个 IT 和安全专业人士奋起直追的时刻。一个 DevSecOps 框架或一个更敏锐的风险管理流程可以为 Kaseya、Colonial Pipeline、SolarWinds 和 JBS 做什么。我们永远不会知道，我们所知道的是我们现在可以采取的实际行动。
 
