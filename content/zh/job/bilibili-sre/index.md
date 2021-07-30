@@ -1,5 +1,5 @@
 ---
-title: "[社招] k8s高级运维工程师"
+title: "[社招] k8s高级运维工程师&资深k8s云平台开发工程师"
 date: 2021-07-30T22:00:00+08:00
 draft: false
 bg_image: "images/backgrounds/page-title.jpg"
