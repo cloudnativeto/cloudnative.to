@@ -1,6 +1,6 @@
 ---
 title: "DevSecOps——在多云环境中确保供应链安全的关键"
-description: "本文从多个角度说明了 DevSecOps 对于供应链安全的重要性"
+description: "本文从多个角度说明了 DevSecOps 对于供应链安全的重要性。"
 author: "[Johnathan Hunt](https://www.infoq.com/articles/devsecops-supply-chain/)"
 translator: "[马景贺（小马哥）](https://github.com/majinghe)"
 image: "images/blog/devsecops.png"
