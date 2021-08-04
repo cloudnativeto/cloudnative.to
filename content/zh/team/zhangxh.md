@@ -9,7 +9,7 @@ bg_image: "images/backgrounds/page-title.jpg"
 # portrait
 image: "images/team/zhangxh.jpg"
 # designation
-designation: "Flomesh(易衡)"
+designation: "Flomesh（易衡）"
 social:
   - icon : "fa-github" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
     link : "https://github.com/addozhang"  
