@@ -14,13 +14,13 @@ type: "post"
 
 Istio 的安全功能提供了强大的身份、策略、透明的 TLS 加密以及认证、授权和审计（AAA）工具来保护你的服务和数据。然而，为了充分安全地利用这些功能，必须注意遵循最佳实践。建议在继续阅读之前，先回顾一下[安全概述](https://istio.io/latest/docs/concepts/security/)。
 
-## 相互 TLS
+## 双向 TLS
 
-Istio 将尽可能使用[相互 TLS](https://istio.io/latest/docs/concepts/security/#mutual-tls-authentication) 对流量进行[自动](https://istio.io/latest/docs/ops/configuration/traffic-management/tls-configuration/#auto-mtls)加密。然而，代理在默认情况下被配置为[许可模式（Permissive Mode）](https://istio.io/latest/docs/concepts/security/#permissive-mode)，这意味着他们将接受相互 TLS 和明文流量。
+Istio 将尽可能使用[双向 TLS](https://istio.io/latest/docs/concepts/security/#mutual-tls-authentication) 对流量进行[自动](https://istio.io/latest/docs/ops/configuration/traffic-management/tls-configuration/#auto-mtls)加密。然而，代理在默认情况下被配置为[许可模式（Permissive Mode）](https://istio.io/latest/docs/concepts/security/#permissive-mode)，这意味着他们将接受双向 TLS 和明文流量。
 
-虽然这是为了增量采用或允许来自没有 Istio sidecar 的客户端的流量的需要，但它也削弱了安全立场。建议在可能的情况下[迁移到严格模式（Strict Mode）](https://istio.io/latest/docs/tasks/security/authentication/mtls-migration/)，以强制使用相互 TLS。
+虽然这是为了增量采用或允许来自没有 Istio sidecar 的客户端的流量的需要，但它也削弱了安全立场。建议在可能的情况下[迁移到严格模式（Strict Mode）](https://istio.io/latest/docs/tasks/security/authentication/mtls-migration/)，以强制使用双向 TLS。
 
-然而，仅靠相互 TLS 并不足以保证流量的安全，因为它只提供认证，而不是授权。这意味着，任何拥有有效证书的人仍然可以访问一个服务。
+然而，仅靠双向 TLS 并不足以保证流量的安全，因为它只提供认证，而不是授权。这意味着，任何拥有有效证书的人仍然可以访问一个服务。
 
 为了完全锁定流量，建议配置[授权策略](https://istio.io/latest/docs/tasks/security/authorization/)。这允许创建细粒度的策略来允许或拒绝流量。例如，你可以只允许来自 `app` 命名空间的请求访问 `hello-world` 服务。
 
@@ -238,7 +238,7 @@ servers:
 
 ### 在放宽的 SNI 主机匹配下，明确地禁用所有敏感的 http 主机
 
-在不同的主机上使用多个 `Gateways` 来定义相互 TLS 和简单 TLS 是合理的。例如，对 SNI 主机 `admin.example.com` 使用相互 TLS，对 SNI 主机 `*.example.com` 使用简单 TLS。
+在不同的主机上使用多个 `Gateways` 来定义双向 TLS 和简单 TLS 是合理的。例如，对 SNI 主机 `admin.example.com` 使用双向 TLS，对 SNI 主机 `*.example.com` 使用简单 TLS。
 
 ```yaml
 kind: Gateway
