@@ -2,7 +2,7 @@
 title: "马景贺"
 date: 2020-10-19T10:47:55+06:00
 # meta description
-description: "LFAPAC 开源布道师，中国 DevOps 社区组织者、讲师，CDF Chinese Localization SIG co-chair，关于云原生和 DevSecOps 领域。"
+description: "LFAPAC 开源布道师，中国 DevOps 社区组织者、讲师，CDF Chinese Localization SIG co-chair，关注云原生和 DevSecOps 领域。"
 # page title background image
 bg_image_webp: "images/backgrounds/page-title.webp"
 bg_image: "images/backgrounds/page-title.jpg"
