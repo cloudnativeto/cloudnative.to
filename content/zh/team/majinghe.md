@@ -9,7 +9,7 @@ bg_image: "images/backgrounds/page-title.jpg"
 # portrait
 image: "images/team/majinghe.jpg"
 # designation
-designation: "极狐（GitLab）"
+designation: "极狐(GitLab)"
 social:
   - icon : "fa-github" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
     link : "https://github.com/majinghe"
