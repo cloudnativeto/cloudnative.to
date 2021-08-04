@@ -21,7 +21,7 @@ core_members:
     tag: "韦正清，IBM 高级 IT 架构师。长期从事 Unix/Linux、虚拟化、云计算方面的技术咨询工作；当前工作涉及金融行业开源系统及云原生应用的建设与推广。"
   - name: "张晓辉"
     image: "/images/city/guangzhou/members/zhangxiaohui.jpeg"
-    tag: "张晓辉，Flomesh 高级云原生架构师。主要工作涉及微服务、Docker、Kubernetes、DevOps 等，有丰富的基础架构、云原生实践经验。"
+    tag: "张晓辉，Flomesh（易衡）高级云原生架构师。主要工作涉及微服务、Docker、Kubernetes、DevOps 等，有丰富的基础架构、云原生实践经验。"
   - name: "周纪海"
     image: "/images/city/guangzhou/members/zhoujihai.jpeg"
     tag: "周纪海，英国伦敦帝国理工学院博士毕业。毕业后在多家大型国际银行（巴克莱银行，汇丰银行等）从事 DevOps 和 DevSecOps 的转型工作。2019 年加入腾讯。从 2018 到 2020 年间，受邀在国内外 30 多场技术峰会上分享 DevOps 和 DevSecOps 经验。"  
