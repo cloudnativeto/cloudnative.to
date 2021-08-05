@@ -3,6 +3,16 @@ slider:
   enable : true
   slider_item:
      - subtitle : ""
+       title : "云原生社区 Meetup 第六期· 大连站"
+       content : "8 月 22 日，周日，云原生社区 meetup 第一次来到东北，美丽的海滨城市大连。"
+       bg_image : "images/slider/dalian.jpg"
+       animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
+       button:
+         enable : true
+         label : "立即报名"
+         link : "https://cloudnative.huodongxing.com/event/5608315092100"
+         animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
+     - subtitle : ""
        title : "云原生社区 Meetup 第五期· 成都站"
        content : "7 月 3 日，周六，这次 meetup 邀请了 AWS、PingCAP、量化投资的宽邦和蚂蚁的嘉宾来分享。"
        bg_image : "images/slider/chengdu.jpg"
