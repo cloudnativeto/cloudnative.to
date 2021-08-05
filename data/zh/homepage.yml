@@ -310,6 +310,9 @@ sponsor:
         - image: "/images/sponsors/netease-shufan.png"
           url: "https://www.163yun.com/"
           name: "网易数帆"
+        - image: "/images/sponsors/gitlab.png"
+          url: "https://gitlab.cn/"
+          name: "极狐(GitLab)"
     media:
       title: "合作机构"
       list:
