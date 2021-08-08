@@ -3,7 +3,7 @@ title: "开源评估框架"
 description: "开源不是非黑即白，它具有开放性、透明、协作性和信任性的多个维度。本文从多个维度帮你评估一个项目是否符合开源标准。"
 author: "[Bilgin Ibryam](https://twitter.com/bibryam)"
 translator: "[张晓辉（AddoZhang）](https://atbug.com)"
-image: "images/blog/evaluation.jpg"
+image: "images/blog/open-source-evaluation.png"
 categories: ["开源"]
 tags: ["OpenSource"]
 date: 2021-08-08T17:05:42+08:00
