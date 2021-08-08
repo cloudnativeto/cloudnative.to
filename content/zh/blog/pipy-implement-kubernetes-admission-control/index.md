@@ -2,11 +2,13 @@
 title: "Rego 不好用？用 Pipy 实现 OPA"
 description: "本文带你如何使用 Pipy 实现策略即代码做镜像检查。"
 author: "[张晓辉（Addo Zhang）](https://atbug.com)"
-image: "/images/blog/opa.jpg"
+image: "/images/blog/policy.png"
 categories: ["其他"]
 tags: ["opa","open policy agent","policy"]
 date: 2021-08-08T11:00:42+08:00
 type: "post"
+avatar: "/images/profile/zhangxiaohui.jpeg"
+profile: "资深码农，云原生爱好者。"
 ---
 
 还不知道 Pipy 是什么的同学可以看下 [GitHub](https://github.com/flomesh-io/pipy) 。
@@ -19,11 +21,11 @@ type: "post"
 
 在玩过几次 Pipy 并探究其工作原理后，又有了更多的想法。
 
-* [初探可编程网关 Pipy](https://mp.weixin.qq.com/s/l8JzYRn350fjuCAOoo8pcg)
+* [初探可编程网关 Pipy](https://cloudnative.to/blog/glance-at-programmable-gateway-pipy/)
 * [可编程网关 Pipy 第二弹：编程实现 Metrics 及源码解读](https://mp.weixin.qq.com/s/_IeRXp9EJnVsvDfg8tUr1A)
 * [可编程网关 Pipy 第三弹：事件模型设计](https://mp.weixin.qq.com/s/iQWunpazsw86X3kEkB1rJw)
 
-在使用OPA的时候，一直觉得Rego不是那么顺手，使用pipy js来写规则的想法油然而生。今天就一起试试这个思路。果然，不试不知道，一试发现太多的惊喜～Pipy不止于“代理”，更有很多可以适用的场景：
+在使用 OPA 的时候，一直觉得 Rego 不是那么顺手，使用 pipy js 来写规则的想法油然而生。今天就一起试试这个思路。果然，不试不知道，一试发现太多的惊喜～ Pipy 不止于“代理”，更有很多可以适用的场景：
 
 * 极小的单一可执行文件（single binary）使得 pipy 可能是最好的 “云原生 sidecar”
 * sidecar 不仅仅是代理，还可以做控制器，做运算单元
