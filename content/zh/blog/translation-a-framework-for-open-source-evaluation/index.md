@@ -3,17 +3,15 @@ title: "开源评估框架"
 description: "开源不是非黑即白，它具有开放性、透明、协作性和信任性的多个维度。本文从多个维度帮你评估一个项目是否符合开源标准。"
 author: "[Bilgin Ibryam](https://twitter.com/bibryam)"
 translator: "[张晓辉（AddoZhang）](https://atbug.com)"
-image: "images/blog/open-source-evaluation.png"
+image: "images/blog/open-source-evaluation.jpg"
 categories: ["开源"]
-tags: ["OpenSource"]
+tags: ["开源"]
 date: 2021-08-08T17:05:42+08:00
 type: "post"
 avatar: "/images/profile/bilgin.png"
-profile: "Red Hat的首席架构师，Apache Software Foundation 的 committer 和成员。开源的布道师、博客作者，偶尔演讲，著有书籍 Kubernetes Patterns 和 Camel Design Patterns 。"
+profile: "Red Hat的首席架构师，Apache Software Foundation 的 committer 和成员。开源的布道师、博客作者，偶尔演讲，著有书籍 Kubernetes Patterns 和 Camel Design Patterns。"
 ---
-本文翻译自 [Bilgin Ibryam]() 的 [A Framework for Open Source Evaluation](https://monetize.substack.com/p/a-framework-for-open-source-evaluation)
-
----
+本文翻译自 [Bilgin Ibryam]() 的文章 [A Framework for Open Source Evaluation](https://monetize.substack.com/p/a-framework-for-open-source-evaluation)。
 
 如今，真[假](https://www.linuxjournal.com/content/open-vs-fauxpen)开源无处不在。最近开源项目转为闭源的案例越来越多，同时也有不少闭源项目（按照 [OSI 定义](https://opensource.org/osd)）像开源一样构建社区的例子。这怎么可能，开源项目不应该始终如此吗？
 
