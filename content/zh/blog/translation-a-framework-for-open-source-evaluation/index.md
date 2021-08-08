@@ -11,9 +11,6 @@ type: "post"
 avatar: "/images/profile/bilgin.png"
 profile: "Red Hat的首席架构师，Apache Software Foundation 的 committer 和成员。开源的布道师、博客作者，偶尔演讲，著有书籍 Kubernetes Patterns 和 Camel Design Patterns 。"
 ---
-
-# 开源评估框架
-
 本文翻译自 [Bilgin Ibryam]() 的 [A Framework for Open Source Evaluation](https://monetize.substack.com/p/a-framework-for-open-source-evaluation)
 
 ---
