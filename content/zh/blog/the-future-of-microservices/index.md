@@ -10,7 +10,7 @@ date: 2021-08-13T17:05:42+08:00
 type: "post"
 ---
 
-本文译自 [The Future of Microservices? More Abstractions](https://thenewstack.io/the-future-of-microservices-more-abstractions/)，作者是的主编 Container Solutions 的主编 Charles Humble。
+本文译自 [The Future of Microservices? More Abstractions](https://thenewstack.io/the-future-of-microservices-more-abstractions/)，作者是 Container Solutions 的主编 Charles Humble。
 
 [微服务](https://thenewstack.io/category/microservices/)是在 10 年前出现的，是软件融合进化的例子之一。虽然这个词可以归功于软件咨询公司 [Thoughtworks](https://www.thoughtworks.com/) 的 [James Lewis](https://twitter.com/boicy) 和 Martin Fowler，[Adrian Cockcroft](https://www.linkedin.com/in/adriancockcroft/) 也曾提出类似的想法。但当时在 Netflix 和许多硅谷的其他公司，如亚马逊、Google 和 eBay 等公司大致在相同的时间内独立搭建了或多或少相同的架构模式。
 
