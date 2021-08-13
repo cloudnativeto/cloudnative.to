@@ -50,11 +50,11 @@ Istio 提供了网关作为与外部世界连接的方式。你可以部署[入�
 
 ## 支持 Kubernetes 多集群服务（MCS）（实验性）
 
-Kubernetes 项目正在建立[一个多集群服务 API](https://github.com/kubernetes/enhancements/tree/master/keps/sig-multicluster/1645-multi-cluster-services-api)，允许服务所有者或网格管理员控制整个网格的服务及其端点的输出。
+Kubernetes 项目正在建立[一个多集群服务 API](https://github.com/kubernetes/enhancements/tree/master/keps/sig-multicluster/1645-multi-cluster-services-api)，允许服务所有者或网格管理员控制如何导出整个网格的服务及其端点。
 
 Istio 1.11 增加了对多集群服务的实验性支持。一旦启用，服务端点的可发现性将由客户端位置和服务是否被导出决定。驻留在与客户端相同的集群中的端点将总是可被发现。然而，在不同集群内的端点，只有当它们被导出到网格时，才会被客户端发现。
 
-注意，Istio 还不支持 MCS 规范所定义的 `cluster.local` 和 `clusterset.local` 主机的行为。客户应该继续使用 `cluster.local` 或 `svc.namespace` 来称呼服务。
+注意，Istio 还不支持 MCS 规范所定义的 `cluster.local` 和 `clusterset.local` 主机的行为。客户端应该继续使用 `cluster.local` 或 `svc.namespace` 来做服务寻址。
 
 这是我们[支持 MCS 计划](https://docs.google.com/document/d/1K8hvQ83UcJ9a7U8oqXIefwr6pFJn-VBEi40Ak-fwQtk/edit)第一阶段。请继续关注！
 
