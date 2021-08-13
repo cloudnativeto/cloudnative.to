@@ -1,6 +1,6 @@
 ---
 title: "Istio 1.11 发布"
-description: "2021 年度的第三个版本发布了。"
+description: "这是 Istio 在 2021 年度发布的第三个版本。"
 author: "[Istio Team](https://istio.io/latest/news/releases/1.11.x/announcing-1.11/)"
 translator: "[宋净超（Jimmy Song）](https://jimmysong.io)"
 image: "images/blog/istio-111.jpg"
@@ -9,9 +9,10 @@ tags: ["Istio"]
 date: 2021-08-13T07:05:42+08:00
 type: "post"
 ---
- 本文译自 [Istio 官方博客](https://istio.io/latest/news/releases/1.11.x/announcing-1.11/)。
 
-这是 Istio 在 2021 年的第三个版本，我们要感谢整个 Istio 社区，特别是来自红帽的发布经理 John Wendell、来自 Solo.io 的 Ryan King 和来自英特尔的 Steve Zhang，感谢他们帮助 Istio 1.11.0 发布。该版本正式支持 Kubernetes 1.18.0 到 1.22.x。下面是该版本的一些亮点。
+本文译自 [Istio 官方博客](https://istio.io/latest/news/releases/1.11.x/announcing-1.11/)。
+
+这是 Istio 在 2021 年发布的第三个版本，我们要感谢整个 Istio 社区，特别是来自红帽的发布经理 John Wendell、来自 Solo.io 的 Ryan King 和来自英特尔的 Steve Zhang，感谢他们帮助 Istio 1.11.0 发布。该版本正式支持 Kubernetes 1.18.0 到 1.22.x。下面是该版本的一些亮点。
 
 ## CNI 插件（Beta）
 
