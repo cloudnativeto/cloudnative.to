@@ -1,5 +1,5 @@
 ---
-title: "开发环境即代码"
+title: "开发环境即代码：可以运行在云上的开发环境"
 description: "通过将开发环境设置以可执行格式写下来并将其与项目源码一起存入源码存储库，实现开发环境设置的自动化、可复用和版本化。"
 author: "[Sven Efftinge](https://twitter.com/svenefftinge)"
 translator: "[郭旭东](https://guoxudong.io)"
