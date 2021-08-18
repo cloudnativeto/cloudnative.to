@@ -4,16 +4,16 @@ description: "近几年开源越来越热，各种的工具层出不穷。仪表
 author: "[Tara Seals](https://threatpost.com/author/sealstara/)"
 translator: "[张晓辉（AddoZhang）](https://atbug.com)"
 image: "images/blog/cluster-security.png"
-categories: ["云原生"]
+categories: ["安全"]
 tags: ["Security"]
 date: 2021-08-18T21:05:42+08:00
 type: "post"
-avatar: "/images/profile/tara.jpeg"
+avatar: "/images/profile/tara.jpg"
 profile: "在通信和技术领域拥有近 25 年的记者、分析师和编辑经验。在加入 Threatpost 之前，Tara 是 Infosecurity Magazine 的北美新闻主管，并在 Informa（前身为 Virgo Publishing）工作了 13 年，在专注于服务提供商和企业领域的出版物中担任执行编辑和主编。"
 ---
 本文翻译自 [Kubernetes Cloud Clusters Face Cyberattacks via Argo Workflows](https://threatpost.com/kubernetes-cyberattacks-argo-workflows/167997/)。
 
-译者点评：
+## 译者点评
 
 行业中一直不缺安全的声音，安全也是永远绕不过的槛。再优雅再先进的架构设计，无法保障安全也是一文不值，甚至干系到企业的存活。
 
@@ -21,7 +21,7 @@ profile: "在通信和技术领域拥有近 25 年的记者、分析师和编辑
 
 近几年开源越来越热，各种的工具层出不穷。仪表盘可以说是离用户最近的一层，也是安全最容易被疏忽的一处，尤其是很多仪表盘并未提供用户校验或者容易配置错误。
 
----
+## 正文
 
 Argo 的 web 仪表盘权限配置错误，会允许未经身份验证的攻击者在 Kubernetes 目标上运行代码，包括加密币挖掘容器。
 
