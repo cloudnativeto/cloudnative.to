@@ -31,7 +31,7 @@ Argo Workflow 是一个开源的、容器原生的工作流引擎，用于在 Ku
 
 根据 Intezer 的一项分析，由于一些实例不需要外部用户的认证可以直接通过仪表盘访问，恶意软件运营商正在通过 Argo 将加密旷工投放到云中。因此，这些错误配置的权限可以让威胁者在受害者的环境中运行未经授权的代码。
 
-根据[周二发布]（https://www.intezer.com/blog/container-security/new-attacks-on-kubernetes-via-misconfigured-argo-workflows）的 Intezer 的分析，"在许多情况下，配置了允许任何访问用户部署工作流程的权限。在权限配置错误的情况下，攻击者有可能访问一个开放的 Argo 仪表盘并提交他们自己的工作流程。
+根据[周二发布](https://www.intezer.com/blog/container-security/new-attacks-on-kubernetes-via-misconfigured-argo-workflows)的 Intezer 的分析，"在许多情况下，配置了允许任何访问用户部署工作流程的权限。在权限配置错误的情况下，攻击者有可能访问一个开放的 Argo 仪表盘并提交他们自己的工作流程。
 
 研究人员说，这些错误配置还可能暴露敏感信息，如代码、凭证和私有容器镜像名称（可用于协助其他类型的攻击）。
 
