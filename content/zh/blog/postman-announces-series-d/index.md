@@ -1,5 +1,5 @@
 ---
-title: "API 管理公司 Postman D 轮融资 2.25 美元，估值高达 56 亿美元"
+title: "印度 API 管理公司 Postman D 轮融资 2.25 亿美元，估值高达 56 亿美元"
 description: "这就是我们熟悉的那个 API 调试和管理工具 Postman！"
 author: "[Abhinav Asthana](https://blog.postman.com/author/abhinav/)"
 translator: "[宋净超（Jimmy Song）](https://jimmysong.io)"
