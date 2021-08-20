@@ -16,7 +16,7 @@ type: "post"
 
 没错，这正是那个被人所熟知，在程序员中广为流传的 Postman，五年前我曾在被一个同事推荐 Chrome 中安装过一个插件，专门用来调试 API 的，这个插件就是 Postman。
 
-![Postman Chrome App](https://tva1.sinaimg.cn/large/008i3skNly1gtlb0gv79zj61rm0mkdjq02.jpg)
+![Postman Chrome App](008i3skNly1gtlb0gv79zj61rm0mkdjq02.jpg)
 
 ## 正文
 
@@ -26,7 +26,7 @@ type: "post"
 
 一年多以前，Postman 完成了 C 轮投资，在那篇公告博文中，我描述了 “Postman 飞轮”，它有助于指导我们决定如何使 Postman 平台对我们的客户越来越强大和有效。
 
-![img](https://tva1.sinaimg.cn/large/008i3skNly1gtlavb1amyj30t20jw765.jpg)
+![img](008i3skNly1gtlavb1amyj30t20jw765.jpg)
 
 Postman飞轮
 
@@ -45,7 +45,7 @@ Postman飞轮
 
 Shruthi Venkatesh 是 Postman 的一名视觉设计师，她在一本全新的图画小说中用插图把这个想法变成了现实，我非常兴奋地与你们分享这本书：[“API 优先的世界”](https://api-first-world.com/)，请阅读一下。
 
-![img](https://tva1.sinaimg.cn/large/008i3skNly1gtlavbgm6fj61hb0u0jw802.jpg)
+![img](008i3skNly1gtlavbgm6fj61hb0u0jw802.jpg)
 
 我们新的图画小说[《API 优先的世界》](https://api-first-world.com/)中的一幅插图
 
