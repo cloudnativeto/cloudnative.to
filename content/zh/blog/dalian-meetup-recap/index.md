@@ -2,14 +2,12 @@
 title: "云原生社区 meetup 大连站回顾"
 date: 2021-08-23T10:41:54+08:00
 draft: false
-image: "/images/blog/heying.JPG"
+image: "/images/blog/da-lian-meetup.jpeg"
 author: "马景贺"
 description: "大连站 meetup 是云原生社区 meetup 的第六期，也是继北京、上海、杭州、成都、成都之后的第六个举办云原生社区 meetup 的城市，四位讲师均围绕云原生为大家奉献了一场技术盛会。"
 tags: ["meetup"]
-categories: ["meetup"]
 keywords: ["dalian","meetup"]
 type: "post"
-avatar: "/images/profile/heying.JPG"
 ---
 
 ![云原生社区 meetup 大连站](images/heying.JPG)
@@ -17,6 +15,8 @@ avatar: "/images/profile/heying.JPG"
 8 月 22 日，在大连市腾飞园区 5 号 楼一楼世达教育，云原生社区 meetup 大连站正式拉开了序幕。此次活动是大连第一次举办如此规模的云原生技术大会，现场到场人数 70+，线上观看人数 700+。来自大连多家头部公司的技术专家围绕云原生，给线上线下的观众奉献了一场经常的技术盛会。
 
 让我们再次回顾一下此次 meetup！
+
+## 讲师话题
 
 ### 《Connecting,Contorlling and Observing Dubbo Microservices with Flomesh》
 
