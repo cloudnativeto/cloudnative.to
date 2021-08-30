@@ -9,8 +9,8 @@ slider:
        animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
        button:
          enable : true
-         label : "立即报名"
-         link : "https://cloudnative.huodongxing.com/event/5608315092100"
+         label : " 查看回顾"
+         link : "https://cloudnative.to/academy/meetup/06-dalian/"
          animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
      - subtitle : ""
        title : "云原生社区 Meetup 第五期· 成都站"
@@ -20,7 +20,7 @@ slider:
        button:
          enable : true
          label : "查看回顾"
-         link : "https://i.cloudnative.to/academy/meetup/05-chengdu"
+         link : "https://cloudnative.to/academy/meetup/05-chengdu/"
          animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
      - subtitle : ""
        title : "云原生社区 Meetup 第四期·广州站"
@@ -30,7 +30,7 @@ slider:
        button:
          enable : true
          label : "查看回顾"
-         link : "https://i.cloudnative.to/academy/meetup/04-guangzhou"
+         link : "https://cloudnative.to/academy/meetup/04-guangzhou/"
          animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
      - subtitle : ""
        title : "云原生社区 Meetup 第三期·杭州站"
@@ -40,7 +40,7 @@ slider:
        button:
          enable : true
          label : "查看回顾"
-         link : "https://i.cloudnative.to/academy/meetup/03-hangzhou"
+         link : "https://cloudnative.to/academy/meetup/03-hangzhou/"
          animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
      - subtitle : ""
        title : "云原生社区 Meetup 第二期·北京站"
@@ -50,7 +50,7 @@ slider:
        button:
          enable : true
          label : "查看回顾"
-         link : "https://i.cloudnative.to/academy/meetup/02-beijing"
+         link : "https://cloudnative.to/academy/meetup/02-beijing/"
          animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
      - subtitle : ""
        title : "云原生社区 Meetup 第一期·上海站"
@@ -60,7 +60,7 @@ slider:
        button:
          enable : true
          label : "查看回顾"
-         link : "https://i.cloudnative.to/academy/meetup/01-shanghai"
+         link : "https://cloudnative.to/academy/meetup/01-shanghai/"
          animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
 
 ################################## banner feature ############################
