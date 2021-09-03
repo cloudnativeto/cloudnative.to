@@ -279,7 +279,7 @@ URL = "/blog/"
 [[Languages.zh.menu.main]]
 name = "兴趣小组"
 weight = 2
-URL = "https://i.cloudnative.to/community/sig/"
+URL = "https://cloudnative.to/community/sig/"
 
 [[Languages.zh.menu.main]]
 name = "投稿"
@@ -304,7 +304,7 @@ weight = 1
 [[Languages.zh.menu.main]]
 parent = "社区"
 name = "云原生学院"
-URL = "https://i.cloudnative.to/academy/"
+URL = "https://cloudnative.to/academy/"
 weight = 2
 
 [[Languages.zh.menu.main]]
@@ -316,7 +316,7 @@ weight = 3
 [[Languages.zh.menu.main]]
 parent = "社区"
 name = "社区资料"
-URL = "https://i.cloudnative.to/community/"
+URL = "https://cloudnative.to/community/"
 weight = 4
 
 [[Languages.zh.menu.main]]
