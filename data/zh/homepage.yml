@@ -100,7 +100,7 @@ about:
   button:
     enable : true
     label : "进入学院"
-    link : "https://i.cloudnative.to/academy"
+    link : "https://cloudnative.to/academy/"
 
 ################################## funfacts ###############################
 funfacts :
@@ -207,7 +207,7 @@ cta:
   button:
     enable : true
     label : "查看"
-    link : "https://i.cloudnative.to/academy/webinar"
+    link : "https://cloudnative.to/academy/webinar/"
 
 ################################# blog ################################################
 blog:
