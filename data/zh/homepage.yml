@@ -3,13 +3,23 @@ slider:
   enable : true
   slider_item:
      - subtitle : ""
+       title : "云原生社区 Meetup 第七期· 深圳站"
+       content : "9 月 25 日（周六）下午，深圳腾讯大厦见！线下开源聚会，欢迎报名参加！"
+       bg_image : "images/slider/shenzhen.jpg"
+       animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
+       button:
+         enable : true
+         label : "立即报名"
+         link : "http://hdxu.cn/fTclj"
+         animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
+     - subtitle : ""
        title : "云原生社区 Meetup 第六期· 大连站"
        content : "8 月 22 日，周日，云原生社区 meetup 第一次来到东北，美丽的海滨城市大连。"
        bg_image : "images/slider/dalian.jpg"
        animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
        button:
          enable : true
-         label : " 查看回顾"
+         label : "查看回顾"
          link : "https://cloudnative.to/academy/meetup/06-dalian/"
          animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
      - subtitle : ""
