@@ -21,7 +21,8 @@ link = "plugins/bootstrap/bootstrap.min.css"
 [[params.plugins.css]]
 link = "plugins/slick/slick.css"
 [[params.plugins.css]]
-link = "plugins/fontawesome/font-awesome.min.css"
+#link = "plugins/fontawesome/font-awesome.min.css"
+link = "plugins/fontawesome/all.css"
 [[params.plugins.css]]
 link = "plugins/animate/animate.css"
 [[params.plugins.css]]
@@ -219,11 +220,11 @@ distractionFreeMode= false # Enable hot key (cmd|ctrl + enter) submit comment.
 
 ########################### social icon ############################
 [[params.social]]
-icon = "fa-twitter"
+icon = "fab fa-twitter"
 link = "https://twitter.com/cloudnativecn"
 
 [[params.social]]
-icon = "fa-github"
+icon = "fab fa-github"
 link = "https://github.com/cloudnativeto"
 
 #[[params.social]]
@@ -231,17 +232,25 @@ link = "https://github.com/cloudnativeto"
 #link = "https://cloudnativecommunity.slack.com"
 
 [[params.social]]
-icon = "fa-wechat"
+icon = "fab fa-weixin"
 # change the link after the public announcement
 link = "https://mp.weixin.qq.com/s/vWlSdzz2MNdXRr0sd2-LFg"
 
 [[params.social]]
-icon = "fa-envelope"
+icon = "far fa-envelope"
 # change the link after the public announcement
 link = "mailto:contact@cloudnative.to"
 
 [[params.social]]
-icon = "fa-rss"
+icon = "fab fa-zhihu"
+link = "https://zhuanlan.zhihu.com/cloud-native"
+
+[[params.social]]
+icon = "fas fa-play-circle"
+link = "https://space.bilibili.com/515485124"
+
+[[params.social]]
+icon = "fas fa-rss"
 link = "https://cloudnative.to/blog/index.xml"
 
 ################################### English language #####################################

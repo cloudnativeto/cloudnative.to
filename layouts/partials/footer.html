@@ -16,7 +16,7 @@
           <ul class="list-inline social-icon-alt">
             {{ range .Site.Params.social }}
             <li class="list-inline-item">
-              <a class="hover-ripple" href="{{ .link | safeURL }}"><i class="fa {{ .icon }}"></i></a>
+              <a class="hover-ripple" href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a>
             </li>
             {{ end }}
           </ul>
