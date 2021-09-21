@@ -3,6 +3,46 @@ slider:
   enable : true
   slider_item:
      - subtitle : ""
+       title : "云原生社区 Meetup 第七期· 深圳站"
+       content : "9 月 25 日（周六）下午，深圳腾讯大厦见！线下开源聚会，欢迎报名参加！"
+       bg_image : "images/slider/shenzhen.jpg"
+       animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
+       button:
+         enable : true
+         label : "立即报名"
+         link : "http://hdxu.cn/fTclj"
+         animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
+     - subtitle : ""
+       title : "云原生社区 Meetup 第六期· 大连站"
+       content : "8 月 22 日，周日，云原生社区 meetup 第一次来到东北，美丽的海滨城市大连。"
+       bg_image : "images/slider/dalian.jpg"
+       animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
+       button:
+         enable : true
+         label : "查看回顾"
+         link : "https://cloudnative.to/academy/meetup/06-dalian/"
+         animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
+     - subtitle : ""
+       title : "云原生社区 Meetup 第五期· 成都站"
+       content : "7 月 3 日，周六，这次 meetup 邀请了 AWS、PingCAP、量化投资的宽邦和蚂蚁的嘉宾来分享。"
+       bg_image : "images/slider/chengdu.jpg"
+       animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
+       button:
+         enable : true
+         label : "查看回顾"
+         link : "https://cloudnative.to/academy/meetup/05-chengdu/"
+         animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
+     - subtitle : ""
+       title : "云原生社区 Meetup 第四期·广州站"
+       content : "5 月 22 日，周六，活动主题关于 Dapr、研发效能、APISIX 和微服务。"
+       bg_image : "images/slider/guangzhou.jpg"
+       animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
+       button:
+         enable : true
+         label : "查看回顾"
+         link : "https://cloudnative.to/academy/meetup/04-guangzhou/"
+         animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
+     - subtitle : ""
        title : "云原生社区 Meetup 第三期·杭州站"
        content : "4 月 17 日，杭州西溪首座。本次活动特别邀请了云原生社区稳定性 SIG、Envoy SIG、OAM SIG、Istio SIG 的核心贡献者为大家带来精彩演讲！"
        bg_image : "images/slider/hangzhou.jpg"
@@ -10,7 +50,7 @@ slider:
        button:
          enable : true
          label : "查看回顾"
-         link : "https://i.cloudnative.to/academy/meetup/03-hangzhou"
+         link : "https://cloudnative.to/academy/meetup/03-hangzhou/"
          animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
      - subtitle : ""
        title : "云原生社区 Meetup 第二期·北京站"
@@ -20,7 +60,7 @@ slider:
        button:
          enable : true
          label : "查看回顾"
-         link : "https://i.cloudnative.to/academy/meetup/02-beijing"
+         link : "https://cloudnative.to/academy/meetup/02-beijing/"
          animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
      - subtitle : ""
        title : "云原生社区 Meetup 第一期·上海站"
@@ -30,7 +70,7 @@ slider:
        button:
          enable : true
          label : "查看回顾"
-         link : "https://i.cloudnative.to/academy/meetup/01-shanghai"
+         link : "https://cloudnative.to/academy/meetup/01-shanghai/"
          animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
 
 ################################## banner feature ############################
@@ -70,7 +110,7 @@ about:
   button:
     enable : true
     label : "进入学院"
-    link : "https://i.cloudnative.to/academy"
+    link : "https://cloudnative.to/academy/"
 
 ################################## funfacts ###############################
 funfacts :
@@ -155,7 +195,7 @@ testimonial:
   testimonial_item:
     # testimonial item loop
     - client_image : "images/testimonial/jimmysong.jpg"
-      name : "Jimmy Song"
+      name : " 宋净超（Jimmy Song）"
       designation : "云原生社区创始人"
       content : "云原生是云计算的未来，我们将看到该领域更多的创新从社区里孵化，让云原生社区陪你一路同行。"
 
@@ -177,7 +217,7 @@ cta:
   button:
     enable : true
     label : "查看"
-    link : "https://i.cloudnative.to/academy/webinar"
+    link : "https://cloudnative.to/academy/webinar/"
 
 ################################# blog ################################################
 blog:
@@ -255,6 +295,14 @@ sponsor:
         - image: "/images/sponsors/alc-beijing.jpg"
           url: "https://alc-beijing.github.io/alc-site/"
           name: "ALC Beijing"
+        - image: "/images/sponsors/dbaplus.png"
+          url: "http://dbaplus.cn/"
+          name: "DBAPlus 社群"
+        - image: "/images/sponsors/sofastack.png"
+          url: "https://www.sofastack.tech/"
+          name: "SOFAStack"
+    company:
+    company:
     company:
       title: "合作企业"
       list:
@@ -282,6 +330,9 @@ sponsor:
         - image: "/images/sponsors/netease-shufan.png"
           url: "https://www.163yun.com/"
           name: "网易数帆"
+        - image: "/images/sponsors/gitlab.png"
+          url: "https://gitlab.cn/"
+          name: "极狐(GitLab)"
     media:
       title: "合作机构"
       list:
