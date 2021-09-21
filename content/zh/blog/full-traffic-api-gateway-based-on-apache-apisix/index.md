@@ -4,7 +4,7 @@ description: "基于 Apache APISIX 的全流量 API 网关统筹集群流量。"
 author: "[温铭](https://github.com/moonming)"
 image: "/images/blog/apache_apisix.png"
 categories: ["其他"]
-tags: ["gateway"]
+tags: ["API Gateway"]
 date: 2020-09-30T16:00:00+08:00
 type: "post"
 avatar: "/images/profile/wenming.png"

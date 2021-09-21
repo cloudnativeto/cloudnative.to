@@ -1,5 +1,8 @@
 <div class="card border-0 rounded-0 position-relative box-shadow">
+    <!--隐藏博客 banner 上的分类 tag-->
+    <!--
     {{ with .Params.Categories }}{{range first 1 .}} <div class="card-type"><a href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}">{{ . | title }}</a></div>{{ end }}{{ end }}
+    -->
   <img class="card-img-top rounded-0" src="{{ .Params.Image_webp | relURL }}"
     onerror="this.src='{{.Params.Image | relURL }}'" alt="{{ .Title }}">
   <div class="card-body">

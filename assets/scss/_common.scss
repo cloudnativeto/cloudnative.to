@@ -510,13 +510,13 @@ textarea.form-control-sm {
 
   ul,
   ol {
-    padding-left: 0;
+    padding-left: 10px;
 
     li {
       position: relative;
-      padding-left: 20px;
+      padding-left: 0px;
       margin-bottom: 10px;
-
+      list-style-type: auto;
       &::before {
         position: absolute;
         content: "\f10c";
