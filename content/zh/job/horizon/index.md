@@ -1,6 +1,6 @@
 ---
 title: "[社招] 地平线艾迪平台部"
-date: 2020-09-19T16:38:03+08:00
+date: 2021-09-18T12:38:03+08:00
 draft: false
 bg_image: "images/backgrounds/page-title.jpg"
 description: "Base 地：北京、南京"
