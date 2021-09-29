@@ -1,6 +1,6 @@
 ---
 title: "在非容器环境上实现散装的 IPVS SVC"
-description: "在没有容器的环境下，靠基础的软件实现一个 IPVS 的 SVC 负载"
+description: "在没有容器的环境下，靠基础的软件实现一个 IPVS 的 SVC 负载。"
 date: 2021-09-29T00:00:00+08:00
 image: "images/blog/loadbalance-banner.jpg"
 author: "[张浩](https://zhangguanzhang.github.io/)"
@@ -645,7 +645,6 @@ services:
         max-file: '3'
         max-size: 20m
 ```
-
 
 ## 参考文档
 
