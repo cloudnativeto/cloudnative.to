@@ -123,7 +123,7 @@ profile: "王冬，腾讯云高级工程师，边缘计算专家，专注于Kube
 
 * 方式三：扫描下方右侧二位码，加Jimmy song为好友，发送“加入edge sig”入群；
 
-    ![](edge-sig-join.png)
+    ![](./edge-sig-join.png)
 
 关于云原生社区边缘计算SIG的更多资料可查看：https://i.cloudnative.to/edge
 
