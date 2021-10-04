@@ -1,7 +1,7 @@
 ---
 title: "边缘计算专家长成计划入门20篇"
 description: "云原生边缘计算SIG已经累计发布20篇边缘入门学习，欢迎跟着我们思路长成边缘计算专家！"
-date: 2021-10-29T00:00:00+08:00
+date: 2021-09-29T00:00:00+08:00
 image: "images/blog/edge-sig-learn-20.png"
 author: "[王冬](https://github.com/attlee-wang)"
 avatar: "/images/profile/wangdong.png"
@@ -14,8 +14,6 @@ profile: "王冬，腾讯云高级工程师，边缘计算专家，专注于Kube
 
 
 # 边缘计算专家长成计划入门20篇
-
-
 
 * [1. 边缘计算专家长成计划](#1-边缘计算专家长成计划)
 * [2. 边缘计算专家入门20篇](#2-边缘计算专家入门20篇)
