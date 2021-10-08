@@ -210,7 +210,7 @@ listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes
 lvs 做了 DNAT 并没有做 SNAT ，所以我们利用 iptables 做 SNAT ：
 
 ```
-$ iptables -t nat -A POSTROUTING -m IPVS --vaddr 169.254.11.2 --vport 80 -j MASQUERADE
+$ iptables -t nat -A POSTROUTING -m ipvs --vaddr 169.254.11.2 --vport 80 -j MASQUERADE
 ```
 
 访问看看还是不通，抓包看还是没生效，nat 是依赖 `conntrack` 的，而 IPVS 默认不会记录 conntrack，我们需要开启 IPVS 的 conntrack 才可以让 MASQUERADE 生效。
@@ -241,7 +241,7 @@ $ curl 169.254.11.2/www/test
 iptables 的五链四表如上图所示，我们先删掉原有的规则：
 
 ```bash
-$ iptables -t nat -D POSTROUTING -m IPVS --vaddr 169.254.11.2 --vport 80 -j MASQUERADE
+$ iptables -t nat -D POSTROUTING -m ipvs --vaddr 169.254.11.2 --vport 80 -j MASQUERADE
 ```
 
 平时自己家里使用了 openwrt ，之前看了下上面的 iptables 规则设计挺好的，特别是预留了很多链专门给用户在合适的位置插入规则，比如下面的 `INPUT` 规则：
@@ -319,7 +319,7 @@ Sep 27 23:17:52 centos7 kernel: **log-test**IN= OUT=lo SRC=169.254.11.2 DST=169.
 需要添加下面规则：
 
 ```bash
-iptables -t nat -A OUTPUT -m comment --comment "zgz service portals" -j DOCKER-SERVICES
+iptables -t nat -A OUTPUT -m comment --comment "zgz service portals" -j ZGZ-SERVICES
 ```
 
 ### keepalived 的自动化实现
