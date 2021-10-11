@@ -1,6 +1,6 @@
 ---
 title: "边缘计算专家长成计划入门20篇"
-description: "云原生边缘计算SIG已经累计发布20篇边缘入门学习，欢迎跟着我们思路长成边缘计算专家！"
+description: "云原生社区边缘计算SIG已经累计发布20篇边缘入门学习，欢迎跟着我们思路长成边缘计算专家！"
 date: 2021-09-29T00:00:00+08:00
 image: "images/blog/edge-sig-learn-20.jpg"
 author: "[王冬](https://github.com/attlee-wang)"
