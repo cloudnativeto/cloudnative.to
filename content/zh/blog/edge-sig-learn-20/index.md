@@ -8,16 +8,8 @@ avatar: "/images/profile/wangdong.png"
 categories: ["边缘计算"]
 tags: ["edge"]
 type: "post"
-profile: "王冬，腾讯云高级工程师，边缘计算专家，专注于Kubernetes、容器等云原生领域，SuperEdge Co-Founder && 核心维护者，现负责腾讯云边缘容器TKE Edge相关工作。"
+profile: "王冬，腾讯云高级工程师，边缘计算专家，专注于 Kubernetes、容器等云原生领域，SuperEdge Co-Founder && 核心维护者，现负责腾讯云边缘容器 TKE Edge 相关工作。"
 ---
-
-
-
-# 边缘计算专家长成计划入门20篇
-
-* [1. 边缘计算专家长成计划](#1-边缘计算专家长成计划)
-* [2. 边缘计算专家入门20篇](#2-边缘计算专家入门20篇)
-* [3.边缘计算专家实践篇](#3边缘计算专家实践篇)
 
 ## 1. 边缘计算专家长成计划
 
