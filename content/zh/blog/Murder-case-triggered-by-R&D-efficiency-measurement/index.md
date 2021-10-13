@@ -1,10 +1,10 @@
 ---
 title: "研发效能度量引发的血案"
 image: "images/blog/murdercase-banner.png"
-date: 2021-08-22T10:00:00+08:00
+date: 2021-10-13T10:00:00+08:00
 description: "优秀的度量体系设计对目标会有很强的正向牵引作用，不恰当的度量体系往往会引发一场“腥风血雨”。"
 author: "[茹炳晟](https://cloud.tencent.com/tvp/147)"
-categories: ["研发效能"]
+categories: ["DevOps"]
 tags: ["研发效能", "度量"]
 type: "post"
 avatar: "/images/profile/rubingsheng.jpg"
