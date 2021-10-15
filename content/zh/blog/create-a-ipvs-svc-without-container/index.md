@@ -5,8 +5,8 @@ date: 2021-09-29T00:00:00+08:00
 image: "images/blog/loadbalance-banner.jpg"
 author: "[张浩](https://zhangguanzhang.github.io/)"
 avatar: "/images/profile/zhangguanzhang.png"
-categories: ["IPVS"]
-tags: ["IPVS","lvs"]
+categories: ["Kubernetes"]
+tags: ["IPVS","lvs","kubernetes"]
 type: "post"
 profile: "金山办公软件运维开发工程师，containers/podman 的 Collaborator。目前主要从事运维开发和 K8S 相关的工作。"
 ---

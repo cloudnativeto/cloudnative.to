@@ -4,8 +4,8 @@ description: "本文从多个角度说明了 DevSecOps 对于供应链安全的�
 author: "[Johnathan Hunt](https://www.infoq.com/articles/devsecops-supply-chain/)"
 translator: "[马景贺（小马哥）](https://github.com/majinghe)"
 image: "images/blog/devsecops.png"
-categories: ["DevSecOps"]
-tags: ["DevOps","security"]
+categories: ["安全"]
+tags: ["DevOps","security","DevSecOps"]
 date: 2021-07-30T13:05:42+08:00
 type: "post"
 avatar: "/images/profile/johnathan-hunt.jpg"
