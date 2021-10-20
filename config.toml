@@ -179,7 +179,7 @@ baidu_tongji_id = "f3dc895ea3bd6186cd835841d365c103"
 # page sidebar quick contact form
 quick_contact = false
 # search
-search = true
+search = false
 map = false
 email = "[contact@cloudnative.to](mailto:contact@cloudnative.to)"
 wechat = "[jimmysongio](https://jimmysong.io/contact)"
