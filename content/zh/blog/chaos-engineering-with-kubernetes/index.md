@@ -21,9 +21,11 @@ Chaos Mesh 是由 TiDB 背后的 PingCAP 公司开发，运行在 Kubernetes 上
 
 本文试验代码位于 [mayocream/chaos-mesh-controlpanel-demo](https://github.com/mayocream/chaos-mesh-controlpanel-demo) 仓库。
 
-## 怎么捣乱？
+## 如何制造混沌
 
-### 特权
+Chaos Mesh 是在 Kubernetes 上实施混沌工程的利器，那它是如何工作的呢？
+
+### 特权模式
 
 上面提到 Chaos Mesh 运行 Kubernetes 特权容器来制造故障。Daemon Set 方式运行的 Pod 授权了容器运行时的[权能字（Capabilities）](https://kubernetes.io/zh/docs/concepts/policy/pod-security-policy/#capabilities)。
 
@@ -614,7 +616,7 @@ Chaos Mesh 是一个开源的混沌工程系统，以 Apache 2.0 协议开源，
 
 
 
-### 要做什么？
+### 职能划分
 
 ![Chaos Mesh 的基本工作流原理图](4_d0e6bfad2a.png)
 
