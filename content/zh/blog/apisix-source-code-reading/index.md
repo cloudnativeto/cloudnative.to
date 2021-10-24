@@ -7,7 +7,7 @@ tags: ["源码阅读", "网关"]
 date: 2021-10-24T14:00:00+08:00
 type: "post"
 avatar: "https://github.com/mayocream.png"
-profile: "CNCF TAG Security 成员，云原生社区贡献者。"
+profile: "Kubernetes Member, CNCF Security TAG Member, OSS Contributor."
 image: "/images/blog/apisix-heading.png"
 ---
 
