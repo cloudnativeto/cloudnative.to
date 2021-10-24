@@ -1,13 +1,13 @@
 ---
 title: "云原生网关 Kong 源码分析"
 description: "本文分析了 Kong 的启动流程、插件机制、缓存机制和请求的生命周期。"
-author: "[Mayo](https://github.com/mayocream)"
+author: "[黄涵（Mayo Cream）](https://github.com/mayocream)"
 categories: ["云原生"]
 tags: ["网关", "Kong", "源码阅读"]
 date: 2021-10-21T12:00:00+08:00
 type: "post"
 avatar: "https://github.com/mayocream.png"
-profile: "CNCF TAG Security 成员，云原生社区贡献者。"
+profile: "Kubernetes Member, CNCF Security TAG Member, OSS Contributor."
 image: "/images/blog/kong-gateway.png"
 ---
 
