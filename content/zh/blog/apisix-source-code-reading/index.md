@@ -1607,17 +1607,11 @@ end
 
 Cloudflare 的边缘计算是基于 Edge Gateway（边缘网关、边缘集群）的 Serverless 代码执行，提供了 JS 代码执行，以及 WASM 二进制。[^10]
 
-![](image-20210611155454963.png)
-
-
-
 *一些相关的 Issue:*
 
 - [Support wasm in openresty?](https://github.com/openresty/openresty/issues/541)
-  ![](image-20210611160051987.png)
 
 - [feature: support WebAssembly in apisix.](https://github.com/apache/apisix/issues/157)
-  ![](image-20210611160137790.png)
 
 #### 3.1.1. Lua (Serverless)
 
@@ -1627,58 +1621,49 @@ APISIX 的 Serverless 插件功能支持注入任何 Lua 脚本，而 Kong 网�
 
 Serverless 插件支持执行简单的函数方法。
 
-#### 3.1.2. WASM VM
+#### 3.1.2. WebAssembly
 
-TODO
+APISIX 自 2019 年发起提案，试图通过 WebAssembly 来扩展 Lua 贫乏的生态。
+2021 年，在 WebAssembly 运行时的技术选型上，APISIX 的技术团队更偏向使用由 Fastly 团队
+支撑[^14]的 [wasmtime](https://github.com/bytecodealliance/wasmtime) 项目。
 
-### 3.2. Mesh
+开源的 WebAssembly 除了 wasmtime 还有[^15]：
 
-APISIX 网关的 Mesh 项目。值得一提的是 Kong 也有类似的 Mesh 项目。
+- [WasmEdge](https://github.com/WasmEdge/WasmEdge)（前身 SSVM），由 Second State 开源的 CNCF 沙箱项目。
+- [Wasmer](https://github.com/wasmerio/wasmer)，Dart 语言使用的 Wasm 运行时。
+- [Lucet](https://github.com/bytecodealliance/lucet)，由 Fastly 开源的 [Bytecode Alliance](https://bytecodealliance.org/) 的
+  项目，将会与 wasmtime 合并。
 
-Repo: [api7/apisix-mesh-agent](https://github.com/api7/apisix-mesh-agent)
+在 Issue [#157](https://github.com/apache/apisix/issues/157) 的讨论中，Wasmer 的 CEO 也来插了一嘴，
+希望 APISIX 能够选型 Wasmer 运行时，APISIX 成员给了 Wasmer 一个大大的赞，
+最终在 [api7/wasm-nginx-module](https://github.com/api7/wasm-nginx-module) 插件中，
+还是使用 wasmtime 运行时实现了对 WebAssembly 的支持。
+
+
+### 3.2. Service Mesh
+
+APISIX 的 Service Mesh 项目 [api7/apisix-mesh-agent](https://github.com/api7/apisix-mesh-agent)，将 APISIX Proxy 作为 Sidecar 运作在数据平面。通过实现控制平面的接口，接入类似 [Istio](https://github.com/istio/istio) 或 [Kuma](https://github.com/kumahq/kuma)（由 Kong 创建捐赠给 CNCF） 的控制平面，形成一套完整的 Service Mesh 方案。
+该项目本质上是使用 APISIX 替换了 Istio 中的 Envoy。
 
 ![](apisix-mesh-overview.png)
 
-Go 语言开发的 Agent，接入了 Istio 的协议：
 
-```go
-module github.com/api7/apisix-mesh-agent
+值得一提的是 Kong 类似的 Service Mesh 项目，叫做 [Kong Mesh](https://docs.konghq.com/mesh/)，目前只提供企业版本。
 
-go 1.16
-
-require (
-	github.com/envoyproxy/go-control-plane v0.9.9-0.20210115003313-31f9241a16e6
-	github.com/envoyproxy/protoc-gen-validate v0.4.1
-	github.com/fsnotify/fsnotify v1.4.9
-	github.com/golang/protobuf v1.4.3
-	github.com/google/uuid v1.2.0
-	github.com/grpc-ecosystem/grpc-gateway v1.14.6
-	github.com/soheilhy/cmux v0.1.4
-	github.com/spf13/cobra v1.1.3
-	github.com/stretchr/testify v1.7.0
-	github.com/tmc/grpc-websocket-proxy v0.0.0-20190109142713-0ad062ec5ee5
-	go.etcd.io/etcd/api/v3 v3.5.0-alpha.0
-	go.uber.org/zap v1.16.0
-	golang.org/x/net v0.0.0-20210525063256-abc453219eb5
-	google.golang.org/genproto v0.0.0-20210222152913-aa3ee6e6a81c
-	google.golang.org/grpc v1.36.0
-	google.golang.org/grpc/examples v0.0.0-20210304020650-930c79186c99 // indirect
-	google.golang.org/protobuf v1.25.0
-	gotest.tools v2.2.0+incompatible
-	istio.io/istio v0.0.0-20210308180034-f6502508b04c
-)
-```
+![](kong_mesh.png)
 
 
-[^1]: [How does Kong solve similar problems?](https://github.com/apache/apisix/issues/3207#issuecomment-759269071)
+[^1]: 摘自 APISIX [#3207](https://github.com/apache/apisix/issues/3207#issuecomment-759269071) Issue
 [^2]: [LuaJIT FFI 介绍，及其在 OpenResty 中的应用（下）](https://segmentfault.com/a/1190000016149595)
 [^3]: [《OpenResty精华整理》6.性能优化 ](https://yxudong.github.io/%E3%80%8AOpenResty%E7%B2%BE%E5%8D%8E%E6%95%B4%E7%90%86%E3%80%8B6.%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/)
 [^4]: [OpenResty：特权进程和定时任务](https://www.cnblogs.com/liekkas01/p/12764577.html)
-[^5]: [enable_privileged_agent](https://github.com/openresty/lua-resty-core/blob/master/lib/ngx/process.md#enable_privileged_agent)
-[^6]: [ngx.var vs ngx.ctx](https://github.com/openresty/lua-nginx-module/issues/1482)
+[^5]: OpenResty lua-resty-core 文档 [enable_privileged_agent](https://github.com/openresty/lua-resty-core/blob/master/lib/ngx/process.md#enable_privileged_agent)
+[^6]: OpenResty Issue [ngx.var vs ngx.ctx](https://github.com/openresty/lua-nginx-module/issues/1482)
 [^7]: [openresty/lua-resty-lrucache](https://github.com/openresty/lua-resty-lrucache#description)
 [^8]: [set variable inoperative!!](https://github.com/apache/apisix/issues/1120#issuecomment-584949073)
 [^9]: [什么是边缘计算？](https://www.cloudflare.com/zh-cn/learning/serverless/glossary/what-is-edge-computing/)
 [^10]: [WebAssembly on Cloudflare Workers](https://blog.cloudflare.com/webassembly-on-cloudflare-workers/)
 [^11]: [APISIX Serverless Plugin](https://github.com/apache/apisix/blob/master/docs/en/latest/plugins/serverless.md)
 [^13]: [openresty/luajit2](https://github.com/openresty/luajit2)
+[^14]: 摘自 [Bytecode Alliance: One year update](https://bytecodealliance.org/articles/1-year-update)
+[^15]: 摘自 [Proposal: APISIX JavaScript Plugin Runner](https://github.com/apache/apisix/issues/5106)
