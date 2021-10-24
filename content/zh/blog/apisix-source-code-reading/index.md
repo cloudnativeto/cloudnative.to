@@ -23,32 +23,12 @@ APISIX 是基于 OpenResty 开发的 API 网关，与 OpenResty 的请求生命�
 
 APISIX 抽象了 Route、Service、Upstream、Plugin、Consumer 等数据模型，与 Kong 网关如出一辙。
 
-<div style="display: flex">
-	<figure style="max-width: 50%">
-        <img  src="114740649-a9bf2200-9d67-11eb-8e1d-1409fb5c18c2.png">
-        <figcaption style="text-align: center">APISIX</figcaption>
-	</figure>
-	<figure style="max-width: 50%">
-        <img  src="Kong-GS-overview.png">
-        <figcaption style="text-align: center">Kong</figcaption>
-	</figure>
-</div>
+![APISIX](114740649-a9bf2200-9d67-11eb-8e1d-1409fb5c18c2.png)
+![Kong](Kong-GS-overview.png)
 
 基本上可以看作 APISIX 是 Kong 网关的重构——运用大量 LuaJIT、OpenResty 技巧优化性能、简化复杂的数据结构、替换储存引擎为 etcd 等。
 
-```mermaid
-graph LR
-	A(Routes)
-	B(Services) --> |Many| A
-	C(Upstreams)
-	A --> |One| C
-	B --> |One| C
-	D(Plugin)
-	A --> |Many| D
-	B --> |Many| D
-	E(Consumers) --> |Many| D
-	
-```
+![](graph-1.png)
 
 值得一提的是，在 APISIX 的一个 issue 中，项目开发者说不确定是什么原因，我们看看 Kong 网关是怎么解决的吧。
 
@@ -111,13 +91,7 @@ $ tree -L 2
 
 #### 2.1.2. 启动流程
 
-```mermaid
-graph LR
-	1[CLI 执行] --> 2["运行 LUA 脚本 (LuaJIT)"]
-	3[生成 Nginx 配置] --> 4[初始化 etcd]
-	2 --> 3
-	4 --> 5[启动 OpenResty]
-```
+![](graph-2.png)
 
 
 CLI 默认会用 LuaJIT 启动，若版本不够便退回到 Lua 5.1 解释器执行。
@@ -344,27 +318,7 @@ function _M.get(self, key)
 end
 ```
 
-```mermaid
-graph TD
-	1[获取 LRU 缓存]
-	11{缓存失效?}
-	1 --> 11
-	11 --> 99
-	2{开启并发锁?}
-	3{不支持锁?}
-	3 --> |是| 6
-	11 --> |是| 2
-	2 --> |是| 3
-	2 --> |否| 6
-	3 --> |否| 4
-	4[共享内存锁] --> 5[再次获取缓存]
-	5 --> 7
-	6[创建缓存]
-	7{缓存有效?} --> 99
-	7 --> |否| 6
-	6 --> 99
-	99[返回缓存]
-```
+![](graph-3.png)
 
 ```lua
 local function fetch_valid_cache(lru_obj, invalid_stale, item_ttl,
@@ -814,13 +768,7 @@ end
 
 `load_full_data` 函数加载数据结构所需的 etcd kvs，并进行数据转换、校验、格式化、执行回调。
 
-```mermaid
-graph TD
-	1[创建 table 缓存新数据] --> 2[jsonschema 校验数据格式]
-	2 --> 3[自定义 check 函数检查数据格式]
-	3 --> 4[自定义 filter 函数过滤数据]
-	4 --> 5[etcd 更新 mvcc 版本]
-```
+![](graph-4.png)
 
 ```lua
 local function load_full_data(self, dir_res, headers)
@@ -875,19 +823,7 @@ end
 
 利用 etcd watch 机制进行数据变更的同步。
 
-```mermaid
-graph TD
-	A[触发定时器] --> C[同步数据]
-	subgraph 同步数据
-		C{ }
-		C --> |全量加载?| D[全量数据获取]
-		C --> |watch?| E[Watch 变化]
-		F[格式化] --> G[数据校验] --> H[执行回调]
-		D --> F
-		E --> F
-	end
-	
-```
+![](graph-5.png)
 
 ```lua
 -- 定时器自动同步 etcd 数据
@@ -1074,16 +1010,7 @@ end
 
 `router.http_init_worker` 中进行 Router 初始化。
 
-```mermaid
-graph TD
-	1["1. 加载不同模式的 router (uri/sni), 引入不同的 lua 库"]
-	2[2. 创建 router 实例]
-	3[3. 添加初始化回调]
-	4["4. etcd 获取数据并执行回调 (后台自动更新)"]
-	5[5. filter callback 格式化, 解析 upstream]
-	6["6. 修改 router user_routes 数据 (router match 使用)"]
-	1 --> 2 --> 3 --> 4 --> 5 -->6
-```
+![](graph-6.png)
 
 
 ```lua
@@ -1241,32 +1168,7 @@ end
 
 API 网关的负载均衡策略（Kong/APISIX）都是基于 OpenResty [lua-resty-core/balancer](https://github.com/openresty/lua-resty-core/blob/master/lib/ngx/balancer.md#set_current_peer) 提供的负载均衡函数实现，`set_current_peer` 设置当前请求上游地址，`set_more_tries` 设置请求失败重试次数，`get_last_failure` 获取上一次请求失败结果判断是否需要继续重试，`set_timeouts` 设置单个请求超时时间。
 
-```mermaid
-graph TD
-	subgraph access_by_lua
-		a1[服务发现]
-        a2[peer 储存到 ctx]
-        a1 --> a2
-	end
-	subgraph balancer_by_lua
-		b1{ }
-		b2[重新获取 peer]
-		b3[从 ctx 获取 peer]
-		b9[请求上游]
-		b1 -.-> |失败重试| b2
-		b1 --> b3
-		b3 --> b9
-	end
-	subgraph balancer
-		c1(负载均衡)
-		c2[上报上次失败结果]
-		c1 -.-> c2
-		c3[负载均衡器获取 peer]
-		c1 ---> c3
-	end
-	a1 ---> c1
-	b2 -.-> c1
-```
+![](graph-7.png)
 
 `set_balancer_opts` 设置 Nginx Balancer 参数。 
 
@@ -1461,18 +1363,7 @@ end
 
 ##### 2.3.4.1. init_by_lua
 
-```mermaid
-graph TD
-	1["1. 加载 resty.core"]
-	2["2. ngx.re JIT 缓存参数优化"]
-	3["3. LuaJIT 参数优化"]
-	4["4. dns client 初始化"]
-	5["5. 生成节点 id"]
-	6["6. 开启 openresty 特权进程"]
-	7["7. 读取配置文件并校验有效性 (本地文件/etcd)"]
-	1 --> 2 --> 3 --> 4
-	4 --> 5 --> 6 --> 7
-```
+![](graph-8.png)
 
 ```lua
 function _M.http_init(args)
@@ -1509,29 +1400,9 @@ end
 
 ##### 2.3.4.2. init_worker_by_lua
 
-```mermaid
-graph TD
-	1["1. random seed 初始化"]
-	2["2. 外部服务发现 (默认没有开启, consul, dubbo)"]
-	3["3. 初始化负载均衡器 balancer (HTTP/Upstream) 创建 LRU 缓存"]
-	4["4. 加载 Admin API"]
-	5["5. 创建后台 timer"]
-	6["6. 加载所有插件并执行插件 init 方法"]
-	7["7. 从 etcd 获取 routes/services/upstreams"]
-	1 --> 2 --> 3 --> 4
-	4 --> 5 --> 6 --> 7
-```
+![](graph-9.png)
 
-```mermaid
-graph TD
-	subgraph "7. 从 etcd 获取 routes/services/upstreams"
-        71["a. 创建 router (uri/sni)"]
-        72["b. 挂载 filter 回调函数"]
-        73["c. 数据格式化"]
-        74["d. timer watch etcd 事件变化执行回调"]
-        71 --> 72 --> 73 --> 74
-	end
-```
+![](graph-10.png)
 
 ```lua
 function _M.http_init_worker()
