@@ -9,8 +9,8 @@ slider:
        animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
        button:
          enable : true
-         label : "立即报名"
-         link : "http://hdxu.cn/2CQ1P"
+         label : "查看回顾"
+         link : "https://cloudnative.to/academy/meetup/08-shanghai/"
          animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
      - subtitle : ""
        title : "云原生社区 Meetup 第七期· 深圳站"
