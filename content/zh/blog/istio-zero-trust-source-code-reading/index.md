@@ -1360,10 +1360,7 @@ func ValidateK8sJwt(kubeClient kubernetes.Interface, targetToken string, aud []s
 
 SDS 协议是 xDS 协议的一类，在 Istio 中，SDS 用于传输证书数据。
 
-```mermaid
-graph LR
-    A[Discovery] <-- SDS --> B[pilot-agent] <-- "SDS (UDS)" --> C[Envoy]
-```
+![](graph-xds.png)
 
 _pilot-agent_ 原本叫 Node Agent，负责转发 Envoy 的 SDS 请求，以及负责生成 CSR 请求到 discovery。
 
