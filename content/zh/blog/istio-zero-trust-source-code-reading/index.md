@@ -1701,11 +1701,11 @@ func (sc *SecretCache) addFileWatcher(file string, token string, connKey ConnKey
 
 ![](cert-flow.png)
 
-- [^1]: 摘自《零信任网络 : 在不可信网络中构建安全系统》第 6 章—建立用户信任
-- [^2]: [Istio / Security - Secure naming](https://istio.io/latest/docs/concepts/security/#secure-naming)
-- [^3]: [Secure Production Identity Framework for Everyone (SPIFFE) - 1. Introduction](https://github.com/spiffe/spiffe/blob/main/standards/SPIFFE.md#1-introduction)
-- [^4]: [Kubernetes 下零信任安全架构分析 - 蚂蚁零信任架构体系落地最佳实践](https://developer.aliyun.com/article/740195)
-- [^5]: 摘自《零信任网络 : 在不可信网络中构建安全系统》第 2 章—信任管理
-- [^6]: [Announcing Istio 1.8](https://istio.io/latest/news/releases/1.8.x/announcing-1.8/)
-- [^7]: 摘自《零信任网络 : 在不可信网络中构建安全系统》第 8 章—建立流量信任
-- [^8]: [Istio 证书签发流程](https://blog.csdn.net/yevvzi/article/details/107863433)
+[^1]: 摘自《零信任网络 : 在不可信网络中构建安全系统》第 6 章—建立用户信任
+[^2]: [Istio / Security - Secure naming](https://istio.io/latest/docs/concepts/security/#secure-naming)
+[^3]: [Secure Production Identity Framework for Everyone (SPIFFE) - 1. Introduction](https://github.com/spiffe/spiffe/blob/main/standards/SPIFFE.md#1-introduction)
+[^4]: [Kubernetes 下零信任安全架构分析 - 蚂蚁零信任架构体系落地最佳实践](https://developer.aliyun.com/article/740195)
+[^5]: 摘自《零信任网络 : 在不可信网络中构建安全系统》第 2 章—信任管理
+[^6]: [Announcing Istio 1.8](https://istio.io/latest/news/releases/1.8.x/announcing-1.8/)
+[^7]: 摘自《零信任网络 : 在不可信网络中构建安全系统》第 8 章—建立流量信任
+[^8]: [Istio 证书签发流程](https://blog.csdn.net/yevvzi/article/details/107863433)
