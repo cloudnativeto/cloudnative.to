@@ -1,7 +1,7 @@
 ---
 title: "在 Kubernetes 实施混沌工程——Chaos Mesh 原理分析与控制面开发"
 description: "本文探索混沌工程在 Kubernetes 集群上的实践，基于源码分析了解 Chaos Mesh 的工作原理，以代码示例阐述如何开发 Chaos Mesh 的控制平面。"
-author: "[黄涵（Mayo Cream）](https://github.com/mayocream)"
+author: "[Mayo Cream](https://github.com/mayocream)"
 categories: ["云原生"]
 tags: ["源码阅读", "混沌工程", "kubernetes"]
 date: 2021-10-22T00:00:00+08:00
