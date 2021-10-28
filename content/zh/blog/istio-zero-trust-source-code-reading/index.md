@@ -1,5 +1,5 @@
 ---
-title: "Istio 安全源码分析——零信任身份认证与通信安全"
+title: "Istio 安全分析——认证体系与通信安全"
 description: "本文分析 Istio 安全认证体系与加密通信的源码，让读者对零信任的实践有清晰的认识，这些知识能帮助构建零信任认证与通信体系。"
 author: "[Mayo Cream](https://github.com/mayocream)"
 categories: ["Service Mesh"]
@@ -11,7 +11,7 @@ profile: "Kubernetes Member, CNCF Security TAG Member, OSS Contributor."
 image: "/images/blog/istio-zero-trust-heading.png"
 ---
 
-本文分析 Istio 安全认证体系与加密通信的源码，让读者对零信任的实践有清晰的认识，这些知识能帮助构建零信任认证与通信体系。
+本文分析 Istio 安全认证体系与加密通信的源码，介绍 Istio 是如何构建集群内部 PKI 证书基础设施和实施安全通信的。
 
 分析过程的代码注释在我的 Github 仓库 [mayocream/istio](https://github.com/mayocream/istio/tree/citadel-review) 的 citadel-review 分支。
 
