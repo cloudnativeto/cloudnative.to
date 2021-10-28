@@ -1,7 +1,7 @@
 ---
 title: "云原生网关 APISIX 核心流程源码分析与进化方向思考"
 description: "本文针对云原生网关 APISIX 的核心流程以源码分析的方式剖析其工作原理，并对于网关未来的发展方向进行了思考。"
-author: "[黄涵（Mayo Cream）](https://github.com/mayocream)"
+author: "[Mayo Cream](https://github.com/mayocream)"
 categories: ["云原生"]
 tags: ["源码阅读", "网关", "apisix"]
 date: 2021-10-24T14:00:00+08:00
