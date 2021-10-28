@@ -1,5 +1,5 @@
 ---
-title: "Istio 安全分析——认证体系与通信安全"
+title: "Istio 安全源码分析——认证体系与通信安全"
 description: "本文分析 Istio 安全认证体系与加密通信的源码，让读者对零信任的实践有清晰的认识，这些知识能帮助构建零信任认证与通信体系。"
 author: "[Mayo Cream](https://github.com/mayocream)"
 categories: ["Service Mesh"]
