@@ -1,5 +1,5 @@
 ---
-title: "多租户场景下Istio部署方案探索"
+title: "多租户场景下 Istio 部署方案探索"
 image: "images/blog/daluis-gorge.jpg"
 date: 2021-11-01T02:37:00+08:00
 description: "Istio 作为服务治理的主流技术，应用的越来越多。在将 Istio 落地部署的时候，需要考虑公司组织结构、产品、网络、人员等多种场景因素，确定合适的部署方案。我们需要在一个 Kubernetes 集群中通过 Istio 纳管多款产品，针对该需求，对 Istio 部署模型进行了一些调研探索，确定了适合的的部署模式，记录下来，为有相同需要的伙伴提供参考。"
