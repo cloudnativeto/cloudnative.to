@@ -12,7 +12,9 @@ image: "images/team/zhangxh.jpg"
 designation: "Flomesh（易衡）"
 social:
   - icon : "fa-github" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
-    link : "https://github.com/addozhang"  
+    link : "https://github.com/addozhang"
+  - icon : "fas fa-globe"
+    link : "https://atbug.com/"
 # type
 type: "team"
 ---

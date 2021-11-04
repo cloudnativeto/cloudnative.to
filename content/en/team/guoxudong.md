@@ -15,7 +15,7 @@ social:
     link : "https://www.linkedin.com/in/guoxudong/"
   - icon : "fa-github" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
     link : "https://github.com/sunny0826"
-  - icon : "fa-globe" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+  - icon : "fas fa-globe" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
     link : "https://guoxudong.io"
 # type
 type: "team"

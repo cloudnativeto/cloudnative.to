@@ -6,7 +6,7 @@
       <ul class="list-inline social-icon">
         {{ range .Params.Social }}
         <li class="list-inline-item">
-          <a href="{{ .link | safeURL }}" class="hover-ripple ripple-white"><i class="fa {{ .icon }}"></i></a>
+          <a href="{{ .link | safeURL }}" class="hover-ripple ripple-white"><i class="fab {{ .icon }}"></i></a>
         </li>
         {{ end }}
       </ul>
