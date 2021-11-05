@@ -27,7 +27,7 @@ body {
 
 ol,
 ul {
-  list-style-type: none;
+  list-style-type: disc;
   margin: 0px;
 }
 
@@ -508,7 +508,6 @@ textarea.form-control-sm {
     margin-bottom: 10px;
   }
 
-  ul,
   ol {
     padding-left: 10px;
 
@@ -516,7 +515,7 @@ textarea.form-control-sm {
       position: relative;
       padding-left: 0px;
       margin-bottom: 10px;
-      list-style-type: auto;
+      list-style-type: decimal;
       &::before {
         position: absolute;
         content: "\f10c";
