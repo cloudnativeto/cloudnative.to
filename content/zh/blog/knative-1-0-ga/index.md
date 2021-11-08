@@ -3,7 +3,7 @@ title: "Knative 1.0 发布了！"
 image: "images/blog/knative-1.jpg"
 date: 2021-11-08T06:37:00+08:00
 description: "今天我们发布了Knative 1.0，达到了一个重要的里程碑，这要归功于600多名开发者的贡献和合作。"
-author: "[Carlos Santana ](https://twitter.com/csantanapr)(IBM)、[Omer Bensaadon ](https://twitter.com/omer_bensaadon)(VMware)、[Maria Cruz ](https://twitter.com/marianarra_)(Google)"
+author: "[Knative 官网](https://knative.dev/blog/articles/knative-1.0/)"
 categories: ["serverless"]
 translator: "[宋净超（Jimmy Song）](https://jimmysong.io)"
 tags: ["knative", "serverless"]

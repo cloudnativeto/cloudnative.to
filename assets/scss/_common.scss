@@ -25,10 +25,12 @@ body {
   width: 100vw;
 }
 
-ol,
 ul {
   list-style-type: disc;
-  margin: 0px;
+  li {
+    position: relative;
+    margin-bottom: 0.5em !important;
+  }
 }
 
 a,
@@ -509,7 +511,7 @@ textarea.form-control-sm {
   }
 
   ol {
-    padding-left: 10px;
+//    padding-left: 10px;
 
     li {
       position: relative;
