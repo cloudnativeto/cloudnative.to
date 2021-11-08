@@ -10,7 +10,7 @@ tags: ["knative", "serverless"]
 type: "post"
 ---
 
-作者：[Carlos Santana ](https://twitter.com/csantanapr)(IBM)、[Omer Bensaadon ](https://twitter.com/omer_bensaadon)(VMware)、[Maria Cruz ](https://twitter.com/marianarra_)(Google)，原文发布与 [Knative 官方博客](https://knative.dev/blog/articles/knative-1.0/)。
+作者：[Carlos Santana ](https://twitter.com/csantanapr)(IBM)、[Omer Bensaadon ](https://twitter.com/omer_bensaadon)(VMware)、[Maria Cruz ](https://twitter.com/marianarra_)(Google)，原文发布于 [Knative 官方博客](https://knative.dev/blog/articles/knative-1.0/)。
 
 今天我们发布了 Knative 1.0，达到了一个重要的里程碑，这要归功于 600 多名开发者的贡献和合作。Knative 项目是由谷歌在 2018 年 7 月发布的，并与 VMWare、IBM、Red Hat 和 SAP 紧密合作开发的。在过去 3 年中，Knative 已经成为 [Kubernetes 上最广泛安装的无服务器层](https://www.cncf.io/wp-content/uploads/2020/11/CNCF_Survey_Report_2020.pdf)。
 
