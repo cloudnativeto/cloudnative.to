@@ -10,7 +10,7 @@ tags: ["service mesh"]
 type: "post"
 ---
 
-编者注：本问译自 [How Unnecessary Complexity Gave the Service Mesh a Bad Name](https://www.infoq.com/articles/service-mesh-unnecessary-complexity/)。
+编者注：本文译自 [How Unnecessary Complexity Gave the Service Mesh a Bad Name](https://www.infoq.com/articles/service-mesh-unnecessary-complexity/)。
 
 ## 主要收获
 
