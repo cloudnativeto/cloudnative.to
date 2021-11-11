@@ -1,5 +1,5 @@
 ---
-title: "Apache APISIX的全流量API网关统筹集群流量"
+title: "Apache APISIX 的全流量 API 网关统筹集群流量"
 description: "基于 Apache APISIX 的全流量 API 网关统筹集群流量。"
 author: "[温铭](https://github.com/moonming)"
 image: "/images/blog/apache_apisix.png"
