@@ -14,7 +14,7 @@ profile: "Istio社区成员，网易数帆架构师，负责轻舟Service Mesh�
 Slime是网易数帆微服务团队开源的服务网格组件，它可以作为Istio的CRD管理器，旨在通过更为简单的配置实现Istio/Envoy的高阶功能。目前slime包含三个非常实用的子模块：
 
 1. 配置懒加载: 无须手动配置SidecarScope，按需加载配置和服务发现信息 
-2. Http插件管理: 使用新的的CRD pluginmanager/envoyplugin包装了可读性，可维护性较差的envoyfilter，使得插件扩展更为便捷
+2. Http插件管理: 使用新的的CRD pluginmanager/envoyplugin包装了可读性，摒弃了可维护性较差的envoyfilter，使得插件扩展更为便捷
 3. 自适应限流: 结合监控信息自动调整限流策略 后续我们团队会开放更多实用功能在slime中，希望slime能帮助使用者更好的驾驭Istio这艘小帆船
 
 ## 1. 背景
@@ -50,18 +50,18 @@ Slime是网易数帆微服务团队开源的服务网格组件，它可以作为
 global-sidecar在完成代理后会将服务调用信息上报给slime，slime根据调用信息更新Scope，首次调用后，服务便可感知到被调用方的信息，不再需要global-sidecar转发，如下图所示。
 ![lazyload-bookinfo-p2.png](008eGmZEly1gn14jq39tzj314d0pd76x.jpg)
 
-在实现配置懒加载的过程中，我们也遇到了另外一个问题，当被调用服务服务名被vs中的路由规则导向另一个服务时，slime只能将被调用服务添加到Scope中，被导向服务的服务发现信息依然缺失，导致再次调用时出现503。为了解决这个问题，我们引入了自研CRD--ServiceFence，通过它可以构建起服务名和后端服务的映射关系。slime根据其，将被调用服务和被导向服务同时加入到Scope中，避免了上述问题。
+在实现配置懒加载的过程中，我们也遇到了另外一个问题，当被调用服务服务名被vs中的路由规则导向另一个服务时，slime只能将被调用服务添加到Scope中，被导向服务的服务发现信息依然缺失，导致再次调用时出现503。为了解决这个问题，我们引入了自研CRD——ServiceFence，通过它可以构建起服务名和后端服务的映射关系。slime根据其对应服务的VirtualService，找到服务名和真实后端的映射关系，将两者的都加入scope中，将可避免上述问题。
 ![ll.png](008eGmZEly1gn14jnq6spj30pv0om0uq.jpg)
-Servicefence也可以对生成的SidecarScope的生命周期做管理，可以自动清理长时间不用的调用关系。
-当然上述这些CRD的生成和维护都是自动的，用户即不需要关心ServiceFence资源也不需要关心SidecarScope资源，只需要在SVC上打上`istio.dependency.servicefence/status: "true"`的标签，表面该服务需要开启配置懒加载即可。
+ServiceFence也可以对生成的SidecarScope的生命周期做管理，可以自动清理长时间不用的调用关系。
+当然上述这些CRD的生成和维护都是自动的，用户即不需要关心ServiceFence资源也不需要关心SidecarScope资源，只需要在Service上打上`istio.dependency.servicefence/status: "true"`的标签，表明该服务需要开启配置懒加载即可。
 
-![自动依赖.png](008eGmZEly1gn14jp6fd2j30je0a0dgs.jpg)
+![自动依赖](008eGmZEly1gn14jp6fd2j30je0a0dgs.jpg)
 
 ## 3. Http插件管理
 
 在网关场景下，流量管理比较复杂，需要使用定制化插件来处理流量，在开发slime的插件模块之前，插件扩展只能通过EnvoyFilter来实现，EnvoyFilter是xDS层面的配置，管理和维护这样的配置需要耗费大量的精力，同时出错率也极高。
 
-为了简化插件管理的难度，我们决定在EnvoyFilter上层做一层面向插件管理的抽象。xDS中关于HTTP插件的配置有两段，一部分在LDS中，作为HttpConnectionManager的SubFilter，它决定了哪些插件将被加载以及插件的执行顺序。另一部分在RDS中，并且有两个粒度，分别是virtualHost粒度的perFilterConfig以及route粒度的perFilterConfig，这部分决定了当前Host或者是路由需要进行的插件行为。
+为了简化插件管理的难度，我们决定在EnvoyFilter上层做一层面向插件管理的抽象。xDS中关于HTTP插件的配置有两段，一部分在LDS中，作为HttpConnectionManager的SubFilter，它决定了哪些插件将被加载以及插件的执行顺序。另一部分在RDS中，并且有两个粒度，分别是VirtualHost粒度的perFilterConfig以及route粒度的perFilterConfig，这部分决定了当前Host或者是路由需要进行的插件行为。
 
 LDS中的部分被我们抽象为PluginManager，我们可以通过enable选项启停插件。通过PluginManager也可以管理插件的执行优先级，其中的插件顺序和LDS插件链中的顺序是一致的，越靠前的插件执行优先级越高，如下图所示：
 

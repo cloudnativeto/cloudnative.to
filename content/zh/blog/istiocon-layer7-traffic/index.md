@@ -36,7 +36,7 @@ Redis 的一个常见用途是用作数据高速缓存。通过在应用服务�
 理想情况下，我们希望 Service Mesh 能够管理微服务中用到的所有七层协议的流量，包括 RPC、Messaging、Cache、DB等。例如：
 * 基于请求的负载均衡：可以将来自同一个 TCP 链接的多个独立的请求分发到不同的后端服务器，以实现更智能，更合理的负载均衡。
 * 基于七层 Header 的流量路由：根据七层 Header 中的属性进行路由，例如根据 Dubbo 请求中的服务名或者 Redis 请求的 Key 进行路由。
-* 对客户端的请求响应注入延迟或者错误，以测试应微服务用的弹性。
+* 对客户端的请求响应注入延迟或者错误，以测试微服务用的弹性。
 * 提供应用级安全，例如基于 HTTP Header 中的 JWT Token 进行认证，或者对 Redis 服务器进行认证。
 * 请求层面的遥测数据，包括请求成功率、请求耗时、调用跟踪等等。
 
@@ -67,20 +67,20 @@ Redis 的一个常见用途是用作数据高速缓存。通过在应用服务�
 
 ![](images/awesomerpc-envoyfilter.png)
 
-下面我们来看一个采用 Thrift 协议的真实案例。Thrift 是 Apache 基金会下一个轻量级、支持多语言的开源 RPC 框架。Envoy 中已经支持 Thrift，但 Istio 中只对 Thrift 提供了有限的支持，并不能实现 Traffic Splitting 等高级流量管理功能。如果我们希望在 Istio 中提供下图中右下角所示 Thrif 服务的 Traffic Splitting 流量控制，我们可以通过 EnvoyFilter 来实现。
+下面我们来看一个采用 Thrift 协议的真实案例。Thrift 是 Apache 基金会下一个轻量级、支持多语言的开源 RPC 框架。Envoy 中已经支持 Thrift，但 Istio 中只对 Thrift 提供了有限的支持，并不能实现 Traffic Splitting 等高级流量管理功能。如果我们希望在 Istio 中提供下图中右下角所示 Thrift 服务的 Traffic Splitting 流量控制，我们可以通过 EnvoyFilter 来实现。
 
 (本示例相关源码可以从 https://github.com/aeraki-framework/thrift-envoyfilter-example 下载）
 
 ![](images/envoyfilter-thrift.png)
 
-首先，我们需要创建一个图中左边所示的 EnvoyFilter 来处理客户端的出向流量，该 EnvoyFilter 的 Match 条件选中了  $(thrift-sample-server-vip)_9090 这个 Outbound Listener 中 的 tcp_proxy，在 Patch 部分将其替换为一个 thrift_proxy。在该 thrift_proxy 中，我们按照 Traffic Splitting 的要求为其配置了相应的路由：将 30% 的流量路由到 Server v1版本，70% 的流量路由到 Server v2 版本。我们也需要为 Thrift Server 端创建一个如图右上所示的 EnvoyFilter 来处理服务器端的入向流量。相比客户端的 EnvoyFilter 而言，服务器端的 EnvoyFilter 配置要简单一些，因此我们不需要在服务器端配置任何路由规则，只需要将 tcp_proxy 替换为 thrift_proxy 即可。这个 thrift_proxy 虽然没有路由规则，但提供了大量七层的服务通信和治理能力，包括请求层面的负载均衡、产生请求层面的 Metrics 数据等。
+首先，我们需要创建一个图中左边所示的 EnvoyFilter 来处理客户端的出向流量，该 EnvoyFilter 的 Match 条件选中了  `$(thrift-sample-server-vip)_9090` 这个 Outbound Listener 中 的 tcp_proxy，在 Patch 部分将其替换为一个 thrift_proxy。在该 thrift_proxy 中，我们按照 Traffic Splitting 的要求为其配置了相应的路由：将 30% 的流量路由到 Server v1版本，70% 的流量路由到 Server v2 版本。我们也需要为 Thrift Server 端创建一个如图右上所示的 EnvoyFilter 来处理服务器端的入向流量。相比客户端的 EnvoyFilter 而言，服务器端的 EnvoyFilter 配置要简单一些，因此我们不需要在服务器端配置任何路由规则，只需要将 tcp_proxy 替换为 thrift_proxy 即可。这个 thrift_proxy 虽然没有路由规则，但提供了大量七层的服务通信和治理能力，包括请求层面的负载均衡、产生请求层面的 Metrics 数据等。
 
 
 从上面的介绍和示例可以看到， EnvoyFilter CRD 好比是 Istio 中的一把瑞士军刀，可以对 Pilot 生成的 Envoy 配置进行非常灵活的定制，以达到对七层协议进行管理的目的。但是 EnvoyFilter 也带来了一些难以处理的问题：
 
 * EnvoyFilter 将 Envoy 的底层实现细节直接暴露给了运维人员：运维人员必须非常了解 Envoy 的配置细节，而这些配置细节往往和 Envoy Filter 内部的实现机制紧密相关，例如 Filter 的名称和 Filter 内部的配置格式等。这导致创建 EnvoyFilter 成为了一种和代码细节高度耦合的工作，难以直接交付给运维人员。更为合理的方式则应该是采用一种面向用户的高级配置语言来屏蔽这些实现细节，例如 Istio 中的 VirtualService 和 DestinationRule。
 * EnvoyFilter 中的匹配条件依赖于 Pilot 生成的 Envoy 配置中的结构组成和元素命名，例如 Listener 的名称，FilterChain 的构成等。而这些结构和命名在不同的 Istio 版本之间可能发生变化，导致原本能够正常工作的 EnvoyFilter 在新版本中出现问题。
-* EnvoyFilter 中的匹配条件还依赖于一些和特定 K8s 集群相关的内容，例如 Service Cluster IP，这意味着一个 EnvoyFilter 不能用于多个不同集群中的相同服务。当 Service 被重建时，由于 Cluster IP 会发生变化，相应的 EnvoyFilter 也必须进行改动，修改 Match 条件中的 Cluster IP。
+* EnvoyFilter 中的匹配条件还依赖于一些和特定 Kubernetes 集群相关的内容，例如 Service Cluster IP，这意味着一个 EnvoyFilter 不能用于多个不同集群中的相同服务。当 Service 被重建时，由于 Cluster IP 会发生变化，相应的 EnvoyFilter 也必须进行改动，修改 Match 条件中的 Cluster IP。
 * 我们需要为每个 Service 创建相应的 EnvoyFilter，当 Mesh 中管理的服务较多时，手动创建成百上千的 EnvoyFilter 的工作是非常繁琐而且及易出错的。
 * 对 Istio 而言，EnvoyFilter 中的 Patch 部分基本上是一个黑盒，因此 Istio 只能对 EnvoyFilter 的正确性进行非常有限的验证。这导致 EnvoyFilter 的调试非常困难，当 Envoy 未能按照你的设想工作时，你很难知道到底是 EnvoyFilter 的什么地方出现了问题。
 
@@ -98,7 +98,7 @@ Aeraki 的基本工作原理如下图所示：Aeraki 从 Istio 中拉取服务�
 
 * 不需要修改 Istio 代码，因此节省了单独维护一个 Istio 的私有代码分支的额外工作量，可以快速跟随 Istio 的版本迭代进行升级。
 * Aeraki 作为一个独立组件部署在 Mesh 的控制面，可以很方便地作为一个插件和 Istio 进行集成，对 Istio 的流量管理能力进行扩展。
-* 协议相关的缺省配置由 Aeraki 自动生成，并且这些配置可以根据 Istio 版本和 K8s 集群相关信息自动进行调整。节约了大量 EnvoyFilter 的手动创建和维护工作。
+* 协议相关的缺省配置由 Aeraki 自动生成，并且这些配置可以根据 Istio 版本和 Kubernetes 集群相关信息自动进行调整。节约了大量 EnvoyFilter 的手动创建和维护工作。
 * Aeraki 在 Envoy 配置之上进行了抽象，提供了一层面向用户的配置 CRD 来对这些七层协议进行管理。这些高级 CRD 隐藏了 Envoy 的配置细节，屏蔽了不同 Istio 版本生成的缺省 Envoy 配置的差异，对于运维非常友好。对于 Thrift 和 Dubbo 这样的 RPC 协议，由于其语义和 HTTP 类似，Aeraki 直接采用了 Istio VirtualService 和 DestinationRule；对于非 RPC 协议，Aeraki 则定义了一些新的 CRD 来进行管理，例如 RedisService 和 RedisDestination。我们后面将进一步介绍如何使用这些配置 CRD 来定制规则，例如实现 Traffic Splitting。
 
 和 Istio 类似，Aeraki 也采用了端口名称来识别协议类型。端口取名需要遵循 “tcp-七层协议名-xxx” 的命名规则。例如，一个 Thrift 服务应取名为 “tcp-thrift-service”。需要注意的是，我们必须保留端口名中的“tcp-”前缀，因为对于 Istio 而言，这是一个 TCP 协议的服务。Aeraki 则会根据端口名中的七层协议来生成相应的 Envoy 配置，并替换 Istio 缺省生成的 tcp_proxy。
@@ -124,7 +124,7 @@ aeraki/demo/install-demo.sh
 
 ### 屏蔽开发/生产环境的差异
 
-我们在开发、测试和生产环境中通常需要访问不同的后端资源，例如需要连接到不同的 Redis 缓存或者不同的 mySQL 数据库。一般来说，我们需要修改随应用程序发布的配置文件中的后端资源地址，以达到在不同环境中切换后端资源的目的。通过 Aeraki 的帮助，我们可以用 Service Mesh 来屏蔽不同后端资源的配置差异，使得应用程序可以用相同的方式访问不同环境中的后端资源。
+我们在开发、测试和生产环境中通常需要访问不同的后端资源，例如需要连接到不同的 Redis 缓存或者不同的 MySQL 数据库。一般来说，我们需要修改随应用程序发布的配置文件中的后端资源地址，以达到在不同环境中切换后端资源的目的。通过 Aeraki 的帮助，我们可以用 Service Mesh 来屏蔽不同后端资源的配置差异，使得应用程序可以用相同的方式访问不同环境中的后端资源。
 
 如下图所示，我们在 Dev、Staging 和 Prod 三个环境中都需要访问 Redis 服务，这三个 Redis 服务有不同的 IP 地址和访问密码，部署方式也可能不同：在开发环境中，为了节约资源和简化部署，我们可能使用单个 Redis 实例；在测试和生产环境中，我们会使用 Redis 集群来保证 Redis 服务的高可用和扩展性，我们也可能直接使用云服务商提供的 Redis 托管服务。当在这三个环境中进行切换时，我们需要配置不同的 IP 地址和访问密码，如果 Redis 部署的方式不同，我们甚至可能需要修改客户端代码来切换 Redis 单实例模式和集群模式，这极大影响了我们开发、测试和上线的效率。
 
@@ -138,7 +138,7 @@ aeraki/demo/install-demo.sh
 
 ### 采用流量镜像进行对比测试
 
-有一些数据库或者数据库代理采用相同的网络协议。例如 TiDB、Oceanbase、Aurora、Kingshard等都兼容 MySQL 协议；Twemproxy、Codis、Tendis、Pika等都采用了 Redis 协议。由于业务需求，我们有时需要从一个实现迁移到另一个实现上。在迁移之前，我们需要进行对比测试，以对比不同实现的性能、功能及兼容性。
+有一些数据库或者数据库代理采用相同的网络协议。例如 TiDB、Oceanbase、Aurora、Kingshard 等都兼容 MySQL 协议；Twemproxy、Codis、Tendis、Pika 等都采用了 Redis 协议。由于业务需求，我们有时需要从一个实现迁移到另一个实现上。在迁移之前，我们需要进行对比测试，以对比不同实现的性能、功能及兼容性。
 
 例如下面的场景：我们最初只用了一个单实例 Redis 来做缓存，随着线上业务的不断扩展，该 Redis 实例已经出现了访问瓶颈，我们希望切换为采用 Twemproxy 来对 Redis 进行水平扩展。通过采用 Aeraki 来将线上的 Redis 流量镜像到 Twemproxy 测试环境，我们可以采用真实的业务数据对 Twemproxy 进行充分的测试，以评估其对线上业务的影响。
 
