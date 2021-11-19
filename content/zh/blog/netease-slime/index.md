@@ -1,15 +1,17 @@
 ---
 title: "Slime：让Istio服务网格变得更加高效与智能"
-description: "Slime是网易数帆微服务团队开源的服务网格组件，它可以作为Istio的CRD管理器，旨在通过更为简单的配置实现Istio/Envoy的高阶功能。"
+description: "Slime 是网易数帆微服务团队开源的服务网格组件，它可以作为 Istio 的 CRD 管理器，旨在通过更为简单的配置实现 Istio/Envoy 的高阶功能。"
 author: "杨笛航"
 image: "images/blog/space.jpg"
 categories: ["Service Mesh"]
-tags: ["Istio"]
+tags: ["Istio","Slime"]
 date: 2021-01-26T10:03:00+08:00
 type: "post"
 avatar: "/images/profile/default.jpg"
 profile: "Istio社区成员，网易数帆架构师，负责轻舟Service Mesh配置管理，并主导slime组件设计与研发，参与网易严选和网易传媒的Service Mesh建设。具有三年Istio控制面功能拓展和性能优化经验。"
 ---
+
+注：本文是本人在云原生社区直播分享的内容整理，视频见 [B 站](https://www.bilibili.com/video/BV18o4y1y75e/)，PPT 可以在 [GitHub](https://github.com/tetratelabs/istio-weekly/tree/main/istio-big-talk/003) 下载。
 
 Slime是网易数帆微服务团队开源的服务网格组件，它可以作为Istio的CRD管理器，旨在通过更为简单的配置实现Istio/Envoy的高阶功能。目前slime包含三个非常实用的子模块：
 
@@ -61,7 +63,7 @@ ServiceFence也可以对生成的SidecarScope的生命周期做管理，可以�
 
 在网关场景下，流量管理比较复杂，需要使用定制化插件来处理流量，在开发slime的插件模块之前，插件扩展只能通过EnvoyFilter来实现，EnvoyFilter是xDS层面的配置，管理和维护这样的配置需要耗费大量的精力，同时出错率也极高。
 
-为了简化插件管理的难度，我们决定在EnvoyFilter上层做一层面向插件管理的抽象。xDS中关于HTTP插件的配置有两段，一部分在LDS中，作为HttpConnectionManager的SubFilter，它决定了哪些插件将被加载以及插件的执行顺序。另一部分在RDS中，并且有两个粒度，分别是VirtualHost粒度的perFilterConfig以及route粒度的perFilterConfig，这部分决定了当前Host或者是路由需要进行的插件行为。
+为了简化插件管理的难度，我们决定在EnvoyFilter上层做一层面向插件管理的抽象。xDS中关于HTTP插件的配置有两段，一部分在LDS中，作为`HttpConnectionManager`的SubFilter，它决定了哪些插件将被加载以及插件的执行顺序。另一部分在RDS中，并且有两个粒度，分别是VirtualHost粒度的`perFilterConfig`以及route粒度的`perFilterConfig`，这部分决定了当前Host或者是路由需要进行的插件行为。
 
 LDS中的部分被我们抽象为PluginManager，我们可以通过enable选项启停插件。通过PluginManager也可以管理插件的执行优先级，其中的插件顺序和LDS插件链中的顺序是一致的，越靠前的插件执行优先级越高，如下图所示：
 
@@ -101,15 +103,15 @@ spec:
           name: neTraceSample 
 ```
 
-EnvoyPlugin不关心每个插件的具体配置（具体配置会被放在type.struct结构中透传处理），它更关心的是插件生效范围，使用者可以将插件配置在需要的维度中做聚合，这样做一方面更加贴合插件使用者的习惯，另一方面也降低了上层配置的冗余，下图表面了EnvoyPluing在xDS层面的映射关系，虽然xDS层面仍旧会展开，但至少在管理它们的时候，我们面对的是一个有序聚合的数组，而非一颗庞大的插件树：
+EnvoyPlugin不关心每个插件的具体配置（具体配置会被放在type.struct结构中透传处理），它更关心的是插件生效范围，使用者可以将插件配置在需要的维度中做聚合，这样做一方面更加贴合插件使用者的习惯，另一方面也降低了上层配置的冗余，下图展示了EnvoyPlugin在xDS层面的映射关系，虽然xDS层面仍旧会展开，但至少在管理它们的时候，我们面对的是一个有序聚合的数组，而非一颗庞大的插件树。
 
 ![plugin_envoyplugin.png](008eGmZEly1gn14jr57r4j30ws0u077g.jpg)
 
 ## 4. 自适应限流
 
-随着Mixer的移除，要实现服务网格中的限流变得非常复杂。全局限流需要配置额外部署 RLS (Ratelimit Server)，即使是本地限流也需要借助Envoy内建插件-- envoy.local.ratelimit，为此使用者不得不再次面对复杂的EnvoyFilter配置。相较于二代微服务框架中成熟的限流组件而言，Envoy的本地限流组件功能也略显简单，例如，无法做到自适应限流，只能以实例维度配置限流值等。
+随着Mixer的移除，要实现服务网格中的限流变得非常复杂。全局限流需要配置额外部署 RLS (Ratelimit Server)，即使是本地限流也需要借助Envoy内建插件——`envoy.local.ratelimit`，为此使用者不得不再次面对复杂的EnvoyFilter配置。相较于二代微服务框架中成熟的限流组件而言，Envoy的本地限流组件功能也略显简单，例如，无法做到自适应限流，只能以实例维度配置限流值等。
 
-为了解决Istio中服务限流的短板，我们开发了自适应限流模块，在易用性方面，我们也为其设计了一套新的API -- SmartLimiter。自适应限流的主体架构分为两部分，一部分为SmartLimiter到EnvoyFilter的转换逻辑，另一部分为监控数据获取。目前slime支持从K8S metric-server获取服务的CPU，Memory，副本数等数据，当然我们也对外提供了一套监控数据对接接口（Metric Discovery Server），通过MDS，可以将自定义的监控指标同步给限流组件。
+为了解决Istio中服务限流的短板，我们开发了自适应限流模块，在易用性方面，我们也为其设计了一套新的API——SmartLimiter。自适应限流的主体架构分为两部分，一部分为SmartLimiter到EnvoyFilter的转换逻辑，另一部分为监控数据获取。目前slime支持从K8S metric-server获取服务的CPU，Memory，副本数等数据，当然我们也对外提供了一套监控数据对接接口（Metric Discovery Server），通过MDS，可以将自定义的监控指标同步给限流组件。
 
 ![limit_arch.png](008eGmZEly1gn14jmrfv8j30j40dgwet.jpg)
 
