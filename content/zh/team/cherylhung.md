@@ -16,7 +16,7 @@ social:
     link : "http://www.linkedin.com/in/cheryljhung/"
   - icon : "fa-github" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
     link : "https://www.github.com/oicheryl"
-  - icon : "fa-globe" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+  - icon : "fas fa-globe" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
     link : "https://www.oicheryl.com/"
 # type
 type: "team"

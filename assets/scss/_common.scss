@@ -25,10 +25,12 @@ body {
   width: 100vw;
 }
 
-ol,
 ul {
-  list-style-type: none;
-  margin: 0px;
+  list-style-type: disc;
+  li {
+    position: relative;
+    margin-bottom: 0.5em !important;
+  }
 }
 
 a,
@@ -508,15 +510,14 @@ textarea.form-control-sm {
     margin-bottom: 10px;
   }
 
-  ul,
   ol {
-    padding-left: 0;
+//    padding-left: 10px;
 
     li {
       position: relative;
-      padding-left: 20px;
+      padding-left: 0px;
       margin-bottom: 10px;
-
+      list-style-type: decimal;
       &::before {
         position: absolute;
         content: "\f10c";

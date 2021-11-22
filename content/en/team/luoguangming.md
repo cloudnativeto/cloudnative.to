@@ -14,9 +14,8 @@ social:
     link : "https://twitter.com/IvanLuo10"
   - icon : "fa-linkedin" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
     link : "https://www.linkedin.com/in/guangmingluo1994/"
-  - icon : "fa-globe" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+  - icon : "fas fa-globe" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
     link : "https://guangmingluo.github.io/"
-# type
 type: "team"
 ---
 

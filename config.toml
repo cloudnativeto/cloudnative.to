@@ -21,7 +21,8 @@ link = "plugins/bootstrap/bootstrap.min.css"
 [[params.plugins.css]]
 link = "plugins/slick/slick.css"
 [[params.plugins.css]]
-link = "plugins/fontawesome/font-awesome.min.css"
+#link = "plugins/fontawesome/font-awesome.min.css"
+link = "plugins/fontawesome/all.css"
 [[params.plugins.css]]
 link = "plugins/animate/animate.css"
 [[params.plugins.css]]
@@ -167,7 +168,7 @@ logo_footer = "images/logo-alt.png"
 top_header = false
 homePageTitle = "云原生社区 | Cloud Native Community(China)"
 # Meta data
-description = "云原生社区是一个中立的云原生终端用户社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，提供云原生领域的专业资讯，推动云原生产业发展，目标成为中国云原生领域最具影响力的开源社区。"
+description = "云原生社区是国内最大的独立第三方云原生终端用户和泛开发者社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，提供云原生专业资讯，促进云原生产业发展。"
 author = " 云原生社区"
 # contact form action
 contact_form_action = "#" # contact form works with https://formspree.io
@@ -178,7 +179,7 @@ baidu_tongji_id = "f3dc895ea3bd6186cd835841d365c103"
 # page sidebar quick contact form
 quick_contact = false
 # search
-search = true
+search = false
 map = false
 email = "[contact@cloudnative.to](mailto:contact@cloudnative.to)"
 wechat = "[jimmysongio](https://jimmysong.io/contact)"
@@ -219,11 +220,11 @@ distractionFreeMode= false # Enable hot key (cmd|ctrl + enter) submit comment.
 
 ########################### social icon ############################
 [[params.social]]
-icon = "fa-twitter"
+icon = "fab fa-twitter"
 link = "https://twitter.com/cloudnativecn"
 
 [[params.social]]
-icon = "fa-github"
+icon = "fab fa-github"
 link = "https://github.com/cloudnativeto"
 
 #[[params.social]]
@@ -231,17 +232,25 @@ link = "https://github.com/cloudnativeto"
 #link = "https://cloudnativecommunity.slack.com"
 
 [[params.social]]
-icon = "fa-wechat"
+icon = "fab fa-weixin"
 # change the link after the public announcement
 link = "https://mp.weixin.qq.com/s/vWlSdzz2MNdXRr0sd2-LFg"
 
 [[params.social]]
-icon = "fa-envelope"
+icon = "far fa-envelope"
 # change the link after the public announcement
 link = "mailto:contact@cloudnative.to"
 
 [[params.social]]
-icon = "fa-rss"
+icon = "fab fa-zhihu"
+link = "https://zhuanlan.zhihu.com/cloud-native"
+
+[[params.social]]
+icon = "fas fa-play-circle"
+link = "https://space.bilibili.com/515485124"
+
+[[params.social]]
+icon = "fas fa-rss"
 link = "https://cloudnative.to/blog/index.xml"
 
 ################################### English language #####################################
@@ -265,7 +274,7 @@ contentDir = "content/zh"
 weight = 1
 #home = "主页"
 # footer content
-footer_content = "云原生社区是一个中立的云原生终端用户社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，旨在推广云原生技术，构建开发者生态。"
+footer_content = "云原生社区是国内最大的独立第三方云原生终端用户和泛开发者社区，由 CNCF 大使、开源意见领袖共同发起成立于 2020 年 5 月 12 日，提供云原生专业资讯，促进云原生产业发展。"
 # copyright
 copyright = "Copyright &copy; {year} 云原生社区"
 
@@ -279,7 +288,7 @@ URL = "/blog/"
 [[Languages.zh.menu.main]]
 name = "兴趣小组"
 weight = 2
-URL = "https://i.cloudnative.to/community/sig/"
+URL = "https://cloudnative.to/community/sig/"
 
 [[Languages.zh.menu.main]]
 name = "投稿"
@@ -304,7 +313,7 @@ weight = 1
 [[Languages.zh.menu.main]]
 parent = "社区"
 name = "云原生学院"
-URL = "https://i.cloudnative.to/academy/"
+URL = "https://cloudnative.to/academy/"
 weight = 2
 
 [[Languages.zh.menu.main]]
@@ -316,7 +325,7 @@ weight = 3
 [[Languages.zh.menu.main]]
 parent = "社区"
 name = "社区资料"
-URL = "https://i.cloudnative.to/community/"
+URL = "https://cloudnative.to/community/"
 weight = 4
 
 [[Languages.zh.menu.main]]
