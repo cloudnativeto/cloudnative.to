@@ -1,7 +1,7 @@
 ---
 title: "Istio 1.12 引入 Wasm 插件配置 API 用于扩展 Istio 生态"
 description: "Istio 1.12 中新的 WebAssembly 基础设施使其能够轻松地将额外的功能注入网格部署中。"
-author: "[胡剑飞](https://www.tetrate.io/blog/istio-wasm-extensions-and-ecosystem/)"
+author: "[胡渐飞](https://www.tetrate.io/blog/istio-wasm-extensions-and-ecosystem/)"
 image: "images/blog/webassembly-scaled.jpg"
 categories: ["Istio"]
 tags: ["Tetrate","Wasm","service mesh","Istio"]
