@@ -235,8 +235,7 @@ spec:
   - action:
       fill_interval:
         seconds: 1
-      quota: "30/{pod}"    # 30 为该服务的额度，
-将其均分给每个 pod，加入有 3 个 pod，则每个 pod 的限流为 10
+      quota: "30/{pod}"    # 30 为该服务的额度，将其均分给每个 pod，加入有 3 个 pod，则每个 pod 的限流为 10
     condition: "{cpu}>0.8" # 根据监控项{cpu}的值自动填充该模板
 ```
 
