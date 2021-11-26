@@ -112,7 +112,7 @@ Istio 有着庞大的社区以及[供应商和用户群体](https://istio.io/lat
 
 ### 服务网格对应用性能的影响
 
-服务网格为了做到对应用程序透明，默认采用了 iptables 流量劫持的方式，当服务数量大的时候会有大量的 iptables 规则，影响网络性能，你可以使用 [eBPF](https://cloudnative.to/blog/how-ebpf-streamlines-the-service-mesh/) 这样的技术来提供应用性能，但是该技术对操作系统内核的版本要求比较高，很少有企业能够达到。
+服务网格为了做到对应用程序透明，默认采用了 iptables 流量劫持的方式，当服务数量大的时候会有大量的 iptables 规则，影响网络性能，你可以使用 [eBPF](https://cloudnative.to/blog/how-ebpf-streamlines-the-service-mesh/) 这样的技术来提高应用性能，但是该技术对操作系统内核的版本要求比较高，很少有企业能够达到。
 
 ![Istio 中的智能 DNS 代理](008i3skNly1gwp81fy0vqj31lq0nq41q.jpg)
 
