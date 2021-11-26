@@ -8,6 +8,7 @@ categories: ["Istio"]
 tags: ["Istio","grpc","service mesh"]
 date: 2021-11-23T10:03:00+08:00
 type: "post"
+aliases: ["/blog/grpc-proxyless-service-mesh-copy"]
 ---
 
 译者注：本文译自 Istio 官方博客，博客原标题 [gRPC Proxyless Service Mesh](https://istio.io/latest/blog/2021/proxyless-grpc/)，其实是 Istio 1.11 版本中支持的实验特性，可以直接将 gRPC 服务添加到 Istio 中，而不需要再向 Pod 中注入 Envoy 代理。本文中还给出了一个 Demo 性能测试数据，这种做法可以极大的提升应用性能，降低网络延迟。

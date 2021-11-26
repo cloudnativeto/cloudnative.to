@@ -9,6 +9,7 @@ tags: ["meetup"]
 categories: ["其他"]
 keywords: ["dalian","meetup"]
 type: "post"
+aliases: ["/blog/cloud-native-meetup-dalian-recap-copy"]
 ---
 
 8 月 22 日，在大连市腾飞园区 5 号楼一楼世达教育，云原生社区 meetup 大连站正式拉开了序幕。此次活动是大连第一次举办如此规模的云原生技术大会，现场到场人数 70+，线上观看人数 700+。来自大连多家头部公司的技术专家围绕云原生，给线上线下的观众奉献了一场精彩的技术盛会。
