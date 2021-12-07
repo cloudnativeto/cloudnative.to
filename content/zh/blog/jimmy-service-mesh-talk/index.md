@@ -169,7 +169,7 @@ Istio 开源至今已有 4 年时间，2018 年时我和敖小剑一起创建了
 | [MOSN](https://github.com/mosn/mosn)                         | 2019 年 12 月 | 代理     | 云原生边缘网关及代理                                   | 蚂蚁         | 3400          | 可作为 Istio 数据平面                         |
 | [Slime](https://github.com/slime-io/slime)                   | 2021 年 1月   | 扩展     | 基于 Istio 的智能服务网格管理器                        | 网易         | 204           | 为 Istio 增加一个管理平面                     |
 | [GetMesh](https://github.com/tetratelabs/getmesh)            | 2021 年 2 月  | 工具     | Istio 集成和命令行管理工具                             | Tetrate      | 91            | 实用工具，可用于 Istio 多版本管理             |
-| [Aeraki](https://github.com/aeraki-framework/aeraki)         | 2021 年 3 月  | 扩展     | 管理 Istio 的任何七层负载                              | 腾讯         | 280           | 扩展多协议支持                                |
+| [Aeraki](https://github.com/aeraki-framework/aeraki)         | 2021 年 3 月  | 扩展     | 管理 Istio 的任何七层负载                              | 腾讯         | 307           | 扩展多协议支持                                |
 | [Layotto](https://github.com/mosn/layotto/)                  | 2021 年 6 月  | 运行时   | 云原生应用运行时                                       | 蚂蚁         | 325           | 可以作为 Istio 的数据平面                     |
 | [Hango Gateway](https://github.com/hango-io/hango-gateway)   | 2021 年 8 月  | 网关     | 基于 Envoy 和 Istio 构建的 API 网关                    | 网易         | 187           | 可与 Istio 集成                               |
 
@@ -239,19 +239,30 @@ spec:
     condition: "{cpu}>0.8" # 根据监控项{cpu}的值自动填充该模板
 ```
 
-### Aeraki：非侵入式的 Istio 扩展工具集
+### Aeraki：在 Istio 中管理任何七层协议
 
-Aeraki 是腾讯云在 2021 年 3 月开源的，它的架构与 Slime 类似。它从 Istio 中拉取服务数据，根据 ServiceEntry 和流量规则生成 Envoy 配置，也就是 EnvoyFilter 推送到 Istio 中。简而言之，你可以把 Aeraki 看做 Istio 中管理的七层协议的 Operator。
+Aeraki 是腾讯云在 2021 年 3 月开源的一个服务网格领域的项目。Aeraki 提供了一个端到端的云原生服务网格协议扩展解决方案，以一种非侵入的方式为 Istio 提供了强大的第三方协议扩展能力，支持在 Istio 中对 Dubbo、Thrift、Redis，以及私有协议进行流量管理。Aeraki 的架构如下图所示：
 
-下图是 Aeraki 的架构图。
+![Aeraki 架构图](008i3skNly1gwp8ytw57sj31f40u0785.png)
 
-![Aeraki 架构图](008i3skNly1gwp8ytw57sj31f40u0785.jpg)
+来源：<https://istio.io/latest/blog/2021/aeraki//>
 
-来源：<https://cloudnative.to/blog/istiocon-layer7-traffic/>
+从 Aeraki 架构图中可以看到，Aeraki 协议扩展解决方案包含了两个组件：
 
-Aeraki 作为一个独立组件部署，可以很方便地作为一个插件和 Istio 进行集成。
+* Aeraki：Aeraki 作为一个 Istio 增强组件运行在控制面，通过自定义 CRD 向运维提供了用户友好的流量配置规则。Aeraki 将这些流量配置规则翻译为 Envoy 配置，通过 Istio 下发到数据面的边车代理上。 Aeraki 还作为一个 RDS 服务器为数据面的 MetaProtocol Proxy 提供动态路由。Aeraki 提供的 RDS 和 Envoy 的 RDS 有所不同，Envoy RDS 主要为 HTTP 协议提供动态路由，而 Aeraki RDS 旨在为所有基于 MetaProtocol 框架开发的七层协议提供动态路由能力。
+* MetaProtocol Proxy：基于 Envoy 实现的一个通用七层协议代理。依托 Envoy 成熟的基础库，MetaProtocol Proxy 为七层协议统一实现了服务发现、负载均衡、RDS动态路由、流量镜像、故障注入、本地/全局限流等基础能力，大大降低了在 Envoy 上开发第三方协议的难度，只需要实现编解码的接口，就可以基于 MetaProtocol 快速开发一个第三方协议插件。
 
-Aeraki 可以根据 Istio 版本和 Kubernetes 集群相关信息自动进行调整配置，避免了 EnvoyFilter 的手动创建和维护工作。Aeraki 创建了面向七层协议 CRD 隐藏了 Envoy 的配置细节，屏蔽了不同 Istio 版本生成的缺省 Envoy 配置的差异，对于运维非常友好。
+在采用 MetaProtocol Proxy 之前，如果我们要让 Envoy 识别一个七层协议，则需要编写一个完整的 TCP filter，这个 filter 需要实现路由，限流，遥测等等能力，需要投入大量的人力。对于大部分的七层协议来说，需要的流量管理能力是类似的，因此没有必要在每个七层协议的 filter 实现中重复这部分工作。 Aeraki 项目采用了一个 MetaProtocol Proxy 来统一实现这些能力，如下图所示：
+
+![MetaProtocol Proxy 架构图](metaprotocol-proxy.png)
+
+基于 MetaProtocol Proxy，只需要实现编解码接口部分的代码就可以编写一个新的七层协议 Envoy Filter。除此之外，无需添加一行代码，Aeraki 就可以在控制面提供该七层协议的配置下发和 RDS 动态路由配置。
+
+![采用 MetaProtocol 编写 Envoy Filter 的对比](metaprotocol-proxy-codec.png)
+
+Aeraki + MetaProtocol 套件革命性地降低了在 Istio 中管理第三方协议的难度，将 Istio 扩展成为一个支持所有协议的全栈服务网格。目前 Aeraki 项目已经基于 MetaProtocol 实现了 Dubbo 和 Thrift 协议。相对 Envoy 自带的 Dubbo 和 Thrift Filter，基于 MetaProtocol 的 Dubbo 和 Thrift 实现功能更为强大，提供了 RDS 动态路由，可以在不中断存量链接的情况下对流量进行高级的路由管理，并且提供了非常灵活的 MetaData 路由机制，理论上可以采用协议数据包中携带的任意字段进行路由。QQ 音乐和央视频 APP 等业务也正在基于 Aeraki 和 MetaProtocol 进行开发，以将一些私有协议纳入到服务网格中进行管理。
+
+除此之外，[Aeraki Framework](https://github.com/aeraki-framework) 中还提供了 xDS 配置下发优化的 lazyXDS 插件，consul，etcd，zk 等各种第三方服务注册表对接适配，Istio 运维实战电子书等工具，旨在解决 Istio 在落地中的各种实际问题，加速服务网格的成熟和产品化。
 
 ## 服务网格的未来发展
 
