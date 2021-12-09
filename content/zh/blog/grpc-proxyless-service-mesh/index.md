@@ -25,7 +25,7 @@ Istio 1.11 增加了实验性支持，可以直接将 gRPC 服务添加到网格
 
 - 基本的服务发现。你的 gRPC 服务可以接触到在网格中注册的其他 pod 和虚拟机。
 - `DestinationRule`
-  - Sutset：你的 gRPC 服务可以根据标签选择器将流量分割到不同的实例组。
+  - `Subset`：你的 gRPC 服务可以根据标签选择器将流量分割到不同的实例组。
   - 目前唯一支持的 Istio `loadBalancer` 是 `ROUND_ROBIN`，`consistentHash` 将在未来的 Istio 版本中加入（支持 gRPC）。
   - `tls` 设置被限制为 `DISABLE` 或 `ISTIO_MUTUAL`。其他模式将被视为 `DISABLE`。
 - `VirtualService`
@@ -50,13 +50,13 @@ gRPC 服务如何与 istiod 通信的示意图
 
 ## 对应用程序代码的修改
 
-本节介绍了 gRPC 在 Go 中的 XDS 支持。其他语言也有类似的 API。
+本节介绍了 gRPC 在 Go 中的 xDS 支持。其他语言也有类似的 API。
 
 为了启用 gRPC 中的 xDS 功能，你的应用程序必须做一些必要的修改。你的 gRPC 版本应该至少是 1.39.0。
 
 ### 客户端
 
-下面的导入将在 gRPC 中注册 xDS 解析器和平衡器。它应该被添加到你的主包或调用 `grpc.Dial` 的同一个包中。
+下面的导入将在 gRPC 中注册 xDS 解析器和均衡器。它应该被添加到你的主包或调用 `grpc.Dial` 的同一个包中。
 
 ```go
 import _ "google.golang.org/grpc/xds"
