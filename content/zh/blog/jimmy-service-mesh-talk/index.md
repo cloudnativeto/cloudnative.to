@@ -44,9 +44,11 @@ Kubernetes 设计之初就是按照云原生的理念设计的，云原生中有
 
 ### Kubernetes vs xDS vs Istio
 
-![Kubernetes vs Istio](008i3skNly1gwp7r6q9f9j31lc0tan1i.jpg)
+这幅图展示的是 Kubernetes 和 Istio 的分层架构图。
 
-这幅图展示的是 Kubernetes 和 Istio 的分层架构图。从图中我们可以看到 kube-proxy 的设置是全局的，无法对每个服务进行细粒度的控制，Kubernetes 可以做的只有拓扑感知路由、将流量就近路由，为 Pod 设置进出站的网络策略。
+![Kubernetes vs Service mesh](008i3skNly1gxdhnnh4lxj31820p0gps.jpg)
+
+从图中我们可以看到 kube-proxy 的设置是全局的，无法对每个服务进行细粒度的控制，Kubernetes 可以做的只有拓扑感知路由、将流量就近路由，为 Pod 设置进出站的网络策略。
 
 而服务网格通过 sidecar proxy 的方式将 Kubernetes 中的流量控制从服务层中抽离出来，为每个 Pod 中注入代理，并通过一个控制平面来操控这些分布式代理。这样可以实现更大的弹性。
 
@@ -54,7 +56,7 @@ Kube-proxy 实现了一个 Kubernetes 服务的多个 pod 实例之间的流量�
 
 Kubernetes 社区给出了一个使用 Deployment 做金丝雀发布的方法，本质上是通过修改 pod 的标签来给部署的服务分配不同的 pod。
 
-![Envoy vs xDS](008i3skNly1gwp7ryybjcj314w0u0wlf.jpg)
+![image-20211214172442843](envoy-arch.jpg)
 
 目前在中国最流行的服务网格开源实现是 Istio，也有很多公司对 Istio 进行了二次开发，比如蚂蚁、网易、腾讯等，其实 Istio 是在 Envoy 的基础上开发的，从它开源的第一天起就默认使用了 Envoy 作为它的分布式代理。Envoy 开创性的创造了 xDS 协议，用于分布式网关配置，大大简化了大规模分布式网络的配置。2019 年蚂蚁开源的 MOSN 同样支持了 xDS。Envoy 还是 CNCF 中最早毕业的项目之一，经过大规模的生产应用考验。可以说 Istio 的诞生已经有了很好的基础。
 
@@ -272,9 +274,9 @@ Aeraki + MetaProtocol 套件降低了在 Istio 中管理第三方协议的难度
 
 我们看到了网易、腾讯主要是通过构建 Operator 来扩展 Istio，然而这种扩展对于多集群管理来说并不够用。我们知道我们目前的基础设施很多是在向云原生化或者是容器化转型，那么就存在一个容器、虚拟机等共存的环境。这就是异构环境，这些不同环境的流量如何统一管理呢？其实使用 Istio 是可以做到的。同样是要在 Istio 之上构建一个管理平面，并增加一个抽象层，增加适用于集群管理的 CRD，比如集群流量配置、集群策略配置等。另外还要在每个集群中部署一个 Gateway，统一连接到一个边缘代理，让所有的集群互联。这也是 Tetrate Service Bridge 的产品理念。
 
-下图展示的 [Tetrate Service Bridge](https://www.tetrate.io/tetrate-service-bridge/) 架构图。
+下面展示的 [Tetrate Service Bridge](https://www.tetrate.io/tetrate-service-bridge/) 架构图。
 
-![image-20211123181346493](008i3skNly1gwp8zzjm0rj314v0u0djy.jpg)
+![image-20211123181346493](tsb.png)
 
 ### API 网关与服务网格的融合
 
