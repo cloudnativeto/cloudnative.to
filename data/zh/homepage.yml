@@ -293,6 +293,12 @@ sponsor:
         - image: "/images/sponsors/nocalhost.png"
           url: "https://nocalhost.dev"
           name: "Nocalhost"
+        - image: "/images/sponsors/hango.png"
+          url: "https://github.com/hango-io/hango-gateway"
+          name: "Hango Gateway"
+        - image: "/images/sponsors/slime.jpg"
+          url: "https://github.com/slime-io/slime"
+          name: "Slime"
     org:
       title: "开源社区"
       list:
