@@ -24,7 +24,7 @@ avatar: "/images/profile/default.jpg"
 
 **编者按**
 
-> 本文演示了如何基于Go语言、gRPC和Protobuf技术构建一个微服务，并着重介绍了实现Istio可观测功能的三大支柱：日志、度量和追踪，以及与之对应的工具Logrus、Prometheus、Grafana、Jeager等。通过文章内容和示例代码，读者会对如何构建gRPC技术栈的微服务和使用Istio可视化工具观测服务的实现方案有一个全面的认识。
+> 本文演示了如何基于Go语言、gRPC和Protobuf技术构建一个微服务，并着重介绍了实现Istio可观测功能的三大支柱：日志、度量和追踪，以及与之对应的工具Logrus、Prometheus、Grafana、Jaeger等。通过文章内容和示例代码，读者会对如何构建gRPC技术栈的微服务和使用Istio可视化工具观测服务的实现方案有一个全面的认识。
 
 在过去的两篇文章中（[具有Istio服务网格的基于Kubernetes的微服务可视化](https://programmaticponderings.com/2019/03/10/kubernetes-based-microservice-observability-with-istio-service-mesh-part-1/) 和 [具有Istio服务网格的AKS可视化](https://programmaticponderings.com/2019/03/31/azure-kubernetes-service-aks-observability-with-istio/)），我们探索了包含在Istio服务网格中的可视化工具，包括用于指标收集、监控和报警的[Prometheus](https://prometheus.io/) 和 [Grafana](https://grafana.com/)，用做分布式追踪的[Jaeger](https://www.jaegertracing.io/)，以及基于Istio服务网格的微服务可视化和监控工具[Kiali](https://www.kiali.io/)和云平台原生的监控、日志服务相比（例如GCP的 [Stackdriver](https://cloud.google.com/monitoring/)，AWS上的 [CloudWatch](https://aws.amazon.com/cloudwatch/)，Azure上的 [Azure Monitor](https://docs.microsoft.com/en-us/azure/azure-monitor/overview)），我们有针对现代化的、分布式的云应用的全面的可视化解决方案。
 
@@ -106,7 +106,7 @@ git clone \
 
 ### 服务 A
 
-首先，将如下所示的服务A的源代码与前一篇文章中的原始代码进行比较。服务的代码几乎被完全重写。编写代码时，我依赖于几个参考资料，包括[使用Istio追踪gRPC](https://aspenmesh.io/2018/04/tracing-grpc-with-istio/)，由Aspen Mesh的Neeraj Poddar编写，和Masroor Hasan撰写的[Kubernetes上的分布式追踪架构Jeager](https://medium.com/@masroor.hasan/tracing-infrastructure-with-jaeger-on-kubernetes-6800132a677)。
+首先，将如下所示的服务A的源代码与前一篇文章中的原始代码进行比较。服务的代码几乎被完全重写。编写代码时，我依赖于几个参考资料，包括[使用Istio追踪gRPC](https://aspenmesh.io/2018/04/tracing-grpc-with-istio/)，由Aspen Mesh的Neeraj Poddar编写，和Masroor Hasan撰写的[Kubernetes上的分布式追踪架构Jaeger](https://medium.com/@masroor.hasan/tracing-infrastructure-with-jaeger-on-kubernetes-6800132a677)。
 
 下面是服务A具体的代码变化：
 
@@ -114,7 +114,7 @@ git clone \
 - 本地 Greeting 结构体被 `pb.Greeting` 结构体替代；
 - 所有的服务都基于 `50051`端口；
 - HTTP 服务器和所有的 API 资源处理器函数被移除；
-- 用于做Jeager的分布式追踪的请求头信息从HTTP的请求对象中移动到了gRPC context对象中的metadata里；
+- 用于做Jaeger的分布式追踪的请求头信息从HTTP的请求对象中移动到了gRPC context对象中的metadata里；
 - 服务A作为gRPC服务端，被gRPC网关反向代理(客户端)通过Greeting函数调用；
 - 主要的 `PingHandler` 函数，返回服务的 Greeting，被 [pb-greeting](https://github.com/garystafford/pb-greeting) protobuf 包的 `Greeting函数替代；
 - 服务A作为gRPC客户端，使用CallGrpcService` 函数调用服务B和服务C；
