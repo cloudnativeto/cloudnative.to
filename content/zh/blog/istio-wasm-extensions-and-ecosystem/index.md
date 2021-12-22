@@ -29,7 +29,7 @@ istio-agent 中的镜像提取机制（在 Istio 1.9 中引入），从远程 HT
 
 ## Istio Wasm 扩展
 
-Istio 的扩展机制使用 [Proxy-Wasm 应用二进制接口（ABI）](https://github.com/proxy-wasm/spec)规范，该规范由周礼赞和谜米田武带头制定，提供了一套代理无关的流媒体 API 和实用功能，可以用任何有合适 SDK 的语言来实现。截至目前，Proxy-Wasm 的 SDK 有 AssemblyScript（类似 TypeScript）、C++、Rust、Zig 和 Go（使用 TinyGo WebAssembly 系统接口「WASI」，米田武也是其主要贡献者）。
+Istio 的扩展机制使用 [Proxy-Wasm 应用二进制接口（ABI）](https://github.com/proxy-wasm/spec)规范，该规范由周礼赞和米田武带头制定，提供了一套代理无关的流媒体 API 和实用功能，可以用任何有合适 SDK 的语言来实现。截至目前，Proxy-Wasm 的 SDK 有 AssemblyScript（类似 TypeScript）、C++、Rust、Zig 和 Go（使用 TinyGo WebAssembly 系统接口「WASI」，米田武也是其主要贡献者）。
 
 ## 如何获取：Tetrate Istio Distro
 
