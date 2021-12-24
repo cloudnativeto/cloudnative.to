@@ -235,11 +235,11 @@ spec:
 
 Pod的名称是以所属Deployment名称为前缀，后面加上唯一标识。
 
-![img](https://cdn.nlark.com/lark/0/2018/png/115178/1544518231685-e9c0845a-8dad-408e-9c6f-57800a66df01.png)
+![img](1544518231685-e9c0845a-8dad-408e-9c6f-57800a66df01.png)
 
 再通过kubectl get deployments来查看创建好了的deployment。
 
-![img](https://cdn.nlark.com/lark/0/2018/png/115178/1544518292310-4471b767-bc93-4af7-b81c-2382903a7127.png)
+![img](1544518292310-4471b767-bc93-4af7-b81c-2382903a7127.png)
 
 这里有4列，分别是：
 
@@ -254,7 +254,7 @@ Deployment自身拥有副本保持机制，会始终将其所管理的Pod数量�
 
 kubectl delete pods $pod_name
 
-![img](https://cdn.nlark.com/lark/0/2018/png/115178/1544519374539-04b1078a-0639-49e1-bc25-7a21fb154221.png)
+![img](1544519374539-04b1078a-0639-49e1-bc25-7a21fb154221.png)
 
 可以看出被删掉的Pod的关闭与代替它的Pod的启动过程。
 
@@ -264,7 +264,7 @@ kubectl delete pods $pod_name
 
 另一种是使用scale命令：kubectl scale deployment $deployment_name --replicas=5
 
-![img](https://cdn.nlark.com/lark/0/2018/png/115178/1544519680442-8e70970a-0a83-4bdf-b936-61004a0866b2.png)
+![img](1544519680442-8e70970a-0a83-4bdf-b936-61004a0866b2.png)
 
 ### 4、更新
 
@@ -274,11 +274,11 @@ kubectl delete pods $pod_name
 
 另一种是patch方式，patch不会去重建Pod，Pod的IP可以保持。
 
-![img](https://cdn.nlark.com/lark/0/2018/png/115178/1544520068001-1586cdc2-4327-466b-b25c-fa9ccbd03cb2.png)
+![img](1544520068001-1586cdc2-4327-466b-b25c-fa9ccbd03cb2.png)
 
 kubectl get pods -o yaml可以以yaml的格式来查看Pod
 
-![img](https://cdn.nlark.com/lark/0/2018/png/115178/1544520388837-726a9f6c-6f5d-4c74-906d-dbd2ad68c622.png)
+![img](1544520388837-726a9f6c-6f5d-4c74-906d-dbd2ad68c622.png)
 
 这里可以看出容器的版本已经被更新到了1.9.1。
 
@@ -312,7 +312,7 @@ minikube ip返回的就是minikube所管理的Kubernetes集群所在的虚拟机
 
 minikube service my-nginx-app --url也可以返回指定service的访问URL。
 
-![img](https://cdn.nlark.com/lark/0/2018/png/115178/1544521261245-863cc212-ad6d-4b46-ab6d-ea9f4baa9b93.png)
+![img](1544521261245-863cc212-ad6d-4b46-ab6d-ea9f4baa9b93.png)
 
 ## CRD【CustomResourceDefinition】
 
@@ -363,7 +363,7 @@ spec:
 
 kubectl get CustomResourceDeinitions可以获取创建的所有CRD。
 
-![img](https://cdn.nlark.com/lark/0/2018/png/115178/1544523122252-4e86b6d5-679d-4aa9-8846-007b52869184.png)
+![img](544523122252-4e86b6d5-679d-4aa9-8846-007b52869184.png)
 
 然后可以通过kubectl create -f my-crontab.yaml可以创建一个CRD的实例：
 
@@ -377,7 +377,7 @@ spec:
   image: my-awesome-cron-image
 ```
 
-![img](https://cdn.nlark.com/lark/0/2018/png/115178/1544523365960-63cb2113-af95-462b-a0ec-8be2cc4e8b80.png)
+![img](1544523365960-63cb2113-af95-462b-a0ec-8be2cc4e8b80.png)
 
 ## Controller【Fabric8】
 
@@ -467,7 +467,7 @@ kubectl proxy --port=12000
 
 ### 项目工程结构
 
-![img](https://cdn.nlark.com/lark/0/2018/png/115178/1544529272311-c8aa028d-52ac-4cd9-800e-c6dcb5e5331e.png)
+![img](1544529272311-c8aa028d-52ac-4cd9-800e-c6dcb5e5331e.png)
 
 ### CRD定义
 
