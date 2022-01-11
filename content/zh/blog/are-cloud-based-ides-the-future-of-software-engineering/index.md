@@ -2,11 +2,11 @@
 title: "云端 IDE 是软件工程的未来吗？"
 date: 2022-01-10T19:55:44+08:00
 draft: false
-image: "/images/blog/133.jpg"
+image: "/images/blog/cloud-ide.jpg"
 author: "[Divya Mohan](https://thenewstack.io/are-cloud-based-ides-the-future-of-software-engineering)"
 translator: "[宋净超（Jimmy Song）](https://jimmysong.io)"
 description: "本文主要对比了云端 IDE 的优缺点，就像云端 Office 一样，云端 IDE 迟早也会变得流行起来。"
-tags: ["IDE","gitpod"]
+tags: ["IDE"]
 categories: ["其他"]
 type: "post"
 avatar: "/images/profile/default.jpg"
