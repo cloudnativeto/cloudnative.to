@@ -19,7 +19,7 @@ Service Mesh 在微服务领域已经非常流行，越来越多的公司开始�
 
 **A、Service Mesh 的初衷**
 
-![Image](https://tva1.sinaimg.cn/large/008i3skNly1grq157p298j30u00gv13d.jpg)
+![Image](008i3skNly1grq157p298j30u00gv13d.jpg)
 
 在微服务架构下，基础架构团队一般会为应用提供一个封装了各种服务治理能力的 SDK，这种做法虽然保障了应用的正常运行，但缺点也非常明显，每次基础架构团队迭代一个新功能都需要业务方参与升级才能使用，尤其是 bugfix 版本，往往需要强推业务方升级，这里面的痛苦程度每一个基础架构团队成员都深有体会。
 
@@ -31,7 +31,7 @@ Service Mesh 在微服务领域已经非常流行，越来越多的公司开始�
 
 **B、Service Mesh 落地现状**
 
-![Image](https://tva1.sinaimg.cn/large/008i3skNly1grq157uliyj30u00gy14n.jpg)
+![Image](008i3skNly1grq157uliyj30u00gy14n.jpg)
 
 蚂蚁很快意识到了 Service Mesh 的价值，全力投入到这个方向，用 Go 语言开发了 MOSN 这样可以对标 envoy 的优秀数据面，全权负责服务路由，负载均衡，熔断限流等能力的建设，大大加快了公司内部落地 Service Mesh 的进度。
 
@@ -51,7 +51,7 @@ Service Mesh 在微服务领域已经非常流行，越来越多的公司开始�
 
 1. 应用跟基础设施强绑定
 
-![Image](https://tva1.sinaimg.cn/large/008i3skNly1grq15ggwwej30u00gs7ek.jpg)
+![Image](008i3skNly1grq15ggwwej30u00gs7ek.jpg)
 
 一个现代分布式应用，往往会同时依赖 RPC、Cache、MQ、Config 等各种分布式能力来完成业务逻辑的处理。
 
@@ -61,7 +61,7 @@ Service Mesh 在微服务领域已经非常流行，越来越多的公司开始�
 
 2. 异构语言接入成本高
 
-![Image](https://tva1.sinaimg.cn/large/008i3skNly1grq15drahdj30u00grwp1.jpg)
+![Image](008i3skNly1grq15drahdj30u00grwp1.jpg)
 
 事实证明 Service Mesh 确实降低了异构语言的接入门槛，但在越来越多的基础能力下沉到 MOSN 以后，我们逐渐意识到为了让应用跟 MOSN 交互，各种 SDK 里都需要对通信协议，序列化协议进行开发，如果再加上需要对各种异构语言都提供相同的功能，那维护难度就会成倍上涨，
 
@@ -71,7 +71,7 @@ Service Mesh 让重 SDK 成为了历史，但对于现在各种编程语言百�
 
 **A、什么是 Runtime?**
 
-![Image](https://tva1.sinaimg.cn/large/008i3skNly1grq15huvpcj30u00h1aj0.jpg)
+![Image](008i3skNly1grq15huvpcj30u00h1aj0.jpg)
 
 20 年初的时候，Bilgin lbryam 发表了一篇名为
 
@@ -101,7 +101,7 @@ Multi-Runtime Microservices Architecture
 
 明确了需求以后，借鉴了 Service Mesh 的思路，作者对分布式服务的架构演进进行了如下总结：
 
-![Image](https://tva1.sinaimg.cn/large/008i3skNly1grq15hhinxj30u00gn13d.jpg)
+![Image](008i3skNly1grq15hhinxj30u00gn13d.jpg)
 
 第一阶段就是把各种基础设施能力从应用中剥离解耦，通通变成独立 sidecar 模型伴随着应用一起运行。
 
@@ -113,7 +113,7 @@ Multi-Runtime Microservices Architecture
 
 
 
-![Image](https://tva1.sinaimg.cn/large/008i3skNly1grq15awmo2j30u00fhgxm.jpg)
+![Image](008i3skNly1grq15awmo2j30u00fhgxm.jpg)
 
 为了让大家对 Runtime 有一个更加清晰的认识，上图针对 Service Mesh 跟 Runtime 两种理念的定位、交互方式、通信协议以及能力丰富度进行了总结，可以看到相比 Service Mesh 而言，Runtime 提供了语义明确、能力丰富的 API，可以让应用跟它的交互变得更加简单直接。
 
@@ -121,7 +121,7 @@ Multi-Runtime Microservices Architecture
 
 **A、dapr 调研**
 
-![Image](https://tva1.sinaimg.cn/large/008i3skNly1grq159kxfej30u00gz13c.jpg)
+![Image](008i3skNly1grq159kxfej30u00gz13c.jpg)
 
 dapr 是社区中一款知名的 Runtime 实现产品，活跃度也比较高，因此我们首先调研了 dapr 的情况，发现 dapr 具有如下优势：
 
@@ -151,7 +151,7 @@ b.  多维护一个容器意味着多了一层挂掉的风险，这会降低现�
 
 
 
-![Image](https://tva1.sinaimg.cn/large/008i3skNly1grq15gyopkj60u00ggako02.jpg)
+![Image](008i3skNly1grq15gyopkj60u00ggako02.jpg)
 
 如上图所示，Layotto 是构建在 MOSN 之上，在下层对接了各种基础设施，向上层应用提供了统一的，具有各种各样分布式能力的标准 API。对于接入 Layotto 的应用来说，开发者不再需要关心底层各种组件的实现差异，只需要关注应用需要什么样的能力，然后调用对应能力的 API 即可，这样可以彻底跟底层基础设施解绑。
 
@@ -165,13 +165,13 @@ b.  多维护一个容器意味着多了一层挂掉的风险，这会降低现�
 
 **C、Layotto 的移植性**
 
-![Image](https://tva1.sinaimg.cn/large/008i3skNly1grq1582qecj30u00h949f.jpg)
+![Image](008i3skNly1grq1582qecj30u00h949f.jpg)
 
 如上图所示，一旦完成 Runtime API 的标准化建设，接入 Layotto 的应用天然具备了可移植性，应用不需要任何改造就可以在私有云以及各种公有云上部署，并且由于使用的是标准 API，应用也可以无需任何改造就在 Layotto 跟 dapr 之间自由切换。
 
 **D、名字含义**
 
-![Image](https://tva1.sinaimg.cn/large/008i3skNly1grq15f2gjnj30u00gwwod.jpg)
+![Image](008i3skNly1grq15f2gjnj30u00gwwod.jpg)
 
 从上面的架构图可以看出，Layotto 项目本身是希望屏蔽基础设施的实现细节，向上层应用统一提供各种分布式能力，这种做法就好像是在应用跟基础设施之间加了一层抽象，因此我们借鉴了 OSI 对网络定义七层模型的思路，希望 Layotto 可以作为第八层对应用提供服务，otto 是意大利语中 8 的意思，Layer otto 就是第八层的意思，简化了一下变成了 Layotto，同时项目代号 L8，也是第八层的意思，这个代号也是设计我们项目 LOGO 时灵感的来源。
 
@@ -179,7 +179,7 @@ b.  多维护一个容器意味着多了一层挂掉的风险，这会降低现�
 
 **E、配置原语**
 
-![Image](https://tva1.sinaimg.cn/large/008i3skNly1grq15g0osxj30u00gu48w.jpg)
+![Image](008i3skNly1grq15g0osxj30u00gu48w.jpg)
 
 首先是分布式系统中经常使用的配置功能，应用一般使用配置中心来做开关或者动态调整应用的运行状态。Layotto 中配置模块的实现包括两部分，一个是对如何定义配置这种能力的 API 的思考，一个是具体的实现，下面逐个来看。
 
@@ -207,7 +207,7 @@ b.  多维护一个容器意味着多了一层挂掉的风险，这会降低现�
 
 **F、Pub/Sub 原语**
 
-![Image](https://tva1.sinaimg.cn/large/008i3skNly1grq158ic3jj30u00gwn6v.jpg)
+![Image](008i3skNly1grq158ic3jj30u00gwn6v.jpg)
 
 对于 Pub/Sub 能力的支持，我们调研了 dapr 现在的实现，发现基本上已经可以满足我们的需求，因此我们直接复用了 dapr 的 API 以及 components，只是在 Layotto 里面做了适配，这为我们节省了大量的重复劳动，我们希望跟 dapr 社区保持一种合作共建的思路，而不是重复造轮子。
 
@@ -217,7 +217,7 @@ dapr 对于 Pub/Sub 的定义基本满足我们的需求，但在某些场景下
 
 **G、RPC 原语**
 
-![Image](https://tva1.sinaimg.cn/large/008i3skNly1grq15fi4ftj30u00h3wou.jpg)
+![Image](008i3skNly1grq15fi4ftj30u00h3wou.jpg)
 
 RPC 的能力大家不会陌生，这可能是微服务架构下最最基础的需求，对于 RPC 接口的定义，我们同样参考了 dapr 社区的定义，发现完全可以满足我们的需求，因此接口定义就直接复用 dapr 的，但目前 dapr 提供的 RPC 实现方案还比较薄弱，而 MOSN 经过多年迭代，能力已经非常成熟完善，因此我们大胆把 Runtime 跟 Service Mesh 两种思路结合在一起，把 MOSN 本身作为我们实现 RPC 能力的一个 Component，这样 Layotto 在收到 RPC 请求以后交给 MOSN 进行实际数据传输，这种方案可以通过 istio 动态改变路由规则，降级限流等等设置，相当于直接复用了 Service Mesh 的各种能力，这也说明 Runtime 不是要推翻 Service Mesh，而是要在此基础上继续向前迈一步。
 
@@ -225,7 +225,7 @@ RPC 的能力大家不会陌生，这可能是微服务架构下最最基础的�
 
 **H、Actuator 原语**
 
-![Image](https://tva1.sinaimg.cn/large/008i3skNly1grq15c8kvcj30u00h0til.jpg)
+![Image](008i3skNly1grq15c8kvcj30u00h0til.jpg)
 
 在实际生产环境中，除了应用所需要的各种分布式能力以外，PaaS 等运维平台往往需要了解应用的运行状态，基于这种需求，我们抽象了一套 Actuator 接口，目前 dapr 还没有提供这方面的能力，因此我们根据内部的需求场景进行了设计，旨在把应用在启动期、运行期等阶段各种各样的信息暴露出去，方便 PaaS 了解应用的运行情况。
 
@@ -255,7 +255,7 @@ Health 对外暴露的健康状态分为以下三种：
 
 **A、WebAssembly 简介**
 
-![Image](https://tva1.sinaimg.cn/large/008i3skNly1grq1590y7tj30u00ggwqv.jpg)
+![Image](008i3skNly1grq1590y7tj30u00ggwqv.jpg)
 
 WebAssembly，简称 WASM，是一个二进制指令集，最初是跑在浏览器上来解决 JavaScript 的性能问题，但由于它良好的安全性，隔离性以及语言无关性等优秀特性，很快人们便开始让它跑在浏览器之外的地方，随着 WASI 定义的出现，只需要一个 WASM 运行时，就可以让 WASM 文件随处执行。
 
@@ -265,7 +265,7 @@ WebAssembly，简称 WASM，是一个二进制指令集，最初是跑在浏览�
 
 目前 MOSN 通过集成 WASM Runtime 的方式让 WASM 跑在 MOSN 上面，以此来满足对 MOSN 做自定义扩展的需求。同时，Layotto 也是构建在 MOSN 之上，因此我们考虑把二者结合在一起，实现方案如下图所示：
 
-![Image](https://tva1.sinaimg.cn/large/008i3skNly1grq15d6x2tj30u00g9wng.jpg)
+![Image](008i3skNly1grq15d6x2tj30u00g9wng.jpg)
 
 开发者可以使用 Go/C++/Rust 等各种各样自己喜欢的语言来开发应用代码，然后把它们编译成 WASM 文件跑在 MOSN 上面，当 WASM 形态的应用在处理请求的过程中需要依赖各种分布式能力时就可以通过本地函数调用的方式调用 Layotto 提供的标准 API，这样直接解决了 WASM 形态应用的依赖问题。
 
@@ -275,7 +275,7 @@ WebAssembly，简称 WASM，是一个二进制指令集，最初是跑在浏览�
 
 **C、WebAssembly 落地展望**
 
-![Image](https://tva1.sinaimg.cn/large/008i3skNly1grq159zou3j30u00g7wqn.jpg)
+![Image](008i3skNly1grq159zou3j30u00g7wqn.jpg)
 
 虽然现在 Layotto 中对 WASM 的使用还处于试验阶段，但我们希望它最终可以成为 Serverless 的一种实现形态，如上图所示，应用通过各种编程语言开发，然后统一编译成 WASM 文件，最后跑在 Layotto+MOSN 上面，而对于应用的运维管理统一由 k8s、docker、prometheus 等产品负责。
 
@@ -285,25 +285,25 @@ WebAssembly，简称 WASM，是一个二进制指令集，最初是跑在浏览�
 
 **A、Layotto vs Dapr**
 
-![Image](https://tva1.sinaimg.cn/large/008i3skNly1grq15ahwq0j30u00gztjk.jpg)
+![Image](008i3skNly1grq15ahwq0j30u00gztjk.jpg)
 
 上图列出了 Layotto 跟 dapr 现有的能力对比，在 Layotto 的开发过程中，我们借鉴 dapr 的思路，始终以优先复用、其次开发为原则，旨在达成共建的目标，而对于正在建设或者未来要建设的能力来说，我们计划优先在 Layotto 上落地，然后再提给社区，合并到标准 API，鉴于社区异步协作的机制，沟通成本较高，因此短期内可能 Layotto 的 API 会先于社区，但长期来看一定会统一。
 
 **B、API 共建计划**
 
-![Image](https://tva1.sinaimg.cn/large/008i3skNly1grq15bgf6ej30u00gp46v.jpg)
+![Image](008i3skNly1grq15bgf6ej30u00gp46v.jpg)
 
 关于如何定义一套标准的 API 以及如何让 Layotto 可以跑在 envoy 上等等事项，我们已经在各个社区进行了深入讨论，并且以后也还会继续推进。
 
 **C、Roadmap**
 
-![Image](https://tva1.sinaimg.cn/large/008i3skNly1grq15cshaej30u00gwdpz.jpg)
+![Image](008i3skNly1grq15cshaej30u00gwdpz.jpg)
 
 Layotto 在目前主要支持 RPC、Config、Pub/Sub、Actuator 四大功能，预计在九月会把精力投入到分布式锁、State、可观测性上面，十二月份会支持 Layotto 插件化，也就是让它可以跑在 envoy 上，同时希望对 WebAssembly 的探索会有进一步的产出。
 
 **D、正式开源**
 
-![Image](https://tva1.sinaimg.cn/large/008i3skNly1grq15by16mj30u00ffdpf.jpg)
+![Image](008i3skNly1grq15by16mj30u00ffdpf.jpg)
 
 前面详细介绍了 Layotto 项目，最重要的还是该项目今天作为 MOSN 的子项目正式开源，我们提供了详细的文档以及 demo 示例方便大家快速上手体验。 
 

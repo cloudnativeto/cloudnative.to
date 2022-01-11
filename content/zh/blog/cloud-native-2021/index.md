@@ -31,11 +31,11 @@ profile: "云原生社区创始人，[Tetrate](https://tetrate.io) 布道师。"
 
 云原生已历经” 寒武纪大爆发 “，标志是从 2018 年 Kubernetes 毕业 后走向深耕路线。云原生领域的开源项目层出不穷，令人眼花缭乱，见我收集的 Awesome Cloud Native。
 
-![](https://tva1.sinaimg.cn/large/008eGmZEly1gn37vq5g81j30q906dmyk.jpg)
+![](008eGmZEly1gn37vq5g81j30q906dmyk.jpg)
 
 2020 年 CNCF 共接纳了 35 个项目加入基金会，并且有多个项目毕业或晋级，CNCF 托管的项目总数达到了 80 多个。
 
-![](https://tva1.sinaimg.cn/large/008eGmZEly1gn37weeu5lj30q90ivalh.jpg)
+![](008eGmZEly1gn37weeu5lj30q90ivalh.jpg)
 
 图片来自 CNCF 年度报告 2020
 
@@ -45,7 +45,7 @@ PC 端操作系统 Windows 占据上风，移动端是 iOS 和 Android，服务�
 
 2020 年 Kubernete 宣布将[在 v1.20 版本之后弃用 Docker](https://blog.csdn.net/csdnnews/article/details/110520682)，实际上 Docker 本来就不是 Kubernetes 中默认和唯一的的容器运行时了，实际上只要是支持 CRI（Container Runtime Interface）或 OCI（Open Container Initiative）标准的容器运行时都可以在 Kubernetes 中运行。如下图所示，容器，英文是 container，也是集装箱的意思，其实集装箱不止一种型号，根据运送的货物的不同特性可以制定了多种集装箱类型。而这个容器类型是标准只能是由 Kubernetes 来定，否则只能是削足适履。
 
-![](https://tva1.sinaimg.cn/large/008eGmZEly1gn38p94t5sj30q90enq52.jpg)
+![](008eGmZEly1gn38p94t5sj30q90enq52.jpg)
 
 Kubernetes 统一了云上的资源对象制定和调度的标准，只要在其标准之上开发 CRD 和 Operator 即可。但是这也仅限于单个应用的管理，如何管理复杂的多集群和混合云环境，如何管理应用间流量，如何如何保证调用链的安全？以 Istio 为代表的服务网格就是为了解决这个问题。
 
@@ -59,7 +59,7 @@ Kubernetes 以其开创新的声明式 API 和调节器模式，奠定了云原�
 
 目前**企业云原生化转型最缺乏的东西 —— 套路和组合拳**。对于基础软件，企业往往会选择开源项目并根据自身需求进行改造，而云原生的开源项目又有很多，企业不是没有选择，而是选择太多，以致于无从下手。就像下面教你如何画猫头鹰的示例。我们可以将企业的云原生化的愿景想象成是这只猫头鹰，这些开源项目就像步骤一中圆，你可能想当然的认为只要用了 Kubernetes 就是云原生了，这就像画了两个圆，而剩余部分没有人教你如何完成。
 
-![](https://tva1.sinaimg.cn/large/008eGmZEly1gn37vqshfnj30q90hh44y.jpg)
+![](008eGmZEly1gn37vqshfnj30q90hh44y.jpg)
 
 开源社区的核心是面向开发者，就是向开发者灌输如何来画好这只 “猫头鹰” 的。开源不意味着免费和做慈善，使用开源也是有代价的。**开源社区存在的意义是平衡开发者、终端用户及供应商之间的共同利益**，而一个中立的开源社区有利于发挥开源的生态优势。
 
@@ -84,4 +84,3 @@ Kubernetes 以其开创新的声明式 API 和调节器模式，奠定了云原�
 在我的职业生涯里先后从事过 Java 开发、大数据运维、DevOps、开源管理等工作，个人爱好是研究并推广开源技术及理念，摄影和旅行。目前在企业级服务网格初创公司 Tetrate 担任 Developer Advocate，同时作为中立的云原生终端用户社区 —— 云原生社区（Cloud Native Community）的负责人。
 
 我的整个职业生涯都是与开源息息相关的，渊源可以追溯到大学时期。大学时我就开始使用 Linux 系统（Ubuntu）学习，刚进入职场的时候面向的也是 Hadoop 的开源生态及各种开源中间件，2015 起开始接触 Docker，2016 年开始进入云原生领域，2017 年开始写 Kubernetes 领域的第一本开源中文电子书《[Kubernetes Handbook——Kubernetes 中文指南 / 云原生应用架构实践手册](https://github.com/rootsongjc/kubernetes-handbook)》，本书直到如今仍在更新，2018 年在蚂蚁集团做开源管理及服务网格社区 ServiceMesher，2020 年加入基于 Istio、Envoy 和 Apache SkyWalking 等开源项目而构建企业级服务网格的初创公司 Tetrate。
-

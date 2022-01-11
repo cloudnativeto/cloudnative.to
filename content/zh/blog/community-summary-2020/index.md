@@ -83,7 +83,7 @@ profile: "云原生社区创始人。"
 
 ### 深圳站
 
-![image-20210209110142156](https://tva1.sinaimg.cn/large/008eGmZEly1gnh3nyvbrlj318y0tyhdu.jpg)
+![image-20210209110142156](008eGmZEly1gnh3nyvbrlj318y0tyhdu.jpg)
 
 2020 年 8 月 15 日，云原生社区深圳站成立
 
@@ -91,7 +91,7 @@ profile: "云原生社区创始人。"
 
 ![](chengdu.jpg)
 
-![image-20210209110052123](https://tva1.sinaimg.cn/large/008eGmZEly1gnh3n3l2nvj30v80kux39.jpg)
+![image-20210209110052123](008eGmZEly1gnh3n3l2nvj30v80kux39.jpg)
 
 2020 年 8 月 22 日，云原生社区成都站成立
 
@@ -99,7 +99,7 @@ profile: "云原生社区创始人。"
 
 ![](nanjing.png)
 
-![image-20210209110305455](https://tva1.sinaimg.cn/large/008eGmZEly1gnh3pev9tyj31900u04qq.jpg)
+![image-20210209110305455](008eGmZEly1gnh3pev9tyj31900u04qq.jpg)
 
 2020 年 9 月 6 日，云原生社区南京站成立
 

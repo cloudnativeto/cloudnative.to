@@ -23,7 +23,8 @@ avatar: "/images/profile/default.jpg"
 ### 解耦是罪？
 
 这并不是 Istio 第一次调整架构了。号称 Production ready 的 1.0 版本在后续的 1.1 版本就进行了比较大的调整，分离了 Pilot 的配置下发功能到新的 Galley 组件中，将 Mixer 组件中原本进程内运行的 Plugin 改为了进程外运行的 adapter，进一步加剧了 Mixer 组件的性能问题。
-![arch1](https://tva1.sinaimg.cn/large/006tNbRwly1gb5pmk8xe4j32140og102.jpg)
+
+![arch1](006tNbRwly1gb5pmk8xe4j32140og102.jpg)
 坦白讲，如果抛开性能问题，笔者个人非常喜欢 Istio 1.1 的架构设计。它是贯彻解耦原则的典范，各个组件职责清晰，界限分明，所谓真正的设计优雅。1.1 版本的控制平面包括了下面几个组件：
 
 - Pilot：数据平面配置中心；
@@ -46,7 +47,7 @@ Istio 取舍不利是造成现在这种状况的首要原因。
 
 任何一个系统都是由一粒种子成长为参天大树的，Istio 也不例外。唯一不同的是，它从 0.1 版本刚刚问世就已经枝繁叶茂，功能强大，胸怀宇宙。我们现在很难评断当初的设计是不正确的。但 2 年的市场检验已然说明了问题，完善和强大在某种程度上就是复杂和易用性的缺失，Istio 的落地项目少的可怜。Envoy（Istio的御用数据平面）的缔造者 Matt Keiln 在自己的 Twitter 上评价了 Service Mesh 的落地情况，他用带引号的反语表达了自己的无奈：
 
-<img src="https://tva1.sinaimg.cn/large/006tNbRwly1gb35aom737j30wi0ca41b.jpg" alt="Matt Klein " style="zoom:40%;" />
+![](006tNbRwly1gb35aom737j30wi0ca41b.jpg)
 
 实践是检验真理的唯一标准，没人用的背后，很可能就是不易使用，设计与实现脱节。关于复杂难用这一点，读者可以自行通过接入一个 Mixer 的 adapter 就能深刻的体会到了（挂载一个 backend 居然要定义 instance，handler，rule 等一系列繁复的配置信息）。
 
@@ -101,7 +102,7 @@ Istio 架构的复杂性主要表现在以下几方面：
 
 同时也删除了部分功能，单体形态也消除了大量的配置项，以及组件通信带来的复杂性。未来大概率情况下，用户只需要维护一个 `mesh.yaml` 的配置文件来定义自己的 mesh，而不是现在要组合各种繁复的自定义资源。
 
-<img src="https://tva1.sinaimg.cn/large/006tNbRwly1gb5rbulcsxj30jk0c2gmd.jpg" alt="newc" style="zoom:50%;"/>
+![](006tNbRwly1gb5rbulcsxj30jk0c2gmd.jpg)
 
 在运行层面，新架构提供了更多的选择方式，以应对不同的开发环境：
 

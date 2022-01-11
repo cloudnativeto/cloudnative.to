@@ -1,5 +1,5 @@
 ---
-title: "GitOps与ChatOps的落地实践"
+title: "GitOps 与 ChatOps 的落地实践"
 date: 2019-07-11T09:24:17+08:00
 draft: false
 image: "/images/blog/blogging-coding-copywriting-34140.jpg"
@@ -13,8 +13,6 @@ keywords: ["gitops","chatops","devops"]
 type: "post"
 avatar: "/images/profile/default.jpg"
 ---
-## 前言
-
 说到 GitOps 和 ChatOps ，那就不得不谈到 DevOps 。 DevOps 作为一种文化，旨在促进开发、测试和运维人员之间的沟通与协作。而促进合作的方式，往往是使用一系列工具，完成这三个角色的相互协作。这带来的好处也是显而易见的：更快的交付速度和更低的人力成本。获益于 DevOps 和公有云，一个近百人的研发团队，可以只配备一到两个专职运维人员，降低的成本不言而喻。既然 DevOps 是一种文化，那么在不同的团队则会有不同的实践，而无论实践如何，其最终目的都是一样的：最大化的实现自动化，释放更多的人力资源，创建更大价值。
 
 而 GitOps 和 ChatOps ，则是 DevOps 的两种实践。这两种实践分别通过使用 `版本控制软件 Git` 和`实时聊天软件`来达到提升交付速度和研发效率的目的。
@@ -64,7 +62,6 @@ DevOps 文化早已在我司落地，这也是为什么我们有将近百人的�
 经过调研我们选择了 [drone CI](https://drone.io/) 进行 GitOps ，通过自己开发不同功能的插件，完善了我们的整个 CI/CD 流水线。而插件的开发也并不是从头开始，而是直接 fork 现有的插件进行定制化的二次开发。
 
 将项目配置进行了分离，配置使用单独的 git 仓库维护，同时整合了镜像安全扫描，钉钉通知等功能。
-![image](https://ws1.sinaimg.cn/large/ad5fbf65gy1g4vvfow9w9j21k810243r.jpg)
 
 由于 drone CI 的配置文件 `.drone.yml` 需要统一规范，所以我们在自己的 DevOps 平台开发了 Drone 配置页面，帮助开发自主配置。我们提供了 `Java` 、 `Node` 、 `Python` 三种配置模板，并且由于 DevOps 平台已与 GitLab 集成，可以直接将生成的 `.drone.yml` 文件插入到相应 git 项目中。
 

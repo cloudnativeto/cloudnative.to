@@ -15,7 +15,7 @@ avatar: "/images/profile/default.jpg"
 
 第九届 Service Mesh Meetup 杭州站，12 月 28 日在杭州滴滴举行，现场 150+ 参与，下面是现场合影（人太多，镜头没装下）。
 
-![活动现场照片](https://tva1.sinaimg.cn/large/006tNbRwly1gaequ1tjurj30sg0iyacg.jpg)
+![活动现场照片](006tNbRwly1gaequ1tjurj30sg0iyacg.jpg)
 
 ## 视频回放与资料下载
 

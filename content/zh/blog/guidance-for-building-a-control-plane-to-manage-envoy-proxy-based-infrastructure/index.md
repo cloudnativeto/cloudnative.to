@@ -21,7 +21,7 @@ profile: "Field CTO at solo.io, author Istio in Action and Microservices for Jav
 
 Envoy 已经成为了一个非常流行的网络组件了。Matt Klein [几年前写过一篇博文](https://blog.envoyproxy.io/the-universal-data-plane-api-d15cec7a)，就在讨论 Envoy 的动态配置 API 和它如何成为 Envoy 被采用越来越多的原因之一。他在博文中说这是“统一数据面板 API”（UDPA）。随着很多其它项目都采用 Envoy 作为其核心组件，可以毫不夸张的说 Envoy 不仅仅建立了标准 API，而且对于应用 7 层的网络解决方案来说：“Envoy 已经变成了在云原生架构下的统一数据平面”。
 
-![img](https://tva1.sinaimg.cn/large/0081Kckwly1gkx5vlafpmj30dm07f74o.jpg)
+![img](0081Kckwly1gkx5vlafpmj30dm07f74o.jpg)
 
 而且，由于 Envoy 的统一数据平面 API，我们可以看到业界开发了很多针对基于 Envoy 技术设施进行配置管理的管理系统。本文将会深入讨论为 Envoy 构建一个控制平面需要什么，大家可以通过这些信息来评估什么样的基础设施最适合你的组织和场景。因为这个是一个很大的话题，作者会出一个系列文章来对此进行详细说明（后面我也会挑一些我感兴趣的文章进行翻译学习）。
 
@@ -33,13 +33,13 @@ Envoy 已经成为了一个非常流行的网络组件了。Matt Klein [几年�
 4. 为了更好适配自己的工作流和工作视图而需要为 Envoy 配置开发专属领域的 API 对象模型。
 5. 要线上使用，但是发现其它的控制平面并不够成熟。
 
-![img](https://tva1.sinaimg.cn/large/0081Kckwly1gkx5vmv5i7j30go0di7a5.jpg)
+![img](0081Kckwly1gkx5vmv5i7j30go0di7a5.jpg)
 
 然而，仅仅因为有些早期使用者构建了他们自己的控制平面，这并不意味着你也应该做这样的事情。首先在去年中很多为 Envoy 开发的控制平面已经相当成熟了，所以你应该在决定要重新开发另外一个控制平面之前先来研究一下这些已经存在的。其次，正如 Datawire 的人们发现，并且 Daniel Bryant 最近也发文章说，为 Envoy 构建一个控制平面并不是那么容易的。
 
 我参与开发几个为 Enovy 构建控制平面的开源项目。比如，Gloo 是一个功能性网关，它可以作为强大的 Kubernetes 接入服务，API 网关，或者作为从单体服务到微服务过度的功能网关。Gloo 有一个针对 Envoy 的控制平面，它可以作为我这个系列文章的例子，来说明如何在控制平面上按照需求来抽象设计，以实现插件管理和扩展性管理。其它可以参考的已经实现的控制平面如 istio 和 [Heptio Contour](https://github.com/heptio/contour)，这些也是贯穿我这个系列文章中的好例子。如果你确定要自己开发控制平面，那么除了这些，你还可以参考其它一些已经存在的控制平面。
 
-![img](https://tva1.sinaimg.cn/large/0081Kckwly1gkx5vly994j31200a875u.jpg)
+![img](0081Kckwly1gkx5vly994j31200a875u.jpg)
 
 在这个系列文章中，我们将会关注以下一些关键点：
 
@@ -64,7 +64,7 @@ Envoy 已经成为了一个非常流行的网络组件了。Matt Klein [几年�
 4. [集群发现服务（CDS）](https://www.envoyproxy.io/docs/envoy/v1.9.0/configuration/cluster_manager/cds#config-cluster-manager-cds)- CDS 用于可以路由流量过去的后端服务。
 5. [密钥发现服务（SDS）](https://www.envoyproxy.io/docs/envoy/v1.9.0/configuration/secret) - SDS 用户分发密钥（证书和密钥）。
 
-![img](https://tva1.sinaimg.cn/large/0081Kckwly1gkx5vnd41kj30p00gmjwe.jpg)
+![img](0081Kckwly1gkx5vnd41kj30p00gmjwe.jpg)
 
 这些 API 使用 proto3 的 Protocol Buffer 来定义的，并且已经有一些相关实现了，可以提供大家在构建自己的控制平面时参考：
 

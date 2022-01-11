@@ -22,7 +22,7 @@ Service Mesh 在企业落地中有诸多挑战，当与传统微服务应用共�
 
 在听到社区里很多人谈到微服务技术选型时，注意到他们讨论一个非此即彼的问题：采用 Spring Cloud 还是以 Istio 为代表的 Service Mesh 技术？然而这个答案并非非黑即白、非你即我，一部分应用采用 Spring Cloud，另一部分采用 Service Mesh（Istio）是完全可能的。今天我就和大家一起来讨论这个问题。
 
-![image.png](https://tva1.sinaimg.cn/large/007S8ZIlly1gexuwzhhgsj30qo0f0nmp.jpg)
+![image.png](007S8ZIlly1gexuwzhhgsj30qo0f0nmp.jpg)
 
 首先，我们来看一下 Spring Cloud 这个传统侵入式微服务框架。它包含以下优点：
 
@@ -33,7 +33,7 @@ Service Mesh 在企业落地中有诸多挑战，当与传统微服务应用共�
 
 特别感谢 Netflix ，这家很早就成功实践微服务的公司，几年前把自家几乎整个微服务框架栈贡献给了社区，早期的 Spring Cloud 主要是对 Netflix 开源组件的进一步封装。不过近两年，Spring Cloud 社区开始自研了很多新的组件，也接入了其他一些互联网公司的优秀实践。
 
-![image.png](https://tva1.sinaimg.cn/large/007S8ZIlly1gexux7038qj30qo0f01ie.jpg)
+![image.png](007S8ZIlly1gexux7038qj30qo0f01ie.jpg)
 
 接下来，我们简单看一下 Service Mesh 框架。它带来了两大变革：微服务治理与业务逻辑的解耦，异构系统的统一治理。此外，服务网格相对于传统微服务框架，还拥有三大技术优势：可观察性、流量控制、安全。服务网格带来了巨大变革并且拥有其强大的技术优势，被称为第二代“微服务架构”。
 
@@ -43,7 +43,7 @@ Service Mesh 在企业落地中有诸多挑战，当与传统微服务应用共�
 
 更多关于 Spring Cloud 与 Service Mesh 的优缺点与比较，请阅读 Istio-Handbook [[Service Mesh 概述](https://www.servicemesher.com/istio-handbook/concepts/overview.html)]。
 
-![image.png](https://tva1.sinaimg.cn/large/007S8ZIlly1gexux8sg9oj30qo0f0nn8.jpg)
+![image.png](007S8ZIlly1gexux8sg9oj30qo0f0nn8.jpg)
 
 前面提到过，对于传统微服务框架 Spring Cloud 与新兴微服务框架 Service Mesh，并非是个非黑即白，非你即我，延伸到微服务与单体架构，它们也是可以共存的。
 
@@ -56,7 +56,7 @@ Service Mesh 在企业落地中有诸多挑战，当与传统微服务应用共�
 
 混合微服务出现的原因是为了更好的支持平滑迁移，最大限度的提升服务治理水平，降低运维通信成本等，并且可能会在一个较长的周期存在着。而实现这一架构的前提，就是各服务的“互联互通”。
 
-![image.png](https://tva1.sinaimg.cn/large/007S8ZIlly1gexux44f5nj30qo0f0hb0.jpg)
+![image.png](007S8ZIlly1gexux44f5nj30qo0f0hb0.jpg)
 
 要想实现上述“混合微服务架构”，运行时支撑服务必不可少，它主要包括服务注册中心、服务网关和集中式配置中心三个产品。
 
@@ -68,7 +68,7 @@ Service Mesh 在企业落地中有诸多挑战，当与传统微服务应用共�
 
 这里还包括对应用运行平台的要求，即两个体系下的应用，既可以运行在虚拟机之上，也可以运行在容器 /K8s  之上。我们不希望把用户绑定在 K8s 上，因此 Service Mesh 没有采用 K8s 的 Service 机制来做服务注册与发现，这里就突出了注册中心的重要性。
 
-![image.png](https://tva1.sinaimg.cn/large/007S8ZIlly1gexux89mk3j30qo0f04hm.jpg)
+![image.png](007S8ZIlly1gexux89mk3j30qo0f04hm.jpg)
 
 百度智能云 CNAP 团队实现了上述混合微服务架构，即实现了两个微服务体系的应用互联互通、平滑迁移、灵活演进。上述混合微服务架构图包括以下几个组件：
 
@@ -100,7 +100,7 @@ Service Mesh 在企业落地中有诸多挑战，当与传统微服务应用共�
 - KV 存储：可以基于 Consul KV 存储实现一个分布式配置中心；
 - 多数据中心：借助多数据中心，无需使用额外的抽象层，即可构建多地域的场景，支持多 DC 数据同步、异地容灾。
 
-![image.png](https://tva1.sinaimg.cn/large/007S8ZIlly1gexux5nmosj30qo0f0kas.jpg)
+![image.png](007S8ZIlly1gexux5nmosj30qo0f0kas.jpg)
 
 上图是 Consul 官网提供的架构图。Consul 架构中几个核心的概念如下：
 
@@ -114,7 +114,7 @@ Service Mesh 在企业落地中有诸多挑战，当与传统微服务应用共�
 - 注册中心作为微服务基础设施，因此要求出现某些故障（如节点挂掉、网络分区）后注册中心仍然能够正常运行；
 - 当注册中心的发生故障时，不能影响服务间的正常调用。
 
-![image.png](https://tva1.sinaimg.cn/large/007S8ZIlly1gexux7c3c9j30qo0f0dun.jpg)
+![image.png](007S8ZIlly1gexux7c3c9j30qo0f0dun.jpg)
 
 Consul 使用 Raft 协议作为其分布式一致性协议，本身对故障节点有一定的容忍性，在单个 DataCenter中 Consul 集群中节点的数量控制在 2*n + 1 个节点，其中 n 为可容忍的宕机个数。Quorum size: Raft 协议选举需要半数以上节点写入成功。
 
@@ -128,11 +128,11 @@ A2：答案是否定的，虽然上表中显示 Server 数量越多可容忍的�
 
 推荐采用三节点或五节点，最为有效，且能容错。
 
-![image.png](https://tva1.sinaimg.cn/large/007S8ZIlly1gexux00anvj30qo0f0wvy.jpg)
+![image.png](007S8ZIlly1gexux00anvj30qo0f0wvy.jpg)
 
 注册中心设计的一个重要前提是：注册中心不能因为自身的原因或故障影响服务之间的相互调用。因此在实践过程中，如果注册中心本身发生了宕机故障/不可用，绝对不能影响服务之间的调用。这要求对接注册中心的 SDK 针对这种特殊情况进行客户端容灾设计，『客户端缓存』就是一种行之有效的手段。当注册中心发生故障无法提供服务时，服务本身并不会更新本地客户端缓存，利用其已经缓存的服务列表信息，正常完成服务间调用。
 
-![image.png](https://tva1.sinaimg.cn/large/007S8ZIlly1gexux6iipzj30qo0f0qk6.jpg)
+![image.png](007S8ZIlly1gexux6iipzj30qo0f0qk6.jpg)
 
 我们在设计时采用同 Datacenter 集群内部部署3个 Server 节点，来保障高可用性，当集群中1个节点发生故障后，集群仍然能够正常运行，同时这3个节点部署在不同的机房，达到机房容灾的能力。
 
@@ -149,7 +149,7 @@ A2：答案是否定的，虽然上表中显示 Server 数量越多可容忍的�
 
 常见的系统不可用因素包括：程序和配置出 bug、机器故障、机房故障、容量不足、依赖服务出现响应超时等。高可用的抓手包括：研发质量、测试质量、变更管理、监控告警、故障预案、容量规划、放火盲测、值班巡检等。这里，将主要介绍通过借助治理策略采用高可用设计手段来保障高可用。
 
-![image.png](https://tva1.sinaimg.cn/large/007S8ZIlly1gexux2paejj30qo0f0nje.jpg)
+![image.png](007S8ZIlly1gexux2paejj30qo0f0nje.jpg)
 
 高可用是一个比较复杂的命题，所以设计高可用方案也涉及到了方方面面。这中间将会出现的细节是多种多样的，所以我们需要对这样一个微服务高可用方案进行一个顶层的设计。
 
@@ -165,7 +165,7 @@ A2：答案是否定的，虽然上表中显示 Server 数量越多可容忍的�
 
 上面讲到的几种提高服务高可用的手段，大多需要从业务以及部署运维的角度实现。而接下来会重点介绍，可以通过 SDK/Sidecar 手段提供服务高可用的治理策略，这些策略往往对业务是非侵入或者弱侵入的，能够让绝大多数服务轻松实现服务高可用。
 
-![image.png](https://tva1.sinaimg.cn/large/007S8ZIlly1gexux37m1nj30qo0f01ih.jpg)
+![image.png](007S8ZIlly1gexux37m1nj30qo0f01ih.jpg)
 
 微服务之间一旦建立起路由，就意味着会有数据在服务之间流通。由于不同服务可以提供的资源和对数据流量的承载能力不尽相同，为了防止单个 Consumer 占用 Provider 过多的资源，或者突发的大流量冲击导致 Provider 故障，需要服务限流来保证服务的高可用。
 
@@ -226,11 +226,11 @@ A2：答案是否定的，虽然上表中显示 Server 数量越多可容忍的�
 
 断路器模式是微服务架构中广泛采用的模式之一，旨在将故障的影响降到最低，防止级联故障和雪崩，并确保端到端性能。我们将比较使用两种不同方法实现它的优缺点: Hystrix 和 Istio。
 
-![熔断.png](https://tva1.sinaimg.cn/large/007S8ZIlly1gey0mpg1u4j30qo0f0jyx.jpg)
+![熔断.png](007S8ZIlly1gey0mpg1u4j30qo0f0jyx.jpg)
 
 在电路领域中，断路器是为保护电路而设计的一种自动操作的电气开关。它的基本功能是在检测到故障后中断电流，然后可以重置(手动或自动)，以在故障解决后恢复正常操作。这看起来与我们的问题非常相似：为了保护应用程序不受过多请求的影响，最好在后端检测到重复出现的错误时立即中断前端和后端之间的通信。Michael Nygard 在他的《Release It》一书中使用了这个类比，并为应用于上述超时问题的设计模式提供了一个典型案例，可以用上图来总结。
 
-![image.png](https://tva1.sinaimg.cn/large/007S8ZIlly1gexux51ylej30qo0f0tqg.jpg)
+![image.png](007S8ZIlly1gexux51ylej30qo0f0tqg.jpg)
 
 Istio 通过 DestinationRule 实现断路器模式，或者更具体的路径 TrafficPolicy (原断路器) ->  OutlierDetection，根据上图模型：
 
@@ -251,7 +251,7 @@ Hystrix 提供了一个断路器实现，允许在电路打开时执行 fallback
 
 Spring Cloud 是建立在 Spring Boot 之上的框架，它提供了与 Spring 的良好集成。它让开发者在处理 Hystrix 命令对象的实例化时，只需注释所需的 fallback 方法。
 
-![image.png](https://tva1.sinaimg.cn/large/007S8ZIlly1gexux4np4zj30qo0f01da.jpg)
+![image.png](007S8ZIlly1gexux4np4zj30qo0f01da.jpg)
 
 实现断路器的方法有两种，一种是黑盒方式，另一种是白盒方式。Istio 作为一种代理管理工具，使用了黑盒方式，它实现起来很简单，不依赖于底层技术栈，而且可以在事后配置。另一方面，Hystrix 库使用白盒方式，它允许所有不同类型的 fallback:
 
@@ -267,7 +267,7 @@ Spring Cloud 是建立在 Spring Boot 之上的框架，它提供了与 Spring �
 
 ### 智能路由
 
-![image.png](https://tva1.sinaimg.cn/large/007S8ZIlly1gexux7waasj30qo0f04o0.jpg)
+![image.png](007S8ZIlly1gexux7waasj30qo0f04o0.jpg)
 
 最后，我们来看一下智能路由带来的高可用。智能路由这里包括（客户端）负载均衡与实例容错策略。对于 Spring Cloud 框架来说，这部分能力由 Ribbon 来提供，Ribbon 支持随机、轮询、响应时间权重等负载均衡算法。而对于 Service Mesh 框架，这部分能力由 Envoy 提供，Envoy 支持随机、轮询（加权）、环哈希等算法。为了实现两套系统的规则统一对齐，可以采用其交集。
 

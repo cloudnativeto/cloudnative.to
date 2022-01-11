@@ -17,7 +17,7 @@ profile: "GitPod Co-Founder & CEO"
 
 而在今天，微服务架构时代，软件系统变得更加复杂，尝试手动维护操作和部署都变的不再可能。在我们进行 “DevOps” 或 “基础设施即代码” 的实践时，发现声明式的描述软件系统对于自动和持续地部署应用程序是必不可少的。
 
-![](https://tvax4.sinaimg.cn/large/ad5fbf65gy1gtjixqw330j20p007swmz.jpg)
+![](ad5fbf65gy1gtjixqw330j20p007swmz.jpg)
 
 ## 那我们的开发环境呢？
 
@@ -43,7 +43,7 @@ profile: "GitPod Co-Founder & CEO"
 
 您是否时常会听到 “这个程序在我机器上是正常的，怎么到你机器上就不正常了” 这句话？以及一个 bug 只出现在一台机器上，很难在其他机器上重现？在生产中发生了事故，却无法在本地重现？只要您在使用不同的配置在不同平台上运行代码，发生这些问题都不奇怪。
 
-![](https://tva4.sinaimg.cn/large/ad5fbf65gy1gtjizbacoej20b40b4t9j.jpg)
+![](ad5fbf65gy1gtjizbacoej20b40b4t9j.jpg)
 
 ### 修复旧分支上的问题
 
@@ -51,7 +51,7 @@ profile: "GitPod Co-Founder & CEO"
 
 修复六个月前的技术栈可是很烦人的，必须处理所有旧的依赖库及其版本，且您仍然必须以某种方式使其可以工作。
 
-![](https://tvax3.sinaimg.cn/large/ad5fbf65gy1gtjizogoocj23342224a2.jpg)
+![](ad5fbf65gy1gtjizogoocj23342224a2.jpg)
 
 如果我们也将 “基础设施即代码” 理念应用到我们的开发环境中，所有的痛苦都可以结束。通过将开发环境设置以可执行格式写下来并将其与项目源码一起存入源码存储库，实现开发环境设置的自动化、可复用和版本化。
 
@@ -73,7 +73,7 @@ RUN apt-get install -y asciidoctor
 
 一旦您将更改 push 到代码仓库并且自动更新 docker 镜像，所有团队成员都可以在他们的开发环境中使用新工具。
 
-![](https://tva4.sinaimg.cn/large/ad5fbf65gy1gtjj015ulpj2334222453.jpg)
+![](ad5fbf65gy1gtjj015ulpj2334222453.jpg)
 
 ### IDE 自动设置
 
@@ -93,6 +93,6 @@ RUN apt-get install -y asciidoctor
 
 将 DevOps 的经验应用在开发环境的设置中，可以为我们节省大量宝贵的时间和精力。[ActiveState 的 2018 年开发者调查](https://www.activestate.com/developer-survey-2018-open-source-runtime-pains/) 通过一些数据强调了这一点：
 
-![](https://tva2.sinaimg.cn/large/ad5fbf65gy1gtjj0as918j218g0i8tdw.jpg)
+![](ad5fbf65gy1gtjj0as918j218g0i8tdw.jpg)
 
 我们真的需要用痛苦的入职经历来欢迎新同事或贡献者吗？让我们跳过繁琐的环境配置，让开发环境设置变的**自动化**、**可复用**且**版本化**吧！

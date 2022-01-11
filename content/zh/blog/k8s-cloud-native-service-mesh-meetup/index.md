@@ -13,7 +13,7 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-![Banner](https://tva1.sinaimg.cn/large/006y8mN6ly1g8xdzto7caj31ij0u00yd.jpg)
+![Banner](006y8mN6ly1g8xdzto7caj31ij0u00yd.jpg)
 
 - 活动主题：Kubernetes & Cloud Native X Service Mesh Meetup
 - 活动时间：2019 年 11 月 24 日（星期日）9:30-16:30
@@ -43,7 +43,7 @@ avatar: "/images/profile/default.jpg"
 
 错过一次，再等一年哦。
 
-![Kubernetes & Cloud Native x Service Mesh Meetup](https://tva1.sinaimg.cn/large/006y8mN6ly1g8xdyy6tf6j30u021tqc6.jpg)
+![Kubernetes & Cloud Native x Service Mesh Meetup](006y8mN6ly1g8xdyy6tf6j30u021tqc6.jpg)
 
 ## 议程
 
@@ -69,4 +69,4 @@ avatar: "/images/profile/default.jpg"
 
 使用**钉钉**扫描下面的二维码加入 SOFAMosn 用户交流群。
 
-![SOFAMosn 钉钉群](https://tva1.sinaimg.cn/large/006y8mN6ly1g8xbs396tfj3074078aa8.jpg)
+![SOFAMosn 钉钉群](006y8mN6ly1g8xbs396tfj3074078aa8.jpg)

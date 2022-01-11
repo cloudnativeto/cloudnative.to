@@ -18,25 +18,25 @@ avatar: "/images/profile/default.jpg"
 >
 > https://github.com/servicemesher/meetup-slides
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2dc36ywj30qo0f0wfd.jpg)
+![](006y8mN6ly1g8g2dc36ywj30qo0f0wfd.jpg)
 
-![敖小剑 蚂蚁金服 service mesh 杭州 meetup](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2d1qg75j30u00k1tcu.jpg)
+![敖小剑 蚂蚁金服 service mesh 杭州 meetup](006y8mN6ly1g8g2d1qg75j30u00k1tcu.jpg)
 
 ## 前言
 
 今天给大家带来的内容叫做Service Mesh探索之路，但是在前面加了一个定语：**大规模微服务架构下**。之所以加上这个词，是因为我们这个体系是在蚂蚁金服这样一个大的架构下进行的，蚂蚁金服的体量大家可以想象，所以这个探索会带有一个非常隆重的色彩：对性能/规模/高可用等方面的思考。
 
- ![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2dewe11j30qo0f0jsq.jpg)
+ ![](006y8mN6ly1g8g2dewe11j30qo0f0jsq.jpg)
 
 今年6月初，在深圳的GIAC大会，我们同事披露了这个正在开发中的 Service Mesh产品，我们现在暂时命名为 SOFA Mesh。我们目前的产品都在 SOFA品牌下，比如 SOFA RPC，SOFA Boot等。今天我们详细介绍 SOFA Mesh这个单独产品，上次大会只是简单披露，也就是给大家介绍说我们有这样一个产品，而我今天的内容是把这个产品详细展开。
 
 主要是三个内容：一是 SOFA Mesh的技术选型，二是它的架构设计，以及在最后跟大家聊一下，蚂蚁金服在 SOFA Mesh上的开源策略。
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2d5yw0aj30qo0f0gm1.jpg)
+![](006y8mN6ly1g8g2d5yw0aj30qo0f0gm1.jpg)
 
 ## 一、技术选型
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2gpr6w3j30qo0f0tbh.jpg)
+![](006y8mN6ly1g8g2gpr6w3j30qo0f0tbh.jpg)
 
 先上来一堆要求，刚才我们提到过的，因为是大规模，而蚂蚁金服的体量，大家可以想象到的。实际上在性能，稳定性上，我们的衡量标准，我们考虑的基石，都是以蚂蚁金服这样的一个规模来考虑的。
 
@@ -54,7 +54,7 @@ avatar: "/images/profile/default.jpg"
 
 第三点可能要特殊一些，需要满足各种体系。刚才我们在调查的时候了解到，有部分同学是在做旧有系统改造，那在改造的时候就会遇到一个问题：除了Service Mesh之外，还需要跟原来的体系，比如说 SOFA，或者社区主流框架如Dubbo，Spring Cloud，相互之间打通和过渡。怎么在技术转型期间平滑的让业务做变更，是我们在整个技术选型之前提出的实际要求。整个技术选型是在这样一个背景下进行的。
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2da5k87j30qo0f0djw.jpg)
+![](006y8mN6ly1g8g2da5k87j30qo0f0djw.jpg)
 
 我们做技术选型的时候，有两大方向：
 
@@ -90,7 +90,7 @@ avatar: "/images/profile/default.jpg"
 
 在公布结果之前，我们先来看一下有什么可选方案。
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2ded119j30qo0f0acl.jpg)
+![](006y8mN6ly1g8g2ded119j30qo0f0acl.jpg)
 
 这是开源方案的选择，第一代的Service Mesh。
 
@@ -104,7 +104,7 @@ Envoy是非常不错的，做了一些令我们意外的事情：安心的去做
 
 总结说，我们觉得Envoy很好，但是我们不能简单用。但是它在数据平面上的表现我们是非常认可的，Envoy在这点做得非常好。
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2d6vxq4j30qo0f076f.jpg)
+![](006y8mN6ly1g8g2d6vxq4j30qo0f076f.jpg)
 
 开源方案里面的第二代，istio是我们当时的第一选择，重点关注对象。Istio现在最大的问题在于它迟迟不能发布生产可用版本，大家如果对istio有了解的话，会知道istio刚刚发布了0.8版本，第一个长期支持版本，但是这个版本也不是生产可用。不出意外的话，按照目前的进度，istio应该会在7月份发布它的1.0版本，但是从我们目前的感受上看，1.0估计可能还是不能工业级的使用。所以需要等，而我们没法等，但是Istio的理念和方向我们非常认可。大家看一看，我们这个技术选型有多纠结。
 
@@ -112,7 +112,7 @@ Envoy是非常不错的，做了一些令我们意外的事情：安心的去做
 
 然后还是同样有技术栈的问题，因为这个原因，基本上Conduit我们也没法用了。
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2ddej49j30qo0f076w.jpg)
+![](006y8mN6ly1g8g2ddej49j30qo0f076w.jpg)
 
 我们再看一下国内的在Service Mesh领域，其他的一些比较前卫的同学，他们的选择会是什么？
 
@@ -124,17 +124,17 @@ Envoy是非常不错的，做了一些令我们意外的事情：安心的去做
 
 刚才看到的这两个产品，他们的思路大体上是相同的，差异在哪里？就是启动的时候是用已有的类库还是重新写？这两个选择之间最大的麻烦在于编程语言，华为原来有go的类库，所以继续用golang包装一下就好了。但是新浪的类库用的是Java，而sidecar选择的是go语言，所以只能重新做了。
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2dao36ej30qo0dm0u2.jpg)
+![](006y8mN6ly1g8g2dao36ej30qo0dm0u2.jpg)
 
 我们再看腾讯，最近看到他们有类似的产品出来。我们看看他们的资料：在数据平台上继续选择Envoy，因为它比较成熟。腾讯的话大家比较熟悉，尤其是腾讯有非常深厚的c++背景，所以Envoy对他们来说，技术栈是非常OK的。而且之前内部其他领域Envoy也是在用的，所以底层非常自然的选择了Envoy。然后控制平面上，据传是"挣扎了一下"。这个词是我抄过的，"他们挣扎了一下"，最后还是选了Istio。然后自己做定制和扩展，然后注意到他们也解耦了k8s。这也是其中一个关键的点：要不要绑定k8s？
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2d8l3mqj30qo0f0myg.jpg)
+![](006y8mN6ly1g8g2d8l3mqj30qo0f0myg.jpg)
 
 这里还有UCloud的一个很有意思的做法，另辟蹊径啊。他的方案很有意思，是一个轻量级的实践：从Istio里面，将Envoy和Pilot单独剥离出来。就是说不用Istio整体，把Mixer和Auth的模块去掉，只要最重要的Envoy，然后把Pilot剥离出来。然后这个Pilot还是个定制版，把其他的adapter干掉了。Pilot主要是做服务发现，它底层用ETCD，做了一个ETCD的adapter，把其他的adapter从Pilot中去掉。做完这几个事情之后，整个体系就可以脱离k8s了，这是一个比较有意思的实践。
 
 总结：在讲我们技术决策过程之前，我们过了一下目前市场上的主要产品，以及一部分实践者的做法。
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2dbkzxxj30qo0f0jto.jpg)
+![](006y8mN6ly1g8g2dbkzxxj30qo0f0jto.jpg)
 
 我们现在来详细讲一下，SOFA Mesh在技术选型上的考虑。
 
@@ -148,7 +148,7 @@ Envoy是非常不错的，做了一些令我们意外的事情：安心的去做
 
 但是Istio的性能是目前最大的问题，而我们有一个重要的前提：大规模应用。要用在蚂蚁金服主站这样一个场景下，性能和稳定性对我们非常非常的重要。第二个问题是它对非k8s的支持不够理想，因为我们还涉及到一个k8s没有完全上线的问题。第三个是和侵入式框架互通的问题，我们内部用的是SOFA，对外推出的时候我们的客户用的可能是Dubbo或者Spring Cloud，Mesh上去之后，两个系统现在走不通，这是大问题。
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2gpc73yj30qo0f00ur.jpg)
+![](006y8mN6ly1g8g2gpc73yj30qo0f00ur.jpg)
 
 最终我们的策略是这样的，这是我们 SOFA Mesh的技术选型：左边是Istio现有的架构，Envoy/Pilot/Mixer/Auth，右边是我们 SOFA Mesh的架构。
 
@@ -160,17 +160,17 @@ Envoy是非常不错的，做了一些令我们意外的事情：安心的去做
 
 ## 二、架构设计
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2dcxvr1j30qo0f0jru.jpg)
+![](006y8mN6ly1g8g2dcxvr1j30qo0f0jru.jpg)
 
 然后我们来详细介绍一下在这个技术选型上我们怎么去做实现。
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2d34esij30qo0f075z.jpg)
+![](006y8mN6ly1g8g2d34esij30qo0f075z.jpg)
 
 首先是Golang版本的Sidecar，我们会参考Envoy，非常明确的实现XDS API。因为XDS API是目前的事实标准，所以我们选择遵循，然后我们会让它兼容Istio。
 
 在协议支持上，我们会支持标准的HTTP/1.1和HTTP/2，也就是大家常见的REST和gRPC协议。然后我们会增加一些特殊的协议扩展，包括 SOFA协议，Dubbo协议，HSF协议。我们现在正在做这几个协议的扩展，然后XDS API我们支持，mixer service我们没有改动，遵循现有实现。
 
- ![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2dg7rw3j30qo0f0gnm.jpg)
+ ![](006y8mN6ly1g8g2dg7rw3j30qo0f0gnm.jpg)
 
 最大的变化在Mixer，其实刚才的Sidecar虽然是全新编写，但是说白了是做Envoy的替换，在架构上没有什么变化。但是第二步的变化就非常大，我们会合并一部分的Mixer功能。
 
@@ -184,7 +184,7 @@ Envoy是非常不错的，做了一些令我们意外的事情：安心的去做
 
 在这里，我们现在的决策是：我们会将其中的两个部分(check和quota)合并进来，原有report部分我们会继续保留在mixer里面。
 
- ![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2dgq9tzj30qo0f0q59.jpg)
+ ![](006y8mN6ly1g8g2dgq9tzj30qo0f0q59.jpg)
 
 可能大家会问：为什么我们要选择用这个方案，而不是遵循Istio的标准做法？我们之前聊到，我们会尽量去和Istio做兼容，跟随Istio的设计理念和产品方向，但是我们在它的架构上做了一个重大的调整。为什么？
 
@@ -207,7 +207,7 @@ Envoy是非常不错的，做了一些令我们意外的事情：安心的去做
 
 这是我们的基本想法。
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2d4iuw2j30qo0e5jtm.jpg)
+![](006y8mN6ly1g8g2d4iuw2j30qo0e5jtm.jpg)
 
 这个问题其实在Istio里面是给了一个解决方案的。最早的时候，Istio 0.1版本中，一出来就发现这个问题。从去年5月份开始到现在，13个月的时间里，他只给了一个解决方案，就是在Mixer上的这个位置加了一个Cache。这个的Cache的想法是：把这些结果缓存在Envoy的内存里面，如果下次的检查参数是相同的，那我们可以根据这样一个缓冲的设计，拿到已经缓存的结果，就可以避免远程调用。这个方式是很理想的，对吧？只要缓存能够命中，那就可以避免这一次远程调用。
 
@@ -217,7 +217,7 @@ Envoy是非常不错的，做了一些令我们意外的事情：安心的去做
 
 问题在于：这个Cache真的搞得定吗？
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2d5hscdj30qo0f00ul.jpg)
+![](006y8mN6ly1g8g2d5hscdj30qo0f00ul.jpg)
 
 我们给一个简单的例子，我现在假设Mixer有三个adapter。然后它的输入值是不同的属性，属性是istio的概念，理解为若干个输入值。假设，需要三个adapter分别检查A/B/C。如果这三个属性A/B/C，他们只有100个取值范围，每个都是从0到100，我们假设这种最简单的场景。
 
@@ -235,7 +235,7 @@ a * b * c？还能 a + b + c吗？做不到了，对不对？现在是 a * b * c
 
 这个细节，因为时间原因，不在这里详细讲了。
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2d6h2fgj30qo0dzq50.jpg)
+![](006y8mN6ly1g8g2d6h2fgj30qo0dzq50.jpg)
 
 这里讲第二点，我们的反省：隔离怎么做？
 
@@ -245,7 +245,7 @@ Mixer有一个基本的设计目标，就是希望提供一个统一的抽象（
 
 现在只有两个选择：和基础设施怎么连？这条线（备注：最左边的）大家都认为没必要，这两条线（备注：中间和右边的线）之间选，两条线的差异，就是要付出一次远程调用的代价。
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2dcki7oj30qo0f0dim.jpg)
+![](006y8mN6ly1g8g2dcki7oj30qo0f0dim.jpg)
 
 继续反省：什么是基础设施后端？
 
@@ -259,7 +259,7 @@ Mixer有一个基本的设计目标，就是希望提供一个统一的抽象（
 
 这是我们在这一点（备注：何为基础设施后端）上和istio的差异。
 
- ![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2d3qprxj30qo0f0juf.jpg)
+ ![](006y8mN6ly1g8g2d3qprxj30qo0f0juf.jpg)
 
 因为时间原因，我们就不再深入去讲，这里我给了一些我博客上的文章。前段时间，我们在做技术选型，在做前面整个架构设计时，在这一点上有些讨论。以及我们最重要的决策：为什么要把Mixer合并进去。细节都在这几篇文章里面，大家如果有兴趣，可以去详细了解。
 
@@ -277,13 +277,13 @@ Mixer有一个基本的设计目标，就是希望提供一个统一的抽象（
 
 - [Istio Mixer Cache工作原理与源码分析(4)－签名](https://skyao.io/post/201806-istio-mixer-cache-signature/)
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2d0rypsj30qo0f0mza.jpg)
+![](006y8mN6ly1g8g2d0rypsj30qo0f0mza.jpg)
 
 我们还有一部分现在没有合并进来的adapter和mixer，report的这部分。但是这块不是说完全没有问题，我们现在有一个担心，report这块可能会存在一个叫做**网络集中**的问题。比如说，大家会注意到，应用和Sidecar是一对一部署的，有一万个应用，就有一万个Sidecar。基础设施后端也是多机部署的。
 
 而现在的方式，流量会先打到Mixer来，Mixer也是高可用的，也是会部署多台。但是这个数量肯定不是一万这个级别，跟这个肯定会有很大的差异。这样流量会先集中，通道会突然间收缩一下。总的流量没变，但是通道的口径要小很多。
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2d7f735j30qo0f00uz.jpg)
+![](006y8mN6ly1g8g2d7f735j30qo0f00uz.jpg)
 
 对网络吞吐量也会有影响。比如最简单的，如果应用直连，走交换机直接就过去了。
 
@@ -295,7 +295,7 @@ Mixer有一个基本的设计目标，就是希望提供一个统一的抽象（
 
 给大家一些参考，目前Conduit最新版本已经把report的功能合并进来，然后check的功能，会在后续的计划中合并。我们在国内做一些技术交流，华为新浪微博他们现在通通都是选择在Sidecar里面实现功能，不走mixer。
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2dh5nayj30qo0f00w1.jpg)
+![](006y8mN6ly1g8g2dh5nayj30qo0f00w1.jpg)
 
 这是我们称之为梦幻级别的服务注册和治理中心，我们对他的要求是比较多的：
 
@@ -305,7 +305,7 @@ Mixer有一个基本的设计目标，就是希望提供一个统一的抽象（
 
 右边的这个图，是我们构想中的比较理想化的注册中心的架构，我们会有各种adapter实现，会有一个抽象的模型，把他们抽象起来，然后有一些接口。后来，在我们实现的时候发现，Istio的路线跟我们有点像，Istio本身也是做了跨平台的Adapter，也做了一层抽象，然后它也提出了一些API。所以我们最终的决策是：往Pilot靠。
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2d2nt63j30qo0f0mzb.jpg)
+![](006y8mN6ly1g8g2d2nt63j30qo0f0mzb.jpg)
 
 我们以Istio的Pilot模块为基础去做扩展和增强：
 
@@ -313,7 +313,7 @@ Mixer有一个基本的设计目标，就是希望提供一个统一的抽象（
 - 再加一个数据同步的模块，来实现多个服务注册中心之间的数据交换。
 - 然后第三点就是希望加一个Open Service Registry API，增加服务注册，因为现在Istio的方案只有服务发现，它的服务注册是走k8s的，用的是k8s的自动服务注册。如果想脱离k8s环境，就要提供服务注册的方案。在服务发现和服务模型已经标准化的情况下，我们希望服务注册的API也能标准化。
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2d97ijxj30qo0f00ve.jpg)
+![](006y8mN6ly1g8g2d97ijxj30qo0f00ve.jpg)
 
 这里还有一个比较特殊的产品，因为时间限制，给大家简单了解一下。
 
@@ -321,7 +321,7 @@ Mixer有一个基本的设计目标，就是希望提供一个统一的抽象（
 
 当A服务发出一个请求去调用B服务的时候，由于两个集群是隔离的，网络无法相通，肯定直接调用不到的。这时local sidecar会发现，服务B不在本集群，而在右边这个集群里，Local Sidecar就会将请求转发给Edge Sidecar，然后由Edge Sidecar接力完成后续的工作。
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2db3805j30qo0f0tas.jpg)
+![](006y8mN6ly1g8g2db3805j30qo0f0tas.jpg)
 
 这个模块的功能会比较特殊一点，因为时间限制，在今天的过程当中，Pilot和Edge Sidecar就不再详细展开。
 
@@ -329,17 +329,17 @@ Mixer有一个基本的设计目标，就是希望提供一个统一的抽象（
 
 ## 三、开源策略
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2ddv17cj30qo0f074r.jpg)
+![](006y8mN6ly1g8g2ddv17cj30qo0f074r.jpg)
 
 SOFA Mesh的开源策略，可能会和大家之前接触到的一些开源产品，有质的差异，非常的不一样。
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2d0glyij30qo0f077i.jpg)
+![](006y8mN6ly1g8g2d0glyij30qo0f077i.jpg)
 
 备注：这块就不整理了，直接看图中文字。
 
 这是整个大的愿景。
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2dfat8jj30qo0f0n00.jpg)
+![](006y8mN6ly1g8g2dfat8jj30qo0f0n00.jpg)
 
 SOFA Mesh的开源态度，其实我写左边这些的时候是有很大压力的。用官方话语说，不针对任何人和任何项目，我们不影射任何人。
 
@@ -353,7 +353,7 @@ SOFA Mesh这次比较特殊，非常非常特殊。我们这个产品，会在�
 
 整个产品的维护，什么样的产品会让你有信心，不用担心中间断掉？最重要的一点是我们自己在用。想想，如果支付宝在用，你担心这个项目死掉吗？对不对？如果这个产品本身是蚂蚁金服这样级别的公司，在它的线上将会使用的产品，而且是同样一个核心的版本。相信在这种情况下，大家就放心了吧？
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2gq7wlrj30qo0f076u.jpg)
+![](006y8mN6ly1g8g2gq7wlrj30qo0f076u.jpg)
 
 SOFA Mesh的合作模式，我称之为"多层次全方位开放"。
 
@@ -367,7 +367,7 @@ SOFA Mesh的合作模式，我称之为"多层次全方位开放"。
 
 今天的几位讲师来自不同的公司，我们非常欢迎业界参与。如果大家有意在Service Mesh领域做一些事情，大家可以相互之间做技术的沟通，技术的交流，在社区合作上做一些事情。
 
-有些同学说，我只是用一下，好像没法做什么贡献。其实，"用"是一个很重要的合作，你能够用，你就会遇到问题，有你的诉求，遇到什么样的bug，有什么样需求没有满足。这些对我们来说，是非常重要的输入。在这一点上，欢迎和我们保持合作。 ![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2d18aozj30qo0f0406.jpg)
+有些同学说，我只是用一下，好像没法做什么贡献。其实，"用"是一个很重要的合作，你能够用，你就会遇到问题，有你的诉求，遇到什么样的bug，有什么样需求没有满足。这些对我们来说，是非常重要的输入。在这一点上，欢迎和我们保持合作。 ![](006y8mN6ly1g8g2d18aozj30qo0f0406.jpg)
 
 SOFA Mesh的开源宣言，写的比较狗血。但是在这一点上，我觉得这一次SOFA Mesh在开源上还是做的比较有诚意。
 
@@ -381,13 +381,13 @@ SOFA Mesh的开源宣言，写的比较狗血。但是在这一点上，我觉�
 
 我们寻求和大家的合作，包括刚才讲过的各个层面的合作，哪怕是简单的使用，发现问题给我们提交一些bug，也是非常好的合作契机。
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2dfuqcij30qo0f0wg4.jpg)
+![](006y8mN6ly1g8g2dfuqcij30qo0f0wg4.jpg)
 
 这里我喊一个口号，这个口号有点大，"集结中国力量，共建开源精品"。这里面有个词，比较大一点，我也斟酌了一下，中国这两个字敢不敢用。最后我觉得还是用吧，至少到目前为止，Service Mesh这个技术领域，在全世界目前都还没有成熟的场景落地的情况下，我们目前在这方面的探索，已经是走在最前面的了。
 
 在这一点上，我们是希望能联合国内在这个领域做探索的同学，我们一起来做这个事情。我们开源的一个重要目的，是说不管大家在商业上有什么样的竞争，至少在技术领域上，包括刚才说的可以在类库层面，产品层面，或者社区合作方面，开展合作。我们希望能够尽可能的联合国内的合作伙伴，包括竞争对手一起来营造整个技术氛围，把整个Service Mesh技术体系的基本水准提升上来。
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2d7u1q9j30qo0bwjru.jpg)
+![](006y8mN6ly1g8g2d7u1q9j30qo0bwjru.jpg)
 
 这一点应该是大家比较关注的，什么时候开源? 我们只能告诉大家说，on the way，正在路上。
 
@@ -401,4 +401,4 @@ SOFA Mesh的开源宣言，写的比较狗血。但是在这一点上，我觉�
 
 这是我们刚刚开通的[Service Mesh技术社区的官方网站](https://www.servicemesher.com)，欢迎访问。
 
-![](https://tva1.sinaimg.cn/large/006y8mN6ly1g8g2d27g5jj30qo0f00ui.jpg)
+![](006y8mN6ly1g8g2d27g5jj30qo0f00ui.jpg)
