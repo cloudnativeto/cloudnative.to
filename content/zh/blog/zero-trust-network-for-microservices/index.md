@@ -74,7 +74,7 @@ Tetrate 与[美国国家标准与技术研究所（NIST）](https://www.nist.gov
 
 对于 CISO 和 CTO 来说，基于上述研究文件，我们主张采用持续安全框架，以实现其微服务和服务网格的零信任，避免数据泄露。在这个框架下，有 4 个关键因素需要考虑。
 
-![微服务的零信任网络框架](https://tva1.sinaimg.cn/large/008i3skNly1gygh9tlkvlj31gw0skgnr.jpg)
+![微服务的零信任网络框架](008i3skNly1gygh9tlkvlj31gw0skgnr.jpg)
 
 微服务的零信任网络框架
 
@@ -104,7 +104,7 @@ Tetrate Service Bridge（TSB）位于应用边缘，负责控制所有计算集�
 
 DevOps 团队仍然可以继续执行他们的计划，根据业务需求更快地将应用程序部署到多云中，而安全方面可以对微服务的安全策略进行集中控制。让我们看看 TSB 组件如何帮助实现安全。
 
-![微服务的零信任网络的Tetrate实现](https://tva1.sinaimg.cn/large/008i3skNly1gyggs2hdtaj30wi0q20uz.jpg)
+![微服务的零信任网络的Tetrate实现](008i3skNly1gyggs2hdtaj30wi0q20uz.jpg)
 
 微服务的零信任网络的 Tetrate 实现
 
