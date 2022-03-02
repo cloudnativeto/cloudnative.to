@@ -55,4 +55,6 @@ type: "notice"
 
 #### 投递简历
 
-欢迎[邮件简历](mailto:junjiang.ljj@alibaba-inc.com)，或者添加微信：FUNKY-STARS ，我们将尽快安排面试。
+扫描下方二维码，我们将尽快安排面试。
+
+![招聘二维码](https://img.alicdn.com/imgextra/i1/O1CN01Z9SX6a1nMrAfT9XbZ_!!6000000005076-0-tps-252-264.jpg)
