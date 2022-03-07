@@ -4,12 +4,12 @@ slider:
   slider_item:
      - subtitle : ""
        title : "Service Mesh Summit 2022"
-       content : "3 月 19 日（周六），上海舜元会议中心（近 2 号线淞虹路），首届服务网格峰会。"
+       content : "上海舜元会议中心（近 2 号线淞虹路），首届服务网格峰会。"
        bg_image : "images/slider/sms.jpg"
        animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
        button:
          enable : true
-         label : " 立即报名"
+         label : "查看详情"
          link : "https://www.huodongxing.com/event/8638606076200"
          animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
      - subtitle : ""
