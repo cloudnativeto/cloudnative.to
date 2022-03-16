@@ -13,8 +13,6 @@ type: "post"
 avatar: "/images/profile/default.jpg"
 ---
 
-![](006tNbRwly1fwka4u4wtfj31kw0tb7wi.jpg)
-
 > 用[Istio](https://istio.io/zh)治理服务时须通过istioctl或kubectl，这种方式可能存在一些问题。因此小米武汉研发中心推出Naftis，帮助用户更轻松地管理Istio。
 
 近年来服务网格（Service Mesh）已成为各大公司关注重点，各大公司纷纷开始调研Service Mesh相关架构。作为Service Mesh中的佼佼者，Istio诞生之初就已吸引众多目光。
