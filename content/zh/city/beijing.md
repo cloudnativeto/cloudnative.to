@@ -17,7 +17,7 @@ bg_image: "/images/backgrounds/city-banner-beijing.jpg"
 core_members:
   - name: "罗广明"
     image: "/images/city/beijing/members/luoguangming.jpg"
-    tag: "罗广明，云原生社区管委会成员，ServiceMesher 社区管委会成员，CloudWeGo 开源负责人，Istio Handbook 作者之一"
+    tag: "罗广明，云原生社区管委会成员，ServiceMesher 社区管委会成员，CloudWeGo 开源负责人，《Istio 服务网格进阶实战》作者之一"
   - name: "王殿进"
     image: "/images/city/beijing/members/wangdianjin.jpg"
     tag: "王殿进，StreamNative 社区负责人。"
