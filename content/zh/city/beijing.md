@@ -17,7 +17,7 @@ bg_image: "/images/backgrounds/city-banner-beijing.jpg"
 core_members:
   - name: "罗广明"
     image: "/images/city/beijing/members/luoguangming.jpg"
-    tag: "罗广明，云原生社区管委会成员，百度云原生技术专家、云原生技术布道师，ServiceMesher 社区管委会成员，Istio Handbook 作者之一，对 Spring Cloud、Istio 以及微服务中间件有深入研究。"
+    tag: "罗广明，云原生社区管委会成员，ServiceMesher 社区管委会成员，CloudWeGo 开源负责人，Istio Handbook 作者之一"
   - name: "王殿进"
     image: "/images/city/beijing/members/wangdianjin.jpg"
     tag: "王殿进，StreamNative 社区负责人。"
