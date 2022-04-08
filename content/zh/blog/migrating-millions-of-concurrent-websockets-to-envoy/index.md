@@ -1,6 +1,6 @@
 ---
-title: "Slack将数百万个并发的Websockets迁移到Envoy上经验分享"
-description: "本文 Slack 花半年时间从 HAProxy 迁移到 Envoy上的经验分享。"
+title: "Slack 将数百万个并发的 Websockets 迁移到 Envoy 上经验分享"
+description: "本文是 Slack 花半年时间从 HAProxy 迁移到 Envoy上的经验分享。"
 date: 2022-04-08T13:00:00+08:00
 author: "[Slack Team](https://slack.engineering/migrating-millions-of-concurrent-websockets-to-envoy/)"
 translator: "[宋净超（Jimmy Song）](https://jimmysong.io)"
