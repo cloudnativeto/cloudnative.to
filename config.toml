@@ -79,7 +79,7 @@ weight = 3
 [[menu.main]]
 parent = "Community"
 name = "Istio SIG"
-URL = "https://i.cloudnative.to/istio/"
+URL = "https://cloudnative.to/sig-istio/"
 weight = 4
 
 [[menu.main]]

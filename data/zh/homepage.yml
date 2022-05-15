@@ -2,16 +2,16 @@
 slider:
   enable : true
   slider_item:
-     - subtitle : ""
-       title : "Service Mesh Summit 2022"
-       content : "上海舜元会议中心（近 2 号线淞虹路），首届服务网格峰会。"
-       bg_image : "images/slider/sms.jpg"
-       animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
-       button:
-         enable : true
-         label : "查看详情"
-         link : "https://www.huodongxing.com/event/8638606076200"
-         animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
+      # - subtitle : ""
+      #   title : "Service Mesh Summit 2022"
+      #   content : "上海舜元会议中心（近 2 号线淞虹路），首届服务网格峰会。"
+      #   bg_image : "images/slider/sms.jpg"
+      #   animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
+      #   button:
+      #     enable : true
+      #     label : " "
+      #     link : "https://www.huodongxing.com/event/8638606076200"
+      #     animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
      - subtitle : ""
        title : "云原生社区 Meetup 第八期· 上海站"
        content : "10 月 23 日（周六），上海蚂蚁 S 空间，云原生、超融合、大规模 Kubernetes 集群及存储相关的主题分享。"
