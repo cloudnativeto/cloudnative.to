@@ -239,7 +239,7 @@ Istio 服务网格内部会维护一个与平台无关的服务注册表，当�
 
 1. 在共享 kubernetes 集群里做灰度发布，暴露方式有两种，一是基于 SLB，需要提前申请 SLB VIP，申请完后，会分配一个 ecloud.10086.cn/slb-svc.UniqueID 进行 IP 地址的绑定；二是通过 NodePort，这个在创建 Istio ingressgateway 的时候，配置分配给各产品 Port 即可
 
-2. 根据需求在各产品的 namespace 里按照《Istio 安装部署手册 01 - 共享 K8s 版本.docx》进行 Istio ingressgateway 的创建，如创建中有问题，可联系相关人员支撑
+2. 根据需求在各产品的 namespace 里进行 Istio ingressgateway 的创建
 
 3. 提网络策略工单，进行相关网络策略、防火墙策略的打通
 
