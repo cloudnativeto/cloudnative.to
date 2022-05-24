@@ -77,7 +77,7 @@ Reviews 服务具有多个版本，通过配置 VirtualService 和 DestinationRu
 
 ![Product服务调用Reviews服务](Product-reviews.jpg)
 
-1.Productpage 发起对 Reviews 的调用：http://reviews:9080/reviews
+1. Productpage 发起对 Reviews 的调用：http://reviews:9080/reviews
 2. 请求被 pod 的 iptable 规则拦截，转发到 15001 固定端口，这里注入 Sidecar 的 pod 里的 iptable 规则均是通过 Istio-init container 进行修改的
 3. Envoy 的 Virtual Listener 在 15001 端口上监听，收到了该请求
 4. 请求被 Virtual Listener 根据原目标 IP 和端口转发到 0.0.0.0_9080 这个 listener
