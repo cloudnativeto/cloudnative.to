@@ -3,7 +3,7 @@ title: "为什么需要可编程代理"
 description: "经常会有人问“当你们说可编程代理的时候，那么什么是可编程代理，为什么需要可编程代理”？本文从不同角度回答这个问题。"
 author: "[Flomesh](https://flomesh.io/)"
 image: "images/blog/what-and-why-programmable-proxy.jpeg"
-categories: ["Proxy"]
+categories: ["云原生"]
 tags: ["Proxy", "Programmable Proxy"]
 date: 2022-05-27T08:03:00+08:00
 type: "post"
