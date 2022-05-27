@@ -4,7 +4,7 @@ description: "经常会有人问“当你们说可编程代理的时候，那么
 author: "[Flomesh](https://flomesh.io/)"
 image: "images/blog/what-and-why-programmable-proxy.jpeg"
 categories: ["云原生"]
-tags: ["Proxy", "Programmable Proxy"]
+tags: ["Proxy", "可编程代理"]
 date: 2022-05-27T08:03:00+08:00
 type: "post"
 avatar: "/images/profile/pipy.png"
