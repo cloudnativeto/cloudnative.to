@@ -2,7 +2,7 @@
 title: "一种灵活注入Istio Sidecar的方案探索"
 date: 2022-05-29T12:00:00+08:00
 draft: false
-image: "/images/blog/pexels-tobi-620337.jpg"
+image: "/images/blog/pexels-eberhard-grossgasteiger-844297.jpg"
 author: "李运田"
 authorlink: "https://zhaohuabing.com"
 description: "作者在本文将和大家一起探讨下Istio在满足什么条件的时候进行Sidecar的注入，介绍使用Istio进行Sidecar注入时的一些配置及生产应用"
@@ -30,7 +30,7 @@ Kubernetes提供了自定义资源类型和自定义控制器来扩展功能，�
 ![Istio注入流程](inject.jpg)
 
 
-首先我们看下Istio的mutatingwebhookconfiguration配置
+首先我们看下Istio的·mutatingwebhookconfiguration·配置
 
 
 ![mutatingwebhookconfiguration 配置信息](webhook.jpg)
@@ -44,19 +44,13 @@ Kubernetes提供了自定义资源类型和自定义控制器来扩展功能，�
 ![自动注入流程图1](image1.jpg)
 
 
-1 判断pod的spec中没有设置hostNetwork:true
-
-2 判断待注入的pod不在系统namespace里，如kube-system、kube-public
-
-3 设置三个临时变量，useDefault=false、inject=false、required=false，判断是否配置sidecar.istio.io/inject
-
-4 如果sidecar.istio.io/inject的值设置为y, yes, true, on，则inject=true
-
-5 sidecar.istio.io/inject为其他值，则useDefault=true
-
-6 判断neverInjectSelector是否有匹配到的条件，如果匹配到则设置useDefault = false、inject = false
-
-7 判断alwaysInjectSelector是否有匹配到的条件，如果匹配到则设置useDefault = false、inject = true，alwaysInjectSelector优先级高于neverInjectSelector
+1. 判断pod的spec中没有设置hostNetwork:true
+2. 判断待注入的pod不在系统namespace里，如kube-system、kube-public
+3. 设置三个临时变量，useDefault=false、inject=false、required=false，判断是否配置sidecar.istio.io/inject
+4. 如果sidecar.istio.io/inject的值设置为y, yes, true, on，则inject=true
+5. sidecar.istio.io/inject为其他值，则useDefault=true
+6. 判断neverInjectSelector是否有匹配到的条件，如果匹配到则设置useDefault = false、inject = false
+7. 判断alwaysInjectSelector是否有匹配到的条件，如果匹配到则设置useDefault = false、inject = true，alwaysInjectSelector优先级高于neverInjectSelector
 
 经过上述判断，我们得到了useDefault 、inject的结果值，后面我们根据policy的取值以及上述结果值，判断pod是否能够注入Sidecar，继续查看自动注入的流程图2
 
