@@ -36,7 +36,7 @@ Kubernetes 提供了自定义资源类型和自定义控制器来扩展功能，
 ![mutatingwebhookconfiguration 配置信息](webhook.jpg)
 
 
-通过配置我们看到，`namespaceSelector` 会去 match 标签为 i`stio-injection: enabled` 的 namespace，并且根据请求规则，去匹配所有 pod 的创建 CREATE 请求。当 apiserver 收到一个符合规则的请求时，apiserver 会给 Webhook 服务发送一个通过审核的请求，Istio 中的这个 Webhook 服务是 Istiod 的 service，请求地址为 /inject。从代码 [/pkg/kube/inject/webhook.go](https://github.com/istio/istio/blob/release-1.8/pkg/kube/inject/webhook.go)，中我们查看 Istio 是如何处理自动注入的，在 Discovery Server 中注册了两个用来处理自动注入的请求 handler，`p.Mux.HandleFunc ("/inject", wh.serveInject)`、`p.Mux.HandleFunc ("/inject/", wh.serveInject)`，`wh.serveInject` 就是实现自动注入的主要逻辑。在这里我们不详细讲解自动注入的代码逻辑。只讲解下，在满足什么样的条件才会进行自动注入。
+通过配置我们看到，`namespaceSelector` 会去 match 标签为 `istio-injection: enabled` 的 namespace，并且根据请求规则，去匹配所有 pod 的创建 CREATE 请求。当 apiserver 收到一个符合规则的请求时，apiserver 会给 Webhook 服务发送一个通过审核的请求，Istio 中的这个 Webhook 服务是 Istiod 的 service，请求地址为 /inject。从代码 [/pkg/kube/inject/webhook.go](https://github.com/istio/istio/blob/release-1.8/pkg/kube/inject/webhook.go)，中我们查看 Istio 是如何处理自动注入的，在 Discovery Server 中注册了两个用来处理自动注入的请求 handler，`p.Mux.HandleFunc ("/inject", wh.serveInject)`、`p.Mux.HandleFunc ("/inject/", wh.serveInject)`，`wh.serveInject` 就是实现自动注入的主要逻辑。在这里我们不详细讲解自动注入的代码逻辑。只讲解下，在满足什么样的条件才会进行自动注入。
 
 通过查看自动注入的代码，我们可以得到如下注入条件的流程图 1
 
