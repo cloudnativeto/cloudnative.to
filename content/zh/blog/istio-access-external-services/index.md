@@ -4,7 +4,6 @@ date: 2022-06-22T12:00:00+08:00
 draft: false
 image: "/images/blog/liyuntian-istio.jpg"
 author: "李运田"
-authorlink: "https://zhaohuabing.com"
 description: "作者在本文将和大家一起探讨下 Istio 访问外部服务的两种方法，介绍 Istio 访问外部服务的原理"
 tags: ["Istio","Servicemesh"]
 categories: ["Istio"]
