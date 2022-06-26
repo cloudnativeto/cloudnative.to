@@ -44,13 +44,13 @@ data:
 ![Istio 流量流转](iptables.jpg)
 
 当 reviews 应用需要访问 36.152.44.96 这个外部服务时，会在 reviews 的应用容器中往上游发送请求信息，下面按照图中的顺序介绍如何访问外部请求。  
-9.reviews 服务访问外部服务，这一步对 reviews 服务来说属于出口流量，被 iptables 规则拦截转发至出口流量 OUTPUT 链  
-10.OUTPUT 链转发流量至 ISTIO_OUTPUT 链  
-11.在 ISTIO_OUTPUT 链中默认有九个规则，决定 reviews 服务访问外部服务的流量发往何处，在这里我们可以自定义一个规则 `-A ISTIO_OUTPUT -d 36.152.44.0/24 -j RETURN`，使访问 36.152.44.96 这个外部服务的流量跳出当前链，调用 `POSTROUTING 链`，直接访问外部服务；如果使用默认规则，流量被转发至 ISTIO_REDIRECT 链  
-12.ISTIO_REDIRECT链直接重定向至 Envoy监听的15001出口流量端口  
-13.外部服务的流量策略并不在 Istio 服务网格中，如果不进行相关配置把外部服务注册到服务网格内，经过 Envoy 一系列出口流量治理动作后将会返回错误信息。因此这里我们需要配置 `ServiceEntry`，把外部服务纳入服务网格中，然后通过 Envoy 的流量治理后可以继续发送外部请求，访问外部请求时又会被 iptables 拦截转发至出口流量 OUTPUT 链  
-14.OUTPUT 链转发流量至 ISTIO_OUTPUT 链  
-15.在这里会匹配到 ISTIO_OUTPUT 链的第四条规则 `-A ISTIO_OUTPUT -m owner --uid-owner 1337 -j RETURN`，流量直接 RETURN 到下一个链 `POSTROUTING 链`，经 POSTROUTING 链流出访问外部服务  
+1.reviews 服务访问外部服务，这一步对 reviews 服务来说属于出口流量，被 iptables 规则拦截转发至出口流量 OUTPUT 链。 
+2.OUTPUT 链转发流量至 ISTIO_OUTPUT 链。  
+3.在 ISTIO_OUTPUT 链中默认有九个规则，决定 reviews 服务访问外部服务的流量发往何处，在这里我们可以自定义一个规则 `-A ISTIO_OUTPUT -d 36.152.44.0/24 -j RETURN`，使访问 36.152.44.96 这个外部服务的流量跳出当前链，调用 `POSTROUTING 链`，直接访问外部服务；如果使用默认规则，流量被转发至 ISTIO_REDIRECT 链。  
+4.ISTIO_REDIRECT链直接重定向至 Envoy监听的15001出口流量端口。  
+5.外部服务的流量策略并不在 Istio 服务网格中，如果不进行相关配置把外部服务注册到服务网格内，经过 Envoy 一系列出口流量治理动作后将会返回错误信息。因此这里我们需要配置 `ServiceEntry`，把外部服务纳入服务网格中，然后通过 Envoy 的流量治理后可以继续发送外部请求，访问外部请求时又会被 iptables 拦截转发至出口流量 OUTPUT 链。  
+6.OUTPUT 链转发流量至 ISTIO_OUTPUT 链。  
+7.在这里会匹配到 ISTIO_OUTPUT 链的第四条规则 `-A ISTIO_OUTPUT -m owner --uid-owner 1337 -j RETURN`，流量直接 RETURN 到下一个链 `POSTROUTING 链`，经 POSTROUTING 链流出访问外部服务。  
 我们看到通过第11步、第13步两种方式修改配置都可以使 Istio 内部的服务访问外部服务，具体应该怎么做呢？ 
  
 ## 通过iptables规则访问
