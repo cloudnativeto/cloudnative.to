@@ -1,12 +1,12 @@
 ---
 title: "浅析 Istio——可观测性"
-date: 2022-06-22T12:00:00+08:00
+date: 2022-06-25T12:00:00+08:00
 draft: false
 image: "/images/blog/istio-observability.jpg"
 author: "蔡奇"
 description: "作者在本文将和大家一起探讨下 Istio 的路由管理，介绍使用 Istio 灰度发布的过程中，有哪些需要注意的地方。"
-tags: ["Istio","observability"]
-categories: ["service mesh"]
+tags: ["Istio","可观测性"]
+categories: ["Istio"]
 keywords: ["observability","service mesh"]
 type: "post"
 avatar: "/images/profile/caiqi.jpg"
@@ -21,7 +21,7 @@ Logging 是在特定时间发生的事件的文本记录，包括说明事件发
 
 Istio 为网格内所有的服务通信生成详细的遥测数据。这种遥测技术让 Isito 提供了服务行为的可观察性，使运维人员能够排查故障、维护和优化应用程序，而不会给服务的开发人员带来任何额外的负担。 在 Istio1.7 版本之前，安装 Istio 时也会默认安装可观测性插件 Kiali、Prometheus、Jaeger 等。而在 Istio1.7 及其后面的版本，将不再安装这些可观测性插件。需要手动使用以下命令进行安装：
 
-```
+```bash
 kuebctl apply -f sample/addons/
 ```
 
@@ -93,7 +93,7 @@ __meta_kubernetes_pod_annotation表示 pod 中 annotation 的值，与 Istio 组
 
 此外，对于独立部署 Prometheus 的情况，可以根据以上内容对 Prometheus 进行配置。
 
-###自定义Metrics
+### 自定义Metrics
 
 在实际情况中，Istio 自身提供的指标可能不能够满足需求，需要对已有指标进行修改，又或者需要添加新的指标信息时，Istio 支持自定义 metrics。
 
@@ -208,7 +208,7 @@ apiVersion: v1
 istio_requests_total{app="reviews",destination_port="9080",request_host="reviews:9080",request_operation="GetReview",......}
 ```
 
-###Prometheus Federation对Istio多集群的支持
+### Prometheus Federation对Istio多集群的支持
 
 在 Istio 多集群场景下，每个集群会部署独立的 Prometheus 收集自身的指标信息，在需要将多集群指标进行聚合以及提供统一的 Prometheus 访问地址时，会使用 Prometheus Federation 将多集群数据聚合到一个独立的 Prometheus 实例上。
 
@@ -232,7 +232,7 @@ scrape_configs:
           - 'source-prometheus-3:9090'
 ```
 
-##Tracing
+## Tracing
 
 Istio 推荐的分布式追踪工具 Jaeger、Zipkin 都通过 OpenTracing 规范进行实现。在分布式追踪里，存在 Trace 和 Span 两个重要概念：
 
@@ -249,7 +249,7 @@ Istio 代理能够自动发送 Span，但是需要附加如下 HTTP 请求头信
 * x-b3-flags
 * x-ot-span-context
 
-###自定义Tracing配置
+### 自定义Tracing配置
 
 Istio可以对不同的pod进行不同全链路追踪的配置。通过给POD添加名为proxy.istio.io/config的annotation，来配置该Pod的追踪采样率、自定义tag等。
 
@@ -282,13 +282,13 @@ apiVersion: v1
 
 需要注意的是，以上配置必须重启服务才能生效，这是因为 config 作用的时间点是 Istio 注入 sidecar 的时候，这样配置的 tracing，对于 Envoy 来说，是放在了 bootstrap 配置里面，不能在线变更和修改。
 
-##Logging
+## Logging
 
 Istio 可以检测到网格内的服务通信的流转情况，并生成详细的遥测数据日志。默认情况下，Istio 通过 meshConfig.accessLogFile=/dev/stdout 开启了 Envoy 访问日志，日志信息可以经过 stdout 标准输出。此外，也可以使用 accessLogEncoding 和 accessLogFormat 设置日志格式。
 
 Envoy 日志可以使用 kubectl logs 命令进行查看，但是当 Pod 被销毁后，旧的日志将不复存在，如果要查看历史的的日志数据，需要使用 EFK、Loki 等工具对日志进行持久化。
 
-##Istio可视化
+## Istio可视化
 
 Kiali 是 Istio 服务网格可视化工具，提供了服务拓补图、全链路跟踪、指标遥测、配置校验、健康检查等功能。Kiali 需要 Prometheus 为其提供指标信息，还可以配置 Jaeger 和 Grafana ，实现分布式追踪和监控数据可视化。
 
@@ -303,7 +303,7 @@ spec:
 
 此外，如果需要在 Kali 中加入分布式追踪和监控数据可视化的功能，也可以在 external_services 下配置 Jaeger 和 Grafana 的实际地址。
 
-###Kiali多集群支持
+### Kiali多集群支持
 
 Kiali 默认开启 Istio 多集群支持，若需要关闭此支持，可以进行如下设置：
 
@@ -316,12 +316,9 @@ spec:
 
 通常，每个 istiod 控制面上会部署一个 Kiali。在 Isito 多集群主从模式下，只有主机群上部署了 Kiali，从集群上对应用的访问，此时通过 Kiali 是不能够查询到对应流量信息的。需要为主从集群的 Prometheus 进行联邦配置，这样才能够查询到从集群自身的指标流量信息。
 
-##参考文献
+## 参考文献
 
-https://jimmysong.io/istio-handbook/config/networking/envoy-filter.html
-
-https://istio.io/latest/docs/tasks/observability/metrics/classify-metrics/
-
-https://zhuanlan.zhihu.com/p/513448061
-
-https://blog.csdn.net/A13581861752/article/details/124311885
+- [EnvoyFilter - lib.jimmysong.io](https://lib.jimmysong.io/istio-handbook/config-networking/envoy-filter/)
+- [Classifying Metrics Based on Request or Response - istio.io](https://istio.io/latest/docs/tasks/observability/metrics/classify-metrics/)
+- [Istio 服务网格与全链路追踪的全方位攻略 - zhuanlan.zhihu.com](https://zhuanlan.zhihu.com/p/513448061)
+- [可观测性（一）- blog.csdn.net](https://blog.csdn.net/A13581861752/article/details/124311885)
