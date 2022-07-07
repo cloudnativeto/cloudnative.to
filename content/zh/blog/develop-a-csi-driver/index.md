@@ -9,7 +9,7 @@ tags: ["Kubernetes", "CSI", "Cloud Native"]
 categories: ["Cloud Native Storage"]
 keywords: ["Kubernetes", "CSI"]
 type: "post"
-avatar: "/images/profile/wangyizhi.jpeg"
+avatar: "/images/profile/wangyizhi.jpg"
 profile: "就职于中国移动云能力中心，专注于云原生领域。"
 ---
 
