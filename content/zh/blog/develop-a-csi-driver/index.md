@@ -4,7 +4,7 @@ date: 2022-07-07T12:00:00+08:00
 draft: false
 image: "/images/blog/banner.jpg"
 author: "王一之"
-description: "本文将介绍 CSI 驱动如何开发，"
+description: "本文将介绍 Kubernetes 中的 CSI 驱动如何开发。"
 tags: ["Kubernetes", "CSI", "Cloud Native"]
 categories: ["Cloud Native Storage"]
 keywords: ["Kubernetes", "CSI"]
