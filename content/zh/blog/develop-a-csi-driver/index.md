@@ -2,7 +2,7 @@
 title: "CSI 驱动开发指南"
 date: 2022-07-07T12:00:00+08:00
 draft: false
-image: "/images/blog/banner.jpg"
+image: "/images/blog/wangyizhi.jpg"
 author: "王一之"
 description: "本文将介绍 Kubernetes 中的 CSI 驱动如何开发。"
 tags: ["Kubernetes", "CSI", "Cloud Native"]
@@ -13,11 +13,11 @@ avatar: "/images/profile/wangyizhi.jpg"
 profile: "就职于中国移动云能力中心，专注于云原生领域。"
 ---
 
-# 前言
+## 前言
 
 外部存储接入 Kubernetes 的方式主要有两种：In-Tree 和 Out-of-Tree。其中 In-Tree 是指存储驱动的源码都在 Kubernetes 代码库中，与 Kubernetes 一起发布、迭代、管理，这种方式灵活性较差，且门槛较高。Out-of-Tree 是指存储插件由第三方编写、发布、管理，作为一种扩展与 Kubernetes 配合使用。Out-of-Tree 主要有 FlexVolume 和 CSI 两种实现方式，其中，FlexVolume 因为其命令式的特点，不易维护和管理，从 Kubernetes v1.23 版本开始已被弃用。因此 CSI 已经成为 Kubernetes 存储扩展（ Out-of-Tree ）的唯一方式。
 
-# CSI 组成
+## CSI 组成
 
 ![csi-architecture](csi-architecture.png)
 
@@ -28,12 +28,12 @@ profile: "就职于中国移动云能力中心，专注于云原生领域。"
 - 绿色部分：**Identity、Node、Controller** 是需要开发者自己实现的，被称为 **Custom Components**。
 - 粉色部分：**node-driver-registrar、external-attacher、external-provisioner** 组件是 Kubernetes 团队开发和维护的，被称为 **External Components**，它们都是以 **sidecar** 的形式与 **Custom Components** 配合使用的。
 
-## **Custom Components**
+### Custom Components
 
 Custom Components 本质是3个 gRPC Services：
 
 - **Identity Service**
-    
+  
     顾名思义，主要用于对外暴露这个插件本身的信息，比如驱动的名称、驱动的能力等：
     
     ```protobuf
@@ -50,7 +50,7 @@ Custom Components 本质是3个 gRPC Services：
     ```
     
 - **Controller Service**
-    
+  
     主要定义一些**无需在宿主机上执行**的操作，这也是与下文的 Node Service 最根本的区别。以 `CreateVolume` 为例，k8s 通过调用该方法创建底层存储。比如底层使用了某云供应商的云硬盘服务，开发者在 `CreateVolume` 方法实现中应该调用云硬盘服务的创建/订购云硬盘的 API，调用 API 这个操作是不需要在特定宿主机上执行的。
     
     ```protobuf
@@ -99,7 +99,7 @@ Custom Components 本质是3个 gRPC Services：
     ```
     
 - **Node Service**
-    
+  
     定义了**需要在宿主机上执行**的操作，比如：mount、unmount。在前面的部署架构图中，Node Service 使用 **Daemonset** 的方式部署，也是为了确保 Node Service 会被运行在每个节点，以便执行诸如 mount 之类的指令。
     
     ```protobuf
@@ -133,28 +133,28 @@ Custom Components 本质是3个 gRPC Services：
 
 以上定义取自 [csi.proto](https://github.com/container-storage-interface/spec/blob/master/csi.proto)，使用的是 [Protocol Buffers](https://grpc.io/docs/what-is-grpc/introduction/) 描述语言。
 
-## External Components
+### External Components
 
 External Components 都是以 sidecar 的方式提供使用的。当开发完三个 Custom Components 之后，开发者需要根据存储的特点，选择合适的 sidecar 容器注入到 Pod 中。这里的 External Components 除了前面图中提到的 node-driver-registrar、external-attacher、external-provisioner 还有很多，可以参考[官方文档](https://kubernetes-csi.github.io/docs/sidecar-containers.html#kubernetes-csi-sidecar-containers)，这里对常用的 sidecars 做一些简单介绍：
 
 - **[livenessprobe](https://kubernetes-csi.github.io/docs/livenessprobe.html#csi-livenessprobe)**
-    
+  
     `liveessprobe` 监视 CSI 驱动程序的运行状况，并将其报告给 Kubernetes。这使得 Kubernetes 能够自动检测驱动程序的问题，并重新启动 pod 来尝试修复问题。
     
 - **[node-driver-registrar](https://kubernetes-csi.github.io/docs/node-driver-registrar.html#csi-node-driver-registrar)**
-    
+  
      `node-driver-registrar` 可从 CSI driver 获取驱动程序信息（通过 `NodeGetInfo` 方法），并使用 kubelet 插件注册机制在该节点上的 kubelet 中对其进行注册。
     
 - **[external-provisioner](https://kubernetes-csi.github.io/docs/external-provisioner.html#csi-external-provisioner)**
-    
+  
     `external-provisioner` 组件对于块存储（如 ceph）非常关键。它监听 `PersistentVolumeClaim` 创建，调用 CSI 驱动的 `CreateVolume` 方法创建对应的底层存储（如 ceph image），一旦创建成功，provisioner 会创建一个 `PersistentVolume` 资源。当监听到 `PersistentVolumeClaim` 删除时，它会调用 CSI 的 `DeleteVolume` 方法删除底层存储，如果成功，则删除 `PersistentVolume`。
     
 - **[external-attacher](https://kubernetes-csi.github.io/docs/external-attacher.html#csi-external-attacher)**
-    
+  
     用于监听 Kubernetes `VolumeAttachment` 对象并触发 CSI 的 `Controller[Publish|Unpublish]Volume` 操作。
     
 - **[external-resizer](https://kubernetes-csi.github.io/docs/external-resizer.html#csi-external-resizer)**
-    
+  
     监听 `PersistentVolumeClaim` 资源修改，调用 CSI `ControllerExpandVolume` 方法，来调整 volume 的大小。
     
 
@@ -165,7 +165,7 @@ External Components 与 Custom Components 共同组成部署 yaml ，可以参�
 
 ps：其中 cephcsi 镜像是开发者实现的，包含所提的3个 gRPC 服务。
 
-# 动态卷供应（Dynamic Volume Provisioning）执行过程
+## 动态卷供应（Dynamic Volume Provisioning）执行过程
 
 为了实现 Identity、Node、Controller 3个服务，需要清楚动态卷供应的执行过程。
 
@@ -213,9 +213,9 @@ CSI Dynamic Volume Provisioning 大致流程如下：
   - 执行 MountDevice 操作，调用 Node Service 的 `NodeStageVolume` 方法。该方法主要实现对 Volume 格式化，然后挂载到一个临时目录（Staging 目录）上，经过此操作后，Volume 进入 **VOL_READY** 状态。
   - 执行 SetUp 操作，调用 Node Service 的 `NodePublishVolume` 方法：将 Staging 目录，绑定挂载到 Volume 对应的宿主机目录上，Volume 进入 **PUBLISHED** 状态，用户此时可以正常使用。
 
-# CSI 开发
+## CSI 开发
 
-## 从零开始实现一个 nfs-csi
+### 从零开始实现一个 nfs-csi
 
 直接实现 ceph-csi 代码量比较多，且需要基于 ceph 集群调试，对新手不太友好。所以本文先从一个简单的 nfs-csi 入手，再分析 ceph-csi 的核心代码。首先是框架搭建，因为逻辑并不复杂，所以采用一种比较扁平的目录设计：
 
@@ -333,7 +333,7 @@ func (ids *IdentityServer) GetPluginCapabilities(ctx context.Context, req *csi.G
 ```
 其中：
 - `GetPluginInfo` 接口返回驱动的名称和版本信息，比如 ceph-csi 的名称：`rbd.csi.ceph.com`，该名称与 StorageClass yaml 中的 `provisioner` 字段对应：
-    
+  
     ```yaml
     ---
     apiVersion: storage.k8s.io/v1
@@ -744,8 +744,7 @@ func createPath(ctx context.Context, volOpt *rbdVolume, cr *util.Credentials) (s
 
 可以看到，attach实际就是执行 `rbd map` 指令，与之前的设想一致。函数嵌套比较深，此处只保留了核心代码，完整代码可以参考 [ceph-csi](https://github.com/ceph/ceph-csi)。
 
-
-# 参考资料
+## 参考资料
 
 - [https://github.com/kubernetes-csi/csi-driver-nfs](https://github.com/kubernetes-csi/csi-driver-nfs)
 - [https://kubernetes-csi.github.io/docs/introduction.html](https://kubernetes-csi.github.io/docs/introduction.html)
