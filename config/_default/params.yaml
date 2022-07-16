@@ -1,0 +1,99 @@
+# SITE SETUP
+# Guide: https://wowchemy.com/docs/getting-started/
+# Documentation: https://wowchemy.com/docs/
+# This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
+
+# Appearance
+
+appearance:
+  theme_day: my_theme
+  theme_night: my_theme
+  font: minimal
+  font_size: M
+
+# SEO
+
+marketing:
+  seo:
+    site_type: Organization
+    local_business_type: ''
+    org_name: '云原生社区'
+    description: '中立的云原生终端用户社区'
+    twitter: 'CloudNativeCN'
+  analytics:
+    google_analytics: 'G-MP490FS739' # TBD
+    baidu_tongji: 'f3dc895ea3bd6186cd835841d365c103'
+  verification:
+    google: 'google69a5cccb61297807' # TBD
+    baidu: 'cqmZHEleVh' #TBD
+
+# Site header
+
+header:
+  navbar:
+    enable: true
+    align: l
+    show_logo: true
+    show_language: false
+    show_day_night: true
+    show_search: true
+    show_github: true
+    show_home: false
+    highlight_active_link: true
+    home: "https://cloudnative.to"
+
+footer:
+  copyright:
+    notice: '© 2020-2022 云原生社区保留所有权利'
+    license:
+      enable: false
+      allow_derivatives: false
+      share_alike: true
+      allow_commercial: false
+
+# Localization
+
+locale:
+  date_format: '2006-01-02'
+  time_format: '下午 3:04'
+
+# Publication
+
+publications:
+  date_format: '2006-01-02'
+
+# Site features
+
+features:
+  syntax_highlighter:
+    enable: true
+    extra_languages:
+  math:
+    enable: false
+  privacy_pack:
+    enable: false
+  repository:
+    url: 'https://github.com/cloudnativeto/cloudnative.to'
+    content_dir: content
+    branch: master
+  comment:
+    provider: 'giscus'
+    disqus:
+      shortname: ''
+      show_count: true
+    giscus:
+      repo: 'cloudnativeto/cloudnative.to'
+      repo_id: 'MDEwOlJlcG9zaXRvcnkyMzc3NDUxOTA='
+      category_id: 'MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMyMDU5MzUy'
+      reaction_enabled: '1'
+  search:
+    provider: wowchemy
+    algolia:
+      app_id: ''
+      api_key: ''
+      index_name: ''
+      show_logo: true
+reading_time: true
+section_pager: true
+subscribe:
+  enable: true

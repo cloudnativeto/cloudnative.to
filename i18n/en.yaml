@@ -1,104 +1,289 @@
-- id: read_more
-  translation: Read More
+# Navigation
 
-- id: address
-  translation: Our Address
+- id: toggle_navigation
+  translation: Toggle navigation
 
-- id: phone
-  translation: Phone Number
+- id: table_of_contents
+  translation: Table of Contents
 
-- id: email
-  translation: Message Us
+- id: on_this_page
+  translation: Contents
 
-- id: contact_form
-  translation: Contact Form
+- id: back_to_top
+  translation: Back to top
 
-- id: send
-  translation: send message
+- id: home
+  translation: Home
 
-- id: follow
-  translation: FOLLOW US ON
+- id: close
+  translation: Close
 
-- id: services
-  translation: Services
+- id: languages
+  translation: Languages
 
-- id: contact_info
-  translation: Contact Info
+# General
 
-- id: subscribe_newsletter
-  translation: Subscribe Newsletter
+- id: related
+  translation: Related
 
-- id: subscribe
-  translation: Subscribe
+- id: minute_read
+  translation: min read
 
-- id: connect_with_us
-  translation: Connect With Us
+- id: previous
+  translation: Previous
 
-- id: call_now
-  translation: Call Now
+- id: next
+  translation: Next
 
-- id: search_placeholder
-  translation: Type & Hit Enter...
+- id: figure
+  translation: 'Figure %d:'
 
-- id: quick_contact
-  translation: Quick Contact
+- id: edit_page
+  translation: Edit this page
 
-- id: related_article
-  translation: See Also
+# Themes
 
-- id: previous_article
-  translation: Previous post
+- id: theme_selector
+  translation: Display preferences
 
-- id: next_article
-  translation: Next post
+- id: theme_light
+  translation: Light
 
-- id: category
-  translation: Category
+- id: theme_dark
+  translation: Dark
 
-- id: tags
-  translation: Tags
+- id: theme_auto
+  translation: Automatic
 
-- id: toc
-  translation: Toc
+# Buttons
 
-- id: all
-  translation: ALL
+- id: btn_preprint
+  translation: Preprint
 
-- id: client
-  translation: client
+- id: btn_pdf
+  translation: PDF
+
+- id: btn_cite
+  translation: Cite
+
+- id: btn_slides
+  translation: Slides
+
+- id: btn_video
+  translation: Video
+
+- id: btn_code
+  translation: Code
+
+- id: btn_dataset
+  translation: Dataset
+
+- id: btn_project
+  translation: Project
+
+- id: btn_poster
+  translation: Poster
+
+- id: btn_source
+  translation: Source Document
+
+- id: btn_copy
+  translation: Copy
+
+- id: btn_download
+  translation: Download
+
+# About widget
+
+- id: interests
+  translation: Interests
+
+- id: education
+  translation: Education
+
+- id: user_profile_latest
+  translation: Latest
+
+# Accomplishments widget
+
+- id: see_certificate
+  translation: See certificate
+
+# Experience widget
+
+- id: present
+  translation: Present
+
+# Pages widget
+
+- id: more_pages
+  translation: See all
+
+- id: more_posts
+  translation: See all posts
+
+- id: more_talks
+  translation: See all events
+
+- id: more_publications
+  translation: See all publications
+
+# Contact widget
+
+- id: contact_name
+  translation: Name
+
+- id: contact_email
+  translation: Email
+
+- id: contact_message
+  translation: Message
+  
+- id: contact_attachment
+  translation: Attach file
+
+- id: contact_send
+  translation: Send
+
+- id: book_appointment
+  translation: Book an appointment
+
+# Publication/Event details
+
+- id: abstract
+  translation: Abstract
+
+- id: publication
+  translation: Publication
+
+- id: publication_type
+  translation: Type
 
 - id: date
-  translation: date
+  translation: Date
 
-- id: status
-  translation: status
+- id: last_updated
+  translation: Last updated on
 
-- id: site_name
-  translation: "Cloud Native Community"
+- id: event
+  translation: Event
 
-- id: author
-  translation: by
+- id: location
+  translation: Location
 
-- id: published_at
-  translation: "on"
+- id: pub_uncat
+  translation: Uncategorized
 
-- id: dateFormat
-  translation: "Jan 2, 2006"
+- id: pub_conf
+  translation: Conference paper
 
-- id: join_us
-  translation: "Join us"
+- id: pub_journal
+  translation: Journal article
 
-- id: translator
-  translation: "Translator"
+- id: pub_preprint
+  translation: Preprint
 
-- id: see_all
-  translation: "See all"
+- id: pub_report
+  translation: Report
 
-- id: previousPost
-  translation: "Previous Post"
+- id: pub_book
+  translation: Book
 
-- id: nextPost
-  translation: "Next Post"
+- id: pub_book_section
+  translation: Book section
 
-- id: categories
-  translation: "Categories"
+- id: pub_thesis
+  translation: Thesis
+
+- id: pub_patent
+  translation: Patent
+
+# Project details
+
+- id: open_project_site
+  translation: Go to Project Site
+
+# Content types for default archive page titles and search results
+
+- id: posts
+  translation: Posts
+
+- id: publications
+  translation: Publications
+
+- id: talks
+  translation: Events
+
+- id: projects
+  translation: Projects
+
+- id: slides
+  translation: Slides
+
+- id: authors
+  translation: Authors
+
+# Search
+
+- id: search
+  translation: Search
+
+- id: search_placeholder
+  translation: Search...
+
+- id: search_results
+  translation: results found
+
+- id: search_no_results
+  translation: No results found
+
+- id: search_common_queries
+  translation: Common searches
+
+# Error 404
+
+- id: page_not_found
+  translation: Page not found
+
+- id: 404_recommendations
+  translation: Perhaps you were looking for one of these?
+
+# Cookie consent
+
+- id: cookie_message
+  translation: This website uses cookies to ensure you get the best experience on our website.
+
+- id: cookie_dismiss
+  translation: Got it!
+
+- id: cookie_learn
+  translation: Learn more
+
+# Published with
+
+- id: published_with
+  translation: Published with {wowchemy} — the free, {repo_link}open source{/repo_link} website builder that empowers creators.
+
+- id: toc
+  translation: Content
+
+- id: words
+  translation: Words
+
+- id: reading_time
+  translation : Reading Time
+
+- id: minute
+  translation: minutes
+
+- id: home
+  translation: Home
+
+- id: visit_github
+  translation: "Visit Github"
+
+- id: switch_theme
+  translation: "Switch theme"
+
+- id: show_toc
+  translation: "Click to show the outline"

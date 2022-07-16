@@ -1,0 +1,192 @@
+// Override this file to add your own SCSS styling.
+.aside-toc {
+    line-height: 1.9;
+    ul {
+            padding-inline-start: 10px;
+    }
+    a:hover{
+        text-decoration: underline;
+    }
+
+}
+
+.aside-toc #TableOfContents li a, .toc-top li a {
+    font-size: 1rem;
+}
+
+.btn-citation:hover a {
+    color: black;
+}
+
+.post-container .article-container {
+  max-width: 100%;
+  padding: 0;
+}
+
+.post-container .featured-image-wrapper{
+    display: none;
+}
+
+@media screen and (max-width: 1200px) {
+    .article-body {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+}
+
+
+.subscribe-module{
+ max-width: 130px;
+ background-color: #00000005;
+ border-radius: 0.125em;
+ line-height: 1.5;
+ text-align: center;
+ font-size: 12px;
+ padding-top: 1em;
+ padding-bottom: 1em;
+}
+
+.wc-qr img {
+    display: unset;
+}
+
+// up to top button
+#backTopBtn {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  color: #80808080; /* Set a background color */
+  background-color: transparent; /* Set a background color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  font-size: 40px; /* Increase font size */
+}
+
+@media screen and (max-width: 600px) {
+  #backTopBtn {
+    font-size: 40px;
+    right: 4px;
+    bottom: 4px;
+  }
+}
+
+.nav-toogle{
+    color: #000000a6;
+}
+
+.parent-node:hover{
+    font-weight: 900;
+    a {
+        color: $sta-primary;
+    }
+}
+
+.dark .parent-node:hover{
+    font-weight: 900;
+    a {
+        color: $sta-dark-link-hover;
+    }
+}
+
+.child:hover{
+    font-weight: 900;
+}
+
+.dark .docs-sidebar .nav .child:hover{
+    font-weight: 900;
+    a {
+        color: $sta-dark-link-hover;
+    }
+}
+
+.level2{
+    padding-left: 1rem;
+}
+
+.level3{
+    padding-left: 2rem;
+}
+.level4{
+    padding-left: 3rem;
+}
+.level5{
+    padding-left: 4rem;
+}
+
+.search-title{
+    font-size:2rem;
+}
+
+.edit-page{
+    font-size:0.85rem;
+}
+
+.related-title{
+    font-size:1rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.84);
+}
+
+.dark .related-title{
+    font-size:1rem;
+    font-weight: 600;
+    color: #767676;
+}
+
+// Code copy buttons
+
+.highlight {
+    position: relative;
+}
+
+.highlight-copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.4rem;
+    border: 0;
+    border-radius: 4px;
+    padding: 1px;
+    font-size: 0.5rem;
+    line-height: 1.8;
+    background-color: transparent;
+    opacity: 0.2;
+    min-width: 1rem;
+    text-align: center;
+}
+
+.highlight-copy-btn:hover {
+    color: black;
+    opacity: 1;
+}
+
+.dark .highlight-copy-btn {
+    color: white;
+}
+
+.nav-item a:hover{
+    font-weight: 700;
+}
+
+.dark #hero > div.home-section-bg {
+    background-image: linear-gradient(90deg, #0d0d0d, #272935) !important;
+}
+
+.dark #hero img {
+  filter: grayscale(1);
+}
+
+.article .toc-inpage{
+    ul{
+        margin-bottom: 0;
+    }
+}
+
+// Hide in-page toc on PC and show it on mobile
+@media screen and (min-width: 1200px) {
+    .article .toc-inpage{
+        display: none;
+    }
+}

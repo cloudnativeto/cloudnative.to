@@ -1,0 +1,11 @@
+{{ $show_summary := ne (.Get "show_summary") "false" }}
+{{ if gt (len $.Page.Pages) 0}}
+  <ul>
+    {{ range $.Page.Pages }}
+      <li>
+        <p><a href="{{.RelPermalink}}">{{.LinkTitle}}</a></p>
+        {{if $show_summary | and .Summary}}<p>{{.Summary | plainify | emojify}}</p>{{end}}
+      </li>
+    {{end}}
+  </ul>
+{{end}}

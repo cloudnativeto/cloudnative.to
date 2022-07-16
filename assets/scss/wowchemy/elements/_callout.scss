@@ -1,0 +1,117 @@
+// Callout styles for the Callout shortcode
+
+/* Style asides as Bootstrap alerts. */
+.article-style aside {
+  @extend .alert;
+}
+
+.alert, .article-style aside {
+    border-radius: 0;
+    border: 0;
+}
+
+/* Asides use <p> block element whereas alerts use <div>. */
+.article-style aside p,
+div.alert > div {
+  position: relative;
+  display: block;
+  font-size: 1rem;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+div.alert div > * {
+  margin-bottom: 0.5rem; /* Use smaller paragraph spacing than usual. */
+}
+
+div.alert div > :last-child {
+  margin-bottom: 0;
+}
+
+/**
+.article-style aside p::before,
+div.alert > div:first-child::before {
+  position: absolute;
+  top: -0.5rem;
+  left: -2rem;
+  font-size: 1.5rem;
+  color: #1976d2;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  content: '\f05a';
+  width: 1.5rem;
+  text-align: center;
+}
+
+div.alert-warning > div:first-child::before {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  color: #ff3860;
+}
+**/
+
+.article-style aside a,
+div.alert a {
+  color: currentColor;
+  text-decoration: none;
+  border-bottom: solid 1px currentColor;
+}
+
+.article-style aside,
+.alert-note {
+  color: #12537e;
+  background-color: #f6fbfe;
+  border-color: #1976d2;
+}
+
+.alert-warning {
+  color: #cd0930;
+  background-color: #fff5f7;
+  border-color: #ff3860;
+}
+
+.alert-note-title{
+    font-weight: 900;
+    padding: 0 1rem;
+    color: #f6fbfe;
+    background-image: linear-gradient(to left, transparent 10%, #0a55a7 90%);
+}
+
+.alert-warning-title{
+    font-weight: 900;
+    padding: 0 1rem;
+    color: #f6fbfe;
+    background-image: linear-gradient(to left, transparent 10%, #cd0930 90%);
+}
+
+.dark .article-style aside,
+.dark .alert-note {
+  background-color: #292e31;
+  color: #f6fbfe;
+}
+
+.dark .alert-warning {
+  color: #cd0930;
+  background-color: #292e31;
+}
+
+.dark .alert-note-title{
+    font-weight: 900;
+    padding: 0 1rem;
+    color: #f6fbfe;
+    background-image: linear-gradient(to left, transparent 10%, #000 90%);
+}
+
+.dark .alert-warning-title{
+    font-weight: 900;
+    padding: 0 1rem;
+    color: #cd0930;
+    background-image: linear-gradient(to left, transparent 10%, #000 90%);
+}
+
+.alert {
+    ul{
+        margin-bottom:0;
+    }
+    padding: 0 1rem;
+}

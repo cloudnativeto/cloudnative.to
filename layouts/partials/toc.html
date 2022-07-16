@@ -1,0 +1,10 @@
+{{ if gt .WordCount 400 }}
+<div class="">
+    <ul class="nav toc-top">
+        <li>
+            <a href="#" id="back_to_top" class="docs-toc-title">{{i18n "toc" }}</a>
+        </li>
+    </ul>
+  {{ .TableOfContents }}
+</div>
+{{- end }}
