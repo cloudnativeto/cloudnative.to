@@ -1,8 +1,8 @@
 ---
-title: 
-role: 
-bio: ""
+title: Liz Rice
+role:
+bio: "Isovalent 首席开源官"
 organizations:
-- name: 
+- name: Isovalent
 ---
 
