@@ -10,7 +10,7 @@ design:
     gradient_end: '#4f7bab'
     text_color_light: true
 cta:
-  url: "https://mp.weixin.qq.com/s/ppDxLapuFwo3isEpg3zfUQ"
+  url: "/community/join/"
   label: 加入社区
   icon: fa-solid fa-user-group
 cta_alt:

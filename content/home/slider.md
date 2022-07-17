@@ -1,7 +1,7 @@
 ---
 widget: slider
 weight: 11
-active: true
+active: false
 headless: true  # This file represents a page section.
 design:
   # Slide height is automatic unless you force a specific height (e.g. '400px')

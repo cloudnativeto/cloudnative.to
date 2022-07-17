@@ -18,9 +18,12 @@ main:
   - name: 活动
     url: event
     weight: 40
+  - name: 社区
+    url: community
+    weight: 1
   - name: 博客
     url: blog
-    weight: 1
+    weight: 2
   - name: 更新
     url: '#feed'
     weight: 60
