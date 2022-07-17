@@ -1,49 +1,48 @@
-{{ define "main" }}
+{{- define "main" -}}
 
-  {{ "<!-- project details -->" | safeHTML }}
-  <section class="section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8">
-          {{ "<!-- project image -->" | safeHTML }}
-          <img class="img-fluid w-100 mb-5" src="{{ .Params.Image_webp | relURL }}"  onerror="this.src='{{.Params.Image | relURL }}'" alt="project image">
-          <div class="row no-gutters bg-secondary p-sm-5 p-4 mb-5">
-            <div class="col-md-3 col-6 mb-4 mb-md-0">
-              <div class="border-md-right border-muted ml-4">
-                <h5 class="text-white text-uppercase">{{ i18n "client"}}</h5>
-                <span class="text-light">{{ .Params.Client }}</span>
-              </div>
-            </div>
-            <div class="col-md-3 col-6 mb-4 mb-md-0">
-              <div class="border-md-right border-muted ml-4">
-                <h5 class="text-white text-uppercase">{{ i18n "category" }}</h5>
-                <span class="text-light">{{ .Params.Category }}</span>
-              </div>
-            </div>
-            <div class="col-md-3 col-6 mb-4 mb-md-0">
-              <div class="border-md-right border-muted ml-4">
-                <h5 class="text-white text-uppercase">{{ i18n "date" }}</h5>
-                <span class="text-light">{{ .PublishDate.Format "02 Jan 2006" }}</span>
-              </div>
-            </div>
-            <div class="col-md-3 col-6 mb-4 mb-md-0">
-              <div class="ml-4">
-                <h5 class="text-white text-uppercase">{{ i18n "status" }}</h5>
-                <span class="text-light">{{ .Params.Status }}</span>
-              </div>
-            </div>
-          </div>
-          <div class="content">
-            {{ .Content }}
-          </div>
-        </div>
-        {{ "<!-- sidebar -->" | safeHTML }}
-        <aside class="col-lg-4">
-          {{ partial "quick-contact.html" . }}
-        </aside>
-      </div>
+<article class="article article-project">
+
+  {{ partial "page_header.html" . }}
+
+  <div class="article-container">
+
+    <div class="article-style">
+      {{ .Content }}
     </div>
-  </section>
-  {{ "<!-- /project details -->" | safeHTML }}
 
-{{ end }}
+    {{ partial "page_footer" . }}
+
+    <div class="project-related-pages content-widget-hr">
+      {{ $page := . }}
+      {{ $project := .File.ContentBaseName }}
+
+      {{ $items := where (where site.RegularPages "Type" "post") ".Params.projects" "intersect" (slice $project) }}
+      {{ $count := len $items }}
+      {{ if ge $count 1 }}
+        <h2>{{ (i18n "posts") }}</h2>
+        {{ range $index, $item := $items }}
+          {{ partial "functions/render_view" (dict "page" $ "item" . "view" (site.Params.projects.post_view | default "compact") "index" $index) }}
+        {{end}}
+      {{ end }}
+
+      {{ $items := where (where site.RegularPages "Type" "publication") ".Params.projects" "intersect" (slice $project) }}
+      {{ $pubs_len := len $items }}
+      {{ if ge $pubs_len 1 }}
+        <h2>{{ (i18n "publications") }}</h2>
+        {{ range $index, $item := $items }}
+          {{ partial "functions/render_view" (dict "page" $ "item" . "view" (site.Params.projects.publication_view | default "compact") "index" $index) }}
+        {{end}}
+      {{ end }}
+
+      {{ $items := where (where site.RegularPages "Type" "event") ".Params.projects" "intersect" (slice $project) }}
+      {{ $talks_len := len $items }}
+      {{ if ge $talks_len 1 }}
+        <h2>{{ (i18n "talks") }}</h2>
+        {{ range $index, $item := $items }}
+          {{ partial "functions/render_view" (dict "page" $ "item" . "view" (site.Params.projects.talk_view | default "compact") "index" $index) }}
+        {{end}}
+      {{ end }}
+    </div>
+  </div>
+</article>
+{{- end -}}

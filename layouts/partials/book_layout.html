@@ -1,0 +1,67 @@
+{{ $current_page := . }}
+
+{{/* Check whether to show breadcrumb navigation. */}}
+{{ $show_breadcrumb := .Params.show_breadcrumb }}
+
+<div class="container-xl docs">
+  <div class="row flex-xl-nowrap">
+    <div class="docs-sidebar">
+      {{ partial "book_sidebar" . }}
+    </div>
+
+    {{/* Show ToC by default. */}}
+    {{ if ne .Params.toc false }}
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      {{ partial "hooks/page_toc_start" . }}
+     {{ if ne .Params.hide_toc_title true }}
+      <ul class="nav toc-top">
+        <li><a href="#" id="back_to_top" class="docs-toc-title">{{ i18n "on_this_page" }}</a></li>
+      </ul>
+     {{ end }}
+
+      {{ .TableOfContents }}
+
+      {{ partial "hooks/page_toc_end" . }}
+    </div>
+    {{ end }}
+
+    <main class="py-md-3 pl-md-3 docs-content col-xl-8" role="main">
+
+      <article class="article">
+
+          {{ if $show_breadcrumb }}
+            {{ partial "components/breadcrumb" $current_page }}
+          {{ end }}
+
+          <h1>{{ .Title }}</h1>
+
+          <div class="article-style">
+            {{ .Content }}
+          </div>
+
+          {{ partial "tags.html" . }}
+
+          {{/* Show next/previous pages by default. */}}
+          {{ if ne site.Params.book_section_pager false }}
+          <div class="article-widget">
+            {{ partial "section_pager" . }}
+          </div>
+          {{ end }}
+
+        <div class="body-footer">
+          <p>{{ i18n "last_updated" }} {{ $.Lastmod | time.Format site.Params.locale.date_format }}</p>
+
+          {{ partial "page_edit" . }}
+
+          {{ partial "comments" . }}
+
+          {{ partial "page_related" . }}
+        </div>
+
+      </article>
+
+      {{ partial "site_footer" . }}
+
+    </main>
+  </div>
+</div>

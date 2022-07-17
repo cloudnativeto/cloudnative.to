@@ -1,0 +1,30 @@
+{{- /* Generate the search index. */ -}}
+{{- $index := slice -}}
+{{- $pages := site.RegularPages -}}
+{{- /* Add the index page of multi-page content separately since it's not in RegularPages above. */ -}}
+{{- $pages := $pages | union (where (where site.Pages "Kind" "section") "Type" "book") -}}
+
+{{- range $pages -}}
+  {{- /* Do not index drafts or private pages. */ -}}
+  {{- if and (not .Draft) (not .Params.private) | and (ne .Params.searchable false) | and (ne .Section "book") -}}
+
+    {{- /* Generate page description. */ -}}
+    {{- $desc := "" -}}
+    {{- if .Params.summary -}}
+      {{- $desc = .Params.summary -}}
+    {{- else if .Params.abstract -}}
+      {{- $desc = .Params.abstract -}}
+    {{- else -}}
+      {{- $desc = .Summary -}}
+    {{- end -}}
+    {{- $title := .Title}}
+    {{- $rel_permalink := .RelPermalink -}}
+    {{- $permalink := .Permalink -}}
+
+    {{- /* Add page to index. */ -}}
+    {{- $index = $index | append (dict "relpermalink" $rel_permalink "title" $title "summary" (plainify $desc | htmlUnescape) "content" (.Plain | htmlUnescape | truncate 500)) -}}
+
+  {{- end -}}
+{{- end -}}
+
+{{- $index | jsonify -}}

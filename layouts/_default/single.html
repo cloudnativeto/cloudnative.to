@@ -1,75 +1,29 @@
-{{ define "main" }}
-
-{{ "<!-- blog details -->" | safeHTML }}
-<section class="section">
-  <div class="container blog">
-    <div class="row">
-      <div class="col-lg-8">
-        {{ "<!-- post thumb -->" | safeHTML }}
-        <div class="position-relative mb-5">
-          <img src="{{ .Params.Image_webp | relURL }}"  onerror="this.src='{{.Params.Image | relURL }}'" alt="post thumb" class="img-fluid w-100">
-          {{ with .Params.Categories }}{{range first 1 .}} <div class="card-type"><a href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}">{{ . | title }}</a></div>{{ end }}{{ end }}
-        </div>
-        <div class="card-meta mb-2">{{ i18n "author" }}  <strong class="text-dark">{{ .Params.Author | markdownify }}</strong>
-          {{ if .Params.translator }}
-          {{ i18n "translator" }}
-          <strong class="text-dark">
-          {{ .Params.translator | markdownify }}
-          </strong>
-          {{ end }}
-            {{ i18n "published_at" }} <strong class="text-dark">{{ default (i18n "dateFormat") .Site.Params.dateformat | .PublishDate.Format }}</strong></div>
-        <hr>
-        <div class="content">
-          {{ .Content }}
-        </div>
-        {{ "<!-- tags -->" | safeHTML }}
-        <div class="mb-3">
-          <h5 class="d-inline-block mr-3">Tags:</h5>
-          <ul class="list-inline d-inline-block">
-            {{ range $index, $elements:= .Params.Tags }}<a>
-            <li class="list-inline-item"><a class="text-color" href="{{ `tags/` | relLangURL }}{{ . | urlize | lower }}"> {{ if ne $index 0 }}, {{ end }}
-            {{ . | title }}</a>
-            {{ end}}
-          </ul>
-        </div>
-        {{ "<!-- previous -->" | safeHTML }}
-        {{ partial "previous.html" . }}
-        {{ "<!-- previous -->" | safeHTML }}
-
-        {{ "<!-- recommend -->" | safeHTML }}
-        {{ partial "related.html" . }}
-        {{ "<!-- comments -->" | safeHTML }}
-
-        {{ if .Site.Params.enableGitalk }}
-        <div id="gitalk-container"></div>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-        <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-        <script>
-          window.onload = function() {
-              const gitalk = new Gitalk({
-              clientID: '{{ .Site.Params.Gitalk.clientID }}',
-              clientSecret: '{{ .Site.Params.Gitalk.clientSecret }}',
-              repo: '{{ .Site.Params.Gitalk.repo }}',
-              owner: '{{ .Site.Params.Gitalk.owner }}',
-              admin: ['{{ .Site.Params.Gitalk.admin }}'],
-              id: hex_md5(hex_md5(window.location.pathname + window.location.hash)), // Ensure uniqueness and length less than 50
-              distractionFreeMode: false // Facebook-like distraction free mode
-            });
-            (function() {
-              if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-                document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
-                return;
-              }
-              gitalk.render('gitalk-container');
-            })();
-          }
-        </script>
-        {{ end }}
-      </div>
-      {{ partial "sidebar.html" . }}
+{{- define "main" -}}
+<div class="container-xl">
+    <div class="post-container">
+        {{ partial "page_header" . }}
     </div>
-  </div>
-</section>
-{{ "<!-- /blog details -->" | safeHTML }}
-
-{{ end }}
+    <div class="border-bottom mb-2"></div>
+    <div class="row flex-xl-nowrap">
+        <div class="col-3 d-none d-xl-block docs-toc">
+            {{ "<!-- toc -->" | safeHTML }}
+            {{ partial "toc.html" . }}
+            {{ "<!-- /toc -->" | safeHTML }}
+            {{ if .Site.Params.subscribe.enable }}
+            {{ partial "subscribe.html" .}}
+            {{ end }}
+        </div>
+        <main class="article-body col-9 container docs-content" role="main">
+            <article class="article">
+                <div class="article-style">
+                    {{ if and .Params.mobile_toc | gt (countwords .Content) 600}}
+                    {{ partial "mobile_toc.html" . }}
+                    {{ end }}
+                    {{ .Content }}
+                </div>
+                {{ partial "page_footer" . }}
+            </article>
+        </main>
+    </div>
+</div>
+{{- end -}}

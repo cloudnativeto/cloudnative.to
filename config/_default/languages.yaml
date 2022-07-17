@@ -1,0 +1,17 @@
+# Languages
+#   Create a section for each of your site's languages.
+#   Documentation: https://wowchemy.com/docs/guide/language/
+
+# Default language
+zh:
+  languageCode: zh
+  title: 云原生社区
+  params:
+    description: "中立的云原生终端用户社区"
+    code_copy: true
+    anchored: true # add anchor on each head title in the blog article content
+    code_copy_button: true
+    back_to_top_button: true
+  locale:
+    date_format: '2006-01-02'
+    time_format: '下午 3:04'

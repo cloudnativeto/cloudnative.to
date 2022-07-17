@@ -1,0 +1,35 @@
+# Navigation Links
+#   To link a homepage widget, specify the URL as a hash `#` followed by the filename of the
+#     desired widget in your `content/home/` folder.
+#   The weight parameter defines the order that the links will appear in.
+
+main:
+  - name: 资料
+    identifier: docs
+    weight: 31
+  - name: Envoy 中文文档
+    parent: docs
+    weight: 1
+    url: "https://cloudnative.to/envoy/"
+  - name: Kubebuilder 中文文档
+    parent: docs
+    weight: 2
+    url: "https://cloudnative.to/kubebuilder"
+  - name: 活动
+    url: event
+    weight: 40
+  - name: 社区
+    url: community
+    weight: 1
+  - name: 博客
+    url: blog
+    weight: 2
+  - name: 更新
+    url: '#feed'
+    weight: 60
+  - name: 标签
+    url: "#tags"
+    weight: 65
+  - name: 关于
+    url: "#about"
+    weight: 70

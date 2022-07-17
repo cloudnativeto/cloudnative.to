@@ -1,0 +1,49 @@
+/*************************************************
+ *  Pager.
+ **************************************************/
+
+.post-nav {
+  font-size: 0.85rem;
+}
+
+.post-nav-item {
+  hyphens: auto;
+  word-wrap: break-word;
+  padding: 11px 0 12px;
+  width: 100%;
+  border-radius: 0;
+  p{
+      line-height: 1.5rem;
+   }
+  a{
+      color: #2b2b2b;
+      text-transform: none;
+  }
+}
+
+.post-nav-item:hover{
+    color: $sta-primary;
+    border: 1px solid $sta-primary;
+}
+
+.post-nav-item:focus, .post-nav-item:active{
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.dark .post-nav-item:hover{
+    color: $sta-dark-link-hover;
+    border: 1px solid $sta-dark-link-hover;
+}
+
+.post-nav-item .meta-nav {
+  color: #767676;
+  font-weight: 900;
+  line-height: 2;
+  text-transform: uppercase;
+}
+
+.dark .post-nav-item a {
+  color: #ddd;
+}
