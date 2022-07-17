@@ -52,8 +52,6 @@ Operator 主要包含：Deploy、Monitor、Scale 三个大模块。
 - Monitor：主要用于生成和创建 ServiceMonitor、PrometheusRule 资源，用于自动化注册 target、添加告警策略，实现对集群的监控和告警。
 - Scale：主要用于把控扩缩容以及滚动升级的进度，确保以最少的主从切换完成重启。
 
-![架构图](/images/blog/zookeeper-operator-2.png)
-
 ## 具体方案
 
 ### 快速部署

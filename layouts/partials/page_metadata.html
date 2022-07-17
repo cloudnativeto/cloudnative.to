@@ -10,7 +10,9 @@
   {{ if gt $authorLen 0 }}
     <i class="fa-solid fa-feather"></i>
     {{ partial "page_metadata_authors" $page }}
+    {{ if ne $page.Section "event" }}
     <span class="middot-divider"></span>
+    {{ end }}
   {{ end }}
   {{ end }}
   {{/* If `translators` is set and is not empty. */}}

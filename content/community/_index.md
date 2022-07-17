@@ -19,6 +19,6 @@ cascade:
 
 ## 社区指南
 
-{{< list_children show_summary="true">}}
+{{< list_children show_summary="false">}}
 
-{{< cta cta_text="开始阅读" cta_link="welcome" >}}
+{{< cta cta_text="加入社区" cta_link="join" >}}

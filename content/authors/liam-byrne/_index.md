@@ -1,8 +1,9 @@
 ---
-title: 
+title: Liam Byrne
 role: 
-bio: ""
+bio: "Tetrate 工程师"
 organizations:
-- name: 
+- name: Tetrate
+  url: https://tetrate.io
 ---
 

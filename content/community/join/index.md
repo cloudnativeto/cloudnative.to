@@ -10,13 +10,25 @@ type: book
 
 ## 加入社区微信群
 
-云原生社区微信群采取**注册制**，请填下下面的问卷，进行**实名登记** [^1] 后添加社区管理员微信（微信搜索 `jimmysongio`），申请时请备注 `姓名-公司`，及要加入的微信群，等待管理员审核通过后，即可加入社区。
-
 {{<callout note 入群须知>}}
 加入社区，意味着您同意遵守 [社区守则](../policy/)。
 {{</callout>}}
 
-<iframe height="1200" width="800" src="https://wj.qq.com/s2/5479026/bf82/" frameborder="0" allowfullscreen sandbox="allow-same-origin allow-scripts allow-modals allow-downloads allow-forms allow-popups"></iframe>
+云原生社区微信群采取**注册制**，请转到[腾讯问卷](https://wj.qq.com/s2/5479026/bf82/)申请，或直接填写下面的问卷，进行**实名登记** [^1] 。
+
+### 腾讯问卷
+
+请仔细填写下面的腾讯问卷，一次只能选择加入一个群。
+
+<iframe height="500" width="100%" id="tencent_survey" src="https://wj.qq.com/s2/5479026/bf82/" frameborder="0" onload="" allowfullscreen sandbox="allow-same-origin allow-scripts allow-modals allow-downloads allow-forms allow-popups"></iframe>
+
+### 入群助手
+
+填写问卷后请添加入群助手微信，微信搜索 `jimmysongio` 或扫描下面的二维码添加。
+
+{{<figure title="入群助手二维码" alt="入群助手二维码" src="jimmysongio-wechat.jpg" width="128px">}}
+
+期待在社区群里与你相遇。
 
 ## 备注
 
