@@ -21,11 +21,11 @@ marketing:
     description: '中立的云原生终端用户社区'
     twitter: 'CloudNativeCN'
   analytics:
-    google_analytics: 'G-MP490FS739' # TBD
+    google_analytics: '' # TBD
     baidu_tongji: 'f3dc895ea3bd6186cd835841d365c103'
   verification:
-    google: 'google69a5cccb61297807' # TBD
-    baidu: 'cqmZHEleVh' #TBD
+    google: '' # TBD
+    baidu: '' #TBD
 
 # Site header
 
@@ -38,9 +38,9 @@ header:
     show_day_night: true
     show_search: true
     show_github: true
-    show_home: false
+    show_home: true
     highlight_active_link: true
-    home: "https://cloudnative.to"
+    home: "/community/join/"
 
 footer:
   copyright:

@@ -1,8 +1,8 @@
 ---
-title: 
-role: 
-bio: ""
+title: 赵化冰
+role:
+bio: "腾讯"
 organizations:
-- name: 
+- name: 腾讯
 ---
 

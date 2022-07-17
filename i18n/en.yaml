@@ -287,3 +287,6 @@
 
 - id: show_toc
   translation: "Click to show the outline"
+
+- id: join_us
+  translation: "Join us"
