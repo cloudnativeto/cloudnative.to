@@ -1,8 +1,8 @@
 ---
-title: 哗啦啦mesh团队
+title: 
 role: 
-bio: "哗啦啦"
+bio: ""
 organizations:
-- name: 哗啦啦
+- name: 
 ---
 

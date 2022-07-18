@@ -1,8 +1,8 @@
 ---
-title: 钟华 
+title: 
 role: 
-bio: "腾讯"
+bio: ""
 organizations:
-- name: 腾讯
+- name: 
 ---
 

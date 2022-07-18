@@ -1,5 +1,5 @@
 ---
-title: 宋欣建
+title: 
 role: 
 bio: ""
 organizations:

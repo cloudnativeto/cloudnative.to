@@ -1,8 +1,8 @@
 ---
-title: 王佰平
+title: 
 role: 
-bio: "网易"
+bio: ""
 organizations:
-- name: 网易
+- name: 
 ---
 

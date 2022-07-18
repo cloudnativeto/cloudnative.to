@@ -1,5 +1,5 @@
 ---
-title: 杨传胜
+title: 
 role: 
 bio: ""
 organizations:

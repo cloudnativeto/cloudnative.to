@@ -1,5 +1,5 @@
 ---
-title: 马振军
+title: 
 role: 
 bio: ""
 organizations:

@@ -1,8 +1,8 @@
 ---
-title: 温铭
+title: 
 role: 
-bio: "API7"
+bio: ""
 organizations:
-- name: API7
+- name: 
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: 钟成
 role: 
-bio: "华为"
+bio: ""
 organizations:
-- name: 华为
+- name: 
 ---
 

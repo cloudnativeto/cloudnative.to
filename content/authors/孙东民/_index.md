@@ -1,5 +1,5 @@
 ---
-title: 孙东民
+title: 
 role: 
 bio: ""
 organizations:

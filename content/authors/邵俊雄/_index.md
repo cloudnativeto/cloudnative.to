@@ -1,8 +1,8 @@
 ---
 title: 邵俊雄
 role: 
-bio: ""
+bio: "蚂蚁"
 organizations:
-- name: 
+- name: 蚂蚁
 ---
 

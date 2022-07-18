@@ -1,5 +1,5 @@
 ---
-title: 陆培尔
+title: 
 role: 
 bio: ""
 organizations:

@@ -1,5 +1,5 @@
 ---
-title: 孟凡杰
+title: 
 role: 
 bio: ""
 organizations:

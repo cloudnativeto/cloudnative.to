@@ -1,5 +1,5 @@
 ---
-title: 陈月新
+title: 
 role: 
 bio: ""
 organizations:

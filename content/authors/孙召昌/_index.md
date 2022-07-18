@@ -1,5 +1,5 @@
 ---
-title: 孙召昌
+title: 
 role: 
 bio: ""
 organizations:

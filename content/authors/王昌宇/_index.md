@@ -1,5 +1,5 @@
 ---
-title: 王昌宇
+title: 
 role: 
 bio: ""
 organizations:

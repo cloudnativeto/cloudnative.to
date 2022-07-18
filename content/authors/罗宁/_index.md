@@ -1,5 +1,5 @@
 ---
-title: 罗宁
+title: 
 role: 
 bio: ""
 organizations:

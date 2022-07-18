@@ -1,7 +1,7 @@
 ---
 title: 厉辉
 role: 
-bio: "腾讯游戏工程师"
+bio: "腾讯游戏"
 organizations:
 - name: 腾讯
 ---

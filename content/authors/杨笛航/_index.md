@@ -1,5 +1,5 @@
 ---
-title: 杨笛航
+title: 
 role: 
 bio: ""
 organizations:

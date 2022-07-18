@@ -1,5 +1,5 @@
 ---
-title: 金润森
+title: 
 role: 
 bio: ""
 organizations:

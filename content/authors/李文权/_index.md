@@ -1,5 +1,5 @@
 ---
-title: 李文权 
+title: 
 role: 
 bio: ""
 organizations:

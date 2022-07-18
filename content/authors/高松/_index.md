@@ -1,5 +1,5 @@
 ---
-title: 高松
+title: 
 role: 
 bio: ""
 organizations:

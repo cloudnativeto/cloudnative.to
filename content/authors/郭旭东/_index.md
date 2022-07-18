@@ -1,8 +1,8 @@
 ---
-title: 郭旭东
+title: 
 role: 
-bio: "极狐（GitLab）"
+bio: ""
 organizations:
-- name: 极狐
+- name: 
 ---
 

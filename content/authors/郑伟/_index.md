@@ -1,5 +1,5 @@
 ---
-title: 郑伟
+title: 
 role: 
 bio: ""
 organizations:

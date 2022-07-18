@@ -1,8 +1,8 @@
 ---
-title: 魏新宇
+title: 魏新宇 
 role: 
-bio: ""
+bio: "红帽资深解决方案架构师，RHCA Level 5。"
 organizations:
-- name: 
+- name: Red Hat
 ---
 

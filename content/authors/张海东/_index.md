@@ -1,5 +1,5 @@
 ---
-title: 张海东
+title: 
 role: 
 bio: ""
 organizations:

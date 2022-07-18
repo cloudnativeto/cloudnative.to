@@ -1,5 +1,5 @@
 ---
-title: 王炜
+title: 
 role: 
 bio: ""
 organizations:

@@ -1,6 +1,6 @@
 ---
 title: "使用 WebAssembly 验证请求负载"
-description: "本文是一个开发 Wasm 插件验证请求负载的教程。"
+summary: "本文是一个开发 Wasm 插件验证请求负载的教程。"
 date: 2022-05-13T13:00:00+08:00
 authors: ["Liam Byrne"]
 translators: ["宋净超"]

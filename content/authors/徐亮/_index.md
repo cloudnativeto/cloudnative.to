@@ -1,5 +1,5 @@
 ---
-title: 徐亮
+title: 
 role: 
 bio: ""
 organizations:

@@ -1,5 +1,5 @@
 ---
-title: 赵亚楠
+title: 
 role: 
 bio: ""
 organizations:

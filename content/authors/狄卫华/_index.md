@@ -1,5 +1,5 @@
 ---
-title: 狄卫华 
+title: 
 role: 
 bio: ""
 organizations:

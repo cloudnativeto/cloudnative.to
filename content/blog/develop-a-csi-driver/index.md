@@ -3,7 +3,7 @@ title: "CSI 驱动开发指南"
 date: 2022-07-07T12:00:00+08:00
 draft: false
 authors: ["王一之"]
-description: "本文将介绍 Kubernetes 中的 CSI 驱动如何开发。"
+summary: "本文将介绍 Kubernetes 中的 CSI 驱动如何开发。"
 tags: ["Kubernetes", "CSI", "存储"]
 categories: ["Kubernetes"]
 keywords: ["Kubernetes", "CSI"]

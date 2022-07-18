@@ -1,8 +1,8 @@
 ---
-title: 
+title: 王一之
 role: 
-bio: ""
+bio: "就职于中国移动云能力中心，专注于云原生领域。"
 organizations:
-- name: 
+- name: 中国移动
 ---
 

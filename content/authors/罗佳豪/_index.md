@@ -1,5 +1,5 @@
 ---
-title: 罗佳豪
+title: 
 role: 
 bio: ""
 organizations:

@@ -1,5 +1,5 @@
 ---
-title: 陈少文
+title: 
 role: 
 bio: ""
 organizations:

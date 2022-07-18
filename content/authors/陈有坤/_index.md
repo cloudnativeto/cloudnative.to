@@ -1,5 +1,5 @@
 ---
-title: 陈有坤
+title: 
 role: 
 bio: ""
 organizations:

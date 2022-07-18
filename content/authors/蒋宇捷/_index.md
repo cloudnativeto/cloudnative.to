@@ -1,7 +1,7 @@
 ---
-title: 蒋宇捷
+title: 
 role: 
-bio: "投资人"
+bio: ""
 organizations:
 - name: 
 ---

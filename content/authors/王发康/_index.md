@@ -1,8 +1,8 @@
 ---
-title: 王发康
+title: 
 role: 
-bio: "蚂蚁"
+bio: ""
 organizations:
-- name: 蚂蚁
+- name: 
 ---
 
