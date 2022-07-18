@@ -1,5 +1,5 @@
 ---
-title: 
+title: Sandor Magyari 
 role: 
 bio: ""
 organizations:

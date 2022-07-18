@@ -1,5 +1,5 @@
 ---
-title: 
+title: Christophe Hesters
 role: 
 bio: ""
 organizations:

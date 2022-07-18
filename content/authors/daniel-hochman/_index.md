@@ -1,5 +1,5 @@
 ---
-title: 
+title: Daniel Hochman 
 role: 
 bio: ""
 organizations:

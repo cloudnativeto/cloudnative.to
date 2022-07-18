@@ -1,5 +1,5 @@
 ---
-title: 
+title: Yaroslav Skopets 
 role: 
 bio: ""
 organizations:

@@ -1,5 +1,5 @@
 ---
-title: 
+title: Michael Kipper 
 role: 
 bio: ""
 organizations:

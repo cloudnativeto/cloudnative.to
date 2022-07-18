@@ -1,5 +1,5 @@
 ---
-title: 
+title: Manish Chugtu 
 role: 
 bio: ""
 organizations:

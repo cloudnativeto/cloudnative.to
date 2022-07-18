@@ -1,8 +1,8 @@
 ---
-title: 
+title: Idit Lavine 
 role: 
-bio: ""
+bio: "Solo.io"
 organizations:
-- name: 
+- name: Solo.io
 ---
 

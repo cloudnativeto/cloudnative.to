@@ -1,8 +1,8 @@
 ---
-title: 
+title: 茹炳晟
 role: 
-bio: ""
+bio: "腾讯 Tech Lead，腾讯研究院特约研究员，业界知名实战派研发效能和软件质量双领域专家。腾讯云、阿里云、华为云最具价值专家，Certified DevOps Enterprise Coach，年度 IT 图书最具影响力作者，多本技术畅销书作者，极客时间《软件测试 52 讲》作者，新书《软件研发效能提升之美》也即将出版。多次担任国内各大技术峰会的联席主席、出品人和主会场演讲嘉宾。"
 organizations:
-- name: 
+- name: 腾讯
 ---
 

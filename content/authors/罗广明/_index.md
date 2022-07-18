@@ -1,8 +1,8 @@
 ---
-title: 
+title: 罗广明
 role: 
-bio: ""
+bio: "字节跳动"
 organizations:
-- name: 
+- name: 字节跳动
 ---
 

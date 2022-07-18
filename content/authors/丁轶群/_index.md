@@ -1,8 +1,8 @@
 ---
-title: 
+title: 丁轶群
 role: 
-bio: ""
+bio: "谐云科技"
 organizations:
-- name: 
+- name: 谐云科技
 ---
 

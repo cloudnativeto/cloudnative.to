@@ -1,5 +1,5 @@
 ---
-title: 
+title: Stefan Prodan 
 role: 
 bio: ""
 organizations:

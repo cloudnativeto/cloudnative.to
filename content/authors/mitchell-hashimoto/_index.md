@@ -1,5 +1,5 @@
 ---
-title: 
+title: Mitchell Hashimoto 
 role: 
 bio: ""
 organizations:

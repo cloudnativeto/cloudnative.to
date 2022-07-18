@@ -1,5 +1,5 @@
 ---
-title: 
+title: Kublr Team 
 role: 
 bio: ""
 organizations:

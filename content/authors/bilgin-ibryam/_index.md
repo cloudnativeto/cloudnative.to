@@ -1,5 +1,5 @@
 ---
-title: 
+title: Bilgin Ibryam
 role: 
 bio: ""
 organizations:

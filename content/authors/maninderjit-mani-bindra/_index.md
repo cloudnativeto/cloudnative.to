@@ -1,5 +1,5 @@
 ---
-title: 
+title: Maninderjit Mani Bindra
 role: 
 bio: ""
 organizations:

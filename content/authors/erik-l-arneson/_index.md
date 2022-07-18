@@ -1,5 +1,5 @@
 ---
-title: 
+title: Erik L Arneson
 role: 
 bio: ""
 organizations:

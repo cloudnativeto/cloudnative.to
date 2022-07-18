@@ -1,5 +1,5 @@
 ---
-title: 
+title: Lori Macvittie 
 role: 
 bio: ""
 organizations:

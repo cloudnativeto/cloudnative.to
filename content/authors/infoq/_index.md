@@ -1,8 +1,8 @@
 ---
-title: 
+title: InfoQ
 role: 
-bio: ""
+bio: "infoq.com"
 organizations:
-- name: 
+- name: InfoQ
 ---
 

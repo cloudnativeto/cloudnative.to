@@ -1,5 +1,5 @@
 ---
-title: 
+title: Diógenes Rettori 
 role: 
 bio: ""
 organizations:

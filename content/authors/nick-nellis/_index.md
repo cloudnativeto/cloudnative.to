@@ -1,8 +1,8 @@
 ---
-title: 
+title: Nick Nellis 
 role: 
-bio: ""
+bio: "Solo.io"
 organizations:
-- name: 
+- name: Solo.io
 ---
 

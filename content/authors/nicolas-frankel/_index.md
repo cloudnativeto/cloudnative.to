@@ -1,5 +1,5 @@
 ---
-title: 
+title: Nicolas Frankel 
 role: 
 bio: ""
 organizations:

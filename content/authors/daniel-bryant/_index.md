@@ -1,5 +1,5 @@
 ---
-title: 
+title: Daniel Bryant 
 role: 
 bio: ""
 organizations:

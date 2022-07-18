@@ -1,5 +1,5 @@
 ---
-title: 
+title: Dariusz Jędrzejczyk 
 role: 
 bio: ""
 organizations:

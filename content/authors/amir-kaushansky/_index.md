@@ -1,5 +1,5 @@
 ---
-title: 
+title: Amir Kaushansky
 role: 
 bio: ""
 organizations:

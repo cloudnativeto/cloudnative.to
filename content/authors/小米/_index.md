@@ -1,8 +1,8 @@
 ---
-title: 
+title: 小米
 role: 
-bio: ""
+bio: "小米"
 organizations:
-- name: 
+- name: 小米
 ---
 
