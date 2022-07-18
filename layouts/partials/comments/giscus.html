@@ -4,23 +4,22 @@
   if (themeNumber == 1){
     giscusTheme = "dark";
   }
-  console.log(giscusTheme)
   let giscusAttributes = {
     "src": "https://giscus.app/client.js",
     "data-theme": giscusTheme,
-    "data-repo":"rootsongjc/cloud-native-library",
-    "data-repo-id":"MDEwOlJlcG9zaXRvcnkyMTQ2MjY2NDg=",
-    "data-category":"Announcements",
-    "data-category-id":"DIC_kwDODMrxWM4CPL7J",
+    "data-repo":"{{ .Site.Params.features.comment.giscus.repo }}",
+    "data-repo-id":"{{ .Site.Params.features.comment.giscus.repo_id }}",
+    "data-category":"{{ .Site.Params.features.comment.giscus.category }}",
+    "data-category-id":"{{ .Site.Params.features.comment.giscus.category_id }}",
     "data-mapping":"pathname",
-    "data-reactions-enabled":"1",
+    "data-reactions-enabled":"{{ .Site.Params.features.comment.giscus.reactions_enabled }}",
     "data-emit-metadata":"0",
     "data-input-position":"top",
     "data-theme":giscusTheme,
     "data-lang":"zh-CN",
-    "data-loading":"lazy",
-    "crossorigin":"anonymous",
-    "origins":"https://jimmysong.io",
+    "data-loading":"{{ .Site.Params.features.comment.giscus.loading }}",
+    "crossorigin":"{{ .Site.Params.features.comment.giscus.crossorigin }}",
+    "origins":"https://cloudnative.to",
     "originsRegex":"http://localhost:[0-9]+",
     "async": "",
   };

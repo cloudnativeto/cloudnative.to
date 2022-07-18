@@ -85,6 +85,9 @@ features:
       repo: 'cloudnativeto/cloudnative.to'
       repo_id: 'MDEwOlJlcG9zaXRvcnkyMzc3NDUxOTA='
       category_id: 'MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMyMDU5MzUy'
+      category: "General"
+      loading: "lazy"
+      crossorigin: "annoymous"
       reaction_enabled: '1'
   search:
     provider: wowchemy
