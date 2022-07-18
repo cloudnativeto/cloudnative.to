@@ -1,7 +1,7 @@
 ---
-title: 杨传胜
+title: 甄中元
 role: 
-bio: "青云"
+bio: ""
 organizations:
 - name: 
 ---
