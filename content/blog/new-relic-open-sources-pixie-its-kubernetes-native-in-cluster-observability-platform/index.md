@@ -2,11 +2,12 @@
 title: "New Relic 开源 Pixie，其 Kubernetes 原生集群内观察平台"
 date: 2021-05-06T02:04:05+08:00
 draft: false
-authors: ["Steven J. Vaughan-Nichols"]
+authors: ["Steven J Vaughan-Nichols"]
 translators: ["宋净超"]
 summary: "想知道你的 Kubernetes 集群中到底发生了什么？刚刚成为云原生计算基金会项目的 Pixie 可以提供帮助。"
 tags: ["可观测性","New Relic","Pixie"]
 categories: ["可观测性"]
+mobile_toc: false
 ---
 
 本文译自 ZDNet 的文章 [New Relic open sources Pixie, its Kubernetes-native in-cluster observability platform](https://www.zdnet.com/article/new-relic-open-sources-pixie-its-kubernetes-native-in-cluster-observability-platform/)，译者[宋净超](https://jimmysong.io)。
