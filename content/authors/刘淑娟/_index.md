@@ -1,8 +1,8 @@
 ---
-title: 
+title: 刘淑娟
 role: 
-bio: ""
+bio: "爱立信广州工程师，云原生爱好者。"
 organizations:
-- name: 
+- name: 爱立信
 ---
 

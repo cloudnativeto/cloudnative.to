@@ -42,8 +42,11 @@
     {{ if eq $page.Type "publication" }}
       {{ $date = $page.Date | time.Format (site.Params.publications.date_format | default "January, 2006") }}
     {{ else }}
-      {{ if ne $page.Params.Lastmod $page.Params.Date }}
+      {{ if and $page.Params.show_last_mod (ne $page.Params.Lastmod $page.Params.Date) }}
           {{ i18n "last_updated" }}
+      {{ else }}
+          {{ $date  = $page.Date | time.Format (site.Params.publications.date_format | default "January, 2006") }}
+          {{ i18n "published_at" }}
       {{ end }}
     {{ end }}
     {{ $date }}

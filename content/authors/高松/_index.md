@@ -1,8 +1,8 @@
 ---
-title: 
+title: 高松
 role: 
-bio: ""
+bio: "酷家乐"
 organizations:
-- name: 
+- name: 酷家乐
 ---
 

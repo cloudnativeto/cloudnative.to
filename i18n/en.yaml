@@ -290,3 +290,6 @@
 
 - id: join_us
   translation: "Join us"
+
+- id: published_at
+  translation: "Published at"

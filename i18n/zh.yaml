@@ -170,3 +170,5 @@
   translation: "点击查看目录"
 - id: join_us
   translation: "加入社区"
+- id: published_at
+  translation: "发布于"

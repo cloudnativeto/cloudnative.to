@@ -11,5 +11,5 @@ cascade:
   share: false
   editable: true
   mobile_toc: true
+  show_last_mod: false
 ---
-
