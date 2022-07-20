@@ -1,16 +1,12 @@
 ---
 title: "多集群场景下基于Flux的应用持续交付实践"
-date: 2022-07-12T12:00:00+08:00
+date: 2022-07-20T12:00:00+08:00
 draft: false
-image: "/images/blog/gitopswu.jpg"
 author: "吴中坚"
-description: "本文将从多集群场景下部署差异化配置的云原生应用出发，介绍基于Flux v2的应用持续交付实践。"
+summary: "本文将从多集群场景下部署差异化配置的云原生应用出发，介绍基于Flux v2的应用持续交付实践。"
 tags: ["DevOps","GitOps","Flux"]
 categories: ["GitOps"]
 keywords: ["DevOps","GitOps","Flux"]
-type: "post"
-avatar: "/images/profile/wuzhongjian.jpg"
-profile: "中国移动云能力中心软件开发工程师，专注于云原生、DevOps、微服务等领域。"
 ---
 
 ## 背景
