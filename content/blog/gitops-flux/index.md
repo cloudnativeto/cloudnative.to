@@ -237,8 +237,35 @@ member2-app   1.0.0+21a9daedc598.1   False           True       Release reconcil
 
 从上图可以看到Helm Controller已经自动完成应用在member集群中的发布，分别登录2个member集群，可看到应用已经部署成功。
 
-![member1-app状态](member1-app.jpg)
-![member2-app状态](member2-app.jpg)
+```bash
+[root@member1 ~]# kubectl get all -n app
+NAME                                                       READY            STATUS         RESTARTS     AGE
+pod/hello-kubernetes-app-member1-app-88dfd97f-nzsch        1/1              Running        0            35m
+
+NAME                                                       TYPE             CLUSTER_IP    EXTERNAL-IP   PORT(S)   AGE
+service/hello-kubernetes-app-member1-app                   ClusterIP                      <none>        80/TCP    35m
+
+NAME                                                       READY            UP-TO-DATE    AVAILABLE     AGE
+deployment.apps/hello-kubernetes-app-member1-app           1/1              1             1             35m
+
+NAME                                                       DESIRED          CURRENT       READY         AGE
+replicaset.apps/hello-kubernetes-app-member1-app-88dfd97f  1                1             1             35m
+```
+
+```bash
+[root@member2 ~]# kubectl get all -n app
+NAME                                                       READY            STATUS         RESTARTS     AGE
+pod/hello-kubernetes-app-member2-app-996fcf45b-8svgv        1/1             Running        0            49m
+
+NAME                                                       TYPE             CLUSTER_IP    EXTERNAL-IP   PORT(S)   AGE
+service/hello-kubernetes-app-member2-app                   ClusterIP                      <none>        80/TCP    49m
+
+NAME                                                       READY            UP-TO-DATE    AVAILABLE     AGE
+deployment.apps/hello-kubernetes-app-member2-app           1/1              1             1             49m
+
+NAME                                                       DESIRED          CURRENT       READY         AGE
+replicaset.apps/hello-kubernetes-app-member2-app-996fcf45b 1                1             1             49m
+```
 
 #### 批量更新集群配置
 
