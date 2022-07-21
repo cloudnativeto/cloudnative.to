@@ -17,4 +17,4 @@ type: book
 
 ## 商务合作
 
-如果您想与云原生社区合作，请联系[云原生社区创始人 Jimmy](https://jimmysong.io/contact)，并说明来意。
+如果您想与云原生社区合作，请联系 [Jimmy](https://jimmysong.io/contact)，并说明来意。
