@@ -126,7 +126,7 @@ spec:
 
 查看GitRepository源状态:
 
-```yaml
+```bash
 [root@host ~]# flux get source git -n gitops-project
 NAME       REVISION         SUSPENDED       READY      MESSAGE
 git-repo   master/21a9dae   False           True       stored artifact for revision '21a9daedc59819eeeca81a7314ce5cf56d0f74c6'
@@ -228,7 +228,7 @@ spec:
 
 查看HelmRelease:
 
-```yaml
+```bash
 [root@host ~]# flux get hr -n gitops-project
 NAME          REVISION               SUSPENDED       READY      MESSAGE
 member1-app   1.0.0+21a9daedc598.1   False           True       Release reconciliation succeeded
@@ -249,13 +249,13 @@ service:
   type: NodePort
 ```
 
-```yaml
+```bash
 [root@member1 ~]# kubectl get svc -n app
 NAME                                TYPE             CLUSTER-IP            EXTERNAL-IP       PORT(S)        AGE
 hello-kubernetes-app-member1-app    NodePort                               <none>            80:31248/TCP   40m
 ```
 
-```yaml
+```bash
 [root@member2 ~]# kubectl get svc -n app
 NAME                                TYPE             CLUSTER-IP            EXTERNAL-IP       PORT(S)        AGE
 hello-kubernetes-app-member2-app    NodePort                               <none>            80:31604/TCP   51m
@@ -272,7 +272,7 @@ config:
   message: "member1"
 ```
 
-```yaml
+```bash
 [root@member1 ~]# kubectl get pods -n app
 NAME                                               READY           STATUS          RESTARTS        AGE
 hello-kubernetes-app-member1-app-88dfd97f-bs6wz    1/1             RUNNING         0               20s
@@ -302,7 +302,7 @@ spec:
 
 查看ImageRepository:
 
-```yaml
+```bash
 [root@host ~]# flux get images repository image-repo -n gitops-project
 NAME           LAST SCAN                   SUSPENDED   READY     MESSAGE
 imge-repo      2022-07-07T14:19:38+08:00   False       True      successful scan, found 1 tags
@@ -331,7 +331,7 @@ spec:
 
 查看ImagePolicy:
 
-```yaml
+```bash
 [root@host ~]# flux get images policy -n gitops-project
 NAME             LATEST IMAGE                         READY     MESSAGE
 image-policy     nuclearwu/hello-kubernetes:1.0.0     True      Latest image tag for 'nuclearwu/hello-kubernetes' resolved to: 1.0.0
@@ -417,7 +417,7 @@ spec:
 
 查看ImageUpdateAutomation:
 
-```yaml
+```bash
 [root@host ~]# flux get images update image-update-automation -n gitops-project
 NAME                      LAST RUN                    SUSPENDED   READY     MESSAGE
 image-update-automation   2022-07-07T16:44:34+08:00   False       True      no updates made; last commit 5bf2341 at 2022-07-07T09:04:35Z
@@ -436,7 +436,7 @@ image-update-automation   2022-07-07T16:44:34+08:00   False       True      no u
 
 ![commit-record-1.0.1](commit-record2.jpg)
 
-```yaml
+```bash
 [root@member1 ~]# kubectl get pods -n app
 NAME                                                 READY       STATUS          RESTARTS        AGE
 hello-kubernetes-app-member1-app-5fb555c87f-b8zcz    1/1         RUNNING         0               9m38s
@@ -446,7 +446,7 @@ hello-kubernetes-app-member1-app-5fb555c87f-ghvrh    1/1         RUNNING        
     Image ID:    docker-pullable://nuclearwu/hello-kubernetes@sha256:f6cb3ec2f4830da55ecb73f7257b859fc0b75675425740f89c2358d5646e1151
 ```
 
-```yaml
+```bash
 [root@member2 ~]# kubectl get pods -n app
 NAME                                                READY       STATUS          RESTARTS         AGE
 hello-kubernetes-app-member2-app-fd85b68cb-nrvnx    1/1         RUNNING         0                9m4s
