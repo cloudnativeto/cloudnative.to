@@ -9,16 +9,13 @@ authors:
 # Is this the primary user of the site?
 superuser: false
 
-# Role/position (e.g., Professor of Artificial Intelligence)
-role: Istio 服务网格团队
-
 # Organizations/Affiliations
 organizations:
 - name: Istio
   url: "https://istio.io"
 
 # Short bio (displayed in user profile at end of posts)
-bio: 
+bio: "Istio 服务网格"
 social:
 - icon: twitter
   icon_pack: fab

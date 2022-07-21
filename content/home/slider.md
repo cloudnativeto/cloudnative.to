@@ -1,7 +1,7 @@
 ---
 widget: slider
 weight: 11
-active: false
+active: true
 headless: true  # This file represents a page section.
 design:
   # Slide height is automatic unless you force a specific height (e.g. '400px')
@@ -14,7 +14,7 @@ design:
 content:
   slides:
     - title: 云原生社区官网全新改版
-      content: '社区网站于 2022 年 7 月全新改版，欢迎大家浏览。'
+      content: '新主题，新气象，新增全站搜索，社区内容集中归档。'
       align: center
       background:
         position: center
@@ -22,10 +22,10 @@ content:
         media: "bg.svg"
         text_color_light: true
         brightness: 1
-      link:
-        icon: fa-solid fa-circle-info
-        text: 查看详情
-        url: /blog/brand-new-website/
+     # link:
+     #   icon: fa-solid fa-circle-info
+     #   text: 查看详情
+     #   url: /blog/brand-new-website/
     - title: 征稿活动开启
       content: '为了促进社区交流，社区现开启征稿活动，欢迎提交稿件。'
       align: center
@@ -37,5 +37,5 @@ content:
       link:
         icon: fa-solid fa-circle-info
         text: 查看详情
-        url: /blog/blog-proposal/
+        url: /community/contribute/
 ---

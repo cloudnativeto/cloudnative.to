@@ -1,8 +1,8 @@
 ---
-title: 
+title: 黄挺
 role: 
-bio: ""
+bio: "蚂蚁"
 organizations:
-- name: 
+- name: 蚂蚁
 ---
 
