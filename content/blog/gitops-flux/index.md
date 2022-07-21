@@ -462,20 +462,13 @@ hello-kubernetes-app-member2-app-fd85b68cb-nrvnx    1/1         RUNNING         
 本文主要从多集群场景下部署差异化配置的云原生应用出发，介绍了基于Flux v2的应用持续交付实践。Flux v2具备原生的Helm支持，可以无缝对接Helm Repository和Helm Chart资源，实现基于应用模板的应用持续交付。Flux v2可以优雅地对接CI，利用image-reflector和image-automation，可以更好的衔接CI和GitOps流程，只需要配置，而无需用户手动在CI流水线中编写更改manifest的脚本。Flux v2支持部署信息推送，通过Notification Controller不仅可以处理外部事件，还可以向外部系统发出警报，通知用户有关应用部署的信息。总而言之，Flux v2提供了一组可支持实现GitOps的工具，面向云原生应用持续交付提供了通用的解决方案。
 
 ##参考链接
-
-https://www.gitops.tech/#what-is-gitops
-
-https://developer.aliyun.com/article/771574
-
-https://cloudnative.to/blog/accelerating-developer-productivity-via-gitops/
-
-https://cloudnative.to/blog/flux-get-start-easy/
-
-https://www.bilibili.com/video/BV1q3411M7hc
-
-https://github.com/fluxcd/flux2
-
-https://fluxcd.io/
+- https://www.gitops.tech/#what-is-gitops
+- https://developer.aliyun.com/article/771574
+- https://cloudnative.to/blog/accelerating-developer-productivity-via-gitops/
+- https://cloudnative.to/blog/flux-get-start-easy/
+- https://www.bilibili.com/video/BV1q3411M7hc
+- https://github.com/fluxcd/flux2
+- https://fluxcd.io/
 
 
 
