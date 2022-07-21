@@ -126,7 +126,11 @@ spec:
 
 查看GitRepository源状态:
 
-![source-git状态](source-git-status.jpg)
+```yaml
+[root@host ~]# flux get source git -n gitops-project
+NAME       REVISION         SUSPENDED       READY      MESSAGE
+git-repo   master/21a9dae   False           True       stored artifact for revision '21a9daedc59819eeeca81a7314ce5cf56d0f74c6'
+```
 
 从上图可以看到Source Controller已经从配置源拉取并保存了最新的工件。
 
@@ -224,7 +228,12 @@ spec:
 
 查看HelmRelease:
 
-![helm-release状态](helm-release-status.jpg)
+```yaml
+[root@host ~]# flux get hr -n gitops-project
+NAME          REVISION               SUSPENDED       READY      MESSAGE
+member1-app   1.0.0+21a9daedc598.1   False           True       Release reconciliation succeeded
+member2-app   1.0.0+21a9daedc598.1   False           True       Release reconciliation succeeded
+```
 
 从上图可以看到Helm Controller已经自动完成应用在member集群中的发布，分别登录2个member集群，可看到应用已经部署成功。
 
@@ -240,8 +249,17 @@ service:
   type: NodePort
 ```
 
-![member1-app-svc状态](member1-app-svc.jpg)
-![member2-app-svc状态](member2-app-svc.jpg)
+```yaml
+[root@member1 ~]# kubectl get svc -n app
+NAME                                TYPE             CLUSTER-IP            EXTERNAL-IP       PORT(S)        AGE
+hello-kubernetes-app-member1-app    NodePort                               <none>            80:31248/TCP   40m
+```
+
+```yaml
+[root@member2 ~]# kubectl get svc -n app
+NAME                                TYPE             CLUSTER-IP            EXTERNAL-IP       PORT(S)        AGE
+hello-kubernetes-app-member2-app    NodePort                               <none>            80:31604/TCP   51m
+```
 
 #### 更新单个集群配置
 
@@ -254,7 +272,12 @@ config:
   message: "member1"
 ```
 
-![member1-app-replica状态](member1-app-replica.jpg)
+```yaml
+[root@member1 ~]# kubectl get pods -n app
+NAME                                               READY           STATUS          RESTARTS        AGE
+hello-kubernetes-app-member1-app-88dfd97f-bs6wz    1/1             RUNNING         0               20s
+hello-kubernetes-app-member1-app-88dfd97f-nzsch    1/1             RUNNING         0               42m     
+```
 
 ### 配置镜像自动更新
 
@@ -279,9 +302,11 @@ spec:
 
 查看ImageRepository:
 
-    flux get images repository image-repo -n gitops-project
-
-![image-repo状态](image-repo.jpg)
+```yaml
+[root@host ~]# flux get images repository image-repo -n gitops-project
+NAME           LAST SCAN                   SUSPENDED   READY     MESSAGE
+imge-repo      2022-07-07T14:19:38+08:00   False       True      successful scan, found 1 tags
+```
 
 可以看到 image-reflector-controller成功扫描到了镜像仓库nuclearwu/hello-kubernetes
 
@@ -305,10 +330,12 @@ spec:
 ```
 
 查看ImagePolicy:
-    
-    flux get images policy -n gitops-project
 
-![image-policy状态](image-policy.jpg)
+```yaml
+[root@host ~]# flux get images policy -n gitops-project
+NAME             LATEST IMAGE                         READY     MESSAGE
+image-policy     nuclearwu/hello-kubernetes:1.0.0     True      Latest image tag for 'nuclearwu/hello-kubernetes' resolved to: 1.0.0
+```
 
 可以看到 image-reflector-controller拉取到nuclearwu/hello-kubernetes最新的镜像版本为1.0.0。
 
@@ -390,9 +417,12 @@ spec:
 
 查看ImageUpdateAutomation:
 
-    flux get images update image-update-automation -n gitops-project
+```yaml
+[root@host ~]# flux get images update image-update-automation -n gitops-project
+NAME                      LAST RUN                    SUSPENDED   READY     MESSAGE
+image-update-automation   2022-07-07T16:44:34+08:00   False       True      no updates made; last commit 5bf2341 at 2022-07-07T09:04:35Z
+```
 
-![image-update-automation状态](image-update-automation.jpg)
 ![commit-record-1.0.0](commit-record1.jpg)
 
 可以看到image-automation-controller通过fluxbot的身份提交更改了values.yaml中镜像tag为1.0.0。因为默认部署的镜像版本就是1.0.0，所以两个member环境中的应用不会重启更新。
@@ -405,8 +435,25 @@ spec:
     docker push nuclearwu/hello-kubernetes:1.0.1
 
 ![commit-record-1.0.1](commit-record2.jpg)
-![member1-app-upgrade状态](member1-app-upgrade.jpg)
-![member2-app-upgrade状态](member2-app-upgrade.jpg)
+
+```yaml
+[root@member1 ~]# kubectl get pods -n app
+NAME                                                 READY       STATUS          RESTARTS        AGE
+hello-kubernetes-app-member1-app-5fb555c87f-b8zcz    1/1         RUNNING         0               9m38s
+hello-kubernetes-app-member1-app-5fb555c87f-ghvrh    1/1         RUNNING         0               9m32s  
+[root@member1 ~]# kubectl describe pod hello-kubernetes-app-member1-app-5fb555c87f-b8zcz -n app | grep Image
+    Image:       nuclearwu/hello-kubernetes:1.0.1
+    Image ID:    docker-pullable://nuclearwu/hello-kubernetes@sha256:f6cb3ec2f4830da55ecb73f7257b859fc0b75675425740f89c2358d5646e1151
+```
+
+```yaml
+[root@member2 ~]# kubectl get pods -n app
+NAME                                                READY       STATUS          RESTARTS         AGE
+hello-kubernetes-app-member2-app-fd85b68cb-nrvnx    1/1         RUNNING         0                9m4s
+[root@member2 ~]# kubectl describe pod hello-kubernetes-app-member2-app-fd85b68cb-nrvnx -n app | grep Image
+    Image:       nuclearwu/hello-kubernetes:1.0.1
+    Image ID:    docker-pullable://nuclearwu/hello-kubernetes@sha256:f6cb3ec2f4830da55ecb73f7257b859fc0b75675425740f89c2358d5646e1151
+```
 
 可以看到image-automation-controller通过fluxbot的身份提交更改了values.yaml中镜像tag为1.0.1。查看两个member集群中的应用，可以看到都进行了重启并且镜像版本也更改为了最新的1.0.1版本。
 
@@ -414,14 +461,21 @@ spec:
 
 本文主要从多集群场景下部署差异化配置的云原生应用出发，介绍了基于Flux v2的应用持续交付实践。Flux v2具备原生的Helm支持，可以无缝对接Helm Repository和Helm Chart资源，实现基于应用模板的应用持续交付。Flux v2可以优雅地对接CI，利用image-reflector和image-automation，可以更好的衔接CI和GitOps流程，只需要配置，而无需用户手动在CI流水线中编写更改manifest的脚本。Flux v2支持部署信息推送，通过Notification Controller不仅可以处理外部事件，还可以向外部系统发出警报，通知用户有关应用部署的信息。总而言之，Flux v2提供了一组可支持实现GitOps的工具，面向云原生应用持续交付提供了通用的解决方案。
 
-## 参考链接
+##参考链接
 
-- https://www.gitops.tech/#what-is-gitops
-- https://developer.aliyun.com/article/771574
-- https://cloudnative.to/blog/accelerating-developer-productivity-via-gitops/
-- https://cloudnative.to/blog/flux-get-start-easy/
-- https://www.bilibili.com/video/BV1q3411M7hc
-- https://github.com/fluxcd/flux2
-- https://fluxcd.io/
+https://www.gitops.tech/#what-is-gitops
+
+https://developer.aliyun.com/article/771574
+
+https://cloudnative.to/blog/accelerating-developer-productivity-via-gitops/
+
+https://cloudnative.to/blog/flux-get-start-easy/
+
+https://www.bilibili.com/video/BV1q3411M7hc
+
+https://github.com/fluxcd/flux2
+
+https://fluxcd.io/
+
 
 
