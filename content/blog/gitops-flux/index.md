@@ -126,7 +126,11 @@ spec:
 
 查看GitRepository源状态:
 
-![source-git状态](source-git-status.jpg)
+```bash
+[root@host ~]# flux get source git -n gitops-project
+NAME       REVISION         SUSPENDED       READY      MESSAGE
+git-repo   master/21a9dae   False           True       stored artifact for revision '21a9daedc59819eeeca81a7314ce5cf56d0f74c6'
+```
 
 从上图可以看到Source Controller已经从配置源拉取并保存了最新的工件。
 
@@ -224,12 +228,44 @@ spec:
 
 查看HelmRelease:
 
-![helm-release状态](helm-release-status.jpg)
+```bash
+[root@host ~]# flux get hr -n gitops-project
+NAME          REVISION               SUSPENDED       READY      MESSAGE
+member1-app   1.0.0+21a9daedc598.1   False           True       Release reconciliation succeeded
+member2-app   1.0.0+21a9daedc598.1   False           True       Release reconciliation succeeded
+```
 
 从上图可以看到Helm Controller已经自动完成应用在member集群中的发布，分别登录2个member集群，可看到应用已经部署成功。
 
-![member1-app状态](member1-app.jpg)
-![member2-app状态](member2-app.jpg)
+```bash
+[root@member1 ~]# kubectl get all -n app
+NAME                                                       READY            STATUS         RESTARTS     AGE
+pod/hello-kubernetes-app-member1-app-88dfd97f-nzsch        1/1              Running        0            35m
+
+NAME                                                       TYPE             CLUSTER_IP    EXTERNAL-IP   PORT(S)   AGE
+service/hello-kubernetes-app-member1-app                   ClusterIP                      <none>        80/TCP    35m
+
+NAME                                                       READY            UP-TO-DATE    AVAILABLE     AGE
+deployment.apps/hello-kubernetes-app-member1-app           1/1              1             1             35m
+
+NAME                                                       DESIRED          CURRENT       READY         AGE
+replicaset.apps/hello-kubernetes-app-member1-app-88dfd97f  1                1             1             35m
+```
+
+```bash
+[root@member2 ~]# kubectl get all -n app
+NAME                                                       READY            STATUS         RESTARTS     AGE
+pod/hello-kubernetes-app-member2-app-996fcf45b-8svgv        1/1             Running        0            49m
+
+NAME                                                       TYPE             CLUSTER_IP    EXTERNAL-IP   PORT(S)   AGE
+service/hello-kubernetes-app-member2-app                   ClusterIP                      <none>        80/TCP    49m
+
+NAME                                                       READY            UP-TO-DATE    AVAILABLE     AGE
+deployment.apps/hello-kubernetes-app-member2-app           1/1              1             1             49m
+
+NAME                                                       DESIRED          CURRENT       READY         AGE
+replicaset.apps/hello-kubernetes-app-member2-app-996fcf45b 1                1             1             49m
+```
 
 #### 批量更新集群配置
 
@@ -240,8 +276,17 @@ service:
   type: NodePort
 ```
 
-![member1-app-svc状态](member1-app-svc.jpg)
-![member2-app-svc状态](member2-app-svc.jpg)
+```bash
+[root@member1 ~]# kubectl get svc -n app
+NAME                                TYPE             CLUSTER-IP            EXTERNAL-IP       PORT(S)        AGE
+hello-kubernetes-app-member1-app    NodePort                               <none>            80:31248/TCP   40m
+```
+
+```bash
+[root@member2 ~]# kubectl get svc -n app
+NAME                                TYPE             CLUSTER-IP            EXTERNAL-IP       PORT(S)        AGE
+hello-kubernetes-app-member2-app    NodePort                               <none>            80:31604/TCP   51m
+```
 
 #### 更新单个集群配置
 
@@ -254,7 +299,12 @@ config:
   message: "member1"
 ```
 
-![member1-app-replica状态](member1-app-replica.jpg)
+```bash
+[root@member1 ~]# kubectl get pods -n app
+NAME                                               READY           STATUS          RESTARTS        AGE
+hello-kubernetes-app-member1-app-88dfd97f-bs6wz    1/1             RUNNING         0               20s
+hello-kubernetes-app-member1-app-88dfd97f-nzsch    1/1             RUNNING         0               42m     
+```
 
 ### 配置镜像自动更新
 
@@ -279,9 +329,11 @@ spec:
 
 查看ImageRepository:
 
-    flux get images repository image-repo -n gitops-project
-
-![image-repo状态](image-repo.jpg)
+```bash
+[root@host ~]# flux get images repository image-repo -n gitops-project
+NAME           LAST SCAN                   SUSPENDED   READY     MESSAGE
+imge-repo      2022-07-07T14:19:38+08:00   False       True      successful scan, found 1 tags
+```
 
 可以看到 image-reflector-controller成功扫描到了镜像仓库nuclearwu/hello-kubernetes
 
@@ -305,10 +357,12 @@ spec:
 ```
 
 查看ImagePolicy:
-    
-    flux get images policy -n gitops-project
 
-![image-policy状态](image-policy.jpg)
+```bash
+[root@host ~]# flux get images policy -n gitops-project
+NAME             LATEST IMAGE                         READY     MESSAGE
+image-policy     nuclearwu/hello-kubernetes:1.0.0     True      Latest image tag for 'nuclearwu/hello-kubernetes' resolved to: 1.0.0
+```
 
 可以看到 image-reflector-controller拉取到nuclearwu/hello-kubernetes最新的镜像版本为1.0.0。
 
@@ -390,9 +444,12 @@ spec:
 
 查看ImageUpdateAutomation:
 
-    flux get images update image-update-automation -n gitops-project
+```bash
+[root@host ~]# flux get images update image-update-automation -n gitops-project
+NAME                      LAST RUN                    SUSPENDED   READY     MESSAGE
+image-update-automation   2022-07-07T16:44:34+08:00   False       True      no updates made; last commit 5bf2341 at 2022-07-07T09:04:35Z
+```
 
-![image-update-automation状态](image-update-automation.jpg)
 ![commit-record-1.0.0](commit-record1.jpg)
 
 可以看到image-automation-controller通过fluxbot的身份提交更改了values.yaml中镜像tag为1.0.0。因为默认部署的镜像版本就是1.0.0，所以两个member环境中的应用不会重启更新。
@@ -405,8 +462,25 @@ spec:
     docker push nuclearwu/hello-kubernetes:1.0.1
 
 ![commit-record-1.0.1](commit-record2.jpg)
-![member1-app-upgrade状态](member1-app-upgrade.jpg)
-![member2-app-upgrade状态](member2-app-upgrade.jpg)
+
+```bash
+[root@member1 ~]# kubectl get pods -n app
+NAME                                                 READY       STATUS          RESTARTS        AGE
+hello-kubernetes-app-member1-app-5fb555c87f-b8zcz    1/1         RUNNING         0               9m38s
+hello-kubernetes-app-member1-app-5fb555c87f-ghvrh    1/1         RUNNING         0               9m32s  
+[root@member1 ~]# kubectl describe pod hello-kubernetes-app-member1-app-5fb555c87f-b8zcz -n app | grep Image
+    Image:       nuclearwu/hello-kubernetes:1.0.1
+    Image ID:    docker-pullable://nuclearwu/hello-kubernetes@sha256:f6cb3ec2f4830da55ecb73f7257b859fc0b75675425740f89c2358d5646e1151
+```
+
+```bash
+[root@member2 ~]# kubectl get pods -n app
+NAME                                                READY       STATUS          RESTARTS         AGE
+hello-kubernetes-app-member2-app-fd85b68cb-nrvnx    1/1         RUNNING         0                9m4s
+[root@member2 ~]# kubectl describe pod hello-kubernetes-app-member2-app-fd85b68cb-nrvnx -n app | grep Image
+    Image:       nuclearwu/hello-kubernetes:1.0.1
+    Image ID:    docker-pullable://nuclearwu/hello-kubernetes@sha256:f6cb3ec2f4830da55ecb73f7257b859fc0b75675425740f89c2358d5646e1151
+```
 
 可以看到image-automation-controller通过fluxbot的身份提交更改了values.yaml中镜像tag为1.0.1。查看两个member集群中的应用，可以看到都进行了重启并且镜像版本也更改为了最新的1.0.1版本。
 
@@ -423,5 +497,6 @@ spec:
 - https://www.bilibili.com/video/BV1q3411M7hc
 - https://github.com/fluxcd/flux2
 - https://fluxcd.io/
+
 
 
