@@ -1,5 +1,5 @@
 ---
-title: "linkerd2 proxy tap 学习笔记"
+title: "Linkerd2 proxy tap 学习笔记"
 date: 2019-11-01T18:36:27+08:00
 draft: false
 authors: ["哗啦啦mesh团队"]
