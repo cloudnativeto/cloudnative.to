@@ -18,10 +18,9 @@ content:
       align: center
       background:
         position: center
-        color: "#4f7bab"
+        color: "#0a55a7"
         media: "bg.svg"
-        text_color_light: true
-        brightness: 1
+        brightness: 0.8
      # link:
      #   icon: fa-solid fa-circle-info
      #   text: 查看详情
@@ -31,8 +30,8 @@ content:
       align: center
       background:
         position: center
-        color: '#4f7bab'
-        brightness: 1
+        color: "#0a55a7"
+        brightness: 0.8
         media: earth.svg
       link:
         icon: fa-solid fa-circle-info
