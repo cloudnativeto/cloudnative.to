@@ -19,9 +19,9 @@ keywords: ["微服务引擎", "服务治理"]
                                                 
 ## MSE部署组网架构实现
 
-产品流量入口在管理域DMZ区，此区域主要用于部署高可用组件、流量入口、前端静态资源，通过Keepalived + Nginx 来实现服务的高可用和负载均衡。
+MSE采用通用nginx网关作为流量入口，统一转发路由到各个后端服务；应用端面向op用户，访问请求经op网关进行统一管理。
 
-产品分为订购页&控制台、应用端、管理端3个子系统，部署在管理域CORE区，其中订购页&控制台、应用端面向BC-OP用户，访问请求经OP网关统一转发；管理端面向自建内部用户体系，不对公网开放。具体的部署组网架构图如下：
+具体的部署组网架构图如下：
 
 ![MSE部署组网架构图](NetworkArchitecture.png)
 
@@ -78,7 +78,7 @@ app:
 apollo:
   #Apollo meta地址，如果跳过apollo meta server的话，不配置该属性，但是需要在启动脚本中添加以下参数
   #-Dapollo.configService=http://config-service-url:port（多个configserver地址之间用逗号隔开）
-  meta: ${APOLLO_ADDR:http://166.8.66.8:8080,http://166.8.66.9:8080,http://166.8.66.10:8080}
+  meta: ${APOLLO_ADDR:http://166.88.66.8:8080,http://166.88.66.9:8080,http://166.88.66.10:8080}
   bootstrap:
     enabled: true
     #引入哪些namespace
