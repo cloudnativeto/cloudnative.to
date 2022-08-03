@@ -58,7 +58,7 @@
   {{ $image = $featured.Fit "720x2500 webp" }}
 {{end}}
 
-<div class="article-container pt-3">
+<div class="container-xl pt-3">
   <h1>{{ $title }}</h1>
 
   {{ with $page.Params.subtitle }}
@@ -88,7 +88,7 @@
   {{/* Wider container for nodes */}}
   {{ $ctnr := "article-container" }}
   {{ if $page.IsNode }}
-    {{ $ctnr = "universal-wrapper" }}
+    {{ $ctnr = "container-xl" }}
   {{end}}
 <div class="{{$ctnr}} pt-3">
   <h1>{{ $title }}</h1>
