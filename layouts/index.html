@@ -1,5 +1,5 @@
 {{- define "main" -}}
-
+{{ $data := index .Site.Data .Site.Language.Lang }}
 {{/* Check that user fully installed Wowchemy. */}}
 {{/* Commented out to allow user to have no params.yaml and just use the defaults. */}}
 {{/* if not (isset site.Params "seo") */}}
@@ -21,5 +21,7 @@
 {{ else }}
   {{ partial "widget_page.html" . }}
 {{ end }}
+
+{{ partial "sponsors.html" . }}
 
 {{- end -}}

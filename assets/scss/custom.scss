@@ -190,3 +190,25 @@
         display: none;
     }
 }
+
+.sponsor-img-adopter {
+    padding: 25px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    border: 1px solid #dee2e6;
+    margin: 15px 0 15px;
+    border-radius: .25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+}
+
+.sponsor-img-adopter:hover{
+    box-shadow: 0 4px 4px rgba(0,0,0,.2);
+}
+
+.sponsor-img-adopter img {
+    max-width: 100%;
+    max-height: 100%;
+}

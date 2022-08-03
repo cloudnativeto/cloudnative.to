@@ -1,0 +1,49 @@
+{{ $data := index .Site.Data .Site.Language.Lang }}
+{{ if $data.homepage.sponsor.enable }}
+{{ with $data.homepage.sponsor }}
+{{ "<!-- sponsors -->" | safeHTML }}
+<section class="home-section">
+      <div class="container text-center mx-auto">
+        <h1 class="section-title">{{ .title }}</h2>
+        <h2 class="section-title sponsor-title">{{ .type.project.title }}</h4>
+          <div class="row">
+            {{ range .type.project.list }}
+            {{ "<!-- sponsor-img -->" | safeHTML }}
+            <div class="col-6 col-sm-6 col-md-3">
+              <div class=sponsor-img-adopter>
+                <a href="{{ .url }}" target="_blank"><img src="{{ .image }}" title="{{ .name }}"></a>
+              </div>
+            </div>
+            {{ end }}
+        </div>
+        <h2 class="section-title sponsor-title">{{ .type.org.title }}</h4>
+        <div class="container">
+          <div class="row">
+            {{ range .type.org.list }}
+            {{ "<!-- sponsor-img -->" | safeHTML }}
+            <div class="col-6 col-sm-6 col-md-3">
+              <div class=sponsor-img-adopter>
+                <a href="{{ .url }}" target="_blank"><img src="{{ .image }}" title="{{ .name }}"></a>
+              </div>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+        <h2 class="section-title sponsor-title">{{ .type.company.title }}</h4>
+        <div class="container">
+          <div class="row">
+            {{ range .type.company.list }}
+            {{ "<!-- sponsor-img -->" | safeHTML }}
+            <div class="col-6 col-sm-6 col-md-3">
+              <div class=sponsor-img-adopter>
+                <a href="{{ .url }}" target="_blank"><img src="{{ .image }}" title="{{ .name }}"></a>
+                      </div>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+    </div>
+</section>
+{{ end }}
+{{ end }}
+{{ "<!-- /sponsors -->" | safeHTML }}
