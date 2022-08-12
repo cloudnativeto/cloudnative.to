@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xl="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-347 -240 2686 1278" width="2686" height="1278">
+  <defs>
+    <font-face font-family="Helvetica Neue" font-size="16" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="16" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 8 0 L 0 -3 L 0 3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.9.4 
+    <dc:date>2022-08-09 02:15:33 +0000</dc:date>
+  </metadata>
+  <g id="API_server_____2" stroke-dasharray="none" stroke-opacity="1" fill="none" stroke="none" fill-opacity="1">
+    <title>API server启动流程 2</title>
+    <rect fill="white" x="-347" y="-240" width="2686" height="1278"/>
+    <g id="API_server_____2: 图层 1">
+      <title>图层 1</title>
+      <g id="Graphic_100">
+        <rect x="956" y="145" width="585" height="198" fill="white"/>
+        <path d="M 956 145 L 1541 145 L 1541 343 L 956 343 Z" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Graphic_98">
+        <rect x="964" y="555" width="589" height="211" fill="white"/>
+        <path d="M 964 555 L 1553 555 L 1553 766 L 964 766 Z" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Graphic_93">
+        <rect x="1569" y="-239" width="372" height="227" fill="white"/>
+        <path d="M 1569 -239 L 1941 -239 L 1941 -12 L 1569 -12 Z" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Group_6">
+        <g id="Graphic_4">
+          <rect x="-333" y="81" width="247" height="114" fill="white"/>
+          <rect x="-333" y="81" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          <text transform="translate(-328 128.776)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="104.124" y="15">Run</tspan>
+          </text>
+        </g>
+        <g id="Graphic_5">
+          <text transform="translate(-342 206.5)" fill="black">
+            <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">cmd/kube-apiserver/app/server.go</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Group_7">
+        <g id="Graphic_9">
+          <rect x="14" y="-44" width="247" height="114" fill="white"/>
+          <rect x="14" y="-44" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          <text transform="translate(19 3.776001)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="50.948" y="15">CreateServerChain</tspan>
+          </text>
+        </g>
+        <g id="Graphic_8">
+          <text transform="translate(5 81.5)" fill="black">
+            <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">cmd/kube-apiserver/app/server.go</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Group_10">
+        <g id="Graphic_12">
+          <rect x="14" y="885" width="247" height="114" fill="white"/>
+          <rect x="14" y="885" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          <text transform="translate(19 932.776)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="52.86" y="15">server.PrepareRun</tspan>
+          </text>
+        </g>
+        <g id="Graphic_11">
+          <text transform="translate(5 1010.5)" fill="black">
+            <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">cmd/kube-apiserver/app/server.go</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Line_14">
+        <path d="M -86 138 L -38.45 138 L -38.45 13 L 4.1 13" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Group_17">
+        <g id="Graphic_19">
+          <rect x="353" y="-197" width="247" height="114" fill="white"/>
+          <rect x="353" y="-197" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          <text transform="translate(358 -149.224)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="36.436" y="15">CreateApiServerConfig</tspan>
+          </text>
+        </g>
+        <g id="Graphic_18">
+          <text transform="translate(344 -71.5)" fill="black">
+            <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">cmd/kube-apiserver/app/server.go</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Line_20">
+        <path d="M 261 13 L 304.55 13 L 304.55 -140 L 343.1 -140" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_21">
+        <path d="M -86 138 L -38.45 138 L -38.45 942 L 4.1 942" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Group_22">
+        <g id="Graphic_24">
+          <rect x="353" y="-15" width="247" height="114" fill="white"/>
+          <rect x="353" y="-15" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          <text transform="translate(358 32.776)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="20.428" y="15">CreateApiExtensionsConfig</tspan>
+          </text>
+        </g>
+        <g id="Graphic_23">
+          <text transform="translate(344 110.5)" fill="black">
+            <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">cmd/kube-apiserver/app/server.go</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Group_25">
+        <g id="Graphic_27">
+          <rect x="353" y="167" width="247" height="114" fill="white"/>
+          <rect x="353" y="167" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          <text transform="translate(358 214.776)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="20.14" y="15">CreateAPIExtensionsServer</tspan>
+          </text>
+        </g>
+        <g id="Graphic_26">
+          <text transform="translate(344 292.5)" fill="black">
+            <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">cmd/kube-apiserver/app/server.go</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Group_28">
+        <g id="Graphic_30">
+          <rect x="357" y="362" width="247" height="114" fill="white"/>
+          <rect x="357" y="362" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          <text transform="translate(362 409.776)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="41.164" y="15">CreateKubeApiServer</tspan>
+          </text>
+        </g>
+        <g id="Graphic_29">
+          <text transform="translate(348 487.5)" fill="black">
+            <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">cmd/kube-apiserver/app/server.go</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Group_31">
+        <g id="Graphic_33">
+          <rect x="353" y="547" width="247" height="114" fill="white"/>
+          <rect x="353" y="547" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          <text transform="translate(358 594.776)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="31.396" y="15">CreateAggregatorConfig</tspan>
+          </text>
+        </g>
+        <g id="Graphic_32">
+          <text transform="translate(344 672.5)" fill="black">
+            <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">cmd/kube-apiserver/app/server.go</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Group_34">
+        <g id="Graphic_36">
+          <rect x="353" y="739" width="247" height="114" fill="white"/>
+          <rect x="353" y="739" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          <text transform="translate(358 786.776)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="31.844" y="15">CreateAggregatorServer</tspan>
+          </text>
+        </g>
+        <g id="Graphic_35">
+          <text transform="translate(344 864.5)" fill="black">
+            <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">cmd/kube-apiserver/app/server.go</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Line_37">
+        <path d="M 261 13 L 304.55 13 L 304.55 42 L 343.1 42" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_38">
+        <path d="M 261 13 L 304.55 13 L 304.55 224 L 343.1 224" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_40">
+        <path d="M 261 13 L 304.55 13 L 304.55 604 L 343.1 604" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_41">
+        <path d="M 261 13 L 304.55 13 L 304.55 796 L 343.1 796" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_42">
+        <path d="M 261 13 L 304.55 13 L 304.55 419 L 347.1 419" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Group_43">
+        <g id="Graphic_45">
+          <rect x="958" y="-197" width="247" height="114" fill="white"/>
+          <rect x="958" y="-197" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          <text transform="translate(963 -158.448)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">KubeApiServerConfig.Complete.</tspan>
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="33.448">New</tspan>
+          </text>
+        </g>
+        <g id="Graphic_44">
+          <text transform="translate(949 -71.5)" fill="black">
+            <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">cmd/kube-apiserver/app/server.go</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Group_46">
+        <g id="Graphic_48">
+          <rect x="1609" y="-197" width="247" height="114" fill="white"/>
+          <rect x="1609" y="-197" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          <text transform="translate(1614 -149.224)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">BuildHandlerChainFunc</tspan>
+          </text>
+        </g>
+        <g id="Graphic_47">
+          <text transform="translate(1600 -71.5)" fill="black">
+            <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">k8s.io/apiserver/pkg/server/config.go</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Group_51">
+        <g id="Graphic_53">
+          <rect x="1281" y="-197" width="247" height="114" fill="white"/>
+          <rect x="1281" y="-197" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          <text transform="translate(1286 -149.224)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">c.GenericConfig.New</tspan>
+          </text>
+        </g>
+        <g id="Graphic_52">
+          <text transform="translate(1272 -71.5)" fill="black">
+            <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">k8s.io/apiserver/pkg/server/config.go</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Line_54">
+        <line x1="1205" y1="-140" x2="1271.1" y2="-140" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_55">
+        <line x1="1528" y1="-140" x2="1599.1" y2="-140" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Group_56">
+        <g id="Graphic_58">
+          <rect x="652" y="362" width="247" height="114" fill="white"/>
+          <rect x="652" y="362" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          <text transform="translate(657 400.552)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">KubeAPIServerConfig.Complete(</tspan>
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="33.448">).New</tspan>
+          </text>
+        </g>
+        <g id="Graphic_57">
+          <text transform="translate(643 487.5)" fill="black">
+            <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">cmd/kube-apiserver/app/server.go</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Group_59">
+        <g id="Graphic_61">
+          <rect x="992.5" y="190" width="247" height="114" fill="white"/>
+          <rect x="992.5" y="190" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          <text transform="translate(997.5 237.776)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">m.InstallLegacyAPI</tspan>
+          </text>
+        </g>
+        <g id="Graphic_60">
+          <text transform="translate(983.5 315.5)" fill="black">
+            <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">cmd/kube-apiserver/app/server.go</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Group_62">
+        <g id="Graphic_64">
+          <rect x="996.5" y="362" width="247" height="114" fill="white"/>
+          <rect x="996.5" y="362" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          <text transform="translate(1001.5 409.776)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">[]RestStorageProvider{…}</tspan>
+          </text>
+        </g>
+        <g id="Graphic_63">
+          <text transform="translate(983.5 487.5)" fill="black">
+            <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">cmd/kube-apiserver/app/server.go</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Group_65">
+        <g id="Graphic_67">
+          <rect x="996.5" y="595" width="247" height="114" fill="white"/>
+          <rect x="996.5" y="595" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          <text transform="translate(1001.5 642.776)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">m.InstallAPIs</tspan>
+          </text>
+        </g>
+        <g id="Graphic_66">
+          <text transform="translate(983.5 720.5)" fill="black">
+            <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">cmd/kube-apiserver/app/server.go</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Line_88">
+        <path d="M 899 419 L 943.3 419 L 943.3 247 L 982.6 247" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_89">
+        <line x1="899" y1="419" x2="986.6" y2="419" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_90">
+        <line x1="604" y1="419" x2="642.1" y2="419" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_95">
+        <text transform="translate(1574 -233.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">初始化Filter</tspan>
+        </text>
+      </g>
+      <g id="Graphic_99">
+        <text transform="translate(961 144.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">构造注册内置资源的handler</tspan>
+        </text>
+      </g>
+      <g id="Graphic_150">
+        <rect x="1628" y="110" width="688" height="656" fill="white"/>
+        <path d="M 1628 110 L 2316 110 L 2316 766 L 1628 766 Z" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Graphic_146">
+        <rect x="1279" y="595" width="247" height="114" fill="white"/>
+        <rect x="1279" y="595" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1284 633.552)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">m.GenericAPIServer.InstallAPIGr</tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="33.448">oups</tspan>
+        </text>
+      </g>
+      <g id="Graphic_145">
+        <text transform="translate(1292 720.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">pkg/controlplane/instance.go</tspan>
+        </text>
+      </g>
+      <g id="Graphic_142">
+        <rect x="1658" y="178" width="247" height="114" fill="white"/>
+        <rect x="1658" y="178" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1663 225.776)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">s.InstallAPIResources</tspan>
+        </text>
+      </g>
+      <g id="Graphic_141">
+        <text transform="translate(1937 224)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">k8s.io/apiserver/pkg/server/genericapiserver.go</tspan>
+        </text>
+      </g>
+      <g id="Graphic_139">
+        <rect x="1658" y="323" width="247" height="114" fill="white"/>
+        <rect x="1658" y="323" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1663 370.776)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">InstallREST</tspan>
+        </text>
+      </g>
+      <g id="Graphic_138">
+        <text transform="translate(1937 369)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">k8s.io/apiserver/pkg/server/genericapiserver.go</tspan>
+        </text>
+      </g>
+      <g id="Graphic_134">
+        <rect x="1658" y="477" width="247" height="114" fill="white"/>
+        <rect x="1658" y="477" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1663 524.776)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">installer.Install()</tspan>
+        </text>
+      </g>
+      <g id="Graphic_133">
+        <text transform="translate(1937 535.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">k8s.io/apiserver/pkg/endpoints/groupversion.go</tspan>
+        </text>
+      </g>
+      <g id="Graphic_130">
+        <rect x="1658" y="627" width="247" height="114" fill="white"/>
+        <rect x="1658" y="627" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1663 674.776)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">a.registerResourceHandlers</tspan>
+        </text>
+      </g>
+      <g id="Graphic_129">
+        <text transform="translate(1937 677.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">k8s.io/apiserver/pkg/endpoints/installer.go</tspan>
+        </text>
+      </g>
+      <g id="Graphic_126">
+        <text transform="translate(1637 115.45714)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">构造注册handler</tspan>
+        </text>
+      </g>
+      <g id="Graphic_151">
+        <text transform="translate(1292 315.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">pkg/controlplane/instance.go</tspan>
+        </text>
+      </g>
+      <g id="Graphic_152">
+        <rect x="1279" y="190" width="247" height="114" fill="white"/>
+        <rect x="1279" y="190" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(1284 228.552)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="15">m.GenericAPIServer.InstallLegac</tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="0" y="33.448">yAPIGroups</tspan>
+        </text>
+      </g>
+      <g id="Line_153">
+        <line x1="1239.5" y1="247" x2="1269.1" y2="247" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_154">
+        <line x1="1243.5" y1="652" x2="1269.1" y2="652" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_155">
+        <path d="M 1526 247 L 1574.55 247 L 1574.55 438 L 1618.1 438" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_156">
+        <path d="M 1526 652 L 1574.55 652 L 1574.55 438 L 1618.1 438" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Group_157">
+        <g id="Graphic_159">
+          <rect x="655.5" y="-197" width="247" height="114" fill="white"/>
+          <rect x="655.5" y="-197" width="247" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          <text transform="translate(660.5 -149.224)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="49.612" y="15">buildGenericConfig</tspan>
+          </text>
+        </g>
+        <g id="Graphic_158">
+          <text transform="translate(646.5 -71.5)" fill="black">
+            <tspan font-family="PingFang SC" font-size="16" font-weight="400" fill="black" x="0" y="17">cmd/kube-apiserver/app/server.go</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="Line_161">
+        <line x1="1781.5" y1="292" x2="1781.5" y2="313.1" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_162">
+        <line x1="1781.5" y1="437" x2="1781.5" y2="467.1" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_163">
+        <line x1="1781.5" y1="591" x2="1781.5" y2="617.1" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_164">
+        <line x1="600" y1="-140" x2="645.6" y2="-140" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_166">
+        <line x1="902.5" y1="-140" x2="948.1" y2="-140" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_167">
+        <path d="M 905 419 L 943.4412 419 L 943.4412 652 L 986.6 652" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+    </g>
+  </g>
+</svg>
