@@ -1,5 +1,5 @@
 ---
-title: "APIServer handler注册过程分析"
+title: "Kubernetes API Server handler 注册过程分析"
 date: 2022-08-12T12:00:00+08:00
 draft: false
 authors: ["韩伟森"]
@@ -529,12 +529,8 @@ Create请求的流程可以总结为下图
 
 ## 参考
 
-[https://blog.tianfeiyu.com/source-code-reading-notes/kubernetes/kube_apiserver.html#kube-apiserver-处理流程](https://blog.tianfeiyu.com/source-code-reading-notes/kubernetes/kube_apiserver.html#kube-apiserver-%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B)
-
-[https://hackerain.me/2020/10/05/kubernetes/kube-apiserver-genericapiserver.html](https://hackerain.me/2020/10/05/kubernetes/kube-apiserver-genericapiserver.html)
-
-[https://hackerain.me/2020/09/19/kubernetes/kube-apiserver-storage-overview.html](https://hackerain.me/2020/09/19/kubernetes/kube-apiserver-storage-overview.html)
-
-[https://github.com/gosoon/source-code-reading-notes/blob/master/kubernetes/kube_apiserver.md](https://github.com/gosoon/source-code-reading-notes/blob/master/kubernetes/kube_apiserver.md)
-
-[https://time.geekbang.org/column/article/41876](https://time.geekbang.org/column/article/41876)
+- [https://blog.tianfeiyu.com/source-code-reading-notes/kubernetes/kube_apiserver.html#kube-apiserver-处理流程](https://blog.tianfeiyu.com/source-code-reading-notes/kubernetes/kube_apiserver.html#kube-apiserver-%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B)
+- [https://hackerain.me/2020/10/05/kubernetes/kube-apiserver-genericapiserver.html](https://hackerain.me/2020/10/05/kubernetes/kube-apiserver-genericapiserver.html)
+- [https://hackerain.me/2020/09/19/kubernetes/kube-apiserver-storage-overview.html](https://hackerain.me/2020/09/19/kubernetes/kube-apiserver-storage-overview.html)
+- [https://github.com/gosoon/source-code-reading-notes/blob/master/kubernetes/kube_apiserver.md](https://github.com/gosoon/source-code-reading-notes/blob/master/kubernetes/kube_apiserver.md)
+- [https://time.geekbang.org/column/article/41876](https://time.geekbang.org/column/article/41876)
