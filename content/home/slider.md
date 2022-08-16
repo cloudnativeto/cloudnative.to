@@ -1,7 +1,7 @@
 ---
 widget: slider
-weight: 11
-active: false
+weight: 1
+active: true
 headless: true  # This file represents a page section.
 design:
   # Slide height is automatic unless you force a specific height (e.g. '400px')
@@ -13,18 +13,18 @@ design:
   interval: 5000
 content:
   slides:
-    - title: 云原生社区官网全新改版
-      content: '新主题，新气象，新增全站搜索，社区内容集中归档。'
+    - title: 服务网格峰会 2022 重启报名
+      content: '2022 年 9 月 24 日（周六），上海'
       align: center
       background:
         position: center
         color: "#0a55a7"
         media: "bg.svg"
         brightness: 0.8
-     # link:
-     #   icon: fa-solid fa-circle-info
-     #   text: 查看详情
-     #   url: /blog/brand-new-website/
+      link:
+        icon: fa-solid fa-square-up-right
+        text: 立即报名
+        url: https://www.huodongxing.com/event/9663784282200
     - title: 征稿活动开启
       content: '为了促进社区交流，社区现开启征稿活动，欢迎提交稿件。'
       align: center
