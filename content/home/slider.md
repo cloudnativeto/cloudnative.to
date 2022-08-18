@@ -1,6 +1,6 @@
 ---
 widget: slider
-weight: 1
+weight: 11
 active: true
 headless: true  # This file represents a page section.
 design:
@@ -19,20 +19,32 @@ content:
       background:
         position: center
         color: "#0a55a7"
-        media: "bg.svg"
-        brightness: 0.8
+        media: "shanghai.jpg"
+        brightness: 0.3
       link:
         icon: fa-solid fa-square-up-right
         text: 立即报名
         url: https://www.huodongxing.com/event/9663784282200
+    - title: 2022国际开源节（IOSF）
+      content: '2022 年 9 月 15 -17 日，深圳国际会展中心'
+      align: center
+      background:
+        position: center
+        color: "#0a55a7"
+        media: "kaiyuanjie.jpg"
+        brightness: 0.3
+      link:
+        icon: fa-solid fa-square-up-right
+        text: 立即报名
+        url: https://mp.weixin.qq.com/s/XJPPrUO_Za4x2Mj7qnXBzw
     - title: 征稿活动开启
       content: '为了促进社区交流，社区现开启征稿活动，欢迎提交稿件。'
       align: center
       background:
         position: center
         color: "#0a55a7"
-        brightness: 0.8
-        media: earth.svg
+        brightness: 0.3
+        media: write.jpg
       link:
         icon: fa-solid fa-circle-info
         text: 查看详情
