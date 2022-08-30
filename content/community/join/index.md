@@ -24,9 +24,9 @@ type: book
 
 ### 入群助手
 
-填写问卷后请添加入群助手微信，微信搜索 `jimmysongio` 或扫描下面的二维码添加。
+填写问卷后请添加入群助手微信，微信搜索 `yyssq1` 或扫描下面的二维码添加。
 
-{{<figure title="入群助手二维码" alt="入群助手二维码" src="jimmysongio-wechat.jpg" width="128px">}}
+{{<figure title="入群助手二维码" alt="入群助手二维码" src="/img/yyssq1-wechat.jpg" width="128px">}}
 
 期待在社区群里与你相遇。
 
