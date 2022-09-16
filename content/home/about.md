@@ -3,7 +3,7 @@ widget: experience
 headless: true
 weight: 70
 title: '关于云原生社区'
-subtitle: "云原生社区简介"
+subtitle: "关注社区微信公众号"
 # Date format
 #   Refer to https://wowchemy.com/docs/customization/#date-format
 date_format: 2006 年 1 月 2 日
