@@ -26,7 +26,7 @@ content:
         text: 立即报名
         url: https://www.huodongxing.com/event/9663784282200
     - title: 2022国际开源节（IOSF）
-      content: '2022 年 9 月 15 -17 日，深圳国际会展中心'
+      content: '因为深圳疫情原因推迟，具体时间待定'
       align: center
       background:
         position: center
@@ -35,8 +35,8 @@ content:
         brightness: 0.3
       link:
         icon: fa-solid fa-square-up-right
-        text: 立即报名
-        url: https://mp.weixin.qq.com/s/XJPPrUO_Za4x2Mj7qnXBzw
+        text: 延期公告
+        url: https://mp.weixin.qq.com/s/_0xrzAKkFRFUqsnBvskrCw
     - title: IAS 2022 第六届全国互联网架构峰会
       content: '2022 年 9 月 24 日，南京'
       align: center
