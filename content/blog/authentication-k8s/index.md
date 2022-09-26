@@ -41,7 +41,7 @@ keywords: ["云原生","K8s"]
 下表给出了其主要区别:
 
 |类目|Normal Users|Service Account|
-|----|----|
+|----|----|----|
 |针对对象| 人类用户| 进程|
 |范围| 全cluster唯一| namespace|
 |设计目的| 与企业数据库同步，在用户级别进行操作权限的控制| 更轻量化，在任务进程级别进行管控 |
@@ -82,14 +82,14 @@ K8s中组件之间通信，证书的验证是在协议层通过TLS完成的，TL
 
 当两个组件进行双向TLS认证时，会涉及到下表中的相关文件：
 
-名称|作用|例子
-----|----
-服务端证书|包含服务端公钥和服务端身份信息|通过根证书手动或者kubeadm自动生成的API Server服务端证书文件apiserver.crt
-服务器私钥|主要用于TLS认证时进行数字签名，证明自己是服务端证书的拥有者|通过根证书手动或者kubeadm生成的API Server服务端私钥文件apiserver.key
-客户端证书|包含客户端公钥和客户端身份信息|由同一个CA根证书签发的.crt文件
-客户端私钥|主要用于TLS认证时进行数字签名，证明自己是客户端证书的拥有者|由同一个CA根证书签发的.key文件
-服务端CA根证书|签发服务端证书的 CA 根证书|通过openssl等工具生成的ca.crt文件,并在服务端启动时进行指定
-客户端CA根证书|签发客户端证书的 CA 根证书|通过openssl等工具生成的ca.crt文件,并在客户端启动时进行指定(一般与服务端使用一个)
+|名称|作用|例子|
+|----|----|----|
+|服务端证书|包含服务端公钥和服务端身份信息|通过根证书手动或者kubeadm自动生成的API Server服务端证书文件apiserver.crt|
+|服务器私钥|主要用于TLS认证时进行数字签名，证明自己是服务端证书的拥有者|通过根证书手动或者kubeadm生成的API Server服务端私钥文件apiserver.key|
+|客户端证书|包含客户端公钥和客户端身份信息|由同一个CA根证书签发的.crt文件|
+|客户端私钥|主要用于TLS认证时进行数字签名，证明自己是客户端证书的拥有者|由同一个CA根证书签发的.key文件|
+|服务端CA根证书|签发服务端证书的 CA 根证书|通过openssl等工具生成的ca.crt文件,并在服务端启动时进行指定|
+|客户端CA根证书|签发客户端证书的 CA 根证书|通过openssl等工具生成的ca.crt文件,并在客户端启动时进行指定(一般与服务端使用一个)|
 
 下面我们用一个例子来演示证书签发并进行客户端配置的过程, 演示的K8s环境已经存在CA根证书文件以及API Server文件，文件和目录情况如图3所示：
 
@@ -228,12 +228,8 @@ Service Account包含了namespace、token 和 ca三部分内容，通过base64�
 
 ## 参考资料
 
-<https://cloud.tencent.com/developer/article/2016079>
-
-<http://www.javashuo.com/article/p-gocttrgh-ny.html>
-
-<https://cloudnative.to/blog/k8s-certificate/#kube-apiserver-%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AE>
-
-<https://zhuanlan.zhihu.com/p/468010077>
-
-<https://kubernetes.io/docs/reference/access-authn-authz/authentication/>
+- [https://cloud.tencent.com/developer/article/2016079](https://cloud.tencent.com/developer/article/2016079)
+- [http://www.javashuo.com/article/p-gocttrgh-ny.html](http://www.javashuo.com/article/p-gocttrgh-ny.html)
+- [https://cloudnative.to/blog/k8s-certificate/#kube-apiserver-%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AE](https://cloudnative.to/blog/k8s-certificate/#kube-apiserver-%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AE)
+- [https://zhuanlan.zhihu.com/p/468010077](https://zhuanlan.zhihu.com/p/468010077)
+- [https://kubernetes.io/docs/reference/access-authn-authz/authentication/](https://kubernetes.io/docs/reference/access-authn-authz/authentication/)
