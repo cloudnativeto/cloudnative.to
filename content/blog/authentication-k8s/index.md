@@ -1,5 +1,6 @@
 ---
-title: "搞懂K8s认证"
+title: "彻底搞懂 Kubernetes 中的认证"
+
 date: 2022-09-15T12:00:00+08:00
 draft: false
 authors: ["陈亦帅"]
