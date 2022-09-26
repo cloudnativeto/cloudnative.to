@@ -4,7 +4,8 @@ date: 2022-09-15T12:00:00+08:00
 draft: false
 authors: ["陈亦帅"]
 summary: "本文从边缘设备管理和云边自定义消息传递两个方面，来介绍KubeEdge的云边协同机制。"
-tags: ["K8s","安全认证"]
+tags: ["Kubernetes","安全认证"]
+
 categories: ["云原生"]
 keywords: ["云原生","K8s"] 
 ---
