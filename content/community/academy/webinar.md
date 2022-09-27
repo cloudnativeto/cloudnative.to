@@ -1,12 +1,12 @@
 ---
 weight: 1
 title: 直播日程表
-summary: 云原生学院是线上直播日程表。
+summary: 云原生社区线上直播日程表。
 date: '2022-07-16T00:00:00+08:00'
 type: book
 ---
 
-云原生学院定期举办线上直播，邀请云原生技术大咖为大家分享。
+云原生社区定期举办线上直播，邀请云原生技术大咖为大家分享。
 
 ## 直播历史归档
 
@@ -50,5 +50,5 @@ type: book
 
 ## 资料下载
 
-云原生学院直播过程中讲师分享的 PPT 下载见 [GitHub](https://github.com/cloudnativeto/academy/tree/master/webinar/)。
+云原生社区直播过程中讲师分享的 PPT 下载见 [GitHub](https://github.com/cloudnativeto/academy/tree/master/webinar/)。
 
