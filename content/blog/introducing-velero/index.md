@@ -4,7 +4,8 @@ title: "使用 Velero 备份还原 Kubernetes 集群资源"
 date: 2022-10-12T12:00:00+08:00
 draft: false
 authors: ["仇明"]
-summary: "本文从 Kubernetes 集群服务资源的备份还原角度，介绍 Velero 的原理和机制"
+summary: "本文从 Kubernetes 集群服务资源的备份还原角度，介绍 Velero 的原理和机制。"
+
 tags: ["Kubernetes","velero"]
 categories: ["云原生"]
 keywords: ["Kubernetes","velero"]
