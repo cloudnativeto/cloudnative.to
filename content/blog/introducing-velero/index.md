@@ -1,5 +1,6 @@
 ---
-title: "Velero备份还原Kubernetes集群资源"
+title: "使用 Velero 备份还原 Kubernetes 集群资源"
+
 date: 2022-10-12T12:00:00+08:00
 draft: false
 authors: ["仇明"]
