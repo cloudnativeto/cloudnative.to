@@ -3,13 +3,13 @@ title: "Velero备份还原Kubernetes集群资源"
 date: 2022-10-12T12:00:00+08:00
 draft: false
 authors: ["仇明"]
-summary: "本文K8s 集群服务资源的备份还原角度，介绍Velero 的原理和机制"
-tags: ["K8s","velero","备份", "还原"]
+summary: "本文从 Kubernetes 集群服务资源的备份还原角度，介绍 Velero 的原理和机制"
+tags: ["Kubernetes","velero"]
 categories: ["云原生"]
-keywords: ["K8s","velero","备份", "还原"] 
+keywords: ["Kubernetes","velero"]
 ---
 
-# 1 简介
+## 简介
 Velero前身是Heptio Ark ，是由GO语言编写的一款用于灾难恢复和迁移工具，可以安全的备份、恢复和迁移Kubernetes集群资源和持久卷。
 
 **Velero主要提供以下能力**
@@ -28,12 +28,12 @@ Velero前身是Heptio Ark ，是由GO语言编写的一款用于灾难恢复和�
 - AWS S3 及兼容S3 的存储（比如：MinIO）
 - Aliyun OSS 存储
 
-# 2 原理
+## 原理
 Velero 的基本原理就是将Kubernetes 集群资源对象数据备份到对象存储中，并能从对象存储中拉取备份数据来恢复集群资源对象数据。不同于etcd 备份——将集群的全部资源备份起来——Velero 是对Kubernetes 集群内资源对象级别进行备份，可以通过对Type、Namespace、Label等对象进行分类备份或者恢复。Velero的操作（backup, scheduled backup, restore）都是CRD自定义资源，存储etcd中。
 Velero的整体模块架构如下图1，首先，客户端是一个简单的交互客户端Velero-cli，封装了各种命令参数，可以执行安装、配置、备份、恢复等操作。服务端则可以类比成一个典型的kubebuild 的operator，首先是不同的CR，也就是API。中间Controller 层需要用到一些相对比较独立的服务时，都会通过插件系统来对接到内部或者外部的插件服务。底层的数据拷贝层是对接Restic。其它都是外部的插件实现，velero.io/plugins 就代表内部的插件实现，由Velero 或者第三方厂商来实现。
 ![图1 Velero 模块架构图](1.jpg)
 
-## 2.1 按需备份（On-demand backups）
+### 按需备份（On-demand backups）
 **backup：** 将复制的Kubernetes 资源对象上传到对象存储中，且可选择调用云环境提供的API 来创建持久化卷快照，以及可选择指定在备份期间执行backup hook操作（比如：可能需要在快照之前告诉数据库将其内存中的缓存刷新到磁盘）。
 **Tips：** backup操作并不是严格的原子性备份，在备份期间，若是有Kubernetes 资源对象被新建或编辑操作，则这个操作变动可能不会被包含在backup备份中。
 **指令：**
@@ -47,7 +47,7 @@ Velero的整体模块架构如下图1，首先，客户端是一个简单的交�
 
 ![图2 Velero 备份流程](2.jpg)
 
-## 2.2 备份还原（Restores）
+### 备份还原（Restores）
 **restore：** 对历史备份的Kubernetes 资源对象和持久卷进行还原，且允许按需选择指定部分资源对象还原到指定命名空间（Namespace）中。且可以选择在备份还原期间或还原后执行restore hook操作（比如：执行自定义数据库的还原操作之后，再执行数据库应用容器启动动作）。
 **Tips：** 默认情况下，Velero进行的是非破坏性还原操作（non-destructive restore），这意味着它不会删除目标集群上的任何数据——即如果备份中的资源对象已经存在于目标集群中，restore操作将会跳过该资源的还原。当然，也可通配置更新策略(--existing-resource-policy=update)，尝试更新目标集群中已存在资源，以匹配备份中的资源数据。
 **指令：**
@@ -58,13 +58,13 @@ Velero的整体模块架构如下图1，首先，客户端是一个简单的交�
 - RestoreController 从对象存储服务处获取待还原备份资源数据信息，并进行备份资源还原前的一些预处理工作（比如：备份资源的API versions版本验证）
 - RestoreController 开始备份还原执行过程，一次性还原所有指定待还原资源
 
-## 2.3 定时备份（Scheduled backups）
+### 定时备份（Scheduled backups）
 **schedule：** 可以定期备份数据。在schedule 创建后，便创建第一次备份，随后备份将按照指定调度周期（由 Cron 表达式指定）进行备份。定时备份保存的名称为 <SCHEDULE NAME>-<TIMESTAMP>，其中 <TIMESTAMP> 格式为 YYYYMMDDhhmmss。
 
-## 2.4 API versions
+### API versions
 Velero备份资源时，使用Kubernetes API 首选版本为每个组（group）/资源（CRD）备份。而还原备份的目标集群中，必须存在相同API 组（group）/资源（CRD）版本。需要注意的是：只是需要存在，而并不是需要首选版本。例如，如果正在备份的集群在 things API 组中有一个 gizmos 资源，group/versions为 things/v1alpha1、things/v1beta1 和 things/v1，并且服务器的首选group/versions 是 things/v1，那么所有 gizmos 将从 things/v1 API 端点备份。 当从该集群恢复备份时，目标集群必须具有 things/v1 端点才能恢复 Gizmo。
 
-## 2.5 备份存储
+### 备份存储
 Velero有2种备份存储方式：
 
 **1.Restic方式备份**
@@ -77,8 +77,8 @@ Restic 是一款 GO 语言开发的开源免费且快速、高效和安全的跨
 **2.快照方式备份**
 Velero使用一组 BackupItemAction 插件针对 PersistentVolumeClaims 进行备份，执行速度快。它创建一个以 PersistentVolumeClaim 作为源的 VolumeSnapshot 对象， 此 VolumeSnapshot 对象与用作源的 PersistentVolumeClaim 位于同一命名空间中，与VolumeSnapshot对应的 VolumeSnapshotContent 对象是一个集群范围的资源，将指向存储系统中基于磁盘的实际快照。Velero 备份时将所有 VolumeSnapshots 和 VolumeSnapshotContents 对象上传到对象存储系统， 但是Velero 备份后的数据资源仍然保存在集群的存储上。数据可用性依赖于本地存储的高可用性，因为如果是由于存储故障导致的应用问题，Velero的快照备份机制并不能恢复应用数据。
 
-# 3 部署
-## 3.1 MinIO对象存储部署
+## 部署
+### MinIO对象存储部署
 Velero 依赖对象存储保存备份数据，这里部署MinIO 替代公有云对象存储。
 
 **1. Yaml文件——minio.yaml**
@@ -225,7 +225,7 @@ job.batch/minio-setup   1/1           5s         5m50s
 ![图3 MinIO 页面](3.jpg)
 **Tips：** 当然如果需要在不同 Kubernetes 和存储池集群备份与恢复数据，需要将 MinIO 服务端安装在 Kubernetes 集群外，保证在集群发生灾难性故障时，不会对备份数据产生影响，可以通过二进制的方式进行安装。
 
-## 3.2 Velero客户端
+### Velero客户端
 在 Github (https://github.com/vmware-tanzu/velero/releases)下载指定的 velero 二进制客户端，解压放置$PATH路径
 
 ```
@@ -252,7 +252,7 @@ Server:
         Version: v1.8.1
 ```
 
-## 3.3 Velero 服务端
+### Velero 服务端
 1. 首先准备密钥文件，access key id 和 secret access key 为MinIO 的用户名和密码
 ```
 # 秘钥文件credentials-velero
@@ -317,7 +317,7 @@ job.batch/minio-setup   1/1           5s         6m40s
 - s3Url 配置MinIO 服务对外暴露的nodePort端口及部署节点IP
 - 需要注意的是启动需要修改Restic DaemonSet spec 配置，调整为实际环境中Kubernetes 指定pod 保存路径的hostPath
 
-# 4 测试
+## 测试
  本次测试服务使用的是一个多集群查询服务Clusterpedia（包含使用本底存储的MySQL+3个deployment等资源）。具体使用细节可以参考相关官方文档（https://clusterpedia.io/zh-cn/docs/installation/kubectl-apply/）
 1. 部署Clusterpedia服务
 ```
