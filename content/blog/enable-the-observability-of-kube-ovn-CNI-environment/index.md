@@ -2,7 +2,7 @@
 title: "DeepFlow 开启 Kube-OVN CNI Kubernetes 集群的可观测性"
 date: 2022-10-21T12:00:00+08:00
 draft: false
-author: ["宋建昌"]
+authors: ["宋建昌"]
 summary: "DeepFlow 在 Kube-OVN CNI 环境的全栈、全链路可观测性建设实践"
 tags: ["可观测性"]
 categories: ["可观测性"]

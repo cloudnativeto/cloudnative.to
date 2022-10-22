@@ -3,7 +3,7 @@ title: "DeepFlow AutoLogging 介绍：自动采集应用调用日志和流日志
 date: 2022-10-14T12:00:00+08:00
 draft: false
 authors: ["李倩"]
-summary: "DeepFlow AutoLogging 可以自动采集网络流日志，并提供丰富的性能指标和精细至每包的 TCP 时序日志，与应用调用日志结合提供完整的全栈回溯能力"
+summary: "DeepFlow AutoLogging 可以自动采集网络流日志，并提供丰富的性能指标和精细至每包的 TCP 时序日志，与应用调用日志结合提供完整的全栈回溯能力。"
 tags: ["可观测性"]
 categories: ["可观测性"]
 keywords: ["可观测性","Kubernetes","DeepFlow"]
