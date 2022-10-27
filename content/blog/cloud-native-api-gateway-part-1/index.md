@@ -25,7 +25,8 @@ keywords: ["ambassador","kubernetes native"]
 
 ## Ambassador架构
 
-![image.png](https://upload-images.jianshu.io/upload_images/14871146-0dcae8cb18297b27.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](14871146-0dcae8cb18297b27.png)
+
 了解istio的同学，看到这张图会有十分熟悉的感觉，没错，Ambassador也是具有控制平面和数据平面的。数据平面自然是老伙计Envoy，Ambassador的控制平面负责监听k8s中的Service资源的变化，并将配置下发Envoy，实际的流量转发通过Envoy来完成。（感觉就是一个轻量级的istio）
 
 具体流程如下：
@@ -202,7 +203,9 @@ metadata:
 ### 用例1：边缘（南/北）路由
 
 这个是平时最常见的使用场景，网关位于整个集群的入口处，统一去做一些流控、鉴权等方面的工作：
-![image.png](https://upload-images.jianshu.io/upload_images/14871146-45238040cc6650c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![](14871146-45238040cc6650c4.png)
+
 该场景的关注点在于：
 
 - 控制/路由入口流量的能力
@@ -212,12 +215,15 @@ metadata:
   - 重试及超时
 
 saas service中的真实用例：
-![saas.png](https://upload-images.jianshu.io/upload_images/14871146-7db0c08aafed66b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![](14871146-7db0c08aafed66b9.png)
 
 ### 用例2：内部（南/北）路由
 
 通常来说，企业内部的系统架构会比较复杂，会有多集群或者多租户，比如一个kubernetes的集群和一个vm的集群（可能是openstack），那么在集群之间的流量就是内部的南/北流量，集群之间的流量交互可以通过ambassador完成。
-![image.png](https://upload-images.jianshu.io/upload_images/14871146-90750413b7c7e9f5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![](14871146-90750413b7c7e9f5.png)
+
 此场景的关注点在于：
 
 - 控制/路由多租户流量的能力
@@ -226,12 +232,15 @@ saas service中的真实用例：
   - 重试及超时
 
 saas service中的真实用例：
-![image.png](https://upload-images.jianshu.io/upload_images/14871146-23acd24daab3455b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![](14871146-23acd24daab3455b.png)
 
 ### 用例3：内部（东/西）路由
 
 这个场景中Ambassador已经作为集群内部东西向流量的代理了，配合它自己的控制平面，有点service mesh的意思了。区别在于，Ambassador在这个集群里是处于一个中心节点的位置（一个或一组ambassador实例），属于server proxy的范畴，而不是service mesh里面的client proxy（sidecar）。这种架构其实和传统的esb更加的接近。
-![image.png](https://upload-images.jianshu.io/upload_images/14871146-8cec66e2dc3b82c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![](14871146-8cec66e2dc3b82c1.png)
+
 此场景关注点：
 
 - 控制/路由任意流量的能力（南北向+东西向）
@@ -243,14 +252,18 @@ saas service中的真实用例：
 大家可以看到，已经非常接近于service mesh的能力了（也许ambassador以后也会出一个service mesh产品？）
 
 saas service的真实用例：
-![image.png](https://upload-images.jianshu.io/upload_images/14871146-605fcdf1a7987640.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-service mesh的真实用例（与istio集成）：
-![image.png](https://upload-images.jianshu.io/upload_images/14871146-dbefbeb1c9fcf405.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![](14871146-605fcdf1a7987640.png)
+
+服务网格的真实用例（与istio集成）：
+
+![](14871146-dbefbeb1c9fcf405.png)
 
 ### 用例4：流量镜像
 
 此场景中可以把流量复制一份到其他服务中（影子流量），通常用于监控、测试等场景
-![image.png](https://upload-images.jianshu.io/upload_images/14871146-85a3899f164466c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![](14871146-85a3899f164466c2.png)
 
 - 测试代码、发布包的能力
 - 利用真实的流量/负载
@@ -261,23 +274,24 @@ service mesh的真实用例（与istio集成）：
 ## 配置
 
 Ambassador不同版本之间配置方式的变更如下图所示,configmap方式是早期使用方式，目前已经被废弃了，现在更推荐使用CRD方式。
-![image.png](https://upload-images.jianshu.io/upload_images/14871146-d2aac8fb2c0cbeda.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![](14871146-d2aac8fb2c0cbeda.png)
 
 ### 加密的配置方式
 
-![image.png](https://upload-images.jianshu.io/upload_images/14871146-f9231001054176b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](14871146-f9231001054176b2.png)
 
 ### 认证的配置方式
 
-![image.png](https://upload-images.jianshu.io/upload_images/14871146-38b74b7b5ed93f2e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](14871146-38b74b7b5ed93f2e.png)
 
 ### 路由的配置方式
 
-![image.png](https://upload-images.jianshu.io/upload_images/14871146-64fc6ccdef6a0386.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](14871146-64fc6ccdef6a0386.png)
 
 ### 跟踪的配置方式
 
-![image.png](https://upload-images.jianshu.io/upload_images/14871146-2ed98f1ea3c98531.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](14871146-2ed98f1ea3c98531.png)
 
 ## Ambassador的不足
 
