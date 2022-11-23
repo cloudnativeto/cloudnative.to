@@ -14,7 +14,15 @@ main:
   - name: Kubebuilder 中文文档
     parent: docs
     weight: 2
-    url: "https://cloudnative.to/kubebuilder"
+    url: "https://cloudnative.to/kubebuilder/"
+  - name: 云原生资料库
+    parent: docs
+    weight: 3
+    url: "https://lib.jimmysong.io/"
+  - name: Istio 中文文档
+    parent: docs
+    weight: 4
+    url: "https://istio.io/latest/zh/"
   - name: 活动
     url: event
     weight: 40

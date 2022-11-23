@@ -13,7 +13,7 @@ date: 2020-05-21T06:00:00+08:00
 
 首先让我们来看一下 Kubernetes 中的组件：在 Kubernetes 中包含多个以独立进程形式运行的组件，这些组件之间通过 HTTP/gRPC 相互通信，以协同完成集群中应用的部署和管理工作。
 
-![components-of-kubernetes.png](https://zhaohuabing.com/img/2020-05-19-k8s-certificate/components-of-kubernetes.png)
+![](https://zhaohuabing.com/img/2020-05-19-k8s-certificate/components-of-kubernetes.png)
 kubernetes 组件，图片来源[kubernetes.io](https://kubernetes.io/zh/docs/concepts/overview/components/)
 
 从图中可以看到，Kubernetes 控制平面中包含了 etcd，kube-api-server，kube-scheduler，kube-controller-manager 等组件，这些组件会相互进行远程调用，例如 kube-api-server 会调用 etcd 接口存储数据，kube-controller-manager 会调用 kube-api-server 接口查询集群中的对象状态；同时，kube-api-server 也会和在工作节点上的 kubelet 和 kube-proxy 进行通信，以在工作节点上部署和管理应用。
