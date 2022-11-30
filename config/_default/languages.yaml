@@ -5,7 +5,7 @@
 # Default language
 zh:
   languageCode: zh
-  title: 云原生社区
+  title: 云原生社区（中国）
   params:
     description: "中立的云原生终端用户社区"
     code_copy: true

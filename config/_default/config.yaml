@@ -3,7 +3,7 @@
 # Hugo Documentation: https://gohugo.io/getting-started/configuration/#all-configuration-settings
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
-title: '云原生社区' # Website name
+title: '云原生社区（中国）' # Website name
 baseURL: 'https://cloudnative.to' # Website URL
 
 ############################
