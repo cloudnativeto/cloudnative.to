@@ -1,7 +1,7 @@
 ---
 title: "云原生架构师进阶指南"
 summary: "本文介绍了进阶云原生架构师的学习路径以及怎么更高效地学习云原生的 12 大领域，同时也推荐了体系化云原生课程。"
-authors: ["Wei Wang"]
+authors: ["王炜"]
 categories: ["云原生"]
 tags: ["Kubernetes", "Docker", "GitOps", "Helm", "Grafana", "Prometheus"]
 date: 2022-12-14T15:00:00+08:00
@@ -112,7 +112,7 @@ date: 2022-12-14T15:00:00+08:00
 
 ### 课程目录
 
-![image](./images/4.jpeg)
+![课程目录](./images/4.jpeg)
 
 ### 关于王炜
 
@@ -129,7 +129,5 @@ date: 2022-12-14T15:00:00+08:00
 **今日早鸟 6 折秒杀 ，到手 ￥ 79！**
 
 **如果你是新用户，只需要 ￥ 59！**
-
-![image](./images/post.jpeg)
 
 点击[这里](https://time.geekbang.org/column/intro/100312001?code=PlMU9ITPlnun1QAjTGtDtNxkTtgSRZZzLJlQZHrEKtI%3D&utm_term=SPoster)，立享 6 折，跟着王炜学习云原生架构与 GitOps。
