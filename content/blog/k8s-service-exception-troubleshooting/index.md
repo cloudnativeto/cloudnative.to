@@ -11,7 +11,7 @@ keywords: ["可观测性", "Kubernetes", "DeepFlow", "troubleshooting", "排障"
 
 Kubernetes（K8s）是一个用于大规模运行分布式应用和服务的开源容器编排平台。K8s 让应用发布更加快速安全，让应用部署也更加灵活，但在带来这些便利性的同时，也给应用排障增加了 K8s 平台层面的复杂度，本篇文章将以常见的服务异常入手，来详细拆解 K8s 服务访问方式，以及如何利用现有的可观测体系来对 k8s 平台和应用服务进行快速排障。
 
-## 0x0: 服务的访问方式
+## 服务的访问方式
 
 开启 K8s 服务异常排障过程前，须对 K8s 服务的访问路径有一个全面的了解，下面我们先介绍目前常用的 K8s 服务访问方式（不同云原生平台实现方式可能基于部署方案、性能优化等情况会存在一些差异，但是如要运维 K8s 服务，则需要在一开始就对访问方式有一个了解）。
 
@@ -42,7 +42,7 @@ Kubernetes（K8s）是一个用于大规模运行分布式应用和服务的开�
 - step 3：此为`部署模式一`特有的步骤，参考`方式二`
 - step 4/5/6：请求经过 ingress_controller_pod 后，已经确定需要转发的后端 svc，则按`方式一`进行转发即可（为避免画图过于复杂，未画出 server_pod 分布在同 Node 场景）
 
-## 0x1: 服务异常的排障思路
+## 服务异常的排障思路
 
 了解服务的访问方式后，在遇到服务异常时，基于一套整体的排障思路来开展工作，更能事半功倍，接下来详细聊聊如何进行排障。
 
@@ -68,7 +68,7 @@ step 3：**确定 DNS 是否异常**
 
 ![coredns](8.png)
 
-![dns_monitorging](9.png)
+![DNS](9.png)
 
 如 DNS 服务无异常，则可直接用 ClusterIP 访问服务，如果能正常访问，那可以确定是 DNS 的问题，并且这个问题很大可能就是配置错误。
 
@@ -90,7 +90,7 @@ step 6：**追踪访问路径异常点**
 
 ![追踪访问路径](11.png)
 
-## 0x2: 什么是 DeepFlow
+## 什么是 DeepFlow
 
 [DeepFlow](https://github.com/deepflowys/deepflow) 是一款开源的高度自动化的可观测性平台，是为云原生应用开发者建设可观测性能力而量身打造的全栈、全链路、高性能数据引擎。DeepFlow 使用 eBPF、WASM、OpenTelemetry 等新技术，创新的实现了 AutoTracing、AutoMetrics、AutoTagging、SmartEncoding 等核心机制，帮助开发者提升埋点插码的自动化水平，降低可观测性平台的运维复杂度。利用 DeepFlow 的可编程能力和开放接口，开发者可以快速将其融入到自己的可观测性技术栈中。
 
@@ -98,16 +98,16 @@ GitHub 地址：https://github.com/deepflowys/deepflow
 
 访问 [DeepFlow Demo](https://deepflow.yunshan.net/docs/zh/install/overview/)，体验高度自动化的可观测性新时代。
 
-## 0x3: 参考文档
+## 参考文档
 
-- 0、https://deepflow.yunshan.net/docs/zh/about/overview/
-- 1、https://grafana.com/grafana/dashboards/1860-node-exporter-full/
-- 2、https://grafana.com/grafana/dashboards/15661-1-k8s-for-prometheus-dashboard-20211010/
-- 3、https://grafana.com/grafana/dashboards/9614-nginx-ingress-controller/
-- 4、https://grafana.com/grafana/dashboards/14981-coredns/
-- 5、https://kubernetes.io/docs/concepts/services-networking/service/
-- 6、https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
-- 7、https://www.nginx.com/products/nginx-ingress-controller/
-- 8、https://github.com/haproxytech/kubernetes-ingress#readme
-- 9、https://kubernetes.io/docs/concepts/services-networking/service-topology/
-- 10、https://mp.weixin.qq.com/s/mp5coRHPAdx5nIfcCnPFhw
+1. https://deepflow.yunshan.net/docs/zh/about/overview/
+1. https://grafana.com/grafana/dashboards/1860-node-exporter-full/
+1. https://grafana.com/grafana/dashboards/15661-1-k8s-for-prometheus-dashboard-20211010/
+1. https://grafana.com/grafana/dashboards/9614-nginx-ingress-controller/
+1. https://grafana.com/grafana/dashboards/14981-coredns/
+1. https://kubernetes.io/docs/concepts/services-networking/service/
+1. https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
+1. https://www.nginx.com/products/nginx-ingress-controller/
+1. https://github.com/haproxytech/kubernetes-ingress#readme
+1. https://kubernetes.io/docs/concepts/services-networking/service-topology/
+1. https://mp.weixin.qq.com/s/mp5coRHPAdx5nIfcCnPFhw
