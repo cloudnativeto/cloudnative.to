@@ -13,6 +13,18 @@ design:
   interval: 5000
 content:
   slides:
+    - title: 可观测性峰会 2023
+      content: '2023 年 4 月 15 日（周六），北京'
+      align: center
+      background:
+        position: center
+        color: "#0a55a7"
+        media: "beijing.webp"
+        brightness: 0.3
+      link:
+        icon: fa-solid fa-square-up-right
+        text: 讲师及赞助商招募
+        url: https://mp.weixin.qq.com/s/erf33B2--kUgLg1D730tOg
     - title: 2022国际开源节（IOSF）
       content: '因为深圳疫情原因推迟，具体时间待定'
       align: center
