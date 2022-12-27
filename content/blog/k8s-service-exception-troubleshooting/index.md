@@ -1,9 +1,9 @@
 ---
-title: "K8s 服务异常排障过程全解密"
+title: "Kubernetes 服务异常排障过程全解密"
 date: 2022-12-26T12:00:00+08:00
 draft: false
 authors: ["李倩"]
-summary: "K8s 服务异常排障过程的实践经验"
+summary: "Kubernetes 服务异常排障过程的实践经验分享。"
 tags: ["可观测性", "Kubernetes", "DeepFlow"]
 categories: ["可观测性"]
 keywords: ["可观测性", "Kubernetes", "DeepFlow", "troubleshooting", "排障"]
