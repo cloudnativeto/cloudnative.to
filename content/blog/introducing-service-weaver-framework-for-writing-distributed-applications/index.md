@@ -1,5 +1,5 @@
 ---
-title: "Google 开源 Service Weaver，用于编写分布式应用程序的框架"
+title: "Google 开源 Service Weaver——构建和部署分布式应用程序框架"
 date: 2023-03-06T12:00:00+08:00
 draft: false
 authors: ["Google"]
