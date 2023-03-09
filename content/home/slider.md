@@ -14,7 +14,7 @@ design:
 content:
   slides:
     - title: 可观测性峰会 2023
-      content: '2023 年 4 月 15 日（周六），北京'
+      content: '2023 年 4 月 22 日（周六），北京奥加美术馆酒店'
       align: center
       background:
         position: center
@@ -25,18 +25,6 @@ content:
         icon: fa-solid fa-square-up-right
         text: 讲师及赞助商招募
         url: https://mp.weixin.qq.com/s/erf33B2--kUgLg1D730tOg
-    - title: 2022国际开源节（IOSF）
-      content: '因为深圳疫情原因推迟，具体时间待定'
-      align: center
-      background:
-        position: center
-        color: "#0a55a7"
-        media: "shenzhen.jpg"
-        brightness: 0.3
-      link:
-        icon: fa-solid fa-square-up-right
-        text: 延期公告
-        url: https://mp.weixin.qq.com/s/_0xrzAKkFRFUqsnBvskrCw
     - title: 征稿活动开启
       content: '为了促进社区交流，社区现开启征稿活动，欢迎提交稿件。'
       align: center
