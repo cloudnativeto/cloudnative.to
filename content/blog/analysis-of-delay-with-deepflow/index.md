@@ -12,7 +12,7 @@ keywords: ["可观测性","Observability","Kubernetes","DeepFlow","TroubleShooti
 
 应用异常时，基本可以分为**服务访问不通**和**服务响应慢**两个大类。其中服务响应慢的问题定位非常棘手，很多无头案。应用团队有日志和追踪，对于自认为的不可能不合理的事情都会甩给基础设施团队，又由于基础设施团队现有的监控数据缺乏应用的观测视角，通常成为一切「不是我的问题」超自然现象的终极背锅侠，其中以网络团队尤为严重。
 
-# 响应时延
+## 响应时延
 
 **服务为什么响应慢**？？？首先，我们需要一种方式来度量何为响应慢，参考 Google 在 SRE Handbook 中提到过`4 个黄金信号`及 Weave Cloud 提出来的 `RED 方法`，都存在度量的指标（Latency/Duration），后文统称为`响应时延`。
 - Latency 表达的是**服务处理某个请求所需要的时间**，站在的是服务端视角
@@ -33,7 +33,7 @@ keywords: ["可观测性","Observability","Kubernetes","DeepFlow","TroubleShooti
 
 ![性能剖析-火焰图](./3.jpg)
 
-# 网络时延
+## 网络时延
 
 参考 AWS 中的定义网络时延是指网络通信中的延时，网络时延显示了数据通过网络传输所需的时间。**讨论网络时延如何，也是需要可度量的指标**，AWS 也指定了使用“首字节时间”和“往返时间”等指标来衡量网络时延，这两个指标是可以适用于所有网络协议的传输时延的度量，但实际应用 80% 都使用的 TCP 协议，对于 TCP 协议是需要更细粒度的度量指标，下文通过图文的形式，详细的介绍目前可用的度量指标及用法。
 
@@ -63,11 +63,11 @@ TCP 协议是面向连接的传输层通信协议，对其详细的通信过程�
   - **系统时延高**，结合统计位置，则可回答**网络传输时延高**还是**服务端协议栈处理慢**
 - **应用发起请求为长连接**：因为长连接是保持长期活动的 HTTP 连接，不需要考虑 DNS 查询与建连的时延消耗，只需要关注**客户端等待时延 + 数据传输时延 + 系统时延**即可
 
-# 案例分析
+## 案例分析
 
 限于笔者时间限制又想早点将**应用响应时延背后深藏的网络时延**剖解分享给大家，本文不继续补充实际案例，将在一周后分享在某xx智能终端公司的如何结合 DeepFlow 在**服务响应慢时，网络团队在存在可观测性的时延数据时，如何硬气回怼。**
 
-# 什么是 DeepFlow
+## 什么是 DeepFlow
 
 [DeepFlow](https://github.com/deepflowys/deepflow) 是一款开源的高度自动化的可观测性平台，是为云原生应用开发者建设可观测性能力而量身打造的全栈、全链路、高性能数据引擎。DeepFlow 使用 eBPF、WASM、OpenTelemetry 等新技术，创新的实现了 AutoTracing、AutoMetrics、AutoTagging、SmartEncoding 等核心机制，帮助开发者提升埋点插码的自动化水平，降低可观测性平台的运维复杂度。利用 DeepFlow 的可编程能力和开放接口，开发者可以快速将其融入到自己的可观测性技术栈中。
 
@@ -75,7 +75,8 @@ GitHub 地址：https://github.com/deepflowys/deepflow
 
 访问 [DeepFlow Demo](https://deepflow.yunshan.net/docs/zh/install/overview/)，体验高度自动化的可观测性新时代。
 
-# 参考文档
+## 参考文档
+
 - https://aws.amazon.com/cn/what-is/latency/
 - https://baike.baidu.com/item/%E7%B3%BB%E7%BB%9F%E5%93%8D%E5%BA%94%E6%97%B6%E9%97%B4/22026261
 - https://dev.to/aws/why-are-services-slow-sometimes-mn3
