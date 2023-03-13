@@ -60,6 +60,9 @@ sponsor:
         - image: "/img/sponsors/slime.jpg"
           url: "https://github.com/slime-io/slime"
           name: "Slime"
+        - image: "/img/sponsors/kusionstack.jpg"
+          url: "https://kusionstack.io/"
+          name: "KusionStack"
     org:
       title: "开源社区"
       list:
