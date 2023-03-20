@@ -3,7 +3,7 @@ title: "利用vxlan打通多集群网络"
 date: 2023-03-14T12:00:00+08:00
 draft: false
 authors: ["韩伟森"]
-summary: "介绍如何利用vxlan打通多集群网络。"
+summary: "本文介绍了利用 vxlan 打通多个 K8s 集群网络的思路，并对包对流转做了简单分析。"
 tags: ["calico", "Kubernetes"]
 categories: ["多集群网络"]
 keywords: ["calico", "Kubernetes"]
