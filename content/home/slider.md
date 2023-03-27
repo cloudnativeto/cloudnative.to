@@ -23,8 +23,8 @@ content:
         brightness: 0.3
       link:
         icon: fa-solid fa-square-up-right
-        text: 讲师及赞助商招募
-        url: https://mp.weixin.qq.com/s/erf33B2--kUgLg1D730tOg
+        text: 立即报名
+        url: http://hdxu.cn/3ISXU
     - title: 征稿活动开启
       content: '为了促进社区交流，社区现开启征稿活动，欢迎提交稿件。'
       align: center
