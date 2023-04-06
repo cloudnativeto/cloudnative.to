@@ -243,10 +243,10 @@ Deployment定义中，我们使用-storageDataPath参数指定了数据存储目
 
 ## 总结
 
-* VictoriaMetrics作为近两年新兴流行的时序数据库和监控解决方案，很好的对Prometheus性能和缺点就行了提升和补充，它能够兼容原先Prometheus监控方案进行指标的长久存储也能快速替换升级Prometheus的监控系统，可作为我们搭建系统监控模块的另一种比较好的选择。
+VictoriaMetrics作为近两年新兴流行的时序数据库和监控解决方案，很好的对Prometheus性能和缺点就行了提升和补充，它能够兼容原先Prometheus监控方案进行指标的长久存储也能快速替换升级Prometheus的监控系统，可作为我们搭建系统监控模块的另一种比较好的选择。
 
 ## 参考资料
 
-<https://blog.csdn.net/qihoo_tech/article/details/120558834>
+- [VictoriaMetrics 入门与实战](https://blog.csdn.net/qihoo_tech/article/details/120558834)
 
-<https://docs.victoriametrics.com/Single-server-VictoriaMetrics.html>
+- [VictoriaMetircs](https://docs.victoriametrics.com/Single-server-VictoriaMetrics.html)
