@@ -1,5 +1,5 @@
 ---
-title: "一文了解VictoriaMetrics"
+title: "优化云原生监控体验：VictoriaMetrics 入门指南"
 date: 2023-03-09T12:00:00+08:00
 draft: false
 authors: ["陈亦帅"]
@@ -21,12 +21,12 @@ keywords: ["云原生","监控"]
 
 对比其他一些主流的监控方案、时序数据库，VictoriaMetrics具有如下优势：
 
-1.	指标数据的收集和查询具有极高的性能和良好的垂直和水平伸缩性，比InfluxDB和TimesscaleDB的性能高出20倍
-2.	在处理高技术时间序列时，内存方面做出了优化，比InfluxDB少10x倍，比Prometheus、Thanos或Cortex少7倍
-3.	数据存储的压缩方式更加高效。比TimescaleDB少70倍，与Prometheus、Thanos、Cortex相比，所需存储空间也少7倍。
-4.	针对高延迟IO和低IOPS存储进行了优化
-5.	单节点的VictoriaMetrics即可替代Thanos、M3DB、Cortex、InfluxDB或TimescaleDB等竞品中等规模的集群
-6.	对于Prometheus具有良好的兼容性，能够支持Prometheus的配置文件、PromQL、各类API、数据格式，并有一些自己的增强API。
+1. 指标数据的收集和查询具有极高的性能和良好的垂直和水平伸缩性，比InfluxDB和TimesscaleDB的性能高出20倍
+2. 在处理高技术时间序列时，内存方面做出了优化，比InfluxDB少10x倍，比Prometheus、Thanos或Cortex少7倍
+3. 数据存储的压缩方式更加高效。比TimescaleDB少70倍，与Prometheus、Thanos、Cortex相比，所需存储空间也少7倍。
+4. 针对高延迟IO和低IOPS存储进行了优化
+5. 单节点的VictoriaMetrics即可替代Thanos、M3DB、Cortex、InfluxDB或TimescaleDB等竞品中等规模的集群
+6. 对于Prometheus具有良好的兼容性，能够支持Prometheus的配置文件、PromQL、各类API、数据格式，并有一些自己的增强API。
 
 ## VictoriaMetrics的架构
 
@@ -248,5 +248,4 @@ VictoriaMetrics作为近两年新兴流行的时序数据库和监控解决方�
 ## 参考资料
 
 - [VictoriaMetrics 入门与实战](https://blog.csdn.net/qihoo_tech/article/details/120558834)
-
 - [VictoriaMetircs](https://docs.victoriametrics.com/Single-server-VictoriaMetrics.html)
