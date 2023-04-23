@@ -23,8 +23,8 @@ content:
         brightness: 0.3
       link:
         icon: fa-solid fa-square-up-right
-        text: 立即报名
-        url: http://hdxu.cn/3ISXU
+        text: 回顾及 PPT 下载
+        url: /blog/observability-summit-2023-recap/
     - title: 征稿活动开启
       content: '为了促进社区交流，社区现开启征稿活动，欢迎提交稿件。'
       align: center
