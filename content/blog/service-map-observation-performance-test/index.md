@@ -4,7 +4,7 @@ date: 2023-04-21T12:00:00+08:00
 draft: false
 authors: ["李倩"]
 summary: "测试小姐姐正在对云原生的电商应用进行压测，但是如何对压测结果进行持续的观测呢？这一直是比较头痛的事情，本文将介绍如何利用 DeepFlow 的全景拓扑帮助小姐姐快速找到瓶颈点。DeepFlow 全景拓扑无需业务修改代码、配置或者重启服务，利用 BPF/eBPF 技术通过对业务零侵扰的方式构建而来，这是一种很便捷且低成本的方式来观测全链路压测的结果。"
-tags: ["可观测性"]
+tags: ["可观测性","DeepFlow"]
 categories: ["可观测性"]
 keywords: ["可观测性","Observability","DeepFlow","TroubleShooting"]
 ---
@@ -13,7 +13,7 @@ keywords: ["可观测性","Observability","DeepFlow","TroubleShooting"]
 
 ## 背景介绍
 
-DeepFlow 在线的 Sandbox 环境中部署了一个云原生的电商应用，此电商应用来源于 [GitHub](​https://github.com/open-telemetry/opentelemetry-demo)，此应用覆盖 Go/Java/.NET/PHP/Python 等多种语言，且涵盖 Redis/Kafka/PostgreSQL 等中间件，所有的这些服务都部署在 K8s 环境中。在做全链路压测时，当前通常的方式需要对应用进行代码级别的改造，这对于仅负责测试的小姐姐来说又很难推动，接下来将详细介绍 DeepFlow 的全景拓扑如何轻松解决小姐姐的苦恼。
+DeepFlow 在线的 Sandbox 环境中部署了一个云原生的电商应用，此电商应用来源于 [GitHub](https://github.com/open-telemetry/opentelemetry-demo)，此应用覆盖 Go/Java/.NET/PHP/Python 等多种语言，且涵盖 Redis/Kafka/PostgreSQL 等中间件，所有的这些服务都部署在 K8s 环境中。在做全链路压测时，当前通常的方式需要对应用进行代码级别的改造，这对于仅负责测试的小姐姐来说又很难推动，接下来将详细介绍 DeepFlow 的全景拓扑如何轻松解决小姐姐的苦恼。
 
 以下是电商应用微服务的调用关系图，提供了外网和内网访问的两种方式。
 
