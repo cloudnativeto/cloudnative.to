@@ -3,12 +3,12 @@ title: "Kubernetes Gateway API 深入解读和落地指南"
 date: 2023-05-05T15:00:00+08:00
 draft: false
 authors: ["张启航"]
-summary: "测试小姐姐正在对云原生的电商应用进行压测，但是如何对压测结果进行持续的观测呢？这一直是比较头痛的事情，本文将介绍如何利用 DeepFlow 的全景拓扑帮助小姐姐快速找到瓶颈点。DeepFlow 全景拓扑无需业务修改代码、配置或者重启服务，利用 BPF/eBPF 技术通过对业务零侵扰的方式构建而来，这是一种很便捷且低成本的方式来观测全链路压测的结果。"
+summary: "本文介绍了 Kubernetes 网关 API，该 API 旨在提供一种在 Kubernetes 中管理网关和负载均衡器的标准方法。文章解释了 Kubernetes 网关 API 的核心组件和概念，并且详细介绍了如何使用网关 API 来配置和管理网关和负载均衡器。文章还介绍了一些常见的网关实现，例如 Istio 和 Contour，以及如何使用它们与 Kubernetes 网关 API 进行集成。最后，文章还讨论了 Kubernetes 网关 API 的未来发展方向。"
 tags: ["Kubernetes","Gateway"]
 categories: ["Kubernetes"]
 ---
 
-# 
+本文介绍了 Kubernetes 网关 API，该 API 旨在提供一种在 Kubernetes 中管理网关和负载均衡器的标准方法。文章解释了 Kubernetes 网关 API 的核心组件和概念，并且详细介绍了如何使用网关 API 来配置和管理网关和负载均衡器。文章还介绍了一些常见的网关实现，例如 Istio 和 Contour，以及如何使用它们与 Kubernetes 网关 API 进行集成。最后，文章还讨论了 Kubernetes 网关 API 的未来发展方向。
 
 ## 背景
 
