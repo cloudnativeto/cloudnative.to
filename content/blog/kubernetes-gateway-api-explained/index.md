@@ -352,5 +352,4 @@ Gateway API使用到生产需要考虑易用性、可管理性和稳定性因素
 
 - Rainbond当前版本只支持HTTPRoute，其他类型的Route暂时不支持；
 - 从Rainbond应用市场只能安装 Envoy和Nginx两种网关实现，要支持更多网关实现需要Rainbond先支持或自己制作插件；
-
 - 资料参考：[Rainbond 的 Gateway API 插件制作实践](https://www.rainbond.com/blog/gatewayapi)。
