@@ -1,6 +1,6 @@
 ---
-title: "云原生流水线引擎:Argo Workflow"
-summary: "老牌的流水线工具 Jenkins 应该是大部分都接触过的，而在云原生时代，诞生了两大流水线工具/框架，也就是 Argo Workflow 和 Tekton，本文主要介绍一下 Argo Workflow。"
+title: "云原生工作流引擎:Argo Workflow"
+summary: "老牌的 CICD 工具 Jenkins 应该是大部分都接触过的，而在云原生时代，诞生了两大 CI/CD 框架，也就是 Argo Workflow 和 Tekton，本文主要介绍一下 Argo Workflow。"
 date: 2023-05-30T00:00:00+08:00
 authors: ["梁远鹏"]
 categories: ["Kubernetes"]
@@ -9,8 +9,7 @@ tags: ["argo-workflow","cicd","argo","cncf","kubernetes"]
 
 # Argo workflow 是什么
 
-老牌的流水线工具 Jenkins 应该是大部分人都接触过的，而在云原生时代，诞生了两大流水线工具/框架，也就是 Argo Workflow 和 Tekton，本文主要介绍一下 Argo Workflow。
-
+老牌的 CICD 工具 Jenkins 应该是大部分都接触过的，而在云原生时代，诞生了两大 CI/CD 框架，也就是 Argo Workflow 和 Tekton，本文主要介绍一下 Argo Workflow。
 
 Argo Workflow 是一个云原生的工作流引擎，基于 kubernetes 来做编排任务，目前 Argo 项目是 CNCF 的毕业项目。
  
