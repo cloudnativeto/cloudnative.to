@@ -1,5 +1,5 @@
 ---
-title: "云原生工作流引擎:Argo Workflow"
+title: "Argo Workflow介绍：一款强大的云原生持续集成工具"
 summary: "老牌的 CICD 工具 Jenkins 应该是大部分都接触过的，而在云原生时代，诞生了两大 CI/CD 框架，也就是 Argo Workflow 和 Tekton，本文主要介绍一下 Argo Workflow。"
 date: 2023-05-30T00:00:00+08:00
 authors: ["梁远鹏"]
