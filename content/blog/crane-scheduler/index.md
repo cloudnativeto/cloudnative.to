@@ -1,5 +1,5 @@
 ---
-title: "基于真实工作负载的调度插件"
+title: "Crane 调度器介绍——一款在 Kubernetes 集群间迁移应用的调度插件"
 date: 2023-05-31T12:00:00+08:00
 draft: false
 authors: ["匡澄"]
