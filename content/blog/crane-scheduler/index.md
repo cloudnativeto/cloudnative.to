@@ -423,7 +423,7 @@ crone-system prometheus-server-6b84bbfc4f-25hpc                  0/2 CrashLoopBa
 ```shell
 Events: 
   Type     Reason              From             Message 
-Warning    FailedScheduling    crane-scheduler  0/3 nodes are available:1 Load[mem_usage_avg_5m] of [node-03] is too high, 2                                                                                 Insufficient memory
+Warning    FailedScheduling    crane-scheduler  0/3 nodes are available:1 Load[mem_usage_avg_5m] of [node-03] is too high, 2 Insufficient memory           
 ```
 
 ### CPU型服务测试
@@ -465,20 +465,17 @@ Warning    FailedScheduling    default-scheduler  0/3 nodes are available: 3 Ins
 ```shell
 Events: 
   Type     Reason              From               Message 
-Warning    FailedScheduling    crane-scheduler    0/3 nodes are available: 1 Load[mem_usage_avg_5m] of [node-03] is too high, 2                                                                                 Insufficient cpu
+Warning    FailedScheduling    crane-scheduler    0/3 nodes are available: 1 Load[mem_usage_avg_5m] of [node-03] is too high, 2 Insufficient cpu
 ```
-
 
 
 ## 总结
 
-​		crane-scheduler基于prometheus集群真实资源负载进行调度，经过在linux环境上的压力测试，与k8s默认的调度器相比，结果标明：
+​	   crane-scheduler基于prometheus集群真实资源负载进行调度，经过在linux环境上的压力测试，与k8s默认的调度器相比，结果标明：
 
 1. crane-scheduler应用于调度过程中的 Filter 和 Score 阶段，能够根据自定义指标实现资源的调度，在一定程度上缓解节点资源负载不均的问题；
-
 2. crane-scheduler通过设置水位线和热点限制，能够有效防止节点资源过载的情况发生；
-
-   但是在测试过程中，也发现当节点request接近100%时，尽管该节点真实使用率很低，crane-scheduler是不能够调度上去的。为了进一步提高节点的资源利用率，后续需要考虑突破节点request值的限制，一种做法是屏蔽k8s对节点request值的校验，但是这样做法对k8s原生组件侵入性较大；另一种可行性较高的做法是通过资源的超卖去实现，利用节点的空闲资源区部署一些不重要的应用。
+3. 但是在测试过程中，也发现当节点request接近100%时，尽管该节点真实使用率很低，crane-scheduler是不能够调度上去的。为了进一步提高节点的资源利用率，后续需要考虑突破节点request值的限制，一种做法是屏蔽k8s对节点request值的校验，但是这样做法对k8s原生组件侵入性较大；另一种可行性较高的做法是通过资源的超卖去实现，利用节点的空闲资源区部署一些不重要的应用。
 
 ## 参考文献
 
