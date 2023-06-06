@@ -420,13 +420,29 @@ crone-system prometheus-server-6b84bbfc4f-25hpc                  0/2 CrashLoopBa
 
 ​		当启动11个服务的时候，node03中的`mem_usage_avg_5m`指标过高，禁止调度：
 
-![](t2.png)
+```shell
+Events: 
+  Type     Reason              From             Message 
+Warning    FailedScheduling    crane-scheduler  0/3 nodes are available:1 Load[mem_usage_avg_5m] of [node-03] is too high, 2                                                                                 Insufficient memory
+```
 
 ### CPU型服务测试
 
 ​		测试服务单副本实际占用 8C 8G ，申请资源 12C 12G
 
-![cpu](cpu.png)
+```yaml
+containers:
+- name: stress
+  image: stress-ng  # 压力测试镜像工具
+  command: ["stress", "-c", "8", "--vm", "1", "--vm-bytes", "8G", "--vm-keep"] 
+  resources: 
+    requests: 
+      memory: "12Gi" 
+      cpu: "12" 
+    limits: 
+      memory: "12Gi" 
+      cpu: "12" 
+```
 
 - **k8s默认调度器结果（%）**
 
@@ -434,7 +450,11 @@ crone-system prometheus-server-6b84bbfc4f-25hpc                  0/2 CrashLoopBa
 
 ​		当启动9个服务的时候，出现 Insufficient cpu 的情况：
 
-![](t3.png)
+```shell
+Events: 
+  Type     Reason              From               Message 
+Warning    FailedScheduling    default-scheduler  0/3 nodes are available: 3 Insufficient memory                                
+```
 
 - **crane-schedule调度器结果（%）**
 
@@ -442,7 +462,11 @@ crone-system prometheus-server-6b84bbfc4f-25hpc                  0/2 CrashLoopBa
 
 ​		当启动8服务的时候，node03中的`mem_usage_avg_5m`指标过高，禁止调度：
 
-![](t4.png)
+```shell
+Events: 
+  Type     Reason              From               Message 
+Warning    FailedScheduling    crane-scheduler    0/3 nodes are available: 1 Load[mem_usage_avg_5m] of [node-03] is too high, 2                                                                                 Insufficient cpu
+```
 
 
 
