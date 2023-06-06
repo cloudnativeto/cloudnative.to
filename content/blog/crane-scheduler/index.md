@@ -384,8 +384,19 @@ metadata：
 
 测试服务单副本实际占用 2C 20G ，申请资源 5C 40G
 
-![memory](memory.png)
-
+```yaml
+containers:
+- name: stress
+  image: stress-ng  # 压力测试镜像工具
+  command: ["stress", "-c", "2", "--vm", "1", "--vm-bytes", "20G", "--vm-keep"] 
+  resources: 
+    requests: 
+      memory: "40Gi" 
+      cpu: "5" 
+    limits: 
+      memory: "80Gi" 
+      cpu: "5" 
+```
 
 - **k8s默认调度器结果（%）**
 
@@ -393,9 +404,15 @@ metadata：
 
 ​		默认调度器根据 资源申请值`request` 调度服务，且节点间分布不均衡
 
-​		当副本数到达12 个时，默认调度器出现了资源分配严重不均的情况
+​		当副本数到达12 个时，默认调度器出现了资源分配严重不均的情况，且一些服务被挤占，出现CrashLoopBackOff错误
 
-![](t1.png)
+```shell
+crone-system prometheus-prometheus-node-exporter-6rjvj           1/1 Running          1 6d18h 
+crone-system prometheus-prometheus-node-exporter-g6gfm           0/1 CrashLoopBackOff 9 6d18h 
+crane-system prometheus-prometheus-node-exporter-kqbhf           1/1 Running          0 6d18h 
+crone-system prometheus-prometheus-pushgoteway-78d668c9bd-91xpz  0/1 CrashLoopBackOff 7 6d17h 
+crone-system prometheus-server-6b84bbfc4f-25hpc                  0/2 CrashLoopBackOff 2 2m41s 
+```
 
 - **crane-schedule调度器结果（%）**
 
