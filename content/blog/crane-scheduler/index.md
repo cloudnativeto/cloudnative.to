@@ -10,11 +10,11 @@ categories: ["云原生"]
 keywords: ["云原生","监控"] 
 ---
 
-## 01 前言
+## 前言
 ​	    原生 Kubernetes 调度器仅基于资源的 Request 进行调度，在生产环境资源的真实使用率和申请率往往相差巨大，造成资源浪费的同时也会造成节点的负载不均衡。crane-sheduler 基于prometheus集群真实资源负载进行调度，将其应用于调度过程中的 Filter 和 Score 阶段，能够有效缓解集群资源负载不均的问题，真正实现企业的降本增效。
 
 
-## 02 背景
+## 背景
 
 ​		Kubernetes 集群是现代许多企业的首选方案之一，因为它可以帮助企业实现自动化部署、弹性伸缩和容错处理等功能，从而减少了人工操作和维护工作量，提高了服务的可靠性和稳定性，实现了降本增效。但是Kubernetes 默认的调度器存在以下问题：
 
@@ -25,7 +25,7 @@ keywords: ["云原生","监控"]
 
 
 
-## 03 Kubernetes 调度框架
+## Kubernetes 调度框架
 
 ​		Kubernetes官方提供了可插拔架构的调度框架，能够进一步扩展Kubernetes调度器，下图展示了调度框架中的调度上下文及其中的扩展点，一个扩展可以注册多个扩展点，以便可以执行更复杂的有状态的任务。
 
@@ -83,9 +83,9 @@ Kubernetes 调度插件demo:   https://github.com/cnych/sample-scheduler-framewo
 
 
 
-## 04 crane-scheduler 设计与实现
+## crane-scheduler 设计与实现
 
-### 4.1 总体架构
+### 总体架构
 
 ![图2 Crane-scheduler 总体架构](crane-scheduelr-导出.png)
 
@@ -111,7 +111,7 @@ mem_usage_max_avg_1d
 
 
 
-### 4.2 关键代码实现
+### 关键代码实现
 
 - **Node-annotation** 
 
@@ -202,9 +202,9 @@ mem_usage_max_avg_1d
 
   
 
-### 4.3 使用流程
+### 使用流程
 
-#### 4.3.1 配置 prometheus 监测规则
+#### 配置 prometheus 监测规则
 
 - **syncPolicy**: 用户可以自定义负载数据的类型与拉取周期；
 
@@ -271,7 +271,7 @@ spec:
 
 
 
-#### 4.3.2 使用 crane-scheduler
+#### 使用 crane-scheduler
 
 这里有两种方式可供选择：
 
@@ -363,13 +363,13 @@ spec:
 
       
 
-## 05 真实环境测试
+## 真实环境测试
 
 ​		crane-sheduler 会将监控指标数据写在 node annotation 上
 
 ![node annotation](node annotation.png)
 
-### 5.1 内存型服务测试
+### 内存型服务测试
 
 测试服务单副本实际占用 2C 20G ，申请资源 5C 40G
 
@@ -394,7 +394,7 @@ spec:
 
 ![](t2.png)
 
-### 5.2 CPU型服务测试
+### CPU型服务测试
 
 ​		测试服务单副本实际占用 8C 8G ，申请资源 12C 12G
 
@@ -418,7 +418,7 @@ spec:
 
 
 
-## 06 总结
+## 总结
 
 ​		crane-scheduler基于prometheus集群真实资源负载进行调度，经过在linux环境上的压力测试，与k8s默认的调度器相比，结果标明：
 
@@ -428,7 +428,7 @@ spec:
 
    但是在测试过程中，也发现当节点request接近100%时，尽管该节点真实使用率很低，crane-scheduler是不能够调度上去的。为了进一步提高节点的资源利用率，后续需要考虑突破节点request值的限制，一种做法是屏蔽k8s对节点request值的校验，但是这样做法对k8s原生组件侵入性较大；另一种可行性较高的做法是通过资源的超卖去实现，利用节点的空闲资源区部署一些不重要的应用。
 
-## 07 参考文献
+## 参考文献
 
 1. http://kubernetes.p2hp.com/docs/
 2. https://www.qikqiak.com/post/custom-kube-scheduler/
