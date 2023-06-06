@@ -367,7 +367,18 @@ spec:
 
 ​		crane-sheduler 会将监控指标数据写在 node annotation 上
 
-![node annotation](node annotation.png)
+```yaml
+metadata：
+  annotations: 
+    cpu_usage_avg_5m: 0.15079
+    cpu_usage_max_avg_ld: 0.16196
+    cpuusage_max_avg_lh: 0.15790 
+    mem_usage_avg_5m: 0.89633 
+    mem_usage_max_avg_ld: 0.89753 
+    mem_usage_max_avg_lh: 0.89797 
+    node.alpha.kubernetes.io/ttl: '0° 
+    node hot value: 0 
+```
 
 ### 内存型服务测试
 
