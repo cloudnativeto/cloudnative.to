@@ -17,11 +17,11 @@ Argo Workflow 是一个云原生的工作流引擎，基于 kubernetes 来做编
 
 基于 Argo Workflow 可以完成一些比较复杂的工作流，下面是一个来自某个 issue 的图:
 
-![complex_workflow](complex_workflow.png)
+![Argo Workflow](complex_workflow.png)
 
 ### 架构概览
 
-![overview](overview.jpg)
+![架构图](overview.jpg)
 
 在 Argo Workflow 中，每一个 step/dag task 就是一个 pod 中的容器，最基础的 pod 会有 1 个 init 容器和两个工作容器，其中 init 容器和主容器都是 argoproj/argoexec 容器，另一个则是 step 中需要使用的容器，也就是实际执行内容的容器，在 pod  中充当 sidecar。
 
@@ -69,6 +69,7 @@ workflowTemplate 是 argo workflow 中实现的 CRD 对象，而 template 则是
 - resource，这个类型可以支持在 CI 中对 Kubernetes 的对象进行操作，例如创建一个 configMap，然后根据这个 Kubernetes 资源对象的状态来判断该步骤是否成功。（这个功能太酷了！）
 
 以上几个点是理解 template 最主要的内容，一个简单示意的 yaml 格式如下:
+
 ```yaml
 ...
   entrypoint: hello-hello-hello #配置template入口
@@ -132,7 +133,7 @@ Argo Workflow 为 step 提供了 sidecars 参数，可以配置你需要的依�
 
 #### 一个默认的简单workflowTemplate
 
-当创建 workflowTemplate 时会有一个默认的 workflowTemplate，来看一下这个 workflowTemplate 做了什么事情.
+当创建 workflowTemplate 时会有一个默认的 workflowTemplate，来看一下这个 workflowTemplate 做了什么事情。
 
 ```yaml
 metadata:
@@ -171,7 +172,7 @@ spec:
 
 默认创建的 workflowTemplate 只有一个 template 并且它做的唯一一件事情就是打印传参 `message`。
 
-需要注意的是 默认的 workflow 中设置了 podGC  和 workflow 的 TTL，一旦 pod 执行完成了就会删除 pod，并且由于默认没有配置日志持久化，这时候去查看日志的话只会看到空白。
+需要注意的是 默认的 workflow 中设置了 podGC 和 workflow 的 TTL，一旦 pod 执行完成了就会删除 pod，并且由于默认没有配置日志持久化，这时候去查看日志的话只会看到空白。
 
 为了方便研究测试，可以先将这部分内容给注释掉，或为 Argo Workflow 设置日志持久化。
 
@@ -361,7 +362,7 @@ spec:
 
 经过前面 workflow 和 workflowTemplate 的了解后，可以看到 cronWorkflow 的 yaml 文件整体来说是差不多的，无非是多了一些定时相关的配置。
 
-上述示例中 schedule 配置为 `* * * * *`，也就是每分钟会执行一次 workflow。关于定时的内容都会有一个注意点是定时任务的时区， cronWorkflow 支持为定时任务设置时区，具体可以看看官方的这个[cron workflow 示例]（https://github.com/argoproj/argo-workflows/blob/master/examples/cron-workflow.yaml）。
+上述示例中 schedule 配置为 `* * * * *`，也就是每分钟会执行一次 workflow。关于定时的内容都会有一个注意点是定时任务的时区， cronWorkflow 支持为定时任务设置时区，具体可以看看官方的这个[cron workflow 示例](https://github.com/argoproj/argo-workflows/blob/master/examples/cron-workflow.yaml)。
 
 ## 与 Tekton 的对比
 
@@ -384,4 +385,4 @@ Argo workflow 的文档建设也比 Tekton 更好。
 
 到目前为止，我们了解了 Argo Workflow 的强大特性以及与 Tekton 的一个简单对比，实际在企业内应该选择 Argo Workflow 还是 Tekton 还是需要根据业务特点以及实际验证一些测试后才能决定。
 
-以上只是聊到了 Argo Workflow 的一部分功能，如果想了解更多的功能可以先从官方示例开始，官方代码仓库给了很多的[示例yaml]（https://github.com/argoproj/argo-workflows/tree/master/examples），因此可以通过这些示例 yaml 很快的了解到相关的功能。
+以上只是聊到了 Argo Workflow 的一部分功能，如果想了解更多的功能可以先从官方示例开始，官方代码仓库给了很多的[示例yaml](https://github.com/argoproj/argo-workflows/tree/master/examples)，因此可以通过这些示例 yaml 很快的了解到相关的功能。
