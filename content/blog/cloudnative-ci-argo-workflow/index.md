@@ -17,7 +17,7 @@ Argo Workflow 是一个云原生的工作流引擎，基于 kubernetes 来做编
 
 基于 Argo Workflow 可以完成一些比较复杂的工作流，下面是一个来自某个 issue 的图:
 
-![issue_workflow](issue_workflow.png)
+![complex_workflow](complex_workflow.png)
 
 ### 架构概览
 
