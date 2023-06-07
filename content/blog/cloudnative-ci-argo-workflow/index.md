@@ -7,7 +7,7 @@ categories: ["Kubernetes"]
 tags: ["argo-workflow","cicd","argo","cncf","kubernetes"]
 ---
 
-# Argo workflow 是什么
+## Argo workflow 是什么
 
 老牌的 CICD 工具 Jenkins 应该是大部分都接触过的，而在云原生时代，诞生了两大 CI/CD 框架，也就是 Argo Workflow 和 Tekton，本文主要介绍一下 Argo Workflow。
 
@@ -19,7 +19,7 @@ Argo Workflow 是一个云原生的工作流引擎，基于 kubernetes 来做编
 
 ![issue_workflow](issue_workflow.png)
 
-## 架构概览
+### 架构概览
 
 ![overview](overview.jpg)
 
@@ -31,7 +31,7 @@ Argo Workflow 是一个云原生的工作流引擎，基于 kubernetes 来做编
 
 需要理清的一点是虽然 Argo Workflow 将工作容器定义为`main容器`，但实际上`wait容器`是 pod 中的主容器。
 
-## 主要资源
+### 主要资源
 
 在 Argo Workflow 中主要的 CRD 对象有几个:
 
@@ -41,11 +41,11 @@ Argo Workflow 是一个云原生的工作流引擎，基于 kubernetes 来做编
 
 接下来分别了解一下三个CRD对象。
 
-## Workflow
+### Workflow
 
 Workflow 定义的字段和 workflowTemplate 定义的字段基本上是一致的，因此将字段的解释放在 workflowTemplate 部分，对 Workflow 的理解只需要知道Workflow 是一个流水线的"实例"，也就是只有创建了 Workflow 对象是才会真正的运行流水线。
 
-## WorkflowTemplate
+### WorkflowTemplate
 
 WorkflowTemplate 是最重要的对象了，基本上绝大部分时间你都是和它在打交道，其中还有一个 template 的定义，在刚认识 Argo workflow 时需要注意区分的一点是 workflowTemplate 和 template，这在我刚入门时也造成了一点困惑，接下来讲一下这两个的区别：
 
@@ -130,7 +130,7 @@ Argo Workflow 为 step 提供了 sidecars 参数，可以配置你需要的依�
 
 接下来从官方一个默认的 workflowTemplate 来看一下实际的 yaml 是怎么样的。
 
-### 一个默认的简单workflowTemplate
+#### 一个默认的简单workflowTemplate
 
 当创建 workflowTemplate 时会有一个默认的 workflowTemplate，来看一下这个 workflowTemplate 做了什么事情.
 
@@ -188,7 +188,7 @@ spec:
 ...
 ```
 
-### DAG 有向无环图
+#### DAG 有向无环图
 
 在 Tekton 中，DAG 的表示可以直接理解为 Pipeline。在整个流水线的过程中，可以串行或并行地执行 Tekton Task 并且任务起点与终点不会形成一个闭环。
 
@@ -237,7 +237,7 @@ spec:
 
 可以看到工作流的入口 template 为 diamond，由于只有任务A没有顺序依赖，因此一开始只会执行任务A，任务A成功执行后开始同时执行任务B和任务C，最终任务B和任务C都顺利执行完后开始执行任务D。可以看到 dependencies 是一个数组传参，因此也可以将上述示例修改为任务D只需要等待任务C顺利执行后就开始执行。
 
-### 支持Kubernetes资源操作
+#### 支持Kubernetes资源操作
 
 在前面已经知道有一个 resource 类型的 template，这在我看来是很酷的功能！接下来看一个官方例子：等待 workflow 执行完成。
 
@@ -300,7 +300,7 @@ spec:
 
 这个在 resource 操作在流水线需要处理一些 Kubernetes 资源时会是一个很有用的功能。
 
-### 还有什么
+#### 还有什么
 
 一个更完善的流水线可能还会包含很多复杂的内容，这里留下一些参考点为研究 Argo workflow 时提供一些方向：
 
@@ -316,7 +316,7 @@ spec:
 
 以上都是 Argo Workflow 本身就提供的功能，不需要自己再做一些封装，因此足以看到 Argo Workflow 提供的功能的实用性。
 
-## CronWorkflow
+### CronWorkflow
 
 CronWorkflow 是一个用于定时触发 workflow 的定义，在 CI 中也是很常见的，例如每晚构建。
 
@@ -363,7 +363,7 @@ spec:
 
 上述示例中 schedule 配置为 `* * * * *`，也就是每分钟会执行一次 workflow。关于定时的内容都会有一个注意点是定时任务的时区， cronWorkflow 支持为定时任务设置时区，具体可以看看官方的这个[cron workflow 示例]（https://github.com/argoproj/argo-workflows/blob/master/examples/cron-workflow.yaml）。
 
-# 与 Tekton 的对比
+## 与 Tekton 的对比
 
 经过一番折腾后能够感受到一些很明显的区别：
 
@@ -380,7 +380,7 @@ Argo workflow 的文档建设也比 Tekton 更好。
 
 总的来说 Tekton 提供的内容处于更底层的位置，与 kubernetes 类似，是一个 CI/CD 底层的引擎，真正用好它需要基于它做一些事情。而 Argo Workflow 处于更上层一点的位置，提供了很多实用的功能，可以很方便的应用起来。
 
-# 写在最后
+## 写在最后
 
 到目前为止，我们了解了 Argo Workflow 的强大特性以及与 Tekton 的一个简单对比，实际在企业内应该选择 Argo Workflow 还是 Tekton 还是需要根据业务特点以及实际验证一些测试后才能决定。
 
