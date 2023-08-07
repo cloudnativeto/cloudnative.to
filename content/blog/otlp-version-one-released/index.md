@@ -2,7 +2,7 @@
 title: "OpenTelemetry Protocol (OTLP) 1.0.0 发布"
 summary: "OpenTelemetry Protocol (OTLP) 1.0.0 已发布，它是 OpenTelemetry 项目中的通用遥测数据传递协议。OpenTelemetry 是一个开源的可观测性框架，提供了一组 API、库、代理和收集器服务，用于捕获分布式跟踪和指标。OTLP 在客户端和服务器之间进行数据交换，定义了一个序列化模式，紧密遵循跟踪、指标和日志的数据模型。"
 authors: ["Steef-Jan Wiggers"]
-translators: ["Jimmy Song"]
+translators: ["宋净超"]
 categories: ["可观测性"]
 tags: ["OpenTelemetry","可观测性"]
 date: 2023-08-06T13:05:42+08:00
