@@ -13,6 +13,18 @@ design:
   interval: 5000
 content:
   slides:
+    - title: 云原生社区成都站 Meetup
+      content: '2023 年 8 月 19 日（周六），成都新希望天祥广场 3 层冲鸭空间'
+      align: center
+      background:
+        position: center
+        color: "#0a55a7"
+        media: "chengdu.webp"
+        brightness: 0.3
+      link:
+        icon: fa-solid fa-square-up-right
+        text: 报名参加
+        url: https://www.huodongxing.com/event/9714353391100
     - title: 可观测性峰会 2023
       content: '2023 年 4 月 22 日（周六），北京奥加美术馆酒店'
       align: center
