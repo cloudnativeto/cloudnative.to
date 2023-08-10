@@ -19,7 +19,7 @@ links:
 
 人工智能依然是新闻头条。在过去的一个月中，我们看到了许多语言模型的重大更新：Claude 2，其上下文限制为 10 万个令牌；LLaMA 2，限制相对较宽松；以及 Stable Diffusion XL，是 Stable Diffusion 的一个功能更强大的版本。Claude 2 的巨大上下文是否真的改变了模型的能力？开放访问和开源语言模型在商业应用发展中将扮演什么角色？
 
-## **人工智能**
+## 人工智能
 
 - [Stable Diffusion XL](https://stability.ai/blog/stable-diffusion-sdxl-1-announcement) 是一个新的生成模型，扩展了 Stable Diffusion 的能力。它承诺更短、更容易的提示；正确地在图像内生成文本的能力；能够在私有数据上进行训练；以及更高质量的输出。在 [clipdrop](https://clipdrop.co/stable-diffusion) 上试用它。
 - OpenAI [撤回了 OpenAI Classifier](https://arstechnica.com/information-technology/2023/07/openai-discontinues-its-ai-writing-detector-due-to-low-rate-of-accuracy/)，这是一个用于检测 AI 生成文本的工具，因为它的准确性不够高。
@@ -44,7 +44,7 @@ links:
 - [OpenOrca](https://erichartford.com/openorca)是另一个基于 LLaMA 的开源语言模型和数据集。它的目标是复制 Microsoft 的[Orca](https://www.microsoft.com/en-us/research/publication/orca-progressive-learning-from-complex-explanation-traces-of-gpt-4/)的训练数据，该模型是使用 GPT-4 的链式思考提示和响应进行训练的。Orca 模型的主张是它可以复制 GPT-4 的“推理”过程。
 - 在其[开发者峰会](https://thenewstack.io/snowflake-pushes-range-of-new-ai-developer-capabilities/)上，Snowflake 宣布了 Document AI：对非结构化文档集合的自然语言查询。该产品基于他们自己的大型语言模型，而不是 AI 提供商。
 
-## **编程**
+## 编程
 
 - “它在我的机器上运行”已经变成了“[它在我的容器中运行](https://dwdraju.medium.com/how-it-works-in-my-machine-turns-it-works-in-my-container-1b9a340ca43d)”：这篇文章提供了一些关于如何避免困扰计算机用户数十年的问题的好建议。
 - StackOverflow 正在将 AI 集成到其产品中。StackOverflow for Teams 现在有一个[chatbot](https://stackoverflow.co/labs/slack/)来帮助解决技术问题，以及一个新的[GenAI StackExchange](https://genai.stackexchange.com/)用于讨论生成 AI，提示编写和相关问题。
@@ -56,14 +56,14 @@ links:
 - [Polyrhythmix](https://github.com/dredozubov/polyrhythmix)是一个命令行程序，用于生成多节奏鼓部。没有涉及 AI。
 - Philip Guo 的“[Real-Real-World Programming with ChatGPT](https://www.oreilly.com/radar/real-real-world-programming-with-chatgpt/)”展示了使用 ChatGPT 执行真实编程任务的情况：哪些工作得很好，哪些不好。
 
-## **安全**
+## 安全
 
 - 一个研究小组发现了一种方法来[自动生成攻击字符串](https://llm-attacks.org/)，以迫使大型语言模型生成有害内容。这些攻击可针对开源和闭源模型。AI 提供商无法防御它们还不清楚。
 - 黑客集团 Lazarus Group 正在对 JavaScript 加密货币开发人员进行[社交工程攻击](https://socket.dev/blog/social-engineering-campaign-npm-malware)。开发人员被邀请在依赖于恶意 NPM 包的 Github 项目上进行合作。
 - 语言模型是网络犯罪的下一个大事。一个名为[WormGPT](https://www.bleepingcomputer.com/news/security/openai-credentials-stolen-by-the-thousands-for-sale-on-the-dark-web/)的大型语言模型已经被开发用于网络犯罪。它基于 GPT-J。WormGPT 可在暗网上使用，以及成千上万的被盗 ChatGPT 凭据。
 - 根据 MITRE 的研究，[越界写入](https://www.theregister.com/2023/06/29/cwe_top_25_2023/)是最危险的安全漏洞之一。它们也是最常见的，并且一直位列榜首。解决问题的简单方法是使用 Rust。
 
-## **网络**
+## 网络
 
 - 又一个 Web 框架？[Enhance](https://enhance.dev/)声称是 HTML 优先，只有在需要时才使用 JavaScript。实际情况可能并不那么简单，但如果没有其他东西，它证明了对复杂和臃肿的 Web 应用程序的不满正在增长。
 - 又一个新的浏览器？[Arc](https://arc.net/) [重新思考](https://arstechnica.com/gadgets/2023/07/the-browsing-companys-unconventional-browser-arc-releases-publicly-on-mac/#p3)浏览体验，具有在选项卡组之间切换和自定义单个网站的功能。
@@ -71,15 +71,15 @@ links:
 - 在元宇宙中有一家[律师事务所](https://www.technologyreview.com/2023/06/28/1074338/future-job-metaverse-lawyer/)，以及一个新兴的元宇宙律师协会。这是一个很好的会议地点，尽管律师不能获得在元宇宙中执业的许可。
 - 欧洲法院（CJEU）裁定 Meta 的 GDPR 合规方法是非法的，Meta 可能不会在未经明确，自由授予的同意的情况下使用数据进行除核心功能之外的任何其他事情; 不在使用条款文件中隐藏的同意不足。
 
-## **加密货币**
+## 加密货币
 
 - 谷歌已更新其关于 Android 应用程序的[政策](https://android-developers.googleblog.com/2023/07/new-blockchain-based-content-opportunities-google-play.html)，允许应用程序提供基于区块链的资产，例如 NFT。
 - ChatGPT 可以编程为[发送比特币付款](https://marginalrevolution.com/marginalrevolution/2023/07/teaching-gpt-to-send-bitcoin-payments.html)。正如第一个评论者指出的那样，这是 Langchain 的一个相当简单的应用。但这肯定会发生的事情。但问题是：我们何时会有基于 GPT 的加密货币套利？
 
-## **生物学**
+## 生物学
 
 - Google 开发了[Med-PaLM M](https://arxiv.org/abs/2307.14334)，试图构建一个被训练用于生物医学应用程序的“通用”多模态 AI。Med-PaLM M 仍然是一个研究项目，但可能代表了将大型语言模型应用于医学的一步前进。
 
-## **材料**
+## 材料
 
 - [室温常压超导体](https://arxiv.org/abs/2307.12008)：这一说法引起了很多怀疑 - 但是一如既往，最好等到另一个团队成功或未能复制结果。如果这项研究成果成立，那么这是一个巨大的进步。
