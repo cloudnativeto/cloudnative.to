@@ -1,5 +1,5 @@
 ---
-title: "深入浅出运维可观测工具（一）：聊聊eBPF的前世今生"
+title: "深入浅出运维可观测工具（一）：聊聊 eBPF 的前世今生"
 summary: "今天跟大家分享的 eBPF（extended Berkeley Packet Filter），相信很多技术人员已经很熟悉了。作为 Linux 社区的新宠，它备受 Goole、Facebook、Twitter 等大公司的青睐。"
 authors: ["擎创科技"]
 categories: ["eBPF"]
@@ -17,7 +17,8 @@ date: 2023-08-10T15:05:42+08:00
 
 在介绍 eBPF (Extended Berkeley Packet Filter) 之前，我们先来了解一下它的前身－BPF (Berkeley Packet Filter) 伯克利数据包过滤器。
 
-![](https://img-blog.csdnimg.cn/f472b1b8c5c04587810876cfd6cd0b77.png#pic_center)
+![](f1.png)
+
 BPF 最早由 Van Jacobson 在 1992 年开发，用于在 Unix 操作系统中过滤和捕获网络数据包。它运行在内核中，通过提供一个简单而强大的虚拟机，可以在网络协议层上进行高效的数据包处理操作。BPF 通过把过程转换成指令序列来实现，这些指令直接在内核中执行，从而避免了用户空间和内核空间之间频繁的切换。
 
 ## 基于 BPF 开发的工具库有 libpcap、tcpdump 等工具。
@@ -28,7 +29,8 @@ BPF 在网络性能监测和安全策略实施方面具有广泛的应用。然�
 
 eBPF 是一个高度可扩展的、运行在内核中的虚拟机，具备与传统 BPF 相似的指令集，但功能更加强大且更加灵活。eBPF 可以在运行时即时编译，从而能够处理更加复杂和动态的数据包处理任务，如网络流量分析、安全检测和性能优化等。
 
-![](https://img-blog.csdnimg.cn/01b72f2405eb4ea4b1ec31f94c0454c9.png#pic_center)
+![](f2.png)
+
 eBPF 的灵活性和可扩展性体现在它可以与各种用户空间程序（如 tcpdump、Wireshark、Suricata 等）和工具（如网络监控、调试器等) 无缝集成。
 
 eBPF 还可以与系统的其他组件（如网络协议栈、调度器等）交互，从而实现更加细粒度的性能优化和安全策略。
@@ -39,15 +41,18 @@ eBPF 还可以与系统的其他组件（如网络协议栈、调度器等）交
 
 2014 年初，Alexei Starovoitov 实现了 eBPF。新的设计针对现代硬件进行了优化，所以 eBPF 生成的指令集比旧的 BPF 解释器生成的机器码执行得更快。扩展版本也增加了虚拟机中的寄存器数量，将原有的 2 个 32 位寄存器增加到 10 个 64 位寄存器。
 
-![](https://img-blog.csdnimg.cn/07a7e119c27f43b889a97e6ab7984bad.png#pic_center)
+![](f3.png)
+
 由于寄存器数量和宽度的增加，开发人员可以使用函数参数自由交换更多的信息，编写更复杂的程序。总之，这些改进使 eBPF 版本的速度比原来的 BPF 提高了 4 倍。
 
 eBPF 是一项具有革命性的技术，源自于 Linux 内核，可以在特权环境中运行受沙盒保护的程序，例如操作系统内核。它被用于安全有效地扩展内核的功能，而无需更改内核源代码或加载内核模块。
 
-![](https://img-blog.csdnimg.cn/6ea06789da98467a850b4a52236bbd5f.png#pic_center)
+![](f4.png)
+
 在历史上，操作系统一直是实现可观察性、安全性和网络功能的理想场所，这是因为内核具有特权能力，可以监督和控制整个系统。与此同时，由于内核在系统中的核心地位以及对稳定性和安全性的高要求，操作系统内核的演进往往很困难。因此，与操作系统外部实现的功能相比，操作系统层面的创新速度传统上较低。
 
-![](https://img-blog.csdnimg.cn/c12f4f398ae240889e29ba1c200824e6.png#pic_center)
+![](f5.png)
+
 eBPF 从根本上改变了这个现象。通过在操作系统内运行受沙盒保护的程序，应用开发人员可以在运行时运行 eBPF 程序，为操作系统添加额外的功能。操作系统会利用即时编译器和验证引擎的帮助来保证安全性和执行效率，就像本地编译一样。这导致了一系列基于 eBPF 的项目的涌现，涵盖了各种用例，包括下一代网络、可观测性和安全功能。
 
 ## eBPF 应用场景
@@ -64,7 +69,7 @@ eBPF 从根本上改变了这个现象。通过在操作系统内运行受沙盒
 
 eBPF 程序都是事件驱动的，它们会在内核或者应用程序经过某个确定的 Hook 点的时候运行，这些 Hook 点都是提前定义的，包括系统调用、函数进入/退出、内核 tracepoints、网络事件等。
 
-![](https://img-blog.csdnimg.cn/ac2701f9121f44829df6c3da06213084.png#pic_center)
+![](f6.png)
 
 ### Verification
 
@@ -104,8 +109,8 @@ Just-In-Time（JIT）编译用来将通用的 eBPF 字节码翻译成与机器�
 
 要判断哪些平台支持 eBPF JIT，可以在内核源文件中 grep HAVE_EBPF_JIT：
 
-![](https://img-blog.csdnimg.cn/acef5de00f7f4eb995fbdb5ade436509.png#pic_center)
+![](f8.png)
 
-![](https://img-blog.csdnimg.cn/e2d2cf6976844766b6ad286c898b443a.jpeg#pic_center)
+![](f7.jpeg)
 
 好啦，本期关于运维可观测工具 eBPF 的分享到这里就告一段落了，下期我们再来讲讲 eBPF 在实际使用中遇到的问题。感兴趣的朋友可以关注一下~
