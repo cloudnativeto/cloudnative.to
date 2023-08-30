@@ -1,23 +1,23 @@
 ---
-title: "Istio知识图谱 v0.1 发布及社区图书孵化"
+title: "Istio 知识图谱 v0.1 发布及社区图书孵化"
 date: 2019-02-25T15:47:49+08:00
 draft: false
 authors: ["宋净超"]
-summary: "Istio知识图谱 v0.1版本发布及 Istio handbook 联署签名征集。"
+summary: "Istio 知识图谱 v0.1 版本发布及 Istio handbook 联署签名征集。"
 tags: ["istio"]
 categories: ["service mesh"]
 keywords: ["service mesh","服务网格","istio","知识图谱"]
 ---
 
-2019年2月15日晚，我在朋友圈里发起了 **Istio 知识图谱**项目。
+2019 年 2 月 15 日晚，我在朋友圈里发起了 **Istio 知识图谱**项目。
 
 ![Istio 知识图谱发起](006tKfTcly1g0iqgbgzu3j30ku1124hd.jpg)
 
-而后获得 ServiceMesher 社区成员的热烈响应，在此后的一周内陆续有151参与进来。
+而后获得 ServiceMesher 社区成员的热烈响应，在此后的一周内陆续有 151 参与进来。
 
 ![istio 知识图谱参与人员](006tKfTcly1g0iqj8vnq1j319o0rm40r.jpg)
 
-经过10天的孵化，Istio 知识图谱 v0.1发布了，该版本作为 Istio 知识图谱的启动版本，未来将会进一步细化甚至推出一本开源书籍。
+经过 10 天的孵化，Istio 知识图谱 v0.1 发布了，该版本作为 Istio 知识图谱的启动版本，未来将会进一步细化甚至推出一本开源书籍。
 
 ## Istio 知识图谱阅览
 
@@ -56,9 +56,9 @@ Istio 知识图谱 v0.1 在 [Google docs](https://docs.google.com/document/d/1nM
 
 ## 更进一步：参与社区孵化图书
 
-本人自2018年9月16日开始撰写 [istio-handbook](https://github.com/rootsongjc/istio-handbook)，目前已经有5个月的时间了，随着 ServiceMesher 社区的不断壮大，社区对一本关于 Istio 的原理和实践的书籍需求十分迫切，为了方便将社区的知识成果沉淀下来分享给更多的人，我决定：
+本人自 2018 年 9 月 16 日开始撰写 [istio-handbook](https://github.com/rootsongjc/istio-handbook)，目前已经有 5 个月的时间了，随着 ServiceMesher 社区的不断壮大，社区对一本关于 Istio 的原理和实践的书籍需求十分迫切，为了方便将社区的知识成果沉淀下来分享给更多的人，我决定：
 
-只要截至到**2019年3月5日中午12点**，征集到**200**人联署签名，我就将本书贡献给 ServiceMesher 社区孵化，以 ServiceMesher 社区的名义出一本关于 Istio 的书也是我一直以来的心愿。我会将其迁移到 https://github.com/servicemesher 中，供所有社区成员合作撰写，并供大家通过 http://www.servicemesher.com 免费阅读！
+只要截至到**2019 年 3 月 5 日中午 12 点**，征集到**200**人联署签名，我就将本书贡献给 ServiceMesher 社区孵化，以 ServiceMesher 社区的名义出一本关于 Istio 的书也是我一直以来的心愿。我会将其迁移到 https://github.com/servicemesher 中，供所有社区成员合作撰写，并供大家通过 http://www.servicemesher.com 免费阅读！
 
 ### 参与方式
 

@@ -1,5 +1,5 @@
 ---
-title: "Istio 0.8发布了！"
+title: "Istio 0.8 发布了！"
 date: 2018-06-01T11:41:00+08:00
 draft: false
 authors: ["Istio"]
@@ -19,8 +19,8 @@ keywords: ["istio","istio 0.8","release note"]
 
 - **改进了流量管理模型**。我们终于准备好了推出[新的流量管理配置模型](https://istio.io/blog/2018/v1alpha3-routing/)。该模型增加了许多新功能并解决了先前模型的可用性问题。`istioctl` 中内置了一个转换工具来帮助您迁移旧模型。[试用新的流量管理模型](https://istio.io/docs/tasks/traffic-management)。
 - **Ingress/Egress 网关**。我们不再支持将 Kubernetes Ingress 配置与 Istio 路由规则相结合，因为这会导致一些错误和可靠性问题。Istio 现在支持独立于 Kubernetes 和 Cloud Foundry 平台的 ingress/egress [网关](https://istio.io/docs/concepts/traffic-management/rules-configuration/#gateways)，并与路由规则无缝集成。
-- **新的网关支持基于[服务器名称指示（Server Name Indication）](https://en.wikipedia.org/wiki/Server_Name_Indication)**的路由，以及根据 SNI 值提供证书。HTTPS 访问外部服务将基于 SNI自动配置。
-- **Envoy v2**。用户可以选择使用 Envoy 的 v2 API 注入 sidecar。在这种模式下，Pilot使用 [Envoy 的 v2 聚合发现服务 API](https://www.envoyproxy.io/docs/envoy/latest/configuration/overview/v2_overview)将配置推送到数据平面。该方式提高了控制平面的可扩展性。
+- **新的网关支持基于[服务器名称指示（Server Name Indication）](https://en.wikipedia.org/wiki/Server_Name_Indication)**的路由，以及根据 SNI 值提供证书。HTTPS 访问外部服务将基于 SNI 自动配置。
+- **Envoy v2**。用户可以选择使用 Envoy 的 v2 API 注入 sidecar。在这种模式下，Pilot 使用 [Envoy 的 v2 聚合发现服务 API](https://www.envoyproxy.io/docs/envoy/latest/configuration/overview/v2_overview)将配置推送到数据平面。该方式提高了控制平面的可扩展性。
 - **受限入站端口**。我们现在将 Pod 中的入站端口限制为由该 Pod 内运行的应用程序所声明的端口。
 
 ### 安全

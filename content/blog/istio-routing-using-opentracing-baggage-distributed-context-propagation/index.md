@@ -1,5 +1,5 @@
 ---
-title: "在Istio中使用OpenTracing Baggage进行传播和路由"
+title: "在 Istio 中使用 OpenTracing Baggage 进行传播和路由"
 date: 2018-06-08T16:01:00+08:00
 draft: false
 authors: ["Pavol Loffay"]
@@ -16,7 +16,7 @@ keywords: ["service mesh","istio","opentracing","baggage"]
 
 接下来的内容会探讨一下，Istio 路由规则是如何使用 OpenTracing Baggage 的。
 
-![Isto路由规则](00704eQkgy1fs3tvxhiqnj30a60h3wg2.jpg)
+![Isto 路由规则](00704eQkgy1fs3tvxhiqnj30a60h3wg2.jpg)
 
 想像一个场景，这个场景中我们需要通过 `User-Agent` Header 来鉴别 Safari 用户，并把它们重定向到服务的一个特定版本去。这是一个典型的金丝雀场景：新版本发布时，首先开放给一部分用户。然而很明显只有第一个服务能够接收到 `User-Agent` 头，如果路由规则中涉及到调用关系图中位置较低（靠后）的服务，就不得不把这个 Header 信息传播给所有途中经过的服务。这是一个分布式上下文传播的典型用例，很多跟踪系统都有这个功能。我们接下来会看看 Jaeger 的 OpenTracing 实现。
 

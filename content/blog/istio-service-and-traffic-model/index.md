@@ -1,5 +1,5 @@
 ---
-title: "Istio中的服务和流量的抽象模型"
+title: "Istio 中的服务和流量的抽象模型"
 date: 2018-12-18T19:49:56+08:00
 draft: false
 authors: ["宋净超"]
@@ -82,7 +82,7 @@ Envoy 是 Istio 中默认的 proxy sidecar，负责服务间的流量管控、�
 
 ### Listener
 
-监听器（listener）是可以由下游客户端连接的命名网络位置（例如，端口、unix域套接字等）。Envoy 公开一个或多个下游主机连接的侦听器。一般是每台主机运行一个 Envoy，使用单进程运行，但是每个进程中可以启动任意数量的 Listener（监听器），目前只监听 TCP，每个监听器都独立配置一定数量的（L3/L4）网络过滤器。Listenter 也可以通过 Listener Discovery Service（**LDS**）动态获取。
+监听器（listener）是可以由下游客户端连接的命名网络位置（例如，端口、unix 域套接字等）。Envoy 公开一个或多个下游主机连接的侦听器。一般是每台主机运行一个 Envoy，使用单进程运行，但是每个进程中可以启动任意数量的 Listener（监听器），目前只监听 TCP，每个监听器都独立配置一定数量的（L3/L4）网络过滤器。Listenter 也可以通过 Listener Discovery Service（**LDS**）动态获取。
 
 ### Listener filter
 

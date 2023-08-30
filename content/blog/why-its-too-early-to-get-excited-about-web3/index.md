@@ -10,21 +10,21 @@ categories: ["其他"]
 ---
 本文译自知名出版商 O’Reilly 创始人 Tim O’Reilly 的文章 [Why it’s too early to get excited about Web3](http://localhost:1313/blog/why-its-too-early-to-get-excited-about-web3/oreilly.com/radar/why-its-too-early-to-get-excited-about-web3/)，原文发布于 2021 年 12 月 13 日。
 
-最近有很多关于 Web3 的讨论，作为 17 年前[定义 “Web2.0”](https://www.oreilly.com/pub/a/web2/archive/what-is-web-20.html) 的人，我经常被要求发表评论。我通常避免这样做，因为大多数关于未来的预言都是错误的。不过，我们可以做的是问自己一些问题，帮助我们更深入地看到现在，也就是未来的土壤。正如 William Gibson 的名言：" [未来已来，只是还没有被平均分配](https://quoteinvestigator.com/2012/01/24/future-has-arrived/#:~:text=The Future Has Arrived — It's,Evenly Distributed Yet – Quote Investigator) "。我们还可以审视经济和社会模式和周期，把[马克・吐温的观点](https://quoteinvestigator.com/2014/01/12/history-rhymes/)作为镜头，即 “历史不会重复，但总会惊人的相似”。
+最近有很多关于 Web3 的讨论，作为 17 年前[定义“Web2.0”](https://www.oreilly.com/pub/a/web2/archive/what-is-web-20.html) 的人，我经常被要求发表评论。我通常避免这样做，因为大多数关于未来的预言都是错误的。不过，我们可以做的是问自己一些问题，帮助我们更深入地看到现在，也就是未来的土壤。正如 William Gibson 的名言：" [未来已来，只是还没有被平均分配](https://quoteinvestigator.com/2012/01/24/future-has-arrived/#:~:text=The Future Has Arrived — It's,Evenly Distributed Yet – Quote Investigator) "。我们还可以审视经济和社会模式和周期，把[马克・吐温的观点](https://quoteinvestigator.com/2014/01/12/history-rhymes/)作为镜头，即“历史不会重复，但总会惊人的相似”。
 
 抛开这些噪音，我们可以对 Web3 说些什么？
 
 ## 分权与集权
 
-[2006 年](https://www.nytimes.com/2006/05/23/technology/23iht-web.html)，万维网的创建者[蒂姆・伯纳斯・李（Tim Berners-Lee）使用了 Web 3.0](https://www.nytimes.com/2006/05/23/technology/23iht-web.html) 这个术语，作为对 Web 2.0 之后的网络下一阶段的展望。他认为，“语义网 “将是这一演变的核心。但结果却并非如此。现在人们提出的理由是，下一代网络将以加密为基础。
+[2006 年](https://www.nytimes.com/2006/05/23/technology/23iht-web.html)，万维网的创建者[蒂姆・伯纳斯・李（Tim Berners-Lee）使用了 Web 3.0](https://www.nytimes.com/2006/05/23/technology/23iht-web.html) 这个术语，作为对 Web 2.0 之后的网络下一阶段的展望。他认为，“语义网“将是这一演变的核心。但结果却并非如此。现在人们提出的理由是，下一代网络将以加密为基础。
 
-我们今天所认为的 “Web3 “是由 Gavin Wood 在 2014 年提出的，他是 Ethereum 的共同创造者之一。[Wood 对 Web3 的紧凑定义](https://www.wired.com/story/web3-gavin-wood-interview/)，正如他在最近的 **《连线》** 采访中所说，很简单。“更少的信任，更多的真相”。
+我们今天所认为的“Web3“是由 Gavin Wood 在 2014 年提出的，他是 Ethereum 的共同创造者之一。[Wood 对 Web3 的紧凑定义](https://www.wired.com/story/web3-gavin-wood-interview/)，正如他在最近的 **《连线》** 采访中所说，很简单。“更少的信任，更多的真相”。
 
-在作出这一断言时，Wood 将 Web3 与最初的互联网协议进行了对比，后者的精神也许可以用 Jon Postel 的 “[稳健性原则](https://datatracker.ietf.org/doc/html/rfc761#section-2.10) “来概括。“TCP 实现应该遵循一个一般的稳健性原则：在自己做的事情上要保守，在接受别人的事情上要自由。这种精神成为全球分布的计算机网络的基础，在这个网络中，只要每个人都尽力遵循相同的协议，并对偏差持宽容态度，就不需要有人负责。这个系统迅速超越了所有专有网络，改变了世界。不幸的是，时间证明，这个系统的创造者过于理想化，没有考虑到[破坏者](https://cacm.acm.org/magazines/2011/8/114933-the-robustness-principle-reconsidered/fulltext?mobile=false)，也许更重要的是，没有预见到大数据将使巨大的权力集中成为可能，即使是在分散的网络之上。
+在作出这一断言时，Wood 将 Web3 与最初的互联网协议进行了对比，后者的精神也许可以用 Jon Postel 的“[稳健性原则](https://datatracker.ietf.org/doc/html/rfc761#section-2.10) “来概括。“TCP 实现应该遵循一个一般的稳健性原则：在自己做的事情上要保守，在接受别人的事情上要自由。这种精神成为全球分布的计算机网络的基础，在这个网络中，只要每个人都尽力遵循相同的协议，并对偏差持宽容态度，就不需要有人负责。这个系统迅速超越了所有专有网络，改变了世界。不幸的是，时间证明，这个系统的创造者过于理想化，没有考虑到[破坏者](https://cacm.acm.org/magazines/2011/8/114933-the-robustness-principle-reconsidered/fulltext?mobile=false)，也许更重要的是，没有预见到大数据将使巨大的权力集中成为可能，即使是在分散的网络之上。
 
 Wood 的观点是，区块链以技术中内置的透明度和不可撤销性取代了对他人良好意图的信任。正如 [Ethereum.org 上解释的](https://ethereum.org/en/developers/docs/intro-to-ethereum/#what-is-ethereum)那样：
 
-> 加密机制确保一旦交易被验证为有效并被添加到区块链中，它们以后就不能被篡改了。同样的机制还确保所有的交易都被签署并以适当的 “权限 “执行（除了 Alice 本人，任何人都不能从 Alice 的账户中发送数字资产）。
+> 加密机制确保一旦交易被验证为有效并被添加到区块链中，它们以后就不能被篡改了。同样的机制还确保所有的交易都被签署并以适当的“权限“执行（除了 Alice 本人，任何人都不能从 Alice 的账户中发送数字资产）。
 
 Ethereum.org 的文档[继续](https://ethereum.org/en/developers/docs/web2-vs-web3/)解释道：
 
@@ -48,13 +48,13 @@ Clayton Christensen 将这种模式概括为[有吸引力的利润守恒定律](
 
 接下来是加密货币支持者 Andreessen Horowitz 的一连串投资，领域包括游戏、去中心化金融、[NFT](https://en.wikipedia.org/wiki/Non-fungible_token) 和去中心化的社交网络。文章中的例子都没有关注所创造的东西的效用，只是关注它们会让投资者和创造者发财的可能性。
 
-不仅仅是主流媒体在大肆报道可以赚到的钱，好像实际价值的创造并不重要。那些已经进入 “[加密货币兔子洞](https://mirror.xyz/0x26163318B9972E41A734602Fe00A5683D233613f/6TFol00n6eOMP11Tupsj6Hr4WGWbW7898yWmaR8yarE) “的人在获得财富的问题上说得头头是道。
+不仅仅是主流媒体在大肆报道可以赚到的钱，好像实际价值的创造并不重要。那些已经进入“[加密货币兔子洞](https://mirror.xyz/0x26163318B9972E41A734602Fe00A5683D233613f/6TFol00n6eOMP11Tupsj6Hr4WGWbW7898yWmaR8yarE) “的人在获得财富的问题上说得头头是道。
 
 加密货币的一个伟大之处在于它如何使投资机会民主化。例如，人们已经可以通过 Kraken 轻松获得 95 种经过审查的加密货币资产。如果你有足够的技术知识，你可以直接投资于全球超过 1150 种加密资产，每一种资产的市值都在 1000 万美元以上（截至发稿时）….
 
 为了获得科技领域的早期创业投资交易，传统上你需要在硅谷获得认可和联系。从理论上讲，进入加密货币的唯一真正障碍应该是认识….
 
-跟着我重复：无论是风险资本投资还是容易获得高风险、高度膨胀的资产，都不能预测某个公司或技术的持久成功和影响。还记得网络公司的繁荣和随后的破产吗？[伯克希尔・哈撒韦公司的](https://www.thinkadvisor.com/2021/12/03/berkshires-munger-says-now-even-crazier-than-dot-com-bust/?slreturn=20211106151609)传奇投资者[查理・芒格最近指出](https://www.thinkadvisor.com/2021/12/03/berkshires-munger-says-now-even-crazier-than-dot-com-bust/?slreturn=20211106151609)，我们正处于一个 “比网络时代更疯狂的时代”。
+跟着我重复：无论是风险资本投资还是容易获得高风险、高度膨胀的资产，都不能预测某个公司或技术的持久成功和影响。还记得网络公司的繁荣和随后的破产吗？[伯克希尔・哈撒韦公司的](https://www.thinkadvisor.com/2021/12/03/berkshires-munger-says-now-even-crazier-than-dot-com-bust/?slreturn=20211106151609)传奇投资者[查理・芒格最近指出](https://www.thinkadvisor.com/2021/12/03/berkshires-munger-says-now-even-crazier-than-dot-com-bust/?slreturn=20211106151609)，我们正处于一个“比网络时代更疯狂的时代”。
 
 加密货币很可能是金融的未来，但目前很难看到什么是真正有效的，因为有很多烟雾被吹散了。是的，[像 Coinbase 这样的交易所正在赚大钱](https://finance.yahoo.com/quote/COIN/financials/?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAAI6rNDF_tlSWSdABt9Y_YdiTozbIPYSWYRTXkqC9MNibTIaYHcOshiCNSqgYO_KYaks1DwNrgqjEfW0tlup6onVSEb4vxxgVtzG4cyt2uP-LgQ14NK8uCJhD7iOLBPfX5CWH3H7ZjXg5EEtHugajpGguvqRal4-rljjNwu-0G2TD)，但与传统的金融交易所不同，正在交易的不是通用货币，而是可能被严重高估的投机性资产类别。区块链也没有像 Gavin Wood 希望的那样取代信任。按交易量计算，世界上最大的加密货币交易所 Binance 正在[接受税务欺诈和洗钱的调查](https://www.bloomberg.com/news/articles/2021-05-13/binance-probed-by-u-s-as-money-laundering-tax-sleuths-bore-in)。最近的一个头条新闻指出，" [一小群内部人士正在收获 NFT 的大部分收益](https://www.bloomberg.com/news/articles/2021-12-06/small-group-is-reaping-most-of-the-gains-on-nfts-study-shows?cmpid=BBD120621_BIZ&utm_medium=email&utm_source=newsletter&utm_term=211206&utm_campaign=bloombergdaily) "。加密货币和现有金融系统之间的接口已经成熟，正好可以被滥用。
 
@@ -64,7 +64,7 @@ Clayton Christensen 将这种模式概括为[有吸引力的利润守恒定律](
 
 这并不是说 Web3 在金融投机之外没有真正的机会。加密货币非常适用于数字资产，可以在一个独立的世界中进行估值和使用，比如电脑游戏或渴望的[元宇宙](https://www.theinformation.com/articles/a-second-life-for-crypto-and-nfts-in-the-metaverse-another-meta-exec-quits?rc=7em78a&shared=ba5b1dd83daf5a4c)。[在数字艺术市场](https://www.cryptoartnet.com/cryptoart-sites/marketplaces-platforms/)和[体育亮点方面](https://nbatopshot.com/)可能会有机会。正如 Sal delle Palme 所说：“加密货币的新应用，如 [NFT 市场](https://www.coindesk.com/business/2021/11/18/investors-offer-opensea-10b-valuation-in-new-round-report/)、 [DAO](https://en.wikipedia.org/wiki/Decentralized_autonomous_organization)、[DeFi 和 DEX](https://dmarketforces.com/defi-market-size-soared-335-to-85-billion/)、[CeFi](https://www.cnbc.com/2021/10/21/crypto-exchange-ftx-raises-420-million-at-25-billion.html)、 [慈善机构](https://thegivingblock.com/resources/nonprofits-nfts-explained-a-new-vision-for-charitable-fundraising/)、 [GameFi](https://crypto.com/price/categories/gamefi)、[DeSo](http://news.fintech.io/post/102h75w/decentralized-social-deso-raises-200m-in-funding) 等，正在以惊人的速度被发明、资助（通常由群众资助）、建造和交付。“但我们离一个全新的经济体系的诞生还有一段距离。
 
-当然，加密货币和 Web3 只是当今投机性过剩的一小部分。当下的创业公司的估值也高得离谱，而且根本不清楚这些估值是否是对正在创造的实际价值的准确衡量。它们很可能只是一个使少数内部人士受益的骗局，就像 2009 年世界经济几乎崩溃之前使许多华尔街人士发财的金融工具一样。因此，正如马特・斯托勒（Matt Stoller）最近写道："[Web3 是一坨屎。问题是，与什么相比？](https://mattstoller.substack.com/p/cryptocurrencies-a-necessary-scam?token=eyJ1c2VyX2lkIjoxMjU2Mzk2LCJwb3N0X2lkIjo0NTAzNTY1NywiXyI6InNzTUVnIiwiaWF0IjoxNjM5MTU3NDA3LCJleHAiOjE2MzkxNjEwMDcsImlzcyI6InB1Yi0xMTUyNCIsInN1YiI6InBvc3QtcmVhY3Rpb24ifQ.yYlGoiSkciF_NeFFJOTG0-HyAQsT0x_TcZmssBu6rwU)” 目前的经济体系充斥着欺诈，而且还被操纵，有利于内部人！"。像 [Celo 项目](http://celo.org/)背后的那些 Web3 梦想家是对的。我们确实需要一个新的经济体系。
+当然，加密货币和 Web3 只是当今投机性过剩的一小部分。当下的创业公司的估值也高得离谱，而且根本不清楚这些估值是否是对正在创造的实际价值的准确衡量。它们很可能只是一个使少数内部人士受益的骗局，就像 2009 年世界经济几乎崩溃之前使许多华尔街人士发财的金融工具一样。因此，正如马特・斯托勒（Matt Stoller）最近写道："[Web3 是一坨屎。问题是，与什么相比？](https://mattstoller.substack.com/p/cryptocurrencies-a-necessary-scam?token=eyJ1c2VyX2lkIjoxMjU2Mzk2LCJwb3N0X2lkIjo0NTAzNTY1NywiXyI6InNzTUVnIiwiaWF0IjoxNjM5MTU3NDA3LCJleHAiOjE2MzkxNjEwMDcsImlzcyI6InB1Yi0xMTUyNCIsInN1YiI6InBvc3QtcmVhY3Rpb24ifQ.yYlGoiSkciF_NeFFJOTG0-HyAQsT0x_TcZmssBu6rwU)”目前的经济体系充斥着欺诈，而且还被操纵，有利于内部人！"。像 [Celo 项目](http://celo.org/)背后的那些 Web3 梦想家是对的。我们确实需要一个新的经济体系。
 
 ## 两种泡沫
 
@@ -72,7 +72,7 @@ Clayton Christensen 将这种模式概括为[有吸引力的利润守恒定律](
 
 不过，还有一种泡沫，经济学家 Carlota Perez 在她的《[**技术革命与金融资本**](https://www.amazon.com/Technological-Revolutions-Financial-Capital-Dynamics/dp/1843763311)》一书中指出，几乎所有过去的重大工业转型 —— 第一次工业革命；蒸汽动力时代；钢铁、电力和重型机械时代；汽车、石油和大规模生产时代；以及互联网 ——ß 都伴随着一个金融泡沫。
 
-Perez 指出，在这 50-60 年的创新周期中，每个阶段都有四个子阶段。在第一阶段，是对新技术的基础性投资。这让位于投机的狂热，金融资本在一个开始整合的快速发展的市场中寻求持续的超额回报。投机泡沫破灭后，会有一段更持续的整合和市场修正期（包括对过度市场力量的监管），随后是新技术融入社会的成熟 “黄金时代”。最终，技术足够成熟，资本转移到其他地方，资助下一次新生的技术革命，循环往复。
+Perez 指出，在这 50-60 年的创新周期中，每个阶段都有四个子阶段。在第一阶段，是对新技术的基础性投资。这让位于投机的狂热，金融资本在一个开始整合的快速发展的市场中寻求持续的超额回报。投机泡沫破灭后，会有一段更持续的整合和市场修正期（包括对过度市场力量的监管），随后是新技术融入社会的成熟“黄金时代”。最终，技术足够成熟，资本转移到其他地方，资助下一次新生的技术革命，循环往复。
 
 Perez 分析的一个重要结论是，真正的技术革命必须伴随着大量新基础设施的发展。在第一次工业革命中，这包括运河和公路网络；在第二次工业革命中，包括铁路、港口和邮政服务；在第三次工业革命中，包括电力、水和分配网络；在石油时代，包括州际公路、机场、炼油和分配能力以及酒店和汽车旅馆；在信息时代，包括芯片厂、无处不在的电信，以及数据中心。
 
@@ -86,7 +86,7 @@ Perez 分析的一个重要结论是，真正的技术革命必须伴随着大�
 
 那么，我们所说的 Web3 是一个新的次级周期的基础投资期，还是前一个周期的泡沫期？在我看来，判断的方法之一是投资的性质。丰富的金融资本是否像我们在以前的周期中看到的那样，建立了有用的基础设施？
 
-我不清楚 NFT 是否符合这一要求。不过，毫无疑问，金融的颠覆，就像互联网已经颠覆了媒体和商业一样，将代表当前技术革命周期中的一个重要的下一个阶段。特别是，如果有可能在没有大型集中式资本提供者（可以说是 “华尔街”）的信任和权威的情况下有效分配资本，这将是一个基础性的进步。在这方面，我所寻找的是通过加密货币将资本分配给运营经济中的生产性投资的证据，而不是将资本分配给假想的资产。[让我知道](http://twitter.com/timoreilly)你听到的任何好例子。
+我不清楚 NFT 是否符合这一要求。不过，毫无疑问，金融的颠覆，就像互联网已经颠覆了媒体和商业一样，将代表当前技术革命周期中的一个重要的下一个阶段。特别是，如果有可能在没有大型集中式资本提供者（可以说是“华尔街”）的信任和权威的情况下有效分配资本，这将是一个基础性的进步。在这方面，我所寻找的是通过加密货币将资本分配给运营经济中的生产性投资的证据，而不是将资本分配给假想的资产。[让我知道](http://twitter.com/timoreilly)你听到的任何好例子。
 
 为了更清楚地说明我在说什么，让我从加密货币和 Web3 中抽出身来，看看另一场技术革命：绿色能源革命。在那里，很明显的是，泡沫估值已经在为持久的基础设施的发展提供资金。埃隆・马斯克是一位大师，他利用特斯拉股票的超额投机价格（一两年前，特斯拉股票的估值相当于该公司 1500 年的利润！），并将其转化为全国性的电动汽车充电网络、超级工厂和自动驾驶汽车能力，同时催化整个行业追随他进入未来。杰夫・贝佐斯也利用亚马逊的超额估值建立了一个新的即时商务基础设施。而他们两人都在投资商业航天业的基础设施。
 
@@ -98,9 +98,9 @@ Perez 分析的一个重要结论是，真正的技术革命必须伴随着大�
 
 人们可能会问，Web3 的当前阶段是否更相当于 1995 年或 1999 年，泡沫的早期阶段或其结束？鉴于加密资产（以及一般的科技初创公司）目前的估值，很难争论更早的日期。
 
-我喜欢提醒人们，我在网络公司破产五年后写了 “什么是 Web 2.0？"，其明确的目标是解释为什么有些公司幸存下来，而有些公司却没有。因此，我怀疑要到下一次萧条之后，我们才会真正理解 Web3 包括什么，如果有的话。
+我喜欢提醒人们，我在网络公司破产五年后写了“什么是 Web 2.0？"，其明确的目标是解释为什么有些公司幸存下来，而有些公司却没有。因此，我怀疑要到下一次萧条之后，我们才会真正理解 Web3 包括什么，如果有的话。
 
-从上一轮泡沫中，除了我在 “什么是 Web 2.0" 中试图捕捉的技术和商业模式的变化之外，我还可以提供一些务实的观察。
+从上一轮泡沫中，除了我在“什么是 Web 2.0" 中试图捕捉的技术和商业模式的变化之外，我还可以提供一些务实的观察。
 
 所有幸存下来的公司都在赚钱 —— 很多的钱。(就亚马逊而言，它是自由现金流，而不是利润，但数字是巨大的，就像它背后的商业和经济洞察力一样）。他们的估值虽然很高，但有可信的未来收益和现金流模型的支持。
 

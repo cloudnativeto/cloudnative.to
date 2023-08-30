@@ -1,10 +1,10 @@
 ---
-title: "使用Go语言操作Istio和其他Kubernetes CRD"
+title: "使用 Go 语言操作 Istio 和其他 Kubernetes CRD"
 date: 2018-10-15T19:24:46+08:00
 draft: false
 authors: ["Dave Kerr"]
 translators: ["王帅俭"]
-summary: "主要介绍了在Golang中操作Istio和其他Kubernetes自定义资源（CRD），主要讲解了除go-client之外的另一种方法。"
+summary: "主要介绍了在 Golang 中操作 Istio 和其他 Kubernetes 自定义资源（CRD），主要讲解了除 go-client 之外的另一种方法。"
 categories: ["service mesh"]
 tags: ["Istio","Kubernetes","golang"]
 keywords: ["service mesh","服务网格"]
@@ -12,29 +12,29 @@ keywords: ["service mesh","服务网格"]
 
 本文为翻译文章，[点击查看原文](https://dwmkerr.com/manipulating-istio-and-other-custom-kubernetes-resources-in-golang)。
 
-在本文中，我将演示如何使用Golang来操作Kubernetes Custom Resources，以Istio为例。 不需要您了解Istio，我只是用它来展示概念！
+在本文中，我将演示如何使用 Golang 来操作 Kubernetes Custom Resources，以 Istio 为例。不需要您了解 Istio，我只是用它来展示概念！
 
 ![](006tNbRwly1fw6t0va3vij30xc0es0ve.jpg)
 
 [Istio](https://istio.io/)是一个非常受欢迎的服务网格平台，它允许工程师快速地为基于服务的应用程序添加遥测技术、先进的流量管理等功能。
 
-Istio工作原理的一个有趣的地方是，当部署到Kubernetes集群中时，许多关键配置对象被作为[自定义资源](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)处理。自定义资源是一个非常强大的Kubernetes特性，它允许您创建自己的”一等“资源（就像pod、副本、部署等），然后使用`kubectl`或Kubernetes API与它们进行交互。
+Istio 工作原理的一个有趣的地方是，当部署到 Kubernetes 集群中时，许多关键配置对象被作为[自定义资源](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)处理。自定义资源是一个非常强大的 Kubernetes 特性，它允许您创建自己的”一等“资源（就像 pod、副本、部署等），然后使用`kubectl`或 Kubernetes API 与它们进行交互。
 
-在本文中，我将展示如何使用Golang Kubernetes client与这些自定义资源交互。
+在本文中，我将展示如何使用 Golang Kubernetes client 与这些自定义资源交互。
 
 ## CRD：快速概述
 
-在为集群设置Istio时，您可能要做的一件常见的事情是指定如何路由通信。这可能相当复杂，如下所示:
+在为集群设置 Istio 时，您可能要做的一件常见的事情是指定如何路由通信。这可能相当复杂，如下所示：
 
 ![](006tNbRwly1fw6uekpw5sj30qo0k0gne.jpg)
 
-[图1：来自istio.io的Istio流量管理示例](https://istio.io/docs/concepts/traffic-management/)
+[图 1：来自 istio.io 的 Istio 流量管理示例](https://istio.io/docs/concepts/traffic-management/)
 
-对于这样的系统，有一种配置方法就是使用一个ConfigMap，其中包含如何路由服务的定义。
+对于这样的系统，有一种配置方法就是使用一个 ConfigMap，其中包含如何路由服务的定义。
 
-然而，Istio实际上注册了新的资源类型（自定义资源定义），来表示网关或服务之类的对象。我们可以创建/更新/删除/操作这些资源类型，就像任何其他Kubernetes对象一样。
+然而，Istio 实际上注册了新的资源类型（自定义资源定义），来表示网关或服务之类的对象。我们可以创建/更新/删除/操作这些资源类型，就像任何其他 Kubernetes 对象一样。
 
-例如，我可以为上面的示例创建一个虚拟服务，如下所示:
+例如，我可以为上面的示例创建一个虚拟服务，如下所示：
 
 ```shell
 cat << EOF | kubectl create -f -
@@ -63,7 +63,7 @@ spec:
 EOF
 ```
 
-同样，重要的不是这个资源的具体内容，而是我可以像对待其他Kubernetes对象一样对待Istio资源:
+同样，重要的不是这个资源的具体内容，而是我可以像对待其他 Kubernetes 对象一样对待 Istio 资源：
 
 ```shell
 $ kubectl get virtualservices.networking.istio.io
@@ -79,15 +79,15 @@ $ kubectl delete virtualservices.networking.istio.io/service2
 
 甚至还可以使用`edit`、`describe`、注册生命周期事件、监视更改等等操作。
 
-## 使用go语言操作CRD
+## 使用 go 语言操作 CRD
 
-使用[Golang Kubernetes Client](https://github.com/kubernetes/client-go)可以创建强定义的类型，然后就可以使用这些类型与CRD交互。红帽博客文章[Kubernetes Deep Dive: Code Generation for Custom Resources](https://blog.openshift.com/kubernetes-deep-dive-code-generation-customresources/)就是一个例子。
+使用[Golang Kubernetes Client](https://github.com/kubernetes/client-go)可以创建强定义的类型，然后就可以使用这些类型与 CRD 交互。红帽博客文章[Kubernetes Deep Dive: Code Generation for Custom Resources](https://blog.openshift.com/kubernetes-deep-dive-code-generation-customresources/)就是一个例子。
 
 这是一种非常好的方法，但是如果您想快速访问一些数据，而又不想生成大量代码，那么这种方法会让您感到非常吃力。
 
 还有一种替代方法，即使用`DynamicClient`。首选的方法似乎是第一种方法，它涉及到代码生成，因此第二种方法的文档很少。然而，第二种方法其实很简单。
 
-下面这个例子介绍如何列出所有Istio VirtualService资源，而无需生成任何代码:
+下面这个例子介绍如何列出所有 Istio VirtualService 资源，而无需生成任何代码：
 
 ```go
 import (
@@ -114,9 +114,9 @@ for _, virtualService := range virtualServices.Items {
 
 为了清晰起见，这段代码省略了设置和错误处理，完整的示例在[k8s-list-virtualservices.go](https://gist.github.com/dwmkerr/09ac0fd98595460456e17d5ef0c77667)。
 
-## 使用go语言修改CRD
+## 使用 go 语言修改 CRD
 
-您可能已经注意到，代码`.Resource().Namespace().List()`与Kubernetes `Clientset`进行API调用时使用的结构非常相似。实际上，本质上是一样的。看看[接口](https://github.com/kubernetes/client-go/blob/master/dynamic/interface.go)，你可以看到所有你想要的操作:
+您可能已经注意到，代码`.Resource().Namespace().List()`与 Kubernetes `Clientset`进行 API 调用时使用的结构非常相似。实际上，本质上是一样的。看看[接口](https://github.com/kubernetes/client-go/blob/master/dynamic/interface.go)，你可以看到所有你想要的操作：
 
 - `Create`
 - `Update`
@@ -125,7 +125,7 @@ for _, virtualService := range virtualServices.Items {
 
 等等。这很好，因为您可以像我的文章'[Patching Kubernetes Resources in Golang](https://www.dwmkerr.com/patching-kubernetes-resources-in-golang/)'中那样使用相同的技巧来操作这些实体，而无需创建表示它们的结构。
 
-下面是另一个简短的例子，这次展示了如何将服务的路由的权重调整到50%/50%:
+下面是另一个简短的例子，这次展示了如何将服务的路由的权重调整到 50%/50%:
 
 ```go
 import (
@@ -156,7 +156,7 @@ _, err := dynamicClient.Resource(virtualServiceGVR).Namespace("default").Patch("
 
 请参阅 [k8s-patch-virtualservice.go](https://gist.github.com/dwmkerr/7332888e092156ce8ce4ea551b0c321f)中的完整示例。
 
-运行示例后，您可以使用Kubernetes CLI来验证更改:
+运行示例后，您可以使用 Kubernetes CLI 来验证更改：
 
 ```shell
 $ kubectl get virtualservices.networking.istio.io/service2 -o yaml
@@ -197,7 +197,7 @@ spec:
 
 ## 进一步阅读
 
-在采用这种方法时使用了以下几篇文章:
+在采用这种方法时使用了以下几篇文章：
 
 - [Red Hat: Deep Dive: Code Generation for Custom Resources](https://blog.openshift.com/kubernetes-deep-dive-code-generation-customresources/)
 - [Kubernetes Docs: Custom Resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)

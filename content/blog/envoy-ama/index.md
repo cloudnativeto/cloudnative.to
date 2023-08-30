@@ -71,7 +71,7 @@ C++ 比绝大多数语言性能都好。当时没有更好的语言选择。有 
 
 ## 关于 xDS 的问题
 
-### 关于 on-demand，目前已经有了 VHDS，其他 xDS 会陆续支持吗？ 比如 on-demand CDS/EDS?
+### 关于 on-demand，目前已经有了 VHDS，其他 xDS 会陆续支持吗？比如 on-demand CDS/EDS?
 
 VHDS 并不是 on-demand。现在主要是把 Delta xDS 做好。
 
@@ -91,7 +91,7 @@ CDS 服务器需要给出对应的 EDS 服务。取决于 CDS 数据。[Tetrate 
 
 ### ListenerFilter 前后顺序有影响吗？
 
-有的没有（如 HTTP），有的有影响（如 Proxy Protocol ）
+有的没有（如 HTTP），有的有影响（如 Proxy Protocol）
 
 ### ListenerFilter 冲突会和时间有关吗？现在有 debug 方案和过滤验证机制吗？
 

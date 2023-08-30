@@ -3,7 +3,7 @@ title: "蚂蚁金服开源的 SOFAMesh 的通用协议扩展解析"
 date: 2018-08-31T12:27:25+08:00
 draft: false
 authors: ["邵俊雄"]
-summary: "本文作者是蚂蚁金服中间件团队的高级技术专家邵俊雄（熊啸），主要负责 SOFAMesh 的开发工作。本文是基于作者在 Service Mesh Meetup #3 深圳的主题分享《SOFAMesh的通用协议扩展》部分内容所整理，完整内容见文末的直播回放。"
+summary: "本文作者是蚂蚁金服中间件团队的高级技术专家邵俊雄（熊啸），主要负责 SOFAMesh 的开发工作。本文是基于作者在 Service Mesh Meetup #3 深圳的主题分享《SOFAMesh 的通用协议扩展》部分内容所整理，完整内容见文末的直播回放。"
 tags: ["sofamesh","mosn"]
 categories: ["service mesh"]
 keywords: ["service mesh","sofamesh","sofamosn"]
@@ -11,11 +11,11 @@ keywords: ["service mesh","sofamesh","sofamosn"]
 
 > 本文作者：邵俊雄（熊啸），蚂蚁金服中间件团队高级技术专家，目前主要负责 SOFAMesh 的开发工作。
 >
-> 本文是基于作者在 [Service Mesh Meetup #3 深圳](/blog/service-mesh-meetup-shenzhen-20180825)的主题分享《SOFAMesh的通用协议扩展》部分内容所整理，完整内容见文末的直播回放
+> 本文是基于作者在 [Service Mesh Meetup #3 深圳](/blog/service-mesh-meetup-shenzhen-20180825)的主题分享《SOFAMesh 的通用协议扩展》部分内容所整理，完整内容见文末的直播回放
 
 ![邵俊雄 蚂蚁金服 Service Mesh SOFA MOSN](0069RVTdly1fusppz003uj318w0u0qdx.jpg)
 
-**本次分享主要介绍蚂蚁金服在 SOFAMesh 上开发对 SOFARPC 与 HSF 这两个RPC框架的支持过程中总结出来的通用协议扩展方案**
+**本次分享主要介绍蚂蚁金服在 SOFAMesh 上开发对 SOFARPC 与 HSF 这两个 RPC 框架的支持过程中总结出来的通用协议扩展方案**
 
 ![](0069RVTdly1fuspj4xg2uj30k00b9wfc.jpg)
 
@@ -45,9 +45,9 @@ SOFAMesh 的下一步也是要融合到 PAAS 平台里面去，成为 PAAS 平�
 
 - 第一种做法，比较常见，就是不用 ISTIO 只参考它的设计理念，用 ENVOY/MOSN 或者自研的 SIDECAR 结合已经成熟并且大规模部署的注册中心/配置中心组件，快速上线，拿到多语言，灰度发布，安全这些红利，比如唯品会的 OSP Local Proxy, 华为的 Mesher 都是这个套路。其实 ENVOY 最早也是如此，希望用户在 ENVOY 上直接扩展对 Consul, Eurkea 这些注册中心的支持。但是社区没有走这条路，反而对其 XDS API 进行了适配，由此诞生除了 Service Mesh 的控制平面，并进一步演化出了 ISTIO。目前看来这么做的主要问题是无法利用 ISTIO 社区在服务治理上的创新和工作，存在重复的建设，所以后来有了第二种思路。
 
-- 第二种做法，更进一步，使用 ISTIO， 但是把 Kubernetes 剥离出去，适用于很多短期内无法上 Kubernetes 的企业。ISTIO 控制平面本来就提供了这个能力，ISTIO 有两个扩展点，一个通过 Platform Adapter 对接第三方注册中心，另一个 通过 Config Adapter 对接不通的配置存储。这个做法业界最典型的是 Ucloud 的轻量级 Service Mesh 方案，他们把 Pilot Discovery 模块从 ISTIO 里面剥离了出来，增加第三方注册中心的 Platform Adapter，Cofig Store 直接对接 ETCD 集群，可以通过 docker compose 直接跑起来整个 ISTIO。好处是入门更简单了，但是失去了 Kubernetes 提供了基础能力，ISTIO 的武功已经废了大半。
+- 第二种做法，更进一步，使用 ISTIO，但是把 Kubernetes 剥离出去，适用于很多短期内无法上 Kubernetes 的企业。ISTIO 控制平面本来就提供了这个能力，ISTIO 有两个扩展点，一个通过 Platform Adapter 对接第三方注册中心，另一个 通过 Config Adapter 对接不通的配置存储。这个做法业界最典型的是 Ucloud 的轻量级 Service Mesh 方案，他们把 Pilot Discovery 模块从 ISTIO 里面剥离了出来，增加第三方注册中心的 Platform Adapter，Cofig Store 直接对接 ETCD 集群，可以通过 docker compose 直接跑起来整个 ISTIO。好处是入门更简单了，但是失去了 Kubernetes 提供了基础能力，ISTIO 的武功已经废了大半。
 
-- 后来又了第三种做法，据说也有不少公司采用，具体做法是把 Kubernetes 做一个虚拟机用，阉割其服务发现，DNS 等能力，用注册中心/配置中心等成熟且大规模应用的产品替代。唯品会前几天发的文章说明他们已经把这个做法在生产中落地了。这种做法一般只使用 POD 和 StatfuleSet，不创建服务和Endpoints。一般来说， ISTIO 通过 Platform Adapter 对接注册中心，Config Adapter对应配置中心。相比前两种做法，这个做法更加复杂，好处是成熟的配置中心和注册中心能够快速的落地 ISTIO，不用解决 ISTIO 由于 ETCD 存贮带来的扩展性问题。这个做法还有个变种就是完全不用 ISTIO，直接在 ENVOY/MOSN 上对接注册中心和配置中心，甚至完成 MIXER 的检查和遥测上报的能力。比如唯品会，用的是 DaemonSet，在同一个 Node 上共享 SIDECAR，其 SIDERCAR 组件 OSP Local Proxy 直接集成注册中心/配置中心。
+- 后来又了第三种做法，据说也有不少公司采用，具体做法是把 Kubernetes 做一个虚拟机用，阉割其服务发现，DNS 等能力，用注册中心/配置中心等成熟且大规模应用的产品替代。唯品会前几天发的文章说明他们已经把这个做法在生产中落地了。这种做法一般只使用 POD 和 StatfuleSet，不创建服务和 Endpoints。一般来说，ISTIO 通过 Platform Adapter 对接注册中心，Config Adapter 对应配置中心。相比前两种做法，这个做法更加复杂，好处是成熟的配置中心和注册中心能够快速的落地 ISTIO，不用解决 ISTIO 由于 ETCD 存贮带来的扩展性问题。这个做法还有个变种就是完全不用 ISTIO，直接在 ENVOY/MOSN 上对接注册中心和配置中心，甚至完成 MIXER 的检查和遥测上报的能力。比如唯品会，用的是 DaemonSet，在同一个 Node 上共享 SIDECAR，其 SIDERCAR 组件 OSP Local Proxy 直接集成注册中心/配置中心。
 
 - 最后一个做法是我们努力的方向，向 Kubernetes 原生的方向发展，在生产环境中落地打磨，并和社区一起解决碰到的问题。
 
@@ -61,7 +61,7 @@ Kubernetes 已经成为了云原生的事实标准，我们应该充分利用 Ku
 
 ![](0069RVTdly1fusprblc3fj30k00b975n.jpg)
 
-Spring cloud kubernetes 项目给 Spring cloud 项目落地 Kubernetes 提供了支持，但是在整合 ISTIO 的时候碰到了问题，即便使用 Kubernetes 作为注册中心，客户端的负载均衡和服务发现组件也会破坏 ISTIO 对请求规格的依赖，经过负载均衡之后发送给 ISTIO 数据平面的 PODIP 无法被正确的路由的后端的集群，既无法匹配到 Virtual Host。我们通过 BeanFactoryPostProcesser 在请求中带上了 Host 头，指向服务在 Kubernetes 中的域名，从而解决了这个问题，也因此认识到，给微服务框架的 SDK打补丁，或者说推动微服务框架轻量化可能是一个实现对业务代码无侵入性，必须的代价。
+Spring cloud kubernetes 项目给 Spring cloud 项目落地 Kubernetes 提供了支持，但是在整合 ISTIO 的时候碰到了问题，即便使用 Kubernetes 作为注册中心，客户端的负载均衡和服务发现组件也会破坏 ISTIO 对请求规格的依赖，经过负载均衡之后发送给 ISTIO 数据平面的 PODIP 无法被正确的路由的后端的集群，既无法匹配到 Virtual Host。我们通过 BeanFactoryPostProcesser 在请求中带上了 Host 头，指向服务在 Kubernetes 中的域名，从而解决了这个问题，也因此认识到，给微服务框架的 SDK 打补丁，或者说推动微服务框架轻量化可能是一个实现对业务代码无侵入性，必须的代价。
 
 Envoy 社区目前还没有对非 HTTP 的 RPC 通信协议提供扩展支持，SOFAMosn 目前内部已经基本完成了 DUBBO 扩展的开发工作。
 
@@ -75,7 +75,7 @@ ISTIO 的控制平面抽象，顶层路由对象是 Virtual Host，Virtual Host 
 
 在 Outbound，也就是客户端的 SIDECAR 收到请求的时候，ISTIO 为服务生成的 Virtual Host 包含了服务的域名，Cluster VIP 和 端口的多种组合形式，这个形式确保了对 Host 头和 DNS 寻址的支持。Inbound，也就是服务端的 SIDECAR 收到请求的时候因为所有流量都去到后面的服务实例，所以域名是通配所有。
 
-Route 上定义了超时，熔断，错误注入的策略。Route 上定义的 Header Matcher， Query Parameter Matcher, Path Matcher 等等都是针对 HTTP 协议的，RPC 协议需要进行映射以支持 Content Based Routing。
+Route 上定义了超时，熔断，错误注入的策略。Route 上定义的 Header Matcher，Query Parameter Matcher, Path Matcher 等等都是针对 HTTP 协议的，RPC 协议需要进行映射以支持 Content Based Routing。
 
 Route Action 指向后端集群，支持重定向和直接返回，集群通过名字路由，集群的变动受到 Destination Rule 的影响，主要是反应在 Subset 的变化上，权重信息就定义在这里。 
 
@@ -101,7 +101,7 @@ SOFA 的注册中心使用 Interface 来识别服务的，服务的配置信息�
 
 ![](0069RVTdly1fuspsg3qh9j30k00b9jsu.jpg)
 
-考虑到支持不同 RPC框架的大量重复工作和实现过程中的性能保障，我们希望能提供一个统一的解决方案，以高性能和插件化做为重点来支持，并允许用户在性能和功能之间做平衡。
+考虑到支持不同 RPC 框架的大量重复工作和实现过程中的性能保障，我们希望能提供一个统一的解决方案，以高性能和插件化做为重点来支持，并允许用户在性能和功能之间做平衡。
 
 这个方案是基于 Kubernetes Native 的方式来做的，使用 interface 来寻址服务，因此需要对客户端做轻量化，以做到不侵入用户的业务代码。
 
@@ -127,7 +127,7 @@ SOFA 的注册中心使用 Interface 来识别服务的，服务的配置信息�
 
 ![](0069RVTdly1fusptj489lj30k00b9759.jpg)
 
-我们通过在 Destination Rule 中同时使用 Interface 和 Version 这两个 Label 来选择 Subset，每一个 Subset 都会在 Pilot Discovery 中形成一个可被路由的集群，这样通过 Subset 就可以完成 Traffic Splitting 的功能了。这样一来，蓝绿发布，灰度等能力都可基于这个RPC 接口和版本来做了。
+我们通过在 Destination Rule 中同时使用 Interface 和 Version 这两个 Label 来选择 Subset，每一个 Subset 都会在 Pilot Discovery 中形成一个可被路由的集群，这样通过 Subset 就可以完成 Traffic Splitting 的功能了。这样一来，蓝绿发布，灰度等能力都可基于这个 RPC 接口和版本来做了。
 
 ![](0069RVTdly1fusptuwzptj30k00b9q4c.jpg)
 
@@ -151,7 +151,7 @@ RPC Service Controller 监听到 RPC Service 更新后，通过关联的 Service
 
 ![](0069RVTdly1fuspul1v8bj30k00b9jsf.jpg)
 
-七层代理的性能瓶颈往往是出现在协议数据包的解析上，由于 SIDECAR 的特殊性，它本身往往得不到足够的资源，不得不运行在资源首先的环境，以避免影响应用本身的运行。在实际的部署中，我们常常会把 SIDECARE 限定在单核心上运行，并且限制它能使用的最大内存，这些都让 SIDECAR 的转发性能面临极大的压力。考虑到 ISTIO的复杂路由规则在实际的业务场景中很多时候并不会全部都用到，我们允许用户在性能和功能之间找到一个平衡。
+七层代理的性能瓶颈往往是出现在协议数据包的解析上，由于 SIDECAR 的特殊性，它本身往往得不到足够的资源，不得不运行在资源首先的环境，以避免影响应用本身的运行。在实际的部署中，我们常常会把 SIDECARE 限定在单核心上运行，并且限制它能使用的最大内存，这些都让 SIDECAR 的转发性能面临极大的压力。考虑到 ISTIO 的复杂路由规则在实际的业务场景中很多时候并不会全部都用到，我们允许用户在性能和功能之间找到一个平衡。
 
 ![](0069RVTdly1fusput21o3j30k00b9abg.jpg)
 
@@ -159,7 +159,7 @@ RPC Service Controller 监听到 RPC Service 更新后，通过关联的 Service
 
 ![](0069RVTdly1fuspv01mc0j30k00b93zp.jpg)
 
-首先操作员在 Kubernetes 中创建 DUBBO 应用的服务，指定其 Port Name 为 x-dubbo-user，这很重要，也是 ISTIO 对 POD 的基本要求。SOFAMesh 监听到服务创建之后，开始在 Pilot 中创建 DUBBO 应用集群的x-protocol 协议的监听器和集群配置，请参考上文的 x-protocol 配置。
+首先操作员在 Kubernetes 中创建 DUBBO 应用的服务，指定其 Port Name 为 x-dubbo-user，这很重要，也是 ISTIO 对 POD 的基本要求。SOFAMesh 监听到服务创建之后，开始在 Pilot 中创建 DUBBO 应用集群的 x-protocol 协议的监听器和集群配置，请参考上文的 x-protocol 配置。
 
 SOFAMosn SIDECAR 启动后，使用期静态配置的 Pilot 集群地址连接到 Pilot 并开始以 SIDECAR 模式，通过 ADS 接口监听配置的变化。
 
@@ -181,7 +181,7 @@ Outbound 的 SOFAMosn 收到响应后，拿出响应对象，并通过插件拿�
 
 获得不同层次的能力，所付出的性能开销和接入成本也会不同，可以根据实际情况做出取舍。Golang 的接口特性允许协议插件的开发人员根据需要实现接口，还可以进行接口的组合。
 
-开箱即用模式作为不解包方案，提供LabelRouting，LabelAccessControl，LabelFaultInjection，TLS，RateLimits，Metrics的能力，以高性能和低成本为亮点。
+开箱即用模式作为不解包方案，提供 LabelRouting，LabelAccessControl，LabelFaultInjection，TLS，RateLimits，Metrics 的能力，以高性能和低成本为亮点。
 
 轻度解包可以获得更多能力，如多路复用，Accesslog，流控，熔断等（视具体协议而定），是性能和能力间的权衡选择。
 
@@ -189,10 +189,10 @@ Outbound 的 SOFAMosn 收到响应后，拿出响应对象，并通过插件拿�
 
 ![](0069RVTdly1fuspvwky7ej30k00b93z9.jpg)
 
-8月底发布的 SOFMesh 版本默认将会用 SOFAMosn 代替 ENVOY 做数据平面，ISTIO 自带的 BookInfo 的例子可以提供给大家试用。我们后续还会提供 SOFA/DUBBO 应用的例子。
+8 月底发布的 SOFMesh 版本默认将会用 SOFAMosn 代替 ENVOY 做数据平面，ISTIO 自带的 BookInfo 的例子可以提供给大家试用。我们后续还会提供 SOFA/DUBBO 应用的例子。
 
 目前 SOFAMosn 还不能在 Gateway 模式中使用，即不能用于 Ingress，而且部分高级路由功能，以及熔断，限流等高级治理能力目前还不支持。另外这个版本的 Mixer 节点也去除了，我们会在 9 月份的版本中持续完善 SOFAMosn 和 SOFAMesh，加入高级服务治理能力，同时我们也会完成 Mixer 的 Report 部分能力，放到开源版本中。
 
 ## 总结
 
-本文首先介绍蚂蚁金服开源的 SOFAMesh ，然后分享在 SOFAMesh 上落地 UC 的 HSF 应用和蚂蚁的 SOFA 应用碰到的问题，以及我们总结出来的解决方案和最佳实践。最后分别就其中有代表性的 DNS 寻址方案和 X-PROTOCOL 协议分享一下做法。希望大家内部的 DUBBO 或者其他功能内部的 RPC 应用在 Service Mesh 落地的时候，能够有个参考。
+本文首先介绍蚂蚁金服开源的 SOFAMesh，然后分享在 SOFAMesh 上落地 UC 的 HSF 应用和蚂蚁的 SOFA 应用碰到的问题，以及我们总结出来的解决方案和最佳实践。最后分别就其中有代表性的 DNS 寻址方案和 X-PROTOCOL 协议分享一下做法。希望大家内部的 DUBBO 或者其他功能内部的 RPC 应用在 Service Mesh 落地的时候，能够有个参考。

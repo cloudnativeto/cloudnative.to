@@ -51,5 +51,5 @@ Tetrate 为 GetIstio 提供商业支持，可直接与 Istio 专家联系，优�
 - GetEnvoy：<https://www.getenvoy.io>
 - GitHub：<https://github.com/tetratelabs/getistio>
 - 加入 [Istio Slack](https://istio.slack.com/) 并搜索 GetIstio 频道与我们联系。
-- 获得 “Istio 基础知识 “认证：<https://academy.tetrate.io>
+- 获得“Istio 基础知识“认证：<https://academy.tetrate.io>
 - 获取 Istio 订阅：<https://www.tetrate.io/getistio>

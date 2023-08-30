@@ -1,10 +1,10 @@
 ---
-title: "在Play with Kubernetes平台上以测试驱动的方式部署Istio"
+title: "在 Play with Kubernetes 平台上以测试驱动的方式部署 Istio"
 date: 2018-09-07T12:33:30+08:00
 draft: false
 authors: ["Ajeet Raina"]
 translators: ["姜洵"]
-summary: "在Docker提供的免费的Kubernetes试玩平台上，使用好奇心驱动的方式部署一个Istio Service Mesh。本方式适合没有测试资源又不想自己整环境的，只是想上去爽一把的人士。"
+summary: "在 Docker 提供的免费的 Kubernetes 试玩平台上，使用好奇心驱动的方式部署一个 Istio Service Mesh。本方式适合没有测试资源又不想自己整环境的，只是想上去爽一把的人士。"
 tags: ["kubernetes","service mesh","microservices"]
 categories: ["istio","kubernetes"]
 keywords: [“service mesh","微服务","服务网格"]

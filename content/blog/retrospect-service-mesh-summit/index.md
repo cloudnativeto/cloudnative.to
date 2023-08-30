@@ -40,7 +40,7 @@ date: 2022-10-09T09:00:42+08:00
 
 数据面的扩展，我们首先看下 Istio + Envoy 体系下的扩展。
 
-- WasmPlugin API：Istio 提供的一种通过 Wasm（WebAssembly） 过滤器来扩展代理的机制。Wasm 过滤器是 Envoy 的 **实验性** 功能，利用 Wasm 的特性允许开发人员可以使用熟悉的编程语言来编写过滤器的逻辑，编译成 Wasm 字节码由 runtime 来执行。
+- WasmPlugin API：Istio 提供的一种通过 Wasm（WebAssembly）过滤器来扩展代理的机制。Wasm 过滤器是 Envoy 的 **实验性** 功能，利用 Wasm 的特性允许开发人员可以使用熟悉的编程语言来编写过滤器的逻辑，编译成 Wasm 字节码由 runtime 来执行。
 - EnvoyFilter API：Istio 提供的一种对生成的 Envoy 配置进行定制化的机制。比如在 [Aeraki Mesh](https://github.com/aeraki-mesh/aeraki) 通过 EnvoyFilter API 完成 Dubbo、Thrift 等 7 层协议的支持（结合定制的 Envoy 的原生过滤器）。还有衍生出的 [Lua + EnvoyFilter 集成](https://help.aliyun.com/document_detail/383257.html)，将 filter chain 中使用 Lua 过滤器。
 - EnvoyFilter API 的二次封装 CRD：EnvoyFilter API 虽然强大，但非常复杂并且缺少必要的校验环节，有着很强的破坏性。业界提出了 EnvoyFilter API 的二次封装方案，通过新的 CRD 的来屏蔽 EnvoyFilter API 的复杂性，并降低配置出错导致 sidecar 代理崩溃的风险。如阿里云 ASM 的 Voyage、网易数帆的 [Slime](https://github.com/slime-io/slime/) 等。
 - Envoy 原生过滤器：在 Envoy 中使用 Lua 的另一种实现，以 C++ 的方式实现 Lua 插件来执行 Lua 脚本，俗称 Envoy 的 OpenResty。典型的实现是网易数帆的 [Rider](https://github.com/hango-io/rider)。
@@ -61,7 +61,7 @@ date: 2022-10-09T09:00:42+08:00
 解决连通性的问题，也成为服务网格能否在企业内部落地的关键所在。
 
 - Flomesh 的服务网格通过集成开源的 [fsm](https://github.com/flomesh-io/fsm) 组件实现跨集群的服务发现，进而完成跨集群的流量管理
-- Tetrate 企业版中的 [Tetrate Service Bridge](https://www.tetrate.io/tetrate-service-bridge/)（简称 TSB） 实现多个 Istio 集群（多 Istiod）的管理，同时提供了对虚拟机的支持
+- Tetrate 企业版中的 [Tetrate Service Bridge](https://www.tetrate.io/tetrate-service-bridge/)（简称 TSB）实现多个 Istio 集群（多 Istiod）的管理，同时提供了对虚拟机的支持
 - 蚂蚁集群的 MOSN 通过引入 SOFA Gateway，来解决网络隔离的多实体间的服务 RPC 调用
 
 ### 性能与资源占用

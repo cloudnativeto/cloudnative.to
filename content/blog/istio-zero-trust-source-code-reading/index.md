@@ -633,7 +633,7 @@ func BuildSubjectAltNameExtension(hosts string) (*pkix.Extension, error) {
 // Alternative Name" based on the given identities.
 func BuildSANExtension(identites []Identity) (*pkix.Extension, error) {
     ...
-    // 如果 subject 的信息仅存在于 subjectAltName 扩展中(仅于Email地址或URI相关)
+    // 如果 subject 的信息仅存在于 subjectAltName 扩展中 (仅于 Email 地址或 URI 相关)
     // 则 subject name 必须为非空结构且 subjectAltName 扩展必须为 critical。
     // SAN is Critical because the subject is empty. This is compliant with X.509 and SPIFFE standards.
     return &pkix.Extension{Id: oidSubjectAlternativeName, Critical: true, Value: bs}, nil
@@ -996,9 +996,9 @@ func (s *Server) CreateCertificate(ctx context.Context, request *pb.IstioCertifi
 
 > Istio 带有现成的证书颁发机构（CA），但不少用户也希望能够接入现有 CA。
 > 在之前的版本中，您需要实现 Istio CSR  API 并自行编写第三方集成。
-> 在 Istio 1.8 中，我们引入了一种使用 Kubernetes CSR  API 的新方法，此方法可与任何能够使用此API的工具相集成。
+> 在 Istio 1.8 中，我们引入了一种使用 Kubernetes CSR  API 的新方法，此方法可与任何能够使用此 API 的工具相集成。
 > Istiod 将充当注册机构（RA）角色，负责对工作负载进行身份验证及授权，而后创建、批准并监控 CSR 资源的更新。
-> 接下来，第三方工具（例如cert-manager）即可使用正确的签名程序创建具有适当后端 CA 的签名证书。
+> 接下来，第三方工具（例如 cert-manager）即可使用正确的签名程序创建具有适当后端 CA 的签名证书。
 > 此功能目前尚处于试验阶段。[^6]
 
 ```go
@@ -1100,9 +1100,9 @@ ClientAuth 有五种类型，各自的含义是：
 - NoClientCert：忽略任何客户端证书，即客户端可以不提供证书。
 
 - RequestClientCer：要求客户端提供证书，但是如果客户端没有提供证书，服务端还是会继续处理请求。
-- RequireAnyClientCert：需要客户端提供证书，但不用ClientCA来验证证书的有效性。
-- VerifyClientCertIfGiven：如果客户端提供了证书，则用ClientCA来验证证书的有效性。 如果客户端没提供，则会继续处理请求。
-- RequireAndVerifyClientCert：需要客户端提供证书，且会用ClientCA来验证证书的有效性。
+- RequireAnyClientCert：需要客户端提供证书，但不用 ClientCA 来验证证书的有效性。
+- VerifyClientCertIfGiven：如果客户端提供了证书，则用 ClientCA 来验证证书的有效性。如果客户端没提供，则会继续处理请求。
+- RequireAndVerifyClientCert：需要客户端提供证书，且会用 ClientCA 来验证证书的有效性。
 
 在 tlsConfig 中如果不显式的指定 ClientAuth，则默认值是 NoClientCert。即使 Server 端配置了 CA，也不会校验客户端证书。
 

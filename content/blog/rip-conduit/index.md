@@ -1,8 +1,8 @@
 ---
-title: "Conduit 0.5发布—以及R.I.P. Conduit"
+title: "Conduit 0.5 发布—以及 R.I.P. Conduit"
 date: 2018-07-09T12:19:53+08:00
 draft: false
-summary: "2018年7月6日，Linkerd博客再次更新，宣布Conduit 0.5发布：在翻炒了无数次Prometheus支持的冷饭之后，终于发布了新的功能——TLS支持。紧接着一个更加重磅的消息：0.5将是Conduit最后一个版本，未来将作为Linkerd 2.0的基础继续存在——Conduit 的 Github 项目将会转移为Linkerd2。"
+summary: "2018 年 7 月 6 日，Linkerd 博客再次更新，宣布 Conduit 0.5 发布：在翻炒了无数次 Prometheus 支持的冷饭之后，终于发布了新的功能——TLS 支持。紧接着一个更加重磅的消息：0.5 将是 Conduit 最后一个版本，未来将作为 Linkerd 2.0 的基础继续存在——Conduit 的 Github 项目将会转移为 Linkerd2。"
 authors: ["崔秀龙"]
 tags: ["conduit","linkerd"]
 categories: ["service mesh"]

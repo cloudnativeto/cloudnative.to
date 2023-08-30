@@ -169,7 +169,7 @@ func (impl *Impl) Apply(ctx context.Context, index int, records []*v1alpha1.Reco
 }
 ```
 
-默认用于引发故障的容器镜像是 `gcr.io/google-containers/pause:latest`， 如果在国内环境使用，大概率会水土不服，可以将 `gcr.io` 替换为 `registry.aliyuncs.com`。
+默认用于引发故障的容器镜像是 `gcr.io/google-containers/pause:latest`，如果在国内环境使用，大概率会水土不服，可以将 `gcr.io` 替换为 `registry.aliyuncs.com`。
 
 
 
@@ -348,7 +348,7 @@ func Apply(netem *pb.Netem, pid uint32) error {
 
 最终使用 [vishvananda/netlink](https://github.com/vishvananda/netlink) 库操作 Linux 网络接口来完成工作。
 
-这里能够知道，NetworkChaos 混沌类型，操作了Linux 宿主机网络来制造混沌，包含 iptables、ipset 等工具。
+这里能够知道，NetworkChaos 混沌类型，操作了 Linux 宿主机网络来制造混沌，包含 iptables、ipset 等工具。
 
 在 Chaos Daemon 的 Dockerfile 中，可以看到其依赖的 Linux 工具链：
 
@@ -851,12 +851,12 @@ func ListPodChaos(namespace string, labels map[string]string) ([]v1alpha1.PodCha
 
 本文既是为公司引入新技术进行试探，同时也是自我学习的记录，此前接触的学习材料及撰写本文时查阅的资料，较为优秀的部分列在这里，以便快速查阅。
 
-- [controller-runtime源码分析](https://qiankunli.github.io/2020/08/10/controller_runtime.html)
-- [つくって学ぶKubebuilder](https://github.com/zoetrope/kubebuilder-training)（日文教程）
+- [controller-runtime 源码分析](https://qiankunli.github.io/2020/08/10/controller_runtime.html)
+- [つくって学ぶ Kubebuilder](https://github.com/zoetrope/kubebuilder-training)（日文教程）
 - [Kubebuilder Book](https://book.kubebuilder.io/) / [中文版](https://cloudnative.to/kubebuilder/)
-- [kube-controller-manager源码分析（三）之 Informer机制](https://www.huweihuang.com/kubernetes-notes/code-analysis/kube-controller-manager/sharedIndexInformer.html)
-- [kubebuilder2.0学习笔记——进阶使用](https://segmentfault.com/a/1190000020359577)
-- [client-go和golang源码中的技巧](https://www.cnblogs.com/charlieroro/p/11112526.html)
+- [kube-controller-manager 源码分析（三）之 Informer 机制](https://www.huweihuang.com/kubernetes-notes/code-analysis/kube-controller-manager/sharedIndexInformer.html)
+- [kubebuilder2.0 学习笔记——进阶使用](https://segmentfault.com/a/1190000020359577)
+- [client-go 和 golang 源码中的技巧](https://www.cnblogs.com/charlieroro/p/11112526.html)
 
 
 

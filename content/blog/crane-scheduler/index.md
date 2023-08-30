@@ -3,18 +3,18 @@ title: "Crane 调度器介绍——一款在 Kubernetes 集群间迁移应用的
 date: 2023-05-31T12:00:00+08:00
 draft: false
 authors: ["匡澄"]
-summary: "crane-sheduler 基于prometheus集群真实资源负载进行调度，将其应用于调度过程中的 Filter 和 Score 阶段，能够有效缓解集群资源负载不均的问题，真正实现企业的降本增效。"
+summary: "crane-sheduler 基于 prometheus 集群真实资源负载进行调度，将其应用于调度过程中的 Filter 和 Score 阶段，能够有效缓解集群资源负载不均的问题，真正实现企业的降本增效。"
 tags: ["Prometheus","监控", VictoriaMetrics]
 categories: ["云原生"]
 keywords: ["云原生","监控"] 
 ---
 
 ## 前言
-原生 Kubernetes 调度器仅基于资源的 Request 进行调度，在生产环境资源的真实使用率和申请率往往相差巨大，造成资源浪费的同时也会造成节点的负载不均衡。crane-sheduler 基于prometheus集群真实资源负载进行调度，将其应用于调度过程中的 Filter 和 Score 阶段，能够有效缓解集群资源负载不均的问题，真正实现企业的降本增效。
+原生 Kubernetes 调度器仅基于资源的 Request 进行调度，在生产环境资源的真实使用率和申请率往往相差巨大，造成资源浪费的同时也会造成节点的负载不均衡。crane-sheduler 基于 prometheus 集群真实资源负载进行调度，将其应用于调度过程中的 Filter 和 Score 阶段，能够有效缓解集群资源负载不均的问题，真正实现企业的降本增效。
 
 ## 背景
 
-Kubernetes 集群是现代许多企业的首选方案之一，因为它可以帮助企业实现自动化部署、弹性伸缩和容错处理等功能，从而减少了人工操作和维护工作量，提高了服务的可靠性和稳定性，实现了降本增效。但是Kubernetes 默认的调度器存在以下问题：
+Kubernetes 集群是现代许多企业的首选方案之一，因为它可以帮助企业实现自动化部署、弹性伸缩和容错处理等功能，从而减少了人工操作和维护工作量，提高了服务的可靠性和稳定性，实现了降本增效。但是 Kubernetes 默认的调度器存在以下问题：
 
 1. 节点的实际利用率和节点申请率往往相差巨大，造成资源的浪费；
 2. 节点间资源分布不均，会带来负载不均的问题。
@@ -23,16 +23,16 @@ crane-scheduler 由腾讯云团队开发，在一定程度上能够解决上述�
 
 ## Kubernetes 调度框架
 
-Kubernetes官方提供了可插拔架构的调度框架，能够进一步扩展Kubernetes调度器，下图展示了调度框架中的调度上下文及其中的扩展点，一个扩展可以注册多个扩展点，以便可以执行更复杂的有状态的任务。
+Kubernetes 官方提供了可插拔架构的调度框架，能够进一步扩展 Kubernetes 调度器，下图展示了调度框架中的调度上下文及其中的扩展点，一个扩展可以注册多个扩展点，以便可以执行更复杂的有状态的任务。
 
-![图1 Pod 调度流程](1.png)
+![图 1 Pod 调度流程](1.png)
 
 详细流程如下：
 
 1. Sort - 用于对 Pod 的待调度队列进行排序，以决定先调度哪个 Pod
 2. Pre-filter - 用于对 Pod 的信息进行预处理
 3. Filter - 用于排除那些不能运行该 Pod 的节点
-4. Post-filter - 一个通知类型的扩展点,更新内部状态，或者产生日志
+4. Post-filter - 一个通知类型的扩展点，更新内部状态，或者产生日志
 5. Scoring - 用于为所有可选节点进行打分
 6. Normalize scoring - 在调度器对节点进行最终排序之前修改每个节点的评分结果
 7. Reserve - 使用该扩展点获得节点上为 Pod 预留的资源，该事件发生在调度器将 Pod 绑定到节点前
@@ -80,7 +80,7 @@ Kubernetes 调度插件 demo：<https://github.com/cnych/sample-scheduler-framew
 
 ### 总体架构
 
-![图2 Crane-scheduler 总体架构](2.png)
+![图 2 Crane-scheduler 总体架构](2.png)
 
 动态调度器总体架构如上图所示，主要有两个组件组成：
 
@@ -260,10 +260,10 @@ spec:
 
 这里有两种方式可供选择：
 
-1. 作为k8s原生调度器之外的第二个调度器
-2. 替代k8s原生调度器成为默认的调度器
+1. 作为 k8s 原生调度器之外的第二个调度器
+2. 替代 k8s 原生调度器成为默认的调度器
 
-1. **作为k8s原生调度器之外的第二个调度器**
+1. **作为 k8s 原生调度器之外的第二个调度器**
 
    在 pod `spec.schedulerName` 指定 crane scheduler
    
@@ -301,9 +301,9 @@ spec:
                cpu: "1"
    ```
    
-2. **替代k8s原生调度器成为默认的调度器**
+2. **替代 k8s 原生调度器成为默认的调度器**
 
-   修改kube调度器的配置文件（scheduler config.yaml）以启用动态调度器插件并配置插件参数：
+   修改 kube 调度器的配置文件（scheduler config.yaml）以启用动态调度器插件并配置插件参数：
 
    ```yaml
    apiVersion: kubescheduler.config.k8s.io/v1beta2
@@ -326,9 +326,9 @@ spec:
    ...
    ```
 
-   /etc/kubernetes/policy.yaml 就是 4.3.1中的 `DynamicSchedulerPolicy` 资源对象
+   /etc/kubernetes/policy.yaml 就是 4.3.1 中的 `DynamicSchedulerPolicy` 资源对象
 
-   修改kube-scheduler.yaml，并将kube调度器映像替换为Crane schedule
+   修改 kube-scheduler.yaml，并将 kube 调度器映像替换为 Crane schedule
 
    ```yaml
    ...
@@ -361,7 +361,7 @@ metadata：
 
 ### 内存型服务测试
 
-测试服务单副本实际占用 2C 20G ，申请资源 5C 40G：
+测试服务单副本实际占用 2C 20G，申请资源 5C 40G：
 
 ```yaml
 containers:
@@ -377,13 +377,13 @@ containers:
       cpu: "5" 
 ```
 
-**k8s默认调度器结果（%）**
+**k8s 默认调度器结果（%）**
 
 ![](3.png)
 
 默认调度器根据 资源申请值`request` 调度服务，且节点间分布不均衡
 
-当副本数到达12 个时，默认调度器出现了资源分配严重不均的情况，且一些服务被挤占，出现CrashLoopBackOff错误：
+当副本数到达 12 个时，默认调度器出现了资源分配严重不均的情况，且一些服务被挤占，出现 CrashLoopBackOff 错误：
 
 ```shell
 crone-system prometheus-prometheus-node-exporter-6rjvj           1/1 Running          1 6d18h 
@@ -393,11 +393,11 @@ crone-system prometheus-prometheus-pushgoteway-78d668c9bd-91xpz  0/1 CrashLoopBa
 crone-system prometheus-server-6b84bbfc4f-25hpc                  0/2 CrashLoopBackOff 2 2m41s 
 ```
 
-**crane-schedule调度器结果（%）**
+**crane-schedule 调度器结果（%）**
 
 ![](4.png)
 
-当启动11个服务的时候，node03中的`mem_usage_avg_5m`指标过高，禁止调度：
+当启动 11 个服务的时候，node03 中的`mem_usage_avg_5m`指标过高，禁止调度：
 
 ```shell
 Events: 
@@ -405,9 +405,9 @@ Events:
 Warning    FailedScheduling    crane-scheduler  0/3 nodes are available:1 Load[mem_usage_avg_5m] of [node-03] is too high, 2 Insufficient memory           
 ```
 
-### CPU型服务测试
+### CPU 型服务测试
 
-测试服务单副本实际占用 8C 8G ，申请资源 12C 12G
+测试服务单副本实际占用 8C 8G，申请资源 12C 12G
 
 ```yaml
 containers:
@@ -423,11 +423,11 @@ containers:
       cpu: "12" 
 ```
 
-**k8s默认调度器结果（%）**
+**k8s 默认调度器结果（%）**
 
 ![](5.png)
 
-当启动9个服务的时候，出现 Insufficient cpu 的情况：
+当启动 9 个服务的时候，出现 Insufficient cpu 的情况：
 
 ```shell
 Events: 
@@ -435,11 +435,11 @@ Events:
 Warning    FailedScheduling    default-scheduler  0/3 nodes are available: 3 Insufficient memory                                
 ```
 
-**crane-schedule调度器结果（%）**
+**crane-schedule 调度器结果（%）**
 
 ![](6.png)
 
-当启动8服务的时候，node03中的`mem_usage_avg_5m`指标过高，禁止调度：
+当启动 8 服务的时候，node03 中的`mem_usage_avg_5m`指标过高，禁止调度：
 
 ```shell
 Events: 
@@ -450,11 +450,11 @@ Warning    FailedScheduling    crane-scheduler    0/3 nodes are available: 1 Loa
 
 ## 总结
 
-crane-scheduler基于prometheus集群真实资源负载进行调度，经过在linux环境上的压力测试，与k8s默认的调度器相比，结果标明：
+crane-scheduler 基于 prometheus 集群真实资源负载进行调度，经过在 linux 环境上的压力测试，与 k8s 默认的调度器相比，结果标明：
 
-1. crane-scheduler应用于调度过程中的 Filter 和 Score 阶段，能够根据自定义指标实现资源的调度，在一定程度上缓解节点资源负载不均的问题；
-2. crane-scheduler通过设置水位线和热点限制，能够有效防止节点资源过载的情况发生；
-3. 但是在测试过程中，也发现当节点request接近100%时，尽管该节点真实使用率很低，crane-scheduler是不能够调度上去的。为了进一步提高节点的资源利用率，后续需要考虑突破节点request值的限制，一种做法是屏蔽k8s对节点request值的校验，但是这样做法对k8s原生组件侵入性较大；另一种可行性较高的做法是通过资源的超卖去实现，利用节点的空闲资源区部署一些不重要的应用。
+1. crane-scheduler 应用于调度过程中的 Filter 和 Score 阶段，能够根据自定义指标实现资源的调度，在一定程度上缓解节点资源负载不均的问题；
+2. crane-scheduler 通过设置水位线和热点限制，能够有效防止节点资源过载的情况发生；
+3. 但是在测试过程中，也发现当节点 request 接近 100% 时，尽管该节点真实使用率很低，crane-scheduler 是不能够调度上去的。为了进一步提高节点的资源利用率，后续需要考虑突破节点 request 值的限制，一种做法是屏蔽 k8s 对节点 request 值的校验，但是这样做法对 k8s 原生组件侵入性较大；另一种可行性较高的做法是通过资源的超卖去实现，利用节点的空闲资源区部署一些不重要的应用。
 
 ## 参考文献
 

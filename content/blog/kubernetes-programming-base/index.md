@@ -1,13 +1,13 @@
 ---
 title: "Kubernetes 编程基础知识"
-summary: "如何从YAML工程师迈入云原生研发工程师。"
+summary: "如何从 YAML 工程师迈入云原生研发工程师。"
 authors: ["金润森"]
 date: 2020-08-05T20:16:40+08:00
 categories: ["Kubernetes"]
 tags: ["Kubernetes"]
 ---
 
-Kubernetes 诞生至今已经 5 年了，火爆整个社区，大家对 Kubernetes 越来越熟悉，越来越了解。但现阶段很多人都是熟练使用 Kubernetes，甚至我们会自嘲为 “YAML 工程师”。
+Kubernetes 诞生至今已经 5 年了，火爆整个社区，大家对 Kubernetes 越来越熟悉，越来越了解。但现阶段很多人都是熟练使用 Kubernetes，甚至我们会自嘲为“YAML 工程师”。
 
 可是随着各类云原生应用的出现、Operator 理念的推广、深入维护 Kubernetes 的需求下，仅仅做一个 "YAML 工程师" 已经不能满足老板的要求了。需要我们进一步了解 Kubernetes 是如何实现的，该怎么扩展 Kubernetes。
 
@@ -15,7 +15,7 @@ Kubernetes 诞生至今已经 5 年了，火爆整个社区，大家对 Kubernet
 
 ## 基于 Kubernetes 编程
 
-什么叫做基于 Kubernetes 编程呢？回想一下，我们以前听过基于 Linux 编程，基于 Windows 编程，可以放在‘基于’后面的都是通用标准的平台。基于 Kubernetes 编程有着相同的概念，Kubernetes 经过 5 年的高速发展，已经成为了容器编排调度框架的标准，直接将之定义为 “云原生操作系统” 也不为过。
+什么叫做基于 Kubernetes 编程呢？回想一下，我们以前听过基于 Linux 编程，基于 Windows 编程，可以放在‘基于’后面的都是通用标准的平台。基于 Kubernetes 编程有着相同的概念，Kubernetes 经过 5 年的高速发展，已经成为了容器编排调度框架的标准，直接将之定义为“云原生操作系统”也不为过。
 
 基于 Kubernetes 编程可以定义为，开发一个 Kubernetes-native 应用，它直接与 K8S API Server（K8S 的一个核心组件，后面会介绍）交互，查询资源的状态或更新状态。
 
@@ -28,7 +28,7 @@ Kubernetes 诞生至今已经 5 年了，火爆整个社区，大家对 Kubernet
 * kube-proxy 是 Service 资源和服务发现负载之间的协调控制器。
 * kubelet 是 Pod 资源和容器运行时之间的协调控制器。
 
-了解 API Server 的架构后就知道， kubectl 其实是高级定制版的 curl 工具。
+了解 API Server 的架构后就知道，kubectl 其实是高级定制版的 curl 工具。
 
 ## 扩展模式
 
@@ -49,7 +49,7 @@ Controller 实现控制循环，通过 API Server 监听集群的共享状态，
 
 ### 控制循环 The Control Loop
 
-所有的控制器都按照以下逻辑运行:
+所有的控制器都按照以下逻辑运行：
 
 1. 由事件驱动来读取资源 (resources) 的状态 (state)。
 2. 更改集群内或集群外对象的状态 (state)。比如，启动一个 Pod，创建 Endpoint。
@@ -61,15 +61,15 @@ Controller 实现控制循环，通过 API Server 监听集群的共享状态，
 
 ### 控制器组件
 
-从架构的角度来看，Controller 通常使用以下数据结构:
+从架构的角度来看，Controller 通常使用以下数据结构：
 
-![引用自 “深入剖析 Kubernetes”](2.png "引用自 “深入剖析 Kubernetes”")  
-&ensp;&ensp;&ensp;&ensp;引用自 “深入剖析 Kubernetes”
+![引用自“深入剖析 Kubernetes”](2.png "引用自 “深入剖析 Kubernetes”")  
+&ensp;&ensp;&ensp;&ensp;引用自“深入剖析 Kubernetes”
 
 * Informers
   从 Kubernetes API Server 里监听它所关心的对象状态，Informer 与 API 对象是一一对应的。
 * Reflector
-  连接 APIServer，使用 ListAndWatch 方法，获取并监听 API 对象实例的变化。 变化事件及对应的 API 对象，被称为增量，放进 Delta FIFO Queue。
+  连接 APIServer，使用 ListAndWatch 方法，获取并监听 API 对象实例的变化。变化事件及对应的 API 对象，被称为增量，放进 Delta FIFO Queue。
 * Delta FIFO Queue
   存放事件数据
 * Store
@@ -79,12 +79,12 @@ Controller 实现控制循环，通过 API Server 监听集群的共享状态，
 * ResourceEventHandler
   在初始化时将事件类型对应的处理函数注册到 Informer，当事件触发时，由 Informer 调用 Handler
 * Work queues
-  在执行周期里 (processNextWorkItem)，从工作队列 (workqueue) 中获取一个对象来处理。 event handler 可以通过它来排队或重试状态变化处理任务。
+  在执行周期里 (processNextWorkItem)，从工作队列 (workqueue) 中获取一个对象来处理。event handler 可以通过它来排队或重试状态变化处理任务。
   资源在处理中遇到错误时可以被重新入队 (requeued)。
 
 ### 事件 Event
 
-Kubernetes 控制平面大量使用事件和松散耦合的组件。 其他分布式系统常使用远程调用（RPC）来触发行为。 但 Kubernetes 并没有这么做。Kubernetes controller 监听 API server 中 Kubernetes 对象的操作：添加，更新和删除。 当发生此类事件时，controller 将执行其业务逻辑。
+Kubernetes 控制平面大量使用事件和松散耦合的组件。其他分布式系统常使用远程调用（RPC）来触发行为。但 Kubernetes 并没有这么做。Kubernetes controller 监听 API server 中 Kubernetes 对象的操作：添加，更新和删除。当发生此类事件时，controller 将执行其业务逻辑。
 
 例如，为了通过 deployment 来启动 pod，就涉及到许多 controller 和其他控制平面组件协同工作：
 
@@ -93,9 +93,9 @@ Kubernetes 控制平面大量使用事件和松散耦合的组件。 其他分�
 1. Scheduler（在 kube-scheduler 二进制文件内部）——同样是一个 controller，感知到（通过 pod informer）pod 设置了一个空的 spec.nodeName 字段。根据其业务逻辑，它将该 pod 放入其调度队列中。
 1. 与此同时，另一个 controller kubelet（通过其 pod informer）感知到有新的 pod 出现，但是新 pod 的 spec.nodeName 字段为空，因此与 kubelet 的 node name 不匹配。它会忽视该 pod 并返回休眠状态（直到下一个事件）。
 1. Scheduler 更新 pod 中的 spec.nodeName 字段，并将该字段写入 API server，由此将 pod 从工作队列中移出，并调度到具有足够可用资源的 node 上。
-1. 由于 pod 的更新事件，kubelet 将被再次唤醒，这次再将 pod 的 spec.nodeName 与自己的 node name 进行比较，会发现是匹配的，接着 kubelet 将启动 pod 中的容器，并将容器已启动的信息写入 pod status 中， 由此上报给 API server。
+1. 由于 pod 的更新事件，kubelet 将被再次唤醒，这次再将 pod 的 spec.nodeName 与自己的 node name 进行比较，会发现是匹配的，接着 kubelet 将启动 pod 中的容器，并将容器已启动的信息写入 pod status 中，由此上报给 API server。
 1. Replica set controller 会感知到已更新的 pod，但并不会做什么。
-1. 如果 pod 终止，kubelet 将感知到该事件，进而从 API server 获取 pod 对象，并把 pod status 设置为 “terminated”，然后将其写回到 API server。
+1. 如果 pod 终止，kubelet 将感知到该事件，进而从 API server 获取 pod 对象，并把 pod status 设置为“terminated”，然后将其写回到 API server。
 1. Replica set controller 会感知到终止的 pod，并决定必须更换此 pod。它将在 API server 上删除终止了的 pod，然后创建一个新的 pod。
 1. 依此类推。
 
@@ -126,7 +126,7 @@ Kubernetes 由一堆不同角色的节点（集群中机器）组成，如下图
 
 * API server 使用 RESTful HTTP API
 * 外部请求正常使用 json 格式
-* 内部调用使用 protocol buffer ，为了更高的性能
+* 内部调用使用 protocol buffer，为了更高的性能
 * 使用 API 路径参数，如 `GET /api/v1/namespaces/{namespace}/pods`
 
 使用 kubectl 指令列出当前命名空间下的 pods，`kubectl -n *THENAMESPACE* get pods`。实际上会发出 GET /api/v1/namespaces/*THENAMESPACE*/pods 的 HTTP 请求，通过 -v 6 参数能看到 HTTP 请求的 log。
@@ -144,9 +144,9 @@ redis-cli                     1/1     Running   303        12d
 ### API 术语
 
 弄清楚什么是 [RESTful 架构](https://www.ruanyifeng.com/blog/2011/09/restful.html) 就很容易理解和区分 Kubernetes API Server 里面这些概念。
-如果一个架构符合 REST 原则，就称它为 RESTful 架构，REST 是 Representational State Transfer 的缩写，可以翻译为 "表现层状态转化"，这里省略了主语 “资源”（Resources)。 **核心在于 “资源”，它是一种信息实体，可以有很多种外在表现形式，我们把 “资源” 具体呈现出来的形式，叫做它的 “表现层”（Representation）。**
+如果一个架构符合 REST 原则，就称它为 RESTful 架构，REST 是 Representational State Transfer 的缩写，可以翻译为 "表现层状态转化"，这里省略了主语“资源”（Resources)。 **核心在于“资源”，它是一种信息实体，可以有很多种外在表现形式，我们把“资源”具体呈现出来的形式，叫做它的“表现层”（Representation）。**
 
-RESTful API 是基于 HTTP 协议且符合 REST 原则的软件架构，controller 架构也符合 REST 原则。在 Kubernetes 中同时使用了这两种架构，所以弄出来了一些术语来区分指代实体，其实都是 “资源” 这一信息实体在不同上下文中的不同表示形态。
+RESTful API 是基于 HTTP 协议且符合 REST 原则的软件架构，controller 架构也符合 REST 原则。在 Kubernetes 中同时使用了这两种架构，所以弄出来了一些术语来区分指代实体，其实都是“资源”这一信息实体在不同上下文中的不同表示形态。
 
 | | RESTful API | controller 架构 |
 | --- | --- | --- |
@@ -165,7 +165,7 @@ RESTful API 是基于 HTTP 协议且符合 REST 原则的软件架构，controll
 
 #### Version
 
-标示 API group 的版本更新， API group 会有多个版本 (version)。
+标示 API group 的版本更新，API group 会有多个版本 (version)。
 
 * v1alpha1: 初次引入
 * v1beta1: 升级改进
@@ -203,7 +203,7 @@ spec 定义的期望状态提供了实现 "infrastructure-as-code" 的基础，�
 
 这本书是由来自 AWS 和 Red Hat 的两位高级工程师写作的，他们自 2015 年以来就一直致力于 Kubernetes 的开发，写作，教学。
 
-书中主要围绕着 “Kubernetes 扩展编程 “ 主题讲了 Kubernetes 编程基础，client-go，自定义资源（CRD），Operator，API Servers 扩展等内容。
+书中主要围绕着“Kubernetes 扩展编程“主题讲了 Kubernetes 编程基础，client-go，自定义资源（CRD），Operator，API Servers 扩展等内容。
 
 对于接触过云原生但不想仅仅停留在使用阶段的朋友，这本书值得一读，通过学习如何在 Kubernetes 基础上做开发，能让你更加了解 Kubernetes，后续可以深入阅读 Kubernetes 源码。
 

@@ -4,7 +4,7 @@ date: 2022-01-17T09:24:17+08:00
 draft: false
 authors: ["Varun Talwar"]
 translators: ["宋净超"]
-summary: "本博客将向您介绍零信任网络及其基本要素，这是CISO（首席信息安全官）必须考虑的，以使网络强大，在当今的数字转型中没有安全漏洞，并减少潜在的财务损失。"
+summary: "本博客将向您介绍零信任网络及其基本要素，这是 CISO（首席信息安全官）必须考虑的，以使网络强大，在当今的数字转型中没有安全漏洞，并减少潜在的财务损失。"
 tags: ["zero trust","tetrate","tsb"]
 categories: ["安全"]
 links:
@@ -103,7 +103,7 @@ Tetrate Service Bridge（TSB）位于应用边缘，负责控制所有计算集�
 
 DevOps 团队仍然可以继续执行他们的计划，根据业务需求更快地将应用程序部署到多云中，而安全方面可以对微服务的安全策略进行集中控制。让我们看看 TSB 组件如何帮助实现安全。
 
-![微服务的零信任网络的Tetrate实现](008i3skNly1gyggs2hdtaj30wi0q20uz.jpg)
+![微服务的零信任网络的 Tetrate 实现](008i3skNly1gyggs2hdtaj30wi0q20uz.jpg)
 
 微服务的零信任网络的 Tetrate 实现
 

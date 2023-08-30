@@ -1,9 +1,9 @@
 ---
-title: "第四届Service Mesh Meetup上海站回顾"
+title: "第四届 Service Mesh Meetup 上海站回顾"
 date: 2018-11-26T10:53:29+08:00
 draft: false
 authors: ["宋净超"]
-summary: "ServiceMesher社区和蚂蚁金服联合主办、SOFAStack社区协办的第四届Service Mesh Meetup上海站收官，Apache Skywalking 创始人吴晟、蚂蚁金服敖小剑、阿里巴巴 UC 张瑜标(龙轼)、谐云科技徐运元、七牛云的冯玮给大家带来分享。"
+summary: "ServiceMesher 社区和蚂蚁金服联合主办、SOFAStack 社区协办的第四届 Service Mesh Meetup 上海站收官，Apache Skywalking 创始人吴晟、蚂蚁金服敖小剑、阿里巴巴 UC 张瑜标 (龙轼)、谐云科技徐运元、七牛云的冯玮给大家带来分享。"
 tags: ["meetup"]
 categories: ["其他"]
 keywords: ["service mesh","meetup"]
@@ -13,7 +13,7 @@ keywords: ["service mesh","meetup"]
 
 #### Observability and Istio telemetry
 
-吴晟 Apache SkyWalking创始人、Apache Sharding-Sphere原型作者、比特大陆资深技术专家、CNCF OpenTracing标准化委员会成员
+吴晟 Apache SkyWalking 创始人、Apache Sharding-Sphere 原型作者、比特大陆资深技术专家、CNCF OpenTracing 标准化委员会成员
 
 ![](006tNbRwly1fxladzp7j7j318w0u0tke.jpg)
 
@@ -21,13 +21,13 @@ keywords: ["service mesh","meetup"]
 
 #### 蚂蚁金服 Service Mesh 渐进式迁移方案
 
-敖小剑 蚂蚁金服高级技术专家，十六年软件开发经验，微服务专家，Service Mesh布道师，Servicemesher社区联合创始人
+敖小剑 蚂蚁金服高级技术专家，十六年软件开发经验，微服务专家，Service Mesh 布道师，Servicemesher 社区联合创始人
 
 ![](006tNbRwly1fxlaj62fh3j318w0u0qmj.jpg)
 
 ![](006tNbRwly1fxlak1mt4ej30lk12ejxr.jpg)
 
-张瑜标 阿里巴巴技术专家、前京东Hadoop负责人、Hadoop代码贡献者、现负责UC 基于Kubernetes自研的PaaS平台整体的稳定性
+张瑜标 阿里巴巴技术专家、前京东 Hadoop 负责人、Hadoop 代码贡献者、现负责 UC 基于 Kubernetes 自研的 PaaS 平台整体的稳定性
 
 ![](006tNbRwly1fxlajb5i8hj318w0u0wxt.jpg)
 
@@ -35,7 +35,7 @@ keywords: ["service mesh","meetup"]
 
 ![](006tNbRwly1fxlajjihjyj318w0u0nc4.jpg)
 
-#### 探讨和实践基于Istio的微服务治理事件监控
+#### 探讨和实践基于 Istio 的微服务治理事件监控
 
 徐运元 谐云科技云平台架构师，致力于容器 PaaS 平台、企业级容器云平台的方案设计和技术落地
 
@@ -45,7 +45,7 @@ keywords: ["service mesh","meetup"]
 
 ![](006tNbRwly1fxlaky0yv0j318w0u0wtj.jpg)
 
-#### Envoy、Contour与Kubernetes实践
+#### Envoy、Contour 与 Kubernetes 实践
 
 冯玮 七牛容器云平台产品架构师，曾在百度和华为从事公有云领域高性能分布式计算和存储平台的架构设计和产品研发
 

@@ -10,7 +10,7 @@ categories: ["Kubernetes"]
 
 ## 为何要进行 Egress 流量策略管控
 
-2021 年 CNCF 调查显示，全球将 kubernetes 用在生产环境的用户占比已达 59.77%，欧洲用户更是达到了 68.98%。用户正越来越多的将生产业务迁移到 kubernetes 环境下。Gartner 2021 Hype Cycle for Cloud Security 也显示了容器与 Kubernetes 安全已处在”slope of Enlightenment ” 阶段。这说明保护 kubernetes 里的应用服务正变的越来越重要。
+2021 年 CNCF 调查显示，全球将 kubernetes 用在生产环境的用户占比已达 59.77%，欧洲用户更是达到了 68.98%。用户正越来越多的将生产业务迁移到 kubernetes 环境下。Gartner 2021 Hype Cycle for Cloud Security 也显示了容器与 Kubernetes 安全已处在”slope of Enlightenment”阶段。这说明保护 kubernetes 里的应用服务正变的越来越重要。
 
 当我们去审视运行在 kubernetes 中的大量微服务时，我们可以看到微服务安全具有典型的微边界以及需要进行持续性安全工程的特点。我们需要以每个微服务为边界进行保护，无论是其运行时，还是南北和东西流量。需要每个微服务单元在编码之初就开始着手安全考虑，进行安全左移，安全的防护设施、方法、策略应与开发者和 kubernetes 平台运维者适配。还需要有能力洞察所有的流量事件，采集所有运行时日志、事件等数据，通过持续性的安全工程系统对这些数据进行分析，聚合出规则并反馈到安全的策略设定中。
 
@@ -62,7 +62,7 @@ kubernetes 自带的 Network policy，这是最容易想到的关于出向安全
 - 纯四层，无七层的控制能力
 - 无策略执行调试能力
 - 无策略执行日志
-- Networkpolicy 的 “隔离性” 特点使得维护工作变得及其麻烦，例如，本身只想控制其对互联网的访问，但因为隔离性，就不得不额外维护该 pod 在集群内的所有出向（东西向）访问
+- Networkpolicy 的“隔离性”特点使得维护工作变得及其麻烦，例如，本身只想控制其对互联网的访问，但因为隔离性，就不得不额外维护该 pod 在集群内的所有出向（东西向）访问
 - 不能解决 k8s 与外部安全设备协同问题。试想一下，Network policy 做了规则控制后，那么外部的安全设备就可以为该集群打开一个默认通行的规则吗？
 
 Openshift，在 Egress 方面有四个特性与之有关，分别是标准的 Network Policy，Egress IP，Egress Router，Egress Firewall 以及 Egress NetworkPolicy。
@@ -110,7 +110,7 @@ Fortinet 自身以及与 Calico 企业版联合，也实现了与 kubernetes 的
 
 ### Others
 
-Proxy pod 是一种普通的正向代理，应用使用该代理实现对外部业务的访问。此种方式一般仅适合小规模场景，不适合大规模集群及复杂业务。 DNS interception，其原理是通过 patch coredns，如果应用访问 ExternalService 对象中设定的外部服务，则将请求引导到一个专用的 proxy pod 上（例如 Envoy 等）实现对流量的处理。该方案同样不适合大规模场景。
+Proxy pod 是一种普通的正向代理，应用使用该代理实现对外部业务的访问。此种方式一般仅适合小规模场景，不适合大规模集群及复杂业务。DNS interception，其原理是通过 patch coredns，如果应用访问 ExternalService 对象中设定的外部服务，则将请求引导到一个专用的 proxy pod 上（例如 Envoy 等）实现对流量的处理。该方案同样不适合大规模场景。
 
 在完成对上述 6 类 Egress 流量管控方案的分析后，让我们来总结和对比一下这些方案的优缺点：
 

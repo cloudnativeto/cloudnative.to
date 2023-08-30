@@ -24,7 +24,7 @@ Wasm 应用程序被隔离在沙盒中，只能访问用户明确允许的资源
 
 ## 1. 组件模型将是分水岭时刻
 
-标准很少是一个生态系统中最令人兴奋的部分。而且，随着 “组件模型” 这样的名字，激起兴奋感确实是一项艰巨的任务。但是，在这个乏味的名字背后是 Wasm 为软件世界带来的最重要的创新。
+标准很少是一个生态系统中最令人兴奋的部分。而且，随着“组件模型”这样的名字，激起兴奋感确实是一项艰巨的任务。但是，在这个乏味的名字背后是 Wasm 为软件世界带来的最重要的创新。
 
 组件模型描述了 Wasm 二进制文件之间如何交互的方式。更具体地说，两个组件可以告诉对方它们提供的服务以及需要履行的期望。然后，Wasm 模块可以利用彼此的能力。这为软件开发人员提供了一种新的建立应用程序的方式。开发人员可以声明应用程序所需的组件（或者更抽象地说，应用程序所需的功能），然后 Wasm 运行时可以代表用户组装正确的组件集合。
 
@@ -34,15 +34,15 @@ Wasm 最多产的贡献者之一 [Dan Gohman](https://github.com/sunfishcode) �
 
 ## 2. Serverless 将是 Wasm 的最佳应用场景
 
-Serverless 的承诺已经在过去几年中显而易见。AWS Lambda 让我们看到了一种新的、简单的编程模型 —— 函数即服务（FaaS）。然而，尽管 Serverless的概念的势头正在建立，但是底层技术的运行成本仍然很高。这种成本已经转嫁给用户。此外，虽然 FaaS 应用的启动速度比容器快，但仍然满足不了当前对于网络性能的期望。还有提升速度的空间。
+Serverless 的承诺已经在过去几年中显而易见。AWS Lambda 让我们看到了一种新的、简单的编程模型 —— 函数即服务（FaaS）。然而，尽管 Serverless 的概念的势头正在建立，但是底层技术的运行成本仍然很高。这种成本已经转嫁给用户。此外，虽然 FaaS 应用的启动速度比容器快，但仍然满足不了当前对于网络性能的期望。还有提升速度的空间。
 
-Wasm [改变了](https://www.fermyon.com/blog/serverless-reckoning) Serverless 的潜力。几乎立即的启动时间、小的二进制大小和平台和体系结构的中立性，使得 Wasm 二进制文件可以使用比运行今天的 Serverless基础设施所需的资源少得多的资源来执行。
+Wasm [改变了](https://www.fermyon.com/blog/serverless-reckoning) Serverless 的潜力。几乎立即的启动时间、小的二进制大小和平台和体系结构的中立性，使得 Wasm 二进制文件可以使用比运行今天的 Serverless 基础设施所需的资源少得多的资源来执行。
 
-如果全球经济正在进入一个不确定的时期，那么知道 Wasm 可以帮助我们控制成本，同时还能推进开发人员喜欢的 Serverless函数模型，这是件好事。Wasm 的更快的启动时间和适度的资源消耗需要的计算能力比基于容器的系统少得多，并且比 Lambda 等 FaaS 系统更便宜。
+如果全球经济正在进入一个不确定的时期，那么知道 Wasm 可以帮助我们控制成本，同时还能推进开发人员喜欢的 Serverless 函数模型，这是件好事。Wasm 的更快的启动时间和适度的资源消耗需要的计算能力比基于容器的系统少得多，并且比 Lambda 等 FaaS 系统更便宜。
 
-这种对 Wasm 可以改变 Serverless环境的认识，促使 Fermyon 创建了 [Spin](https://developer.fermyon.com/spin/index)。Spin 是一个面向开发者的工具，用于引导、构建、测试和部署 Serverless功能。Spin 的核心是其基于 Wasm 运行时。它是开源的，已经得到 [Fermyon Cloud](https://www.fermyon.com/cloud) 和微软 Azure 的 AKS 的支持，2023 年还会有更多的支持。
+这种对 Wasm 可以改变 Serverless 环境的认识，促使 Fermyon 创建了 [Spin](https://developer.fermyon.com/spin/index)。Spin 是一个面向开发者的工具，用于引导、构建、测试和部署 Serverless 功能。Spin 的核心是其基于 Wasm 运行时。它是开源的，已经得到 [Fermyon Cloud](https://www.fermyon.com/cloud) 和微软 Azure 的 AKS 的支持，2023 年还会有更多的支持。
 
-小、快、便宜、更好。这就是 Wasm 在 2023 年为 Serverless世界带来的组合。
+小、快、便宜、更好。这就是 Wasm 在 2023 年为 Serverless 世界带来的组合。
 
 ## 3. Wasm 应用程序将存储在 DockerHub 和容器注册表中
 
@@ -52,7 +52,7 @@ Wasm [改变了](https://www.fermyon.com/blog/serverless-reckoning) Serverless �
 
 然后 OCI Registries 的一项重大变化改变了景观。OCI（[Open Container Initiative](https://thenewstack.io/open-container-initiative-creates-a-distribution-specification-for-registries/)）是一个小型标准机构，致力于管理围绕 OCI 容器（或我们过去所称的 Docker 容器）的标准。OCI 定义了容器格式、安全模型和运行时。它还定义了如何在注册表和客户端之间传输容器映像。
 
-在 2022 年底，OCI Registries 工作组宣布了一种官方方法来存储除容器映像之外的其他内容。这可能包括 Helm 图表、照片或（你猜到了）Wasm 应用程序。这项新功能被称为 “工件存储”。
+在 2022 年底，OCI Registries 工作组宣布了一种官方方法来存储除容器映像之外的其他内容。这可能包括 Helm 图表、照片或（你猜到了）Wasm 应用程序。这项新功能被称为“工件存储”。
 
 当 DockerHub [宣布支持](https://www.docker.com/blog/announcing-docker-hub-oci-artifacts-support/)这一新的工件存储规范时，Wasm 生态系统中传遍了信号：我们可以简单地将我们的应用程序存储在像 DockerHub 这样的 OCI 注册表中，而不是重新发明轮子。Wasm 生态系统必须进行新的工作，使这成为现实，但这项工作正在进行中。2023 年将是 Wasm 应用程序在 OCI 注册表中找到家的一年。
 

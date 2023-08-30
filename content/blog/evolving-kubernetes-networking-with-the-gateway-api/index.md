@@ -8,7 +8,7 @@ tags: ["Kubernetes","Gateway"]
 date: 2021-04-22T10:03:00+08:00
 ---
 
-译者注：本文译自 [Evolving Kubernetes networking with the Gateway API](https://kubernetes.io/blog/2021/04/22/evolving-kubernetes-networking-with-the-gateway-api/)， Gateway API 的出现解决了 Ingress 的可移植性问题，且有利于基于角色的访问设计。
+译者注：本文译自 [Evolving Kubernetes networking with the Gateway API](https://kubernetes.io/blog/2021/04/22/evolving-kubernetes-networking-with-the-gateway-api/)，Gateway API 的出现解决了 Ingress 的可移植性问题，且有利于基于角色的访问设计。
 
 Ingress 资源是 Kubernetes 众多成功案例中的一个。它创造了一个[多样化的 Ingress 控制器的生态系统](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/)，这些控制器以标准化和一致的方式在数十万个集群中使用。这种标准化有助于用户采用 Kubernetes。然而，在 Ingress 创建五年后，有迹象表明它被分割成不同但[惊人相似的 CRD](https://dave.cheney.net/paste/ingress-is-dead-long-live-ingressroute.pdf) 和 [过载的注释](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/)。Ingress 普遍存在的可移植性问题也限制了它的未来。
 
@@ -127,7 +127,7 @@ spec:
 
 ### 路由和网关绑定
 
-因此，我们有两个 HTTPRoute 匹配并将流量路由到不同的服务。你可能想知道，这些服务在哪里可以访问？它们是通过哪些网络或IP暴露的？
+因此，我们有两个 HTTPRoute 匹配并将流量路由到不同的服务。你可能想知道，这些服务在哪里可以访问？它们是通过哪些网络或 IP 暴露的？
 
 路由如何暴露给客户是由[路由绑定](https://gateway-api.sigs.k8s.io/concepts/api-overview/#route-binding)管理的，它描述了路由和网关如何在彼此之间建立双向关系。当路由与网关绑定时，意味着它们的集体路由规则被配置在底层负载均衡器或代理上，并且路由可以通过网关访问。因此，网关是一个网络数据平面的逻辑表示，可以通过路由配置。
 
@@ -183,4 +183,4 @@ metadata:
 
 - 查阅[用户指南](https://gateway-api.sigs.k8s.io/guides/getting-started/)，看看可以解决哪些用例。
 - 试用现有的[网关控制器](https://gateway-api.sigs.k8s.io/references/implementations/)。
-- 或者[参与进来](https://gateway-api.sigs.k8s.io/contributing/community/)，帮助设计并影响Kubernetes服务网络的未来！
+- 或者[参与进来](https://gateway-api.sigs.k8s.io/contributing/community/)，帮助设计并影响 Kubernetes 服务网络的未来！

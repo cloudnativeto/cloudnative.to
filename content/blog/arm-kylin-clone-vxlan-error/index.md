@@ -86,7 +86,7 @@ coredns-677d9c57f-zjf86   1/1     Running   1          4h45m   10.187.1.12     1
 curl -I 10.187.0.5:9153/metrics
 ```
 
-然后在 `172.18.27.253` 上抓包:
+然后在 `172.18.27.253` 上抓包：
 
 ```shell
 $ tcpdump -nn -i flannel.1 host 10.187.0.5 and port 9153

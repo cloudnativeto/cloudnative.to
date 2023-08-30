@@ -1,10 +1,10 @@
 ---
-title: "容器、服务网格和API网关：从边缘开始"
+title: "容器、服务网格和 API 网关：从边缘开始"
 date: 2018-06-21T18:00:58+08:00
 draft: false
 authors: ["Daniel Bryant"]
 translators: ["崔秀龙"]
-summary: "本文中提到的典型是Envoy（数据平面）、Istio（控制平面）和Ambassador（API Gateway），Matt Klein指出人们在践行微服务的道路踩到的坑大多是与debugging有关，我们应该从服务网格的边缘开始实现反向代理、负载均衡和动态路由。实现或迁移基于容器技术的云原生平台如Kubernetes才刚刚开始，Service Mesh填补了该平台中的许多空白。"
+summary: "本文中提到的典型是 Envoy（数据平面）、Istio（控制平面）和 Ambassador（API Gateway），Matt Klein 指出人们在践行微服务的道路踩到的坑大多是与 debugging 有关，我们应该从服务网格的边缘开始实现反向代理、负载均衡和动态路由。实现或迁移基于容器技术的云原生平台如 Kubernetes 才刚刚开始，Service Mesh 填补了该平台中的许多空白。"
 tags: ["envoy","istio","ambassador"]
 categories: ["service mesh"]
 keywords: ["service mesh","envoy","ambassador"]

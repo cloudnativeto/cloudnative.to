@@ -1,10 +1,10 @@
 ---
-title: "Service Mesh 如何解决微服务中的3个主要挑战"
+title: "Service Mesh 如何解决微服务中的 3 个主要挑战"
 date: 2018-07-28T17:11:16+08:00
 draft: false
 authors: ["Zach Jory"]
 translators: ["李昕阳"]
-summary: "本文讲述的是企业在实施微服务时遇到的挑战，以及如何使用Service Mesh应对这些挑战。"
+summary: "本文讲述的是企业在实施微服务时遇到的挑战，以及如何使用 Service Mesh 应对这些挑战。"
 tags: ["service mesh","microservices"]
 categories: ["service mesh"]
 keywords: ["service mesh"]
@@ -12,9 +12,9 @@ keywords: ["service mesh"]
 
 本文为翻译文章，[点击查看原文](https://dzone.com/articles/how-service-mesh-addresses-3-major-microservices-c)。
 
-**我们都知道微服务会增加复杂性。 了解服务网络如何解决这一问题和其他挑战。**
+**我们都知道微服务会增加复杂性。了解服务网络如何解决这一问题和其他挑战。**
 
-我最近正在阅读 Dimensional Research 撰写的[全球微服务趋势报告](https://go.lightstep.com/global-microservices-trends-report-2018)，在阅读的同时，我个人也认为“服务网络可以帮助解决这个问题。”所以我将阐述这3个挑战以及服务网格是如何解决它们。报告中引用的受访者表明微服务正在得到广泛采用。同样清楚的是，除了微服务带来的无数好处之外，同样也带来了一些严峻的挑战。报告显示：
+我最近正在阅读 Dimensional Research 撰写的[全球微服务趋势报告](https://go.lightstep.com/global-microservices-trends-report-2018)，在阅读的同时，我个人也认为“服务网络可以帮助解决这个问题。”所以我将阐述这 3 个挑战以及服务网格是如何解决它们。报告中引用的受访者表明微服务正在得到广泛采用。同样清楚的是，除了微服务带来的无数好处之外，同样也带来了一些严峻的挑战。报告显示：
 
 - 91％的企业**正在使用**微服务或有计划使用
 - 99％的用户认为在使用微服务时遇到了**挑战**

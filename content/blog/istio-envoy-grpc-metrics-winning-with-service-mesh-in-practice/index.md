@@ -1,5 +1,5 @@
 ---
-title: "使用Istio和Envoy实践服务网格gRPC度量"
+title: "使用 Istio 和 Envoy 实践服务网格 gRPC 度量"
 date: 2018-11-27T19:09:15+08:00
 draft: false
 authors: ["Renato Stoco"]
@@ -270,7 +270,7 @@ curl --request GET \
   --url http://application.yourdomain/health
 ```
 
-你将接收到200，同时你的应用也会记录接受到的请求。**如果你接收到404，可能是你的虚拟服务没有将你的请求地址映射到你的服务上**
+你将接收到 200，同时你的应用也会记录接受到的请求。**如果你接收到 404，可能是你的虚拟服务没有将你的请求地址映射到你的服务上**
 
 请尝试如下方式：
 
@@ -309,7 +309,7 @@ kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=ki
 http://localhost:20001/console/service-graph/istio-apps?layout=cose-bilkent&duration=10800&edges=responseTime95thPercentile&graphType=versionedApp
 ```
 
-你可以看到如下界面:
+你可以看到如下界面：
 
 ![](006tNbRwgy1fwymwetflpj31es0opmy8.jpg)
 
@@ -335,7 +335,7 @@ kubectl port-forward -n istio-system $(kubectl get pod -n istio-system -l app=ja
 
 ## 更多的度量工具
 
-现在有3个应用程序通过 values.yaml 已经安装好了，并使用 Istio 收集了需要度量的数据。尝试使用 grafana，prometheus和servicegraph 检查应用。
+现在有 3 个应用程序通过 values.yaml 已经安装好了，并使用 Istio 收集了需要度量的数据。尝试使用 grafana，prometheus 和 servicegraph 检查应用。
 
 使用一下命令暴露应用程序：
 

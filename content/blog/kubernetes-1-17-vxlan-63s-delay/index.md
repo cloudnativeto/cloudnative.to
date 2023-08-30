@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes v1.17+ 集群下 CNI 使用 VXLAN 模式 SVC 有 63 秒延迟的触发原因定位"
-summary: "本文为使用工具排查出v1.17+的kubernetes集群下为何CNI的VXLAN模式下有超时，并且给出了三种解决方案和定位到问题起源。"
+summary: "本文为使用工具排查出 v1.17+的 kubernetes 集群下为何 CNI 的 VXLAN 模式下有超时，并且给出了三种解决方案和定位到问题起源。"
 authors: ["张浩"]
 categories: ["Kubernetes"]
 tags: ["tcpdump","vxlan","wireshark"]
@@ -9,18 +9,18 @@ date: 2020-05-28T15:00:00+08:00
 
 ## 前言
 
-这个问题 flannel 和 calico 的 VXLAN 模式下都会发生，部分人的集群的 A 记录 UDP 下查询可能有问题。原因是 `v1.17+` 的 kubernetes 某部分会引起内核的某个 UDP 相关的 BUG 而不是 CNI 的软件层面， WEAVE 没有这个问题，原因后面会说到。写这篇文章的日期是 `05/28`，最开始发现是上周五也就是 `05/23` 号，文章从时间线写起，因为很多时候想发文章但是没空。
+这个问题 flannel 和 calico 的 VXLAN 模式下都会发生，部分人的集群的 A 记录 UDP 下查询可能有问题。原因是 `v1.17+` 的 kubernetes 某部分会引起内核的某个 UDP 相关的 BUG 而不是 CNI 的软件层面，WEAVE 没有这个问题，原因后面会说到。写这篇文章的日期是 `05/28`，最开始发现是上周五也就是 `05/23` 号，文章从时间线写起，因为很多时候想发文章但是没空。
 
 2020-07-19 官方版本 v1.18.6, v1.16.13, v1.17.9+ 已经修复这个问题，可以同版本内升级，或者只切 kube-proxy 版本。
 
 ## 由来
 
-上周五我经过同事的工位看到同事的桌面是 `kubectl get po` 的输出，问他咋开始学 Kubernetes 了，他说跟着视频学下。看了下用的 kubeadm 部署了一套 `1.18.2` 的集群。1.18 的 kube-proxy 的 ipvs 包的 parseIP 有 bug ，我推荐他换 `v1.17.5`。他当时在部署一个入门的 SVC 实验，无法解析域名。使用 dig 命令排查了下，下面是对照：
+上周五我经过同事的工位看到同事的桌面是 `kubectl get po` 的输出，问他咋开始学 Kubernetes 了，他说跟着视频学下。看了下用的 kubeadm 部署了一套 `1.18.2` 的集群。1.18 的 kube-proxy 的 ipvs 包的 parseIP 有 bug，我推荐他换 `v1.17.5`。他当时在部署一个入门的 SVC 实验，无法解析域名。使用 dig 命令排查了下，下面是对照：
 
 - `dig @<podIP> +short kubernetes.default.svc.cluster.local` 能解析
 - `dig @10.96.0.10 +short kubernetes.default.svc.cluster.local` 超时
 
-很多市面上的 kubeadm 部署教程都是直接命令 `kubeadm init` 的，所以我推荐同事去按照我文章的 [kubeadm 部署](https://zhangguanzhang.github.io/2019/11/24/kubeadm-base-use/) 一套后再试试，叫他用`v1.17`的最新版本`v1.17.5`，结果还是上面一样。 coredns 实际上还有 metrics 的 http 接口，从 http 层测了下：
+很多市面上的 kubeadm 部署教程都是直接命令 `kubeadm init` 的，所以我推荐同事去按照我文章的 [kubeadm 部署](https://zhangguanzhang.github.io/2019/11/24/kubeadm-base-use/) 一套后再试试，叫他用`v1.17`的最新版本`v1.17.5`，结果还是上面一样。coredns 实际上还有 metrics 的 http 接口，从 http 层测了下：
 
 - `curl -I 10.96.0.10:9153/metrics` 超时，很久之后才有返回
 - `curl -I <podIP>:9153/metrics` 能直接返回
@@ -53,7 +53,7 @@ user	0m0.002s
 sys	0m0.007s
 ```
 
-proxyMode 是 ipvs ，用 ipvsadm 看下超时的时候的状态，一直是 `SYN_RECV`，也就是发送了 SYN ，没收到回包。
+proxyMode 是 ipvs，用 ipvsadm 看下超时的时候的状态，一直是 `SYN_RECV`，也就是发送了 SYN，没收到回包。
 
 ```shell
 $ ipvsadm -lnc |& grep 9153
@@ -62,7 +62,7 @@ TCP 00:59  SYN_RECV    10.96.0.10:41282   10.96.0.10:9153    10.244.2.73:9153
 
 ### 抓包
 
-因为 CNI 使用的 flannel ，用的 VXLAN 模式。master 上抓 9153 和 `flannel.1` 的 8472 端口，coredns 的 POD 所在 node 上抓 flannel 的 VXLAN 包，下面三个是对应的：
+因为 CNI 使用的 flannel，用的 VXLAN 模式。master 上抓 9153 和 `flannel.1` 的 8472 端口，coredns 的 POD 所在 node 上抓 flannel 的 VXLAN 包，下面三个是对应的：
 
 ```txt
 [root@master /root]# tcpdump -nn -i flannel.1 port 9153
@@ -152,13 +152,13 @@ IP 10.244.0.0.2201 > 10.244.2.73.9153: Flags [.], ack 114, win 342, options [nop
 
 先看上面的第一部分，搜了下资料，得知 TCP 默认 SYN 报文最大 retry 5 次，每次超时了翻倍，`1s -> 3s -> 7s -> 15s -> 31s -> 63s`。只有 63 秒的时候 node 的机器上才收到了 VXLAN 的报文。说明 POD 所在  node 压根没收到 63 秒之前的。
 
-一般 LVS 的 dr 模式下 TCP 的时间戳混乱或者其他几个 ARP 的内核参数不对下 `SYN` 是一直收不到的而不是63秒后有结果，所以和内核相关参数无关。于是同样上面的步骤 tcpdump 抓包，加上`-w filename.pcap`选项把抓的包导出下来导入到 wireshark 里准备看看。
+一般 LVS 的 dr 模式下 TCP 的时间戳混乱或者其他几个 ARP 的内核参数不对下 `SYN` 是一直收不到的而不是 63 秒后有结果，所以和内核相关参数无关。于是同样上面的步骤 tcpdump 抓包，加上`-w filename.pcap`选项把抓的包导出下来导入到 wireshark 里准备看看。
 
 ### 报文分析
 
 9153 的包 wireshark 里看 63 秒前面都是 TCP 的 SYN 重传，看到了 master 上向外发送的 VXLAN 报文的时候有了发现。
 
-可以看到 UDP 的 checksum 是`0xffff`，我对 UDP 报文不太熟悉， UDP 的 header 的 Checksum 没记错的话 `CRC32` 校验的，不可能是这种两个字节都置 1 的 `0xffff` ，明显就是 UDP 的 header 的校验出错了。后面几个正常包的 Checksum 都是 missing 的。
+可以看到 UDP 的 checksum 是`0xffff`，我对 UDP 报文不太熟悉，UDP 的 header 的 Checksum 没记错的话 `CRC32` 校验的，不可能是这种两个字节都置 1 的 `0xffff` ，明显就是 UDP 的 header 的校验出错了。后面几个正常包的 Checksum 都是 missing 的。
 
 ![vxlan1](vxlan-udp-csum1.png)
 
@@ -168,7 +168,7 @@ wireshark 的`编辑`->`首选项`->`Protocols`->`UDP`->`Validate the UDP checks
 
 ### 不是根本的解决方法
 
-搜了下 `wireshark linux udp checksum incorrect`，都是推荐把 `Checksum Offload` disable 掉就行了，例如我这里是 flannel ，则是：
+搜了下 `wireshark linux udp checksum incorrect`，都是推荐把 `Checksum Offload` disable 掉就行了，例如我这里是 flannel，则是：
 
 ```shell
 $ /sbin/ethtool -K flannel.1 tx-checksum-ip-generic off
@@ -209,7 +209,7 @@ Checksum Offload 是网卡的一个功能选项。如果该选项开启，则网
 
 ### 对照组
 
-很奇怪的就是为啥就是我的 ansible 部署的二进制就正常没这个问题，而 kubeadm 部署的就不正常，后面我花时间整了以下几个对照组(期间同事也帮我做了几个条件下的测试，但是不是系统用错了就是版本整错了。。。)，终于找到了问题的范围，下面是我自己统计的对照组信息， kubeadm 和 ansible 版本均为`1.17.5`测试。os 不重要，因为最终排查出和 os 无关：
+很奇怪的就是为啥就是我的 ansible 部署的二进制就正常没这个问题，而 kubeadm 部署的就不正常，后面我花时间整了以下几个对照组 (期间同事也帮我做了几个条件下的测试，但是不是系统用错了就是版本整错了。。。)，终于找到了问题的范围，下面是我自己统计的对照组信息，kubeadm 和 ansible 版本均为`1.17.5`测试。os 不重要，因为最终排查出和 os 无关：
 
 | os     | type(kubeadm or ansible)   |  flannel version  |   flannel is running in pod? |  will 63 sec delay? |
 | :----- |          :----:            |        :----:     |             :----:           |  :----:  |
@@ -234,9 +234,9 @@ Checksum Offload 是网卡的一个功能选项。如果该选项开启，则网
 | 7.6    |        ansible             |       v1.17.5        |               no               |      no       |
 
 
-可以看出就是 1.17 以上的 kube-proxy 如果使用 POD 则会有这个问题，而非 POD 则不会， 在 github 上 [compare 了下 v1.17.0 和 v1.16.3 ](https://github.com/kubernetes/kubernetes/compare/v1.16.3...v1.17.0)。
+可以看出就是 1.17 以上的 kube-proxy 如果使用 POD 则会有这个问题，而非 POD 则不会，在 github 上 [compare 了下 v1.17.0 和 v1.16.3 ](https://github.com/kubernetes/kubernetes/compare/v1.16.3...v1.17.0)。
 
-发现了 [Dockerfile 的改动](https://github.com/kubernetes/kubernetes/commit/fed582333f639dc22e879f4bbb258e403c210c30)，`1.17.0` 里的 Dockerfile 的 BASEIMAGE 是用  [指定了一个源安装了最新的 iptables](https://github.com/coreos/flannel/pull/1282#issuecomment-635273081)，然后利用 `update-alternatives` 把脚本 `/usr/sbin/iptables-wrapper` 去替代 `iptables` 来检测应该使用 `nft` 还是 `legacy`， hack 下镜像回自带源里的 iptables 验证下。
+发现了 [Dockerfile 的改动](https://github.com/kubernetes/kubernetes/commit/fed582333f639dc22e879f4bbb258e403c210c30)，`1.17.0` 里的 Dockerfile 的 BASEIMAGE 是用  [指定了一个源安装了最新的 iptables](https://github.com/coreos/flannel/pull/1282#issuecomment-635273081)，然后利用 `update-alternatives` 把脚本 `/usr/sbin/iptables-wrapper` 去替代 `iptables` 来检测应该使用 `nft` 还是 `legacy`，hack 下镜像回自带源里的 iptables 验证下。
 
 ```Dockerfile
 FROM registry.aliyuncs.com/google_containers/kube-proxy:v1.17.5

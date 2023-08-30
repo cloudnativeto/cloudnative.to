@@ -1,5 +1,5 @@
 ---
-title: "探讨Service Mesh中一种更高效的代理模式"
+title: "探讨 Service Mesh 中一种更高效的代理模式"
 date: 2018-07-01T12:33:23+08:00
 draft: false
 authors: ["陈洋钧"]
@@ -45,7 +45,7 @@ spec:
 
 ![](https://raw.githubusercontent.com/servicemesher/website/master/content/blog/a-new-more-efficient-proxy-model/00704eQkgy1fsu96jwbo7j30jh0d8dgv.jpg)
 
-可见，Cilium 能识别 service-name 和 labels ，并进行导流。策略相当灵活。
+可见，Cilium 能识别 service-name 和 labels，并进行导流。策略相当灵活。
 
 Cilium 还做了个性能测试，在 Pod - Proxy - Pod 场景下的请求延迟对比：
 
@@ -65,17 +65,17 @@ Cilium 的延迟全部小于当前的 Envoy、Nginx、Haproxy 代理。
 
 而 2016 年，两个不为人知的小项目 linked 和 Envoy 也许没有想到自己在两年后的今天承载了下一代微服务框架的使命：无侵入式微服务架构，这种架构目前有星星燎原之势取代 SpringCloud 模式成为转折点，新架构完全解耦微服务框架和应用，使应用节点不再关心服务注册、发现、调用等问题，应用只管把请求发送给与应用共部署的代理进程，这个代理进程对内外承接应用所有的请求，并自身组成一个网络，相互间调用，最终把请求返回给应用，这意味着应用只关心自身业务实现，不再关心请求是如何发送的，发送到哪里的，统一由代理进程进行转发。并且应用代码可以用任何语言实现，在代码层面和框架完全解耦，不像 SpringCloud 应用进程需要基于这个框架进行开发，而是彻底地从应用进程中分离，这种解耦似乎一下子使整体系统的复杂度下降了一个级别。框架从应用代码中完全下沉到了另一个代理进程中，应用和“代理”仅以标准的协议交互，换句话说，框架从函数级别的接口变成了进程间通讯接口。这种彻底的解耦让应用抛开“包袱”变得轻量，这在复杂系统和资源敏感型系统中非常有好处，比如应用可以使用相比 Java 占用资源的 golang 语言编写程序；比如改变业务代码更加容易，也不会因为框架改变导致业务代码改变。进而不妨再大胆想象一下，曾经我们使用的 database library 是否也可以从应用代码里剥离出来下沉到代理进程呢？
 
-2016年9月，Linked 背后的创业公司 Buoyant 第一次在 SF Microservices 提出了“Service Mesh” 概念，并随后在 2017 年 4月 William Morgan 给 Service Mesh 做了定义：
+2016 年 9 月，Linked 背后的创业公司 Buoyant 第一次在 SF Microservices 提出了“Service Mesh”概念，并随后在 2017 年 4 月 William Morgan 给 Service Mesh 做了定义：
 
 > A service mesh is a dedicated infrastructure layer for handling service-to-service communication. It’s responsible for the reliable delivery of requests through the complex topology of services that comprise a modern, cloud native application. In practice, the service mesh is typically implemented as an array of lightweight network proxies that are deployed alongside application code, without the application needing to be aware.
 
 **are deployed alongside application code, without the application needing to be aware** 这句话道出了 mesh 的核心，即对应用无感知和无侵入。微服务框架从应用代码里剥离出来，从强依赖变成弱依赖，甚至无依赖，应用本身不再关心集群状态、调用路由、安全策略等等，甚至可以自由升级，框架升级不再影响应用自身，业务迭代变得更加迅速，解耦带来了巨大收益，架构变得更加优雅。
 
-Service Mesh 的两个核心组件为控制组件和数据组件，数据组件和应用一起部署，接管应用所有请求，应用只需访问类似 http://127.0.0.1/service 地址，剩下代理进程会转发请求到对应的对端服务，并实现服务发现注册、流量控制、安全控制等功能。所有代理进程相互连通，组成了像一个格子的网络，并整个网络被一个控制器管理，而这个网格就叫做 Mesh 。Service Mesh 的数据层组件的主要实现者是 Linked 和 Envoy。
+Service Mesh 的两个核心组件为控制组件和数据组件，数据组件和应用一起部署，接管应用所有请求，应用只需访问类似 http://127.0.0.1/service 地址，剩下代理进程会转发请求到对应的对端服务，并实现服务发现注册、流量控制、安全控制等功能。所有代理进程相互连通，组成了像一个格子的网络，并整个网络被一个控制器管理，而这个网格就叫做 Mesh。Service Mesh 的数据层组件的主要实现者是 Linked 和 Envoy。
 
-2017年5月24日，Google 和 IBM 高调发布了基于 Service Mesh 思想的服务化框架产品 Istio，出身名门的 Istio 一下子火了，并给当时出身草根的 Linked 产品承重一击，Linked 瞬间陷入了黑暗。Istio 数据层收编了 Envoy ，自己做了控制层，提供 Pilot、Mixer、Istio-Auth 三大组件，如下：
+2017 年 5 月 24 日，Google 和 IBM 高调发布了基于 Service Mesh 思想的服务化框架产品 Istio，出身名门的 Istio 一下子火了，并给当时出身草根的 Linked 产品承重一击，Linked 瞬间陷入了黑暗。Istio 数据层收编了 Envoy，自己做了控制层，提供 Pilot、Mixer、Istio-Auth 三大组件，如下：
 
-1. Mixer：提供监控数据管理、路由、负载均衡、路由、调用追踪等流量管理，是控制器的核心，并提供后端对接平台，如k8s、Mesos等。
+1. Mixer：提供监控数据管理、路由、负载均衡、路由、调用追踪等流量管理，是控制器的核心，并提供后端对接平台，如 k8s、Mesos 等。
 2. Pilot（飞行员）: Mixer 的执行模块，负责对 Envoy 进行运行时配置。
 3. Istio-Auth：提供服务间 TLS 安全通信、角色鉴权、用户认证等 AAA 管理。
 
@@ -83,13 +83,13 @@ Envoy 与应用部署在一起，提供服务间请求高效转发，并提供�
 
 ![](https://raw.githubusercontent.com/servicemesher/website/master/content/blog/a-new-more-efficient-proxy-model/00704eQkgy1fsu97qrffkj31900oqwid.jpg)
 
-一开始 Linked 仅仅只有数据层面，是缺乏控制面的，而 Istio 一开始的定位就很清晰地包括了控制和数据面，后来 Buoyant 公司借鉴 Istio 的思想，开发了与 Istio 竞争的 Conduit，控制面用 Rust 开发，从这个角度讲， Google 似乎看得更远，Buoyant 挺有危机感。
+一开始 Linked 仅仅只有数据层面，是缺乏控制面的，而 Istio 一开始的定位就很清晰地包括了控制和数据面，后来 Buoyant 公司借鉴 Istio 的思想，开发了与 Istio 竞争的 Conduit，控制面用 Rust 开发，从这个角度讲，Google 似乎看得更远，Buoyant 挺有危机感。
 
 介绍完 Service Mesh，来看看能实现一个类似数据转发层的 eBPF 框架。
 
 ## 新内核的网络利器 eBPF
 
-eBPF(Extended Berkeley Packet Filter)是 Kernel 3.18 之后的一个内核模块，提供了一种在网络栈的钩子节点处动态运行用户代码的能力，这种动态加载无需重启 Kernel ，用户使用 C 语言编写，由 llvm 编译成可执行文件，但因为是在内核态执行，eBPF 对用户代码非常严格，甚至提供了一个叫 verifier 的审核模块对用户代码进行检查，确保用户代码符合内核要求，并同时能在短时间内执行完毕，即便如此，只要设计巧妙，也能实现很高级的网络功能，Cilium 的能力和价值就在此了。
+eBPF(Extended Berkeley Packet Filter) 是 Kernel 3.18 之后的一个内核模块，提供了一种在网络栈的钩子节点处动态运行用户代码的能力，这种动态加载无需重启 Kernel，用户使用 C 语言编写，由 llvm 编译成可执行文件，但因为是在内核态执行，eBPF 对用户代码非常严格，甚至提供了一个叫 verifier 的审核模块对用户代码进行检查，确保用户代码符合内核要求，并同时能在短时间内执行完毕，即便如此，只要设计巧妙，也能实现很高级的网络功能，Cilium 的能力和价值就在此了。
 
 编写 eBPF 的限制如下：
 

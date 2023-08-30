@@ -21,13 +21,13 @@ date: 2021-06-30T18:00:00+08:00
 - 探索 Pod 自动伸缩提前期
 - 为 Kubernetes 节点选择最佳实例大小
 - 在 Kubernetes 集群中过度配置节点
-- 为 Pod 选择正确的内存和CPU资源
+- 为 Pod 选择正确的内存和 CPU 资源
 - 关于集群的缩容
-- 为什么不基于内存或CPU进行自动伸缩
+- 为什么不基于内存或 CPU 进行自动伸缩
 
-在 Kubernetes 中, 自动伸缩功能包括:
-- [Pod水平自动伸缩（Horizontal Pod Autoscaler，HPA）](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)
-- [Pod垂直自动伸缩（Vertical Pod Autoscaler，VPA）](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler)
+在 Kubernetes 中，自动伸缩功能包括：
+- [Pod 水平自动伸缩（Horizontal Pod Autoscaler，HPA）](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)
+- [Pod 垂直自动伸缩（Vertical Pod Autoscaler，VPA）](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler)
 - [集群自动伸缩（Cluster Autoscaler，CA）](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler)
 
 这些自动伸缩组件属于不同的类别，关注点也不同。
@@ -36,13 +36,13 @@ Horizontal Pod Autoscaler 负责增加 Pod 的副本数量。随着你的应用�
 
 Vertical Pod Autoscaler 的使用场景是，当资源不足无法创建更多的 Pod 副本时，而又仍然需要处理更多的流量。
 一个简单的例子，你无法通过简单地添加更多的 Pod 副本来扩容数据库。数据库可能需要进行数据分片或者配置只读节点。
-但你可以通过增加内存和CPU资源来让数据库能够处理更多的连接数。
+但你可以通过增加内存和 CPU 资源来让数据库能够处理更多的连接数。
 这正是 VPA 的目的，增加 Pod 的资源大小。
 
 最后，我们要说说集群自动伸缩组件了。
 当你的集群资源不足时，Cluster Autoscaler 会配置一个新的计算单元并将其添加到集群中。如果空节点过多，会移除它们以降低成本。
 
-虽然这三个组件都 “自动伸缩” 了一些东西，但它们并不造成相互之间的干扰。它们各自都有自己使用场景，定义和工作机制。并且它们是在独立的项目中开发的，独立的使用。
+虽然这三个组件都“自动伸缩”了一些东西，但它们并不造成相互之间的干扰。它们各自都有自己使用场景，定义和工作机制。并且它们是在独立的项目中开发的，独立的使用。
 然而，更重要的是，为了最好的 scaling 你的集群，你必须花些心思去设置好这些 Autoscaler，让我们看个例子。
 
 ### 当自动伸缩的 Pod 报错
@@ -56,7 +56,7 @@ Vertical Pod Autoscaler 的使用场景是，当资源不足无法创建更多�
 1. HPA 配置每 10 个请求进来就添加一个 Pod 副本（例如：如果有 40 个并发请求涌入，会扩容到 4 个 Pod 副本）。
 2. CA 配置在资源不足时，创建更多的 Node 节点。
 
-> HPA 可以通过在 deployment 文件中使用 Custom Metrics（例如在 Ingress Controller 中的 queries per second（QPS）） 来扩容 Pod 副本数量。
+> HPA 可以通过在 deployment 文件中使用 Custom Metrics（例如在 Ingress Controller 中的 queries per second（QPS））来扩容 Pod 副本数量。
 
 现在，你开始为集群增加 30 个并发请求，并观察一下情况：
 1. HPA 开始扩容 Pod。
@@ -105,10 +105,10 @@ Kubernetes 中一个 Worker Node 节点的内存和 CPU 等资源使用分布如
 
 ![](left-space-pod.png ':size=700')
 
-所以第四个会一直保持 “pending” 状态，直到它被调度到其他的 Node 节点上。
+所以第四个会一直保持“pending”状态，直到它被调度到其他的 Node 节点上。
 
 既然 Cluster Autoscaler 知道没有空间容纳第四个 Pod，为什么不提前配置一个新节点？
-为什么它要在 Pod 处于 “pending” 状态之后再触发创建新 Node 节点的操作？
+为什么它要在 Pod 处于“pending”状态之后再触发创建新 Node 节点的操作？
 
 ### Kubernetes 的 Cluster Autoscaler 是如何工作的
 
@@ -156,8 +156,8 @@ Horizontal Pod Autoscaler 控制器负责检查指标并决定扩大或缩小副
 2. 需要创建那种类型的节点组。
 
 整个过程的时间花费应该是：
-- 在少于 100 个节点且每个节点最多 30 个 Pod 的集群上不超过 30 秒。 平均延迟应该是大约 5 秒。
-- 在具有 100 到 1000 个节点的集群上不超过 60 秒。 平均延迟应约为 15 秒。 
+- 在少于 100 个节点且每个节点最多 30 个 Pod 的集群上不超过 30 秒。平均延迟应该是大约 5 秒。
+- 在具有 100 到 1000 个节点的集群上不超过 60 秒。平均延迟应约为 15 秒。 
 
 ![](hpa-ca-time.png ':size=700')
 
@@ -185,7 +185,7 @@ Horizontal Pod Autoscaler 控制器负责检查指标并决定扩大或缩小副
 这里提供了几种减少 scaling 时间的方法：
 - 调整 Horizontal Pod Autoscaler 的刷新时间（由 --horizontal-pod-autoscaler-sync-period 参数控制，默认 15s）。
 - 调整抓取 Pod 的 CPU 和内存使用情况的间隔频率（由 metric-resolution 变量控制，默认 60s）。
-- 调整 Cluster Autoscaler 扫描未被调度 Pod 的间隔频率（由 scan-interval 变量控制，默认10s）。
+- 调整 Cluster Autoscaler 扫描未被调度 Pod 的间隔频率（由 scan-interval 变量控制，默认 10s）。
 - 调整 Node 节点上缓存容器镜像的方式（[通过诸如 kube-fledged 等工具](https://github.com/senthilrch/kube-fledged)）。
 
 但即使将这些设置调整为很小的值，你仍然会收到云提供商创建计算资源的时间限制。有什么方式优化这个部分吗？
@@ -230,7 +230,7 @@ Node 节点可以承载 58 个 Pod 的运行，只有超过 58 个 Pod 副本时
 
 节点上可以拥有的 Pod 数量决定了效率的峰值。
 
-一些云提供商将 Pod 的数量限制为 110 个（比如 GKE）。其他一些限制是由底层网络基于每个实例（即AWS）规定的。
+一些云提供商将 Pod 的数量限制为 110 个（比如 GKE）。其他一些限制是由底层网络基于每个实例（即 AWS）规定的。
 
 > [你可以在这里查看大多数云提供商的限制](https://docs.google.com/spreadsheets/d/1RPpyDOLFmcgxMCpABDzrsBYWpPYCIBuvAoUQLwOGoQw/edit#gid=907731238)
 
@@ -280,11 +280,11 @@ Node 节点可以承载 58 个 Pod 的运行，只有超过 58 个 Pod 副本时
 
 ![](placeholder.png ':size=700')
 
-为了确保在创建真正的 Pod 时能快速的驱逐占位Pod，可以使用[优先级和抢占](https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/)。
+为了确保在创建真正的 Pod 时能快速的驱逐占位 Pod，可以使用[优先级和抢占](https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/)。
 
 Pod Priority 表示一个 Pod 相对于其他 Pod 的重要性。
 
-当一个 Pod 无法被调度时，Scheduler 会尝试抢占（驱逐）较低优先级的 Pod 以调度 “pending” 的 Pod。
+当一个 Pod 无法被调度时，Scheduler 会尝试抢占（驱逐）较低优先级的 Pod 以调度“pending”的 Pod。
 
 可以使用 PodPriorityClass 在集群中配置 Pod 优先级：
 
@@ -308,9 +308,9 @@ PriorityClass 还有两个可选字段：globalDefault 和 description。
 
 现在，你已准备好过度配置集群，该是时候考虑优化应用程序以进行扩展了。
 
-### 为 Pod 选择正确的内存和CPU资源
+### 为 Pod 选择正确的内存和 CPU 资源
 
-Cluster Autoscaler 会根据 “pending” Pod 的出现来做出 scaling 决策。
+Cluster Autoscaler 会根据“pending”Pod 的出现来做出 scaling 决策。
 
 Kubernetes Scheduler 根据 Node 节点的内存和 CPU 负载情况决定将 Pod 分配（或不分配）给节点。
 
@@ -370,8 +370,8 @@ Scheduler 在创建 Pod 之前使用 Pod 的内存和 CPU 请求来选择最佳�
 此时，你应该使用 Guaranteed Quality of Service 还是 Burstable Quality of Service？
 
 这取决于如下两点：
-1. 当你希望最小化 Pod 的重新调度和驱逐时，请使用 Guaranteed Quality of Service（请求等于限制）。 一个很好的例子是用于数据库的 Pod。
-2. 当你想要优化集群并明智地使用资源时，请使用 Burstable Quality of Service（请求匹配实际平均使用情况）。 如果您有 Web 应用程序或 REST API，您可能希望使用 Burstable Quality of Service。
+1. 当你希望最小化 Pod 的重新调度和驱逐时，请使用 Guaranteed Quality of Service（请求等于限制）。一个很好的例子是用于数据库的 Pod。
+2. 当你想要优化集群并明智地使用资源时，请使用 Burstable Quality of Service（请求匹配实际平均使用情况）。如果您有 Web 应用程序或 REST API，您可能希望使用 Burstable Quality of Service。
 
 那如何选择正确的请求和限制值？
 
@@ -397,7 +397,7 @@ Vertical Pod Autoscaler 从 Pod 收集数据并应用回归模型来推断请求
 
 如果检查通过，Cluster Autoscaler 将从集群中删除节点。
 
-### 为什么不基于内存或CPU进行自动伸缩
+### 为什么不基于内存或 CPU 进行自动伸缩
 
 在扩缩容时，基于 CPU 或内存的 Cluster Autoscaler 不关心 pod。
 

@@ -1,5 +1,5 @@
 ---
-title: "Knative Eventing in-memory-channel实现原理解析"
+title: "Knative Eventing in-memory-channel 实现原理解析"
 date: 2019-02-22T14:08:59+08:00
 draft: false
 authors: ["牛秋霖"]
@@ -9,7 +9,7 @@ categories: ["serverless"]
 keywords: ["service mesh","服务网格","knative","serverless"]
 ---
 
-关于 Knative eventing 的基本概念可以参考:
+关于 Knative eventing 的基本概念可以参考：
 
 - <https://github.com/knative/docs/blob/master/eventing/README.md>
 - <https://thenewstack.io/knative-enables-portable-serverless-platforms-on-kubernetes-for-any-cloud/>
@@ -20,7 +20,7 @@ keywords: ["service mesh","服务网格","knative","serverless"]
 
 ## in-memory-channel controller
 
-in-memory-channel 安装好以后就会自动创建一个 controller 和 in-memory-channel-dispatcher。 dispatcher 启动 http 服务接受 event，并根据 event 所属 channel 自动寻找相关的 subscription 然后把事件发送出去。因为这是一个基于内存实现的 channel 所以仅仅是转发一下事件不能用于生产环境，在生产环境可以使用 gcppubsub、kafka 以及 natss 等存储介质。
+in-memory-channel 安装好以后就会自动创建一个 controller 和 in-memory-channel-dispatcher。dispatcher 启动 http 服务接受 event，并根据 event 所属 channel 自动寻找相关的 subscription 然后把事件发送出去。因为这是一个基于内存实现的 channel 所以仅仅是转发一下事件不能用于生产环境，在生产环境可以使用 gcppubsub、kafka 以及 natss 等存储介质。
 
 in-memory-channel controller 监听 channel 资源如果发现有 channel 的 provisioner 是自己就开始做 EventResource 到 channel 的 feed(目前是基于 istio 的 virtualService 实现的)
 
@@ -31,9 +31,9 @@ in-memory-channel controller 监听 channel 资源如果发现有 channel 的 pr
 - 把 consumer 绑定到 channel(subscription)
 - 把接收到的消息 dispatch 到相应的 subscription
 - channel 是可以有自己的后端存储的，自己的后端存储可以是任何消息中间件，in-memory 只保存在内存中
-- 目前 channel 接收和 dispatch eventing 都是基于 http 协议的([CloudEvent 在设计上是支持很多协议的](https://github.com/cloudevents/spec/blob/v0.1/spec.md#protocol)， [但是目前 knative 只实现了 http 协议](https://github.com/knative/eventing/blob/master/docs/spec/interfaces.md#addressable))
+- 目前 channel 接收和 dispatch eventing 都是基于 http 协议的 ([CloudEvent 在设计上是支持很多协议的](https://github.com/cloudevents/spec/blob/v0.1/spec.md#protocol)， [但是目前 knative 只实现了 http 协议](https://github.com/knative/eventing/blob/master/docs/spec/interfaces.md#addressable))
 
-in-memory channel controller 发现如果有 channel 的 provisioner 是 ClusterChannelProvisioner 会做如下三件事情:
+in-memory channel controller 发现如果有 channel 的 provisioner 是 ClusterChannelProvisioner 会做如下三件事情：
 
 - 创建一个 service，这个 service 就是 event Resource 向自己发送事件时使用的 service，并且 service 会写入到 channel 的 Status.Address.Hostname 字段。channel 这是一个[地址可达](https://github.com/knative/eventing/blob/master/docs/spec/interfaces.md#addressable)的资源
 
@@ -41,7 +41,7 @@ in-memory channel controller 发现如果有 channel 的 provisioner 是 Cluster
 
 - 配置 Channel 的 subscriptions
 
-  不过配置 subscriptions 的动作不是在接收到 channel cr 的时候触发的。in-memory-channel controller 会 watch subscriptions 资源，当有 subscriptions 创建或者修改的时候就把相关的 subscription 绑定到 channel 上( [subscribable.subscribers](https://github.com/knative/eventing/blob/master/docs/spec/spec.md#group-eventingknativedevv1alpha1))
+  不过配置 subscriptions 的动作不是在接收到 channel cr 的时候触发的。in-memory-channel controller 会 watch subscriptions 资源，当有 subscriptions 创建或者修改的时候就把相关的 subscription 绑定到 channel 上 ( [subscribable.subscribers](https://github.com/knative/eventing/blob/master/docs/spec/spec.md#group-eventingknativedevv1alpha1))
 
 ## 创建一个 testchannel
 
@@ -59,14 +59,14 @@ spec:
     name: in-memory-channel
 ```
 
-channel 定义中的 provisioner 是 channel 的实现实体(如果把 channel 比喻成 service/endpoint 的话那么 provisioner 就相当于是 service 对应的 Pod)。 channel 本身其实只是一个概念、一个定义。具体的实现都是 provisioner 来做的。channel 使用哪个 provisioner 就相当于是使用哪一种实现（是不是有一种 StorageClass 的感觉？）。目前 knative 支持的实现有：
+channel 定义中的 provisioner 是 channel 的实现实体 (如果把 channel 比喻成 service/endpoint 的话那么 provisioner 就相当于是 service 对应的 Pod)。channel 本身其实只是一个概念、一个定义。具体的实现都是 provisioner 来做的。channel 使用哪个 provisioner 就相当于是使用哪一种实现（是不是有一种 StorageClass 的感觉？）。目前 knative 支持的实现有：
 
 - in-memory 一般只在测试时使用
 - gcppubsub
 - kafka
 - natss
 
-channel 创建提交以后会创建出现下面这样的一个 channel 资源，和一个kubernetes serivce 资源
+channel 创建提交以后会创建出现下面这样的一个 channel 资源，和一个 kubernetes serivce 资源
 
 ```bash
 NAME                                       AGE
@@ -85,7 +85,7 @@ status:
     hostname: testchannel-channel-9j22r.default.svc.cluster.local
 ```
 
-我们以 in-memory-channel provisioner controller 为例说明，在 in-memory-channel 的实现中是通过 istio 的一个 VirtualService 实现的，把到这个 service 的访问直接跳转到 in-memory-channel-dispatcher.knative-eventing.svc.cluster.local 这个 service。而 in-memory-channel-dispatcher.knative-eventing.svc.cluster.local 这个 service 就是 in-memory-channel controller 实现创建的。in-memory-channel controller *通过 istio 的 VirtualService 实现了事件源和channel的绑定*
+我们以 in-memory-channel provisioner controller 为例说明，在 in-memory-channel 的实现中是通过 istio 的一个 VirtualService 实现的，把到这个 service 的访问直接跳转到 in-memory-channel-dispatcher.knative-eventing.svc.cluster.local 这个 service。而 in-memory-channel-dispatcher.knative-eventing.svc.cluster.local 这个 service 就是 in-memory-channel controller 实现创建的。in-memory-channel controller *通过 istio 的 VirtualService 实现了事件源和 channel 的绑定*
 
 ## 创建 k8s 事件源
 
@@ -125,7 +125,7 @@ spec:
           value: http://testchannel-channel-9j22r.default.svc.cluster.local/
 ```
 
-当 testevents-n5t2w-qzhbv pod 发送事件到 `http://testchannel-channel-9j22r.default.svc.cluster.local/` 时请求会被 sidecar 中的 istio-proxy 转发到 `http://in-memory-channel-dispatcher.knative-eventing.svc.cluster.local/` (Knative 就是通过 istio 的 virtualService 实现的 eventSource 到 channel 的绑定)从而达到事件转发到 in-memory-channel 的能力。接下来 in-memory-channel 的 dispatcher 把接收到的时候转发给响应的 subscription就完成了实践的整个生命周期的流转。
+当 testevents-n5t2w-qzhbv pod 发送事件到 `http://testchannel-channel-9j22r.default.svc.cluster.local/` 时请求会被 sidecar 中的 istio-proxy 转发到 `http://in-memory-channel-dispatcher.knative-eventing.svc.cluster.local/` (Knative 就是通过 istio 的 virtualService 实现的 eventSource 到 channel 的绑定) 从而达到事件转发到 in-memory-channel 的能力。接下来 in-memory-channel 的 dispatcher 把接收到的时候转发给响应的 subscription 就完成了实践的整个生命周期的流转。
 
 ## 总结
 
@@ -140,13 +140,13 @@ spec:
 
 下面我们以 [Kubernetes Event Source example](https://github.com/knative/docs/blob/master/eventing/samples/kubernetes-event-source/README.md) 来说明每一个概念对应的角色：
 
-- event producers：
+- event producers:
 
   [Kubernetes Event Source example](https://github.com/knative/docs/blob/master/eventing/samples/kubernetes-event-source/README.md) 是演示如何把 kubernetes 中的事件发送到 channel 并通过 subscription 最终触发 message-dumper 函数执行的例子。这其中 kubernetes 集群就是事件的最初生产者，所以 kubernetes 集群就是 event producers
 
 - eventSource
 
-  eventSource 不是 event producers ， eventSource 是把 event producers 生成的事件 *接入* 到 Knative 体系中，其实是一个和外部系统的适配层
+  eventSource 不是 event producers，eventSource 是把 event producers 生成的事件 *接入* 到 Knative 体系中，其实是一个和外部系统的适配层
 
 - channel
 
@@ -154,15 +154,15 @@ spec:
 
 - provisioners
 
-  provisioners 是 channel 的存储介质， 可以使用 gcpsubsub、kafka 以及 natss 等产品支持。provisioners 是 channel crd 在创建的时候指定的。这个设计和 kubernetes 的 StorageClass 是一脉相承的。因为 eventSource 是通过 channel 的 status.address.hostname 向 channel post 事件的，所以 in-memory-channel 这个 provisioners 通过 istio virtualService 的方式 *在 eventSource 的 sidecar 中劫持了* 发向 channel 的事件，直接转发给了 provisioners ，从而实现了 provisioners 和 channel 的动态绑定的功能
+  provisioners 是 channel 的存储介质，可以使用 gcpsubsub、kafka 以及 natss 等产品支持。provisioners 是 channel crd 在创建的时候指定的。这个设计和 kubernetes 的 StorageClass 是一脉相承的。因为 eventSource 是通过 channel 的 status.address.hostname 向 channel post 事件的，所以 in-memory-channel 这个 provisioners 通过 istio virtualService 的方式 *在 eventSource 的 sidecar 中劫持了* 发向 channel 的事件，直接转发给了 provisioners，从而实现了 provisioners 和 channel 的动态绑定的功能
 
 - subscription
 
-  subscription 是一个独立的 crd，一个 channel 可以对应多个 subscription，当 provisioners watch 到一个新的 subscription 是就建立自己管理的 channel 和 subscription 的绑定关系(在 channel 的 spec 中增加到 subscription 的引用列表)。当有事件发送到 channel 时 provisioners 就自动把事件转发给相关的 subscription
+  subscription 是一个独立的 crd，一个 channel 可以对应多个 subscription，当 provisioners watch 到一个新的 subscription 是就建立自己管理的 channel 和 subscription 的绑定关系 (在 channel 的 spec 中增加到 subscription 的引用列表)。当有事件发送到 channel 时 provisioners 就自动把事件转发给相关的 subscription
 
 - consumers
 
-  消费事件的角色，和 channel 一样，consumers 也必须是一个地址可达的资源，并通过 status.address.hostname 字段指明如何访问到此 consumer。consumers 是通过 subscription 建立和channel 的关联，从而达到消费事件的目的
+  消费事件的角色，和 channel 一样，consumers 也必须是一个地址可达的资源，并通过 status.address.hostname 字段指明如何访问到此 consumer。consumers 是通过 subscription 建立和 channel 的关联，从而达到消费事件的目的
 
 ### 参考文档
 

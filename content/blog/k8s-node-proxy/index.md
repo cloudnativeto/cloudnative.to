@@ -343,7 +343,7 @@ $ iptables -t nat -X # delete all custom chains
 
 ## 实现：通过 iptables 实现 proxy
 
-用户空间代理程序的主要瓶颈来自内核-用户空间切换和数据复制。**如果我们可以完全在内核空间中实现代理**，它将在性能上大大提高，从而击败用户空间的代理。`iptables` 可用于实现这一目标。
+用户空间代理程序的主要瓶颈来自内核 - 用户空间切换和数据复制。**如果我们可以完全在内核空间中实现代理**，它将在性能上大大提高，从而击败用户空间的代理。`iptables` 可用于实现这一目标。
 
 在开始之前，让我们首先弄清楚在执行 `curl ClusterIP:Port` 时的流量路径，然后研究如何使用 `iptables` 规则使其可访问。
 
@@ -466,7 +466,7 @@ num  target     prot opt source               destination
 $ iptables -t nat -D OUTPUT 2
 ```
 
-### Host -> ClusterIP （多个后端）
+### Host -> ClusterIP（多个后端）
 
 在上一节中，我们展示了如何使用一个后端 Pod 执行 NAT。现在让我们看看多后端情况。
 

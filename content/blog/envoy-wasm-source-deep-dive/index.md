@@ -13,7 +13,7 @@ date: 2020-12-23T11:00:00+08:00
 
 网易数帆旗下轻舟云原生团队也一直在关注社区的进展和动态。轻舟微服务在各个业务方落地的过程中，业务方的定制化需求往往难以避免，而随着业务方的不断增多，如何管理这些不断横向膨胀的定制化需求，避免它们成为轻舟微服务产品本身演进的负累是一个关键问题。而 WASM 则是一个可能的答案。此外，轻舟团队自研的类 OpenResty Lua 框架也是一个解决方案，其原理本质上也和 WASM 类似，利用 Envoy 中嵌入的 LuaJIT 来运行动态 Lua 脚本，不过这不是本文的讨论范畴。
 
-说回到 WASM。WASM 本身是源自前端的技术，是为了解决日益复杂的前端 Web 应用以及有限的 JS 脚本解释性能而诞生的技术（有别于 JIT 的另一条路线）。WASM 并不是一种语言，而是字节码标准。理论上任何一种语言，都可以被编译成 WASM 字节码，然后在WASM虚拟机中执行。其原理如下图所示：
+说回到 WASM。WASM 本身是源自前端的技术，是为了解决日益复杂的前端 Web 应用以及有限的 JS 脚本解释性能而诞生的技术（有别于 JIT 的另一条路线）。WASM 并不是一种语言，而是字节码标准。理论上任何一种语言，都可以被编译成 WASM 字节码，然后在 WASM 虚拟机中执行。其原理如下图所示：
 
 ![](envoy-wasm-filters.png)
 
@@ -29,7 +29,7 @@ Envoy 支持使用使用 WASM 来扩展七层 HTTP Filter 或者四层 Network F
 
 此处使用接口相对更加复杂的 HTTP Filter 作为示例来作为源码阅读的起点。（在具体的实践当中，一个功能完备的 Network Filter 往往会比 HTTP Filter 复杂不少，但是这种复杂性主要在 Filter 实现内部。就暴露的接口来说，反而是 HTTP Filter 具备更多的接口和相对复杂的处理。）
 
-一般来说，对于一个普通的 C++ HTTP Filter，在配置的初始化阶段，Envoy 会完成 Proto 配置（通过静态文件或者 xDS 协议获取）的加载和初始化。**而在请求阶段，对于每个 HTTP 请求，Envoy 会根据 HCM（HTTP Connection Manager，用于处理 HTTP 协议的四层 Network Filter） 的配置创建一个 HTTP Filter 链。并且将每个 HTTP Filter 的配置注入到对应的 Filter 实例中。**
+一般来说，对于一个普通的 C++ HTTP Filter，在配置的初始化阶段，Envoy 会完成 Proto 配置（通过静态文件或者 xDS 协议获取）的加载和初始化。**而在请求阶段，对于每个 HTTP 请求，Envoy 会根据 HCM（HTTP Connection Manager，用于处理 HTTP 协议的四层 Network Filter）的配置创建一个 HTTP Filter 链。并且将每个 HTTP Filter 的配置注入到对应的 Filter 实例中。**
 
 所以了解 WASM 扩展的第一步，就是看 Envoy 是如何创建一个 HTTP WASM Filter 的。前面提到过，WASM 扩展会经过内置 C++ 插件的包装，所以在 Envoy 主体看来，创建 WASM 扩展的过程其实就是创建一个普通的 C++ Filter 的过程，只不过该 Filter 使用 WASM 字节码作为它的输入配置（本质上就是 Lua Filter 和 Lua 脚本的关系）。
 
@@ -167,9 +167,9 @@ commit: cce535101c3b1cab61fb6bf83a61b0e9834bd957
 
 **小结：FilterConfig 是 Envoy HTTP WASM Filter 机制的核心。它会在构造过程中根据配置以及字节码创建 WASM Sandbox。而 WASM Sandbox 创建需要外部依赖 proxy_wasm 的介入。**
 
-## 3. 创建一个沙箱-续
+## 3. 创建一个沙箱 - 续
 
-从前文的代码不难发现，WASM 沙箱的创建需要 `proxy_wasm` 的介入。 现在开始进入 `proxy_wasm` 的世界。在前文源码中，主要包含 `proxy_wasm` 中两个函数。其中 `proxy_wasm::makeVmKey` 相对简单，主要作用是根据 WASM 字节码、WASM 沙箱配置（是沙箱本身配置而非运行在沙箱中的字节码插件配置）计算出一个 WASM 虚拟机 ID。该 ID 将唯一标识同一线程中的一个沙箱。
+从前文的代码不难发现，WASM 沙箱的创建需要 `proxy_wasm` 的介入。现在开始进入 `proxy_wasm` 的世界。在前文源码中，主要包含 `proxy_wasm` 中两个函数。其中 `proxy_wasm::makeVmKey` 相对简单，主要作用是根据 WASM 字节码、WASM 沙箱配置（是沙箱本身配置而非运行在沙箱中的字节码插件配置）计算出一个 WASM 虚拟机 ID。该 ID 将唯一标识同一线程中的一个沙箱。
 
 关键是第二个函数 `proxy_wasm::createWasm`。其中有四个重要的参数：
 
@@ -262,7 +262,7 @@ WasmHandleExtensionFactory EnvoyWasm::wasmFactory() {
 }
 ```
 
-而 `Wasm::Wasm` 则继承了 `proxy_wasm::WasmBase`。`proxy_wasm::WasmBase` 是对 `proxy_wasm` 中管理 WASM 虚拟机以及Envoy 和 Sandbox 交互 API 的的一个基础类型：（不得不吐槽一句，封装的真的好好好好复杂，此处的绕了一层一层又一层）
+而 `Wasm::Wasm` 则继承了 `proxy_wasm::WasmBase`。`proxy_wasm::WasmBase` 是对 `proxy_wasm` 中管理 WASM 虚拟机以及 Envoy 和 Sandbox 交互 API 的的一个基础类型：（不得不吐槽一句，封装的真的好好好好复杂，此处的绕了一层一层又一层）
 
 ```cpp
 // source/extensions/common/wasm/wasm.cc
@@ -549,7 +549,7 @@ void V8::getModuleFunctionImpl(std::string_view function_name,
 
 在 `getFunctions` 中需要注意的一个细节是，将 WASM 沙箱暴露的 API 绑定到 `proxy_wasm::WasmBase` 成员时，会将 API 再次包装，并在 API 调用前后，通过 `SaveRestoreContext` 的构造和析构来完成 `current_context_` 的设置和重置。
 
-再次回到 `proxy_wasm::createWasm` 函数，它还没有结束。可以从代码看到，在完成WASM 沙箱的 `initialize` 之后，函数立刻克隆了一个新的沙箱并且调用其 start 以及 configure 等方法，校验字节码以及字节码配置。最后，一开始创建的 WASM 沙箱被包装在 `WasmHandleBase` 中被返回。
+再次回到 `proxy_wasm::createWasm` 函数，它还没有结束。可以从代码看到，在完成 WASM 沙箱的 `initialize` 之后，函数立刻克隆了一个新的沙箱并且调用其 start 以及 configure 等方法，校验字节码以及字节码配置。最后，一开始创建的 WASM 沙箱被包装在 `WasmHandleBase` 中被返回。
 
 另外，要注意到，在 `proxy_wasm::createWasm` 创建并初始化完成的 WASM 沙箱或者说虚拟机会以参数中的 vm_key 为 key 存储在 `base_wasms` 中。
 
@@ -755,7 +755,7 @@ Word get_header_map_value(void *raw_context, Word type, Word key_ptr, Word key_s
 }
 ```
 
-**小结：在 Envoy 请求处理过程中，当插件链执行到 WASM Filter 时，作为 HTTP Filter 和 Network Filter 包装器的 Wasm::Context 的相应接口会被调用，并且最终会调用沙箱 API。而沙箱在执行过程中，也会通过调用 Envoy API （`proxy_wasm::exports` 中的各个函数）获取或者修改请求状态。Envoy API 的最终也会调用 `Wasm::Context` 中的某个成员方法如 `getHeaderMapValue` 来实现对特定请求的处理。**
+**小结：在 Envoy 请求处理过程中，当插件链执行到 WASM Filter 时，作为 HTTP Filter 和 Network Filter 包装器的 Wasm::Context 的相应接口会被调用，并且最终会调用沙箱 API。而沙箱在执行过程中，也会通过调用 Envoy API（`proxy_wasm::exports` 中的各个函数）获取或者修改请求状态。Envoy API 的最终也会调用 `Wasm::Context` 中的某个成员方法如 `getHeaderMapValue` 来实现对特定请求的处理。**
 
 ## 7. 走在沙箱之内
 
@@ -775,7 +775,7 @@ commit: 956f0d500c380cc1656a2d861b7ee12c2515a664
 
 如果由 Lua C API 开发经验，相信大家很容易就能够理解，因为本质都是大同小异。
 
-下面是SDK 中沙箱 API 和 Envoy API 的相关声明。可以注意到，沙箱 API 声明和 `proxy_wasm::WasmBase` 中待绑定 API 的数据成员具备对应关系。而 Envoy API 声明则和 `proxy_wasm::exports` 中函数具备对应关系。
+下面是 SDK 中沙箱 API 和 Envoy API 的相关声明。可以注意到，沙箱 API 声明和 `proxy_wasm::WasmBase` 中待绑定 API 的数据成员具备对应关系。而 Envoy API 声明则和 `proxy_wasm::exports` 中函数具备对应关系。
 
 ```cpp
 // C++ SDK proxy_wasm_externs.h
@@ -862,4 +862,4 @@ public:
 
 **作者简介**
 
-王佰平，网易数帆资深工程师，负责轻舟Envoy网关与轻舟Service Mesh数据面开发、功能增强、性能优化等工作。对于Envoy数据面开发、增强、落地具有较为丰富的经验。
+王佰平，网易数帆资深工程师，负责轻舟 Envoy 网关与轻舟 Service Mesh 数据面开发、功能增强、性能优化等工作。对于 Envoy 数据面开发、增强、落地具有较为丰富的经验。

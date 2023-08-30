@@ -1,5 +1,5 @@
 ---
-title: "服务网格的未来Part 2：Istio 1.0之后何去何从？"
+title: "服务网格的未来 Part 2：Istio 1.0 之后何去何从？"
 date: 2018-11-01T20:10:14+08:00
 draft: false
 authors: ["Stephen McPolin","Venil Noronha"]
@@ -30,4 +30,4 @@ keywords: ["service mesh","服务网格"]
 
 现在，我们只是在看到 Space—Knative 推出了大约一个半月，并且还有很多问题没有解决，在我们决定如何应对这些问题之前，我们也在寻求新的变革。因此，现在还有很多的事情要做，同时也有很多需要关注的地方。但是可以肯定的是，服务网格会有持续发展。
 
-请继续在 [Open Source Blog](https://blogs.vmware.com/opensource/) 关注我们对服务网格系列后续的更新，并在Twitter上关注我们（@vmwopensource）。
+请继续在 [Open Source Blog](https://blogs.vmware.com/opensource/) 关注我们对服务网格系列后续的更新，并在 Twitter 上关注我们（@vmwopensource）。

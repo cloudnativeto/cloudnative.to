@@ -29,7 +29,7 @@ keywords: ["service mesh","服务网格","istio"]
 
 ![Sidecar 模式示意图](sidecar-pattern.jpg)
 
-就像连接了 Sidecar 的三轮摩托车一样，在软件架构中， Sidecar 连接到父应用并且为其添加扩展或者增强功能。Sidecar 应用与主应用程序松散耦合。它可以屏蔽不同编程语言的差异，统一实现微服务的可观察性、监控、日志记录、配置、断路器等功能。
+就像连接了 Sidecar 的三轮摩托车一样，在软件架构中，Sidecar 连接到父应用并且为其添加扩展或者增强功能。Sidecar 应用与主应用程序松散耦合。它可以屏蔽不同编程语言的差异，统一实现微服务的可观察性、监控、日志记录、配置、断路器等功能。
 
 ### 使用 Sidecar 模式的优势
 
@@ -60,9 +60,9 @@ Istio 中提供了以下两种 sidecar 注入方式：
 istioctl kube-inject -f ${YAML_FILE} | kuebectl apply -f -
 ```
 
-该命令会使用 Istio 内置的 sidecar 配置来注入，下面使用 Istio详细配置请参考 [Istio 官网](https://istio.io/docs/setup/additional-setup/sidecar-injection/#manual-sidecar-injection)。
+该命令会使用 Istio 内置的 sidecar 配置来注入，下面使用 Istio 详细配置请参考 [Istio 官网](https://istio.io/docs/setup/additional-setup/sidecar-injection/#manual-sidecar-injection)。
 
-注入完成后您将看到 Istio 为原有 pod template 注入了 `initContainer` 及 sidecar proxy相关的配置。
+注入完成后您将看到 Istio 为原有 pod template 注入了 `initContainer` 及 sidecar proxy 相关的配置。
 
 ### Init 容器
 
@@ -74,7 +74,7 @@ Init 容器使用 Linux Namespace，所以相对应用程序容器来说具有�
 
 在 Pod 启动过程中，Init 容器会按顺序在网络和数据卷初始化之后启动。每个容器必须在下一个容器启动之前成功退出。如果由于运行时或失败退出，将导致容器启动失败，它会根据 Pod 的 `restartPolicy` 指定的策略进行重试。然而，如果 Pod 的 `restartPolicy` 设置为 Always，Init 容器失败时会使用 `RestartPolicy` 策略。
 
-在所有的 Init 容器没有成功之前，Pod 将不会变成 `Ready` 状态。Init 容器的端口将不会在 Service中进行聚集。 正在初始化中的 Pod 处于 `Pending` 状态，但应该会将 `Initializing` 状态设置为 true。Init 容器运行完成以后就会自动终止。
+在所有的 Init 容器没有成功之前，Pod 将不会变成 `Ready` 状态。Init 容器的端口将不会在 Service 中进行聚集。正在初始化中的 Pod 处于 `Pending` 状态，但应该会将 `Initializing` 状态设置为 true。Init 容器运行完成以后就会自动终止。
 
 关于 Init 容器的详细信息请参考 [Init 容器 - Kubernetes 中文指南/云原生应用架构实践手册](https://jimmysong.io/kubernetes-handbook/concepts/init-containers.html)。
 
@@ -285,7 +285,7 @@ $ istio-iptables [flags]
 这条启动命令的作用是：
 
 - 将应用容器的所有流量都转发到 sidecar 的 15006 端口。
-- 使用 `istio-proxy` 用户身份运行， UID 为 1337，即 sidecar 所处的用户空间，这也是 `istio-proxy` 容器默认使用的用户，见 YAML 配置中的 `runAsUser` 字段。
+- 使用 `istio-proxy` 用户身份运行，UID 为 1337，即 sidecar 所处的用户空间，这也是 `istio-proxy` 容器默认使用的用户，见 YAML 配置中的 `runAsUser` 字段。
 - 使用默认的 `REDIRECT` 模式来重定向流量。
 - 将所有出站流量都重定向到 sidecar 代理（通过 15001 端口）。
 
@@ -427,7 +427,7 @@ Chain OUTPUT (policy ACCEPT 18M packets, 1916M bytes)
  pkts bytes target     prot opt in     out     source               destination
 ```
 
-我们看到三个默认的链，分别是 INPUT、FORWARD 和 OUTPUT，每个链中的第一行输出表示链名称（在本例中为INPUT/FORWARD/OUTPUT），后跟默认策略（ACCEPT）。
+我们看到三个默认的链，分别是 INPUT、FORWARD 和 OUTPUT，每个链中的第一行输出表示链名称（在本例中为 INPUT/FORWARD/OUTPUT），后跟默认策略（ACCEPT）。
 
 下图是 iptables 的建议结构图，流量在经过 INPUT 链之后就进入了上层协议栈，比如
 
@@ -655,11 +655,11 @@ Inbound handler 的流量被 `virtualInbound` Listener 转移到 `172.17.0.15_90
 }]
 ```
 
-我们看其中的 `filterChains.filters` 中的 `envoy.http_connection_manager` 配置部分，该配置表示流量将转交给Cluster`inbound|9080|http|reviews.default.svc.cluster.local` 处理。
+我们看其中的 `filterChains.filters` 中的 `envoy.http_connection_manager` 配置部分，该配置表示流量将转交给 Cluster`inbound|9080|http|reviews.default.svc.cluster.local` 处理。
 
 **[Cluster](https://www.servicemesher.com/istio-handbook/GLOSSARY.html#cluster) `inbound|9080|http|reviews.default.svc.cluster.local`**
 
-运行 `istioctl proxy-config cluster reviews-v1-54b8794ddf-jxksn --fqdn reviews.default.svc.cluster.local --direction inbound -o json` 查看该Cluster的配置如下。
+运行 `istioctl proxy-config cluster reviews-v1-54b8794ddf-jxksn --fqdn reviews.default.svc.cluster.local --direction inbound -o json` 查看该 Cluster 的配置如下。
 
 ```json
 [
@@ -700,7 +700,7 @@ Inbound handler 的流量被 `virtualInbound` Listener 转移到 `172.17.0.15_90
 ]
 ```
 
-可以看到该Cluster的 Endpoint 直接对应的就是 localhost，再经过 iptables 转发流量就被应用程序容器消费了。
+可以看到该 Cluster 的 Endpoint 直接对应的就是 localhost，再经过 iptables 转发流量就被应用程序容器消费了。
 
 ### 理解 Outbound Handler
 
@@ -763,11 +763,11 @@ Inbound handler 的流量被 `virtualInbound` Listener 转移到 `172.17.0.15_90
 ..]
 ```
 
-从该 Virtual Host 配置中可以看到将流量路由到Cluster`outbound|9080||ratings.default.svc.cluster.local`。
+从该 Virtual Host 配置中可以看到将流量路由到 Cluster`outbound|9080||ratings.default.svc.cluster.local`。
 
 **Endpoint `outbound|9080||ratings.default.svc.cluster.local`**
 
-运行 `istioctl proxy-config endpoint reviews-v1-54b8794ddf-jxksn --port 9080 -o json` 查看 Endpoint 配置，我们只选取其中的 `outbound|9080||ratings.default.svc.cluster.local`Cluster的结果如下。
+运行 `istioctl proxy-config endpoint reviews-v1-54b8794ddf-jxksn --port 9080 -o json` 查看 Endpoint 配置，我们只选取其中的 `outbound|9080||ratings.default.svc.cluster.local`Cluster 的结果如下。
 
 ```json
 {
@@ -831,9 +831,9 @@ tproxy 可以用于 inbound 流量的重定向，且无需改变报文中的目�
 
 ![hook-connect 原理示意图](hook-connect.jpg)
 
-无论采用哪种透明劫持方案，均需要解决获取真实目的 IP/端口的问题，使用 iptables 方案通过 getsockopt 方式获取，tproxy 可以直接读取目的地址，通过修改调用接口，hook connect 方案读取方式类似于tproxy。
+无论采用哪种透明劫持方案，均需要解决获取真实目的 IP/端口的问题，使用 iptables 方案通过 getsockopt 方式获取，tproxy 可以直接读取目的地址，通过修改调用接口，hook connect 方案读取方式类似于 tproxy。
 
-实现透明劫持后，在内核版本满足要求（4.16以上）的前提下，通过 sockmap 可以缩短报文穿越路径，进而改善 outbound 方向的转发性能。
+实现透明劫持后，在内核版本满足要求（4.16 以上）的前提下，通过 sockmap 可以缩短报文穿越路径，进而改善 outbound 方向的转发性能。
 
 ## 参考
 

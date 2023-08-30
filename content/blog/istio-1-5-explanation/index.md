@@ -3,7 +3,7 @@ title: "拥抱变化 —— Istio 1.5 新特性解读"
 date: "2020-03-03T10:00:06+08:00"
 draft: false
 authors: ["马若飞"]
-summary: "本文基于istio最新的架构调整设计文档，分析了istio未来的设计目标。"
+summary: "本文基于 istio 最新的架构调整设计文档，分析了 istio 未来的设计目标。"
 tags: ["istio"]
 categories: ["service mesh"]
 keywords: ["istio"]
@@ -141,7 +141,7 @@ Istio 1.5 不仅仅做了减法，也做了很多加法，包括添加了新的�
 
 ### 测试和发布
 
-- 为 `istioctl` 创建了Docker镜像。
+- 为 `istioctl` 创建了 Docker 镜像。
 
 ### istioctl
 
@@ -168,9 +168,9 @@ Istio 1.5 不仅仅做了减法，也做了很多加法，包括添加了新的�
 - 修复分析器抑制集群级别资源消息的 bug。
 - 为 `istioctl manifest` 添加多文件支持。
 - 替换 `IstioControlPlane` API 为 `IstioOperator` API。
-- 为 `istioctl dashboard` 添加选择器.
+- 为 `istioctl dashboard` 添加选择器。
 - 为 `istioctl manifest --set` 标记添加切片和列表支持。
 
 ## 总结
 
-Istio 1.5 是全面拥抱变化的一个版本。重建整个控制平面，打造了全新的部署模式 `istiod`；摒弃了拖累系统性能的 Mixer；保证兼容性也不忘持续优化和引入新的功能。在彻底抛弃历史包袱的同时，Istio团队也用他们的勇气践行了敏捷开发的真谛。随着稳定的季度发布，相信未来的 Istio 会越加成熟。让我们拭目以待。
+Istio 1.5 是全面拥抱变化的一个版本。重建整个控制平面，打造了全新的部署模式 `istiod`；摒弃了拖累系统性能的 Mixer；保证兼容性也不忘持续优化和引入新的功能。在彻底抛弃历史包袱的同时，Istio 团队也用他们的勇气践行了敏捷开发的真谛。随着稳定的季度发布，相信未来的 Istio 会越加成熟。让我们拭目以待。

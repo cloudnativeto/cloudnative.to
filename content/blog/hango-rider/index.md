@@ -3,7 +3,7 @@ title: "网易开源 Envoy 企业级自定义扩展框架 Hango Rider 简介"
 date: 2022-02-10T09:24:17+08:00
 draft: false
 authors: ["王凯"]
-summary: "目前，Rider 扩展框架已经全面开源，并且被集成于开源 API 网关 Hango当中，为 Hango 网关提供了灵活、强大、易用的自定义扩展能力。"
+summary: "目前，Rider 扩展框架已经全面开源，并且被集成于开源 API 网关 Hango 当中，为 Hango 网关提供了灵活、强大、易用的自定义扩展能力。"
 tags: ["网易","hango","envoy","rider","wasm"]
 categories: ["envoy"]
 ---
@@ -36,7 +36,7 @@ Envoy 通过可插拔的过滤器机制实现了原生 C++ 插件扩展的能力
 
 ![](002.png)
 
-社区 Lua 扩展一方面提供给了用户基于 Lua 语言开发插件的能力，相比 C++ 要简单很多，另一方面支持 Envoy 动态加载 Lua 脚本，无需重新编译升级。但同时由于 C++ 和 Lua 虚拟机交互带来的开销，Lua 扩展的性能自然会比原生 C++ 扩展差，而且 Envoy 社区当前的 Lua CAPI 交互方式会进一步加剧性能问题。除了性能问题，社区的 Lua 扩展还有个更大的缺陷 —— 不支持插件配置，直接导致社区 Lua 扩展的实用性大大下降。相比之下，WASM 和 Rider 实现了插件的可配置化， 并且 Rider 针对 Lua 扩展的性能做了一定的优化，使得 Rider 的 Lua 扩展在性能和功能方面都能满足企业级扩展的需求。
+社区 Lua 扩展一方面提供给了用户基于 Lua 语言开发插件的能力，相比 C++ 要简单很多，另一方面支持 Envoy 动态加载 Lua 脚本，无需重新编译升级。但同时由于 C++ 和 Lua 虚拟机交互带来的开销，Lua 扩展的性能自然会比原生 C++ 扩展差，而且 Envoy 社区当前的 Lua CAPI 交互方式会进一步加剧性能问题。除了性能问题，社区的 Lua 扩展还有个更大的缺陷 —— 不支持插件配置，直接导致社区 Lua 扩展的实用性大大下降。相比之下，WASM 和 Rider 实现了插件的可配置化，并且 Rider 针对 Lua 扩展的性能做了一定的优化，使得 Rider 的 Lua 扩展在性能和功能方面都能满足企业级扩展的需求。
 
 ### 1.3 社区 WASM 扩展
 
@@ -56,9 +56,9 @@ WASM 看上去似乎完美解决了 Envoy 可扩展性遇到的各种问题，�
 | --------- | ---------------- | ---------------- | ---- | ------------- | ---------- |
 | 原生 C++  | 是               | 否               | 最优 | C++           | 复杂       |
 | 社区 Lua  | 否               | 是               | 较差 | Lua           | 简单       |
-| 社区 WASM | 是               | 是               | 差   | C++/Rust/Go等 | 中等       |
+| 社区 WASM | 是               | 是               | 差   | C++/Rust/Go 等 | 中等       |
 
-根据上述各种扩展性方案的优劣势，网易轻舟微服务设计并实现了自己的可扩展框架 Rider ，主要的设计目标如下：
+根据上述各种扩展性方案的优劣势，网易轻舟微服务设计并实现了自己的可扩展框架 Rider，主要的设计目标如下：
 
 * 支持 Lua 语言扩展
 * 支持 Envoy 动态加载、更新、移除 Lua 插件
@@ -72,9 +72,9 @@ WASM 看上去似乎完美解决了 Envoy 可扩展性遇到的各种问题，�
 
 ### 2.1 早期探索
 
-针对社区 Lua 扩展存在的性能差、不支持插件配置的问题， Rider 早期架构设计并实现了两个模块：
+针对社区 Lua 扩展存在的性能差、不支持插件配置的问题，Rider 早期架构设计并实现了两个模块：
 
-* Rider Filter：Rider Filter 是 Envoy 的七层插件，用于初始化和调用 Lua 代码，并且将 Envoy 内部的数据和功能通过Lua CAPI 或 FFI 接口的形式提供给 Lua SDK 调用。注意这里 Rider 利用 FFI 实现了大部分接口， 理论上性能优于基于 CAPI 实现的社区 Lua 扩展；
+* Rider Filter：Rider Filter 是 Envoy 的七层插件，用于初始化和调用 Lua 代码，并且将 Envoy 内部的数据和功能通过 Lua CAPI 或 FFI 接口的形式提供给 Lua SDK 调用。注意这里 Rider 利用 FFI 实现了大部分接口，理论上性能优于基于 CAPI 实现的社区 Lua 扩展；
 * Lua SDK：Lua SDK 是一个 Lua 插件代码框架，用户可以通过调用 Lua SDK 提供的 API 实现请求处理。注意 Lua SDK 提供了获取全局以及路由级插件配置的 API，使得 Rider 的 Lua 扩展支持插件配置的获取，解决了社区 Lua 扩展的大难题。
 
 下图是整体的架构图：
@@ -84,7 +84,7 @@ WASM 看上去似乎完美解决了 Envoy 可扩展性遇到的各种问题，�
 
 尽管我们的早期架构基本满足了 Envoy 可扩展性的需求：支持多语言 Lua、支持 Lua 插件动态加载、支持 Lua 插件配置等。但是仍然存在以下几个问题：
 
-* Rider Filter 仍然存在部分接口没有使用 FFI ，性能可能略有不足；
+* Rider Filter 仍然存在部分接口没有使用 FFI，性能可能略有不足；
 * Lua SDK 需要进一步完善以支持更多的插件功能开发；
 * 在解决第一个问题过程中发现的 Rider 巨大性能问题。
 
@@ -93,7 +93,7 @@ WASM 看上去似乎完美解决了 Envoy 可扩展性遇到的各种问题，�
 
 ### 2.2 实践优化
 
-Rider 新架构要解决的第一个问题就是试图将 FFI 进行到底，根据之前的调研，Lua 调用 C 有两种方式，一种是通过原生的 CAPI，每次调用时都会分配一个栈空间(和 Stack Frame 不同，是向 Heap 申请的一块连续内存)，通过栈空间传递参数和返回值。另一种方式是通过 Luajit 提供的 FFI 调用。FFI 的好处是，可以直接在 Lua 中调用 C 函数，使用 C 数据结构，代码可以获得 Jit 优化的 Buff，性能较原生的 Lua 有比较大的提升。因此，我们想把 Rider 中使用 CAPI 实现的接口改造成 FFI。
+Rider 新架构要解决的第一个问题就是试图将 FFI 进行到底，根据之前的调研，Lua 调用 C 有两种方式，一种是通过原生的 CAPI，每次调用时都会分配一个栈空间 (和 Stack Frame 不同，是向 Heap 申请的一块连续内存)，通过栈空间传递参数和返回值。另一种方式是通过 Luajit 提供的 FFI 调用。FFI 的好处是，可以直接在 Lua 中调用 C 函数，使用 C 数据结构，代码可以获得 Jit 优化的 Buff，性能较原生的 Lua 有比较大的提升。因此，我们想把 Rider 中使用 CAPI 实现的接口改造成 FFI。
 
 改造的第一步便遇到了问题，早期的 Rider 架构貌似无法使用 FFI 实现 Envoy Body 相关接口的暴露，我们先看一下早期 Rider 不得不使用原生的 CAPI 暴露 Envoy Body 相关接口的原因。早期 Rider 的架构图中 Lua Code 有两个主要的函数：on_request 和 on_response，这两个函数是 Rider 架构规定的 Lua 代码中需要实现的函数，因为 Rider Filter 在执行 Lua Code 时，Rider Filter 只会尝试从 Lua 虚拟机中获取这两个函数，然后分别在 decodeHeaders 阶段和 encodeHeaders 阶段执行，那么如果在 on_request 或者 on_response 函数中有 Body 相关的接口调用，此时 Rider Filter 还没执行到 decodeData 或者 encodeData 阶段，Body 的数据还获取不到，只能将 Lua 协程先挂起，等到 Rider Filter 执行到 decodeData 或者 encodeData 阶段时再 Resume，而这种方式 FFI 实现不了，只能通过和 Lua 虚拟机交互的方式实现。
 
@@ -101,7 +101,7 @@ Rider 新架构要解决的第一个问题就是试图将 FFI 进行到底，根
 
 基于上述问题，Rider 新架构在早期架构基础上进行了一些细化，如上图所示，整体架构的模块没有改变，改变的是 Rider 框架规定的 Lua 插件中需要实现的函数以及这些函数在 Rider Filter 中的执行时机。如上图所示，将原来 on_request 和 on_response 函数进一步拆分成 Header 和 Body 的阶段函数，并且在 Rider Filter 处理 Header 和 Body 阶段分别去调用，这样可以避免 Body 的处理需要挂起 Lua 协程（后来发现 WASM 的实现也是类似的细分）。因此新架构的请求处理流程如下：
 
-* Rider 插件配置(其中包含 Lua 插件配置)作为 LDS 和 RDS 的一部分，通过 Pilot 下发；
+* Rider 插件配置 (其中包含 Lua 插件配置) 作为 LDS 和 RDS 的一部分，通过 Pilot 下发；
 * Envoy 对每个 HTTP 请求构造一条七层 Filter Chain, 其中包含 Rider Filter。Rider Filter 初始化时，会将 Lua SDK 模块和相应的插件从文件系统加载到 Lua VM 中；
 * 在请求处理阶段，Rider Filter 会在 Decode 和 Encode 阶段分别调用 Lua 代码的 on_request_header、on_request_body 和 on_response_header、on_response_body 方法；
 * 在用户 Lua 代码执行过程中，通过 Lua SDK 调用 Rider Filter 封装的相应接口，如获取，修改请求、响应信息，调用外部服务等，打印日志等。
@@ -111,8 +111,8 @@ Rider 新架构要解决的第一个问题就是试图将 FFI 进行到底，根
 新架构设计的初衷是性能的提升，因此我们在新架构开发完第一时间便进行了性能测试，测试场景：
 
 * 环境：本地容器环境
-* 后端：Nginx 4核
-* Envoy：4核
+* 后端：Nginx 4 核
+* Envoy：4 核
 * Client：Wrk 4t 32c
 * Lua 插件：调用 100 次 get_body 接口
 
@@ -121,7 +121,7 @@ Rider 新架构要解决的第一个问题就是试图将 FFI 进行到底，根
 * CAPI：Rider 的 CAPI 实现，原始的 Lua 和 C 的交互方式，通过栈空间传递参数和返回值；
 * FFIOld：Rider 的早期 FFI 实现。
 
-测试结果如下图，经典负优化，而且负的很多（当然也是因为调用了 100 次的原因），FFIOld 相比 CAPI QPS 下降了 30%。 第一想法是不是代码写的有问题，新架构引入了很多开销？所以又测试了一下 Rider 之前基于 FFIOld 实现的 Header API，性能和基于 FFIOld 实现的 Body API 差不多，那说明 FFIOld 出问题了，早期的 Rider FFI 实现的 API 可能性能都还不如 CAPI ！
+测试结果如下图，经典负优化，而且负的很多（当然也是因为调用了 100 次的原因），FFIOld 相比 CAPI QPS 下降了 30%。第一想法是不是代码写的有问题，新架构引入了很多开销？所以又测试了一下 Rider 之前基于 FFIOld 实现的 Header API，性能和基于 FFIOld 实现的 Body API 差不多，那说明 FFIOld 出问题了，早期的 Rider FFI 实现的 API 可能性能都还不如 CAPI！
 
 ![](006.png)
 
@@ -172,7 +172,7 @@ C.envoy_http_lua_ffi_get_header_map_value(ctx, source, key, #key, buffer) 中传
 * normal filter：调用 20 次 set_header，调用 10 次 get_header，最后再 remove 掉这 20 个 header；
 * complex filter：normal filter + 调用 30 次 get_body；
 
-结果如下图所示，FFINew 的性能都优于 FFIOld 的性能，分别有 15% ， 22% ， 29% 的性能提升。
+结果如下图所示，FFINew 的性能都优于 FFIOld 的性能，分别有 15% ，22% ，29% 的性能提升。
 
 ![](009.png)
 
@@ -190,7 +190,7 @@ C.envoy_http_lua_ffi_get_header_map_value(ctx, source, key, #key, buffer) 中传
 
 #### 2.2.2 功能增强
 
-性能问题解决后，接下来就是功能的增强，也就是 Lua SDK 的丰富，这里总结了当前 Rider 支持的所有 Lua SDK ：
+性能问题解决后，接下来就是功能的增强，也就是 Lua SDK 的丰富，这里总结了当前 Rider 支持的所有 Lua SDK：
 
 * envoy.req.get_header(name)
 * envoy.req.get_header_size(name)
@@ -237,7 +237,7 @@ C.envoy_http_lua_ffi_get_header_map_value(ctx, source, key, #key, buffer) 中传
 未来我们会在稳定性、性能、功能等方面持续进行 Rider 的维护和优化：
 
 * 稳定性：目前 Rider 已经在网易内外部多个业务方大规模落地，后续我们也会进一步提升并保障 Rider 稳定性；
-* 性能：尽管 Rider 的性能已经优于社区 Lua 和 WASM ，但后续我们会持续进行性能优化，进一步缩小和原生 C++ 扩展的性能差距；
+* 性能：尽管 Rider 的性能已经优于社区 Lua 和 WASM，但后续我们会持续进行性能优化，进一步缩小和原生 C++ 扩展的性能差距；
 * 功能：在 Rider API 方面和社区 Lua 以及 WASM 对齐，提供最全面的 API 能力。
 
 ## 更多

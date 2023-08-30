@@ -25,7 +25,7 @@ date: 2021-02-19T13:56:00+08:00
 
 ![Localhost 开发](1-1.png)
 
-单体应用和“微服务”应用不同，单体应用是 “ALL-IN-ONE” 组织方式，所有的调用关系仅限于在自身的类和函数，应用对硬件的要求一般也不会太高。
+单体应用和“微服务”应用不同，单体应用是“ALL-IN-ONE”组织方式，所有的调用关系仅限于在自身的类和函数，应用对硬件的要求一般也不会太高。
 
 而开发“微服务”应用则大不相同，由于相互间的依赖关系，当需要开发某一个功能或微服务时，不得不将所有依赖的服务都启动起来。随着微服务数量的增加，开发应用所需要的本地资源越来越多，最终导致本地无法满足开发的配置需求。
 
@@ -106,12 +106,12 @@ Nocalhost 重新梳理了开发过程所涉及到的角色和资源：
 
 ## 快速体验
 
-想要快速体验 Nocalhost ，有以下几点前置条件：
+想要快速体验 Nocalhost，有以下几点前置条件：
 
 * 准备一个 Kubernetes 集群（1.16+），支持 TKE、Mnikube、Kind 等
 * 已配置好 `kubectl` 且能访问 Kubernetes 集群
 * 集群开启了 RBAC
-* 安装 Visual Studio Code（1.52+） 和 Nocalhost 插件
+* 安装 Visual Studio Code（1.52+）和 Nocalhost 插件
 * 安装 nhctl cli 工具（<https://nocalhost.dev/installation/>）
 
 对于 TKE 等支持 LoadBalancer 的集群，运行以下命令来快速初始化：
@@ -132,9 +132,9 @@ nhctl init -n nocalhost -t nodeport --set mariadb.primary.persistence.enabled=fa
 
 打开登陆地址，使用默认管理员用户名 admin@admin.com 和密码 `123456` 登陆 Web 控制台，控制台能够管理用户、集群和应用。`init` 阶段自动使用部署 Nocalhost 的集群作为开发集群，同时创建了 `Bookinfo` 应用和开发者，并为开发者分配了 `Bookinfo` 应用的开发空间。
 
-现在打开 VS Code ，进入 Nocalhost 插件，点击上方的“地球”按钮，同样输入 Web 控制台的地址，回车确定。
+现在打开 VS Code，进入 Nocalhost 插件，点击上方的“地球”按钮，同样输入 Web 控制台的地址，回车确定。
 
-点击 “Sign In” 按钮，输入开发者的登陆账号：`foo@nocalhost.dev`，密码：`123456`，登陆后即可一键部署 `Bookinfo` 并体验无需重新构建镜像的应用开发。
+点击“Sign In”按钮，输入开发者的登陆账号：`foo@nocalhost.dev`，密码：`123456`，登陆后即可一键部署 `Bookinfo` 并体验无需重新构建镜像的应用开发。
 
 ![登陆 Nocalhost VS Code 插件](1-10.png)
 

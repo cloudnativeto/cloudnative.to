@@ -9,7 +9,7 @@ categories: ["service mesh"]
 tags: ["service mesh"]
 ---
 
-2020 年 2 月 4 日到 2 月11 日，ServiceMesher 社区发起了 Service Mesh 终端用户调查，以下为问卷调查结果。
+2020 年 2 月 4 日到 2 月 11 日，ServiceMesher 社区发起了 Service Mesh 终端用户调查，以下为问卷调查结果。
 
 ## 参与问卷调查的人员情况
 

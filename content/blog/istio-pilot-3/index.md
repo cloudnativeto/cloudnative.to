@@ -11,7 +11,7 @@ date: 2020-09-24T12:00:00+08:00
 
 ## EnvoyXdsServer
 
-`EnvoyXdsServer` 主要负责 Pilot 中 xDS 协议的生成和下发，接收并处理 `configController` 和 `serviceController` 推送的 PushRequest ，与集群中所有的数据面代理进行 gRPC 通信，并处理它们的请求。在 Pilot Server 中的定义如下：
+`EnvoyXdsServer` 主要负责 Pilot 中 xDS 协议的生成和下发，接收并处理 `configController` 和 `serviceController` 推送的 PushRequest，与集群中所有的数据面代理进行 gRPC 通信，并处理它们的请求。在 Pilot Server 中的定义如下：
 
 ```go
 // Server contains the runtime configuration for the Pilot discovery service.
@@ -86,7 +86,7 @@ func (s *DiscoveryServer) Start(stopCh <-chan struct{}) {
 
 ### Receive Connection
 
-当服务实例的代理（ Sidecar 模式） 启动的时候，会和 grpcServer 建立连接并调用 `StreamAggregatedResources` 方法：
+当服务实例的代理（Sidecar 模式）启动的时候，会和 grpcServer 建立连接并调用 `StreamAggregatedResources` 方法：
 
 ![EnvoyXdsServer Receive Connection](envoyxdsserver-reveive-conn.png)
 
@@ -134,7 +134,7 @@ func (s *DiscoveryServer) handleUpdates(stopCh <-chan struct{}) {
 
 如果优化的更好一点，把所有电梯分成奇偶两组，奇组只在奇数层停，偶组只在偶数层停。这样就可以最大化的提升资源利用率。但还有一种情况，如果我们进电梯后，后面没有人进电梯了，白白等待了 3 分钟电梯才走，浪费了时间，这也不行。
 
-那我们就再给电梯系统加一个时间，让电梯在有人进电梯后等待 10 秒，如果过了 10 秒还没有下一个人进来，电梯就不等了。 如有有人进来就重新计时 10 秒钟。
+那我们就再给电梯系统加一个时间，让电梯在有人进电梯后等待 10 秒，如果过了 10 秒还没有下一个人进来，电梯就不等了。如有有人进来就重新计时 10 秒钟。
 
 从上面这个例子可以引申出几个概念，一个是最小静默时间，一个是最大延迟时间。最小静默时间就是上面的 10 秒钟，从上一个进电梯的人开始计时，10 秒内有新的人进来就接着等，否则就不等，每进一个人就重新计算这个时间。最大延迟时间就是上面电梯等待的 3 分钟，到了这个时间就算还有很多人没有进电梯，电梯也必须走。另外一个防抖中的重要概念就是分组合并，比如把都去偶数层的人统一在一趟电梯上。
 
@@ -186,7 +186,7 @@ pushWorker := func() {
 }
 ```
 
-可以看到当事件的延迟时间大于等于最大延迟时间或静默时间大于等于最小静默时间，才会执行 push() 方法。 push() 方法也是 `debounce` 方法中包装的一个过程函数，它会在真正的 `pushFn()` 完成后向 `freeCh` 发送消息表示这次防抖处理完成了，可以开始下一次防抖。
+可以看到当事件的延迟时间大于等于最大延迟时间或静默时间大于等于最小静默时间，才会执行 push() 方法。push() 方法也是 `debounce` 方法中包装的一个过程函数，它会在真正的 `pushFn()` 完成后向 `freeCh` 发送消息表示这次防抖处理完成了，可以开始下一次防抖。
 
 ```go
 push := func(req *model.PushRequest) {
@@ -232,7 +232,7 @@ for {
 }
 ```
 
-先看 `case r:= <-ch` 这个分支，当收到第一个 PushRequest 的时候，通过一个延时器 `timeChan` 先延迟一个最小静默时间（100 毫秒），期间接收新的请求直接进行 Merge ，同时累加已防抖的事件个数。当第一个 100 毫秒计时结束就会进入 `case <-timeChan` 分支，会判断是否有正在执行的防抖过程，没有的话就执行 `pushWorker()` 做一次防抖判断看是否需要推送。如果第一个请求的延迟时间还没有超过最大延迟时间（10 秒钟）并且距离处理上一次 PushRequest 的时间不足最小静默时间（100 毫秒），则继续延时，等待 `debouncedAfter - quietTime` 也就是不足最小静默时间的部分，再进行下一次 `pushWorker()` 操作。
+先看 `case r:= <-ch` 这个分支，当收到第一个 PushRequest 的时候，通过一个延时器 `timeChan` 先延迟一个最小静默时间（100 毫秒），期间接收新的请求直接进行 Merge，同时累加已防抖的事件个数。当第一个 100 毫秒计时结束就会进入 `case <-timeChan` 分支，会判断是否有正在执行的防抖过程，没有的话就执行 `pushWorker()` 做一次防抖判断看是否需要推送。如果第一个请求的延迟时间还没有超过最大延迟时间（10 秒钟）并且距离处理上一次 PushRequest 的时间不足最小静默时间（100 毫秒），则继续延时，等待 `debouncedAfter - quietTime` 也就是不足最小静默时间的部分，再进行下一次 `pushWorker()` 操作。
 
 在看真正的 `pushFn` 函数之前，我们先了解下防抖函数是怎么合并 PushRequest 的。
 
@@ -299,7 +299,7 @@ const (
 
 
 
-而 `ConfigsUpdated` 跟踪了所有已经发生变化的配置，这个 Map 主要被用于那些被 [Sidecar](https://istio.io/latest/docs/reference/config/networking/sidecar/) 限定了服务可见性的数据面代理，来过滤不必接收的 xDS 推送。只有与这些代理相关的服务（如 Sidecar 中定义的 Egress 和 Ingress ）发生变化时，才推送到特定的客户端。当 `ConfigsUpdated` 为空时，则表示所有的数据面代理都会收到这次推送。
+而 `ConfigsUpdated` 跟踪了所有已经发生变化的配置，这个 Map 主要被用于那些被 [Sidecar](https://istio.io/latest/docs/reference/config/networking/sidecar/) 限定了服务可见性的数据面代理，来过滤不必接收的 xDS 推送。只有与这些代理相关的服务（如 Sidecar 中定义的 Egress 和 Ingress）发生变化时，才推送到特定的客户端。当 `ConfigsUpdated` 为空时，则表示所有的数据面代理都会收到这次推送。
 
 所以才有上面代码中 `if len(first.ConfigsUpdated) > 0 && len(other.ConfigsUpdated) > 0` 这个判断，只要有一个请求需要推送至所有代理，就不会合并 `ConfigUpdated` 。
 
@@ -329,7 +329,7 @@ func (s *DiscoveryServer) Push(req *model.PushRequest) {
 }
 ```
 
-可以看到先处理了不是全量推送的请求 `if !req.Full` ，结合之前分析所有 PushRequest 的来源可知， `Full=false` 只在 `EDSUpdate` 的时候才有可能推送，还记得之前分析 `ServiceEntryStore` 里的 `workloadEntryHandler` 吗？ EDS 的变化不需要更新 `PushContext` ，所以这里获取了全局的 `globalPushContext` 后就直接处理了。说到这里读者可能会对 `PushContext` 感到疑惑，这个是用来做什么的呢，为什么 EDS 的增量更新就不用更新它呢？我们先来看看 `PushContext` 的定义：
+可以看到先处理了不是全量推送的请求 `if !req.Full` ，结合之前分析所有 PushRequest 的来源可知， `Full=false` 只在 `EDSUpdate` 的时候才有可能推送，还记得之前分析 `ServiceEntryStore` 里的 `workloadEntryHandler` 吗？EDS 的变化不需要更新 `PushContext` ，所以这里获取了全局的 `globalPushContext` 后就直接处理了。说到这里读者可能会对 `PushContext` 感到疑惑，这个是用来做什么的呢，为什么 EDS 的增量更新就不用更新它呢？我们先来看看 `PushContext` 的定义：
 
 ```go
 type PushContext struct {
@@ -372,7 +372,7 @@ type PushContext struct {
   allGateways         []Config
 ```
 
-`PushContext` 里定义了大量对 Service 、 VirtualService 等的缓存，当服务发生变化时，必须要更新，而 EDS 的增量推送则不用。
+`PushContext` 里定义了大量对 Service、VirtualService 等的缓存，当服务发生变化时，必须要更新，而 EDS 的增量推送则不用。
 
 在 `Push()` 方法更新了 `PushContext` 之后便调用 `AdsPushAll()` 和 `startPush(req)` 将 PushRequest 重新入队到了 `DiscoveryServer.pushQueue` :
 
@@ -412,7 +412,7 @@ type PushQueue struct {
 }
 ```
 
-其中 `eventsMap` 保存了所有代理 gRPC 连接的 PushRequest ，如果相同连接的 PushRequest 再次入队，将会被合并。 `inProgress` 保存了所有连接正在处理的 PushRequest 。这里合并的操作和上面 `debounce` 逻辑一样，调用的是同一个函数。
+其中 `eventsMap` 保存了所有代理 gRPC 连接的 PushRequest，如果相同连接的 PushRequest 再次入队，将会被合并。 `inProgress` 保存了所有连接正在处理的 PushRequest。这里合并的操作和上面 `debounce` 逻辑一样，调用的是同一个函数。
 
 ### Send Pushes
 
@@ -431,11 +431,11 @@ func (s *DiscoveryServer) sendPushes(stopCh <-chan struct{}) {
 }
 ```
 
-这里传入了节流的参数 `s.concurrentPushLimit` ，它是由环境变量 `PILOT_PUSH_THROTTLE` 控制的，默认为 100 。 `doSendPushes` 的逻辑如图：
+这里传入了节流的参数 `s.concurrentPushLimit` ，它是由环境变量 `PILOT_PUSH_THROTTLE` 控制的，默认为 100。 `doSendPushes` 的逻辑如图：
 
 ![EnvoyXdsServer Send Pushes](envoyxdsserver-sendpushes.png)
 
-首先从 `pushQueue` 中通过 `Dequeue()` 方法获取需要处理的代理客户端和对应的 PushRequest ，再根据 PushRequest 生成 Event 传入客户端的 `pushChannel` 中，注意和 `EnvoyXdsServer` 的 `pushChannel` 不同，这里的是针对当前客户端连接的 `pushChannel` 。
+首先从 `pushQueue` 中通过 `Dequeue()` 方法获取需要处理的代理客户端和对应的 PushRequest，再根据 PushRequest 生成 Event 传入客户端的 `pushChannel` 中，注意和 `EnvoyXdsServer` 的 `pushChannel` 不同，这里的是针对当前客户端连接的 `pushChannel` 。
 
 ```go
 func doSendPushes(stopCh <-chan struct{}, semaphore chan struct{}, queue *PushQueue) {
@@ -582,7 +582,7 @@ if !pushEv.full {
     }
     ```
     
-    它先是判断了变化的配置是否和 `SidecarScope` 是同个命名空间，不过这只针对 Sidecar 和 EnvoyFilter 等特殊配置。再处理一些不常见的配置，如果这些配置不在 `SidecarScope` 管理范围内的话，作为 unknown 类型也返回 true 。 `SidecarScope` 管理的流控配置主要是以下三种：
+    它先是判断了变化的配置是否和 `SidecarScope` 是同个命名空间，不过这只针对 Sidecar 和 EnvoyFilter 等特殊配置。再处理一些不常见的配置，如果这些配置不在 `SidecarScope` 管理范围内的话，作为 unknown 类型也返回 true。 `SidecarScope` 管理的流控配置主要是以下三种：
     
     ```go
     sidecarScopeKnownConfigTypes = map[resource.GroupVersionKind]struct{}{
@@ -724,9 +724,9 @@ if !pushEv.full {
 
 2.  PushConnection
 
-    回到 `pushConnection` 的主流程，在 `Full=false` 下判断 `ProxyNeedsPush` ，确定需要推送后调用 `pushEds` 增量推送 EDS 。
+    回到 `pushConnection` 的主流程，在 `Full=false` 下判断 `ProxyNeedsPush` ，确定需要推送后调用 `pushEds` 增量推送 EDS。
     
-    详细分析下 `pushEds` 的过程，首先遍历所有的 Clusters ，构建生成器生成 EDS ，然后调用 con.send() 进行推送：
+    详细分析下 `pushEds` 的过程，首先遍历所有的 Clusters，构建生成器生成 EDS，然后调用 con.send() 进行推送：
     
     ```go
     func (s *DiscoveryServer) pushEds(push *model.PushContext, con *Connection, version string, edsUpdatedServices map[string]struct{}) error {
@@ -771,7 +771,7 @@ if !pushEv.full {
     }
     ```
     
-    如果是增量推送的话这里就退出了，全量推送和只推送 EDS 一样，也会先判断下 `ProxyNeedsPush` ，确定需要后开始全量推送，根据 `pushTypes` 的不同分别推送 CDS 、 EDS 、 LDS 和 RDS :
+    如果是增量推送的话这里就退出了，全量推送和只推送 EDS 一样，也会先判断下 `ProxyNeedsPush` ，确定需要后开始全量推送，根据 `pushTypes` 的不同分别推送 CDS、EDS、LDS 和 RDS :
     
     ```go
     pushTypes := PushTypeFor(con.node, pushEv)
@@ -817,7 +817,7 @@ if !pushEv.full {
 
 ### Client Request
 
-这部分的内容比较简单，核心推送和上面的 `sendPushes` 一样，流程先是从 `reqChannel` 中获取 `DiscoveryRequest` 看客户端订阅了哪些 xDS ，组装推送即可。
+这部分的内容比较简单，核心推送和上面的 `sendPushes` 一样，流程先是从 `reqChannel` 中获取 `DiscoveryRequest` 看客户端订阅了哪些 xDS，组装推送即可。
 
 ![EnvoyXdsServer Client Request](envoyxdsserver-client-requests.png)
 
@@ -866,4 +866,4 @@ func (s *DiscoveryServer) processRequest(discReq *discovery.DiscoveryRequest, co
 
 xDS 的推送流程到这里就讲完了。我们从 `EnvoyXdsServer` 的结构开始，对其启动流程、怎么与客户端建立连接、怎么感知配置和服务变化、怎么防抖、怎么推送、`SidecarScope` 如何工作等都做了比较细致的分析，虽然已经阅读了源码，但是距离服务网格化的实际落地、实践中的各种性能问题、针对业务的优化，我们还有很长一段路要走。
 
-限于篇幅， xDS 的生成逻辑我们将在下一篇源码分析中讲解，也就是生成器中构建 xDS 的地方，这部分涉及到很多数据的转化，内容繁杂，需要整篇分析才能讲解的清楚。
+限于篇幅，xDS 的生成逻辑我们将在下一篇源码分析中讲解，也就是生成器中构建 xDS 的地方，这部分涉及到很多数据的转化，内容繁杂，需要整篇分析才能讲解的清楚。

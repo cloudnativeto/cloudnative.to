@@ -26,9 +26,9 @@ links:
 >
 > — Priyanka Sharma，云原生计算基金会执行董事
 
-## 趋势 1： Kubernetes 继续成为最受欢迎的容器管理系统
+## 趋势 1：Kubernetes 继续成为最受欢迎的容器管理系统
 
-Kubernetes 比以往任何时候都更受欢迎。如今，近一半的容器组织运行 Kubernetes 来在不断发展的生态系统中部署和管理容器。Amazon Elastic Kubernetes Services (Amazon EKS) Blueprints和 Amazon EKS Anywhere 等工具以及其他托管 Kubernetes 服务使团队可以轻松地在云中和本地运行 Kubernetes 集群。
+Kubernetes 比以往任何时候都更受欢迎。如今，近一半的容器组织运行 Kubernetes 来在不断发展的生态系统中部署和管理容器。Amazon Elastic Kubernetes Services (Amazon EKS) Blueprints 和 Amazon EKS Anywhere 等工具以及其他托管 Kubernetes 服务使团队可以轻松地在云中和本地运行 Kubernetes 集群。
 
 ![](008vxvgGgy1h7wbyje5nkj30ku0ce757.jpg)
 
@@ -38,7 +38,7 @@ Kubernetes 比以往任何时候都更受欢迎。如今，近一半的容器组
 
 ## 趋势 2：无服务器容器技术在所有主要公共云中继续流行
 
-所有主要云提供商（包括AWS App Runner、AWS Fargate、Azure Container Apps、Azure Container Instances (ACI)和Google Cloud Run ）对无服务器容器技术的使用率从 2020 年的 21% 增加到 2022 年的 36%（年初至今）。这与我们在之前的研究中看到的增长相呼应，其中包括 Amazon ECS 用户转向 AWS Fargate。
+所有主要云提供商（包括 AWS App Runner、AWS Fargate、Azure Container Apps、Azure Container Instances (ACI) 和 Google Cloud Run）对无服务器容器技术的使用率从 2020 年的 21% 增加到 2022 年的 36%（年初至今）。这与我们在之前的研究中看到的增长相呼应，其中包括 Amazon ECS 用户转向 AWS Fargate。
 
 客户将减少配置和管理底层基础设施的需求列为容器采用无服务器技术的主要原因之一。那些不使用无服务器技术的客户更喜欢从管理自己的基础架构中获得的控制力和灵活性。
 
@@ -52,7 +52,7 @@ Kubernetes 比以往任何时候都更受欢迎。如今，近一半的容器组
 
 ## 趋势 4：Kubernetes Ingress 使用率正在上升
 
-为了大规模管理来自集群外部的请求，管理员经常使用 Ingress 来配置到集群中多个服务的路由。如今，超过 35% 的组织使用 Ingress，自2020 年 8 月Kubernetes 1.19 版本发布以来，Ingress 已经普遍可用。
+为了大规模管理来自集群外部的请求，管理员经常使用 Ingress 来配置到集群中多个服务的路由。如今，超过 35% 的组织使用 Ingress，自 2020 年 8 月 Kubernetes 1.19 版本发布以来，Ingress 已经普遍可用。
 
 随着我们的客户操作更多的集群和 Pod，他们在路由和网络管理方面面临着越来越复杂的问题。许多 Kubernetes 的早期采用者使用云提供的负载均衡器将流量路由到他们的服务。但 Ingress 通常更具成本效益，并且自发布以来其采用率稳步提高。
 

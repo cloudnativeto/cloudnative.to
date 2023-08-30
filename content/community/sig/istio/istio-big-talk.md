@@ -14,7 +14,7 @@ type: book
 - 历史视频回看：[Bilibili - IstioServiceMesh](https://space.bilibili.com/1698576814)
 - 幻灯片归档地址：[GitHub](https://github.com/tetratelabs/istio-weekly/blob/main/istio-big-talk/playlist.md)
 
-## 第一期: Istio 开源四周年回顾与展望
+## 第一期：Istio 开源四周年回顾与展望
 
 - 时间：2021 年 5 月 25 日晚 8 点
 - 嘉宾：马若飞（FreeWheel）
@@ -34,69 +34,69 @@ type: book
 
 ### 问答
 
-请问刚参加工作的应届生，工作涉及istio中的envoy，请问应届生应该如何提前学习Envoy？
+请问刚参加工作的应届生，工作涉及 istio 中的 envoy，请问应届生应该如何提前学习 Envoy？
 
-答：需要多了解下网络知识，还有云原生社区的Envoy中文文档可以学习，也可以参加社区的翻译活动。
+答：需要多了解下网络知识，还有云原生社区的 Envoy 中文文档可以学习，也可以参加社区的翻译活动。
 
 ------
 
 在 service 特别多的时候，比如几万个 service，sidecar 是否会占用过多内存？如果是的话，可以有什么解决思路？
 
-答：可以通过将应用按业务组进行分组，将相互依赖的应用分开部署到不同的namespace中，然后配置sidecar配置进行配置收拢，使应用只关心特定namespace中的服务配置，个别服务通过网关调用。毕竟很难有应用会依赖几万个svc的。
+答：可以通过将应用按业务组进行分组，将相互依赖的应用分开部署到不同的 namespace 中，然后配置 sidecar 配置进行配置收拢，使应用只关心特定 namespace 中的服务配置，个别服务通过网关调用。毕竟很难有应用会依赖几万个 svc 的。
 
 ------
 
-我们想上Istio，请教下有什么坑？Istio1.10版本。建议上吗？架构为 SpringCloud。
+我们想上 Istio，请教下有什么坑？Istio1.10 版本。建议上吗？架构为 SpringCloud。
 
 答：本次分享应该回答了问题，这里很难回答。
 
 ------
 
-请问针对使用dubbo框架开发的应用来说，上Istio有什么建议？老师对aeraki这个项目怎么看？Istio对于支持dubbo以及其它协议这块有什么好的支持方式？
+请问针对使用 dubbo 框架开发的应用来说，上 Istio 有什么建议？老师对 aeraki 这个项目怎么看？Istio 对于支持 dubbo 以及其它协议这块有什么好的支持方式？
 
-答：可以考虑升级下dubbo 3.0.0，istio目前已经支持dubbo协议，但是由于dubbo数据包attachment在整个数据体的最后，反序列化成本较高，需要关注下性能。还有一点是一般dubbo服务sdk比较难去掉，和 Istio功能重合太大了。不太了解aeraki这个项目。社区可以邀请项目的人来分享。
-
-------
-
-IRA开源吗？
-
-答：这个服务通过istio的configController机制完成，代码量不大，目前还没开源。
+答：可以考虑升级下 dubbo 3.0.0，istio 目前已经支持 dubbo 协议，但是由于 dubbo 数据包 attachment 在整个数据体的最后，反序列化成本较高，需要关注下性能。还有一点是一般 dubbo 服务 sdk 比较难去掉，和 Istio 功能重合太大了。不太了解 aeraki 这个项目。社区可以邀请项目的人来分享。
 
 ------
 
-Mesh外的服务怎么访问Mesh内的服务？走Mesh的Ingess gateway 吗？
+IRA 开源吗？
 
-答：分享中已经提到，我们通过register-helper sidecar容器，保留了迁移过程中mesh外服务通过注册中心访问网格内服务的能力。完成迁移后可以将该sidecar去掉。当然网格外的服务通过ingress也是能够访问网格内的服务的。
-
-------
-
-请问接入Istio需要开发介入什么操作变更，当前架构为Spring Cloud，注册中心为nacos/eureka，95%应用在Kubernetes上，现在需要用到流量控制，ingress gateway，熔断，限流等功能。
-
-答：如果迁移设计的比较完美，其实可以做到开发零介入。比如我们的实践，大多数java服务只需要引入一个java jar包就可以。这个包中你可以将原来java服务底层的register sdk屏蔽，并且去除loadbalace逻辑，保留上层的接口。减少开发的接入成本，也方便Istio的推广。
+答：这个服务通过 istio 的 configController 机制完成，代码量不大，目前还没开源。
 
 ------
 
-上网格后springcloud consumer是否需要手动修改每个provider地址为Kubernetes service name?
+Mesh 外的服务怎么访问 Mesh 内的服务？走 Mesh 的 Ingess gateway 吗？
+
+答：分享中已经提到，我们通过 register-helper sidecar 容器，保留了迁移过程中 mesh 外服务通过注册中心访问网格内服务的能力。完成迁移后可以将该 sidecar 去掉。当然网格外的服务通过 ingress 也是能够访问网格内的服务的。
+
+------
+
+请问接入 Istio 需要开发介入什么操作变更，当前架构为 Spring Cloud，注册中心为 nacos/eureka，95% 应用在 Kubernetes 上，现在需要用到流量控制，ingress gateway，熔断，限流等功能。
+
+答：如果迁移设计的比较完美，其实可以做到开发零介入。比如我们的实践，大多数 java 服务只需要引入一个 java jar 包就可以。这个包中你可以将原来 java 服务底层的 register sdk 屏蔽，并且去除 loadbalace 逻辑，保留上层的接口。减少开发的接入成本，也方便 Istio 的推广。
+
+------
+
+上网格后 springcloud consumer 是否需要手动修改每个 provider 地址为 Kubernetes service name?
 
 答：这个建议是要替换的。但是有很多比较优雅的方式，详细见分享。
 
 ------
 
-能分享下目前用wasm主要做了哪些事么？稳定性和性能方面怎么样？
+能分享下目前用 wasm 主要做了哪些事么？稳定性和性能方面怎么样？
 
-答：对流量打标处理，方便后续进行route分发。由于是使用在sidecar而不是ingress上，性能上面并没有问题。稳定性需要使用者来保证了，wasm插件切不可出错，否则会影响所有流量。
-
-------
-
-目前Istio控制面管理不友好，如果不通过自研方案的话有什么推荐么？yaml方面，目前看没有很好的gui配置。
-
-答：社区比较主流的有kiali，如果企业支持，可以参考下一些企业支持版的Istio版本，比如[TSB](https://tetrate.io/tetrate-service-bridge)。
+答：对流量打标处理，方便后续进行 route 分发。由于是使用在 sidecar 而不是 ingress 上，性能上面并没有问题。稳定性需要使用者来保证了，wasm 插件切不可出错，否则会影响所有流量。
 
 ------
 
-什么样的业务或者场景适合上Istio，运维工程师该注意那些点，是否有很好的方案供参考，运维如何和开发配合完善推进上Istio，我们的业务是支付打款相关的，目前是.Net。
+目前 Istio 控制面管理不友好，如果不通过自研方案的话有什么推荐么？yaml 方面，目前看没有很好的 gui 配置。
 
-答：Istio适不适合其实和业务关系不大，和历史技术架构关系比较大。运维工程师和开发接受Istio架构需要比较大的学习成本。如果对这个有信心，那么并没有大问题。至于.Net还是其他语言关系并不大，毕竟Istio是语言无关的。
+答：社区比较主流的有 kiali，如果企业支持，可以参考下一些企业支持版的 Istio 版本，比如[TSB](https://tetrate.io/tetrate-service-bridge)。
+
+------
+
+什么样的业务或者场景适合上 Istio，运维工程师该注意那些点，是否有很好的方案供参考，运维如何和开发配合完善推进上 Istio，我们的业务是支付打款相关的，目前是.Net。
+
+答：Istio 适不适合其实和业务关系不大，和历史技术架构关系比较大。运维工程师和开发接受 Istio 架构需要比较大的学习成本。如果对这个有信心，那么并没有大问题。至于.Net 还是其他语言关系并不大，毕竟 Istio 是语言无关的。
 
 ## 第三期：如何让 Istio 变得更为高效和智能
 
@@ -117,7 +117,7 @@ Istio 作为当前最火的 Service Mesh 框架，既有大厂背书，也有优
 
    答：1.3 以后的版本都可以，网易内部使用 1.3 和 1.7 版本。
 
-2. 请问对于 Slime 的懒加载功能，在初始的时候是否可能存在 “冷启动”（刚开始 fence 里的服务较少，大多数依赖如果需要从兜底路由拉取需两次代理）。a) 能不能在刚开始的时候在 fence 里把所有 service 都写上（相当于配置信息全量下发），每次被调用到的服务放到 fence 的前面，等几轮全量下发配置之后将 fence 里排在后面的 service，类似于 LRU 算法）删除，这样可不可以减少两次代理的次数。b) 或者在开始前分析最近的流量关系，得到一个初始的 fence 状态。
+2. 请问对于 Slime 的懒加载功能，在初始的时候是否可能存在“冷启动”（刚开始 fence 里的服务较少，大多数依赖如果需要从兜底路由拉取需两次代理）。a) 能不能在刚开始的时候在 fence 里把所有 service 都写上（相当于配置信息全量下发），每次被调用到的服务放到 fence 的前面，等几轮全量下发配置之后将 fence 里排在后面的 service，类似于 LRU 算法）删除，这样可不可以减少两次代理的次数。b) 或者在开始前分析最近的流量关系，得到一个初始的 fence 状态。
 
    答：a) 可以在 fence 里手动配置，也可以当做 SidecarScope 资源来用，例如已经确定了 a 到 b 的调用关系，那么可以使用如下配置作为 a 的 servicefence：
 
@@ -187,7 +187,7 @@ Istio 作为当前最火的 Service Mesh 框架，既有大厂背书，也有优
 
 1. 请问，Istio 组件，包括数据面和控制面发生故障时，有哪些快速 fallback 的方案，之前阅读了大佬的相关文章，这块好像没有细讲，谢谢！
 
-   > 相对来说， 数据面 fallback 更重要一些，因为它直接接流量。最好是能结合流量劫持环节，让 sidecar 故障时，系统能自动感知到，流量自动 fallback 到直连模式，具体思路可以参考分享内容，其次 sidecar 的监控也是必要的，用来辅助感知和处理故障。控制面故障短时间内不会对流量转发造成影响，也可以通过部署多副本来应对故障。
+   > 相对来说，数据面 fallback 更重要一些，因为它直接接流量。最好是能结合流量劫持环节，让 sidecar 故障时，系统能自动感知到，流量自动 fallback 到直连模式，具体思路可以参考分享内容，其次 sidecar 的监控也是必要的，用来辅助感知和处理故障。控制面故障短时间内不会对流量转发造成影响，也可以通过部署多副本来应对故障。
 
 2. 有些服务 QoS 想设置 guaranteed，但是 istio 的 sidecar 不是 request 和 litmit 一样的。要 guaranteed 的话必须 sidecar 的 QoS 相关配置也要改。你们是怎么做的？如果改，建议设置为多少？感谢大佬！
 
@@ -197,15 +197,15 @@ Istio 作为当前最火的 Service Mesh 框架，既有大厂背书，也有优
 
    > 不能只关注 mesh 自身的能力，还要深入了解业务，最好是能挖掘业务最痛点的问题，比如原有框架治理能力比较弱，或者可视化能力弱，或者变更效率低等，业务最痛点的问题对于 mesh 来说可能是普通的能力，但却会给业务线带来很大的提升。
 
-4. 为什么没有采用 mcp over xds 的方案？ 而是独立搭建了 API server 和 etcd？
+4. 为什么没有采用 mcp over xds 的方案？而是独立搭建了 API server 和 etcd？
 
    > api server + etcd 可以比较容易的独立部署，能复用尽量复用。
 
-5. pilot 的多业务方案是怎么做的？ 如果是多个 pilot 的话，那独立的 Kubernetes API server 和 etcd 也要多个么？
+5. pilot 的多业务方案是怎么做的？如果是多个 pilot 的话，那独立的 Kubernetes API server 和 etcd 也要多个么？
 
    > 我们目前的实践是 api server + etcd 是一套，pilot 根据业务线多套，当然 api server + etcd 也可以是多套，可以根据系统性能以及数据隔离等需求灵活部署。
 
-6. Envoy 的 brpc 改造方案，会考虑开源么？ 怎么 follow 后续社区 Envoy 的最新代码呢
+6. Envoy 的 brpc 改造方案，会考虑开源么？怎么 follow 后续社区 Envoy 的最新代码呢
 
    > brpc 本身也是开源的，Envoy 只是做了集成。社区版本更新很快，具体多久更新一次其实很难抉择，需要考虑架构升级成本，以及社区版本的成熟度，这块我也没有太好的建议。
 
@@ -233,11 +233,11 @@ Istio 作为当前最火的 Service Mesh 框架，既有大厂背书，也有优
 
     > 不同的业务场景可能不太一样，内存大概在几百 M，CPU 一般是是业务的 10% 到 20%，但最好是要根据业务场景进行压测，得到数据。
 
-13. Sidecar 的监控是怎么做的？ 权限，成本方面可能都有一些疑问
+13. Sidecar 的监控是怎么做的？权限，成本方面可能都有一些疑问
 
     > Envoy 本身会暴露自身指标，对接相关的监控即可。
 
-14. Naming 这个 agent 和框架非常不错，请问 Naming 可以支持负载均衡么， 也就是 PodX 访问 PodY 的时候，naming 不要返回 PodY 真实 IP，而是返回负载均衡的 VIP 给 PodX; 十分感谢 - Ken
+14. Naming 这个 agent 和框架非常不错，请问 Naming 可以支持负载均衡么，也就是 PodX 访问 PodY 的时候，naming 不要返回 PodY 真实 IP，而是返回负载均衡的 VIP 给 PodX; 十分感谢 - Ken
 
     > 目前没有这么做，直接返回了 Envoy 的 loopback ip 来做流量劫持。
 
@@ -253,7 +253,7 @@ Istio 作为当前最火的 Service Mesh 框架，既有大厂背书，也有优
 
     > 可以增加 pilot 的副本数，来应对大规模 Envoy 的链接，另外控制面处理逻辑也有很多可以优化的地方，来优化从 API server 拿到数据之后的计算过程，这部分需要对 pilot 代码有一定开发经验和熟悉程度。
 
-18. 虽然老师不一定有关注这一块，但也提个问题看看吧。 Envoy 流量劫持是在 userSpace 还要经 TCP 协议栈其实损耗非常大的，后续 Envoy 有考虑 byPass Kernel，直接传包给网卡驱动提速么（例如 DPDK、SPDK）
+18. 虽然老师不一定有关注这一块，但也提个问题看看吧。Envoy 流量劫持是在 userSpace 还要经 TCP 协议栈其实损耗非常大的，后续 Envoy 有考虑 byPass Kernel，直接传包给网卡驱动提速么（例如 DPDK、SPDK）
 
     > 这个一方面要考虑成本问题，比如内核和硬件是否满足，另一方面也要评估收益，比如流量劫持这一部分虽然优化了，但是缩减的耗时对于整个请求链路的占比是否足够明显。
 
@@ -277,7 +277,7 @@ Istio 作为当前最火的 Service Mesh 框架，既有大厂背书，也有优
 
     > 我理解是不是只需要 v1 和 v2 就够了，先灰度给 v1，没问题的话 v2 也生效，这时候 v1 和 v2 策略就打平了。下次恢复依然还是这个流程，好像不需要一直叠加版本好吧，不确定我理解的对不对～
 
-24. Envoy 对于我司来说技术储备其实不是很够， 请问贵司刚上线的时候， Envoy 有没有遇到哪些问题。 特别是稳定性和故障方面。 如果能建议一下 Envoy 应该如何监控，那就 perfect.
+24. Envoy 对于我司来说技术储备其实不是很够，请问贵司刚上线的时候，Envoy 有没有遇到哪些问题。特别是稳定性和故障方面。如果能建议一下 Envoy 应该如何监控，那就 perfect.
 
     > Envoy 本身比较复杂，上线初期一定会遇到问题，最好是能结合流量劫持方案，做到 Envoy 故障自动 fallback，思路可以参考分享内容。监控的话，Envoy 自身会暴露 stats 接口，比较容易接入监控系统。
 
@@ -293,7 +293,7 @@ Istio 作为当前最火的 Service Mesh 框架，既有大厂背书，也有优
 
     > 官方的测试方法没有详细研究过，自己测试的话，可以用经过 Envoy 和 没经过 Envoy 的耗时 diff，也可以在程序里打点来看。
 
-28. Envoy 注入后业务 pod 会存在 2 个 container， 那么 Envoy 的配额是怎么限制的呢？ 比如限制 4 核心可能就是 2 个容器（1 个 pod）里面的配额了；
+28. Envoy 注入后业务 pod 会存在 2 个 container，那么 Envoy 的配额是怎么限制的呢？比如限制 4 核心可能就是 2 个容器（1 个 pod）里面的配额了；
 
     > 可以参见上面的回答
 
@@ -329,9 +329,9 @@ Istio 作为当前最火的 Service Mesh 框架，既有大厂背书，也有优
 
 1. Istio 的 gateway 对比 ambassador 的差异在哪？是否在 Istio 的基础上增加 api 网关这一层？增加后能填补哪些缺陷？
 
-   答：Ambassador 本身也是基于 envoy 之上的一个云原生网关产品， 本身包括控制平面；api gateway 范畴包括一些 Istio ingress gateway 不具备的功能，比如 api 生命周期管理，api 计费，限速，监控，认证等。所以 api gateway 本身有存在的必要，不过 API Gateway 需求中很大一部分需要根据不同的应用系统进行定制。
+   答：Ambassador 本身也是基于 envoy 之上的一个云原生网关产品，本身包括控制平面；api gateway 范畴包括一些 Istio ingress gateway 不具备的功能，比如 api 生命周期管理，api 计费，限速，监控，认证等。所以 api gateway 本身有存在的必要，不过 API Gateway 需求中很大一部分需要根据不同的应用系统进行定制。
 
-   我们有客户将 kong， openresty 等 api gateway 和 Istio ingress gateway 结合起来用。
+   我们有客户将 kong，openresty 等 api gateway 和 Istio ingress gateway 结合起来用。
 
 2. 对于多集群 Istio 部署了解到架构图如下所示，由单个控制平面管控所有集群，这里如果有 k8s 集群间网络不通，pod 与 pilot 交互链路是？
 
@@ -355,9 +355,9 @@ Istio 作为当前最火的 Service Mesh 框架，既有大厂背书，也有优
 
    2）没有走 passthrough，请看 lazyxds 架构图上第二步，是会给 workload 2 下发具体的重定向规则，也就是指明哪些服务流量要到 lazy egress。
 
-5. 钟老师您好， Istio 属于较新的技术，能否推荐一下监控应该怎么做， 或具体监控哪些指标？ 另外，下图步骤 10， Istiod 更新的时候是全量所有 workload 都更新吗， 还是只更新 wordload1 ?
+5. 钟老师您好，Istio 属于较新的技术，能否推荐一下监控应该怎么做，或具体监控哪些指标？另外，下图步骤 10，Istiod 更新的时候是全量所有 workload 都更新吗，还是只更新 wordload1 ?
 
-   1）mesh 监控包括三个方面：metric, tracing，logging, TCM 技术选型偏云原生：metric 使用 prometheus, tracing 使用 jaeger collector， logging 是自研的技术。另外也用到了腾讯云上的监控服务。
+   1）mesh 监控包括三个方面：metric, tracing，logging, TCM 技术选型偏云原生：metric 使用 prometheus, tracing 使用 jaeger collector，logging 是自研的技术。另外也用到了腾讯云上的监控服务。
 
    2）只更新 workload1，注意架构图上的第八，sidecar 里会指定具体的 workload。
 
@@ -368,15 +368,15 @@ Istio 作为当前最火的 Service Mesh 框架，既有大厂背书，也有优
 7. 请问 isitod 的稳定性有什么实践经验可以分享吗，failback，failover 容错机制是怎么实现的？
 
    1. 本次分享包括 2 个 Istiod 稳定性实践：如何保证 Istiod 负载平衡，如何对 Istiod 做灰度升级
-   2. 数据面 failback，failover 本身是 envoy 的能力，Istio 会给 eds 设置 priority， 这个值表示和当前 pod 的亲和度（地域和区域），（如果开启就近访问）服务访问会优先访问 priority 为 0 的 endpoint， 如果为 0 的 endpoint 都失效了，访问会 failover 到 priority 为 1 的 endpoint，接下来是 priority 为 2 的，逐级失效转移。
+   2. 数据面 failback，failover 本身是 envoy 的能力，Istio 会给 eds 设置 priority，这个值表示和当前 pod 的亲和度（地域和区域），（如果开启就近访问）服务访问会优先访问 priority 为 0 的 endpoint，如果为 0 的 endpoint 都失效了，访问会 failover 到 priority 为 1 的 endpoint，接下来是 priority 为 2 的，逐级失效转移。
 
 8. Istio 与已有的基础设施 (注册中心等) 如何整合，是使用 mcp 还是 k8s api server 实现
 
    答：之前我们尝试过 mcp，不过比较难调试，目前我们更推荐使用扩展 service entry 方式，参考我们开源的 [dubbo2istio](https://github.com/aeraki-framework/dubbo2istio) 或 [consul2istio](https://github.com/aeraki-framework/consul2istio)。
 
-9. TKE 注入 sidecar pod 会从 1 个容器升级为 2 个容器，请问 pod 对集群内其他 pod 访问的链路是怎么走的呢？ 20:28 说到控制面板资源 HPA 后依然会紧张，能否建议下 ISTIOD 的资源应该如何设计么， 比如 n 个 pod 对应 1 个 Istiod。
+9. TKE 注入 sidecar pod 会从 1 个容器升级为 2 个容器，请问 pod 对集群内其他 pod 访问的链路是怎么走的呢？20:28 说到控制面板资源 HPA 后依然会紧张，能否建议下 ISTIOD 的资源应该如何设计么，比如 n 个 pod 对应 1 个 Istiod。
 
-   1. client 业务容器 ->client pod iptables->client envoy （将 service ip 转成 pod ip） -> node (iptables 不做 service nat 了) -> server pod iptables-> server envoy -> server 业务容器
+   1. client 业务容器 ->client pod iptables->client envoy（将 service ip 转成 pod ip） -> node (iptables 不做 service nat 了) -> server pod iptables-> server envoy -> server 业务容器
    2. 需要结合业务做压测，通常建议可以把 request 设小一点，把 limit 设大一点。
 
 10. isito 的部署模型是怎么样的？是每个业务部署一个 isitod 集群，还是多个业务共享？
@@ -475,7 +475,7 @@ Istio 作为当前最火的 Service Mesh 框架，既有大厂背书，也有优
 - 分享嘉宾：周礼赞（Tetrate）
 - 回放地址：https://www.bilibili.com/video/BV1d64y1x7yn
 
-我们在过去两个月内已经陆续举办了 5 期《[Istio 大咖说](https://mp.weixin.qq.com/s?__biz=MzI1NTE2NDE2MA==&mid=2649385244&idx=1&sn=c03da04686c82d75a62c214f851da48b&chksm=f224e373c5536a655f5f7270da8ed66f3f92d55f9a3a92d26125d14699fd40e3112db397cedf&scene=21#wechat_redirect)》，直播过程中很多观众反馈想要了解下 Envoy，有很多关于 Envoy 的问题却没有人可以来解答，而 Envoy 作为 Istio 中默认的数据平面，可以说如果你搞懂了 Envoy 就算把 Istio 搞懂 80%了。这次我们邀请了来自企业级服务网格提供商 Tetrate 公司的周礼赞，他是 Envoy 的核心 maintainer，之前也在云原生社区中分享过一次[《云原生学院第 17 期：Envoy 调试流量的常用技巧》](https://mp.weixin.qq.com/s?__biz=MzI1NTE2NDE2MA==&mid=2649383202&idx=1&sn=aec41575106a2b039900b0dfe963231e&chksm=f224eb4dc553625bf39d153a55fcc7ce59f25779ca9f8c4d5f7e2b2ae1edd684168c2e041301&scene=21#wechat_redirect)。
+我们在过去两个月内已经陆续举办了 5 期《[Istio 大咖说](https://mp.weixin.qq.com/s?__biz=MzI1NTE2NDE2MA==&mid=2649385244&idx=1&sn=c03da04686c82d75a62c214f851da48b&chksm=f224e373c5536a655f5f7270da8ed66f3f92d55f9a3a92d26125d14699fd40e3112db397cedf&scene=21#wechat_redirect)》，直播过程中很多观众反馈想要了解下 Envoy，有很多关于 Envoy 的问题却没有人可以来解答，而 Envoy 作为 Istio 中默认的数据平面，可以说如果你搞懂了 Envoy 就算把 Istio 搞懂 80% 了。这次我们邀请了来自企业级服务网格提供商 Tetrate 公司的周礼赞，他是 Envoy 的核心 maintainer，之前也在云原生社区中分享过一次[《云原生学院第 17 期：Envoy 调试流量的常用技巧》](https://mp.weixin.qq.com/s?__biz=MzI1NTE2NDE2MA==&mid=2649383202&idx=1&sn=aec41575106a2b039900b0dfe963231e&chksm=f224eb4dc553625bf39d153a55fcc7ce59f25779ca9f8c4d5f7e2b2ae1edd684168c2e041301&scene=21#wechat_redirect)。
 
 ## 第七期：基于 Envoy/Istio 的云原生 API 网关 —— 开源项目 Hango 的设计与实现
 
@@ -494,43 +494,43 @@ Istio 作为当前最火的 Service Mesh 框架，既有大厂背书，也有优
 
 ### 问答
 
-1. Envoy体系学习图谱，现在是整体文档都看完有用到时再翻文档
+1. Envoy 体系学习图谱，现在是整体文档都看完有用到时再翻文档
 
-   答：可以关注社区动态，学习思路路线上可以根据自己想对 Envoy了解的程度按照以下线路进行：了解 Envoy 基本架构 -> 使用 Envoy 常用特性 -> 尝试扩展 envoy -> 对 Envoy 做深度定制，另外 Tetrate 即将推出免费的 Envoy 教程，敬请关注。
+   答：可以关注社区动态，学习思路路线上可以根据自己想对 Envoy 了解的程度按照以下线路进行：了解 Envoy 基本架构 -> 使用 Envoy 常用特性 -> 尝试扩展 envoy -> 对 Envoy 做深度定制，另外 Tetrate 即将推出免费的 Envoy 教程，敬请关注。
 
-2. Hango项目与网易轻舟项目是什么关系？开源版么？
+2. Hango 项目与网易轻舟项目是什么关系？开源版么？
 
-   答：网易轻舟项目包含轻舟微服务、轻舟API网关、轻舟容器等产品，轻舟API网关是Hango项目的商业版。
+   答：网易轻舟项目包含轻舟微服务、轻舟 API 网关、轻舟容器等产品，轻舟 API 网关是 Hango 项目的商业版。
 
-3. Ingress Controller与API Management是否有必要合为一个产品？ 就是 k8s 资源，意思两个产品位置是否需要合一？
+3. Ingress Controller 与 API Management 是否有必要合为一个产品？就是 k8s 资源，意思两个产品位置是否需要合一？
 
-   答：具体需要看网关的定位，如果作为微服务网关的话，不建议合为一个产品；如果承担ingress功能，可以合一。
+   答：具体需要看网关的定位，如果作为微服务网关的话，不建议合为一个产品；如果承担 ingress 功能，可以合一。
 
 4. 使用 Envoy 以网关的形式和以 Sidecar 的形式做服务治理有什么区别，使用场景分别是什么呢？以网关的形式做东西南北向流量的服务治理的方案可行吗？
 
-   答：网关主要做南北流量治理；Sidecar承担集群东西流量治理。在大规模场景下，不建议网关作为东西流量治理；服务调用关系简单，API规模有限可以。
+   答：网关主要做南北流量治理；Sidecar 承担集群东西流量治理。在大规模场景下，不建议网关作为东西流量治理；服务调用关系简单，API 规模有限可以。
 
-5. Hango必须配合Istio一起使用吗？
+5. Hango 必须配合 Istio 一起使用吗？
 
-   答：推荐使用Istio, 仅单独使用网关数据面丧失网关动态配置能力，自身静态配置复杂度也大大提高。
+   答：推荐使用 Istio, 仅单独使用网关数据面丧失网关动态配置能力，自身静态配置复杂度也大大提高。
 
-6. 接问题5，如果是可以独立使用，在k8s内额外创建一个网关，这个网关目的是什么，这在集群内服务之间互访的时候等于破坏了Kubernetes本身的svc特性，consumer服务找这个网关所注册的服务？能否举例一个具体的场景。
+6. 接问题 5，如果是可以独立使用，在 k8s 内额外创建一个网关，这个网关目的是什么，这在集群内服务之间互访的时候等于破坏了 Kubernetes 本身的 svc 特性，consumer 服务找这个网关所注册的服务？能否举例一个具体的场景。
 
-   答：不推荐独立使用，网关的功能对外统一暴露集群内API。网关暴露的意义，一部分是代理，另一部分是丰富的治理功能以及多维度的指标监控。
+   答：不推荐独立使用，网关的功能对外统一暴露集群内 API。网关暴露的意义，一部分是代理，另一部分是丰富的治理功能以及多维度的指标监控。
 
-7. 加载 Lua后性能有下降吗？
+7. 加载 Lua 后性能有下降吗？
 
-   答：简单的插件，性能基本在20%损失。
+   答：简单的插件，性能基本在 20% 损失。
 
-8. 边缘网关有哪些场景？看到ppt里有写，但是没有讲。
+8. 边缘网关有哪些场景？看到 ppt 里有写，但是没有讲。
 
-   答：类似集群中的统一API暴露，只是不需要额外的用户配置。
+   答：类似集群中的统一 API 暴露，只是不需要额外的用户配置。
 
-9. 性能没太看懂，9wqps是几台机器？几c？
+9. 性能没太看懂，9wqps 是几台机器？几 c？
 
    答：容器：8c8g 物理机：56c256g
 
-10. lua 怎么保证脚本安全？隔离性怎么样？写个while true 会不会把整个网关搞崩？
+10. lua 怎么保证脚本安全？隔离性怎么样？写个 while true 会不会把整个网关搞崩？
 
     答：lua的插件链的异常不会导致主线程crash，异常后跳过逻辑，执行之后的插件链。
 
@@ -538,7 +538,7 @@ Istio 作为当前最火的 Service Mesh 框架，既有大厂背书，也有优
 
     答：升级的平滑度以及线上规模的预估。
 
-12. 可以认为是在Istio gateway + virtualservice的一个升级版么？ 是不是用了这个网关我就可以不用Istio gateway了？
+12. 可以认为是在 Istio gateway + virtualservice 的一个升级版么？是不是用了这个网关我就可以不用 Istio gateway 了？
 
     答：是的
 
@@ -559,43 +559,43 @@ Istio 作为当前最火的 Service Mesh 框架，既有大厂背书，也有优
 
 ### 问答
 
-1. Envoy体系学习图谱，现在是整体文档都看完有用到时再翻文档
+1. Envoy 体系学习图谱，现在是整体文档都看完有用到时再翻文档
 
-   答：可以关注社区动态，学习思路路线上可以根据自己想对 Envoy了解的程度按照以下线路进行：了解 Envoy 基本架构 -> 使用 Envoy 常用特性 -> 尝试扩展 envoy -> 对 Envoy 做深度定制，另外 Tetrate 即将推出免费的 Envoy 教程，敬请关注。
+   答：可以关注社区动态，学习思路路线上可以根据自己想对 Envoy 了解的程度按照以下线路进行：了解 Envoy 基本架构 -> 使用 Envoy 常用特性 -> 尝试扩展 envoy -> 对 Envoy 做深度定制，另外 Tetrate 即将推出免费的 Envoy 教程，敬请关注。
 
-2. Hango项目与网易轻舟项目是什么关系？开源版么？
+2. Hango 项目与网易轻舟项目是什么关系？开源版么？
 
-   答：网易轻舟项目包含轻舟微服务、轻舟API网关、轻舟容器等产品，轻舟API网关是Hango项目的商业版。
+   答：网易轻舟项目包含轻舟微服务、轻舟 API 网关、轻舟容器等产品，轻舟 API 网关是 Hango 项目的商业版。
 
-3. Ingress Controller与API Management是否有必要合为一个产品？ 就是 k8s 资源，意思两个产品位置是否需要合一？
+3. Ingress Controller 与 API Management 是否有必要合为一个产品？就是 k8s 资源，意思两个产品位置是否需要合一？
 
-   答：具体需要看网关的定位，如果作为微服务网关的话，不建议合为一个产品；如果承担ingress功能，可以合一。
+   答：具体需要看网关的定位，如果作为微服务网关的话，不建议合为一个产品；如果承担 ingress 功能，可以合一。
 
 4. 使用 Envoy 以网关的形式和以 Sidecar 的形式做服务治理有什么区别，使用场景分别是什么呢？以网关的形式做东西南北向流量的服务治理的方案可行吗？
 
-   答：网关主要做南北流量治理；Sidecar承担集群东西流量治理。在大规模场景下，不建议网关作为东西流量治理；服务调用关系简单，API规模有限可以。
+   答：网关主要做南北流量治理；Sidecar 承担集群东西流量治理。在大规模场景下，不建议网关作为东西流量治理；服务调用关系简单，API 规模有限可以。
 
-5. Hango必须配合Istio一起使用吗？
+5. Hango 必须配合 Istio 一起使用吗？
 
-   答：推荐使用Istio, 仅单独使用网关数据面丧失网关动态配置能力，自身静态配置复杂度也大大提高。
+   答：推荐使用 Istio, 仅单独使用网关数据面丧失网关动态配置能力，自身静态配置复杂度也大大提高。
 
-6. 接问题5，如果是可以独立使用，在k8s内额外创建一个网关，这个网关目的是什么，这在集群内服务之间互访的时候等于破坏了Kubernetes本身的svc特性，consumer服务找这个网关所注册的服务？能否举例一个具体的场景。
+6. 接问题 5，如果是可以独立使用，在 k8s 内额外创建一个网关，这个网关目的是什么，这在集群内服务之间互访的时候等于破坏了 Kubernetes 本身的 svc 特性，consumer 服务找这个网关所注册的服务？能否举例一个具体的场景。
 
-   答：不推荐独立使用，网关的功能对外统一暴露集群内API。网关暴露的意义，一部分是代理，另一部分是丰富的治理功能以及多维度的指标监控。
+   答：不推荐独立使用，网关的功能对外统一暴露集群内 API。网关暴露的意义，一部分是代理，另一部分是丰富的治理功能以及多维度的指标监控。
 
-7. 加载 Lua后性能有下降吗？
+7. 加载 Lua 后性能有下降吗？
 
-   答：简单的插件，性能基本在20%损失。
+   答：简单的插件，性能基本在 20% 损失。
 
-8. 边缘网关有哪些场景？看到ppt里有写，但是没有讲。
+8. 边缘网关有哪些场景？看到 ppt 里有写，但是没有讲。
 
-   答：类似集群中的统一API暴露，只是不需要额外的用户配置。
+   答：类似集群中的统一 API 暴露，只是不需要额外的用户配置。
 
-9. 性能没太看懂，9wqps是几台机器？几c？
+9. 性能没太看懂，9wqps 是几台机器？几 c？
 
    答：容器：8c8g 物理机：56c256g
 
-10. lua 怎么保证脚本安全？隔离性怎么样？写个while true 会不会把整个网关搞崩？
+10. lua 怎么保证脚本安全？隔离性怎么样？写个 while true 会不会把整个网关搞崩？
 
     答：lua的插件链的异常不会导致主线程crash，异常后跳过逻辑，执行之后的插件链。
 
@@ -603,7 +603,7 @@ Istio 作为当前最火的 Service Mesh 框架，既有大厂背书，也有优
 
     答：升级的平滑度以及线上规模的预估。
 
-12. 可以认为是在Istio gateway + virtualservice的一个升级版么？ 是不是用了这个网关我就可以不用Istio gateway了？
+12. 可以认为是在 Istio gateway + virtualservice 的一个升级版么？是不是用了这个网关我就可以不用 Istio gateway 了？
 
     答：是的
 
@@ -630,47 +630,47 @@ Istio 作为当前最火的 Service Mesh 框架，既有大厂背书，也有优
 
 ### 问答
 
-1. 我们在落地Istio 中碰到一个坑是 envoy 的 connection idleTime 和各种语言的 keepalive 时间不同，在大量使用长连接（http1.1）的情况下，可能会出现客户端用现有的长连接发起请求，但是服务端连接刚好超时回收了，导致会有部分请求 503（报错是 connection reset），在 Istio 社区也看到了这类的 issue，但是都没发现一个合适的解决方案。Istio 默认内置的重试条件中不包括 connection reset 这种情况，可能是害怕对非幂等请求的重试。不知道小红书内部有没有类似的问题？
+1. 我们在落地 Istio 中碰到一个坑是 envoy 的 connection idleTime 和各种语言的 keepalive 时间不同，在大量使用长连接（http1.1）的情况下，可能会出现客户端用现有的长连接发起请求，但是服务端连接刚好超时回收了，导致会有部分请求 503（报错是 connection reset），在 Istio 社区也看到了这类的 issue，但是都没发现一个合适的解决方案。Istio 默认内置的重试条件中不包括 connection reset 这种情况，可能是害怕对非幂等请求的重试。不知道小红书内部有没有类似的问题？
 
-   答：这个问题可以参考Envoy官网关于超时时间设置的[最佳实践](https://www.envoyproxy.io/docs/envoy/v1.17.1/faq/configuration/timeouts)。
+   答：这个问题可以参考 Envoy 官网关于超时时间设置的[最佳实践](https://www.envoyproxy.io/docs/envoy/v1.17.1/faq/configuration/timeouts)。
 
-2. Envoy是否考虑降级，以应对envoy异常时跳过sidecar直接访问服务，不知道是否有类似经验？
+2. Envoy 是否考虑降级，以应对 envoy 异常时跳过 sidecar 直接访问服务，不知道是否有类似经验？
 
-   答：我们目前是通过监听实际端口来做流量拦截的，这样当出现问题之后我们会让sdk把流量切换到中央sidecar。这种流量回滚方式与我们的流量拦截方式强相关，同时也对sdk有一定入侵，可以看一下小红书关于流量拦截方案的介绍。
+   答：我们目前是通过监听实际端口来做流量拦截的，这样当出现问题之后我们会让 sdk 把流量切换到中央 sidecar。这种流量回滚方式与我们的流量拦截方式强相关，同时也对 sdk 有一定入侵，可以看一下小红书关于流量拦截方案的介绍。
 
 3. xds 和 eds 分开会不会有数据不一致的问题？
 
    答：不会有问题
 
-4. 有没有使用webassembly开发扩展？
+4. 有没有使用 webassembly 开发扩展？
 
-   答：小红书暂时没有使用wasm，扩展是直接开发envoy filter。
+   答：小红书暂时没有使用 wasm，扩展是直接开发 envoy filter。
 
 5. 配置灰度下发解决思路是什么？
 
-   答：跟我们sidecar灰度升级的思路比较一致，通过创建cluster/ns/service粒度的升级任务，由pilot决定配置要下发给哪些sidecar
+   答：跟我们 sidecar 灰度升级的思路比较一致，通过创建 cluster/ns/service 粒度的升级任务，由 pilot 决定配置要下发给哪些 sidecar
 
-6. Envoy引入brpc是替换了Envoy哪些部分？
+6. Envoy 引入 brpc 是替换了 Envoy 哪些部分？
 
-   答：不算事替换吧，是想做到自由切换线程模型，引入bthread。
+   答：不算事替换吧，是想做到自由切换线程模型，引入 bthread。
 
 7. 虚机服务（通过域名+nginx+tomcat）如何解决服务网格的灰度上线？
 
-   答：虚拟机跟pod应该是一样的，通过创建dr维护版本信息，然后配置流量配比。
+   答：虚拟机跟 pod 应该是一样的，通过创建 dr 维护版本信息，然后配置流量配比。
 
 8. 手动维护服务依赖的话还算懒加载吗？
 
    答：严格意义上面不算了。但是本质上都是为了做服务可见性。
 
-9. 懒加载中hosts依赖的serviceEntry信息是不是依然要全局envoy下发？
+9. 懒加载中 hosts 依赖的 serviceEntry 信息是不是依然要全局 envoy 下发？
 
-   答：特定服务的所有实例/流控配置是全量的，这个跟pilot实现有关，目前社区的新版本已经在开发增量推送了，可以关注一下。
+   答：特定服务的所有实例/流控配置是全量的，这个跟 pilot 实现有关，目前社区的新版本已经在开发增量推送了，可以关注一下。
 
 10. 不拦截入流量的话要做 inbound 的策略怎么办？
 
     答：原生的方案inbound本身也没有什么流量治理的特性，就是流量转发，所以我们不担心不拦截inbound会有流量治理能力的缺失。主要是担心可观察性会有影响，目前期望通过SDK补齐丢失的指标。
 
-11. 对 Istio multi-tenancy有支持增强吗？
+11. 对 Istio multi-tenancy 有支持增强吗？
 
     答：小红书内部对多租户没有什么诉求，这个应该是公有云比较关心。
 
@@ -682,7 +682,7 @@ Istio 作为当前最火的 Service Mesh 框架，既有大厂背书，也有优
 
     答：端口不会冲突，一个Pod内部依赖的服务不会重复，每个服务都有唯一的端口。但是主机网络会存在端口冲突的情况，目前我们的方案就是让用户改为非主机网络。
 
-14. 懒加载中serviceEntry+sidecar中如何支持按照route等方式配置http路由信息，就像virtualserver中支持的httproute功能？
+14. 懒加载中 serviceEntry+sidecar 中如何支持按照 route 等方式配置 http 路由信息，就像 virtualserver 中支持的 httproute 功能？
 
     答：使用serviceEntry+sidecar不影响vs等的使用。两个东西没有太大关系。
 
@@ -690,15 +690,15 @@ Istio 作为当前最火的 Service Mesh 框架，既有大厂背书，也有优
 
     答：后续会有团队小伙伴小红书分享关于aeraki做的扩展，但是应该不会合并到aeraki，内容偏小红书定制。
 
-16. 流量拦截中还是用到了iptables(tproxy)模式，性能上会不会依然受影响？
+16. 流量拦截中还是用到了 iptables(tproxy) 模式，性能上会不会依然受影响？
 
     答：会有影响的，但是用了tproxy模式会好一些。
 
-17. 有没有Envoy数据面性能的参考数据，总体上和业务容器的平均占比会是怎样的，cpu 和内存呢？
+17. 有没有 Envoy 数据面性能的参考数据，总体上和业务容器的平均占比会是怎样的，cpu 和内存呢？
 
     答：按照我们内部一个业务的压测，单跳Envoy延迟增加2ms。Envoy大概占用0.5核，300m左右内存。后续我们会压测高QPS业务，届时我再补充数据。整体来看配置了懒加载envoy资源吃的不多。
 
-18. 灰度下发的方案，不同sidecar配置的diff是保存在那个地方？
+18. 灰度下发的方案，不同 sidecar 配置的 diff 是保存在那个地方？
 
     答：存储在mysql。
 
@@ -714,11 +714,11 @@ Istio 作为当前最火的 Service Mesh 框架，既有大厂背书，也有优
 
     答：小红书内部不用service，而且serviceentry可以支持虚机。
 
-22. 老师能否介绍下小红书的Service Mesh发展到现在的程度，大概是多少人的团队，做了多久？
+22. 老师能否介绍下小红书的 Service Mesh 发展到现在的程度，大概是多少人的团队，做了多久？
 
     答：目前4个人，大概做了半年。
 
-23. Envoy延迟的长尾情况呢？
+23. Envoy 延迟的长尾情况呢？
 
     答：还是比较明显的，这个跟Envoy线程模型有关吧。但是引入backuprequest会好很多，来自百度的内部实践。
 
@@ -726,7 +726,7 @@ Istio 作为当前最火的 Service Mesh 框架，既有大厂背书，也有优
 
     答：请加入云原生社区 Istio SIG 交流，大佬在群里。
 
-25. 原生 Istio 自动注入会跳过主机模式host的pod？
+25. 原生 Istio 自动注入会跳过主机模式 host 的 pod？
 
     答：出于安全考虑 Istio一般也不敢直接在虚机上面拦，比较危险，最好还是不要用主机网络吧。非要用的话只能修改webhook吧。
 
@@ -734,6 +734,6 @@ Istio 作为当前最火的 Service Mesh 框架，既有大厂背书，也有优
 
     答：公司内部自研的注册中心，细节不太清楚，后续可能有同事分享小红书注册中心。
 
-27. 请问sidecar热升级前后，通过istioctl ps 查看proxy的版本有变化吗？
+27. 请问 sidecar 热升级前后，通过 istioctl ps 查看 proxy 的版本有变化吗？
 
     答：不会有变化。版本号是我们自己在Envoy开发的api，跟istioctl ps哪个版本没关系。

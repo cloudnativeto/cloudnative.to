@@ -12,7 +12,7 @@ keywords: ["service mesh","服务网格","envoy","xds"]
 
 本文为翻译文章，[点击查看原文](https://www.envoyproxy.io/docs/envoy/latest/api-docs/xds_protocol)。
 
-Envoy 通过查询文件或管理服务器来动态发现资源。概括地讲，对应的发现服务及其相应的 API 被称作  _xDS_ 。Envoy 通过订阅（ _subscription_ ）方式来获取资源，如监控指定路径下的文件、启动 gRPC 流或轮询 REST-JSON URL。后两种方式会发送 [`DiscoveryRequest`](https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/discovery.proto#discoveryrequest) 请求消息，发现的对应资源则包含在响应消息 [`DiscoveryResponse`](https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/discovery.proto#discoveryresponse) 中。下面，我们将具体讨论每种订阅类型。
+Envoy 通过查询文件或管理服务器来动态发现资源。概括地讲，对应的发现服务及其相应的 API 被称作  _xDS_。Envoy 通过订阅（_subscription_）方式来获取资源，如监控指定路径下的文件、启动 gRPC 流或轮询 REST-JSON URL。后两种方式会发送 [`DiscoveryRequest`](https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/discovery.proto#discoveryrequest) 请求消息，发现的对应资源则包含在响应消息 [`DiscoveryResponse`](https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/discovery.proto#discoveryresponse) 中。下面，我们将具体讨论每种订阅类型。
 
 ## 文件订阅
 
@@ -34,7 +34,7 @@ Envoy 通过查询文件或管理服务器来动态发现资源。概括地讲�
 
 ### 单资源类型发现
 
-每个 xDS API 可以单独配置 [`ApiConfigSource`](https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/core/config_source.proto#core-apiconfigsource)，指向对应的上游管理服务器的集群地址。每个 xDS 资源类型会启动一个独立的双向 gRPC 流，可能对应不同的管理服务器。API 交付方式采用最终一致性。可以参考后续聚合服务发现（ADS） 章节来了解必要的显式控制序列。
+每个 xDS API 可以单独配置 [`ApiConfigSource`](https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/core/config_source.proto#core-apiconfigsource)，指向对应的上游管理服务器的集群地址。每个 xDS 资源类型会启动一个独立的双向 gRPC 流，可能对应不同的管理服务器。API 交付方式采用最终一致性。可以参考后续聚合服务发现（ADS）章节来了解必要的显式控制序列。
 
 > 译者注：core.ApiConfigSource 配置格式如下：
 
@@ -52,11 +52,11 @@ Envoy 通过查询文件或管理服务器来动态发现资源。概括地讲�
 
 每个 xDS API 都与给定的资源的类型存在 1:1 对应。关系如下：
 
-- [LDS： `envoy.api.v2.Listener`](https://github.com/envoyproxy/data-plane-api/blob/master/envoy/api/v2/lds.proto)
-- [RDS： `envoy.api.v2.RouteConfiguration`](https://github.com/envoyproxy/data-plane-api/blob/master/envoy/api/v2/rds.proto)
-- [CDS： `envoy.api.v2.Cluster`](https://github.com/envoyproxy/data-plane-api/blob/master/envoy/api/v2/cds.proto)
-- [EDS： `envoy.api.v2.ClusterLoadAssignment`](https://github.com/envoyproxy/data-plane-api/blob/master/envoy/api/v2/eds.proto)
-- [SDS：`envoy.api.v2.Auth.Secret`](https://github.com/envoyproxy/data-plane-api/blob/master/envoy/api/v2/auth/cert.proto)
+- [LDS: `envoy.api.v2.Listener`](https://github.com/envoyproxy/data-plane-api/blob/master/envoy/api/v2/lds.proto)
+- [RDS: `envoy.api.v2.RouteConfiguration`](https://github.com/envoyproxy/data-plane-api/blob/master/envoy/api/v2/rds.proto)
+- [CDS: `envoy.api.v2.Cluster`](https://github.com/envoyproxy/data-plane-api/blob/master/envoy/api/v2/cds.proto)
+- [EDS: `envoy.api.v2.ClusterLoadAssignment`](https://github.com/envoyproxy/data-plane-api/blob/master/envoy/api/v2/eds.proto)
+- [SDS:`envoy.api.v2.Auth.Secret`](https://github.com/envoyproxy/data-plane-api/blob/master/envoy/api/v2/auth/cert.proto)
 
 [_类型 URL_](https://developers.google.com/protocol-buffers/docs/proto3#any) 的概念如下所示，其采用 `type.googleapis.com/<resource type>` 的形式，例如 CDS 对应于  `type.googleapis.com/envoy.api.v2.Cluster`。在 Envoy 的请求和管理服务器的响应中，都包括了资源类型 URL。
 
@@ -94,7 +94,7 @@ Envoy 在处理 `DiscoveryResponse` 响应后，将通过流发送一个新的�
 - `DiscoveryRequest`： (V=`version_info`，R=`resource_names`，N=`response_nonce`，T=`type_url`)
 - `DiscoveryResponse`： (V=`version_info`，R=`resources`，N=`nonce`，T=`type_url`)
 
-> 译者注：在[信息安全](https://zh.wikipedia.org/wiki/%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8)中，**Nonce**是一个在加密通信只能使用一次的数字。在认证协议中，它往往是一个[随机](https://zh.wikipedia.org/wiki/%E9%9A%8F%E6%9C%BA)或[伪随机](https://zh.wikipedia.org/wiki/%E4%BC%AA%E9%9A%8F%E6%9C%BA)数，以避免[重放攻击](https://zh.wikipedia.org/wiki/%E9%87%8D%E6%94%BE%E6%94%BB%E5%87%BB)。Nonce也用于[流密码](https://zh.wikipedia.org/wiki/%E6%B5%81%E5%AF%86%E7%A0%81)以确保安全。如果需要使用相同的密钥加密一个以上的消息，就需要Nonce来确保不同的消息与该密钥加密的密钥流不同。（引用自[维基百科](https://zh.wikipedia.org/wiki/Nonce)）在本文中`nonce`是每次更新的数据包的唯一标识。
+> 译者注：在[信息安全](https://zh.wikipedia.org/wiki/%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8)中，**Nonce**是一个在加密通信只能使用一次的数字。在认证协议中，它往往是一个[随机](https://zh.wikipedia.org/wiki/%E9%9A%8F%E6%9C%BA)或[伪随机](https://zh.wikipedia.org/wiki/%E4%BC%AA%E9%9A%8F%E6%9C%BA)数，以避免[重放攻击](https://zh.wikipedia.org/wiki/%E9%87%8D%E6%94%BE%E6%94%BB%E5%87%BB)。Nonce 也用于[流密码](https://zh.wikipedia.org/wiki/%E6%B5%81%E5%AF%86%E7%A0%81)以确保安全。如果需要使用相同的密钥加密一个以上的消息，就需要 Nonce 来确保不同的消息与该密钥加密的密钥流不同。（引用自[维基百科](https://zh.wikipedia.org/wiki/Nonce)）在本文中`nonce`是每次更新的数据包的唯一标识。
 
 版本为 Envoy 和管理服务器提供了共享当前应用配置的概念和通过 ACK/NACK 来进行配置更新的机制。如果 Envoy 拒绝配置更新 __X__，则回复 [`error_detail`](https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/discovery.proto#envoy-api-field-discoveryrequest-error-detail) 及前一个的版本号，在当前情况下为空的初始版本号，`error_detail` 包含了有关错误的更加详细的信息：
 
@@ -122,7 +122,7 @@ LDS/CDS 资源提示信息将始终为空，并且期望管理服务器的每个
 
 当 `Listener` 或 `Cluster` 被删除时，其对应的 EDS 和 RDS 资源也需要在 Envoy 实例中删除。为使 EDS 资源被 Envoy 已知或跟踪，就必须存在应用过的 `Cluster` 定义（如通过 CDS 获取）。RDS 和 `Listeners` 之间存在类似的关系（如通过 LDS 获取）。
 
-对于 EDS/RDS ，Envoy 可以为每个给定类型的资源生成不同的流（如每个 `ConfigSource` 都有自己的上游管理服务器的集群）或当指定资源类型的请求发送到同一个管理服务器的时候，允许将多个资源请求组合在一起发送。虽然可以单个实现，但管理服务器应具备处理每个给定资源类型中对单个或多个 `resource_names`  请求的能力。下面的两个序列图对于获取两个 EDS 资源都是有效的 `{foo，bar}`：
+对于 EDS/RDS，Envoy 可以为每个给定类型的资源生成不同的流（如每个 `ConfigSource` 都有自己的上游管理服务器的集群）或当指定资源类型的请求发送到同一个管理服务器的时候，允许将多个资源请求组合在一起发送。虽然可以单个实现，但管理服务器应具备处理每个给定资源类型中对单个或多个 `resource_names`  请求的能力。下面的两个序列图对于获取两个 EDS 资源都是有效的 `{foo，bar}`：
 
 ![Multiple EDS requests on the same stream](https://raw.githubusercontent.com/servicemesher/website/master/content/blog/envoy-xds-protocol/7e0ee03agy1fvmxuviiqsj20eh06ymx9.jpg)
 ![Multiple EDS requests on distinct streams](https://raw.githubusercontent.com/servicemesher/website/master/content/blog/envoy-xds-protocol/7e0ee03agy1fvmxv7cv21j20j20a4wet.jpg)
@@ -133,7 +133,7 @@ LDS/CDS 资源提示信息将始终为空，并且期望管理服务器的每个
 
 ![CDS response leads to EDS resource hint update](https://raw.githubusercontent.com/servicemesher/website/master/content/blog/envoy-xds-protocol/006tNc79ly1fvph0p7u8zj31fm0lq0ve.jpg)
 
-这里可能会出现竞争状况；如果 Envoy 在版本 __X__ 上发布了资源提示更新请求，但在管理服务器处理该请求之前发送了新的版本号为 __Y__  的响应，针对 `version_info` 为 __X__ 的版本，资源提示更新可能会被解释为拒绝  __Y__ 。为避免这种情况，通过使用管理服务器提供的 `nonce`，Envoy 可用来保证每个 `DiscoveryRequest` 对应到相应的 `DiscoveryResponse` ：
+这里可能会出现竞争状况；如果 Envoy 在版本 __X__ 上发布了资源提示更新请求，但在管理服务器处理该请求之前发送了新的版本号为 __Y__  的响应，针对 `version_info` 为 __X__ 的版本，资源提示更新可能会被解释为拒绝  __Y__。为避免这种情况，通过使用管理服务器提供的 `nonce`，Envoy 可用来保证每个 `DiscoveryRequest` 对应到相应的 `DiscoveryResponse` ：
 
 ![EDS update race motivates nonces](https://raw.githubusercontent.com/servicemesher/website/master/content/blog/envoy-xds-protocol/006tNc79ly1fvph04ln3fj31kw0rogqc.jpg)
 
@@ -145,9 +145,9 @@ LDS/CDS 资源提示信息将始终为空，并且期望管理服务器的每个
 
 #### 最终一致性考虑
 
-由于 Envoy 的 xDS API 采用最终一致性，因此在更新期间可能导致流量被丢弃。例如，如果通过 CDS/EDS 仅获取到了集群 __X__，而且 `RouteConfiguration` 引用了集群  __X__；在 CDS/EDS 更新集群  __Y__  配置之前，如果将 `RouteConfiguration` 将引用的集群调整为 __Y__ ，那么流量将被吸入黑洞而丢弃，直至集群 __Y__ 被 Envoy 实例获取。
+由于 Envoy 的 xDS API 采用最终一致性，因此在更新期间可能导致流量被丢弃。例如，如果通过 CDS/EDS 仅获取到了集群 __X__，而且 `RouteConfiguration` 引用了集群  __X__；在 CDS/EDS 更新集群  __Y__  配置之前，如果将 `RouteConfiguration` 将引用的集群调整为 __Y__，那么流量将被吸入黑洞而丢弃，直至集群 __Y__ 被 Envoy 实例获取。
 
-对某些应用程序，可接受临时的流量丢弃，客户端重试或其他 Envoy sidecar 会掩盖流量丢弃。那些对流量丢弃不能容忍的场景，可以通过以下方式避免流量丢失，CDS/EDS 更新同时携带 __X__ 和 __Y__ ，然后发送 RDS 更新从 __X__ 切换到 __Y__ ，此后发送丢弃 __X__ 的 CDS/EDS 更新。
+对某些应用程序，可接受临时的流量丢弃，客户端重试或其他 Envoy sidecar 会掩盖流量丢弃。那些对流量丢弃不能容忍的场景，可以通过以下方式避免流量丢失，CDS/EDS 更新同时携带 __X__ 和 __Y__，然后发送 RDS 更新从 __X__ 切换到 __Y__，此后发送丢弃 __X__ 的 CDS/EDS 更新。
 
 一般来说，为避免流量丢弃，更新的顺序应该遵循 `make before break` 模型，其中
 
@@ -161,7 +161,7 @@ LDS/CDS 资源提示信息将始终为空，并且期望管理服务器的每个
 
 ### 聚合服务发现（ADS）
 
-当管理服务器进行资源分发时，通过上述保证交互顺序的方式来避免流量丢弃是一项很有挑战的工作。ADS 允许单一管理服务器通过单个 gRPC 流，提供所有的 API 更新。配合仔细规划的更新顺序，ADS 可规避更新过程中流量丢失。使用 ADS，在单个流上可通过类型 URL 来进行复用多个独立的 `DiscoveryRequest`/`DiscoveryResponse` 序列。对于任何给定类型的 URL，以上 `DiscoveryRequest` 和 `DiscoveryResponse` 消息序列都适用。 更新序列可能如下所示：
+当管理服务器进行资源分发时，通过上述保证交互顺序的方式来避免流量丢弃是一项很有挑战的工作。ADS 允许单一管理服务器通过单个 gRPC 流，提供所有的 API 更新。配合仔细规划的更新顺序，ADS 可规避更新过程中流量丢失。使用 ADS，在单个流上可通过类型 URL 来进行复用多个独立的 `DiscoveryRequest`/`DiscoveryResponse` 序列。对于任何给定类型的 URL，以上 `DiscoveryRequest` 和 `DiscoveryResponse` 消息序列都适用。更新序列可能如下所示：
 
 ![EDS/CDS multiplexed on an ADS stream](https://raw.githubusercontent.com/servicemesher/website/master/content/blog/envoy-xds-protocol/006tNc79ly1fvpgxnl947j313q0wgq62.jpg)
 
@@ -213,7 +213,7 @@ xDS 增量会话始终位于 gRPC 双向流的上下文中。这允许 xDS 服�
 2. 作为对先前的 `IncrementalDiscoveryResponse` 的 ACK 或 NACK 响应。在这种情况下，`response_nonce` 被设置为响应中的 nonce 值。ACK 或 NACK 由可由 `error_detail` 字段是否出现来区分。
 3. 客户端自发的 `IncrementalDiscoveryRequest`。此场景下可以采用动态添加或删除被跟踪的 `resource_names` 集。这种场景下，必须忽略 `response_nonce`。
 
-在第一个示例中，客户端连接并接收它的第一个更新并 ACK。第二次更新失败，客户端发送 NACK 拒绝更新。xDS客户端后续会自发地请求 “wc” 相关资源。
+在第一个示例中，客户端连接并接收它的第一个更新并 ACK。第二次更新失败，客户端发送 NACK 拒绝更新。xDS 客户端后续会自发地请求“wc”相关资源。
 
 ![Incremental session example](https://raw.githubusercontent.com/servicemesher/website/master/content/blog/envoy-xds-protocol/006tNc79ly1fvpgwfbep7j31kw0vldli.jpg)
 

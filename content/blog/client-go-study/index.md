@@ -25,7 +25,7 @@ client-go 是用 Golang 语言编写的官方编程式交互客户端库，提�
 6. **plugin**: 提供 OpenStack，GCP 和 Azure 等云服务商授权插件。
 7. **rest**: 提供 RESTClient 客户端，对 K8S API Server 执行 RESTful 操作。
 8. **scale**: 提供 ScaleClient 客户端，用于扩容或缩容 Deployment, Replicaset, Replication Controller 等资源对象。
-9. **tools**: 提供常用工具，例如 SharedInformer, Reflector, DeltaFIFO 及 Indexers。 提供 Client 查询和缓存机制，以减少向 kube-apiserver 发起的请求数等。主要子目录为/tools/cache。
+9. **tools**: 提供常用工具，例如 SharedInformer, Reflector, DeltaFIFO 及 Indexers。提供 Client 查询和缓存机制，以减少向 kube-apiserver 发起的请求数等。主要子目录为/tools/cache。
 10. **transport**: 提供安全的 TCP 连接，支持 HTTP Stream，某些操作需要在客户端和容器之间传输二进制流，例如 exec，attach 等操作。该功能由内部的 SPDY 包提供支持。
 11. **util**: 提供常用方法。例如 WorkQueue 工作队列，Certificate 证书管理等。
 
@@ -63,7 +63,7 @@ DiscoveryClient 是一个发现客户端，它主要用于发现 K8S API Server 
 
 ## Informer 分析
 
-这是一个官方图形表示，展示了client-go 库中的各种组件如何工作，以及它们与将要编写的自定义控制器代码的交互点。
+这是一个官方图形表示，展示了 client-go 库中的各种组件如何工作，以及它们与将要编写的自定义控制器代码的交互点。
 
 !["custom controller"](informer.png)
 
@@ -200,7 +200,7 @@ func (c *threadSafeMap) updateIndices(oldObj interface{}, newObj interface{}, ke
    3. 通过 indexers 中的 indexFunc 处理新对象，找到相应的 indexValues。
    4. 使用 indexer 的 name 从 indices 中找到对应的 index。如果对应的 index 是空，则创建一个新的 index。
    5. 迭代 indexValues 进行 index 处理。
-   6. 通过 indexValue 在 index 中找到对应的 set， 如果 set 不存在，则创建一个新的 set。并添加到 index 中。
+   6. 通过 indexValue 在 index 中找到对应的 set，如果 set 不存在，则创建一个新的 set。并添加到 index 中。
    7. 添加新对象的键值到 set 中。
    8. 返回第 5 步，直到迭代完成。
    9. 返回第 2 步，直到迭代完成。

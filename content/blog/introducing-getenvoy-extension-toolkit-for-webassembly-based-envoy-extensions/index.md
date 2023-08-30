@@ -10,15 +10,15 @@ date: 2021-04-21T10:03:00+08:00
 
 说一说来龙去脉，Envoy 是一个非常注重规模化业务的底层网络组件，令人激动且功能强大。然而它在用户体验方面一直很欠缺。
 
-当用户开始使用一个新工具时，必然会从 “如何在自己的环境中安装” 这一问题开始。而 Envoy 之前并没有给出答案。
+当用户开始使用一个新工具时，必然会从“如何在自己的环境中安装”这一问题开始。而 Envoy 之前并没有给出答案。
 
 为了填补这一空白，Tetrate [启动了](https://www.getenvoy.io/blog/announcing-the-getenvoy-project/) GetEnvoy 项目并且 [推出了](https://www.getenvoy.io/blog/introducing-the-getenvoy-cli/) getenvoy CLI，作为提供给用户的组件。
 
 ### 新挑战
 
-下一个关于 Envoy 的常见需求是 “如何扩展”。
+下一个关于 Envoy 的常见需求是“如何扩展”。
 
-截止目前，如果想扩展或定制 Envoy，你将不得不 “越界” 成为实质上的 Envoy 开发者。 
+截止目前，如果想扩展或定制 Envoy，你将不得不“越界”成为实质上的 Envoy 开发者。 
 
 幸运的是，这种情况即将改变。一种名为 [WebAssembly（Wasm）](https://webassembly.org/) 的新技术即将纳入 Envoy。Wasm 让使用不同编程语言开发 Envoy 扩展成为可能。更重要的是，能以完全动态的方式部署这些扩展。
 

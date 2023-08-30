@@ -1,10 +1,10 @@
 ---
-title: "手工打造像Istio中一样的Sidecar代理"
+title: "手工打造像 Istio 中一样的 Sidecar 代理"
 date: 2019-03-18T11:23:11+08:00
 draft: false
 authors: ["Venil Noronha"]
 translators: ["邱世达"]
-summary: "本文介绍了一种实现简单HTTP流量嗅探代理的基本步骤，并进行了相关实验验证，生动展现了Istio实现流量管理的核心原理与概念。"
+summary: "本文介绍了一种实现简单 HTTP 流量嗅探代理的基本步骤，并进行了相关实验验证，生动展现了 Istio 实现流量管理的核心原理与概念。"
 tags: ["istio","sidecar"]
 categories: ["service mesh"]
 keywords: ["service mesh","服务网格","istio"]
@@ -12,23 +12,23 @@ keywords: ["service mesh","服务网格","istio"]
 
 本文为翻译文章，[点击查看原文](https://venilnoronha.io/hand-crafting-a-sidecar-proxy-like-istio)。
 
-Sidecar代理模式是一个重要的概念，它允许[Istio](https://istio.io/)为[服务网格](https://en.wikipedia.org/wiki/Microservices#Service_Mesh)中运行的服务提供路由、度量、安全和其他功能。在这篇文章中，我将解释为Istio提供支持的关键技术，同时还将向您展示一种构建简单的HTTP流量嗅探sidecar代理的方法。
+Sidecar 代理模式是一个重要的概念，它允许[Istio](https://istio.io/)为[服务网格](https://en.wikipedia.org/wiki/Microservices#Service_Mesh)中运行的服务提供路由、度量、安全和其他功能。在这篇文章中，我将解释为 Istio 提供支持的关键技术，同时还将向您展示一种构建简单的 HTTP 流量嗅探 sidecar 代理的方法。
 
 ![](007uElTfly1g13lok0vq4j318g0lqt8v.jpg)
 
 ## 引言
 
-服务网格的实现通常依赖于sidecar代理，这些代理使得服务网格能够控制、观察和加密保护应用程序。sidecar代理是反向代理，所有流量在到达目标服务之前流过它。代理将分析流经自己的流量并生成有用的统计信息，而且还能提供灵活的路由功能。此外，代理还可以使用[mTLS](https://venilnoronha.io/a-step-by-step-guide-to-mtls-in-go)来加密保护应用程序流量。
+服务网格的实现通常依赖于 sidecar 代理，这些代理使得服务网格能够控制、观察和加密保护应用程序。sidecar 代理是反向代理，所有流量在到达目标服务之前流过它。代理将分析流经自己的流量并生成有用的统计信息，而且还能提供灵活的路由功能。此外，代理还可以使用[mTLS](https://venilnoronha.io/a-step-by-step-guide-to-mtls-in-go)来加密保护应用程序流量。
 
 ![](007uElTfly1g13lxd0qs0j30mm0a9goa.jpg)
 
-在这篇文章中，我们将构建一个简单的sidecar代理，它可以嗅探HTTP流量并生成统计信息，例如请求大小，响应状态等。然后，我们将在[Kubernetes](https://kubernetes.io/) Pod中部署HTTP服务，配置sidecar代理，并检查生成的统计信息。
+在这篇文章中，我们将构建一个简单的 sidecar 代理，它可以嗅探 HTTP 流量并生成统计信息，例如请求大小，响应状态等。然后，我们将在[Kubernetes](https://kubernetes.io/) Pod 中部署 HTTP 服务，配置 sidecar 代理，并检查生成的统计信息。
 
-## 构建HTTP流量嗅探代理
+## 构建 HTTP 流量嗅探代理
 
-Istio依靠[Envoy](https://www.envoyproxy.io/)来代理网络流量。Envoy代理被打包为一个容器，并部署在一个Pod中的服务容器旁边。在这篇文章中，我们将使用Golang来构建一个可以嗅探HTTP流量的微型代理。
+Istio 依靠[Envoy](https://www.envoyproxy.io/)来代理网络流量。Envoy 代理被打包为一个容器，并部署在一个 Pod 中的服务容器旁边。在这篇文章中，我们将使用 Golang 来构建一个可以嗅探 HTTP 流量的微型代理。
 
-我们的代理需要在TCP端口上侦听传入的HTTP请求，然后将它们转发到目标地址。因为在我们的例子中，代理和服务都驻留在同一个Pod中，所以目标主机可以通过环回IP地址（即，127.0.0.1）进行寻址。但是，我们仍然需要一个端口号来标识目标服务。
+我们的代理需要在 TCP 端口上侦听传入的 HTTP 请求，然后将它们转发到目标地址。因为在我们的例子中，代理和服务都驻留在同一个 Pod 中，所以目标主机可以通过环回 IP 地址（即，127.0.0.1）进行寻址。但是，我们仍然需要一个端口号来标识目标服务。
 
 ```go
 const (
@@ -126,11 +126,11 @@ func (p *Proxy) printStats(req *http.Request, res *http.Response, duration time.
 }
 ```
 
-至此，我们已经构建了一个功能齐全的HTTP流量嗅探代理。
+至此，我们已经构建了一个功能齐全的 HTTP 流量嗅探代理。
 
 ## 为代理构建容器镜像
 
-Istio打包了Envoy并将其作为sidecar容器运行在服务容器旁边。让我们构建一个代理容器镜像，运行上面的Go代码来模仿Istio的运行模式。
+Istio 打包了 Envoy 并将其作为 sidecar 容器运行在服务容器旁边。让我们构建一个代理容器镜像，运行上面的 Go 代码来模仿 Istio 的运行模式。
 
 ```Dockerfile
 # Use the Go v1.12 image for the base.
@@ -147,19 +147,19 @@ CMD [ "run", "main.go" ]
 EXPOSE 8000
 ```
 
-要构建代理容器镜像，我们可以简单地执行以下Docker命令：
+要构建代理容器镜像，我们可以简单地执行以下 Docker 命令：
 
 ```bash
 $ docker build -t venilnoronha/amazing-proxy:latest -f Dockerfile .
 ```
 
-## 设置Pod网络
+## 设置 Pod 网络
 
-我们需要设置Pod网络以确保sidecar代理能够接收所有应用程序的流量，以便它可以对其进行分析并转发到所需的目标。实现此目的的一种方法是要求用户将所有客户端请求地址指向代理端口，同时将代理配置为指向目标服务端口。这使用户体验变得复杂。更好更透明的方法是使用Linux内核中的[Netfilter/iptables](https://en.wikipedia.org/wiki/Netfilter)组件。
+我们需要设置 Pod 网络以确保 sidecar 代理能够接收所有应用程序的流量，以便它可以对其进行分析并转发到所需的目标。实现此目的的一种方法是要求用户将所有客户端请求地址指向代理端口，同时将代理配置为指向目标服务端口。这使用户体验变得复杂。更好更透明的方法是使用 Linux 内核中的[Netfilter/iptables](https://en.wikipedia.org/wiki/Netfilter)组件。
 
 ### Kubernetes 网络
 
-为了更好地理解，让我们列出Kubernetes向Pod公开的网络接口。
+为了更好地理解，让我们列出 Kubernetes 向 Pod 公开的网络接口。
 
 ```bash
 $ kubectl run -i --rm --restart=Never busybox --image=busybox -- sh -c "ip addr"
@@ -175,19 +175,19 @@ $ kubectl run -i --rm --restart=Never busybox --image=busybox -- sh -c "ip addr"
        valid_lft forever preferred_lft forever
 ```
 
-如您所见，Pod可以访问至少2个网络接口，即`lo`和`eth0`。`lo`接口表示环回地址，`eth0`表示以太网。这里要注意的是这些是虚拟的而不是真正的接口。
+如您所见，Pod 可以访问至少 2 个网络接口，即`lo`和`eth0`。`lo`接口表示环回地址，`eth0`表示以太网。这里要注意的是这些是虚拟的而不是真正的接口。
 
-### 使用iptables进行端口映射
+### 使用 iptables 进行端口映射
 
-`iptables`最简单的用途是将一个端口映射到另一个端口。我们可以利用它来透明地将流量路由到我们的代理。Istio正是基于这个确切的概念来建立它的Pod网络。
+`iptables`最简单的用途是将一个端口映射到另一个端口。我们可以利用它来透明地将流量路由到我们的代理。Istio 正是基于这个确切的概念来建立它的 Pod 网络。
 
 ![](007uElTfly1g13msbkiasj30so0ab784.jpg)
 
-这里的想法是将`eth0`接口上的服务端口（`80`）映射到代理端口（`8000`）。这将确保每当容器尝试通过端口`80`访问服务时，来自容器外部的流量就会路由到代理。如上图所示，我们让`lo`接口将Pod内部流量直接路由到目标服务，即没有跳转到代理服务。
+这里的想法是将`eth0`接口上的服务端口（`80`）映射到代理端口（`8000`）。这将确保每当容器尝试通过端口`80`访问服务时，来自容器外部的流量就会路由到代理。如上图所示，我们让`lo`接口将 Pod 内部流量直接路由到目标服务，即没有跳转到代理服务。
 
-### Init容器
+### Init 容器
 
-Kubernetes允许在Pod运行普通容器之前运行`init容器`。Istio使用init容器来设置Pod网络，以便设置必要的iptables规则。这里，让我们做同样的事情来将Pod外部流量路由到代理。
+Kubernetes 允许在 Pod 运行普通容器之前运行`init容器`。Istio 使用 init 容器来设置 Pod 网络，以便设置必要的 iptables 规则。这里，让我们做同样的事情来将 Pod 外部流量路由到代理。
 
 ```bash
 #!/bin/bash
@@ -199,7 +199,7 @@ iptables -t nat -A PREROUTING -p tcp -i eth0 --dport 80 -j REDIRECT --to-port 80
 iptables -t nat --list
 ```
 
-我们现在可以使用此初始化脚本创建Docker容器镜像。
+我们现在可以使用此初始化脚本创建 Docker 容器镜像。
 
 ```Dockerfile
 # Use the latest Ubuntu image for the base.
@@ -219,7 +219,7 @@ RUN chmod +x /usr/local/bin/init.sh
 ENTRYPOINT ["init.sh"]
 ```
 
-要构建Docker镜像，只需执行以下命令：
+要构建 Docker 镜像，只需执行以下命令：
 
 ```bash
 $ docker build -t venilnoronha/init-networking:latest -f Dockerfile .
@@ -227,11 +227,11 @@ $ docker build -t venilnoronha/init-networking:latest -f Dockerfile .
 
 ## 演示
 
-我们已经构建了一个代理和一个init容器来建立Pod网络。现在是时候进行测试了。为此，我们将使用[httpbin](http://httpbin.org/)容器作为服务。
+我们已经构建了一个代理和一个 init 容器来建立 Pod 网络。现在是时候进行测试了。为此，我们将使用[httpbin](http://httpbin.org/)容器作为服务。
 
 ### 部署 Deployment
 
-Istio自动注入init容器和代理。但是，对于我们的实验，可以手动制作Pod yaml。
+Istio 自动注入 init 容器和代理。但是，对于我们的实验，可以手动制作 Pod yaml。
 
 ```yaml
 apiVersion: v1
@@ -260,7 +260,7 @@ spec:
     - containerPort: 8000
 ```
 
-我们已经设置了具有`root`权限的init容器，并将`proxy`和`service`配置为普通容器。要在Kubernetes集群上部署它，我们可以执行以下命令：
+我们已经设置了具有`root`权限的 init 容器，并将`proxy`和`service`配置为普通容器。要在 Kubernetes 集群上部署它，我们可以执行以下命令：
 
 ```bash
 $ kubectl apply -f httpbin.yaml
@@ -268,7 +268,7 @@ $ kubectl apply -f httpbin.yaml
 
 ### 测试
 
-为了测试部署，我们首先确定Pod的ClusterIP。为此，我们可以执行以下命令：
+为了测试部署，我们首先确定 Pod 的 ClusterIP。为此，我们可以执行以下命令：
 
 ```bash
 $ kubectl get pods -o wide
@@ -276,9 +276,9 @@ NAME          READY     STATUS    RESTARTS   AGE       IP           NODE
 httpbin-pod   2/2       Running   0          21h       172.17.0.4   minikube
 ```
 
-我们现在需要从Pod外部生成流量。为此，我将使用`busybox`容器通过`curl`发出HTTP请求。
+我们现在需要从 Pod 外部生成流量。为此，我将使用`busybox`容器通过`curl`发出 HTTP 请求。
 
-首先，我们向httpbin服务发送一个GET请求。
+首先，我们向 httpbin 服务发送一个 GET 请求。
 
 ```bash
 $ kubectl run -i --rm --restart=Never busybox --image=odise/busybox-curl \
@@ -290,7 +290,7 @@ Content-Type: application/json
 Server: amazing-proxy
 ```
 
-然后，再发送一个POST请求。
+然后，再发送一个 POST 请求。
 
 ```bash
 $ kubectl run -i --rm --restart=Never busybox --image=odise/busybox-curl \
@@ -302,7 +302,7 @@ Content-Type: application/json
 Server: amazing-proxy
 ```
 
-最后，向`/status`端点发送一个GET请求。
+最后，向`/status`端点发送一个 GET 请求。
 
 ```bash
 $ kubectl run -i --rm --restart=Never busybox --image=odise/busybox-curl \
@@ -349,4 +349,4 @@ Response Status: 429
 
 ## 结论
 
-本文中，我们实现了一个简单的HTTP流量嗅探代理，使用init容器将其嵌入Kubernetes Pod与原有服务无缝连接。而且，我们也了解了`iptables`是如何提供灵活的网络，以便在处理代理时提供优良的用户体验的。最重要的是，我们已经学会了关于Istio实现的一些关键概念。
+本文中，我们实现了一个简单的 HTTP 流量嗅探代理，使用 init 容器将其嵌入 Kubernetes Pod 与原有服务无缝连接。而且，我们也了解了`iptables`是如何提供灵活的网络，以便在处理代理时提供优良的用户体验的。最重要的是，我们已经学会了关于 Istio 实现的一些关键概念。

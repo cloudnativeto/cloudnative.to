@@ -13,7 +13,7 @@ Istio 中有个 [issue #9066](https://github.com/istio/istio/issues/9066) 要求
 
 ## 关于 Kiali
 
-单体应用使用微服务架构拆分成了许多微服务的组合。服务的数量显著增加，就对需要了解服务之间的通信模式，例如容错（通过超时、重试、断路等）以及分布式跟踪，以便能够看到服务调用的去向。服务网格可以在平台级别上提供这些服务，并使应用程序编写者从以上繁重的通信模式中解放出来。路由决策在网格级别完成。Kiali 与Istio 合作，可视化服务网格拓扑、断路器和请求率等功能。Kiali还包括 Jaeger Tracing，可以提供开箱即用的分布式跟踪功能。
+单体应用使用微服务架构拆分成了许多微服务的组合。服务的数量显著增加，就对需要了解服务之间的通信模式，例如容错（通过超时、重试、断路等）以及分布式跟踪，以便能够看到服务调用的去向。服务网格可以在平台级别上提供这些服务，并使应用程序编写者从以上繁重的通信模式中解放出来。路由决策在网格级别完成。Kiali 与 Istio 合作，可视化服务网格拓扑、断路器和请求率等功能。Kiali 还包括 Jaeger Tracing，可以提供开箱即用的分布式跟踪功能。
 
 ## Kiali 提供的功能
 
@@ -277,7 +277,7 @@ func graphNamespaces(o options.Options, client *prometheus.Client) graph.Traffic
 Appender 是一个接口，在 service graph 中注入详细的信息，它的定义如下：
 
 ```go
-// Appender 由任何代码提供实现，以附加具有补充信息的 service graph。如果出错，appender应该执行 panic 并将其作为错误响应处理。
+// Appender 由任何代码提供实现，以附加具有补充信息的 service graph。如果出错，appender 应该执行 panic 并将其作为错误响应处理。
 type Appender interface {
 	// AppendGraph 在提供的 traffic map 上执行 appender 工作。Map 最初可能是空的。允许 appender 添加或删除映射条目。
 	AppendGraph(trafficMap graph.TrafficMap, namespace string)

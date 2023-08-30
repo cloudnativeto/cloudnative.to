@@ -39,7 +39,7 @@ Istio 1.11 增加了实验性支持，可以直接将 gRPC 服务添加到网格
 
 ## 架构概述
 
-![gRPC服务如何与istiod通信的示意图](008i3skNly1gwp3lh9za5j311q0hm75n.jpg)
+![gRPC 服务如何与 istiod 通信的示意图](008i3skNly1gwp3lh9za5j311q0hm75n.jpg)
 
 gRPC 服务如何与 istiod 通信的示意图
 
@@ -351,11 +351,11 @@ Handling connection for 17171
 
 ### 延迟
 
-![P50延迟对比图](008i3skNly1gwp512szlvj31260rgq57.jpg)
+![P50 延迟对比图](008i3skNly1gwp512szlvj31260rgq57.jpg)
 
 P50 延迟对比图
 
-![P99延迟对比图](008i3skNly1gwp51zjxqaj312q0r2jtl.jpg)
+![P99 延迟对比图](008i3skNly1gwp51zjxqaj312q0r2jtl.jpg)
 
 P99 延迟对比图
 

@@ -1,5 +1,5 @@
 ---
-title: "Service Mesh新成员：Consul 1.2"
+title: "Service Mesh 新成员：Consul 1.2"
 date: 2018-07-04T12:48:07+08:00
 draft: false
 authors: ["Mitchell Hashimoto"]
@@ -22,7 +22,7 @@ Service Mesh 是最近很火的微服务新范式，以 Istio 为首的开源项
 
 ![HarshiCorp Consul](00704eQkgy1fsxqoqdg7mj312e0dw0tr.jpg)
 
-我们很激动宣布 HashiCorp Consul 1.2 正式发布了。这个版本主要新增了一个新的功能叫做 [Connect](https://www.consul.io/segmentation.html), 它能够将现有的 Consul 集群自动转变为 service mesh （服务网格）的解决方案。Connect 通过自动 TLS 加密和基于鉴权的授权机制支持服务和服务之间的安全通信。
+我们很激动宣布 HashiCorp Consul 1.2 正式发布了。这个版本主要新增了一个新的功能叫做 [Connect](https://www.consul.io/segmentation.html), 它能够将现有的 Consul 集群自动转变为 service mesh（服务网格）的解决方案。Connect 通过自动 TLS 加密和基于鉴权的授权机制支持服务和服务之间的安全通信。
 
 当前全球有数以百万计的机器上正部署着 Consul。当升级到 Consul 1.2 并打开 Connect 功能后，任何现有的集群将立刻变身为支持任何包括物理机、云、容器和调度器等各种平台的 service mesh 方案。
 
@@ -76,7 +76,7 @@ Connect 在设计开发时就贯注了易于使用的想法。它可以仅仅通
 
 唯一的区别就是由 `connect` 开头的那行。这一行的存在使得 Consul 可以自动为这个服务启动和管理一个代理进程。这个代理进程代表了这个特定的服务。它在一个动态分配的端口上接受连接，验证并授权这个 TLS 连接，然后代理回一个标准的 TCP 连接到服务进程。
 
-对于上游的依赖，可以多添加几行配置通过 Connect 监听连接并代理到服务。例如，假设我们的 “web” 服务需要和 “db” 服务通过 Connect 进行通信：
+对于上游的依赖，可以多添加几行配置通过 Connect 监听连接并代理到服务。例如，假设我们的“web”服务需要和“db”服务通过 Connect 进行通信：
 
 ```json
 {
@@ -97,9 +97,9 @@ Connect 在设计开发时就贯注了易于使用的想法。它可以仅仅通
 }
 ```
 
-上面配置了一个受管代理并设置了监听本地 9191 端口将请求代理到任何远程 “db” 服务。通过配置 “web” 服务使用这个本地端口，所有 “web” 和 “db” 之间的通信都将成为加密的和已授权的。
+上面配置了一个受管代理并设置了监听本地 9191 端口将请求代理到任何远程“db”服务。通过配置“web”服务使用这个本地端口，所有“web”和“db”之间的通信都将成为加密的和已授权的。
 
-需要注意的是这些例子中，原来的应用 “web” 保持 *没有修改且感知不到 Connect 的存在*。仅仅通过一行到几行的配置代码，任何应用都可以使用自动管理的代理 sidecar 来接受和创建 Connect 连接。
+需要注意的是这些例子中，原来的应用“web”保持 *没有修改且感知不到 Connect 的存在*。仅仅通过一行到几行的配置代码，任何应用都可以使用自动管理的代理 sidecar 来接受和创建 Connect 连接。
 
 可以参阅 [代理的使用手册文档](https://www.consul.io/docs/connect/proxies.html) 了解更多内容。如果某个应用有极高的性能需求，那么它可以 [原生地集成](https://www.consul.io/docs/connect/native.html)Connect。这使得服务可以完全不需要代理。
 
@@ -132,7 +132,7 @@ $ psql -h 127.0.0.1 -p 9191 -U mitchellh mydb
 
 ## 使用 Intentions 进行访问控制
 
-服务之间的访问控制通过 “intentions” 进行配置。一个意向（intention）是一条从源到目的服务的允许或拦截规则。Intentions 可以通过 UI 界面、命令行、API 或 Terraform 进行创建。
+服务之间的访问控制通过“intentions”进行配置。一个意向（intention）是一条从源到目的服务的允许或拦截规则。Intentions 可以通过 UI 界面、命令行、API 或 Terraform 进行创建。
 
 ![](00704eQkgy1fswofx2nh4j30u90k7dhv.jpg)
 
@@ -143,9 +143,9 @@ $ consul intention create -allow web db
 Created: web => db (allow)
 ```
 
-上述命令允许 “web” 服务同 “db” 服务进行通信。然后这个 intention 可以通过 `-deny` 立刻禁用两个服务之间的连接。
+上述命令允许“web”服务同“db”服务进行通信。然后这个 intention 可以通过 `-deny` 立刻禁用两个服务之间的连接。
 
-Intentions 也可以通过服务的部署进行单独管理，可以配置 ACL 规则，使得仅有特定的服务可以修改 intentions 。这使得安全和隔离可以动态并几乎实时地进行配置和管控。
+Intentions 也可以通过服务的部署进行单独管理，可以配置 ACL 规则，使得仅有特定的服务可以修改 intentions。这使得安全和隔离可以动态并几乎实时地进行配置和管控。
 
 ## 更多内容 & 未来
 

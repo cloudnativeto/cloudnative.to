@@ -11,7 +11,7 @@ keywords: ["Kubernetes", "CSI"]
 
 ## 前言
 
-外部存储接入 Kubernetes 的方式主要有两种：In-Tree 和 Out-of-Tree。其中 In-Tree 是指存储驱动的源码都在 Kubernetes 代码库中，与 Kubernetes 一起发布、迭代、管理，这种方式灵活性较差，且门槛较高。Out-of-Tree 是指存储插件由第三方编写、发布、管理，作为一种扩展与 Kubernetes 配合使用。Out-of-Tree 主要有 FlexVolume 和 CSI 两种实现方式，其中，FlexVolume 因为其命令式的特点，不易维护和管理，从 Kubernetes v1.23 版本开始已被弃用。因此 CSI 已经成为 Kubernetes 存储扩展（ Out-of-Tree ）的唯一方式。
+外部存储接入 Kubernetes 的方式主要有两种：In-Tree 和 Out-of-Tree。其中 In-Tree 是指存储驱动的源码都在 Kubernetes 代码库中，与 Kubernetes 一起发布、迭代、管理，这种方式灵活性较差，且门槛较高。Out-of-Tree 是指存储插件由第三方编写、发布、管理，作为一种扩展与 Kubernetes 配合使用。Out-of-Tree 主要有 FlexVolume 和 CSI 两种实现方式，其中，FlexVolume 因为其命令式的特点，不易维护和管理，从 Kubernetes v1.23 版本开始已被弃用。因此 CSI 已经成为 Kubernetes 存储扩展（Out-of-Tree）的唯一方式。
 
 ## CSI 组成
 
@@ -26,7 +26,7 @@ keywords: ["Kubernetes", "CSI"]
 
 ### Custom Components
 
-Custom Components 本质是3个 gRPC Services：
+Custom Components 本质是 3 个 gRPC Services：
 
 - **Identity Service**
   
@@ -154,16 +154,16 @@ External Components 都是以 sidecar 的方式提供使用的。当开发完三
     监听 `PersistentVolumeClaim` 资源修改，调用 CSI `ControllerExpandVolume` 方法，来调整 volume 的大小。
     
 
-External Components 与 Custom Components 共同组成部署 yaml ，可以参考 ceph-csi 的部署yaml：
+External Components 与 Custom Components 共同组成部署 yaml，可以参考 ceph-csi 的部署 yaml：
 
 - [csi-rbdplugin-provisioner.yaml](https://github.com/ceph/ceph-csi/blob/v3.0.0/deploy/rbd/kubernetes/csi-rbdplugin-provisioner.yaml)
 - [csi-rbdplugin.yaml](https://github.com/ceph/ceph-csi/blob/v3.0.0/deploy/rbd/kubernetes/csi-rbdplugin.yaml)
 
-ps：其中 cephcsi 镜像是开发者实现的，包含所提的3个 gRPC 服务。
+ps：其中 cephcsi 镜像是开发者实现的，包含所提的 3 个 gRPC 服务。
 
 ## 动态卷供应（Dynamic Volume Provisioning）执行过程
 
-为了实现 Identity、Node、Controller 3个服务，需要清楚动态卷供应的执行过程。
+为了实现 Identity、Node、Controller 3 个服务，需要清楚动态卷供应的执行过程。
 
 ![dynamic-provisioning-timeline](dynamic-provisioning-timeline.png)
 
@@ -234,7 +234,7 @@ CSI Dynamic Volume Provisioning 大致流程如下：
 └── main.go  // 入口文件
 ```
 
-起一个 gRPC Server，把3个服务注册到 CSI：
+起一个 gRPC Server，把 3 个服务注册到 CSI：
 
 ```go
 func (s *nonBlockingGRPCServer) serve(endpoint string, ids csi.IdentityServer, cs csi.ControllerServer, ns csi.NodeServer) {
@@ -383,7 +383,7 @@ func (cs *ControllerServer) CreateVolume(ctx context.Context, req *csi.CreateVol
 	}
 
   ...
-	// 把nfs root挂载到一个临时目录
+	// 把 nfs root 挂载到一个临时目录
 	if err = cs.internalMount(ctx, nfsVol, volCap); err != nil {
 		return nil, status.Errorf(codes.Internal, "failed to mount nfs server: %v", err.Error())
 	}
@@ -398,7 +398,7 @@ func (cs *ControllerServer) CreateVolume(ctx context.Context, req *csi.CreateVol
 	fileMode := os.FileMode(cs.Driver.mountPermissions)
 	internalVolumePath := cs.getInternalVolumePath(nfsVol)
 
-  // 在nfs root目录中创建子目录
+  // 在 nfs root 目录中创建子目录
 	if err = os.Mkdir(internalVolumePath, fileMode); err != nil && !os.IsExist(err) {
 		return nil, status.Errorf(codes.Internal, "failed to make subdirectory: %v", err.Error())
 	}
@@ -470,7 +470,7 @@ mount -t nfs nfsServer:/root/nfs/pvc-31bf63ad-80c2-451c-a9c3-f80b9bad302c /var/l
 ```go
 // NodePublishVolume mount the volume
 func (ns *NodeServer) NodePublishVolume(ctx context.Context, req *csi.NodePublishVolumeRequest) (*csi.NodePublishVolumeResponse, error) {
-	 // 根据req获取source、targetPath
+	 // 根据 req 获取 source、targetPath
    ...
    
    // 把 nfsServer:/root/nfs/pvc-31bf63ad-80c2-451c-a9c3-f80b9bad302c 挂载到 /var/lib/kubelet/pods/aad09eed-e4a2-42ca-84e4-d8301c7d6257/volumes/kubernetes.io~csi/pvc-31bf63ad-80c2-451c-a9c3-f80b9bad302c/mount
@@ -510,14 +510,14 @@ func (cs *ControllerServer) CreateVolume(ctx context.Context, req *csi.CreateVol
 		return nil, err
 	}
 
-	// 根据secret构建ceph请求凭证
+	// 根据 secret 构建 ceph 请求凭证
 	cr, err := util.NewUserCredentials(req.GetSecrets())
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
 	}
 	defer cr.DeleteCredentials()
 
-	// 处理请求参数，并转换为rbdVol结构体
+	// 处理请求参数，并转换为 rbdVol 结构体
 	rbdVol, err := cs.parseVolCreateRequest(ctx, req)
 	if err != nil {
 		return nil, err
@@ -577,7 +577,7 @@ func (cs *ControllerServer) CreateVolume(ctx context.Context, req *csi.CreateVol
 		return nil, err
 	}
 
-	// 预定 rbdVolume name ，并创建 volumeID
+	// 预定 rbdVolume name，并创建 volumeID
 	err = reserveVol(ctx, rbdVol, rbdSnap, cr)
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
@@ -591,7 +591,7 @@ func (cs *ControllerServer) CreateVolume(ctx context.Context, req *csi.CreateVol
 		}
 	}()
 
-	// 创建image
+	// 创建 image
 	err = createBackingImage(ctx, cr, rbdVol, rbdSnap)
 	if err != nil {
 		return nil, err
@@ -738,7 +738,7 @@ func createPath(ctx context.Context, volOpt *rbdVolume, cr *util.Credentials) (s
 }
 ```
 
-可以看到，attach实际就是执行 `rbd map` 指令，与之前的设想一致。函数嵌套比较深，此处只保留了核心代码，完整代码可以参考 [ceph-csi](https://github.com/ceph/ceph-csi)。
+可以看到，attach 实际就是执行 `rbd map` 指令，与之前的设想一致。函数嵌套比较深，此处只保留了核心代码，完整代码可以参考 [ceph-csi](https://github.com/ceph/ceph-csi)。
 
 ## 参考资料
 

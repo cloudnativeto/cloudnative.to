@@ -26,7 +26,7 @@ Kubernetes 的 scheduling-framework 调度框架（以下简称调度框架）�
 
 ## Proposal
 
-调度框架在 kubernetes 调度器中定义了很多 Go 的接口和 Go API，用于用户设计插件使用。这些用户设计的插件将会被添加到调度程序中，并在编译时包含在内。可以通过配置调度程序的 `ComponentConfig` 将允许启用、禁用和重新排序插件。自定义调度程序可以“ [在树外](https://github.com/kubernetes/enhancements/blob/master/keps/sig-scheduling/20180409-scheduling-framework.md#custom-scheduler-plugins-out-of-tree) ” 编写其插件并编译包含其自己的插件的调度程序二进制文件。
+调度框架在 kubernetes 调度器中定义了很多 Go 的接口和 Go API，用于用户设计插件使用。这些用户设计的插件将会被添加到调度程序中，并在编译时包含在内。可以通过配置调度程序的 `ComponentConfig` 将允许启用、禁用和重新排序插件。自定义调度程序可以“ [在树外](https://github.com/kubernetes/enhancements/blob/master/keps/sig-scheduling/20180409-scheduling-framework.md#custom-scheduler-plugins-out-of-tree) ”编写其插件并编译包含其自己的插件的调度程序二进制文件。
 
 ## 调度周期和绑定周期
 
@@ -85,7 +85,7 @@ type PreFilterPlugin interface {
 }
 ```
 
-这里的 CycleState ，表示调度的上下文，其实是一个 map 的封装，结构体内部通过读写锁实现了并发安全，开发者可以通过 CycleState 来实现多个调度插件直接的数据传递，也就是多个插件可以共享状态或通过此机制进行通信。
+这里的 CycleState，表示调度的上下文，其实是一个 map 的封装，结构体内部通过读写锁实现了并发安全，开发者可以通过 CycleState 来实现多个调度插件直接的数据传递，也就是多个插件可以共享状态或通过此机制进行通信。
 
  ```go
  type CycleState struct {
@@ -151,7 +151,7 @@ func (y *Yoda) Filter(ctx context.Context, state *framework.CycleState, pod *v1.
 	klog.V(3).Infof("filter pod: %v, node: %v", pod.Name, node.Node().Name)
   // 检查节点 GPU 的健康状态
 	if ok, msg := filter.CheckGPUHealth(node); ok {
-    // 节点的 GPU 是否符合Pod 运行等级
+    // 节点的 GPU 是否符合 Pod 运行等级
 		if !filter.PodFitsLevel(pod, node) {
 			return framework.NewStatus(framework.Unschedulable, "Node:"+node.Node().Name+" GPU Level Not Fit")
 		}
@@ -177,7 +177,7 @@ func (y *Yoda) Filter(ctx context.Context, state *framework.CycleState, pod *v1.
 
 该扩展点将使用**通过 Filter 阶段的节点列表**来调用插件。插件可以使用此数据来更新内部状态或生成日志、指标。比如可以通过该扩展点收集各个节点中性能指标，所有节点中最大的内存的节点，性能最好的 CPU 节点等。
 
-我们继续来看接口里长什么样子（我这里是v1alpha1）：
+我们继续来看接口里长什么样子（我这里是 v1alpha1）：
 
 ```go
 type PostFilterPlugin interface {
@@ -229,7 +229,7 @@ func ParallelCollection(workers int, state *framework.CycleState, nodes []*v1.No
 					if re := CollectMaxValue(value, state, nodes, filteredNodesStatuses); !re.IsSuccess() {
 						klog.V(3).Infof(re.Message())
 						mx.Lock()
-            // message非并发安全，加锁
+            // message 非并发安全，加锁
 						msg += re.Message()
 						mx.Unlock()
 					}
@@ -251,8 +251,8 @@ func ParallelCollection(workers int, state *framework.CycleState, nodes []*v1.No
 
 Score 扩展点和上一代的调度器的优选流程很像，它分为两个阶段：
 
-1. 第一阶段称为 “打分”，用于对已通过过滤阶段的节点进行排名。调度程序将为 `Score` 每个节点调用每个计分插件。
-2. 第二阶段是 “归一化”，用于在调度程序计算节点的最终排名之前修改分数，可以不实现， 但是需要保证 Score 插件的输出必须是 **[MinNodeScore，MaxNodeScore]**（`[0-100]`） 范围内的整数 。如果不是，则调度器会报错，你需要实现 NormalizeScore 来保证最后的得分范围。如果不实现 NormalizeScore，则 Score 的输出必须在此范围内。调度程序将根据配置的插件权重合并所有插件的节点分数。
+1. 第一阶段称为“打分”，用于对已通过过滤阶段的节点进行排名。调度程序将为 `Score` 每个节点调用每个计分插件。
+2. 第二阶段是“归一化”，用于在调度程序计算节点的最终排名之前修改分数，可以不实现，但是需要保证 Score 插件的输出必须是 **[MinNodeScore，MaxNodeScore]**（`[0-100]`）范围内的整数。如果不是，则调度器会报错，你需要实现 NormalizeScore 来保证最后的得分范围。如果不实现 NormalizeScore，则 Score 的输出必须在此范围内。调度程序将根据配置的插件权重合并所有插件的节点分数。
 
 看看接口的定义：
 
@@ -391,7 +391,7 @@ clean:
 	sudo rm -f my-scheduler
 ```
 
-编写调度器的Dockerfile：
+编写调度器的 Dockerfile：
 
 ```go
 FROM debian:stretch-slim
@@ -403,7 +403,7 @@ COPY my-scheduler /usr/local/bin
 CMD ["my-scheduler"]
 ```
 
-那么编译 -> 构建就可以三步走了:
+那么编译 -> 构建就可以三步走了：
 
 - 编译
 
@@ -426,7 +426,7 @@ make push
 
 ## 自定义调度器的配置
 
-首先需要设置一个 ConfigMap ，用于存放调度器的配置文件：
+首先需要设置一个 ConfigMap，用于存放调度器的配置文件：
 
 ```go
 apiVersion: v1

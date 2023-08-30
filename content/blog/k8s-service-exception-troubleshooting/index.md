@@ -29,7 +29,7 @@ Kubernetes（K8s）是一个用于大规模运行分布式应用和服务的开�
 ![集群外客户端通过 NodePort 访问集群内服务](2.jpg)
 
 相比`方式一`，`访问逻辑拓扑`上 client 访问的区别是从 svc_name 替换为 nodeip:port。`访问实现拓扑`主要过程如下：
-- step 1: client 直接请求 svc 对外暴露的 nodeip:port，如果是 LoadBalance 类型的服务，在此之前还会访问 LB（因为并不是 K8s 服务的中的特别能力，所以此处并无特别说明），请求转发到对应的 Node 上，Node 也会根据kube-proxy 配置的 IPVS/IPTABLES 完成 DNAT
+- step 1: client 直接请求 svc 对外暴露的 nodeip:port，如果是 LoadBalance 类型的服务，在此之前还会访问 LB（因为并不是 K8s 服务的中的特别能力，所以此处并无特别说明），请求转发到对应的 Node 上，Node 也会根据 kube-proxy 配置的 IPVS/IPTABLES 完成 DNAT
 - step 2: 与`方式一`的 step 3 一致
 
 方式三：**集群外客户端通过 Ingress 访问集群内服务**

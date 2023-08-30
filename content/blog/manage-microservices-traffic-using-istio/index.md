@@ -1,5 +1,5 @@
 ---
-title: "使用Istio为微服务提供高级流量管理和请求跟踪功能"
+title: "使用 Istio 为微服务提供高级流量管理和请求跟踪功能"
 date: 2018-06-06T15:32:26+08:00
 draft: false
 authors: ["IBM"]
@@ -26,7 +26,7 @@ Istio 是 IBM、Google 和 Lyft 合作创建的项目，旨在帮助您应对这
 
 ## 流程
 
-![IStio部署和使用流程图](00704eQkgy1fs1ew7msf1j32kn19zwmb.jpg)
+![IStio 部署和使用流程图](00704eQkgy1fs1ew7msf1j32kn19zwmb.jpg)
 
 1. 用户在 Kubernetes 上部署其配置的应用程序。应用程序 `BookInfo` 由四个微服务组成。该应用中的微服务使用不同的语言编写——Python、Java、Ruby 和 Node.js。`Reivew` 微服务使用 Java 编写，有三个不同的版本。
 2. 为了使应用程序能够利用 Istio 的功能，用户将向微服务中注入 Istio envoy。Envoy 使用 sidecar 的方式部署在微服务中。将 Envoy 注入到微服务中也意味着使用 Envoy sidecar 管理该服务的所有入口和出口流量。然后用户访问运行在 Istio 上的应用程序。
@@ -34,7 +34,7 @@ Istio 是 IBM、Google 和 Lyft 合作创建的项目，旨在帮助您应对这
 4. 用户配置服务的访问控制。为了拒绝来自 v3 版本的 `Review` 微服务的所有流量对 `Rating` 微服务的访问，用户需要创建 Mixer 规则。
 5. 完成应用程序的部署和配置后，用户可以启用遥测和日志收集功能。为了收集监控指标和日志，用户需要配置 Istio Mixer 并安装所需的 Istio 附件 Prometheus 和 Grafana。要收集 trace span，用户需要安装并配置 Zipkin 附件。
 6. 用户为 `Bookinfo` 创建一个外部数据源；例如 IBM Cloud 中的 Compose for MySQL 数据库。
-7. 原始示例 `BookInfo` 应用程序中的三个微服务——`Details`、`Ratings` 和 `Review` ，已修改为使用 MySQL 数据库。要连接到 MySQL 数据库，需要在 `Details` 微服务中添加了一个 MySQL Ruby gem；向 `Ratings` Node微服务中添加 MySQL 模块。将 `mysql-connector-java` 依赖项添加到 `Reviews` 微服务 v1、v2 和 v3 版本中。
+7. 原始示例 `BookInfo` 应用程序中的三个微服务——`Details`、`Ratings` 和 `Review` ，已修改为使用 MySQL 数据库。要连接到 MySQL 数据库，需要在 `Details` 微服务中添加了一个 MySQL Ruby gem；向 `Ratings` Node 微服务中添加 MySQL 模块。将 `mysql-connector-java` 依赖项添加到 `Reviews` 微服务 v1、v2 和 v3 版本中。
 8. 用户部署应用程序并启用具有出口流量的 Envoy 代理。Envoy 代理作为 sidecar 跟每个微服务部署在一起。Envoy sidecar 将管理该服务中所有流入和流出的流量。当前情况下，由于 Envoy 仅支持 http/https 协议，因此通过提供 MySQL 的 IP 地址范围，代理配置将不会拦截到 MySQL 连接的流量。当应用程序启动后，用户可以使用 IP 和节点端口访问应用程序。
 
 查看该示例中的代码：https://github.com/IBM/microservices-traffic-management-using-istio

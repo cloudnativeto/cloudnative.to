@@ -16,11 +16,11 @@ links:
 
 注：原文发布于 2018 年 2 月 26 日。
 
-2018 年 [Let's Encrypt](https://www.letsencrypt.org/) （免费、自动化、开放的证书颁发机构 EFF 在两年前帮助推出）达到了一个巨大的里程碑： [颁发了超过 5000 万个有效证书](https://www.eff.org/deeplinks/2018/02/lets-encrypt-hits-50-million-active-certificates-and-counting)。而且这个数字只会继续增长，因为几周后 Let's Encrypt 也将开始颁发 “通配符” 证书 —— 这是许多系统管理员一直要求的功能。
+2018 年 [Let's Encrypt](https://www.letsencrypt.org/) （免费、自动化、开放的证书颁发机构 EFF 在两年前帮助推出）达到了一个巨大的里程碑： [颁发了超过 5000 万个有效证书](https://www.eff.org/deeplinks/2018/02/lets-encrypt-hits-50-million-active-certificates-and-counting)。而且这个数字只会继续增长，因为几周后 Let's Encrypt 也将开始颁发“通配符”证书 —— 这是许多系统管理员一直要求的功能。
 
 ## 什么是通配符证书？
 
-为了验证 HTTPS 证书，用户的浏览器会检查以确保证书中实际列出了网站的域名。例如，来自 `www.eff.org` 的证书实际上必须将 `www.eff.org` 列为该证书的有效域。如果所有者只想对他的所有域使用一个证书，则证书还可以列出多个域（例如，`www.eff.org`、`ssd.eff.org`、`sec.eff.org` 等）。通配符证书只是一个证书，上面写着 “我对这个域中的所有子域都有效”，而不是明确地将它们全部列出。（在证书中，这是通过使用通配符来表示的，用星号表示。所以如果你今天检查 eff.org 的证书，它会说它对 *.eff.org 有效。）这样，
+为了验证 HTTPS 证书，用户的浏览器会检查以确保证书中实际列出了网站的域名。例如，来自 `www.eff.org` 的证书实际上必须将 `www.eff.org` 列为该证书的有效域。如果所有者只想对他的所有域使用一个证书，则证书还可以列出多个域（例如，`www.eff.org`、`ssd.eff.org`、`sec.eff.org` 等）。通配符证书只是一个证书，上面写着“我对这个域中的所有子域都有效”，而不是明确地将它们全部列出。（在证书中，这是通过使用通配符来表示的，用星号表示。所以如果你今天检查 eff.org 的证书，它会说它对 *.eff.org 有效。）这样，
 
 为了颁发通配符证书，Let's Encrypt 将要求用户通过使用基于 [DNS](https://en.wikipedia.org/wiki/Domain_Name_System) 的质询来证明他们对域的控制，DNS 是一种域名系统，可将 `www.eff.org` 等域名转换为 69.50.232.54 等 IP 地址。从像 Let's Encrypt 这样的证书颁发机构 (CA) 的角度来看，没有比修改其 DNS 记录更好的证明您控制域的方法，因为控制域是 DNS 的本质。
 
@@ -48,7 +48,7 @@ DNS 区域泄露之所以如此危险，是因为 DNS 是用户的浏览器所�
 
 第一种方法是创建一组具有仅允许更新 TXT 记录的权限的凭证。在泄露的情况下，此方法将影响限制为攻击者能够为 DNS 区域内的所有域颁发证书（因为他们可以使用 DNS 凭据来获取自己的证书），以及中断邮件传递。对邮件传递的影响源于邮件特定的 TXT 记录，即 [SPF](https://en.wikipedia.org/wiki/Sender_Policy_Framework)、 [DKIM](https://en.wikipedia.org/wiki/DomainKeys_Identified_Mail)、其扩展名 [ADSP](https://en.wikipedia.org/wiki/Author_Domain_Signing_Practices) 和 [DMARC](https://en.wikipedia.org/wiki/DMARC)。泄露这些还可以很容易地发送网络钓鱼电子邮件，这些电子邮件冒充来自相关受感染域的发件人。
 
-### 使用 “一次性” 验证域
+### 使用“一次性”验证域
 
 第二种方法是为 `_acme-challenge` 子域手动创建 CNAME 记录，并将它们指向一个验证域，该验证域位于由一组不同的凭据控制的区域中。例如，如果您想获得涵盖 `yourdomain.tld` 和 `www.yourdomain.tld` 的证书，则必须创建两个 CNAME 记录 ——`_acme-challenge.yourdomain.tld` 和 `_acme-challenge.www.yourdomain.tld`—— 并将它们都指向外部域以进行验证。
 
@@ -60,7 +60,7 @@ DNS 区域泄露之所以如此危险，是因为 DNS 是用户的浏览器所�
 
 ### 有限的 DNS 区域访问
 
-如果您的 DNS 软件或提供商允许创建绑定到子域的权限，这可以帮助您缓解整个问题。不幸的是，在发布时，我们发现唯一允许这样做的提供商是 [Microsoft Azure DNS](https://docs.microsoft.com/en-us/azure/dns/dns-protect-zones-recordsets)。据推测，Dyn 也有细粒度的权限，但我们无法在他们的服务中找到除 “更新记录” 之外的更低级别的权限，这仍然使该区域完全容易受到攻击。
+如果您的 DNS 软件或提供商允许创建绑定到子域的权限，这可以帮助您缓解整个问题。不幸的是，在发布时，我们发现唯一允许这样做的提供商是 [Microsoft Azure DNS](https://docs.microsoft.com/en-us/azure/dns/dns-protect-zones-recordsets)。据推测，Dyn 也有细粒度的权限，但我们无法在他们的服务中找到除“更新记录”之外的更低级别的权限，这仍然使该区域完全容易受到攻击。
 
 Route53 和其他可能允许他们的用户创建子委托区域、新用户凭据、将 NS 记录指向新区域，并使用 CNAME 记录将 `_acme-challenge` 验证子域指向他们。使用这种方法正确地进行特权分离需要做很多工作，因为人们需要为他们想要使用 DNS 挑战的每个域完成所有这些步骤。
 
@@ -77,4 +77,4 @@ Route53 和其他可能允许他们的用户创建子委托区域、新用户凭
 
 ## 结论
 
-为了缓解 ACME DNS 挑战验证的问题， 已经讨论了向 IETF 的 ACME 工作组提出的[辅助 DNS 等提案，但目前仍未得到解决](https://mailarchive.ietf.org/arch/msg/acme/6_j3fecaxIgwNTpJ3693U_n0Kec)。由于限制泄露的唯一方法是将 DNS 区域凭据权限限制为仅更改特定的 TXT 记录，因此当前安全地实现 DNS 验证自动化的可能性很小。唯一可持续的选择是让 DNS 软件和服务提供商要么实施方法来创建更细粒度的区域凭据，要么为这个确切的用例提供全新类型的凭据。
+为了缓解 ACME DNS 挑战验证的问题，已经讨论了向 IETF 的 ACME 工作组提出的[辅助 DNS 等提案，但目前仍未得到解决](https://mailarchive.ietf.org/arch/msg/acme/6_j3fecaxIgwNTpJ3693U_n0Kec)。由于限制泄露的唯一方法是将 DNS 区域凭据权限限制为仅更改特定的 TXT 记录，因此当前安全地实现 DNS 验证自动化的可能性很小。唯一可持续的选择是让 DNS 软件和服务提供商要么实施方法来创建更细粒度的区域凭据，要么为这个确切的用例提供全新类型的凭据。

@@ -1,9 +1,9 @@
 ---
-title: "自定义Istio Mixer Adapter示例教程（附源码）"
+title: "自定义 Istio Mixer Adapter 示例教程（附源码）"
 date: 2019-03-06T15:21:50+08:00
 draft: false
 authors: ["陈洪波"]
-summary: "研究Istio下构建简洁的微服务架构，对Istio的研究也更深入，自定义Mixer Adapter必不可少，以下结合使用场景做一个自定义适配器的实践分享。"
+summary: "研究 Istio 下构建简洁的微服务架构，对 Istio 的研究也更深入，自定义 Mixer Adapter 必不可少，以下结合使用场景做一个自定义适配器的实践分享。"
 tags: ["istio"]
 categories: ["Istio"]
 keywords: ["service mesh","服务网格","istio","mixer"]
@@ -11,31 +11,31 @@ keywords: ["service mesh","服务网格","istio","mixer"]
 
 快速开始：[https://micro-mesh/examples/adapter/auth](https://github.com/hb-go/micro-mesh/tree/master/examples/adapter/auth)源码传送门。
 
-研究Istio下构建简洁的微服务架构，对Istio的研究也更深入，自定义Mixer Adapter必不可少，以下结合使用场景做一个自定义适配器的实践分享。
+研究 Istio 下构建简洁的微服务架构，对 Istio 的研究也更深入，自定义 Mixer Adapter 必不可少，以下结合使用场景做一个自定义适配器的实践分享。
 
 ## 背景
 
 ![](006tKfTcly1g0t2s7z4cxj312c0k3add.jpg)
 
-结合[https://github.com/hb-go/micro-mesh](https://github.com/hb-go/micro-mesh#micro-mesh)的实践场景，需要在`ingressgateway`与`API service`间加入认证&鉴权(JWT&RBAC)，自然考虑Istio提供的[安全](https://istio.io/zh/docs/concepts/security/)方案，但使用JWT做认证鉴权在后端是无状态的，这样在使用场景上有一定限制，如:
+结合[https://github.com/hb-go/micro-mesh](https://github.com/hb-go/micro-mesh#micro-mesh)的实践场景，需要在`ingressgateway`与`API service`间加入认证&鉴权 (JWT&RBAC)，自然考虑 Istio 提供的[安全](https://istio.io/zh/docs/concepts/security/)方案，但使用 JWT 做认证鉴权在后端是无状态的，这样在使用场景上有一定限制，如：
 
 - 密码修改、终端连接限制等场景下无法踢除
 - 访问控制策略无法实时生效
 
 > 默认方案只是在一些场景下不合适，根据具体需求考虑。
 
-基于这样的场景可以自定义Adapter来实现，目标:
+基于这样的场景可以自定义 Adapter 来实现，目标：
 
 - Token-JWT
-  - 服务端验证token有效性
+  - 服务端验证 token 有效性
   - 应对密码修改、终端数量限制等场景
 - ACL-[Casbin](http://github.com/casbin/casbin)
-  - 服务端获取用户角色，做API访问控制
+  - 服务端获取用户角色，做 API 访问控制
   - 用户角色及接口授权策略实时生效
 
-以下示例对token验证、访问控制不做具体设计，重点介绍如何自定义一个`auth-adapter`
+以下示例对 token 验证、访问控制不做具体设计，重点介绍如何自定义一个`auth-adapter`
 
-## 自定义Adapter介绍
+## 自定义 Adapter 介绍
 
 配置关系及执行流程如图：
 
@@ -75,7 +75,7 @@ auth.go                     适配器服务实现
 Dockerfile                  Docker镜像
 ```
 
-有3处与适配器实现相关：
+有 3 处与适配器实现相关：
 
 - 适配器服务启动配置`config/config.proto`
 - 适配器服务实现`auth.go`
@@ -94,7 +94,7 @@ Dockerfile                  Docker镜像
 - protoc **libprotoc 3.6.1**
 - Istio **1.0.6**
 
-### 1.Istio源码
+### 1.Istio 源码
 
 ```bash
 mkdir -p $GOPATH/src/istio.io/
@@ -102,13 +102,13 @@ cd $GOPATH/src/istio.io/
 git clone https://github.com/istio/istio.git
 ```
 
-### 2.micro-mesh源码
+### 2.micro-mesh 源码
 
 ```bash
 git clone https://github.com/hb-go/micro-mesh.git
 ```
 
-### 3.Mixer开发工具
+### 3.Mixer 开发工具
 
 ```bash
 # build mixer server & client 
@@ -119,7 +119,7 @@ make mixc
 
 在`$GOPATH/out/darwin_amd64/release/`生成`mixs`、`mixc`。
 
-### 4.构建Auth adapter项目
+### 4.构建 Auth adapter 项目
 
 ```bash
 # copy auth adapter example
@@ -130,14 +130,14 @@ cd mixer/adapter/auth
 
 **Optional**
 
-可以删除`config`目录除`config.proto`外的其他文件，看执行go generate后的结果
+可以删除`config`目录除`config.proto`外的其他文件，看执行 go generate 后的结果
 
 ```bash
 go generate ./...
 go build ./...
 ```
 
-`go generate`根据`config/config.proto`以及`auth.go`的注释自动生成`config`目录下的其他文件:
+`go generate`根据`config/config.proto`以及`auth.go`的注释自动生成`config`目录下的其他文件：
 
 - adapter.auth.config.pb.html
 - auth-adapter.yaml
@@ -155,7 +155,7 @@ go build ./...
 
 ### 5.本地测试
 
-本地测试使用testdata下的配置，其中`operator-cfg.yaml`有几处与正式部署不同：
+本地测试使用 testdata 下的配置，其中`operator-cfg.yaml`有几处与正式部署不同：
 
 - `handler`的`address`使用本地服务`"[::]:44225"`
 - 为了方便测试`instance`的`params`参数以及`rule`的`math`条件做了简化
@@ -177,7 +177,7 @@ $GOPATH/out/darwin_amd64/release/mixc check -s request.host="localhost" --string
 # Check RPC completed successfully. Check status was OK
 ```
 
-> NOTE:出现预期结果不一致可能是由于mixer cache导致`Valid use count: 10000, valid duration: 9.726875254s`，请参考[Istio Mixer Cache](http://www.servicemesher.com/categories/istio-mixer-cache)系列文章了解。
+> NOTE:出现预期结果不一致可能是由于 mixer cache 导致`Valid use count: 10000, valid duration: 9.726875254s`，请参考[Istio Mixer Cache](http://www.servicemesher.com/categories/istio-mixer-cache)系列文章了解。
 
 ### 6.打包镜像
 
@@ -191,7 +191,7 @@ docker build -t hbchen/micro-mesh-example-adapter-auth:v0.0.1 .
 docker push hbchen/micro-mesh-example-adapter-auth:v0.0.1
 ```
 
-### 7.Istio环境部署
+### 7.Istio 环境部署
 
 **部署环境**
 
@@ -224,9 +224,9 @@ kubectl apply -f examples/adapter/auth/operatorconfig/cluser-service.yaml
 kubectl apply -f examples/adapter/auth/operatorconfig/operator-cfg.yaml
 ```
 
-### 8.Istio环境部署测试
+### 8.Istio 环境部署测试
 
-> 如果没有开Gateway的JWT验证可以忽略`Authorization`，其实做了自定义Auth后是多余的😂
+> 如果没有开 Gateway 的 JWT 验证可以忽略`Authorization`，其实做了自定义 Auth 后是多余的😂
 
 ```bash
 TOKEN=$(curl https://raw.githubusercontent.com/istio/istio/release-1.1/security/tools/jwt/samples/demo.jwt -s)

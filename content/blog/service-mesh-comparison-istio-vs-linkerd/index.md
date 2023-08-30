@@ -19,7 +19,7 @@ type: "post"
 
 在过去的几年中，微服务架构已经成为设计软件应用程序的流行风格。在这种架构中，我们将应用程序分解为可独立部署的服务。这些服务通常是轻量级的、多语言的，并且通常由各种职能团队进行管理。直到这些服务的数量变得庞大且难以管理之前，这种架构风格效果很好。突然之间，它们不再简单了。这在管理各个方面（例如安全性、网络流量控制和可观察性）带来了挑战。**服务网格**可以帮助应对这些挑战。
 
-术语**服务网格**用于描述组成此类应用程序的微服务网络及其之间的交互。随着服务数量和复杂性的增加，其扩展和管理变得越来越困难。服务通常提供服务发现、负载均衡、故障恢复、指标和监控。服务网格通常还具有更复杂的操作要求，例如A/B测试、金丝雀发布、限流、访问控制和端到端身份验证。服务网格为负载均衡、服务到服务的身份验证、监控等提供了一种创建服务网络的简单方法，同时对服务代码的更改很少或没有更改。
+术语**服务网格**用于描述组成此类应用程序的微服务网络及其之间的交互。随着服务数量和复杂性的增加，其扩展和管理变得越来越困难。服务通常提供服务发现、负载均衡、故障恢复、指标和监控。服务网格通常还具有更复杂的操作要求，例如 A/B 测试、金丝雀发布、限流、访问控制和端到端身份验证。服务网格为负载均衡、服务到服务的身份验证、监控等提供了一种创建服务网络的简单方法，同时对服务代码的更改很少或没有更改。
 
 让我们看一下 Istio 和 Linkerd 的架构。请注意，这两个项目都在快速演进，并且本文基于 Istio 1.6 版本和 Linkerd 2.7 版本。
 
@@ -29,15 +29,15 @@ Istio 是一个提供了作为服务网格的整套解决方案的开源平台�
 
 ### 架构
 
-![Istio架构](arch.svg)
+![Istio 架构](arch.svg)
 
-*Istio架构来源：[istio.io](https://istio.io/latest/docs/concepts/what-is-istio/)*
+*Istio 架构来源：[istio.io](https://istio.io/latest/docs/concepts/what-is-istio/)*
 
 ### 组件
 
 [Envoy](http://envoyproxy.io/) 是由 Lyft 用 C++ 编写的高性能代理，它可以协调服务网格中所有服务的所有入站和出站流量。它作为 Sidecar 代理与服务一起部署。
 
-Envoy提供以下功能：
+Envoy 提供以下功能：
 
   * 动态服务发现
   * 负载均衡
@@ -95,7 +95,7 @@ Linkerd 数据平面由轻量级代理组成，这些轻量级代理作为边车
 
 **代理功能：**
 
-  * HTTP、HTTP/2和任意 TCP 协议的透明、零配置代理。
+  * HTTP、HTTP/2 和任意 TCP 协议的透明、零配置代理。
   * 自动为 HTTP 和 TCP 流量导出 Prometheus 指标。
   * 透明的零配置 WebSocket 代理。
   * 自动的、可感知延迟的 7 层负载均衡。
@@ -116,7 +116,7 @@ Linkerd 数据平面由轻量级代理组成，这些轻量级代理作为边车
 | 追踪支持           | Jaeger、Zipkin                                                                                     | 所有支持 OpenCensus 的后端                                                                                          |
 | 路由功能           | 各种负载均衡算法（轮训、随机最少连接），支持基于百分比的流量拆分，支持基于标头和路径的流量拆分。                                                  | 支持 EWMA（指数加权移动平均）负载均衡算法，通过 SNI 支持基于百分比的流量拆分。                                                                 |
 | 弹性             | 断路、重试和超时、故障注入、延迟注入。                                                                               | 无断路、无延迟注入支持。                                                                                                 |
-| 安全             | mTLS支持所有协议、可以使用外部 CA 证书/密钥、支持授权规则。                                                                | 除了 TCP 之外，还支持 mTLS，可以使用外部 CA/密钥，但尚不支持授权规则。                                                                   |
+| 安全             | mTLS 支持所有协议、可以使用外部 CA 证书/密钥、支持授权规则。                                                                | 除了 TCP 之外，还支持 mTLS，可以使用外部 CA/密钥，但尚不支持授权规则。                                                                   |
 | 性能             | 在最新的 1.6 版本中，Istio 的资源占用越来越好并且延迟得到了改善。                                                            | Linkerd 的设计非常轻巧 - 根据第三方[基准测试](https://linkerd.io/2019/05/18/linkerd-benchmarks/index.html)，它比 Istio 快 3-5 倍。 |
 | 企业支援           | 不适用于 OSS 版本。如果您将 Google 的 GKE 与 Istio 一起使用，或者将 Red Hat OpenShift 与 Istio 作为服务网格使用，则可能会得到各个供应商的支持。 | 开发了 Linkerd OSS 版本的 Buoyant 提供了完整的企业级工程、支持和培训。                                                               |
 
@@ -136,6 +136,6 @@ Linkerd 数据平面由轻量级代理组成，这些轻量级代理作为边车
   2. [https://martinfowler.com/articles/microservices.html](https://martinfowler.com/articles/microservices.html)
   3. [https://istio.io/docs/concepts/traffic-management/](https://istio.io/docs/concepts/traffic-management/)
   4. [服务网格](http://servicemesh.es/)
-  5. [Freepik.com的标题和特色图片](https://www.freepik.com/free-vector/versus-vs-fight-battle-screen-background_6972702.htm#page=1&query=versus&position=0)
+  5. [Freepik.com 的标题和特色图片](https://www.freepik.com/free-vector/versus-vs-fight-battle-screen-background_6972702.htm#page=1&query=versus&position=0)
 
 *架构图来自 [Istio](https://istio.io/latest/docs/) 和 [Linkerd](https://linkerd.io/2/reference/architecture/) 的文档。*

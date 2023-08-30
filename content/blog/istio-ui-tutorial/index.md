@@ -1,9 +1,9 @@
 ---
-title: "istio-ui——一款开源的简易Istio UI的介绍和使用教程"
+title: "istio-ui——一款开源的简易 Istio UI 的介绍和使用教程"
 date: 2018-10-22T19:33:39+08:00
 draft: false
 authors: ["朱经惠"]
-summary: "本文介绍的是联邦车网的工程师朱经惠开源的istio-ui项目，该项目主要是为了减轻配置工作和减少犯错几率。"
+summary: "本文介绍的是联邦车网的工程师朱经惠开源的 istio-ui 项目，该项目主要是为了减轻配置工作和减少犯错几率。"
 tags: ["istio"]
 categories: ["service mesh"]
 keywords: ["service mesh","服务网格","istio","istio-ui"]
@@ -13,7 +13,7 @@ keywords: ["service mesh","服务网格","istio","istio-ui"]
 
 ### 由来
 
-> ​    开发[istio-ui](https://github.com/jukylin/istio-ui)是由于运维：`到时候线上几百个istio配置文件管理会很麻烦`。其实在开始接触istio的时候，我们其他同学就有这样的想法，当时大家都认为不久官方或社区就会有相应的产品出来。但等了几个月还是没音讯，所以我们就按照我们自己的需求开发了[istio-ui](https://github.com/jukylin/istio-ui)，并且开源。当然现在还是一块滑板。离奔驰还需要慢慢雕琢。 在这个基础上，结合我们当前服务环境，增加了：校验，注入，模板等功能。
+> ​    开发[istio-ui](https://github.com/jukylin/istio-ui)是由于运维：`到时候线上几百个istio配置文件管理会很麻烦`。其实在开始接触 istio 的时候，我们其他同学就有这样的想法，当时大家都认为不久官方或社区就会有相应的产品出来。但等了几个月还是没音讯，所以我们就按照我们自己的需求开发了[istio-ui](https://github.com/jukylin/istio-ui)，并且开源。当然现在还是一块滑板。离奔驰还需要慢慢雕琢。在这个基础上，结合我们当前服务环境，增加了：校验，注入，模板等功能。
 
 #### 校验
 
@@ -29,7 +29,7 @@ keywords: ["service mesh","服务网格","istio","istio-ui"]
 
 - 文件上传注入
 
-  > 将需要注入的文件发送到远程api接口
+  > 将需要注入的文件发送到远程 api 接口
 
 ```bash
 kubectl apply -f <(curl -F "config=@samples/bookinfo/platform/kube/bookinfo.yaml" http://localhost:9100/inject/file)
@@ -37,29 +37,29 @@ kubectl apply -f <(curl -F "config=@samples/bookinfo/platform/kube/bookinfo.yaml
 
 - 内容注入
 
-  > 将需要注入的内容发送到远程api接口
+  > 将需要注入的内容发送到远程 api 接口
 
 ```bash
 kubectl apply -f <(curl -X POST --data-binary @samples/bookinfo/platform/kube/bookinfo.yaml -H "Content-type: text/yaml" http://localhost:9100/inject/context)
 ```
 
-> ​    一键注入主要用于测试和学习，因为他需要二次部署，不适用于生产。而api接口注入是为了和持续集成部署结合起来。
+> ​    一键注入主要用于测试和学习，因为他需要二次部署，不适用于生产。而 api 接口注入是为了和持续集成部署结合起来。
 
 #### 模板
 
-> ​    模板这个功能我们还在思考中，在使用istio过程中发现，不同服务的服务治理配置很多是一样的，不会出现`千人千面`的情况，所以打算实现通过模板形式管理配置。
+> ​    模板这个功能我们还在思考中，在使用 istio 过程中发现，不同服务的服务治理配置很多是一样的，不会出现`千人千面`的情况，所以打算实现通过模板形式管理配置。
 
-#### k8s编排管理
+#### k8s 编排管理
 
-> ​    这是我们运维的想法，把k8s的编排也放在[istio-ui](https://github.com/jukylin/istio-ui)管理，为了方便持续集成部署。但这个功能还没确定是否在[istio-ui](https://github.com/jukylin/istio-ui)上开发，因为[istio-ui](https://github.com/jukylin/istio-ui)的职责设定是管理istio的配置，如果把k8s的编排也放过来，那时候应该不叫[istio-ui](https://github.com/jukylin/istio-ui)了。
+> ​    这是我们运维的想法，把 k8s 的编排也放在[istio-ui](https://github.com/jukylin/istio-ui)管理，为了方便持续集成部署。但这个功能还没确定是否在[istio-ui](https://github.com/jukylin/istio-ui)上开发，因为[istio-ui](https://github.com/jukylin/istio-ui)的职责设定是管理 istio 的配置，如果把 k8s 的编排也放过来，那时候应该不叫[istio-ui](https://github.com/jukylin/istio-ui)了。
 
 ### 安装
 
-> 安装前先确认已安装k8s
+> 安装前先确认已安装 k8s
 
 - docker
 
-> 需要先设置 [KUBECONFIG](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/#create-a-second-configuration-file)，这是授权istio-ui访问k8s的api-server接口
+> 需要先设置 [KUBECONFIG](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/#create-a-second-configuration-file)，这是授权 istio-ui 访问 k8s 的 api-server 接口
 
 ```bash
 docker run -itd -v $KUBECONFIG:$HOME/.kube/config -p9100:9100 
@@ -74,9 +74,9 @@ kubectl apply -f https://raw.githubusercontent.com/jukylin/istio-ui/master/istio
 
 ### 新手任务
 
-> ​    在任务开始前先确认已安装k8s，[istio](https://preliminary.istio.io/zh/)和[istio-ui](https://github.com/jukylin/istio-ui)，在这个任务中我们使用k8s安装[istio-ui](https://github.com/jukylin/istio-ui)，用官网的[Bookinfo](https://istio.io/docs/examples/bookinfo/)作为例子。
+> ​    在任务开始前先确认已安装 k8s，[istio](https://preliminary.istio.io/zh/)和[istio-ui](https://github.com/jukylin/istio-ui)，在这个任务中我们使用 k8s 安装[istio-ui](https://github.com/jukylin/istio-ui)，用官网的[Bookinfo](https://istio.io/docs/examples/bookinfo/)作为例子。
 
-#### 获取Istio-ui的IP
+#### 获取 Istio-ui 的 IP
 
 > [istio-ui.yaml](https://github.com/jukylin/istio-ui/blob/master/istio-ui.yaml#L16)默认使用`LoadBalancer`部署
 
@@ -84,15 +84,15 @@ kubectl apply -f https://raw.githubusercontent.com/jukylin/istio-ui/master/istio
 export ISTIOUI_IP=kubectl get service istio-ui -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
 ```
 
-#### 使用api接口注入部署[Bookinfo](https://istio.io/docs/examples/bookinfo/)
+#### 使用 api 接口注入部署[Bookinfo](https://istio.io/docs/examples/bookinfo/)
 
 ```bash
 kubectl apply -f <(curl -F "config=@samples/bookinfo/platform/kube/bookinfo.yaml" http://ISTIOUI_IP:9100/inject/file)
 ```
 
-#### 配置Gateway
+#### 配置 Gateway
 
-- 访问gateway配置页
+- 访问 gateway 配置页
 
 ```bash
 http://ISTIOUI_IP:9100/static/index.html#/global-istio-config?type=gateway
@@ -119,15 +119,15 @@ spec:
 
 ![](006tNbRwly1fwh8fi571cj31160le40d.jpg)
 
-#### 配置VirtualService
+#### 配置 VirtualService
 
-- 访问Deployment配置页
+- 访问 Deployment 配置页
 
 ```bash
 http://ISTIOUI_IP:9100/static/index.html#/deploy
 ```
 
-- 点击productpage-v1的`istio配置`，添加下面配置
+- 点击 productpage-v1 的`istio配置`，添加下面配置
 
 ```yaml
 apiVersion: networking.istio.io/v1alpha3
@@ -150,7 +150,7 @@ spec:
 
 ![](006tNbRwly1fwh8f4la5vj31160le40r.jpg)
 
-#### 绑定host
+#### 绑定 host
 
 - 获取 INGRESS_IP
 
@@ -158,7 +158,7 @@ spec:
 export INGRESS_IP=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 ```
 
-- 将productpage.example.com 和 INGRESS_IP进行绑定
+- 将 productpage.example.com 和 INGRESS_IP 进行绑定
 
 #### 浏览器预览结果
 
@@ -168,9 +168,9 @@ http://productpage.example.com/productpage?u=normal
 
 ![](006tNbRwly1fwh8eyo6nfj31190haq5y.jpg)
 
-> ​    至此新手任务已经完成，[istio-ui](https://github.com/jukylin/istio-ui)和官方提供的配置方式区别只是在于线上和线下配置，直接用来做官方的新手任务是一样的效果，而且为了保证原生性，我们并没有对配置进行1byte的修改。
+> ​    至此新手任务已经完成，[istio-ui](https://github.com/jukylin/istio-ui)和官方提供的配置方式区别只是在于线上和线下配置，直接用来做官方的新手任务是一样的效果，而且为了保证原生性，我们并没有对配置进行 1byte 的修改。
 
 ### 结语
 
-> ​    [istio-ui](https://github.com/jukylin/istio-ui)的功能还不算完善，希望有兴趣的同学，可以贡献想法或代码，一起打造一个易用的istio-ui配置管理后台。前段时间听说[sofa-mesh](https://github.com/alipay/sofa-mosn)也在做对应的istio-ui后台，期待能早点推向社区，让我们参考学习。
+> ​    [istio-ui](https://github.com/jukylin/istio-ui)的功能还不算完善，希望有兴趣的同学，可以贡献想法或代码，一起打造一个易用的 istio-ui 配置管理后台。前段时间听说[sofa-mesh](https://github.com/alipay/sofa-mosn)也在做对应的 istio-ui 后台，期待能早点推向社区，让我们参考学习。
 

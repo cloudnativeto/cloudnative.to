@@ -1,5 +1,5 @@
 ---
-title: "使用Istio控制Serverless架构Fn Project中的函数间流量路由"
+title: "使用 Istio 控制 Serverless 架构 Fn Project 中的函数间流量路由"
 date: 2018-07-04T17:44:01+08:00
 draft: false
 authors: ["Peter Jausovec"]
@@ -38,7 +38,7 @@ keywords: ["service mesh","istio","serverless","fn function"]
 
 > 请注意，Istio 比图中显示的要多得多。我没有展示在 Kubernetes 集群上部署的其他 Istio Pod 和服务——注入的 Istio 代理与这些 Pod 和服务进行通信，以便知道如何正确路由流量。有关 Istio 不同部分的深入解释，请参阅[此处](https://istio.io/docs/concepts/traffic-management/overview/)的文档。
 
-如果我们现在可以调整`myapp`服务，那么我们仍然会得到与第一个图中的设置完全相同的结果：来自`v1`和`v2` pod 的随机响应。唯一的区别在于网络流量从服务流向Pod的方式。在第二种情况下，对服务的任何调用都在 Istio 代理中结束，然后代理根据定义的路由规则决定将流量路由到哪里。
+如果我们现在可以调整`myapp`服务，那么我们仍然会得到与第一个图中的设置完全相同的结果：来自`v1`和`v2` pod 的随机响应。唯一的区别在于网络流量从服务流向 Pod 的方式。在第二种情况下，对服务的任何调用都在 Istio 代理中结束，然后代理根据定义的路由规则决定将流量路由到哪里。
 
 就像 Kubernetes 一样，Istio 路由规则也是使用 YAML 定义的，它们看起来像这样：
 
@@ -60,15 +60,15 @@ keywords: ["service mesh","istio","serverless","fn function"]
 
 ![](61411417ly1fsoyhzsbtfj20ca09jq33.jpg)
 
-图表顶部的 Fn API 服务是 Fn 的入口点，它用于管理您的 Function（创建，部署，运行等）——这是`FN_API_URL`在 Fn 项目中引用的 URL 。
+图表顶部的 Fn API 服务是 Fn 的入口点，它用于管理您的 Function（创建，部署，运行等）——这是`FN_API_URL`在 Fn 项目中引用的 URL。
 
-该服务反过来将调用路由到 Fn 负载均衡器（即标记为  `role=fn-lb` 的任何 Pod ）。然后，负载均衡器会发挥神奇的作用，并将调用路由到`fn-service` pod 的实例。这作为 Kubernetes DaemonSet 的一部分部署，并且通常每个 Kubernetes 节点都有一个该 pod 的实例。
+该服务反过来将调用路由到 Fn 负载均衡器（即标记为  `role=fn-lb` 的任何 Pod）。然后，负载均衡器会发挥神奇的作用，并将调用路由到`fn-service` pod 的实例。这作为 Kubernetes DaemonSet 的一部分部署，并且通常每个 Kubernetes 节点都有一个该 pod 的实例。
 
 有了这些简单的基础知识，让我们创建并部署一些 Function，并考虑如何进行流量路由。
 
 ### 创建和部署函数
 
-如果您想遵循下面的教程，请确保已将 [Fn 部署到您的 Kubernetes 群集](https://hackernoon.com/part-ii-fn-load-balancer-585babd90456)（我正在使用 Docker for Mac ）并安装 [Fn CLI](https://github.com/fnproject/cli) 并运行以下命令来创建应用程序和一些功能：
+如果您想遵循下面的教程，请确保已将 [Fn 部署到您的 Kubernetes 群集](https://hackernoon.com/part-ii-fn-load-balancer-585babd90456)（我正在使用 Docker for Mac）并安装 [Fn CLI](https://github.com/fnproject/cli) 并运行以下命令来创建应用程序和一些功能：
 
 ```shell
 # 创建app文件夹
@@ -103,13 +103,13 @@ cd ..
     └── test.json
 ```
 
-打开这`func.go`两个目录并更新返回的消息以包含版本号——我们这样做的原因是可以快速区分哪个 Function 被调用。以下是v1的`func.go`的样子（`Hello V1`）：
+打开这`func.go`两个目录并更新返回的消息以包含版本号——我们这样做的原因是可以快速区分哪个 Function 被调用。以下是 v1 的`func.go`的样子（`Hello V1`）：
 
 ![](61411417ly1fsoyii51b6j215u0fedhe.jpg)
 
 更改完成后就可以将这些功能部署到在 Kubernetes 上运行的 Fn 服务。为此，您必须将`FN_REGISTRY`环境变量设置为指向您的 Docker 镜像仓库的用户名。
 
-> 因为我们在 Kubernetes 集群上运行 Fn，所以我们不能使用本地构建的映像 - 它们需要推送到Kubernetes集群可以访问的 Docker 镜像仓库。
+> 因为我们在 Kubernetes 集群上运行 Fn，所以我们不能使用本地构建的映像 - 它们需要推送到 Kubernetes 集群可以访问的 Docker 镜像仓库。
 
 现在我们可以使用 [Fn CLI](https://github.com/fnproject/cli) 来部署这些函数：
 
@@ -117,7 +117,7 @@ cd ..
 FN_API_URL=http://localhost:80 fn deploy --all
 ```
 
-> 上面的命令假设 Fn API 服务暴露在 localhost:80 上（默认情况下，如果您在 Docker for Mac 中使用Kubernetes 支持）。如果使用不同的集群，则可以将 FN\_API\_URL 替换为 fn-api 服务的外部 IP 地址。
+> 上面的命令假设 Fn API 服务暴露在 localhost:80 上（默认情况下，如果您在 Docker for Mac 中使用 Kubernetes 支持）。如果使用不同的集群，则可以将 FN\_API\_URL 替换为 fn-api 服务的外部 IP 地址。
 
 在 Docker 构建和推送完成之后，我们的函数就被部署到 Fn 服务中了，我们可以尝试调用它们。
 
@@ -132,9 +132,9 @@ $ curl http://localhost/r/hello-app/v1
 
 #### 但函数在哪里运行？
 
-如果您在调用函数时查看正在创建/删除的 pod ，您会注意到没有真正改变——即没有 pod 创建或删除。原因是 Fn不会像 Kubernetes pod 一样创建函数 ，因为这太慢了。相反，所有 Fn 函数的部署和调用都发生在 fn-service pod 中。然后，Fn 负载均衡器负责部署和路由到这些 pod ，以最优化的方式部署/执行函数。
+如果您在调用函数时查看正在创建/删除的 pod，您会注意到没有真正改变——即没有 pod 创建或删除。原因是 Fn 不会像 Kubernetes pod 一样创建函数，因为这太慢了。相反，所有 Fn 函数的部署和调用都发生在 fn-service pod 中。然后，Fn 负载均衡器负责部署和路由到这些 pod，以最优化的方式部署/执行函数。
 
-因此，我们没有函数的 Kubernetes pod/service ，但 Istio 要求我们拥有可以路由到的服务和 pod。在这种情况下，我们如何使用 Istio 呢 ？
+因此，我们没有函数的 Kubernetes pod/service，但 Istio 要求我们拥有可以路由到的服务和 pod。在这种情况下，我们如何使用 Istio 呢？
 
 ### 思考
 
@@ -154,11 +154,11 @@ $ curl http://localhost/r/hello-app/v1
 
 ![](61411417ly1fsoyiscib2j20ce0jogm3.jpg)
 
-我们有一个服务代表我们的应用程序和两个特定于版本的部署，并直接路由到 Fn 服务中运行的 Function 。
+我们有一个服务代表我们的应用程序和两个特定于版本的部署，并直接路由到 Fn 服务中运行的 Function。
 
 #### 简单的代理
 
-为了实现这一点，我们需要某种代理服务器来接收所有调用并将它们转发给 Fn 服务。下面是一个简单的Nginx 配置，它完全符合我们的要求：
+为了实现这一点，我们需要某种代理服务器来接收所有调用并将它们转发给 Fn 服务。下面是一个简单的 Nginx 配置，它完全符合我们的要求：
 
 ```lua
 events {
@@ -212,9 +212,9 @@ location / {
 - hello-app-deployment-v1（使用指向 v1 路由的 simple-proxy 镜像部署）
 - hello-app-deployment-v2（使用指向 v2 路由的 simple-proxy 镜像部署）
 - hello-app-service（在 hello-app 部署中针对 v1 和 v2 pod 的服务）
-- 指向 hello-app-service 的 ingress，并给增加注解，将 ingress.class 赋值为  “istio”
+- 指向 hello-app-service 的 ingress，并给增加注解，将 ingress.class 赋值为“istio”
 
-现在，如果我们调用 hello-app-service 或调用 ingress ，我们应该从 v1 和 v2  函数中获得随机响应。以下是对 ingress 进行调用的示例输出：
+现在，如果我们调用 hello-app-service 或调用 ingress，我们应该从 v1 和 v2  函数中获得随机响应。以下是对 ingress 进行调用的示例输出：
 
 ```shell
 $ while true; do sleep 1; curl http://localhost:8082;done
@@ -241,7 +241,7 @@ $ while true; do sleep 1; curl http://localhost:8082;done
 
 ![](61411417ly1fsoykynfcsj20si0hcwfx.jpg)
 
-您可以通过运行应用此规则`kubectl apply -f v1-rule.yaml`。查看运行中的路由的最佳方法是运行一个连续调用端点的循环——这样您就可以看到混合（v1/v2）和全部v1的响应。
+您可以通过运行应用此规则`kubectl apply -f v1-rule.yaml`。查看运行中的路由的最佳方法是运行一个连续调用端点的循环——这样您就可以看到混合（v1/v2）和全部 v1 的响应。
 
 就像我们将 `v1` 的路由规则定义为 100% 的权重那样，我们可以类似地定义一条规则将所有内容路由到`v2`，或者将规则路由 50％ 的流量 `v1` 和 50％ 的流量`v2`，如下面的演示所示。
 

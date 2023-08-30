@@ -1,18 +1,18 @@
 ---
-title: "使用Istio 0.8对Kubernetes进行A/B测试"
+title: "使用 Istio 0.8 对 Kubernetes 进行 A/B 测试"
 date: 2018-07-13T12:38:44+08:00
 draft: false
 authors: ["Alessandro Valcepina"]
 translators: ["张琦翔"]
-summary: "本文讲述Vamp（一款商业版的云原生应用平台）如何在Kubernetes上采用Istio进行流量路由的经验"
+summary: "本文讲述 Vamp（一款商业版的云原生应用平台）如何在 Kubernetes 上采用 Istio 进行流量路由的经验"
 tags: ["istio","kubernetes","AB Test","vamp"]
 categories: ["service mesh"]
-keywords: ["service mesh","istio","AB测试","vamp"]
+keywords: ["service mesh","istio","AB 测试","vamp"]
 ---
 
 ![](https://raw.githubusercontent.com/servicemesher/website/master/content/blog/ab-testing-on-kubernetes-with-istio-0-8/7134983fgy1ft55myd1kej20kb098dft.jpg)
 
-这是我们正在发布的系列文章中的第二篇，描述了我们在 Kubernetes 上采用 Istio 进行流量路由的经验。有关我们试图通过Vamp实现的更多详情以及我们选择 Istio 的原因，请参阅我们的[第一篇文章](https://medium.com/vamp-io/putting-istio-to-work-8513f5218c51)。
+这是我们正在发布的系列文章中的第二篇，描述了我们在 Kubernetes 上采用 Istio 进行流量路由的经验。有关我们试图通过 Vamp 实现的更多详情以及我们选择 Istio 的原因，请参阅我们的[第一篇文章](https://medium.com/vamp-io/putting-istio-to-work-8513f5218c51)。
 
 最近几个月对 Istio 社区来说相当令人兴奋。随着 0.8 版本的发布，该平台变得更加稳定，现在受益于更加一致（尽管仍然粗糙）的设计。然而，这些改进的代价是路线配置更加复杂。
 
@@ -28,7 +28,7 @@ Vamp Lamia 这个新版本的目标是将 Istio 从 0.7.1 迁移到 0.8 并让�
 实验是在 Vamp Lamia 管理的服务上设置基于 cookie 的 A/B 测试的简便方法。它们只需要非常基本的配置，根本不需要编码。
 为简单起见，我们假设您有一个电子商务网站，并且您已经听说如果页面背景是蓝色时客户会购买更多东西，而网站当前的背景为红色。你想测试这个假设，如果证明这一点是真的，那就使用金丝雀发布的方式转向蓝色背景。
 
-为此，您必须部署要测试的两个版本并标记它们，例如，“version1” 和 “version2” 。 Vamp 将选择这两个 deployment，并允许您创建 Service，以及绑定到它的Destination Rule 和 Gateway。
+为此，您必须部署要测试的两个版本并标记它们，例如，“version1”和“version2” 。Vamp 将选择这两个 deployment，并允许您创建 Service，以及绑定到它的 Destination Rule 和 Gateway。
 这些实体所起作用的详细说明超出了本文的范围，您可以在[Istio 文档](https://istio.io/docs/)中找到更多信息。
 现在，足以说 Gateway 是 Istio 对于 Kubernetes Ingress 的等价替代品，因此能让服务在对外暴露，而 Destination Rule 将 deployment 上的标签映射到 subset，提供了一层抽象用于更好地将不同版本的服务分组。
 正如您在下面的屏幕截图中所看到的，只需一些易于理解的参数即可轻松设置这些资源。
@@ -60,7 +60,7 @@ Vamp Lamia 这个新版本的目标是将 Istio 从 0.7.1 迁移到 0.8 并让�
  -  **步长（Step）** 是每次更新时权重的变化量。
  -  **标签（Tags）** 是与特定服务版本相关的描述性值。
  -  **子集（Subset）** 是服务的子集。
- -  **目标（Target）** 检查的URL用于评估特定子集的成功率。
+ -  **目标（Target）** 检查的 URL 用于评估特定子集的成功率。
 
 实验将通过检查在到达登陆页面后打开目标页面的用户数来测试功能的性能。
 为了跟踪这一点，Vamp Lamia 为访问登陆页的每个用户设置了一个 cookie，然后检查同一用户是否访问了目标页面。
@@ -91,4 +91,4 @@ Virtual Service 定义了三条路由。前两个很容易理解：它们各自�
 
 这里介绍的情景当然仍然过于简单。在接下来的几周内，我们将不再涉及 subset 和版本的概念，以便更多地关注用户想要测试的功能，我们将转向 [Welch’s t-test](https://en.wikipedia.org/wiki/Welch％27s_t-test) 算法，用于识别表现最佳的版本。同时，我们还计划自动创建 Gateway 和 Destination Rule，以便在用户不需要特定配置时隐藏所有复杂性。
 
-以上就是这次的分享！请随时向我们提供有关此新功能以及Vamp Lamia发展方向的反馈，请不要忘记，如果您想更深入地了解 Vamp Lamia 功能，请查看我们 [github](https://github.com/magneticio/vamp2setup) 上的 repo。
+以上就是这次的分享！请随时向我们提供有关此新功能以及 Vamp Lamia 发展方向的反馈，请不要忘记，如果您想更深入地了解 Vamp Lamia 功能，请查看我们 [github](https://github.com/magneticio/vamp2setup) 上的 repo。

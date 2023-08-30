@@ -1,10 +1,10 @@
 ---
-title: "使用Kubernetes和Istio对基于容器基础设施的全面服务监控"
+title: "使用 Kubernetes 和 Istio 对基于容器基础设施的全面服务监控"
 date: 2018-07-04T17:54:13+08:00
 draft: false
 authors: ["Fred Moyer"]
 translators: ["殷龙飞"]
-summary: "本文讲述了容器化基础设运维的挑战，Istio给我们带来了哪些便利，怎样通过设置服务级别目标（SLO）、服务级别目标（SLO）、服务级别协议（SLA）、RED仪表板，根据监控数据的分布，进行数据分析来判断性能指标，而不是简单的百分位统计。"
+summary: "本文讲述了容器化基础设运维的挑战，Istio 给我们带来了哪些便利，怎样通过设置服务级别目标（SLO）、服务级别目标（SLO）、服务级别协议（SLA）、RED 仪表板，根据监控数据的分布，进行数据分析来判断性能指标，而不是简单的百分位统计。"
 tags: ["istio","kubernetes","监控"]
 categories: ["service mesh"]
 keywords: ["service mesh","istio","kubernetes","监控"]
@@ -14,7 +14,7 @@ keywords: ["service mesh","istio","kubernetes","监控"]
 
 运营容器化基础设施给我们带来了一系列新的挑战。您需要对容器进行测试，评估您的 API 端点性能，并确定您的基础架构中的不良的组件。Istio 服务网格可在不更改代码的情况下实现 API 的检测，并且可以自由的设置服务延迟。但是，我们该如何理解所有这些数据？用数学的方式，对，就是这样。
 
-Circonus 是 Istio 的第一个第三方适配器。在 [之前的文章中](https://www.circonus.com/2017/12/circonus-istio-mixer-adapter/)，我们讨论了第一个用于监视基于 Istio 的服务的 Istio社区适配器。这篇文章将对此进行扩展。我们将解释如何全面了解您的 Kubernetes 基础设施。我们还将解释如何为基于容器的基础架构增加 Istio 服务网格实现。
+Circonus 是 Istio 的第一个第三方适配器。在 [之前的文章中](https://www.circonus.com/2017/12/circonus-istio-mixer-adapter/)，我们讨论了第一个用于监视基于 Istio 的服务的 Istio 社区适配器。这篇文章将对此进行扩展。我们将解释如何全面了解您的 Kubernetes 基础设施。我们还将解释如何为基于容器的基础架构增加 Istio 服务网格实现。
 
 # Istio 概述
 
@@ -22,15 +22,15 @@ Istio 是 Kubernetes 的服务网格，这意味着它负责所有服务之间�
 
 Istio 是由 Google、IBM、思科和 Lyft 的 [Envoy](https://www.circonus.com/2018/06/comprehensive-container-based-service-monitoring-with-kubernetes-and-istio/envoy.io) 开发的开源项目。该项目已经有一年多的历史了，而 Istio 已经进入了大规模生产环境（有案例吗？译者注）。在这篇文章发布时，[当前版本为 0.8](https://istio.io/about/notes/0.8/)。
 
-那么，Istio 是如何融入Kubernetes 生态系统的？Kubernetes 充当数据层，Istio 充当[控制层](https://istio.io/docs/concepts/what-is-istio/overview/)。Kubernetes   承载应用程序流量、处理容器编排、部署和扩展。Istio 路由应用程序流量，处理策略执行，流量管理和负载均衡。它还处理遥测，如指标、日志和跟踪。Istio 是基于容器的基础设施中负责保护微服务和报告的部分。
+那么，Istio 是如何融入 Kubernetes 生态系统的？Kubernetes 充当数据层，Istio 充当[控制层](https://istio.io/docs/concepts/what-is-istio/overview/)。Kubernetes   承载应用程序流量、处理容器编排、部署和扩展。Istio 路由应用程序流量，处理策略执行，流量管理和负载均衡。它还处理遥测，如指标、日志和跟踪。Istio 是基于容器的基础设施中负责保护微服务和报告的部分。
 
 ![](61411417ly1fshmugpbmcj20go0bc0t7.jpg)
 
 上图显示了服务网格架构。Istio 为每项服务部署了一个 [envoy sidecar proxy](https://www.envoyproxy.io/)。Envoy 通过 gRPC 调用代理到 Istio Mixer 服务的入站请求。然后，Mixer 应用流量管理规则，并联合请求遥测。Mixer 是 Istio 的大脑。运维人员可以编写 YAML 文件来控制 Envoy 如何重定向流量。他们还可以指定监测信息推送和可观测性系统的遥测技术。可以在运行时根据需要应用规则，而无需重新启动任何 Istio 组件。
 
-Istio 支持多种适配器将数据发送到各种监控工具。包括 Prometheus、Circonus 或 Statsd。您也可以同时启用Zipkin 和 Jaeger 追踪。而且，您可以把可视化所涉及的服务生成图形。
+Istio 支持多种适配器将数据发送到各种监控工具。包括 Prometheus、Circonus 或 Statsd。您也可以同时启用 Zipkin 和 Jaeger 追踪。而且，您可以把可视化所涉及的服务生成图形。
 
-Istio 易于部署。[回想起来](https://istio.io/docs/setup/kubernetes/quick-start/)，大约7到8个月之前，我们还必须通过一系列 kubectl 命令才能将 Istio 安装到 Kubernetes 集群上。虽然你仍然可以这样做，但是现在我们还可以在 Google Cloud platform，只需点击几下鼠标即可部署启用了 Istio 的Kubernetes 集群，其中包括监控、跟踪和示例应用程序。您可以快速的部署 Istio，然后使用 istioctl 命令来操作。
+Istio 易于部署。[回想起来](https://istio.io/docs/setup/kubernetes/quick-start/)，大约 7 到 8 个月之前，我们还必须通过一系列 kubectl 命令才能将 Istio 安装到 Kubernetes 集群上。虽然你仍然可以这样做，但是现在我们还可以在 Google Cloud platform，只需点击几下鼠标即可部署启用了 Istio 的 Kubernetes 集群，其中包括监控、跟踪和示例应用程序。您可以快速的部署 Istio，然后使用 istioctl 命令来操作。
 
 另一个好处是我们可以从服务中收集数据，而不需要开发人员对服务进行测试才能提供数据。这有很多好处。这减少了维护的工作量，消除了代码中的失败点。这样可以提供了供应商不可知的接口，减少了与供应商绑定的机会。
 
@@ -54,7 +54,7 @@ Istio 不完全是轻量级的。Istio 的强大功能和灵活性来源于一�
 
 服务级别目标（SLO）的简要概述将为我们衡量服务的健康状况奠定基础。服务级别协议（SLA）的概念已经存在了至少十年了。但直到最近网上关于服务级别目标（SLO）和服务级别指标（SLI）相关的内容数量才迅速增加。
 
-除了著名的 [Google SRE书以外](https://landing.google.com/sre/book.html)，两本关于 SLO 的新书即将发布。[“站点可靠性工作手册”](https://www.amazon.com/Site-Reliability-Workbook-Practical-Implement/dp/1492029505)有关于 SLO 的专门章节，[Seeking SRE](http://shop.oreilly.com/product/0636920063964.do) 中有关于由 Circonus 创始人兼首席执行官 Theo Schlossnagle 定义 SLO 目标的章节。我们还建议观看[Seth Vargo](https://twitter.com/sethvargo) 和 [Liz Fong Jones](https://twitter.com/lizthegrey) 的 YouTube 视频 [“SLI、SLO、SLA，我的天呐！”](https://youtu.be/tEylFyxbDLE)，以深入了解 SLI、SLO 和 SLA 之间的差异。
+除了著名的 [Google SRE 书以外](https://landing.google.com/sre/book.html)，两本关于 SLO 的新书即将发布。[“站点可靠性工作手册”](https://www.amazon.com/Site-Reliability-Workbook-Practical-Implement/dp/1492029505)有关于 SLO 的专门章节，[Seeking SRE](http://shop.oreilly.com/product/0636920063964.do) 中有关于由 Circonus 创始人兼首席执行官 Theo Schlossnagle 定义 SLO 目标的章节。我们还建议观看[Seth Vargo](https://twitter.com/sethvargo) 和 [Liz Fong Jones](https://twitter.com/lizthegrey) 的 YouTube 视频 [“SLI、SLO、SLA，我的天呐！”](https://youtu.be/tEylFyxbDLE)，以深入了解 SLI、SLO 和 SLA 之间的差异。
 
 总结一下：**SLI 驱动 SLO，通知 SLA**。
 
@@ -62,13 +62,13 @@ Istio 不完全是轻量级的。Istio 的强大功能和灵活性来源于一�
 
 服务级别目标（SLO）是 SLI 的目标或指标。我们采用 SLI，并扩展其范围以量化我们期望的服务在战略时间间隔内执行的情况。使用前面例子中的 SLI，我们可以说，我们希望满足 SLI 为后续年份窗口设置的标准的 99.9％。
 
-服务级别协议（SLA）是企业与客户之间的协议，定义了未能满足 SLO 的后果。一般来说，您的 SLA 所依据的SLO 将比您的内部 SLO 更宽松，因为我们希望内部面向的目标比我们的外部目标更为严格。
+服务级别协议（SLA）是企业与客户之间的协议，定义了未能满足 SLO 的后果。一般来说，您的 SLA 所依据的 SLO 将比您的内部 SLO 更宽松，因为我们希望内部面向的目标比我们的外部目标更为严格。
 
 # RED 仪表板
 
 SLI 的哪些组合最适合量化主机和服务健康状态？在过去几年中，出现了一些新兴的标准。最高标准是 USE 方法，RED 方法和 Google SRE 手册中讨论的“四个黄金信号”。
 
-Brendan Gregg 介绍了 [USE 方法](http://www.brendangregg.com/usemethod.html)，该[方法](http://www.brendangregg.com/usemethod.html)旨在根据利用率、饱和度和错误指标量化系统主机的健康状况。对于像CPU 这样的产品，我们可以将用户、系统和闲置百分比作为常见的利用率指标。我们可以使用平均负载量和运行队列进行饱和度的判定。UNIX perf 分析器是测量 CPU 错误事件的好工具。
+Brendan Gregg 介绍了 [USE 方法](http://www.brendangregg.com/usemethod.html)，该[方法](http://www.brendangregg.com/usemethod.html)旨在根据利用率、饱和度和错误指标量化系统主机的健康状况。对于像 CPU 这样的产品，我们可以将用户、系统和闲置百分比作为常见的利用率指标。我们可以使用平均负载量和运行队列进行饱和度的判定。UNIX perf 分析器是测量 CPU 错误事件的好工具。
 
 Tom Wilkie 几年前介绍了 [RED 方法](https://www.weave.works/blog/the-red-method-key-metrics-for-microservices-architecture/)。我们使用 RED 方法监控请求率、请求错误和请求持续时间。Google SRE 手册讨论了如何使用延迟、流量、错误和饱和度指标。这些“ [四个黄金信号](https://landing.google.com/sre/book/chapters/monitoring-distributed-systems.html#xref_monitoring_golden-signals) ”以服务健康为目标，与 RED 方法类似，但它添加了饱和度指标。在实践中，可能难以量化服务饱和度。
 
@@ -87,7 +87,7 @@ Tom Wilkie 几年前介绍了 [RED 方法](https://www.weave.works/blog/the-red-
 
 Istio 提供了有关它收到的请求，产生响应的延迟和连接级别数据的几个指标。请注意上面列表中的前两项；我们希望将它们包含在我们的 RED 仪表板中。
 
-Istio 还赋予我们添加度量标签的能力，这就是所谓的尺寸。因此，我们可以通过主机、集群等来分解遥测 。我们可以通过获取请求计数的一阶导数来获得每秒请求的速率。我们可以通过请求不成功的请求计数的导数来获得错误率。Istio 还向我们提供每个请求的延迟，因此我们可以记录每个服务请求完成的时间。
+Istio 还赋予我们添加度量标签的能力，这就是所谓的尺寸。因此，我们可以通过主机、集群等来分解遥测。我们可以通过获取请求计数的一阶导数来获得每秒请求的速率。我们可以通过请求不成功的请求计数的导数来获得错误率。Istio 还向我们提供每个请求的延迟，因此我们可以记录每个服务请求完成的时间。
 
 另外，Istio 为我们提供了一个 Grafana 仪表板，它包含我们想要的部分：
 
@@ -105,7 +105,7 @@ Istio 仪表板为返回 5xx 错误代码的响应做了类似的操作。在上
 
 ![](61411417ly1fshmuhdtxwj20go08ywjw.jpg)
 
-该屏幕截图显示了请求持续时间图。此图是关于我们服务的健康状况的最丰富信息。这些数据由 Prometheus 监测系统提供，因此我们可以看到请求时间百分点，包括中位数，第90,95和第99百分位。
+该屏幕截图显示了请求持续时间图。此图是关于我们服务的健康状况的最丰富信息。这些数据由 Prometheus 监测系统提供，因此我们可以看到请求时间百分点，包括中位数，第 90,95 和第 99 百分位。
 
 这些百分比为我们提供了服务如何执行的全面指示。但是，这种方法存在一些值得研究的缺陷。在低活动期间，由于样本数量有限，这些百分位数可能会大幅偏离。这可能会误导您关于这些情况下的系统性能。我们来看看这种方法可能出现的其他问题：
 
@@ -123,7 +123,7 @@ Istio 仪表板为返回 5xx 错误代码的响应做了类似的操作。在上
 
 这也意味着，如果您仅针对单个集群成员衡量基于百分比的性能，则由于缺乏可合并性而无法为整个服务设置服务级别指示符。
 
-由于在固定的时间窗口内只有4个延迟数据点，因此我们设置有意义的 SLI（以及因此，有意义的 SLO ）的能力在此处受到限制。因此，当您使用基于百分位的持续时间指标工作时，您必须问自己，您的 SLI 是否真的有很好的 SLI。通过使用数学推算来确定 SLI，我们可以做得更好，从而全面了解服务的性能和健康状况。
+由于在固定的时间窗口内只有 4 个延迟数据点，因此我们设置有意义的 SLI（以及因此，有意义的 SLO）的能力在此处受到限制。因此，当您使用基于百分位的持续时间指标工作时，您必须问自己，您的 SLI 是否真的有很好的 SLI。通过使用数学推算来确定 SLI，我们可以做得更好，从而全面了解服务的性能和健康状况。
 
 # 直方图计量数据
 
@@ -141,9 +141,9 @@ Envoy 项目最近采用[了](https://github.com/circonus-labs/libcircllhist) Ci
 
 现在您可以看到我们的平均水平，第 50 百分位（也称为中位数）和第 90 百分位。第 90 百分位是 90％ 样本低于该值的值。
 
-考虑我们之前的示例 SLI。通过以此格式显示延迟数据，我们可以通过将直方图合并为一个 5 分钟的数据视图，然后计算该分布的第 90 百分位数值，轻松计算服务的 SLI。如果它少于1,000毫秒，就达到了我们的目标。
+考虑我们之前的示例 SLI。通过以此格式显示延迟数据，我们可以通过将直方图合并为一个 5 分钟的数据视图，然后计算该分布的第 90 百分位数值，轻松计算服务的 SLI。如果它少于 1,000 毫秒，就达到了我们的目标。
 
-上面截图中的 RED 仪表盘持续时间图有四个百分点，第50、90、95和99百分位。我们也可以覆盖这些分布的百分位数。即使没有数据，我们也可以看到请求分布看起来很粗略的表示，但是这会做出很多假设。我们看看仅基于几个百分点的假设如何误导我们，这是其他模式的分布：
+上面截图中的 RED 仪表盘持续时间图有四个百分点，第 50、90、95 和 99 百分位。我们也可以覆盖这些分布的百分位数。即使没有数据，我们也可以看到请求分布看起来很粗略的表示，但是这会做出很多假设。我们看看仅基于几个百分点的假设如何误导我们，这是其他模式的分布：
 
 ![](61411417ly1fshmuh00flj20go07wjs7.jpg)
 
@@ -192,7 +192,7 @@ Envoy 项目最近采用[了](https://github.com/circonus-labs/libcircllhist) Ci
 
 考虑第一个例子。每个人都经历了一次巨大的速度下降。比方说，市场推广做得很大，流量增加了，运行速度降低了，用户抱怨网站速度缓慢。我们如何量化每个人的速度有多慢？有多少用户生气了？比方说，市场营销部门想知道这一点，以便他们可以向受影响的用户发送 10％ 折扣的电子邮件，同时也希望避免同样问题的再次发生。让我们制作一个 SLI，并假设用户注意到速度放缓并且在请求花费超过 500 毫秒时生气。我们如何计算有多少用户对这个 500 毫秒的 SLI 感到愤怒？
 
-首先，我们需要将请求延迟记录为分发。然后我们可以将它们绘制成热图。我们可以使用分布数据来计算超过500ms SLI 的请求的百分比，方法是使用逆百分比。我们将这个答案乘以该时间窗口中的请求总数，并随时间积分。然后我们可以绘制覆盖在热图上的结果：
+首先，我们需要将请求延迟记录为分发。然后我们可以将它们绘制成热图。我们可以使用分布数据来计算超过 500ms SLI 的请求的百分比，方法是使用逆百分比。我们将这个答案乘以该时间窗口中的请求总数，并随时间积分。然后我们可以绘制覆盖在热图上的结果：
 
 ![](61411417ly1fshmugwviwj20go06jdhf.jpg)
 

@@ -1,10 +1,10 @@
 ---
-title: "Envoy，gRPC和速率限制"
+title: "Envoy，gRPC 和速率限制"
 date: 2018-11-15T13:20:46+08:00
 draft: false
 authors: ["Venil Noronha"]
 translators: ["王全根"]
-summary: "本文使用C++构建了客户端/服务端应用，通过Envoy代理和gPRC协议进行通信，然后使用Go语言实现了Envoy速率限制服务。"
+summary: "本文使用 C++构建了客户端/服务端应用，通过 Envoy 代理和 gPRC 协议进行通信，然后使用 Go 语言实现了 Envoy 速率限制服务。"
 tags: ["Envoy","gRPC"]
 categories: ["envoy"]
 keywords: ["Envoy","gRPC"] 
@@ -12,21 +12,21 @@ keywords: ["Envoy","gRPC"]
 
 本文为翻译文章，[点击查看原文](https://venilnoronha.io/envoy-grpc-and-rate-limiting)。
 
-[Envoy](https://www.envoyproxy.io/)是专为Cloud Native应用设计的轻量级服务代理，也是为数不多的支持[gRPC](https://grpc.io/)的代理之一。gRPC是一个基于[HTTP/2](https://en.wikipedia.org/wiki/HTTP/2)的高性能RPC（[远程过程调用](https://en.wikipedia.org/wiki/Remote_procedure_call)）框架，支持多种语言。
+[Envoy](https://www.envoyproxy.io/)是专为 Cloud Native 应用设计的轻量级服务代理，也是为数不多的支持[gRPC](https://grpc.io/)的代理之一。gRPC 是一个基于[HTTP/2](https://en.wikipedia.org/wiki/HTTP/2)的高性能 RPC（[远程过程调用](https://en.wikipedia.org/wiki/Remote_procedure_call)）框架，支持多种语言。
 
 ![Envoy](006tNbRwly1fx4iq37avnj31kw0j1ju5.jpg)
 
-在这篇文章中，我们将使用gRPC和[Protocol Buffers](https://developers.google.com/protocol-buffers/)构建C++语言版本的[Greeter应用](https://grpc.io/docs/quickstart/cpp.html)，使用[Go](https://golang.org/)语言构建另一个gRPC应用，实现Envoy的[RateLimitService](https://github.com/envoyproxy/envoy/blob/71152b710e3543732464fca57c8f07b7395de68d/api/envoy/service/ratelimit/v2/rls.proto#L11-L15)接口。最后，将Envoy部署为Greeter应用的代理，使用我们的速率限制服务实现[反压机制](https://www.learnenvoy.io/articles/backpressure.html)（backpressure）。
+在这篇文章中，我们将使用 gRPC 和[Protocol Buffers](https://developers.google.com/protocol-buffers/)构建 C++语言版本的[Greeter 应用](https://grpc.io/docs/quickstart/cpp.html)，使用[Go](https://golang.org/)语言构建另一个 gRPC 应用，实现 Envoy 的[RateLimitService](https://github.com/envoyproxy/envoy/blob/71152b710e3543732464fca57c8f07b7395de68d/api/envoy/service/ratelimit/v2/rls.proto#L11-L15)接口。最后，将 Envoy 部署为 Greeter 应用的代理，使用我们的速率限制服务实现[反压机制](https://www.learnenvoy.io/articles/backpressure.html)（backpressure）。
 
-## gRPC Greeter应用
+## gRPC Greeter 应用
 
-我们首先安装[gRPC](https://grpc.io/docs/quickstart/cpp.html#install-grpc)和[Protobuf](https://grpc.io/docs/quickstart/cpp.html#install-protocol-buffers-v3)，然后[构建C++语言版本的Greeter应用](https://grpc.io/docs/quickstart/cpp.html#build-the-example)。您还可以通过选择[文档中列出的其他语言](https://grpc.io/docs/quickstart/)来构建此应用程序; 但是，我将在本文中使用C++。
+我们首先安装[gRPC](https://grpc.io/docs/quickstart/cpp.html#install-grpc)和[Protobuf](https://grpc.io/docs/quickstart/cpp.html#install-protocol-buffers-v3)，然后[构建 C++语言版本的 Greeter 应用](https://grpc.io/docs/quickstart/cpp.html#build-the-example)。您还可以通过选择[文档中列出的其他语言](https://grpc.io/docs/quickstart/)来构建此应用程序; 但是，我将在本文中使用 C++。
 
-以下是Greeter应用的示意图。
+以下是 Greeter 应用的示意图。
 
 ![Greeter](006tNbRwly1fx4knp84toj30ex03p0sx.jpg)
 
-运行Greeter应用时，终端中会有以下输出：
+运行 Greeter 应用时，终端中会有以下输出：
 
 ```bash
 $ ./greeter_server
@@ -38,9 +38,9 @@ $ ./greeter_client
 Greeter received: Hello world
 ```
 
-## 升级gRPC Greeter应用
+## 升级 gRPC Greeter 应用
 
-现在，我们通过使用带有请求计数前缀的返回值替代静态的“Hello”前缀，来增强Greeter应用。只需更新`greeter_server.cc`文件，如下所示。
+现在，我们通过使用带有请求计数前缀的返回值替代静态的“Hello”前缀，来增强 Greeter 应用。只需更新`greeter_server.cc`文件，如下所示。
 
 ```diff
  // Logic and data behind the server's behavior.
@@ -66,7 +66,7 @@ Greeter received: 3 world
 
 ## 简单速率限制服务
 
-接下来，我们通过扩展Envoy的[RateLimitService](https://github.com/envoyproxy/envoy/blob/71152b710e3543732464fca57c8f07b7395de68d/api/envoy/service/ratelimit/v2/rls.proto#L11-L15)原型接口，用Go语言实现一个简单的速率限制服务。为此，我们创建一个名为`rate-limit-service`的Go项目，并引入Envoy的[go-control-plane](https://github.com/envoyproxy/go-control-plane)和其它相关依赖。`go-control-plane`项目为Envoy原型提供了Go语言绑定。为了后续实现速率限制服务，我们还需创建`cmd/server/main.go`和`cmd/client/main.go`两个文件。
+接下来，我们通过扩展 Envoy 的[RateLimitService](https://github.com/envoyproxy/envoy/blob/71152b710e3543732464fca57c8f07b7395de68d/api/envoy/service/ratelimit/v2/rls.proto#L11-L15)原型接口，用 Go 语言实现一个简单的速率限制服务。为此，我们创建一个名为`rate-limit-service`的 Go 项目，并引入 Envoy 的[go-control-plane](https://github.com/envoyproxy/go-control-plane)和其它相关依赖。`go-control-plane`项目为 Envoy 原型提供了 Go 语言绑定。为了后续实现速率限制服务，我们还需创建`cmd/server/main.go`和`cmd/client/main.go`两个文件。
 
 ```bash
 $ mkdir -p $GOPATH/src/github.com/venilnoronha/rate-limit-service/
@@ -101,7 +101,7 @@ $ mkdir cmd/client/ && touch cmd/client/main.go
 
 ### 速率限制服务端
 
-现在，我们创建一个简单的gRPC速率限制服务，来限制每秒的请求数（译者注：例子实现是交替限制请求）。
+现在，我们创建一个简单的 gRPC 速率限制服务，来限制每秒的请求数（译者注：例子实现是交替限制请求）。
 
 ```go
 package main
@@ -223,15 +223,15 @@ $ for i in {1..4}; do go run cmd/client/main.go; sleep 1; done
 2018/10/27 17:32:28 response: overall_code:OVER_LIMIT
 ```
 
-## Envoy代理
+## Envoy 代理
 
-现在我们引入Envoy代理，它将来自Greeter客户端的请求路由到Greeter服务端，同时使用我们的速率限制服务检查速率。下图描述了我们最终的部署结构。
+现在我们引入 Envoy 代理，它将来自 Greeter 客户端的请求路由到 Greeter 服务端，同时使用我们的速率限制服务检查速率。下图描述了我们最终的部署结构。
 
 ![envoy proxy](006tNbRwly1fx4mz6gav7j30m008zmy0.jpg)
 
 ### 代理配置
 
-我们使用如下Envoy配置来注册Greeter和RateLimitService服务并启用限速检查。注意，由于我们是将Envoy部署在[Docker for Mac](https://docs.docker.com/docker-for-mac/)上，本地部署的服务是通过`docker.for.mac.localhost`地址引用的。
+我们使用如下 Envoy 配置来注册 Greeter 和 RateLimitService 服务并启用限速检查。注意，由于我们是将 Envoy 部署在[Docker for Mac](https://docs.docker.com/docker-for-mac/)上，本地部署的服务是通过`docker.for.mac.localhost`地址引用的。
 
 ```yaml
 static_resources:
@@ -297,9 +297,9 @@ rate_limit_service: # define the global rate limit service
       cluster_name: rate_limit_service
 ```
 
-### 部署Envoy代理
+### 部署 Envoy 代理
 
-为了部署Envoy代理，我们将上述配置拷贝到`envoy.yaml`文件。然后我们使用如下的`Dockerfile`构建Docker镜像。
+为了部署 Envoy 代理，我们将上述配置拷贝到`envoy.yaml`文件。然后我们使用如下的`Dockerfile`构建 Docker 镜像。
 
 ```dockerfile
 FROM envoyproxy/envoy:latest
@@ -330,9 +330,9 @@ $ docker run -p 9211:9211 envoy:grpc
 [2018-10-28 02:59:20.554][000008][info][config] [source/server/listener_manager_impl.cc:908] all dependencies initialized. starting workers
 ```
 
-### 更新Greeter客户端
+### 更新 Greeter 客户端
 
-由于要使用Envoy路由Greeter客户端的请求，我们将客户端代码中的服务端端口从`50051`改为`9211`，并重新build。
+由于要使用 Envoy 路由 Greeter 客户端的请求，我们将客户端代码中的服务端端口从`50051`改为`9211`，并重新 build。
 
 ```diff
    GreeterClient greeter(grpc::CreateChannel(
@@ -344,7 +344,7 @@ $ docker run -p 9211:9211 envoy:grpc
 
 ## 最终测试
 
-此时，我们已经有了Greeter服务端、RateLimitService服务和一个Envoy代理，是时候验证整个部署了。为此，我们使用更新后的Greeter客户端发送几个如下所示的请求（译者注：前面Greeter服务端没有停，counter已经到了3）。
+此时，我们已经有了 Greeter 服务端、RateLimitService 服务和一个 Envoy 代理，是时候验证整个部署了。为此，我们使用更新后的 Greeter 客户端发送几个如下所示的请求（译者注：前面 Greeter 服务端没有停，counter 已经到了 3）。
 
 ```bash
 $ for i in {1..10}; do ./greeter_client; sleep 1; done
@@ -365,8 +365,8 @@ Greeter received: 8 world
 Greeter received: RPC failed
 ```
 
-如你所见，10个请求中的5个是成功的，交替出现gRPC状态码为`14`的`RPC failed`失败请求。这表明速率限制服务按照设计限制了请求，Envoy正确地终止了之后的请求。
+如你所见，10 个请求中的 5 个是成功的，交替出现 gRPC 状态码为`14`的`RPC failed`失败请求。这表明速率限制服务按照设计限制了请求，Envoy 正确地终止了之后的请求。
 
 ## 结论
 
-这篇文章让你对如何使用Envoy作为应用代理有了一个高层次的认识，也能帮助你理解Envoy的限速过滤器如何跟gRPC协议协同工作。
+这篇文章让你对如何使用 Envoy 作为应用代理有了一个高层次的认识，也能帮助你理解 Envoy 的限速过滤器如何跟 gRPC 协议协同工作。

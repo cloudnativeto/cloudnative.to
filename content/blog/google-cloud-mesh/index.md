@@ -10,13 +10,13 @@ categories: ["service mesh"]
 keywords: ["service mesh","服务网格"]
 ---
 
-作为开源 Service Mesh 明星项目 Istio 背后的主要厂商，Google 也在其公有云上推出了 Service Mesh 管理服务。让人迷惑的是 Google Cloud 上有两个 Service Mesh 产品：Traffic Director 与 Anthos Service Mesh。Google Cloud 首先在2019年3月发布了其第一个 Service Mesh 产品 Traffic Director，随后不久在2019 年9月紧接着发布了另一个 Service Mesh 产品 Anthos Service Mesh，随后两个产品独立并行发展，直到如今。
+作为开源 Service Mesh 明星项目 Istio 背后的主要厂商，Google 也在其公有云上推出了 Service Mesh 管理服务。让人迷惑的是 Google Cloud 上有两个 Service Mesh 产品：Traffic Director 与 Anthos Service Mesh。Google Cloud 首先在 2019 年 3 月发布了其第一个 Service Mesh 产品 Traffic Director，随后不久在 2019 年 9 月紧接着发布了另一个 Service Mesh 产品 Anthos Service Mesh，随后两个产品独立并行发展，直到如今。
 
 Google Cloud 同时推出两个 Service Mesh 产品的原因是什么？这两个产品的定位有何不同？本文将分别分析这两个产品的架构和功能，以试图解答该疑问。
 
 ## Traffic Director
 
-Traffic Director 是 Google Cloud 专为服务网格打造的全托管式流量控制平面，用户不需要对 Traffic Director 进行部署，维护和管理。我们可以把 Traffic Director 看作一个托管的 Pilot（备注：并不确定其内部是否使用的 Pilot），其只提供了流量管理能力，不提供 Istio 控制面的其他能力。用户可以使用 Traffic Director 创建跨区域的、同时支持集群和虚拟机实例的服务网格，并对多个集群和虚拟机的工作负载进行统一的流量控制。Traffic Director 托管控制面 提供了跨地域容灾能力，可以保证99.99%的SLA。
+Traffic Director 是 Google Cloud 专为服务网格打造的全托管式流量控制平面，用户不需要对 Traffic Director 进行部署，维护和管理。我们可以把 Traffic Director 看作一个托管的 Pilot（备注：并不确定其内部是否使用的 Pilot），其只提供了流量管理能力，不提供 Istio 控制面的其他能力。用户可以使用 Traffic Director 创建跨区域的、同时支持集群和虚拟机实例的服务网格，并对多个集群和虚拟机的工作负载进行统一的流量控制。Traffic Director 托管控制面 提供了跨地域容灾能力，可以保证 99.99% 的 SLA。
 
 总而言之，Traffic Director 的关键特性包括：
 
@@ -27,7 +27,7 @@ Traffic Director 是 Google Cloud 专为服务网格打造的全托管式流量�
 
 ### Traffic Director 架构
 
-Traffic Director 的总体架构和 Istio 类似，也采用了“控制面 + 数据面”的结构，控制面托管在 Google Cloud 中，对用户不可见。用户只需要在创建 project 时启用 Traffic Director API，即可使用 Traffic Director 提供的网格服务。数据面则采用了和 Istio 相同的 Envoy 作为 proxy。 控制面和数据面采用标准的 xDS v2 进行通信。控制面对外采用了一套自定义的 API 来实现流量管理，并不支持 Istio API。Traffic Director 也没有采用 Istio/K8s 的服务发现，而是采用了一套 Google Cloud 自己的服务注册发现机制，该服务注册发现机制以统一的模型同时支持了容器和虚拟机上的服务，并为工作负载提供了健康检测。
+Traffic Director 的总体架构和 Istio 类似，也采用了“控制面 + 数据面”的结构，控制面托管在 Google Cloud 中，对用户不可见。用户只需要在创建 project 时启用 Traffic Director API，即可使用 Traffic Director 提供的网格服务。数据面则采用了和 Istio 相同的 Envoy 作为 proxy。控制面和数据面采用标准的 xDS v2 进行通信。控制面对外采用了一套自定义的 API 来实现流量管理，并不支持 Istio API。Traffic Director 也没有采用 Istio/K8s 的服务发现，而是采用了一套 Google Cloud 自己的服务注册发现机制，该服务注册发现机制以统一的模型同时支持了容器和虚拟机上的服务，并为工作负载提供了健康检测。
 
 Traffic Director 架构
 
@@ -39,25 +39,25 @@ Traffic Director 采用了 Google Cloud 的一种称为 Backend Service 的服�
 
 #### 服务注册发现资源模型
 
-Traffic Director 的服务注册发现资源模型如下图所示，图中蓝色的图形为 Traffic Director 中使用的资源，桔色的图形为这些资源对应在 K8s 中的概念。Backend Service 是一个逻辑服务，可以看作 K8s 中的 Service，Backend Service 中可以包含 GKE 集群中的 NEG （Network Endpoint Group），GCE 虚拟机 的 MIG （Managed Instance Group），或者无服务的 NEG 。NEG 中则是具体的一个个工作负载，即服务实例。 
+Traffic Director 的服务注册发现资源模型如下图所示，图中蓝色的图形为 Traffic Director 中使用的资源，桔色的图形为这些资源对应在 K8s 中的概念。Backend Service 是一个逻辑服务，可以看作 K8s 中的 Service，Backend Service 中可以包含 GKE 集群中的 NEG（Network Endpoint Group），GCE 虚拟机 的 MIG（Managed Instance Group），或者无服务的 NEG。NEG 中则是具体的一个个工作负载，即服务实例。 
 
 Traffic Director 服务发现资源模型
 
 ![](traffic-director-service-discovery.png)
 
-Google Cloud 的这一套服务注册的机制并不只是为 Traffic Director 而定制的，还可以和 Google Cloud 上的各种负载均衡服务一起使用，作为负载均衡的后端。熟悉 K8s 的同学应该清楚，进入 K8s 集群的流量经过 Load Balancer 后会被首先发送到一个 node 的 nodeport 上，然后再通过 DNAT 转发到 Service 后端的一个 Pod IP 上。Google Cloud 在 cluster 上提供了一个 [VPC native](https://cloud.google.com/kubernetes-engine/docs/how-to/alias-ips) 的网络特性，可以在 VPC 中直接路由 Pod ，在打开 VPC native 特性的集群中，通过将 NEG 而不是 K8s service 放到 Load balancer 后端，可以跳过 Kubeproxy iptables 转发这一跳，直接将流量发送到 Pod，降低转发延迟，并可以应用更灵活的 LB 和路由算法。
+Google Cloud 的这一套服务注册的机制并不只是为 Traffic Director 而定制的，还可以和 Google Cloud 上的各种负载均衡服务一起使用，作为负载均衡的后端。熟悉 K8s 的同学应该清楚，进入 K8s 集群的流量经过 Load Balancer 后会被首先发送到一个 node 的 nodeport 上，然后再通过 DNAT 转发到 Service 后端的一个 Pod IP 上。Google Cloud 在 cluster 上提供了一个 [VPC native](https://cloud.google.com/kubernetes-engine/docs/how-to/alias-ips) 的网络特性，可以在 VPC 中直接路由 Pod，在打开 VPC native 特性的集群中，通过将 NEG 而不是 K8s service 放到 Load balancer 后端，可以跳过 Kubeproxy iptables 转发这一跳，直接将流量发送到 Pod，降低转发延迟，并可以应用更灵活的 LB 和路由算法。
 
 虽然 Backend Service 已经支持了无服务 NEG，但目前 Traffic Director 还不支持，但从资源模型的角度来看，应该很容易扩展目前的功能，以将无服务工作负载加入到服务网格中。
 
-下面举例说明如何创建 Backend Service，并将 GKE 和 VM 中运行的服务实例加入到 Backend Service中，以了解相关资源的内部结构。
+下面举例说明如何创建 Backend Service，并将 GKE 和 VM 中运行的服务实例加入到 Backend Service 中，以了解相关资源的内部结构。
 
 #### 注册 GKE 集群中的容器服务
 
-1、 创建 GKE NEG：在 K8s Service 的 yaml 定义中通过 annotation 创建 NEG
+1、创建 GKE NEG：在 K8s Service 的 yaml 定义中通过 annotation 创建 NEG
 
 ![](gke-neg-define.png)
 
-2、 创建防火墙规则：需要创建一条防火墙规则，以允许 gcloud 对 GKE NEG 中的服务实例进行健康检查
+2、创建防火墙规则：需要创建一条防火墙规则，以允许 gcloud 对 GKE NEG 中的服务实例进行健康检查
 
 ```bash
 gcloud compute firewall-rules create fw-allow-health-checks \  
@@ -98,14 +98,14 @@ gcloud compute backend-services add-backend td-gke-service \
 
 #### 注册 GCE 虚拟机服务
 
-1、 创建虚机模版：在创建模版时可以通过命令参数 --service-proxy=enabled 声明使用该模版创建的虚拟机需要安装 Envoy sidecar 代理
+1、创建虚机模版：在创建模版时可以通过命令参数 --service-proxy=enabled 声明使用该模版创建的虚拟机需要安装 Envoy sidecar 代理
 
 ```bash
 gcloud beta compute instance-templates create td-vm-template-auto \    
   --service-proxy=enabled
 ```
 
-2、 创建 MIG：使用虚拟机模版创建一个 managed instance group，该 group 中的实例数为2
+2、创建 MIG：使用虚拟机模版创建一个 managed instance group，该 group 中的实例数为 2
 
 ```bash
 gcloud compute instance-groups managed create td-vm-mig-us-central1 \    
@@ -114,7 +114,7 @@ gcloud compute instance-groups managed create td-vm-mig-us-central1 \
   --template=td-vm-template-auto
 ```
 
-3、 创建防火墙规则
+3、创建防火墙规则
 
 ```bash
 gcloud compute firewall-rules create fw-allow-health-checks \  
@@ -125,13 +125,13 @@ gcloud compute firewall-rules create fw-allow-health-checks \
   --rules tcp:80
 ```
 
-4、 创建健康检查
+4、创建健康检查
 
 ```bash
 gcloud compute health-checks create http td-vm-health-check
 ```
 
-5、 创建 Backend Service，创建时需要指定上一步创建的健康检查
+5、创建 Backend Service，创建时需要指定上一步创建的健康检查
 
 ```bash
 gcloud compute backend-services create td-vm-service \ 
@@ -141,7 +141,7 @@ gcloud compute backend-services create td-vm-service \
   --health-checks td-vm-health-check
 ```
 
-6、 将 MIG 加入到上一步创建的 Backend service 中
+6、将 MIG 加入到上一步创建的 Backend service 中
 
 ```bash
 gcloud compute backend-services add-backend td-vm-service \  
@@ -152,7 +152,7 @@ gcloud compute backend-services add-backend td-vm-service \
 
 ### 流量管理实现原理
 
-Traffic Diretor 的主要功能就是跨地域的全局流量管理能力，该能力是建立在 Google Cloud 强大的 VPC 机制基础上的， Google Cloud 的 VPC 可以跨越多个 Region，因此一个 VPC 中的服务网格中可以有来自多个 Region 的服务。另外 Traffic Director 并未直接采用 Istio 的 API，而是自定义了一套 API 来对网格中的流量进行管理。
+Traffic Diretor 的主要功能就是跨地域的全局流量管理能力，该能力是建立在 Google Cloud 强大的 VPC 机制基础上的，Google Cloud 的 VPC 可以跨越多个 Region，因此一个 VPC 中的服务网格中可以有来自多个 Region 的服务。另外 Traffic Director 并未直接采用 Istio 的 API，而是自定义了一套 API 来对网格中的流量进行管理。
 
 #### 控制面流量规则定义
 
@@ -160,8 +160,8 @@ Traffic Director 流量规则相关的控制面资源模型如下图所示，图
 
 * Forwarding Rule：定义服务的入口 VIP 和 Port。
 * Target Proxy：用于关联 Forwarding Rule 和 URL Map，可以看作网格中代理的一个资源抽象。
-* URL Map：用于设置路由规则，包括规则匹配条件和规则动作两部分。匹配条件支持按照 HTTP 的 Host、Path、Header进行匹配。匹配后可以执行 Traffic Splitting、Redirects、URL Rewrites、Traffic Mirroring、Fault Injection、Header Transformation 等动作。
-* Backend Service：前面在服务发现中已经介绍了 Backend Service 用于服务发现，其实还可以在 Backen Service 上设置流量策略，包括LB策略，断路器配置，实例离线检测等。可以看到 Backend Service 在 Traffic Director 的流量管理模型中同时承担了 Istio 中的 ServiceEntry 和 Destionation Rule 两个资源等功能。
+* URL Map：用于设置路由规则，包括规则匹配条件和规则动作两部分。匹配条件支持按照 HTTP 的 Host、Path、Header 进行匹配。匹配后可以执行 Traffic Splitting、Redirects、URL Rewrites、Traffic Mirroring、Fault Injection、Header Transformation 等动作。
+* Backend Service：前面在服务发现中已经介绍了 Backend Service 用于服务发现，其实还可以在 Backen Service 上设置流量策略，包括 LB 策略，断路器配置，实例离线检测等。可以看到 Backend Service 在 Traffic Director 的流量管理模型中同时承担了 Istio 中的 ServiceEntry 和 Destionation Rule 两个资源等功能。
 
 客户端直接通过 VIP 访问服务其实是一个不太友好的方式，因此我们还需要通过一个 DNS 服务将 Forwarding Rule 中的 VIP 和一个 DNS record 关联起来，在 Google Cloud 中可以采用 [Cloud DNS](https://cloud.google.com/dns/) 来将 Forwarding Rule 的 VIP 关联到一个内部的全局 DNS 名称上。 
 
@@ -169,9 +169,9 @@ Traffic Director 流量管理资源模型
 
 ![](traffic-managemetn-resources.png)
 
-下面举例说明这些资源的定义，以及它们是如何相互作用，以实现Service Mesh中的流量管理。
+下面举例说明这些资源的定义，以及它们是如何相互作用，以实现 Service Mesh 中的流量管理。
 
-下图中的forwarding rule定义了一个暴露在 10.0.0.1:80 上的服务，该服务对应的url map 定义了两条路由规则，对应的主机名分别为 * 和 hello-worold，请求将被路由到后端的 td-vm-service backend service 中的服务实例。
+下图中的 forwarding rule 定义了一个暴露在 10.0.0.1:80 上的服务，该服务对应的 url map 定义了两条路由规则，对应的主机名分别为 * 和 hello-worold，请求将被路由到后端的 td-vm-service backend service 中的服务实例。
 
 ![](traffic-managemetn-resources-example.png)
 
@@ -284,7 +284,7 @@ Traffic Director 数据面采用了和 Istio 相同的机制，通过 Iptables �
 
 #### VM 手动部署
 
-通过脚本从 gcloud 上下载 envoy 二机制，并安装 iptables 流量拦截规则，启动envoy。
+通过脚本从 gcloud 上下载 envoy 二机制，并安装 iptables 流量拦截规则，启动 envoy。
 
 ```bash
 # Add a system user to run Envoy binaries. Login is disabled for this user
@@ -328,7 +328,7 @@ sudo /home/envoy/traffic-director/run.sh start"
 
 #### VM 自动部署
 
-在创建虚拟机模版时添加注入proxy的参数，可以在VM中自动部署Envoy sidecar。
+在创建虚拟机模版时添加注入 proxy 的参数，可以在 VM 中自动部署 Envoy sidecar。
 
 ```bash
 gcloud beta compute instance-templates create td-vm-template-auto \    
@@ -340,9 +340,9 @@ gcloud compute instance-groups managed create td-vm-mig-us-central1 \
 
 #### GKE 通过 deployment 部署
 
-GKE 提供 yaml 模版，需要修改 deployment 文件，在 yaml 中增加 sidecar 相关的镜像。未提供 webhook,参见 Traffic Director 的[示例文件](https://storage.googleapis.com/traffic-director/trafficdirector_istio_sidecar.yaml)。
+GKE 提供 yaml 模版，需要修改 deployment 文件，在 yaml 中增加 sidecar 相关的镜像。未提供 webhook，参见 Traffic Director 的[示例文件](https://storage.googleapis.com/traffic-director/trafficdirector_istio_sidecar.yaml)。
 
-### VM和GKE混合部署示例
+### VM 和 GKE 混合部署示例
 
 下面我们创建一个示例程序，将 V 和 GKE 中的服务同时加入到 traffic director 管理的 service mesh 中，以展示 traffic director 的对 VM 和容器服务流量统一管理能力。
 该程序的组成如下图所示。程序中部署了三个服务，在 us-central1-a 中部署了两个 VM MIG 服务，在 us-west1-a 中部署了一个 GKE NEG 服务，这三个服务处于同一个 VPC 中，因此网络是互通的。
@@ -405,10 +405,10 @@ app1-84996668df-t4qmn
 
 ## Anthos Service Mesh
 
-Anthos Service Mesh 是 Google 混合云和多云解决方案 Anthos 中负责服务管理的部分。和 Traffic Director 的主要区别是，Anthos Service Mesh 直接采用了开源 Istio， 并且未对控制面进行托管，而是将 Istio 控制面部署在了用户集群中，只是将遥测信息接入了 Google Cloud，并在 Google cloud console 的 Anthos Service Mesh 界面中提供了服务网格的查看和监控界面。
-Anthos Service Mesh关键特性包括：
+Anthos Service Mesh 是 Google 混合云和多云解决方案 Anthos 中负责服务管理的部分。和 Traffic Director 的主要区别是，Anthos Service Mesh 直接采用了开源 Istio，并且未对控制面进行托管，而是将 Istio 控制面部署在了用户集群中，只是将遥测信息接入了 Google Cloud，并在 Google cloud console 的 Anthos Service Mesh 界面中提供了服务网格的查看和监控界面。
+Anthos Service Mesh 关键特性包括：
 
-* 原生Istio多集群方案
+* 原生 Istio 多集群方案
 * 支持多云/混合云（不支持虚机）
 * 集中的服务监控控制台。
 
@@ -438,7 +438,7 @@ Anthos 采用 agent 接入 K8s 集群
 
 由于上诉特点，多网络多控制平面的部署方案一般用于需要隔离不同服务的场景，如下图所示，通常会在不同集群中部署不同的服务，跨集群进行服务调用时通过 Ingress Gateway 进行。
 
-Anthos Service Mesh 多集群管理-多网络多控制平面
+Anthos Service Mesh 多集群管理 - 多网络多控制平面
 
 ![](multi-network-deployment.png)
 
@@ -448,7 +448,7 @@ Anthos Service Mesh 多集群管理-多网络多控制平面
 
 如图中箭头所示，在正常情况下，每个 region 中的服务只会访问自己 region 中的其他服务，以避免跨 region 调用导致时延较长，影响用户体验。当左边 region 中的 ratings 服务由于故障不能访问时，reviews 服务会通过 Istio 提供的 Locality Load Balancing 能力访问右侧 region 中的 ratings 服务，以实现跨 region 的容灾，避免服务中断。
 
-Anthos Service Mesh 多集群管理-单网络多控制平面
+Anthos Service Mesh 多集群管理 - 单网络多控制平面
 
 ![](single-network-deployment.png)
 
@@ -485,7 +485,7 @@ Anthos Service Mesh 多集群管理-单网络多控制平面
         ]
 ````
 
-Metric，Access log和 tracing 过 Envoy stackdriver http filter 上报到 Google Cloud，以便通过 Anthos Service Mesh 控制台统一查看。
+Metric，Access log 和 tracing 过 Envoy stackdriver http filter 上报到 Google Cloud，以便通过 Anthos Service Mesh 控制台统一查看。
 
 ```json
               "name": "istio.stackdriver",
@@ -529,7 +529,7 @@ Hello version: v1, instance: helloworld-v1-578dd69f69-c2fmz
 Hello version: v1, instance: helloworld-v1-578dd69f69-c2fmz
 ```
 
-将 west1-a 集群中 helloworld deployment 的副本数设置为0，再进行访问，由于本地没有可用实例，会访问到部署在 east1-b region 的 helloworld v2，实现了跨地域的容灾。这里需要注意一点：虽然两个集群的 IP 是可路由的，但 Google cloud 的防火墙缺省并不允许集群之间相互访问，需要先创建相应的防火墙规则，以允许跨集群的网格访问流量。
+将 west1-a 集群中 helloworld deployment 的副本数设置为 0，再进行访问，由于本地没有可用实例，会访问到部署在 east1-b region 的 helloworld v2，实现了跨地域的容灾。这里需要注意一点：虽然两个集群的 IP 是可路由的，但 Google cloud 的防火墙缺省并不允许集群之间相互访问，需要先创建相应的防火墙规则，以允许跨集群的网格访问流量。
 
 ```bash
 kubectl edit deployment helloworld-v1 -nsample --context=${CTX1}
@@ -582,7 +582,7 @@ Hello version: v2, instance: helloworld-v2-776f74c475-jws5r
 
 ## 相互竞争还是优势互补？
 
-从前面的分析可以看出， Google Cloud 推出的 Traffic Director 和 Anthos Service Mesh 这两个服务网格的产品各有侧重点：
+从前面的分析可以看出，Google Cloud 推出的 Traffic Director 和 Anthos Service Mesh 这两个服务网格的产品各有侧重点：
 
 * Traffic Director 关注重点为流量管理。依靠 Google Cloud 强大的网络能力提供了跨区域的 Mesh 流量管理，支持本地服务出现问题时将流量导向另一个地域的相同服务，以避免用户业务中断；并且通过统一的服务发现机制实现了 K8s 集群和虚拟机的混合部署。
 * Anthos Service Mesh 关注重点为跨云/多云的统一管理。这是出于用户业务部署的实际环境和业务向云迁移的较长过程的实际考虑，但目前未支持虚拟机，并且其对于 Mesh 中全局流量的管理能力不如 Traffic Director 这样强大。

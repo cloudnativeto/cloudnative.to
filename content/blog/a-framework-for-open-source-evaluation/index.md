@@ -6,7 +6,7 @@ translators: ["张晓辉"]
 categories: ["开源"]
 tags: ["开源"]
 date: 2021-08-08T17:05:42+08:00
-profile: "Red Hat的首席架构师，Apache Software Foundation 的 committer 和成员。开源的布道师、博客作者，偶尔演讲，著有书籍 Kubernetes Patterns 和 Camel Design Patterns。"
+profile: "Red Hat 的首席架构师，Apache Software Foundation 的 committer 和成员。开源的布道师、博客作者，偶尔演讲，著有书籍 Kubernetes Patterns 和 Camel Design Patterns。"
 ---
 本文翻译自 Bilgin Ibryam  的文章 [A Framework for Open Source Evaluation](https://monetize.substack.com/p/a-framework-for-open-source-evaluation)。
 

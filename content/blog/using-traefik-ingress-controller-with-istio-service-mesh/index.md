@@ -244,7 +244,7 @@ BOOKINFO_IP=$(kubectl -n bookinfo get service traefik -o jsonpath='{.status.load
 curl -I $BOOKINFO_IP
 ```
 
-确保它返回 “404 Not Found”—— 由于尚未实施 Ingress 规则，所以预计会有 not-200 响应。
+确保它返回“404 Not Found”—— 由于尚未实施 Ingress 规则，所以预计会有 not-200 响应。
 
 ### 配置 Traefik Ingress 规则
 
@@ -295,7 +295,7 @@ EOF
 curl -I $BOOKINFO_IP
 ```
 
-我们会收到 “200 OK “的回复。也可以通过浏览器测试，使用 `http://<BOOKINFO_IP>/productpage`。
+我们会收到“200 OK“的回复。也可以通过浏览器测试，使用 `http://<BOOKINFO_IP>/productpage`。
 
 1. 如果在 `http://<BOOKINFO_IP>/productpage`，就会返回应用响应。
 

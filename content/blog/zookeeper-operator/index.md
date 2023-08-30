@@ -1,6 +1,6 @@
 ---
 title: "Zookeeper operator 实战"
-summary: "Zookeeper作为最新完成 operator 化的组件，除了可以快速部署以外，还实现了 Operator 对 scale up/down 的进度干预，控制 rolling 的重启顺序，感知组件实际运行状态等，具体实现请阅读对于相关章节。"
+summary: "Zookeeper 作为最新完成 operator 化的组件，除了可以快速部署以外，还实现了 Operator 对 scale up/down 的进度干预，控制 rolling 的重启顺序，感知组件实际运行状态等，具体实现请阅读对于相关章节。"
 authors: ["朱慧君"]
 categories: ["Kubernetes"]
 tags: ["zookeeper","operator","OAM"]
@@ -9,7 +9,7 @@ date: 2020-06-08T11:00:00+08:00
 
 ## 导言
 
- 2018年 kubecon 大会上，阿里的陈俊大佬分享 Node-operator 的主题让我印象深刻，回来之后开始着手研究 Operator。正好当时老板希望能够将公司正在使用的 Nosql 组件容器化，顺势给老板安利一波 Operator 的思想。随后以 opentsdb 的容器为开端，后续完成一系列组件容器化，一路走来不断学习和借鉴其他 operator 的先进经验。Zookeeper作为最新完成 operator 化的组件，除了可以快速部署以外，还实现了 Operator 对 scale up/down 的进度干预，控制 rolling 的重启顺序，感知组件实际运行状态等，具体实现请阅读对于相关章节。
+ 2018 年 kubecon 大会上，阿里的陈俊大佬分享 Node-operator 的主题让我印象深刻，回来之后开始着手研究 Operator。正好当时老板希望能够将公司正在使用的 Nosql 组件容器化，顺势给老板安利一波 Operator 的思想。随后以 opentsdb 的容器为开端，后续完成一系列组件容器化，一路走来不断学习和借鉴其他 operator 的先进经验。Zookeeper 作为最新完成 operator 化的组件，除了可以快速部署以外，还实现了 Operator 对 scale up/down 的进度干预，控制 rolling 的重启顺序，感知组件实际运行状态等，具体实现请阅读对于相关章节。
 
 ## 功能需求
 目前 operator 主要实现如下功能：
@@ -65,7 +65,7 @@ Operator 主要包含：Deploy、Monitor、Scale 三个大模块。
       
     - Informer：informer 从 Delta Fifo 队列中弹出对象。执行此操作的功能是 processLoop。Base controller 的作用是保存对象以供以后检索，并调用我们的控制器将对象传递给它。
       
-    - Indexer：索引器提供对象的索引功能。典型的索引用例是基于对象标签创建索引。 Indexer 可以根据多个索引函数维护索引。Indexer 使用线程安全的数据存储来存储对象及其键。 在 Store 中定义了一个名为 MetaNamespaceKeyFunc 的默认函数，该函数生成对象的键作为该对象的 <namespace> / <name> 组合。
+    - Indexer：索引器提供对象的索引功能。典型的索引用例是基于对象标签创建索引。Indexer 可以根据多个索引函数维护索引。Indexer 使用线程安全的数据存储来存储对象及其键。在 Store 中定义了一个名为 MetaNamespaceKeyFunc 的默认函数，该函数生成对象的键作为该对象的 <namespace> / <name> 组合。
 
 #### Labels
 ```yaml
@@ -93,7 +93,7 @@ labels:
 
 ##### 初始化容器
 
->zoo.cfg.dynamic，这个文件同样以 configmap 方式挂入主容器，主要用于zk节点发现和注册，下面将详细介绍下这个zk 3.5之后的特性。
+>zoo.cfg.dynamic，这个文件同样以 configmap 方式挂入主容器，主要用于 zk 节点发现和注册，下面将详细介绍下这个 zk 3.5 之后的特性。
 
 - 具体可以参考 ZooKeeper 动态重新配置
 ```shell script
@@ -117,7 +117,7 @@ chown -v zookeeper:zookeeper /logs
 - 环境变量
 > POD_IP、POD_NAME，主要将 node 的 pod ip 和名称传到 pod 内部，方便容器内部调用。
 > 
->ZK_SERVER_HEAP，这变量为限制 zk 启动 heapsize 大小，由 operator 根据 request 内部大小设置，zk启动会读取这个变量。
+>ZK_SERVER_HEAP，这变量为限制 zk 启动 heapsize 大小，由 operator 根据 request 内部大小设置，zk 启动会读取这个变量。
 
 ```yaml
 - name: POD_IP
@@ -136,7 +136,7 @@ chown -v zookeeper:zookeeper /logs
   value: "512"
 ```
 
-- Readiness探针
+- Readiness 探针
 > 主要通过 zk 客户端端口传入 ruok 命令，检查返回码，返回 imok 认为 zk node 已经准备完毕，zk node 将会被更新到上面说到的 zoo.cfg.dynamic 文件，zk cluster 将会自动发现该节点。
 ```shell script
 ZK_CLIENT_PORT=${ZK_CLIENT_PORT:-2181}
@@ -162,7 +162,7 @@ fi
 >
 >3888：选举 leader 使用
 >
->2888：集群内机器通讯使用（ Leader 监听此端口）
+>2888：集群内机器通讯使用（Leader 监听此端口）
 ```yaml
 ports:
 - name: client
@@ -215,11 +215,11 @@ dynamicConfigFile=/conf/zoo.cfg.dynamic.c00000002
 ```
 ##### 数据存储
 - PersistentVolume
-> StorageClass PROVISIONER: diskplugin.csi.alibabacloud.com，阿里云CSI插件实现了 Kubernetes 平台使用阿里云云存储卷的生命周期管理，支持动态创建、挂载、使用云数据卷。 当前的 CSI 实现基于kubernetes 1.14以上的版本。
+> StorageClass PROVISIONER: diskplugin.csi.alibabacloud.com，阿里云 CSI 插件实现了 Kubernetes 平台使用阿里云云存储卷的生命周期管理，支持动态创建、挂载、使用云数据卷。当前的 CSI 实现基于 kubernetes 1.14 以上的版本。
 > 
->云盘 CSI 插件支持动态创建云盘数据卷、挂载数据卷。云盘是一种块存储类型，只能同时被一个负载使用(ReadWriteOnce)。
+>云盘 CSI 插件支持动态创建云盘数据卷、挂载数据卷。云盘是一种块存储类型，只能同时被一个负载使用 (ReadWriteOnce)。
 >
->operator 会将 CRD 中配置的 pvc 信息，透传到 sts 中去，并挂载到 zk data 目录下 。
+>operator 会将 CRD 中配置的 pvc 信息，透传到 sts 中去，并挂载到 zk data 目录下。
 
 ### 自动化监控
 #### 监控注册
@@ -228,7 +228,7 @@ dynamicConfigFile=/conf/zoo.cfg.dynamic.c00000002
 
  `port: http-metrics`：这里通过匹配 service 中到 port name 来注册到 prometheus target。
 
- operator 调用 prometheus-operator client 完成 ServiceMonitor 资源的创建，实现新建zk集群自动注册到prometheus的功能。 
+ operator 调用 prometheus-operator client 完成 ServiceMonitor 资源的创建，实现新建 zk 集群自动注册到 prometheus 的功能。 
 ```yaml
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
@@ -276,17 +276,17 @@ spec:
 
 - 更新 Zookeeper CR 中 spec.node.resources 配置。
 
-- 如果zk节点数与期望节点数不一致，退出主流程，直到节点数一致，所有 pod 全部 ready。
+- 如果 zk 节点数与期望节点数不一致，退出主流程，直到节点数一致，所有 pod 全部 ready。
 
 - 通过节点数量检查之后，更新 StatefulSet 资源，由于我们这边 StatefulSet 设置的 RollingUpdate 策略为 OnDelete，即更新 StatefulSet 配置之后，StatefulSet 将不会主动重启节点以完成升级，需要我们自己手动去重启节点。
 
 - 获取当前集群中节点角色，将 leader 节点放到最后重启，尽量减少集群不可用时间。
 
-- operator 比对 StatefulSet 和 pod resourceVersion值，如果不一致将节点加入到需要重启节点列表中。
+- operator 比对 StatefulSet 和 pod resourceVersion 值，如果不一致将节点加入到需要重启节点列表中。
 
 - operator 执行对节点如下检查项：
 
-    - 当前重启中对节点是否超过 MaxUnavailable 值，目前 MaxUnavailable 值默认为1.
+    - 当前重启中对节点是否超过 MaxUnavailable 值，目前 MaxUnavailable 值默认为 1.
 
     - 跳过节点状态为 Terminating 的节点。
 
@@ -304,15 +304,15 @@ spec:
 
     - GetClusterUp，获取 /runok 接口数据。
 
-- operator 将每10秒获取集群最新状态，包括集群状态、node 节点数、leader 节点等。
+- operator 将每 10 秒获取集群最新状态，包括集群状态、node 节点数、leader 节点等。
 
-- operator 获取到最新集群状态之后，将更新CR的 status 中，达到实时更新 CR 中 zk 集群状态的功能，效果如下图。
+- operator 获取到最新集群状态之后，将更新 CR 的 status 中，达到实时更新 CR 中 zk 集群状态的功能，效果如下图。
 ```yaml
 status:
   availableNodes: 3
   leaderNode: zookeeper-sample-1.zookeeper-sample.default.svc.cluster.local
 ```
-- 如果zk集群被销毁, operator 将调用 finalizers 方法停止 observer 协程。
+- 如果 zk 集群被销毁，operator 将调用 finalizers 方法停止 observer 协程。
 
 #### 触发主流程
 - operator 控制器在初始化的时候，将 watch 一个自定义的 event channel，等待 event 通过 channel 传递过来，触发主控流程执行。
@@ -331,26 +331,26 @@ status:
 - 支持多 kubernetes 环境
 - 支持集群监控展示
 
-#### 多kubernetes环境
-对于多 kubernetes 环境的支持，主要通过在每个环境部署 agent 组件，组件通过 rbac 进行授权，确保agent组件只能操作指定资源。将 agent 注册到管理平台，管理平台按照环境请求不同环境接口即可。
+#### 多 kubernetes 环境
+对于多 kubernetes 环境的支持，主要通过在每个环境部署 agent 组件，组件通过 rbac 进行授权，确保 agent 组件只能操作指定资源。将 agent 注册到管理平台，管理平台按照环境请求不同环境接口即可。
 
 #### 接口列表
 |  模式   | 接口  | 说明  | 备注  |
 |  ----  | ----  |  ----  | ----  |
-| GET  | /zookeeper/list | 查询所有zookeeper集群信息 |
-| POST  | /zookeeper/info | 查询单个zookeeper集群信息 |
-| POST  | /zookeeper/create | 创建单个zookeeper集群 |
-| POST  | /zookeeper/update | 更新单个zookeeper集群 |
-| POST  | /zookeeper/delete | 销毁单个zookeeper集群 |
+| GET  | /zookeeper/list | 查询所有 zookeeper 集群信息 |
+| POST  | /zookeeper/info | 查询单个 zookeeper 集群信息 |
+| POST  | /zookeeper/create | 创建单个 zookeeper 集群 |
+| POST  | /zookeeper/update | 更新单个 zookeeper 集群 |
+| POST  | /zookeeper/delete | 销毁单个 zookeeper 集群 |
 
 
 ### 参数校验
 #### Admission Webhooks
-- ValidatingWebhook：主要实现验证检测，即检查通过 kubernetes API client 提交到CR参数是否合法，如果不符合要求直接拒绝资源创建。检查项如下：
+- ValidatingWebhook：主要实现验证检测，即检查通过 kubernetes API client 提交到 CR 参数是否合法，如果不符合要求直接拒绝资源创建。检查项如下：
     - 检查节点资源，request CPU/mem 是否小于 limit CPU/mem
 - MutatingWebhook：主要实现注入默认参数，即检查到提交参数缺少一些关键性参数，将由 webhook 补齐并注入到创建资源中。补全项如下：
-    - 节点资源限制，比如request cpu/mem和limit cpu/mem。
-    - exporter配置，默认开启exporter，
+    - 节点资源限制，比如 request cpu/mem和limit cpu/mem。
+    - exporter 配置，默认开启 exporter，
 ```yaml
 Exporter:              true,
 ExporterImage:         "harbor.ymmoa.com/monitoring/zookeeper_exporter",
@@ -359,7 +359,7 @@ DisableExporterProbes: false,
 ```
 ### 升级策略
  StatefulSets 提供了多种升级策略：OnDelete，RollingUpdate，RollingUpdate with partition。
-#### OnDelete的一般方法
+#### OnDelete 的一般方法
  使用 OnDelete，除非 Pod 的数量高于预期的副本数，否则 StatefulSet 控制器不会从 StatefulSet 中删除 Pod。
 
  Operator 决定何时要删除 Pod。一旦删除，便会由 StatefulSet 控制器自动重新创建一个 Pod，该 Pod 具有相同的名称，但是最新的规范。
@@ -375,7 +375,7 @@ DisableExporterProbes: false,
 #### RollingUpdate.Partition 方法
   使用此策略，我们定义了一个 partition 索引：这允许使用 StatefulSet 控制器替换序数高于此索引的 Pod。
 
-  例如，如果我们有一个带有5个副本的 StatefulSet：
+  例如，如果我们有一个带有 5 个副本的 StatefulSet：
 
 - zookeeper-sample-0
 - zookeeper-sample-1
@@ -383,13 +383,13 @@ DisableExporterProbes: false,
 - zookeeper-sample-3
 - zookeeper-sample-4
 
- 如果分区索引为3，则允许 StatefulSet 控制器自动删除然后重新创建 Pod zookeeper-sample-3 和 zookeeper-sample-4。
+ 如果分区索引为 3，则允许 StatefulSet 控制器自动删除然后重新创建 Pod zookeeper-sample-3 和 zookeeper-sample-4。
 
   在此模式下，操作员永远不会删除 Pod。它所做的就是：
   - 当应添加新容器或应除去容器时，更新 StatefulSets 副本
   - 当应更换某些 Pod 时更新分区索引
 
-  要对上面的 StatefulSet 进行滚动升级，我们将从索引开始5，确保4可以安全地替换 Pod ，然后将索引更新为4。这将触发更换 Pod。
+  要对上面的 StatefulSet 进行滚动升级，我们将从索引开始 5，确保 4 可以安全地替换 Pod，然后将索引更新为 4。这将触发更换 Pod。
 
   OnDelete 除了不显式删除 Pod 而是管理索引外，其他逻辑与适用相同。
 
@@ -428,7 +428,7 @@ zk agent 作为 sidecar 伴随主容器一并启动，提供如下接口：
     "Epoch": 14,
     "Counter": 82,
     "BuildTime": "2019-10-08T20:18:00Z",
-    "Mode": 2,                      //0表示Unknown，1代表Leader，2代表follower
+    "Mode": 2,                      //0 表示 Unknown，1 代表 Leader，2 代表 follower
     "Version": "3.5.6-c11b7e26bc554b8523dc929761dd28808913f091",
     "Error": null
 }
@@ -449,19 +449,19 @@ zk agent 作为 sidecar 伴随主容器一并启动，提供如下接口：
  /add，获取客户端传入需要新增的节点信息，并更新到动态节点配置中。
 
  /del，获取客户端传入需要删除到节点信息，并更新到动态节点配置中。传入值参考 add 接口格式。
-## OAM对接
+## OAM 对接
 ![转自 孙健波 OAM 深入解读：OAM 为云原生应用带来哪些价值？](/images/blog/oam.jpeg)
 > OAM 是一个专注于描述应用的标准规范。有了这个规范，应用描述就可以彻底与基础设施部署和管理应用的细节分开。这种关注点分离（Seperation of Conerns）的设计好处是非常明显的。
 
 ### 应用组件（Components）
 > 组件（Components）：概念让平台架构师等能够将应用分解成成一个个可被复用的模块，这种模块化封装应用组成部分的思想，代表了一种构建安全、高可扩展性应用的最佳实践：通过一个完全分布式的架构模型，实现了应用组件描述和实现的解耦。
 
-按照应用组件的定义，对应到目前zk operator的快速部署模块上，部署模块主要生成和创建原生资源，完成容器化zk集群搭建，并持续维持声明式定义的集群终态。部署模块可以单独定义CRD, 比如 `workload.zookeeper.example.com`。
+按照应用组件的定义，对应到目前 zk operator 的快速部署模块上，部署模块主要生成和创建原生资源，完成容器化 zk 集群搭建，并持续维持声明式定义的集群终态。部署模块可以单独定义 CRD, 比如 `workload.zookeeper.example.com`。
 
 ### 应用运维特征（Traits）
 > 运维特征（Traits）：它们描述了应用在具体部署环境中的运维特征，比如应用的水平扩展的策略和 Ingress 规则，这些特征对于应用的运维来说非常重要，但它们在不同的部署环境里却往往有着截然不同的实现方式。 
 
-Traits则对应 zk operator 模块中的 伸缩、滚动升级两个模块，这两个模块可以抽出来定义为单独CRD，比如 `scale.zookeeper.example.com` 和 `rolling.zookeeper.example.com`。
+Traits 则对应 zk operator 模块中的 伸缩、滚动升级两个模块，这两个模块可以抽出来定义为单独 CRD，比如 `scale.zookeeper.example.com` 和 `rolling.zookeeper.example.com`。
 
 ## 小结
 

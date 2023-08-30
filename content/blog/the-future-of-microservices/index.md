@@ -34,9 +34,9 @@ Newman 总结了一个基本挑战：“Kubernetes 对开发者并不友好。�
 
 [Spotify](https://www.spotify.com/) 的工程总监 [Pia Nilsson](https://www.linkedin.com/in/pia-nilsson-02b47b1/) 曾 [谈到](https://engineering.atspotify.com/2021/05/18/a-product-story-the-lessons-of-backstage-and-spotifys-autonomous-culture/)，这家快速扩张的公司的新工程师平均需要 60 天才能合并他们的第 10 个 pull request。作为回应，该公司建立了一个[开发者门户网站](https://thenewstack.io/design-a-better-kubernetes-experience-for-developers/) [Backstage](https://engineering.atspotify.com/2020/09/24/cloud-native-computing-foundation-accepts-backstage-as-a-sandbox-project/)，现在是 [云原生计算基金会](https://cncf.io/?utm_content=inline-mention)的一个[沙盒项目](https://backstage.io/)。
 
-[Netflix](https://about.netflix.com/) 非常重视 DevEx—— 该公司为开发者铺设的 “道路”—— 利用它来帮助 [加速](https://www.infoq.com/presentations/devex-netflix-graphql/) [GraphQL](https://graphql.org/) 等新技术的 [采用](https://www.infoq.com/presentations/devex-netflix-graphql/)。同样，我们已经看到了内部建设和通过 [Humanitec](https://humanitec.com/) 等供应商建设的 [开发者平台](https://info.container-solutions.com/the-rise-of-the-internal-developer-platform)的崛起。 [Ambassador Labs](https://www.getambassador.io/) 有一个相关的 [开发者控制平面](https://www.getambassador.io/developer-control-plane/)的概念 —— 它的网站声称，“使开发者能够控制和配置整个云开发循环，以便更快地发布软件”。
+[Netflix](https://about.netflix.com/) 非常重视 DevEx—— 该公司为开发者铺设的“道路”—— 利用它来帮助 [加速](https://www.infoq.com/presentations/devex-netflix-graphql/) [GraphQL](https://graphql.org/) 等新技术的 [采用](https://www.infoq.com/presentations/devex-netflix-graphql/)。同样，我们已经看到了内部建设和通过 [Humanitec](https://humanitec.com/) 等供应商建设的 [开发者平台](https://info.container-solutions.com/the-rise-of-the-internal-developer-platform)的崛起。 [Ambassador Labs](https://www.getambassador.io/) 有一个相关的 [开发者控制平面](https://www.getambassador.io/developer-control-plane/)的概念 —— 它的网站声称，“使开发者能够控制和配置整个云开发循环，以便更快地发布软件”。
 
-> “Kubernetes 对开发者并不友好。我们仍然没有一个好的、可靠的、类似 [Heroku](https://www.heroku.com/) 的抽象，在 Kubernetes 之上被广泛使用，这让我感到震惊。” ——Sam Newman， Building Microservices 作者
+> “Kubernetes 对开发者并不友好。我们仍然没有一个好的、可靠的、类似 [Heroku](https://www.heroku.com/) 的抽象，在 Kubernetes 之上被广泛使用，这让我感到震惊。” ——Sam Newman，Building Microservices 作者
 
 Ambassador Labs 的开发者关系总监 [Daniel Bryant](https://www.linkedin.com/in/danielbryantuk) 告诉 The New Stack：“如果你看看 [Airbnb](https://www.airbnb.com/)、[Shopify](https://www.shopify.com/) 和 [Lunar](https://tech.lunar.app/) 等公司正在做什么，它们之间有一个明显的共同点。他们正在为他们的开发者创建一个类似于 Heroku 的 CLI，这样，像’创建新的微服务’这样的命令就会产生一些支架，插入 CI，插入管道，插入可观察性。问题是，你向开发者展示的抽象是什么，以便他们获得所需的可见性，同时也使他们所需的要求变得清晰？”
 
@@ -54,13 +54,13 @@ Bryant 特继续说：“开发者需要指定某些操作特性：这是一个�
 
 因此，到目前为止，许多在生产中成功实施服务网格的案例都是在那些非常精通技术的初创公司。在 [2020 年与 InfoQ 的 Wes Reisz 的播客中](https://www.infoq.com/podcasts/monolith-microservices/?)，Newman 建议在选择之前等待 6 个月，他告诉 The New Stack，他仍然给出同样的建议。
 
-“就该技术栈的权重、管理、影响以及性能带来的影响而言，它们的现实情况是非常可怕的，“Newman 说。“对有一些组织说，如果没有它们，有些事情是不可能完成的，[Monzo 就是一个很好的例子](https://monzo.com/blog/2019/04/03/deploying-envoy-proxy) —— 在一个组织中，你有一个异构的技术栈，你需要做大规模的双向 TLS，我可以看到它的价值。但在我看来，它仍然是 “概念很好，执行不力”。我想，我们可能会在很长时间内仍这样说。”
+“就该技术栈的权重、管理、影响以及性能带来的影响而言，它们的现实情况是非常可怕的，“Newman 说。“对有一些组织说，如果没有它们，有些事情是不可能完成的，[Monzo 就是一个很好的例子](https://monzo.com/blog/2019/04/03/deploying-envoy-proxy) —— 在一个组织中，你有一个异构的技术栈，你需要做大规模的双向 TLS，我可以看到它的价值。但在我看来，它仍然是“概念很好，执行不力”。我想，我们可能会在很长时间内仍这样说。”
 
 ## 隐藏服务网格
 
 有一件事可能会发生，至少对企业客户来说，性能问题往往不是那么尖锐，那就是服务网格被推到平台的更深处，并在很大程度上对开发者隐藏。例如，[红帽 OpenShift](https://www.openshift.com/try?utm_content=inline-mention) [将 Istio 整合到平台层](https://www.openshift.com/blog/istio-on-openshift-in-2020)，还有多个类似的计划，将服务网格与公有云平台更紧密地整合在一起，如 [AWS App Mesh](https://aws.amazon.com/app-mesh/?aws-app-mesh-blogs.sort-by=item.additionalFields.createdDate&aws-app-mesh-blogs.sort-order=desc&whats-new-cards.sort-by=item.additionalFields.postDateTime&whats-new-cards.sort-order=desc) 和 [Google Cloud Platform Traffic Director](https://cloud.google.com/traffic-director)。
 
-关于服务网格的工作还在继续，以减少其所带来的网络开销。[Cilium](https://cilium.io/) 团队的工作很有希望，它利用 Linux 内核中的 [eBPF](https://ebpf.io/) 功能来实现它所说的 “非常有效的网络、策略执行和负载均衡功能”。
+关于服务网格的工作还在继续，以减少其所带来的网络开销。[Cilium](https://cilium.io/) 团队的工作很有希望，它利用 Linux 内核中的 [eBPF](https://ebpf.io/) 功能来实现它所说的“非常有效的网络、策略执行和负载均衡功能”。
 
 > 我认为现在我们需要为其他人提供领域驱动设计（DDD）。因为即使是普通的开发者而不是架构师，也需要对如何确定实体的范围和边界有一定的了解，这其中有很多是回到了良好的 API 设计上。——Daniel Bryant，开发者关系总监，Ambassador Labs
 

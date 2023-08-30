@@ -1,9 +1,9 @@
 ---
-title: "服务网格在Cookpad网站中的实践"
+title: "服务网格在 Cookpad 网站中的实践"
 date: 2018-06-19T15:54:19+08:00
 draft: false
 authors: ["Taiki"]
-summary: "Cookpad是日本的一家分享菜谱和烹调经验的网站，本文是该网站使用Service Mesh的实践，当前Cookpad没有直接使用Istio而是以Envoy为数据平面，自研的控制平面。"
+summary: "Cookpad 是日本的一家分享菜谱和烹调经验的网站，本文是该网站使用 Service Mesh 的实践，当前 Cookpad 没有直接使用 Istio 而是以 Envoy 为数据平面，自研的控制平面。"
 translators: ["殷龙飞"]
 tags: ["envoy","istio","service mesh"]
 categories: ["service mesh"]
@@ -29,7 +29,7 @@ keywords: ["service mesh","envoy"]
 我们引入了一个服务网格来解决故障排除，容量规划和保持系统可靠性等操作问题。尤其是：
 
 - 降低服务组的管理成本
-- 可观察性的改进 \(分别参考了 [ Twitter ](https://blog.twitter.com/engineering/en_us/a/2013/observability-at-twitter.html) 和 [Medium的博客](https://medium.com/@copyconstruct/monitoring-and-observability-8417d1952e1c)\)
+- 可观察性的改进 \(分别参考了 [ Twitter ](https://blog.twitter.com/engineering/en_us/a/2013/observability-at-twitter.html) 和 [Medium 的博客](https://medium.com/@copyconstruct/monitoring-and-observability-8417d1952e1c)\)
 - 建立更好的故障隔离机制
 
 就第一个问题而言，随着规模的扩大，存在难以掌握哪个服务和哪个服务正在进行通信，某个服务的失败是哪里传播导致的问题。我认为这个问题应该通过综合管理服务在哪里和服务在哪里连接的相关信息来解决。
@@ -38,7 +38,7 @@ keywords: ["service mesh","envoy"]
 
 对于第三个问题，“故障隔离尚未成功设置”。此时，在各应用程序中使用库，超时/重试·断路器的设置完成了。但是需要什么样的设置，必需单独查看应用程序代码。由于没有配置清单，会导致难以持续改进这些设置。另外，因为与故障隔离有关的设置应该不断改进，所以最好是可测试的，并且我们需要这样一个基础平台。
 
-为了解决更高级的问题，我们还构建了gRPC 基础设施建设，配送跟踪处理委托，流量控制部署方式多样化，认证授权网关等功能。这部分将在稍后讨论。
+为了解决更高级的问题，我们还构建了 gRPC 基础设施建设，配送跟踪处理委托，流量控制部署方式多样化，认证授权网关等功能。这部分将在稍后讨论。
 
 ## 当前状态
 
@@ -68,7 +68,7 @@ Cookpad 中的服务网格使用 Envoy 作为 data-plane，并创建了我们自
 - 要管理 Prometheus 的端口，我们在 statsd\_exporter 和 Prometheus 之间使用 [exporter\_proxy](https://github.com/rrreeeyyy/exporter_proxy)
 - 使用 Grafana 和 [Vizceral](https://medium.com/netflix-techblog/vizceral-open-source-acc0c32113fe) 进行度量指标的可视化
 
-如果您在不使用 ECS 或 Docker 的情况下直接在 EC2 实例上运行应用程序进程，则 Envoy 进程作为守护进程直接在实例中运行，但架构几乎相同。有一个原因是没有将 Prometheus 直接设置为 Envoy ，因为我们仍然无法从 Envoy 的 Prometheus 兼容端点中提取[直方图度量](https://github.com/envoyproxy/envoy/issues/1947)。由于这将在未来得到改善，我们计划在当时消除 stasd\_exporter。
+如果您在不使用 ECS 或 Docker 的情况下直接在 EC2 实例上运行应用程序进程，则 Envoy 进程作为守护进程直接在实例中运行，但架构几乎相同。有一个原因是没有将 Prometheus 直接设置为 Envoy，因为我们仍然无法从 Envoy 的 Prometheus 兼容端点中提取[直方图度量](https://github.com/envoyproxy/envoy/issues/1947)。由于这将在未来得到改善，我们计划在当时消除 stasd\_exporter。
 
 ![](61411417ly1fs7pv3rapdj20sg0qvgpb.jpg)
 
@@ -99,7 +99,7 @@ Envoy 的仪表板：
 另外，作为服务网格的一个子系统，你必须部署网关从开发商手中获得 staging 环境的 gRPC 服务器应用程序（假设使用客户端负载均衡进行访问，我们需要一个组件来解决它）。它是通过将 SDS API 和 Envoy 与管理称为 [hako-console](http://techlife.cookpad.com/entry/2018/04/02/140846) 的内部应用程序的软件相结合而构建的。
 
 - Gateway app（Envoy）向 gateway controller 发送 xDS API 请求
-- Gateway controller 从 hako-console 获取 staging 环境中的 gRPC 应用程序列表，并基于该响应返回Route Discovery Service/Cluster Discovery Service API 响应
+- Gateway controller 从 hako-console 获取 staging 环境中的 gRPC 应用程序列表，并基于该响应返回 Route Discovery Service/Cluster Discovery Service API 响应
 - Gateway app 根据响应从 SDS API 获取实际连接目的地
 - 从开发人员手中引用 AWS ELB Network Load Balancer，Gateway app 执行路由
 
@@ -107,7 +107,7 @@ Envoy 的仪表板：
 
 ## 效果
 
-引入服务网格最显着的是它能够抑制临时故障的影响。有许多流量的服务之前有多个协作部分，到现在为止，200多个与网络相关的琐碎错误（与流量相比，这个数字非常小）在一小时内一直在不断地发生的（这是因为有些地方设置了重试），它们是由服务网格根据情况适当设置的的重试设置，他已经下降到每周1例左右。
+引入服务网格最显着的是它能够抑制临时故障的影响。有许多流量的服务之前有多个协作部分，到现在为止，200 多个与网络相关的琐碎错误（与流量相比，这个数字非常小）在一小时内一直在不断地发生的（这是因为有些地方设置了重试），它们是由服务网格根据情况适当设置的的重试设置，他已经下降到每周 1 例左右。
 
 从监测的角度来看，各种指标已经出现，但由于我们只是针对某些服务引入了这些指标，并且由于推出日期我们还没有达到全面使用，我们预计将来会使用它。在管理方面，因为服务之间的连接已经成为一个容易理解和可视化，因此我们希望通过将服务网格引入所有的应用服务来避免忽视和忽略对象。
 
@@ -115,7 +115,7 @@ Envoy 的仪表板：
 
 #### 迁移到 v2 API，转换到 Istio
 
-由于 xDS API 的初始设计情况和使用 S3 作为后端交付的要求，xDS API 一直在使用 v1，但由于 v1 API 已被弃用，因此我们计划将其移至 v2。与此同时，我们正在考虑将 control-plane 移至 Istio。另外，如果我们要构建我们自己的 control-plane ，我们将使用 [go-control-plane](https://github.com/envoyproxy/go-control-plane) 来构建 [LDS/RDS/CDS/EDS API](https：//github.com/envoyproxy/data-plane-api/blob/5ea10b04a950260e1af0572aa244846b6599a38f/API_OVERVIEW.md#apis)。
+由于 xDS API 的初始设计情况和使用 S3 作为后端交付的要求，xDS API 一直在使用 v1，但由于 v1 API 已被弃用，因此我们计划将其移至 v2。与此同时，我们正在考虑将 control-plane 移至 Istio。另外，如果我们要构建我们自己的 control-plane，我们将使用 [go-control-plane](https://github.com/envoyproxy/go-control-plane) 来构建 [LDS/RDS/CDS/EDS API](https：//github.com/envoyproxy/data-plane-api/blob/5ea10b04a950260e1af0572aa244846b6599a38f/API_OVERVIEW.md#apis)。
 
 #### 替换反向代理
 
@@ -139,4 +139,4 @@ Envoy 的仪表板：
 
 ## 最后
 
-我们已经介绍了Cookpad 中服务网格的现状和未来计划。许多功能已经可以很容易地实现，并且由于未来服务网格层可以完成更多的工作，因此强烈建议每个微服务系统都采用服务网格。
+我们已经介绍了 Cookpad 中服务网格的现状和未来计划。许多功能已经可以很容易地实现，并且由于未来服务网格层可以完成更多的工作，因此强烈建议每个微服务系统都采用服务网格。

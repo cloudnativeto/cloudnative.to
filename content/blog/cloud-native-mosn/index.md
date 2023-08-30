@@ -96,7 +96,7 @@ MOSN 采用的是分层的体系结构，其系统分为 NET/IO、Protocol、Str
 ![](./mosn-gorouting-arch.png)
 
 MOSN 为了降低 Runtime GC 带来的卡顿，自身做了内存池的封装方便多种对象高效地复用，另外为了提升服务网格之间的建连性能还设计了多种协议的连接池从而方便地实现连接复用及管理。
-在连接管理方面，MOSN 设计了多协议连接池， 当 Proxy 模块在 Downstream 收到 Request 的时候，在经过路由、负载均衡等模块处理获取到 Upstream Host 以及对应的转发协议时，通过 Cluster Manager 获取对应协议的连接池 ，如果连接池不存在则创建并加入缓存中，之后在长连接上创建 Stream，并发送数据，如下图所示：
+在连接管理方面，MOSN 设计了多协议连接池，当 Proxy 模块在 Downstream 收到 Request 的时候，在经过路由、负载均衡等模块处理获取到 Upstream Host 以及对应的转发协议时，通过 Cluster Manager 获取对应协议的连接池，如果连接池不存在则创建并加入缓存中，之后在长连接上创建 Stream，并发送数据，如下图所示：
 
 ![](./mosn-connpool.png)
 
@@ -128,7 +128,7 @@ MOSN 为了降低 Runtime GC 带来的卡顿，自身做了内存池的封装方
 <a name="VgHHB"></a>
 ### Istio 简介
 
-在介绍 Istio 前，先说下它为什么会出现。10 年前，一般应用都是直接部署在物理机上的，但是随着时间的推移，机型一直变化（如 CPU 核数）就出现了机型对等、环境部署以及弹性扩容等一系列问题，于是就出现了 Docker。但是 Docker 涉及到容器编排、调度、管理等问题， Kubernetes 便随之出现。Kubernetes 在容器管理领域的用途是毋庸置疑的，但是其在微服务治理方面存在一些不足，于是 Istio 便专职解决微服务治理的问题而问世。
+在介绍 Istio 前，先说下它为什么会出现。10 年前，一般应用都是直接部署在物理机上的，但是随着时间的推移，机型一直变化（如 CPU 核数）就出现了机型对等、环境部署以及弹性扩容等一系列问题，于是就出现了 Docker。但是 Docker 涉及到容器编排、调度、管理等问题，Kubernetes 便随之出现。Kubernetes 在容器管理领域的用途是毋庸置疑的，但是其在微服务治理方面存在一些不足，于是 Istio 便专职解决微服务治理的问题而问世。
 
 ![](./istio.png)
 
@@ -153,7 +153,7 @@ Istio 弥补了 Kubernetes 在服务治理上的短板，提供服务互连、�
 - 使用 Istio 的脚本并设置相关 `SIDECAR` 等参数构建 `proxyv2` 镜像;
 - 通过 istioctl 工具并设置 proxy 相关配置指定具体的数据面;
 
-有了对应的改造方案后，于是我们成立了相关 Working Group ，带领社区的同学一起进行讨论和改造。
+有了对应的改造方案后，于是我们成立了相关 Working Group，带领社区的同学一起进行讨论和改造。
 
 ![](./mosn-istio-xmind.png)
 
@@ -173,9 +173,9 @@ MOSN 在功能上对齐 Istio 后，就可以使用其进行微服务治理了�
 
 通过 MOSN 作为 Istio 的数据平面运行 Bookinfo 事例，实现如下服务治理通用能力：
 
-- 按 version路由能力
+- 按 version 路由能力
 - 按照权重路由能力
-- 按照特定 header路由能力
+- 按照特定 header 路由能力
 - 故障注入能力
 - 服务熔断自护能力
 - 透明劫持能力
@@ -199,7 +199,7 @@ MOSN 中提供 Kubernes 和 非 Kubernes 体系下的 Dubbo 服务治理方案�
 
 **MOSN With Sentinel**
 
-限流是微服务治理中的一个重要功能， MOSN 通过集成 Sentinel 并复用其底层的限流能力，从而实现单机限流（令牌桶/漏桶结合）、服务熔断保护（依据服务的成功率）、自适应限流（依据机器的负载），同时目前 Istio 的限流规则也没有一个成熟的 API，我们也和 UDPA 进行了一些限流规则的规范讨论。
+限流是微服务治理中的一个重要功能，MOSN 通过集成 Sentinel 并复用其底层的限流能力，从而实现单机限流（令牌桶/漏桶结合）、服务熔断保护（依据服务的成功率）、自适应限流（依据机器的负载），同时目前 Istio 的限流规则也没有一个成熟的 API，我们也和 UDPA 进行了一些限流规则的规范讨论。
 
 ![](./mosn-sentinel.png)
 
@@ -251,7 +251,7 @@ MOSN 中提供 Kubernes 和 非 Kubernes 体系下的 Dubbo 服务治理方案�
 
 ![](./mosn-istio-reply1.png)
 
-经过 MOSN 社区不断的努力，在 7月底，Istio 官方博客正式上线了 [在 Istio 中使用 MOSN：另一个数据平面](https://istio.io/latest/zh/blog/2020/mosn-proxy/) 博文，取到了 Istio 官方的一定认可。
+经过 MOSN 社区不断的努力，在 7 月底，Istio 官方博客正式上线了 [在 Istio 中使用 MOSN：另一个数据平面](https://istio.io/latest/zh/blog/2020/mosn-proxy/) 博文，取到了 Istio 官方的一定认可。
 
 <a name="4gtQ8"></a>
 ## 总结及展望
@@ -273,7 +273,7 @@ MOSN 中提供 Kubernes 和 非 Kubernes 体系下的 Dubbo 服务治理方案�
 
 - 可编程，如支持面向业务层的 DSL，可方便的控制请求的处理流程，另外也会在 WASM 上进行预研；
 - Dapr 模式作为微服务运行时，使得面向 MOSN 编程的服务更轻、更小、启动速度更快；
-- 被集成，遵循 UDPA 规范，可方便的被 Istio 、 Kuma 集成，另外 MOSN 里面的通用工具链剥离为 package，方便其它 GoLang 项目复用；
+- 被集成，遵循 UDPA 规范，可方便的被 Istio、Kuma 集成，另外 MOSN 里面的通用工具链剥离为 package，方便其它 GoLang 项目复用；
 - 更多场景 Mesh 化方案支持，Cache Mesh/Message Mesh/Block-chain Mesh 等；
 
 

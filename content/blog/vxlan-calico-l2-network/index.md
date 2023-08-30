@@ -11,7 +11,7 @@ keywords: ["calico", "Kubernetes"]
 
 ## 前言
 
-近期由于产品需求需要打通多个 K8s 集群的容器网络，要求在一个集群的容器内，通过 Pod IP直接访问另外一个集群的容器，因此笔者对相关网络技术进行了一番学习。本文将解释整体的组网思路，简单分析数据包的流转过程，最后给出详细的实验步骤。
+近期由于产品需求需要打通多个 K8s 集群的容器网络，要求在一个集群的容器内，通过 Pod IP 直接访问另外一个集群的容器，因此笔者对相关网络技术进行了一番学习。本文将解释整体的组网思路，简单分析数据包的流转过程，最后给出详细的实验步骤。
 
 ## 整体思路
 
@@ -25,7 +25,7 @@ Kubernetes 中常见的网络插件如 cni、fannel 等的实现中每个宿主�
 
 VXLAN 是 linux 内核支持的一种隧道技术，通过隧道技术可以在宿主机网络上构建一个二层的虚拟网络。VXLAN 通过将二层的数据帧封装成四层的 UDP 数据包，然后在三层的网络中传输，效果就像在同一个网段中传包一样，在宿主机网络的层面看实际上是跨网段的，但却感知不到。经过 VXLAN 封装后的数据格式如下。
 
-![vxlan数据包格式](image2.png)
+![vxlan 数据包格式](image2.png)
 
 笔者以集群 1 中的容器 A 访问集群 2 中容器 D 为例子，介绍 VXLAN 是怎么工作的。容器 A 发往容器 D 的包经过 calico 网卡出现在宿主机内核中。访问的目标地址是 223.18.10.11，因此内层 IP 包的目标地址就是 223.18.10.11，然后会被这条路由规则处理。
 
@@ -57,7 +57,7 @@ c6:c3:41:15:32:c8 dst 10.71.11.46
 - 集群 service 网段：10.234.0.0/18
 - 网络插件：calico
 
-| 节点名称 | 节点ip | vxlan-test虚拟网卡IP(规划) | vxlan-test虚拟网卡mac(规划) | 节点管理pod网段 |
+| 节点名称 | 节点 ip | vxlan-test 虚拟网卡 IP(规划) | vxlan-test 虚拟网卡 mac(规划) | 节点管理 pod 网段 |
 | --- | --- | --- | --- | --- |
 | multicluster-test-001 | 192.168.0.21 | 179.17.1.21 | c2:6a:9b:e5:39:8d | 10.234.111.0/24 |
 | multicluster-test-002 | 192.168.0.31 | 179.17.1.31 | 7a:3a:fe:45:a3:76 | 10.234.118.0/24 |
@@ -69,7 +69,7 @@ c6:c3:41:15:32:c8 dst 10.71.11.46
 - 集群 service 网段：10.235.0.0/18 
 - 网络插件：calico 
 
-| 节点名称 | 节点ip | vxlan-test虚拟网卡IP(规划) | vxlan-test虚拟网卡mac(规划) | 节点管理pod网段 |
+| 节点名称 | 节点 ip | vxlan-test 虚拟网卡 IP(规划) | vxlan-test 虚拟网卡 mac(规划) | 节点管理 pod 网段 |
 | --- | --- | --- | --- | --- |
 | multicluster-test-003 | 192.168.0.16 | 179.17.1.16 | 36:f9:67:c0:70:1c | 10.235.88.0/24 |
 | multicluster-test-004 | 192.168.0.44 | 179.17.1.44 | 12:d1:df:44:3d:aa | 10.235.113.0/24 |
@@ -77,16 +77,16 @@ c6:c3:41:15:32:c8 dst 10.71.11.46
 **test-cluster3**
 
 - 集群版本：1.23.10 
-- 集群pod网段：10.236.64.0/18 
-- 集群service网段：10.236.0.0/18 
+- 集群 pod 网段：10.236.64.0/18 
+- 集群 service 网段：10.236.0.0/18 
 - 网络插件：calico 
 
-| 节点名称 | 节点ip | vxlan-test虚拟网卡IP(规划) | vxlan-test虚拟网卡mac(规划) | 节点管理pod网段 |
+| 节点名称 | 节点 ip | vxlan-test 虚拟网卡 IP(规划) | vxlan-test 虚拟网卡 mac(规划) | 节点管理 pod 网段 |
 | --- | --- | --- | --- | --- |
 | multicluster-test-005 | 192.168.0.15 | 179.17.1.15 | ba:a7:54:aa:bc:ce | 10.236.115.0/24 |
 | multicluster-test-006 | 192.168.0.13 | 179.17.1.13 | 4e:ac:f5:6f:4e:76 | 10.236.106.0/24 |
 
-### Calico配置
+### Calico 配置
 
 Calico 为了实现容器访问外部网络，会添加一条 iptable 规则，当源地址是 calico 管理的 IP 且目标地址不是 calico 管理的 IP 地址，会将源 IP 地址 SNAT 为宿主机的 IP 地址，这样包发出去以后，才能够根据宿主机的 IP 地址发回来。Calico 的进程会确保这条规则永远是最高优先级。
 
@@ -224,11 +224,11 @@ spec:
 EOF
 ```
 
-### 利用vxlan构建二层虚拟机网络
+### 利用 vxlan 构建二层虚拟机网络
 
 利用 vxlan 建立隧道使得它们在一个二层虚拟机网络中。首先为每台机器配置 vxlan 网卡，以及 ip 地址，所有节点 vxlan-test 网卡的地址必须是同一个网段。
 
-登陆multicluster-test-001执行
+登陆 multicluster-test-001 执行
 
 ```bash
 ip link add vxlan-test type vxlan id 10001 dstport 4899 local 192.168.0.21 dev eth0 nolearning
@@ -237,7 +237,7 @@ ip link set dev vxlan-test address c2:6a:9b:e5:39:8d
 ip link set vxlan-test  up
 ```
 
-登陆multicluster-test-002执行
+登陆 multicluster-test-002 执行
 
 ```bash
 ip link add vxlan-test type vxlan id 10001 dstport 4899 local 192.168.0.31 dev eth0 nolearning
@@ -246,7 +246,7 @@ ip addr add 179.17.1.31/24 dev vxlan-test
 ip link set vxlan-test up
 ```
 
-登陆multicluster-test-003执行
+登陆 multicluster-test-003 执行
 
 ```bash
 ip link add vxlan-test type vxlan id 10001 dstport 4899 local 192.168.0.16 dev eth0 nolearning
@@ -255,7 +255,7 @@ ip addr add 179.17.1.16/24 dev vxlan-test
 ip link set vxlan-test up
 ```
 
-登陆multicluster-test-004执行
+登陆 multicluster-test-004 执行
 
 ```bash
 ip link add vxlan-test type vxlan id 10001 dstport 4899 local 192.168.0.44 dev eth0 nolearning
@@ -264,7 +264,7 @@ ip addr add 179.17.1.44/24 dev vxlan-test
 ip link set vxlan-test up
 ```
 
-登陆multicluster-test-005执行
+登陆 multicluster-test-005 执行
 
 ```bash
 ip link add vxlan-test type vxlan id 10001 dstport 4899 local 192.168.0.15 dev eth0 nolearning
@@ -273,7 +273,7 @@ ip addr add 179.17.1.15/24 dev vxlan-test
 ip link set vxlan-test up
 ```
 
-登陆multicluster-test-006执行
+登陆 multicluster-test-006 执行
 
 ```bash
 ip link add vxlan-test type vxlan id 10001 dstport 4899 local 192.168.0.13 dev eth0 nolearning
@@ -282,9 +282,9 @@ ip addr add 179.17.1.13/24 dev vxlan-test
 ip link set vxlan-test up
 ```
 
-接下来配置ARP表和FDB表，使得所有节点的vxlan-test网卡之间可以互通。
+接下来配置 ARP 表和 FDB 表，使得所有节点的 vxlan-test 网卡之间可以互通。
 
-登陆multicluster-test-001执行
+登陆 multicluster-test-001 执行
 
 ```bash
 #配置ARP表
@@ -301,7 +301,7 @@ bridge fdb append ba:a7:54:aa:bc:ce dst 192.168.0.15 dev vxlan-test
 bridge fdb append 4e:ac:f5:6f:4e:76 dst 192.168.0.13 dev vxlan-test
 ```
 
-登陆multicluster-test-002执行
+登陆 multicluster-test-002 执行
 
 ```bash
 #配置ARP表
@@ -318,7 +318,7 @@ bridge fdb append ba:a7:54:aa:bc:ce dst 192.168.0.15 dev vxlan-test
 bridge fdb append 4e:ac:f5:6f:4e:76 dst 192.168.0.13 dev vxlan-test
 ```
 
-登陆multicluster-test-003执行
+登陆 multicluster-test-003 执行
 
 ```bash
 #配置ARP表
@@ -335,7 +335,7 @@ bridge fdb append ba:a7:54:aa:bc:ce dst 192.168.0.15 dev vxlan-test
 bridge fdb append 4e:ac:f5:6f:4e:76 dst 192.168.0.13 dev vxlan-test
 ```
 
-登陆multicluster-test-004执行
+登陆 multicluster-test-004 执行
 
 ```bash
 #配置ARP表
@@ -352,7 +352,7 @@ bridge fdb append ba:a7:54:aa:bc:ce dst 192.168.0.15 dev vxlan-test
 bridge fdb append 4e:ac:f5:6f:4e:76 dst 192.168.0.13 dev vxlan-test
 ```
 
-登陆multicluster-test-005执行
+登陆 multicluster-test-005 执行
 
 ```bash
 #配置ARP表
@@ -369,7 +369,7 @@ bridge fdb append 12:d1:df:44:3d:aa dst 192.168.0.44 dev vxlan-test
 bridge fdb append 4e:ac:f5:6f:4e:76 dst 192.168.0.13 dev vxlan-test
 ```
 
-登陆multicluster-test-006执行
+登陆 multicluster-test-006 执行
 
 ```bash
 #配置ARP表
@@ -386,11 +386,11 @@ bridge fdb append 12:d1:df:44:3d:aa dst 192.168.0.44 dev vxlan-test
 bridge fdb append ba:a7:54:aa:bc:ce dst 192.168.0.15 dev vxlan-test
 ```
 
-### 配置路由规则打通多集群pod网络
+### 配置路由规则打通多集群 pod 网络
 
-为每个节点，添加到其他集群节点管理pod网段的路由信息，不同CNI网络插件查询集群节点管理的pod网段的方式不同，Calico可以通过`kubectl get blockaffinity -o yaml`  命令查询。
+为每个节点，添加到其他集群节点管理 pod 网段的路由信息，不同 CNI 网络插件查询集群节点管理的 pod 网段的方式不同，Calico 可以通过`kubectl get blockaffinity -o yaml`  命令查询。
 
-在test-cluster1的所有节点执行
+在 test-cluster1 的所有节点执行
 
 ```bash
 route add -net 10.235.88.0/24 gw 179.17.1.16 dev vxlan-test
@@ -399,7 +399,7 @@ route add -net 10.236.115.0/24 gw 179.17.1.15 dev vxlan-test
 route add -net 10.236.106.0/24 gw 179.17.1.13 dev vxlan-test
 ```
 
-在test-cluster2的所有节点执行
+在 test-cluster2 的所有节点执行
 
 ```bash
 route add -net 10.234.111.0/24 gw 179.17.1.21 dev vxlan-test
@@ -408,7 +408,7 @@ route add -net 10.236.115.0/24 gw 179.17.1.15 dev vxlan-test
 route add -net 10.236.106.0/24 gw 179.17.1.13 dev vxlan-test
 ```
 
-在test-cluster2的所有节点执行
+在 test-cluster2 的所有节点执行
 
 ```bash
 route add -net 10.234.111.0/24 gw 179.17.1.21 dev vxlan-test
@@ -419,7 +419,7 @@ route add -net 10.235.113.0/24 gw 179.17.1.44 dev vxlan-test
 
 ### 网络联通测试
 
-测试从集群test-cluster1中的容器访问test-cluster2中的容器
+测试从集群 test-cluster1 中的容器访问 test-cluster2 中的容器
 
 ```bash
 #查看test-cluster2中容器ip地址
@@ -454,7 +454,7 @@ kubectl exec [POD] [COMMAND] is DEPRECATED and will be removed in a future versi
 .....
 ```
 
-从集群test-cluster1中的容器访问test-cluster3中的容器
+从集群 test-cluster1 中的容器访问 test-cluster3 中的容器
 
 ```
 #查看test-cluster3中容器ip地址

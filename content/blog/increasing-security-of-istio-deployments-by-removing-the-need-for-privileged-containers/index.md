@@ -1,11 +1,11 @@
 ---
-title: "通过消除对特权容器的需求来提高Istio Deployment的安全性"
+title: "通过消除对特权容器的需求来提高 Istio Deployment 的安全性"
 date: 2018-09-25T16:22:22+08:00
 draft: false
 authors: ["Andrew Block","Raffaele Spazzoli"]
 authorlink: "https://blog.openshift.com/author/ablock2/"
 translators: ["杨传胜"]
-summary: "Red Hat OpenShift通过一个名叫istio-pod-network-controller的 DaemonSet 控制器将配置Pod的iptables规则的逻辑移出Pod本身，从而消除了特权容器的需求来提高Istio Deployment的安全性。"
+summary: "Red Hat OpenShift 通过一个名叫 istio-pod-network-controller 的 DaemonSet 控制器将配置 Pod 的 iptables 规则的逻辑移出 Pod 本身，从而消除了特权容器的需求来提高 Istio Deployment 的安全性。"
 tags: ["istio","security","openshift"]
 categories: ["service mesh"]
 keywords: ["service mesh","服务网格","red hat","红帽","openshift"]

@@ -9,9 +9,9 @@ tags: ["IPVS","lvs","kubernetes"]
 
 ## 前言
 
-内部有非 K8S 环境上需要类似 SVC 的负载实现，一开始是用 NGINX 做的，所有 SVC 域名都解析成一个 dummy IP ，然后 NGINX 根据 `server_name` 去 proxy 不同的 upstream 。 开始还是能用的，但是后面结果后面很多服务依赖 `host` 这个 header ，报错签名错误，而且毕竟这样是在用户态，效率不如内核态高。于是打算搞下之前的打算：把 IPVS 的 `ClusterIP` 的 SVC 扣到非 K8S 环境上使用。
+内部有非 K8S 环境上需要类似 SVC 的负载实现，一开始是用 NGINX 做的，所有 SVC 域名都解析成一个 dummy IP，然后 NGINX 根据 `server_name` 去 proxy 不同的 upstream。开始还是能用的，但是后面结果后面很多服务依赖 `host` 这个 header，报错签名错误，而且毕竟这样是在用户态，效率不如内核态高。于是打算搞下之前的打算：把 IPVS 的 `ClusterIP` 的 SVC 扣到非 K8S 环境上使用。
 
-kube-proxy 的 SVC 简单讲就是 node 上任何进程访问 `SVC IP:SVC PORT` 会被 dnat 成 `endpoint` ，是工作在内核态的四层负载，不会在机器上看到端口监听，而默认非集群的机器是无法访问 SVC IP 。在 K8S 里，endpoint 的 ip 无非就是 `POD IP`，`host IP`。前者就是 SVC 选中 POD ，后者例如 `kubernetes` 这个 SVC ，会 DNAT 成每个 `kube-apiserver` 的 `host IP:6443` 端口，也可能是 `ExternalName` 或者手动创建的 endpoint 。既然 `kubernetes` 这个 SVC 可以。那我的打算应该也是可以实现的。但是一开始实际按照思路试了下发现不行，网上的文章基本都是在单机 docker 或者现有的 K8S 环境上搞的，漏掉了很多精华和核心思想，这里记录下我的思路和实现过程。
+kube-proxy 的 SVC 简单讲就是 node 上任何进程访问 `SVC IP:SVC PORT` 会被 dnat 成 `endpoint` ，是工作在内核态的四层负载，不会在机器上看到端口监听，而默认非集群的机器是无法访问 SVC IP。在 K8S 里，endpoint 的 ip 无非就是 `POD IP`，`host IP`。前者就是 SVC 选中 POD，后者例如 `kubernetes` 这个 SVC，会 DNAT 成每个 `kube-apiserver` 的 `host IP:6443` 端口，也可能是 `ExternalName` 或者手动创建的 endpoint。既然 `kubernetes` 这个 SVC 可以。那我的打算应该也是可以实现的。但是一开始实际按照思路试了下发现不行，网上的文章基本都是在单机 docker 或者现有的 K8S 环境上搞的，漏掉了很多精华和核心思想，这里记录下我的思路和实现过程。
 
 ## 环境信息
 
@@ -45,7 +45,7 @@ $ iptables -t nat -S
 
 ## 过程
 
-先思考下 kube-proxy 的 IPVS ，因为 SVC 端口和 POD 的端口不一样，所以 kube-proxy 使用的 `nat` 模式。暂且打算添加一个下面类似的 SVC ：
+先思考下 kube-proxy 的 IPVS，因为 SVC 端口和 POD 的端口不一样，所以 kube-proxy 使用的 `nat` 模式。暂且打算添加一个下面类似的 SVC：
 
 ```
 IP:                169.254.11.2
@@ -75,13 +75,13 @@ echo 192.168.2.222 > www/test
 
 ### lvs nat
 
-kube-proxy 并没有像 lvs nat 那样有单独的机器做 `NAT GW`，或者认为每个 node 都是自己的 `NAT GW`。现在来添加 `169.254.11.2:80` 这个 SVC ，使用 ipvsadm 添加：
+kube-proxy 并没有像 lvs nat 那样有单独的机器做 `NAT GW`，或者认为每个 node 都是自己的 `NAT GW`。现在来添加 `169.254.11.2:80` 这个 SVC，使用 ipvsadm 添加：
 
 ```bash
 ipvsadm --add-service --tcp-service 169.254.11.2:80 --scheduler rr
 ```
 
-先添加本地的 web 作为 real server ，下面含义是添加为一个 nat 类型的 real server ：
+先添加本地的 web 作为 real server，下面含义是添加为一个 nat 类型的 real server：
 
 ```bash
 ipvsadm --add-server --tcp-service 169.254.11.2:80 \
@@ -134,7 +134,7 @@ $ curl 169.254.11.2/www/test
 
 ```
 
-发现 curl 在卡住和能访问返回 `192.168.2.111` 之间切换，没有返回 `192.168.2.222` 的。查看下 IPVS 的 connection ，发现调度到非本机才会卡住：
+发现 curl 在卡住和能访问返回 `192.168.2.111` 之间切换，没有返回 `192.168.2.222` 的。查看下 IPVS 的 connection，发现调度到非本机才会卡住：
 
 ```bash
 $ ipvsadm -lnc
@@ -162,7 +162,7 @@ listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes
 07:38:37.562632 IP 192.168.2.222.8080 > 169.254.11.2.50710: Flags [S.], seq 2142784980, ack 768065284, win 28960, options [mss 1460,sackOK,TS val 676529346 ecr 12276183,nop,wscale 7], length 0
 ```
 
-从 `Flags` 看，就是 tcp 重传，并且 `SRC IP` 是 VIP 。节点 `192.168.2.222.8080` 给 `169.254.11.2.50710` 回包会走到网关上去。网关上抓包也看到确实如此：
+从 `Flags` 看，就是 tcp 重传，并且 `SRC IP` 是 VIP。节点 `192.168.2.222.8080` 给 `169.254.11.2.50710` 回包会走到网关上去。网关上抓包也看到确实如此：
 
 ```bash
 $ tcpdump -nn -i eth0 host 169.254.11.2
@@ -178,7 +178,7 @@ listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes
 
 #### lvs 和 netfilter
 
-在介绍 lvs 的实现之前，我们需要了解 netfilter ，Linux 的所有数据包都会经过它，而我们使用的 iptables 是用户态提供的操作工具之一。Linux 内核处理进出的数据包分为了 5 个阶段。netfilter 在这 5 个阶段提供了 hook 点，来让注册的 hook 函数来实现对包的过滤和修改。下图的 local process 就是上层的协议栈。
+在介绍 lvs 的实现之前，我们需要了解 netfilter，Linux 的所有数据包都会经过它，而我们使用的 iptables 是用户态提供的操作工具之一。Linux 内核处理进出的数据包分为了 5 个阶段。netfilter 在这 5 个阶段提供了 hook 点，来让注册的 hook 函数来实现对包的过滤和修改。下图的 local process 就是上层的协议栈。
 
 下面是 IPVS 在 netfilter 里的模型图，IPVS 也是基于 netfilter 框架的，但只工作在 `INPUT` 链上，通过注册 `ip_vs_in` 钩子函数来处理请求。因为 VIP 我们配置在机器上（常规的 lvs nat 的 VIP 是在 NAT GW 上，我们这里是自己），我们 curl 的时候就会进到 `INPUT` 链，`ip_vs_in` 会匹配然后直接跳转触发 `POSTROUTING` 链，跳过 iptables 规则。
 
@@ -203,7 +203,7 @@ listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes
 	REAL SERVER
 ```
 
-lvs 做了 DNAT 并没有做 SNAT ，所以我们利用 iptables 做 SNAT ：
+lvs 做了 DNAT 并没有做 SNAT，所以我们利用 iptables 做 SNAT：
 
 ```
 $ iptables -t nat -A POSTROUTING -m ipvs --vaddr 169.254.11.2 --vport 80 -j MASQUERADE
@@ -240,7 +240,7 @@ iptables 的五链四表如上图所示，我们先删掉原有的规则：
 $ iptables -t nat -D POSTROUTING -m ipvs --vaddr 169.254.11.2 --vport 80 -j MASQUERADE
 ```
 
-平时自己家里使用了 openwrt ，之前看了下上面的 iptables 规则设计挺好的，特别是预留了很多链专门给用户在合适的位置插入规则，比如下面的 `INPUT` 规则：
+平时自己家里使用了 openwrt，之前看了下上面的 iptables 规则设计挺好的，特别是预留了很多链专门给用户在合适的位置插入规则，比如下面的 `INPUT` 规则：
 
 ```bash
 -A INPUT -i eth0 -m comment --comment "!fw3" -j zone_lan_input
@@ -300,7 +300,7 @@ hash:ip,mac       | src,src            | src IP address, src mac address   |
 hash:ip,mac       | dst,dst            | dst IP address, dst mac address   |
 hash:ip,mac       | dst,src            | dst IP address, src mac address   |
 
-然后访问下还是不通，突然想起来在机器上访问本机的 IP 端口的时候是内核直接转发给本地进程，这种数据包会只经过 `OUTPUT` 链，不会过 `PREROUTING` ，不过我们上面的 `PREROUTING` 链可以处理后续的 docker 容器。 调试了下发现确实会走 `OUTPUT` 链：
+然后访问下还是不通，突然想起来在机器上访问本机的 IP 端口的时候是内核直接转发给本地进程，这种数据包会只经过 `OUTPUT` 链，不会过 `PREROUTING` ，不过我们上面的 `PREROUTING` 链可以处理后续的 docker 容器。调试了下发现确实会走 `OUTPUT` 链：
 
 ```bash
 $ echo 'kern.warning /var/log/iptables.log' >> /etc/rsyslog.conf
@@ -335,7 +335,7 @@ cp /etc/keepalived/keepalived.conf{,.bak}
 
 #### 配置 keepalived
 
-我们需要配置下 keepalived ，修改之前先看下默认相关的：
+我们需要配置下 keepalived，修改之前先看下默认相关的：
 
 ```bash
 $ systemctl cat keepalived
@@ -376,7 +376,7 @@ KEEPALIVED_OPTIONS="-D"
 KEEPALIVED_OPTIONS="-D --log-console --log-detail --use-file=/etc/keepalived/keepalived.conf"
 ```
 
-我们选择在主配置文件里去 include 子配置文件，keepalivd 接收 `kill -HUP` 信号触发 reload ，后续自动化添加 SVC 的时候添加子配置文件后发送信号即可。
+我们选择在主配置文件里去 include 子配置文件，keepalivd 接收 `kill -HUP` 信号触发 reload，后续自动化添加 SVC 的时候添加子配置文件后发送信号即可。
 
 ```bash
 cat > /etc/keepalived/keepalived.conf << EOF
@@ -565,7 +565,7 @@ $ ip a s SVC
        valid_lft forever preferred_lft forever
 ```
 
-停掉一个 web 后在我们配置的健康检查几秒也剔除了 rs ：
+停掉一个 web 后在我们配置的健康检查几秒也剔除了 rs：
 
 ```bash
 $ curl 169.254.11.2/www/test

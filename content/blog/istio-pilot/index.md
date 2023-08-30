@@ -13,7 +13,7 @@ date: 2020-09-08T12:00:00+08:00
 
 ## 背景
 
-随着 `Istio` 1.7 的发布，内部组件精简后的 `istiod` 日趋稳定，越来越多的公司将其应用到自身微服务的流量治理、安全通信及监测中。多点也不例外，应用 `Istio` 来落地业务系统所有 `Dubbo` 服务的网格化，下沉 `SDK` 逻辑，解决基础中间件与业务系统过于耦合等痛点。 目前，我们是通过自己开发的 `Controller` 组件对接 `Zookeeper` 等注册中心，将注册到 `Zookeeper` 的节点实时转化为 `ServiceEntry` 及 `WorkloadEntry` 等 `Istio` 配置类型写入 `kube-apiserver`，再由 `Pilot` 转化为 `xDS` 协议下发至数据面，同时对集群、虚拟机中的服务进行治理。随着公司服务网格化的逐步落地，对 `Istio` 及数据面组件源码级掌握的诉求越来越高，没有足够的深度及广度很难解决开发过程中遇到的难题，让我们一起揭开 `Istio` 神秘的面纱，看看黑箱内部是如何运作的。
+随着 `Istio` 1.7 的发布，内部组件精简后的 `istiod` 日趋稳定，越来越多的公司将其应用到自身微服务的流量治理、安全通信及监测中。多点也不例外，应用 `Istio` 来落地业务系统所有 `Dubbo` 服务的网格化，下沉 `SDK` 逻辑，解决基础中间件与业务系统过于耦合等痛点。目前，我们是通过自己开发的 `Controller` 组件对接 `Zookeeper` 等注册中心，将注册到 `Zookeeper` 的节点实时转化为 `ServiceEntry` 及 `WorkloadEntry` 等 `Istio` 配置类型写入 `kube-apiserver`，再由 `Pilot` 转化为 `xDS` 协议下发至数据面，同时对集群、虚拟机中的服务进行治理。随着公司服务网格化的逐步落地，对 `Istio` 及数据面组件源码级掌握的诉求越来越高，没有足够的深度及广度很难解决开发过程中遇到的难题，让我们一起揭开 `Istio` 神秘的面纱，看看黑箱内部是如何运作的。
 
 本文作为 `Istio` 控制面组件 `Pilot` 的源码分析系列，主要面向刚接触 `Istio` 或仅停留在使用 `Istio` 基本配置类型（如 `VirtualService`、`DestinationRule` 等）的同学，需要熟悉 `Istio` 的一些 [基础概念及名词](https://istio.io/latest/zh/docs/concepts/traffic-management/) 。文章会涉及较多的代码细节，我们会以不同的篇幅分别介绍以下内容：
 
@@ -25,7 +25,7 @@ date: 2020-09-08T12:00:00+08:00
 
 相信通过源码一步一步分析，能消除读者对 `Pilot` 的陌生感，在基于 `Pilot` 做适配开发时会更加清楚的了解其底层运行逻辑，碰到问题时也能更好的定位。
 
-`Pilot` 的代码主要分为两部分: 
+`Pilot` 的代码主要分为两部分：
 
 - `pilot-discovery`
 - `pilot-agent`
@@ -58,12 +58,12 @@ date: 2020-09-08T12:00:00+08:00
 
 理解了这三个核心组件的定义，就能比较好的理解下面分析的各类流程了。
 
-`pilot-discovery` 的整个业务流程梳理如下，可以先大概浏览一遍，之后我们逐一进行分析:
+`pilot-discovery` 的整个业务流程梳理如下，可以先大概浏览一遍，之后我们逐一进行分析：
 ![pilot-discovery-sequence-all](pilot-discovery-sequence-all.png)
 
 ## 启动流程梳理
 
-首先详细看一下 `pilot-discovery` 的启动流程。`pilot-discovery` 组件的入口代码在 `istio/pilot/cmd/pilot-discovery` 中。该目录中包含两个文件: `main.go` 和 `request.go`。`main.go` 中定义了 `pilot-discovery` 根命令及 `discovery` 命令，是启动服务发现及配置下发的主流程; 另一个文件 `request.go` 中定义了 `request` 命令，用来请求 `Pilot` 中的 `metrics/debug` 接口，多用来调试。
+首先详细看一下 `pilot-discovery` 的启动流程。`pilot-discovery` 组件的入口代码在 `istio/pilot/cmd/pilot-discovery` 中。该目录中包含两个文件：`main.go` 和 `request.go`。`main.go` 中定义了 `pilot-discovery` 根命令及 `discovery` 命令，是启动服务发现及配置下发的主流程; 另一个文件 `request.go` 中定义了 `request` 命令，用来请求 `Pilot` 中的 `metrics/debug` 接口，多用来调试。
 
 `main.go` 中 `discoveryCmd`的 `RunE` 函数定义了启动过程，代码如下：
 
@@ -113,7 +113,7 @@ type Server struct {
 
 ![image.png](https://i.loli.net/2020/09/03/P5eOiE2NwjMxLty.png)
 
-我们对每个步骤逐一进行分析:
+我们对每个步骤逐一进行分析：
 
 1.  初始化 `Environment`
 
@@ -150,7 +150,7 @@ type Server struct {
         name: config-volume
     ```
     
-    相应的配置存储在 `istio-system/istio` 这个 `configmap` 中，里面保存了 `mesh` 和 `meshNetworks` 两种配置，样例如下:
+    相应的配置存储在 `istio-system/istio` 这个 `configmap` 中，里面保存了 `mesh` 和 `meshNetworks` 两种配置，样例如下：
     
     ```yaml
     apiVersion: v1
@@ -184,7 +184,7 @@ type Server struct {
     e.ServiceDiscovery = ac
     ```
     
-    首先是初始化了一份 `PushContext` ，创建 `PushContext` 所需的各种列表和 `Map` 。 其次是初始化了一个聚合所有注册中心的 `Controller` 作为 `Environment` 中的 `ServiceDiscovery` 。 该 `Controller` 提供从所有注册中心（如 `Kubernetes, Consul, MCP` 等）获取服务和实例列表的方法。 这里传入了一个参数 `MeshHolder` 是想利用 `Environment` 中的 `mesh.Watcher` 将 `mesh` 这个配置同步过去。
+    首先是初始化了一份 `PushContext` ，创建 `PushContext` 所需的各种列表和 `Map` 。其次是初始化了一个聚合所有注册中心的 `Controller` 作为 `Environment` 中的 `ServiceDiscovery` 。该 `Controller` 提供从所有注册中心（如 `Kubernetes, Consul, MCP` 等）获取服务和实例列表的方法。这里传入了一个参数 `MeshHolder` 是想利用 `Environment` 中的 `mesh.Watcher` 将 `mesh` 这个配置同步过去。
 
 2.  初始化 `Server`
 
@@ -345,7 +345,7 @@ type Server struct {
     })
     ```
     
-    再来看 `initServiceControllers` 处理服务发现的 `Controller` 初始化:
+    再来看 `initServiceControllers` 处理服务发现的 `Controller` 初始化：
     
     ```go
     func (s *Server) initServiceControllers(args *PilotArgs) error {
@@ -409,7 +409,7 @@ type Server struct {
     }
     ```
     
-    可以看到 `Controller` 对 `Services` 、 `Nodes` 、 `Pods` 等资源各自初始化了 `Informer` 、 Lister 以及对应的 Map，各类 Handlers 在 Informer 监听到增删改查时推送相应的事件到 queue ，再由 `onServiceEvent` 、 `onNodeEvent` 、 `c.pods.onEvent` 中更新对应的 Map 。
+    可以看到 `Controller` 对 `Services` 、 `Nodes` 、 `Pods` 等资源各自初始化了 `Informer` 、Lister 以及对应的 Map，各类 Handlers 在 Informer 监听到增删改查时推送相应的事件到 queue，再由 `onServiceEvent` 、 `onNodeEvent` 、 `c.pods.onEvent` 中更新对应的 Map。
     
     回到 `initServiceControllers` ，初始化完 Kubernetes 注册中心之后，还需要关注 Kubernetes 集群之外的服务，这些服务基本都是通过 `ServiceEntry` 注册到控制面的，所有 `ServiceEntry` 配置数据目前还都在之前初始化的 `configController` 配置中心控制器中，这里将 `ServiceEntry` 数据单独拎出来初始化一个 `ServicEntry` 注册中心，加入到 `serviceControllers` 中：
     
@@ -421,7 +421,7 @@ type Server struct {
     
     `serviceEntryStore` 相关的逻辑会在后续 xDS 下发流程的分析中再阐述。
     
-    最后将 `serviceControllers` 中所有的服务注册中心的 `Controller` 的启动函数都注册到 `startFuncs` 中:
+    最后将 `serviceControllers` 中所有的服务注册中心的 `Controller` 的启动函数都注册到 `startFuncs` 中：
     
     ```go
     s.addStartFunc(func(stop <-chan struct{}) error {
@@ -557,7 +557,7 @@ type Server struct {
     
     这里将 `EnvoyXdsServer` 的启动添加至 `startFuncs` 中，便于后续统一启动。并初始化 `gRPC` 服务器，监听对应的端口。
     
-    初始化 `gRPC` 服务器，并注册 `xDS V2` 和 `xDS V3` 的 `ADS` 服务到 `gRPC` 服务器上:
+    初始化 `gRPC` 服务器，并注册 `xDS V2` 和 `xDS V3` 的 `ADS` 服务到 `gRPC` 服务器上：
     
     ```go
     func (s *Server) initGrpcServer(options *istiokeepalive.Options) {

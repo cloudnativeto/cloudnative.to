@@ -11,7 +11,7 @@ keywords: ["service mesh","服务网格","serverless","knative"]
 
 > 本文作者：吴伟，蚂蚁金服系统部技术专家，本文转载自其[博客](http://cizixs.com/2018/08/25/knative-serverless-platform/)。
 
-[knative](https://github.com/knative) 是谷歌开源的 serverless 架构方案，旨在提供一套简单易用的 serverless 方案，把 serverless 标准化。目前参与的公司主要是 Google、Pivotal、IBM、Red Hat，2018年7月24日才刚刚对外发布，当前还处于快速发展的阶段。
+[knative](https://github.com/knative) 是谷歌开源的 serverless 架构方案，旨在提供一套简单易用的 serverless 方案，把 serverless 标准化。目前参与的公司主要是 Google、Pivotal、IBM、Red Hat，2018 年 7 月 24 日才刚刚对外发布，当前还处于快速发展的阶段。
 
 这是 Google Cloud Platform 宣布 knative 时给出的介绍：
 
@@ -41,7 +41,7 @@ hello, world from Awesome FaaS App!
 
 和标准化的 FaaS 不同（只运行特定标准的 Function 代码），knative 期望能够运行所有的 workload : traditional application、function、container。
 
-knative 建立在 kubernetes 和 istio 平台之上，使用 kubernetes 提供的容器管理能力（deployment、replicaset、和 pods等），以及 istio 提供的网络管理功能（ingress、LB、dynamic route等）。
+knative 建立在 kubernetes 和 istio 平台之上，使用 kubernetes 提供的容器管理能力（deployment、replicaset、和 pods 等），以及 istio 提供的网络管理功能（ingress、LB、dynamic route 等）。
 
 ![knative with istio and kubernetes](https://i.loli.net/2018/08/25/5b811d40e22bb.png)
 
@@ -87,7 +87,7 @@ spec:
 
 其中，`serviceAccountName` 是构建过程中需要用到的密码和认证信息（比如连接到 git repo 的 SSH keys、push 镜像到 registry 的用户名和密码等）；
 `source` 是代码信息，比如这里的 git 地址和分支；`steps` 是真正运行过程中的各个步骤。
-这个示例中的步骤只是作为 demo，真正的构建过程一般是 pull 代码、 build 镜像和 push镜像到 registry 等逻辑。
+这个示例中的步骤只是作为 demo，真正的构建过程一般是 pull 代码、build 镜像和 push 镜像到 registry 等逻辑。
 
 因为大部分的构建过程都是一致的，因此 knative 还提供了 `Build template` 的概念，
 Build template 封装了预先定义好的构建过程（就是封装了上面的 `steps` 过程），并提供了非常简单的配置参数来使用。
@@ -131,7 +131,7 @@ knative serving 功能是基于 kubernetes 和 istio 开发的，它使用 kuber
 
 - Configuration：应用的最新配置，也就是应用目前期望的状态，对应了 kubernetes 的容器管理（deployment）。每次应用升级都会更新 configuration，而 knative 也会保留历史版本的记录（图中的 revision），结合流量管理，knative 可以让多个不同的版本共同提供服务，方便蓝绿发布和滚动升级
 - Route：应用的路由规则，也就是进来的流量如何访问应用，对应了 istio 的流量管理（VirtualService）
-- Service：注意这里不是 kubernetes 中提供服务发现的那个 service，而是 knative 自定义的 CRD，它的全称目前是 `services.serving.knative.dev` 。单独控制 route 和 configuration 就能实现 serving 的所有功能，但knative 更推荐使用 Service 来管理，因为它会自动帮你管理 route 和 configuration
+- Service：注意这里不是 kubernetes 中提供服务发现的那个 service，而是 knative 自定义的 CRD，它的全称目前是 `services.serving.knative.dev` 。单独控制 route 和 configuration 就能实现 serving 的所有功能，但 knative 更推荐使用 Service 来管理，因为它会自动帮你管理 route 和 configuration
 
 一个 hello world 的 serving 配置如下所示：
 
@@ -177,7 +177,7 @@ Note：目前 serverless 的产品和平台很多，每个地方支持的事件�
 - EventSource：事件源，能够产生事件的外部系统
 - Feed：把某种类型的 EventType 和 EventSource 和对应的 Channel 绑定到一起
 - Channel：对消息实现的一层抽象，后端可以使用 kafka、RabbitMQ、Google PubSub 作为具体的实现。channel name 类似于消息集群中的 topic，可以用来解耦事件源和函数。事件发生后 sink 到某个 channel 中，然后 channel 中的数据会被后端的函数消费
-- Subscription：把 channel 和后端的函数绑定的一起，一个 channel 可以绑定到多个knative service
+- Subscription：把 channel 和后端的函数绑定的一起，一个 channel 可以绑定到多个 knative service
 
 它们之间的关系流程图如下：
 
@@ -195,7 +195,7 @@ Bus 是 knative 内部的事件存储层，用户可以选择自己感兴趣的�
 
 ## Knative 目前的状态
 
-knative 是 2018 年 7月才刚刚对外开放，虽然内部已经开发一段时间，但是目前还处于非常早前的阶段（从支持的事件源和 bus就能看出来）。目前代码还不稳定，很多实现都是 hard-coded。
+knative 是 2018 年 7 月才刚刚对外开放，虽然内部已经开发一段时间，但是目前还处于非常早前的阶段（从支持的事件源和 bus 就能看出来）。目前代码还不稳定，很多实现都是 hard-coded。
 
 knative 也是脱产于 google 和 CNCF，因此整个社区运行方式和目标与之前的 kubernetes 以及 istio 非常相似。社区根据组件分成多个 Working Group，每个 Group 独立负责自己的功能，所有的开源活动（文档、视频、代码）都是开放的。另外，CloudEvents 作为 knative 依赖的标准，目标也是成为 CRI、CNI、CSI 这种类似的标准。
 
@@ -219,7 +219,7 @@ knative 基于 kubernetes 和 istio 的 serverless 开源实现，目标是提�
 
 有些人的疑问在于，knative 真的有必要基于 istio 来做吗？对于这个问题，我个人的看法是必要的。
 
-虽然 istio 才刚刚release 1.0 版本，但是它作为集群基础设施通用网络层的地位已经开始显露，相信在未来的发展中接受度会越来越大，并逐渐巩固自己的地位。虽然现阶段来说，很多人并不非常熟悉 istio 的情况，但是从长远角度来看，这一点将是 knative 的一个优势所在。
+虽然 istio 才刚刚 release 1.0 版本，但是它作为集群基础设施通用网络层的地位已经开始显露，相信在未来的发展中接受度会越来越大，并逐渐巩固自己的地位。虽然现阶段来说，很多人并不非常熟悉 istio 的情况，但是从长远角度来看，这一点将是 knative 的一个优势所在。
 
 另外，基于 istio 构建自己的 serverless 服务，也符合目前软件行业不要重复造轮子的思路。istio 在集群的网络管理方面非常优秀（智能路由、负载均衡、蓝绿发布等），基于 istio 来做可以让 knative 不用重复工作就能直接使用 istio 提供的网络通用功能。
 
@@ -250,7 +250,7 @@ knative 基于 kubernetes 和 istio 的 serverless 开源实现，目标是提�
 最后一点是关于 knative 成熟度的，前面已经提到，knative 目前刚出现不久。虽然整个框架和设计都已经搭好了，但是很多实现都比较初级。这里提几点来说：
 
 - 为了实现 autoscaling，knative 在每个 pod 中添加一个叫做 queue proxy 的代理，它会自动把请求的 metrics 发送给 autoscaler 组件作为参考。这样一来，整个网络链路上又多了一层，对整个性能势必会有影响，未来的打算是直接使用 envoy sidecar 来替换掉 queue proxy
-- 支持的事件源和消息系统还很有限，外部事件只支持 github、kubernetes 和 Google PubSub。 这个问题可以慢慢扩展，knative 本身会实现很常用的事件类型，自定义的事件源用户可以自己实现
+- 支持的事件源和消息系统还很有限，外部事件只支持 github、kubernetes 和 Google PubSub。这个问题可以慢慢扩展，knative 本身会实现很常用的事件类型，自定义的事件源用户可以自己实现
 - 目前还没有函数的 pipeline 管理（类似 AWS Lambda Step Functions），多个函数如何协作并没有自己处理。虽然没有在官方文档中看到这方面的 roadmap，但是以后一定会有这方面的功能（不管是 knative 本身来做，还是社区作为工具补充来实现）
 
 这方面的问题都不是大事情，随着 knative 版本的迭代，在很快的时间都能够解决。

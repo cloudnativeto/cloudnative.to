@@ -1,11 +1,11 @@
 ---
-title: "为 Envoy 构建控制平面指南第3部分：领域特定配置"
+title: "为 Envoy 构建控制平面指南第 3 部分：领域特定配置"
 date: 2019-04-04T18:00:43+08:00
 draft: false
 authors: ["Christian Posta"]
 translators: ["孙海洲"]
 reviewer: ["宋净超"]
-summary: "本文介绍如何为 Envoy 构建控制平面指南的第3部分：领域特定配置。"
+summary: "本文介绍如何为 Envoy 构建控制平面指南的第 3 部分：领域特定配置。"
 tags: ["envoy"]
 categories: ["service mesh"]
 keywords: ["service mesh","服务网格","envoy","istio","contour"]
@@ -13,9 +13,9 @@ keywords: ["service mesh","服务网格","envoy","istio","contour"]
 
 本文为翻译文章，[点击查看原文](https://medium.com/solo-io/guidance-for-building-a-control-plane-for-envoy-part-3-domain-specific-configuration-c97e8124b9d1)。
 
-这是探索为 Envoy 代理构建控制平面系列文章的第3部分。
+这是探索为 Envoy 代理构建控制平面系列文章的第 3 部分。
 
-在本系列博客中，我们将关注以下领域:
+在本系列博客中，我们将关注以下领域：
 
 - [采用一种机制来动态更新 Envoy 的路由、服务发现和其他配置](https://medium.com/solo-io/guidance-for-building-a-control-plane-to-manage-envoy-proxy-at-the-edge-as-a-gateway-or-in-a-mesh-badb6c36a2af)
 - [确定控制平面由哪些组件组成，包括支持存储、服务发现 api、安全组件等](https://medium.com/solo-io/guidance-for-building-a-control-plane-for-envoy-proxy-part-2-identify-components-2d0731b0d8a4)
@@ -28,7 +28,7 @@ keywords: ["service mesh","服务网格","envoy","istio","contour"]
 
 ## 建立您的控制平面交互点和 API 面
 
-一旦您考虑了哪些组件可能构成您的控制平面体系结构(请参阅前面的部分)，您就需要考虑您的用户将如何与控制平面交互，甚至更重要的是，您的用户将是谁?要回答这个问题，您必须决定基于 Envoy 的基础设施将扮演什么角色，以及流量将如何通过体系结构。它可以是：
+一旦您考虑了哪些组件可能构成您的控制平面体系结构 (请参阅前面的部分)，您就需要考虑您的用户将如何与控制平面交互，甚至更重要的是，您的用户将是谁？要回答这个问题，您必须决定基于 Envoy 的基础设施将扮演什么角色，以及流量将如何通过体系结构。它可以是：
 
 - API 管理网关（南北向流量）
 - 简单 Kubernetes 边缘负载均衡器/反向代理/入口控制（南北向流量）
@@ -46,7 +46,7 @@ Istio 项目旨在成为服务网格平台，用户通过平台，可以在此�
 
 运行在 Kubernetes 中的所有这些配置对象都实现为 [CustomResourceDefinitions](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)。
 
-[Heptio/VMWare Contour](https://github.com/heptio/contour) 旨在作为 Kubernetes ingress 网关，并具有一个简化的特定于域的配置模型，具有 CustomResourceDefinition （CRD）风格和 [Kubernetes ingress 资源](https://kubernetes.io/docs/concepts/services-networking/ingress/)：
+[Heptio/VMWare Contour](https://github.com/heptio/contour) 旨在作为 Kubernetes ingress 网关，并具有一个简化的特定于域的配置模型，具有 CustomResourceDefinition（CRD）风格和 [Kubernetes ingress 资源](https://kubernetes.io/docs/concepts/services-networking/ingress/)：
 
 - [IngressRoute](https://github.com/heptio/contour/blob/master/docs/ingressroute.md) 是一个 Kubernetes CRD，它提供一个位置来指定 Contour 代理的配置
 - [Ingress 资源支持](https://github.com/heptio/contour/blob/master/docs/annotations.md)，允许你在你的 Kubernetes Ingress 资源上指定注解。
@@ -67,8 +67,8 @@ Istio 项目旨在成为服务网格平台，用户通过平台，可以在此�
 
 Gloo 中的面向用户的 API 对象驱动较低层的对象，这些对象最终用于派生 Envoy xDS 配置。例如，Gloo 的底层核心 API 对象是：
 
-- [Upstream](https://gloo.solo.io/v1/github.com/solo-io/gloo/projects/gloo/api/v1/upstream.proto.sk/)：获取关于后端集群和在此上公开的函数的详细信息。您可以将 Gloo 上游与 [Envoy 集群](https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/cds.proto)松散地关联起来，但有一个很大的区别:上游可以理解特定端点上可用的实际服务功能（换句话说，了解 `/foo/bar` 和 `/bar/wine`，包括它们的预期参数和参数结构，而不仅仅是 `hostname:port`），后文会详细解释。
-- [Proxy](https://gloo.solo.io/v1/github.com/solo-io/gloo/projects/gloo/api/v1/proxy.proto.sk/)：代理是抽象我们可以应用于 Envoy 的所有配置的主要对象。这包括监听器、虚拟主机、路由和上行流。高级对象（VirtualService，Gateway等）用于驱动这个低级代理对象。
+- [Upstream](https://gloo.solo.io/v1/github.com/solo-io/gloo/projects/gloo/api/v1/upstream.proto.sk/)：获取关于后端集群和在此上公开的函数的详细信息。您可以将 Gloo 上游与 [Envoy 集群](https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/cds.proto)松散地关联起来，但有一个很大的区别：上游可以理解特定端点上可用的实际服务功能（换句话说，了解 `/foo/bar` 和 `/bar/wine`，包括它们的预期参数和参数结构，而不仅仅是 `hostname:port`），后文会详细解释。
+- [Proxy](https://gloo.solo.io/v1/github.com/solo-io/gloo/projects/gloo/api/v1/proxy.proto.sk/)：代理是抽象我们可以应用于 Envoy 的所有配置的主要对象。这包括监听器、虚拟主机、路由和上行流。高级对象（VirtualService，Gateway 等）用于驱动这个低级代理对象。
 
 ![](006gLaqLgy1g1ocrrdccrj30o20dxabd.jpg)
 

@@ -4,7 +4,7 @@ date: 2022-05-29T12:00:00+08:00
 draft: false
 authors: ["李运田"]
 summary: "作者在本文将和大家一起探讨下 Istio 在满足什么条件的时候进行 Sidecar 的注入，介绍使用 Istio 进行 Sidecar 注入时的一些配置及生产应用"
-tags: ["Istio","Sidecar注入"]
+tags: ["Istio","Sidecar 注入"]
 categories: ["Istio"]
 keywords: ["Kubernetes","service mesh","sidecar inject"]
 ---

@@ -16,7 +16,7 @@ mobile_toc: false
 
 好消息是，云计算、[Kubernetes](https://kubernetes.io/) 和云原生计算结合在一起，使软件开发比以前更快、更强大。坏消息是，保持对所有这些的关注比以往任何时候都更难。这就是为什么 [New Relic](https://newrelic.com/) 将其 Kubernetes 原生集群内观察平台 [Pixie](http://px.dev/) 作为一个新的开源项目，在 [Apache 2.0 许可](https://www.apache.org/licenses/LICENSE-2.0)下贡献给[云原生计算基金会（CNCF）的](https://www.cncf.io/)原因，这是一个好消息。
 
-Pixie 是一个新的云原生应用程序的可观察性平台。有了它，开发人员可以通过一个 shell 命令看到他们应用程序的所有指标、事件、日志和追踪。有了 Pixie，你不需要添加度量（instrumentation ）代码，设置临时仪表板，或将数据移出集群，就能看到正在发生的事情。这将为你节省宝贵的时间，这样你就可以致力于建立更好的软件，而不是用更好的方法来监控它。
+Pixie 是一个新的云原生应用程序的可观察性平台。有了它，开发人员可以通过一个 shell 命令看到他们应用程序的所有指标、事件、日志和追踪。有了 Pixie，你不需要添加度量（instrumentation）代码，设置临时仪表板，或将数据移出集群，就能看到正在发生的事情。这将为你节省宝贵的时间，这样你就可以致力于建立更好的软件，而不是用更好的方法来监控它。
 
 该程序作为一组 Kubernetes 服务部署在被监控的集群内。简而言之，Pixie 是一个原生的 Kubernetes 程序。它的 Pixie 边缘模块（PEM）被部署为 DaemonSet。在你的集群内，PEM 利用 Pixie 的 [eBPF](https://lwn.net/Articles/740157/) 程序来收集网络事务和系统指标，而不需要修改代码。
 

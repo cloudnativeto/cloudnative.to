@@ -1,9 +1,9 @@
 ---
-title: "第六届Service Mesh Meetup广州站回顾"
+title: "第六届 Service Mesh Meetup 广州站回顾"
 date: 2019-08-13T10:41:54+08:00
 draft: false
 authors: ["宋净超"]
-summary: "ServiceMesher社区和蚂蚁金服联合主办的第六届Service Mesh Meetup广州站收官，来自虎牙的张波、慧择网的涂小刚、蚂蚁金服的彭泽文、敖小剑为社区带来精彩分享。"
+summary: "ServiceMesher 社区和蚂蚁金服联合主办的第六届 Service Mesh Meetup 广州站收官，来自虎牙的张波、慧择网的涂小刚、蚂蚁金服的彭泽文、敖小剑为社区带来精彩分享。"
 tags: ["meetup"]
 categories: ["其他"]
 keywords: ["service mesh","meetup"]

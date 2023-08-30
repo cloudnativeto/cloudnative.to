@@ -2,7 +2,7 @@
 title: "Prow 快速入门向导"
 date: 2019-07-01T03:13:13+08:00
 draft: false
-summary: "Prow 是 Google 发起的适应云原生开源项目的 ChatOps 系统。Kubernetes、Istio 等项目都使用 Prow 实现开源协同。我们将以一个测试代码仓库为例，来演示在一个本地k8s集群上使用 Prow 来实现CI/CD的诸多效果。"
+summary: "Prow 是 Google 发起的适应云原生开源项目的 ChatOps 系统。Kubernetes、Istio 等项目都使用 Prow 实现开源协同。我们将以一个测试代码仓库为例，来演示在一个本地 k8s 集群上使用 Prow 来实现CI/CD的诸多效果。"
 authors: ["张新峰"]
 tags: ["prow","chatops","devops","kubernetes"]
 categories: ["devops"]
@@ -17,11 +17,11 @@ Prow 是 Google 发起的适应云原生开源项目的 ChatOps 系统。Kuberne
 * Prow 开源仓库：[https://github.com/kubernetes/test-infra/](https://github.com/kubernetes/test-infra/)
 * Prow 官方文档：[https://github.com/kubernetes/test-infra/blob/master/prow/README.md](https://github.com/kubernetes/test-infra/blob/master/prow/README.md)
 
-我们将以我的 Github 测试仓库 [zhangsean/prow-test](https://github.com/zhangsean/prow-test) 为例，来演示在一个本地k8s集群上使用 Prow 来实现CI/CD的诸多效果。
+我们将以我的 Github 测试仓库 [zhangsean/prow-test](https://github.com/zhangsean/prow-test) 为例，来演示在一个本地 k8s 集群上使用 Prow 来实现CI/CD的诸多效果。
 
-## 准备一个k8s集群
+## 准备一个 k8s 集群
 
-Prow 运行在 k8s 集群中，最好运行在有公网IP地址的k8s集群，可以免去 Webhook 转发的麻烦。临时测试可以使用本地集群。我使用 kind 创建一个本地 k8s 集群，使用 minikube 等其他工具都可以。
+Prow 运行在 k8s 集群中，最好运行在有公网 IP 地址的 k8s 集群，可以免去 Webhook 转发的麻烦。临时测试可以使用本地集群。我使用 kind 创建一个本地 k8s 集群，使用 minikube 等其他工具都可以。
 
 ```shell
 # 创建一个本地集群
@@ -84,7 +84,7 @@ kubernetes   ClusterIP   10.0.0.1      <none>        443/TCP          28m
 tide         NodePort    10.0.86.177   <none>        80:31254/TCP     85s
 ```
 
-> 注意：由于 Prow 配置 PR Status 时必须使用 https 访问，所以如果考虑启用 PR Status 功能，请为 deck 配置 https 访问地址（不要求SSL可信证书）。
+> 注意：由于 Prow 配置 PR Status 时必须使用 https 访问，所以如果考虑启用 PR Status 功能，请为 deck 配置 https 访问地址（不要求 SSL 可信证书）。
 
 如果你的 k8s 集群有公网接入，可以配置 SLB 将流量转发到 `deck` 和 `hook` 服务，应该得到两个类似这样的网址：
 
@@ -93,7 +93,7 @@ deck: http://prow.example.com/
 hook: http://hook.example.com/
 ```
 
-如果直接通过有公网IP的节点IP:NodePort 访问，那么访问网址应该类似这样：
+如果直接通过有公网 IP 的节点 IP:NodePort 访问，那么访问网址应该类似这样：
 
 ```yaml
 deck: http://111.2.3.4:31920/
@@ -149,7 +149,7 @@ Rules:
                     /hook   hook:8888 (10.244.0.16:8888)
 ```
 
-那么通过ingress访问时的网址应该类似这样：
+那么通过 ingress 访问时的网址应该类似这样：
 
 ```yaml
 deck: http://prow.example.com/
@@ -163,7 +163,7 @@ deck: http://192.168.64.10:31920/
 hook: http://192.168.64.10:30868/
 ```
 
-如果你使用 `kind` 启动本地 k8s 集群，则必须将以上2个端口映射到本地才能访问：
+如果你使用 `kind` 启动本地 k8s 集群，则必须将以上 2 个端口映射到本地才能访问：
 
 ```shell
 # 查看 kind 集群的节点名称，也就是容器名称
@@ -177,7 +177,7 @@ $ docker run -itd --name prow-hook -p 8088:80 --link kind-control-plane zhangsea
 
 ## 访问 Prow 界面
 
-打开 `deck` 的访问地址（比如 [http://prow.example.com](http://prow.example.com)） 即可看到 Prow Status 界面。
+打开 `deck` 的访问地址（比如 [http://prow.example.com](http://prow.example.com)）即可看到 Prow Status 界面。
 ![Prow Status](img-prow-status.png)
 发送一个空的 POST 请求给 `hook` 访问地址的 `/hook` 目录（比如 [http://prow.example.com/hook](http://prow.example.com/hook) ）应该看到如下 `400` 的返回结果。
 
@@ -215,8 +215,8 @@ Forwarding activated...
 http://prow.seanz.ultrahook.com -> http://localhost:8088
 ```
 
-测试发送一个空的 POST 请求到 Webhook 地址，ultrahook 应该输出一个日志返回400，如果没有日志输出则说明没有代理成功，请检查 ultrahook。
-> 注意：不管 hook 后端是否实际接受成功或者验证失败，ultrahook 请求的返回码都是200，所以我们只能通过 ultrahook 日志来查看 hook 后端的实际处理结果。
+测试发送一个空的 POST 请求到 Webhook 地址，ultrahook 应该输出一个日志返回 400，如果没有日志输出则说明没有代理成功，请检查 ultrahook。
+> 注意：不管 hook 后端是否实际接受成功或者验证失败，ultrahook 请求的返回码都是 200，所以我们只能通过 ultrahook 日志来查看 hook 后端的实际处理结果。
 
 ```shell
 curl -i -d "" http://prow.seanz.ultrahook.com/hook
@@ -237,7 +237,7 @@ Which events would you like to trigger this webhook?: Send me everything.
 
 ![Github Webhook](img-github-webhook.png)
 添加 webhook 成功后，新添加的 webhook 地址前会显示一个图标显示 webhook 接收端状态是否正常，确保状态为绿色的`√`。  
-如果状态为`×`说明 webhook 地址配置不正确，点击 webhook 地址进入 webhook 管理界面，下方`Recent Deliveries`会显示最近事件列表，点击事件UUID可以查看当前事件的推送请求和返回结果。在每个请求的 `Reponse` 标签中能查看Webhook请求返回的状态码和返回内容，有助于定位问题。  
+如果状态为`×`说明 webhook 地址配置不正确，点击 webhook 地址进入 webhook 管理界面，下方`Recent Deliveries`会显示最近事件列表，点击事件 UUID 可以查看当前事件的推送请求和返回结果。在每个请求的 `Reponse` 标签中能查看 Webhook 请求返回的状态码和返回内容，有助于定位问题。  
 这里还可以通过点击 `Redeliver` 按钮重复推送这个事件，可以测试 webhook 接收端能否正常接收事件。
 ![Github Webhook2](img-github-webhook2.png)
 
@@ -246,7 +246,7 @@ Which events would you like to trigger this webhook?: Send me everything.
 Prow 自带了丰富的插件，可以通过 `Prow Status` 界面，左上角选择 `Plugins` 界面查看插件列表，点击某个插件的 `DETAILS` 按钮可以查看插件详情、适用场景、交互命令等。  
 插件仓库上方切换仓库列表即可过滤指定仓库启用了哪些插件，这里可以检查仓库的插件配置是否生效。
 
-默认部署是没有启用任何插件的，需要通过修改k8s的 `plugins.yaml` 配置为指定的项目仓库启用所需插件。  
+默认部署是没有启用任何插件的，需要通过修改 k8s 的 `plugins.yaml` 配置为指定的项目仓库启用所需插件。  
 创建一个名为 `plugins.yaml` 的文件并参照如下内容配置需要的插件。  
 我已经列出了几个便于测试的常用插件，注释后面是交互命令格式。
 
@@ -293,22 +293,22 @@ kubectl get cm plugins -o yaml
 
 ## 测试 Prow
 
-插件配置生效以后就可以测试Prow效果了，在 Github 仓库中发起一个PR，稍后就会看到`size`，`approve`这几个插件的效果。
+插件配置生效以后就可以测试 Prow 效果了，在 Github 仓库中发起一个 PR，稍后就会看到`size`，`approve`这几个插件的效果。
 
 > 注意：如果没有创建机器人账号，直接在个人账号下添加的 Github Token，那么 Prow 的响应都会显示为个人账号的动作。
 
 ![Github PR](img-github-pr.png)
 
 在 PR 中回复命令即可触发相关插件，比如回复 `/pony` 会自动插入一个马的图片。  
-管理员在满足合并要求的情况下回复 `/lgtm` 会触发 Prow 自动合并PR，其他命令交互效果请查看插件详情。
+管理员在满足合并要求的情况下回复 `/lgtm` 会触发 Prow 自动合并 PR，其他命令交互效果请查看插件详情。
 ![Github PR2](img-github-pr2.png)
 
 ## 配置 Prow Job
 
 配置 Prow Job 用于定时执行一些事务，比如定时执行 CI/CD 自动发布项目。  
-Prow 默认部署了一个 `echo-test` 测试任务，每隔10分钟显示当前时间。  
+Prow 默认部署了一个 `echo-test` 测试任务，每隔 10 分钟显示当前时间。  
 
-通过查看k8s中 `config` 配置的 `config.yaml` 文件即可看到这个Job的配置内容:
+通过查看 k8s 中 `config` 配置的 `config.yaml` 文件即可看到这个 Job 的配置内容：
 
 ```shell
 kubectl get configmap config -o yaml
@@ -356,7 +356,7 @@ Prow Job 应用后可以在 `Prow Status` 界面查看到执行记录：
 
 ## 启用 Prow PR Status 功能
 
-Prow PR Status 功能可以在 Prow 中查看个人相关的 PR 处于什么状态。Prow Starter集群默认没有启用 PR Status 功能，Prow 左侧看不到相关菜单，必须启用以后才会出现 `PR Status` 菜单。
+Prow PR Status 功能可以在 Prow 中查看个人相关的 PR 处于什么状态。Prow Starter 集群默认没有启用 PR Status 功能，Prow 左侧看不到相关菜单，必须启用以后才会出现 `PR Status` 菜单。
 
 由于 PR Status 是针对项目的所有贡献者的，所以当贡献者访问 Prow 的 PR Status 功能时，浏览器会跳转到 Github 使用 OAuth 认证获得用户的授权后，浏览器会自动跳转回 PR Status 界面显示该贡献者相关的 PR 列表。
 
@@ -371,7 +371,7 @@ Authorization callback URL: https://localhost:8080
 ```
 
 ![Github OAuth](img-github-oauth.png)
-OAuth App 保存成功后，把生成的客户端ID和密钥填入 `github-oauth-config.yaml` 文件.
+OAuth App 保存成功后，把生成的客户端 ID 和密钥填入 `github-oauth-config.yaml` 文件。
 
 ```yaml
 client_id: e6403c9b594929axxxxx
@@ -388,7 +388,7 @@ final_redirect_url: https://localhost:8080/pr
 openssl rand -out cookie.txt -base64 64
 ```
 
-把以上2个配置文件保存到 k8s 集群。
+把以上 2 个配置文件保存到 k8s 集群。
 
 ```shell
 kubectl create secret generic github-oauth-config --from-file=secret=github-oauth-config.yaml
@@ -401,13 +401,13 @@ kubectl create secret generic cookie --from-file=secret=cookie.txt
 kubectl get deploy deck -o yaml > deck_deployment.yaml
 ```
 
-在 `args` 中添加1个参数，务必注意缩进:
+在 `args` 中添加 1 个参数，务必注意缩进：
 
 ```yaml
 - --oauth-url=/github-login
 ```
 
-在 `volumeMounts` 下面添加2个挂载路径，务必注意缩进:
+在 `volumeMounts` 下面添加 2 个挂载路径，务必注意缩进：
 
 ```yaml
 - name: oauth-config
@@ -418,7 +418,7 @@ kubectl get deploy deck -o yaml > deck_deployment.yaml
   readOnly: true
 ```
 
-在 `volumes` 下面添加2个卷引用，务必注意缩进:
+在 `volumes` 下面添加 2 个卷引用，务必注意缩进：
 
 ```yaml
 - name: oauth-config

@@ -2,36 +2,36 @@
 title: "linkerd2 proxy destination 学习笔记"
 date: 2019-10-29T16:38:27+08:00
 draft: false
-authors: ["哗啦啦mesh团队"]
+authors: ["哗啦啦 mesh 团队"]
 summary: "在本文章中，能粗略了解到 linker2 的代理服务 proxy 组件中关于 destination 的交互原理。"
 tags: ["linkerd"]
 categories: ["service mesh"]
 keywords: ["service mesh","服务网格","linkerd2","linkerd"]
 ---
 
-> 作者: 哗啦啦 mesh团队，热衷于kubernetes、devops、apollo、istio、linkerd、openstack、calico 等领域技术。
+> 作者：哗啦啦 mesh 团队，热衷于 kubernetes、devops、apollo、istio、linkerd、openstack、calico 等领域技术。
 
-## linkerd2介绍
+## linkerd2 介绍
 
-Linkerd由`控制平面`和`数据平面`组成：
+Linkerd 由`控制平面`和`数据平面`组成：
 
-- `控制平面`是在所属的`Kubernetes命名空间`（linkerd默认情况下）中运行的一组服务，这些服务可以完成`汇聚遥测数据`，提供面向用户的API，并向`数据平面`代理`提供控制数据`等，它们`共同驱动`数据平面。
+- `控制平面`是在所属的`Kubernetes命名空间`（linkerd 默认情况下）中运行的一组服务，这些服务可以完成`汇聚遥测数据`，提供面向用户的 API，并向`数据平面`代理`提供控制数据`等，它们`共同驱动`数据平面。
 
-- `数据平面`用Rust编写的轻量级代理，该代理安装在服务的`每个pod`中，并成为数据平面的一部分，它接收Pod的`所有接入`流量，并通过`initContainer`配置`iptables`正确转发流量的拦截所有传出流量，因为它是附加工具，并且拦截服务的所有`传入和传出`流量，所以不需要更改代码，甚至可以将其添加到`正在运行`的服务中。
+- `数据平面`用 Rust 编写的轻量级代理，该代理安装在服务的`每个pod`中，并成为数据平面的一部分，它接收 Pod 的`所有接入`流量，并通过`initContainer`配置`iptables`正确转发流量的拦截所有传出流量，因为它是附加工具，并且拦截服务的所有`传入和传出`流量，所以不需要更改代码，甚至可以将其添加到`正在运行`的服务中。
 
 借用官方的图：
 
 ![proxy-destination](./control-plane.png)
 
-proxy由rust开发完成，其内部的异步运行时采用了[Tokio](https://tokio-zh.github.io/)框架，服务组件用到了[tower](https://github.com/tower-rs/tower)。
+proxy 由 rust 开发完成，其内部的异步运行时采用了[Tokio](https://tokio-zh.github.io/)框架，服务组件用到了[tower](https://github.com/tower-rs/tower)。
 
-本文主要关注proxy与destination组件交互相关的整体逻辑，分析proxy内部的运行逻辑。
+本文主要关注 proxy 与 destination 组件交互相关的整体逻辑，分析 proxy 内部的运行逻辑。
 
 ## 流程分析
 
 ### 初始化
 
-proxy启动后：
+proxy 启动后：
 
 1. `app::init`初始化配置
 2. `app::Main::new`创建主逻辑`main`，
@@ -62,7 +62,7 @@ proxy启动后：
                 .make(config.destination_addr.clone())
 ```
 
-`dst_svc`一共有2处引用，一是`crate::resolve::Resolver`的创建会涉及；另一个就是`ProfilesClient`的创建。
+`dst_svc`一共有 2 处引用，一是`crate::resolve::Resolver`的创建会涉及；另一个就是`ProfilesClient`的创建。
 
 #### `Resolver`
 
@@ -91,7 +91,7 @@ Buffer::new(self.capacity, make_discover)
 
 #### `Profiles`
 
-1. 在`ProfilesClient::new`中调用`api::client::Destination::new(dst_svc)`创建grpc的client端并存于成员变量`service`
+1. 在`ProfilesClient::new`中调用`api::client::Destination::new(dst_svc)`创建 grpc 的 client 端并存于成员变量`service`
 2. 接着`profiles_client`对象会被用于`inbound`和`outbound`的创建（省略无关代码）：
 
 ```rust
@@ -126,7 +126,7 @@ Buffer::new(self.capacity, make_discover)
         let path = target.to_string();
         trace!("resolve {:?}", path);
         self.service
-            // GRPC请求，获取k8s的endpoint
+            // GRPC 请求，获取 k8s 的 endpoint
             .get(grpc::Request::new(api::GetDestination {
                 path,
                 scheme: self.scheme.clone(),
@@ -134,7 +134,7 @@ Buffer::new(self.capacity, make_discover)
             }))
             .map(|rsp| {
                 debug!(metadata = ?rsp.metadata());
-                // 拿到结果stream
+                // 拿到结果 stream
                 Resolution {
                     inner: rsp.into_inner(),
                 }
@@ -142,15 +142,15 @@ Buffer::new(self.capacity, make_discover)
     }
 ```
 
-将返回的`Resolution`再次放入`MakeSvc`中，然后看其poll：
+将返回的`Resolution`再次放入`MakeSvc`中，然后看其 poll：
 
 ```rust
     fn poll(&mut self) -> Poll<Self::Item, Self::Error> {
-        // 这个poll会依次调用:
+        // 这个 poll 会依次调用：
         //    linkerd2_proxy_api_resolve::resolve::Resolution::poll
         //    linkerd2_proxy_discover::from_resolve::DiscoverFuture::poll
         //    linkerd2_proxy_discover::make_endpoint::DiscoverFuture::poll
-        // 最终获得Poll<Change<SocketAddr, Endpoint>> 
+        // 最终获得 Poll<Change<SocketAddr, Endpoint>> 
         let discover = try_ready!(self.inner.poll());
         let instrument = PendingUntilFirstData::default();
         let loaded = PeakEwmaDiscover::new(discover, self.default_rtt, self.decay, instrument);
@@ -159,28 +159,28 @@ Buffer::new(self.capacity, make_discover)
     }
 ```
 
-最终返回service `Balance`。
+最终返回 service `Balance`。
 
 当具体请求过来后，先会判断`Balance::poll_ready`：
 
 ```rust
     fn poll_ready(&mut self) -> Poll<(), Self::Error> {
-        // 获取Update<Endpoint>
-        // 将Remove的从self.ready_services中删掉
-        // 将Insert的构造UnreadyService结构加到self.unready_services
+        // 获取 Update<Endpoint>
+        // 将 Remove 的从 self.ready_services 中删掉
+        // 将 Insert 的构造 UnreadyService 结构加到 self.unready_services
         self.poll_discover()?;
-        // 对UnreadyService，调用其poll，内部会调用到svc的poll_ready判断endpoint是否可用
-        // 可用时，将其加入self.ready_services
+        // 对 UnreadyService，调用其 poll，内部会调用到 svc 的 poll_ready 判断 endpoint 是否可用
+        // 可用时，将其加入 self.ready_services
         self.poll_unready();
         
         loop {
             if let Some(index) = self.next_ready_index {
-                // 找到对应的endpoint，可用则返回
+                // 找到对应的 endpoint，可用则返回
                 if let Ok(Async::Ready(())) = self.poll_ready_index_or_evict(index) {
                     return Ok(Async::Ready(()));
                 }
             }
-            // 选择负载比较低的endpoint
+            // 选择负载比较低的 endpoint
             self.next_ready_index = self.p2c_next_ready_index();
             if self.next_ready_index.is_none() {
                 // 
@@ -194,7 +194,7 @@ Buffer::new(self.capacity, make_discover)
 
 ```rust
     fn call(&mut self, request: Req) -> Self::Future {
-        // 找到下一个可用的svc，并将其从ready_services中删除
+        // 找到下一个可用的 svc，并将其从 ready_services 中删除
         let index = self.next_ready_index.take().expect("not ready");
         let (key, mut svc) = self
             .ready_services
@@ -203,7 +203,7 @@ Buffer::new(self.capacity, make_discover)
 
         // 将请求转过去
         let fut = svc.call(request);
-        // 加到unready
+        // 加到 unready
         self.push_unready(key, svc);
 
         fut.map_err(Into::into)
@@ -245,7 +245,7 @@ Buffer::new(self.capacity, make_discover)
         // This oneshot allows the daemon to be notified when the Self::Stream
         // is dropped.
         let (hangup_tx, hangup_rx) = oneshot::channel();
-        // 创建Daemon对象（Future任务）
+        // 创建 Daemon 对象（Future 任务）
         let daemon = Daemon {
             tx,
             hangup: hangup_rx,
@@ -255,7 +255,7 @@ Buffer::new(self.capacity, make_discover)
             backoff: self.backoff,
             context_token: self.context_token.clone(),
         };
-        // 调用Daemon::poll
+        // 调用 Daemon::poll
         let spawn = DefaultExecutor::current().spawn(Box::new(daemon.map_err(|_| ())));
         // 将通道接收端传出
         spawn.ok().map(|_| Rx {
@@ -270,7 +270,7 @@ Buffer::new(self.capacity, make_discover)
 ```rust
     fn poll(&mut self) -> Poll<Self::Item, Self::Error> {
         loop {
-            // 遍历state成员状态
+            // 遍历 state 成员状态
             self.state = match self.state {
                 // 未连接时
                 State::Disconnected => {
@@ -285,7 +285,7 @@ Buffer::new(self.capacity, make_discover)
                             return Ok(Async::Ready(()));
                         }
                     };
-                    // 构造grpc请求
+                    // 构造 grpc 请求
                     let req = api::GetDestination {
                         scheme: "k8s".to_owned(),
                         path: self.dst.clone(),
@@ -313,8 +313,8 @@ Buffer::new(self.capacity, make_discover)
                 // 接收回复
                 State::Streaming(ref mut s) => {
                     // 处理回复流
-                    // 注意此处，参数1是get_profile请求的回复流，
-                    //   参数2是之前创建的通道发送端
+                    // 注意此处，参数 1 是 get_profile 请求的回复流，
+                    //   参数 2 是之前创建的通道发送端
                     match Self::proxy_stream(s, &mut self.tx, &mut self.hangup) {
                         Async::NotReady => return Ok(Async::NotReady),
                         Async::Ready(StreamState::SendLost) => return Ok(().into()),
@@ -349,7 +349,7 @@ Buffer::new(self.capacity, make_discover)
                 Err(_) => return StreamState::SendLost.into(),
             }
 
-            // 从grpc stream中取得一条数据
+            // 从 grpc stream 中取得一条数据
             match rx.poll() {
                 Ok(Async::NotReady) => match hangup.poll() {
                     Ok(Async::Ready(never)) => match never {}, // unreachable!
@@ -365,7 +365,7 @@ Buffer::new(self.capacity, make_discover)
                     }
                 },
                 Ok(Async::Ready(None)) => return StreamState::RecvDone.into(),
-                // 正确取得profile结构
+                // 正确取得 profile 结构
                 Ok(Async::Ready(Some(profile))) => {
                     debug!("profile received: {:?}", profile);
                     // 解析数据
@@ -380,7 +380,7 @@ Buffer::new(self.capacity, make_discover)
                         .into_iter()
                         .filter_map(convert_dst_override)
                         .collect();
-                    // 构造profiles::Routes结构并推到发送端
+                    // 构造 profiles::Routes 结构并推到发送端
                     match tx.start_send(profiles::Routes {
                         routes,
                         dst_overrides,
@@ -416,5 +416,5 @@ Buffer::new(self.capacity, make_discover)
 
 ## 总结
 
-proxy采用的tower框架，每个处理逻辑都是其中的一个layer，开发时只需层层堆叠即可。不过，也正因如此，各层之间的接口都极其相似，须得小心不可调错。
-对于destination这部分逻辑，linkerd2的destination组件收到来自proxy的grpc请求后，每当endpoint或service profile有任何变动，都会立即通过stream发送过去，proxy收到后根据endpoint调整负载均衡策略，根据service profile调整路由，然后通过它们来处理用户服务的实际请求。
+proxy 采用的 tower 框架，每个处理逻辑都是其中的一个 layer，开发时只需层层堆叠即可。不过，也正因如此，各层之间的接口都极其相似，须得小心不可调错。
+对于 destination 这部分逻辑，linkerd2 的 destination 组件收到来自 proxy 的 grpc 请求后，每当 endpoint 或 service profile 有任何变动，都会立即通过 stream 发送过去，proxy 收到后根据 endpoint 调整负载均衡策略，根据 service profile 调整路由，然后通过它们来处理用户服务的实际请求。

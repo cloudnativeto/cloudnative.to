@@ -1,9 +1,9 @@
 ---
-title: "服务网格Istio之pilot-xDS接口笔记"
+title: "服务网格 Istio 之 pilot-xDS 接口笔记"
 date: 2018-06-21T16:55:56+08:00
 draft: false
 authors: ["Tian Zhou"]
-summary: "本篇总结pilot的xDS常用接口，顺便浏览了部分pilot实现，下篇总结下istio的流量管理和服务发现的实现。简单来说istio做为管理面，集合了配置中心和服务中心两个功能，并把配置发现和服务发现以一组统一的xDS接口提供出来，数据面的envoy通过xDS获取需要的信息来做服务间通信和服务治理。"
+summary: "本篇总结 pilot 的 xDS 常用接口，顺便浏览了部分 pilot 实现，下篇总结下 istio 的流量管理和服务发现的实现。简单来说 istio 做为管理面，集合了配置中心和服务中心两个功能，并把配置发现和服务发现以一组统一的 xDS 接口提供出来，数据面的 envoy 通过 xDS 获取需要的信息来做服务间通信和服务治理。"
 tags: ["istio","pilot"]
 categories: ["istio"]
 keywords: ["service mesh","istio"]
@@ -11,17 +11,17 @@ keywords: ["service mesh","istio"]
 
 > 本文转载自[nino's blog](https://ninokop.github.io/2018/06/19/pilot-xDS/)。
 
-本篇总结pilot的xDS常用接口，顺便浏览了部分pilot实现，下篇总结下istio的流量管理和服务发现的实现。简单来说istio做为管理面，集合了配置中心和服务中心两个功能，并把配置发现和服务发现以一组统一的xDS接口提供出来，数据面的envoy通过xDS获取需要的信息来做服务间通信和服务治理。
+本篇总结 pilot 的 xDS 常用接口，顺便浏览了部分 pilot 实现，下篇总结下 istio 的流量管理和服务发现的实现。简单来说 istio 做为管理面，集合了配置中心和服务中心两个功能，并把配置发现和服务发现以一组统一的 xDS 接口提供出来，数据面的 envoy 通过 xDS 获取需要的信息来做服务间通信和服务治理。
 
 ## api v1 reference
 
-Istio中部署pilot的启动方式是`pilot-discovery discovery`。初始化阶段依次init了各种模块，其中discovery service就是xDS相关实现。[envoy API reference](https://www.envoyproxy.io/docs/envoy/latest/) 可以查到v1和v2两个版本的API文档。[envoy control plane](https://github.com/envoyproxy/go-control-plane) 给了v2 grpc接口相关的数据结构和接口。
+Istio 中部署 pilot 的启动方式是`pilot-discovery discovery`。初始化阶段依次 init 了各种模块，其中 discovery service 就是 xDS 相关实现。[envoy API reference](https://www.envoyproxy.io/docs/envoy/latest/) 可以查到 v1 和 v2 两个版本的 API 文档。[envoy control plane](https://github.com/envoyproxy/go-control-plane) 给了 v2 grpc 接口相关的数据结构和接口。
 
-> [pilot-xDS](https://github.com/ninokop/nino-notes/blob/master/istio/pilot-xDS.md)是几个月前0.6.0版本的环境上实验的接口，今天在0.8.0上跑发现RDS和CDS都查不到配置了，心好累。追到对应版本的代码发现因为routerule的配置升级到v1alpha3 routing API之后，APIV1只支持原来route rule配置，APIV2才支持virtual service相关配置，所以0.8.0环境上RDS查不到信息。
+> [pilot-xDS](https://github.com/ninokop/nino-notes/blob/master/istio/pilot-xDS.md)是几个月前 0.6.0 版本的环境上实验的接口，今天在 0.8.0 上跑发现 RDS 和 CDS 都查不到配置了，心好累。追到对应版本的代码发现因为 routerule 的配置升级到 v1alpha3 routing API 之后，APIV1 只支持原来 route rule 配置，APIV2 才支持 virtual service 相关配置，所以 0.8.0 环境上 RDS 查不到信息。
 
 ### sDS
 
-> **Tips** 最初看xDS的文档的时候，非常疑惑这些接口里的service-key service-node cluster-name到底是什么含义，在0.6.0版本中有个cache_stats接口，只要envoy调用过，这次查询记录就可以在cache_stats中看到。本节记录每个字段的含义和查询方式。
+> **Tips** 最初看 xDS 的文档的时候，非常疑惑这些接口里的 service-key service-node cluster-name 到底是什么含义，在 0.6.0 版本中有个 cache_stats 接口，只要 envoy 调用过，这次查询记录就可以在 cache_stats 中看到。本节记录每个字段的含义和查询方式。
 
 ```bash
 curl http://xx/v1/registration
@@ -29,7 +29,7 @@ curl http://xx/v1/registration/reviews.nino.svc.cluster.local\|http
 curl http://xx/v1/registration/reviews.nino.svc.cluster.local\|http\|version=v2
 ```
 
-**pilot/pkg/proxy/envoy/v1/discovery.go** 里v1接口文件中register函数完成了向go-restful注册服务。查询可以根据条件除了带上service-key，还可以在末尾带上labels，比如version=v2。在kube-service-registry当中service的查询是通过service endpoint 的shared informer查询的，可以很方便的匹配labels。
+**pilot/pkg/proxy/envoy/v1/discovery.go** 里 v1 接口文件中 register 函数完成了向 go-restful 注册服务。查询可以根据条件除了带上 service-key，还可以在末尾带上 labels，比如 version=v2。在 kube-service-registry 当中 service 的查询是通过 service endpoint 的 shared informer 查询的，可以很方便的匹配 labels。
 
 ```json
 [{
@@ -55,7 +55,7 @@ curl http://xx/v1/registration/reviews.nino.svc.cluster.local\|http\|version=v2
 
 ### cDS
 
-cDS的接口里的cluster_name和service_node可以通过envoy启动参数配置。其中cluster_name可以通过serviceCluster配置，service_node默认通过ENVOY_TYPE、POD_NAME、POD_NAMESPACE和INSTANCE_IP这些环境变量合成。
+cDS 的接口里的 cluster_name 和 service_node 可以通过 envoy 启动参数配置。其中 cluster_name 可以通过 serviceCluster 配置，service_node 默认通过 ENVOY_TYPE、POD_NAME、POD_NAMESPACE 和 INSTANCE_IP 这些环境变量合成。
 
 > /v1/{:cluster_name}/{:service_node}
 
@@ -98,7 +98,7 @@ curl http://xx/v1/clusters/productpage/sidecar~10.244.0.40~productpage-v1-
 
 ### rDS
 
-接口类似cDS，通过istioctl创建了route rule之后可以通过routes查到结果。下面的例子是发布了关于reviews服务的权重规则。可以通过以下RDS接口查到对应的权重规则。
+接口类似 cDS，通过 istioctl 创建了 route rule 之后可以通过 routes 查到结果。下面的例子是发布了关于 reviews 服务的权重规则。可以通过以下 RDS 接口查到对应的权重规则。
 
 > /v1/{:route_config_name}/{:cluster_name}/{:service_node}
 
@@ -184,7 +184,7 @@ productpage-v1-8666ffbd7c-mf5f4.nino~nino.svc.cluster.local
 
 ### eds http debug
 
-虽然v2是grpc的接口，但是pilot提供了`InitDebug`，可以通过debug接口查询服务和routes等服务和配置信息。比如下面是edsz的debug接口。
+虽然 v2 是 grpc 的接口，但是 pilot 提供了`InitDebug`，可以通过 debug 接口查询服务和 routes 等服务和配置信息。比如下面是 edsz 的 debug 接口。
 
 ```bash
 curl http://10.99.241.12:8080/debug/edsz
@@ -242,7 +242,7 @@ curl http://10.99.241.12:8080/debug/edsz
 
 ### eds grpc
 
-在envoy的go-control-plane接口定义中istio需要实现以下接口，结果pilot只实现了StreamEndpoints。看了下基本实现eds只需要DiscoveryRequest里的ResourceNames这个字段，其实跟v1的接口一样就是需要service-key。NodeId和TypeUrl可省略，后者默认就是EndpointType。
+在 envoy 的 go-control-plane 接口定义中 istio 需要实现以下接口，结果 pilot 只实现了 StreamEndpoints。看了下基本实现 eds 只需要 DiscoveryRequest 里的 ResourceNames 这个字段，其实跟 v1 的接口一样就是需要 service-key。NodeId 和 TypeUrl 可省略，后者默认就是 EndpointType。
 
 ```go
 type EndpointDiscoveryServiceServer interface {
@@ -257,7 +257,7 @@ type EndpointDiscoveryService_StreamEndpointsServer interface {
 }
 ```
 
-这个ResourceNames支持两种格式，其中v1和version=v1可以没有，这个代表labels和新版定义的subsets。eds的解析里兼容两个版本的解析方式。
+这个 ResourceNames 支持两种格式，其中 v1 和 version=v1 可以没有，这个代表 labels 和新版定义的 subsets。eds 的解析里兼容两个版本的解析方式。
 
 > outbound|http|v1|istioserver.pilot.svc.cluster.local
 >
@@ -276,7 +276,7 @@ res1, err := edsstr.Recv()
 cla, err := getLoadAssignment(res1)
 ```
 
-pilot把这个响应`DiscoveryResponse`的Resources字段用`ClusterLoadAssignment`代替。客户端需要`getLoadAssignment`从res1.Resources[0].Value反序列化出真正的响应结构。
+pilot 把这个响应`DiscoveryResponse`的 Resources 字段用`ClusterLoadAssignment`代替。客户端需要`getLoadAssignment`从 res1.Resources[0].Value 反序列化出真正的响应结构。
 
 **github.com/envoyproxy/go-control-plane/envoy/api/v2/eds.pb.go**
 
@@ -292,7 +292,7 @@ type ClusterLoadAssignment struct {
 
 ### ads grpc
 
-查询eds还有另一种方式ads，即Aggregated Discovery Service，它封装了下面这个接口。istio在实现过程中根据typeUrl识别xDS的类别。除了eds以外，其他lds rds cds都是由ads集成的，没有单独的xds接口了。
+查询 eds 还有另一种方式 ads，即 Aggregated Discovery Service，它封装了下面这个接口。istio 在实现过程中根据 typeUrl 识别 xDS 的类别。除了 eds 以外，其他 lds rds cds 都是由 ads 集成的，没有单独的 xds 接口了。
 
 ```go
 type AggregatedDiscoveryServiceServer interface {
@@ -301,7 +301,7 @@ type AggregatedDiscoveryServiceServer interface {
 }
 ```
 
-当类型选择为EndpointType时，查询结果跟eds一致，不过ads接口要求NodeID必须在pilot缓存中存在。
+当类型选择为 EndpointType 时，查询结果跟 eds 一致，不过 ads 接口要求 NodeID 必须在 pilot 缓存中存在。
 
 ```go
 xds := ads.NewAggregatedDiscoveryServiceClient(conn)
@@ -319,7 +319,7 @@ cla, err := getLoadAssignment(res1)
 
 ### cds http debug
 
-通过cdsz可以看到每个nodeID对应的clusters的配置，如果系统中用户没有发布subnets，从cds实际上查不到带tag或者说带version的信息。
+通过 cdsz 可以看到每个 nodeID 对应的 clusters 的配置，如果系统中用户没有发布 subnets，从 cds 实际上查不到带 tag 或者说带 version 的信息。
 
 > curl <http://10.99.241.12:8080/debug/cdsz>
 
@@ -346,7 +346,7 @@ cla, err := getLoadAssignment(res1)
 
 ### cds grpc
 
-cds接口返回的数据是Cluster，包含了所有这个服务的配置信息。但因为目前用不到就布列出来了，具体定义见文件 **github.com/envoyproxy/go-control-plane/envoy/api/v2/cds.pb.go**
+cds 接口返回的数据是 Cluster，包含了所有这个服务的配置信息。但因为目前用不到就布列出来了，具体定义见文件 **github.com/envoyproxy/go-control-plane/envoy/api/v2/cds.pb.go**
 
 ```go
 type Cluster struct {
@@ -364,7 +364,7 @@ type Cluster struct {
 
 ### rds grpc
 
-rds接口返回的数据结构是`RouteConfiguration`，这个RouteConfiguration对应的是新版本的路由配置格式，就是virtual service和destination rules这对规则。
+rds 接口返回的数据结构是`RouteConfiguration`，这个 RouteConfiguration 对应的是新版本的路由配置格式，就是 virtual service 和 destination rules 这对规则。
 
 **github.com/envoyproxy/go-control-plane/envoy/api/v2/rds.pb.go**
 
@@ -380,7 +380,7 @@ type RouteConfiguration struct {
 }
 ```
 
-> 看了数据结构注释，在RDS当中ResourceName填的是routeConfiguration的名字。
+> 看了数据结构注释，在 RDS 当中 ResourceName 填的是 routeConfiguration 的名字。
 
 ```go
 rds.Send(&xdsapi.DiscoveryRequest{
@@ -392,7 +392,7 @@ rds.Send(&xdsapi.DiscoveryRequest{
     TypeUrl:       RouteType})
 ```
 
-rds的查询结果实例如下，我就是发布了一个reviews的50%：50%的权重规则。
+rds 的查询结果实例如下，我就是发布了一个 reviews 的 50%：50% 的权重规则。
 
 ```json
 {
@@ -488,4 +488,4 @@ rds的查询结果实例如下，我就是发布了一个reviews的50%：50%的�
 
 - [envoy API reference](https://www.envoyproxy.io/docs/envoy/latest/)
 - [envoy control plane](https://github.com/envoyproxy/go-control-plane)
-- [istio指南](https://istio.io/)
+- [istio 指南](https://istio.io/)

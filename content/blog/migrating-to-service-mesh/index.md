@@ -9,14 +9,14 @@ date: 2020-09-28T16:00:00+08:00
 ---
 本文译自[Migrating to Service Mesh](https://allegro.tech/2020/05/migrating-to-service-mesh.html)。
 
-今年 [Allegro.pl](https://allegro.tech/about-us/) 已满21 岁。该公司在为数以百万计的波兰人提供在线购物服务的同时，还参与了许多技术进步。您可以使用公共云产品，机器学习来打破僵局。即使我们使用的许多技术似乎只是在大肆宣传，但他们的采用依然有可靠的理由的支持。让我告诉你一个我有幸从事的项目的故事。
+今年 [Allegro.pl](https://allegro.tech/about-us/) 已满 21 岁。该公司在为数以百万计的波兰人提供在线购物服务的同时，还参与了许多技术进步。您可以使用公共云产品，机器学习来打破僵局。即使我们使用的许多技术似乎只是在大肆宣传，但他们的采用依然有可靠的理由的支持。让我告诉你一个我有幸从事的项目的故事。
 
 ## 为什么要迁移到服务网格
 
 我不准备对 Service Mesh 的背景知识做过多的讨论，因为已经有大量关于此主题的文章。我曾写过[一篇文章](https://nofluffjobs.com/blog/jakie-korzysci-daje-service-mesh/)（波兰语），专门介绍我们为什么决定从这种方法中收益。
 
 这里只列出我们想要的内容：
-* 将通用平台代码从SDK（服务发现、负载均衡、分布式跟踪）中分离
+* 将通用平台代码从 SDK（服务发现、负载均衡、分布式跟踪）中分离
 * 将 mTLS 的逻辑从 SDK 和应用程序分离
 * 统一服务间通信的访问控制
 * 统一服务间流量的 HTTP 层面可观察性
@@ -34,7 +34,7 @@ date: 2020-09-28T16:00:00+08:00
 
 ## 如何迁移到服务网格
 
-旅途始于 2018年底。当时我们评估了现有的解决方案，然后发现大多数技术仅针对 k8s。我们[尝试了](https://envoy-control.readthedocs.io/en/latest/ec_vs_other_software/) [Istio](https://istio.io/)，结果证明仅要求 k8s 容器提供的网络隔离。我们需要一个定制的[控制平面](https://blog.envoyproxy.io/service-mesh-data-plane-vs-control-plane-2774e720f7fc)将所有的东西整合在一起。同时我们使用[Envoy](https://www.envoyproxy.io/)作为最稳定、最先进的 L7 代理，其可以满足我们的需求。Envoy 是用 C++ 开发的，由于其内存管理且没有垃圾收集和许多令人印象深刻的架构决策（例如线程模型），提供了可预测的稳定的延迟。
+旅途始于 2018 年底。当时我们评估了现有的解决方案，然后发现大多数技术仅针对 k8s。我们[尝试了](https://envoy-control.readthedocs.io/en/latest/ec_vs_other_software/) [Istio](https://istio.io/)，结果证明仅要求 k8s 容器提供的网络隔离。我们需要一个定制的[控制平面](https://blog.envoyproxy.io/service-mesh-data-plane-vs-control-plane-2774e720f7fc)将所有的东西整合在一起。同时我们使用[Envoy](https://www.envoyproxy.io/)作为最稳定、最先进的 L7 代理，其可以满足我们的需求。Envoy 是用 C++ 开发的，由于其内存管理且没有垃圾收集和许多令人印象深刻的架构决策（例如线程模型），提供了可预测的稳定的延迟。
 
 ### 控制平面
 
@@ -59,7 +59,7 @@ date: 2020-09-28T16:00:00+08:00
 
 ## 状态
 
-当我们使用 Envoy 作为 [sidecar](https://docs.microsoft.com/en-us/azure/architecture/patterns/sidecar) 来启动一个服务时，我们使用取巧的方式来完成服务在 Consul 中的注册。注册使用的是 Envoy 的端口，而不是服务的端口。使用这项技术，我们实现了迁移的第一步-将服务的入口流量转移到 Envoy。
+当我们使用 Envoy 作为 [sidecar](https://docs.microsoft.com/en-us/azure/architecture/patterns/sidecar) 来启动一个服务时，我们使用取巧的方式来完成服务在 Consul 中的注册。注册使用的是 Envoy 的端口，而不是服务的端口。使用这项技术，我们实现了迁移的第一步 - 将服务的入口流量转移到 Envoy。
 
 如果有出口流量，事情就不那么容易了。由于缺少容器化的网络隔离，iptables 一直是维护和调试的噩梦。我们为引入 Envoy 作为出口制定了长期的策略。我们决定所有服务都需要将其 SDK 更新为支持使用 Envoy 作为代理的指定的 HTTP 客户端。
 
@@ -93,7 +93,7 @@ date: 2020-09-28T16:00:00+08:00
 
 ## 演进
 
-在复杂的环境中部署 Service Mesh 是一项巨大的变革，数百名应用程序开发人员进行了大量工作。迁移帮助团队减少了技术债务。这种减少是迁移到提供 Service Mesh 支持的最新版本库的副产品。为 k8s 创建的现成的崭新的控制平面非常适合未开发的项目，但是对于许多存在异构技术栈的组织来说，这是无法达到的。Envoy 的主要创建者 Matt Klein 最近在[博客](https://mattklein123.dev/2020/03/15/on-the-state-of-envoy-proxy-control-planes/)中描述了这一事实 。我希望这个故事对您有所帮助，并展示在这种环境下从鸟瞰角度看生产部署的样子。我们接下来要考虑的是将现有服务与 k8s 原生解决方案集成在一起的方法，来为我们的用户提供无缝的体验。我们在稳定和优化我们的控制平面方面进行了大量工作，该控制平面现在在生产中托管了 5000 多个 Envoy 实例，其中一些需要针对 Consul 中注册的近 1000 个服务实例进行配置。我们的愿景以及下一步要做的是，开发人员无需修改库和迁移，就能重新访问分布式跟踪。Envoy 可以做到这一点。
+在复杂的环境中部署 Service Mesh 是一项巨大的变革，数百名应用程序开发人员进行了大量工作。迁移帮助团队减少了技术债务。这种减少是迁移到提供 Service Mesh 支持的最新版本库的副产品。为 k8s 创建的现成的崭新的控制平面非常适合未开发的项目，但是对于许多存在异构技术栈的组织来说，这是无法达到的。Envoy 的主要创建者 Matt Klein 最近在[博客](https://mattklein123.dev/2020/03/15/on-the-state-of-envoy-proxy-control-planes/)中描述了这一事实。我希望这个故事对您有所帮助，并展示在这种环境下从鸟瞰角度看生产部署的样子。我们接下来要考虑的是将现有服务与 k8s 原生解决方案集成在一起的方法，来为我们的用户提供无缝的体验。我们在稳定和优化我们的控制平面方面进行了大量工作，该控制平面现在在生产中托管了 5000 多个 Envoy 实例，其中一些需要针对 Consul 中注册的近 1000 个服务实例进行配置。我们的愿景以及下一步要做的是，开发人员无需修改库和迁移，就能重新访问分布式跟踪。Envoy 可以做到这一点。
 
 ## (最后) 感谢
 

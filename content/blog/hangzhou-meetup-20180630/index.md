@@ -1,24 +1,24 @@
 ---
-title: "第一届Service Mesh Meetup杭州站回顾"
+title: "第一届 Service Mesh Meetup 杭州站回顾"
 date: 2018-07-03T12:22:47+08:00
 draft: false
 authors: ["宋净超"]
-summary: "2018年6月30日，杭州，蚂蚁Z空间，一大早就下起了雨，我还心想，这雨要是下大了会不会很多人不来了？而且我们还一早就放出了IT大咖说的直播链接。没想到最后现场签到了有120多个小伙伴！视频直播最高峰值800多人同时在线，截止7月1号显示有5340人观看。"
+summary: "2018 年 6 月 30 日，杭州，蚂蚁 Z 空间，一大早就下起了雨，我还心想，这雨要是下大了会不会很多人不来了？而且我们还一早就放出了 IT 大咖说的直播链接。没想到最后现场签到了有 120 多个小伙伴！视频直播最高峰值 800 多人同时在线，截止 7 月 1 号显示有 5340 人观看。"
 tags: ["meetup"]
 categories: ["其他"]
 keywords: ["service mesh","线下沙龙","meetup"]
 ---
 
-6月30日，杭州，蚂蚁Z空间，一大早就下起了雨，我还心想，这雨要是下大了会不会很多人不来了？而且我们还一早就放出了IT大咖说的直播链接。没想到最后现场签到了有120多个小伙伴！👍视频直播最高峰值800多人同时在线，截止7月1号显示有5340人观看。
+6 月 30 日，杭州，蚂蚁 Z 空间，一大早就下起了雨，我还心想，这雨要是下大了会不会很多人不来了？而且我们还一早就放出了 IT 大咖说的直播链接。没想到最后现场签到了有 120 多个小伙伴！👍视频直播最高峰值 800 多人同时在线，截止 7 月 1 号显示有 5340 人观看。
 
-- 讲师PPT：https://github.com/servicemesher/meetup-slides
+- 讲师 PPT：https://github.com/servicemesher/meetup-slides
 - 视频直播回放：http://www.itdks.com/eventlist/detail/2311
 
-Meetup结束时现场观众和讲师的合影。
+Meetup 结束时现场观众和讲师的合影。
 
 ![](00704eQkgy1fsuaql8gjaj318w0u0qv6.jpg)
 
-Service Mesh meetup顺利落幕，感谢到场的小伙伴，线上观众，IT大咖说的直播支持，来自蚂蚁金服、网易、才云科技、谐云科技老师的精彩分享，蚂蚁金服提供场地支持，电子工业出版社提供赠书支持。下一站北京见！更多SM内容请关注我们社区的官方网站 [www.servicemesher.com](http://www.servicemesher.com)，忙活了一天都没饭，真的是很饿，晚上在回北京的高铁上叫了个外卖应付了下。
+Service Mesh meetup 顺利落幕，感谢到场的小伙伴，线上观众，IT 大咖说的直播支持，来自蚂蚁金服、网易、才云科技、谐云科技老师的精彩分享，蚂蚁金服提供场地支持，电子工业出版社提供赠书支持。下一站北京见！更多 SM 内容请关注我们社区的官方网站 [www.servicemesher.com](http://www.servicemesher.com)，忙活了一天都没饭，真的是很饿，晚上在回北京的高铁上叫了个外卖应付了下。
 
 ![](00704eQkgy1fsuamb3iufj31y011atx2.jpg)
 
@@ -28,7 +28,7 @@ Service Mesh meetup顺利落幕，感谢到场的小伙伴，线上观众，IT�
 
 ![](00704eQkgy1fsub06sja0j30xc0p0npd.jpg)
 
-前几天从LC3大会上拿来的贴纸（CNCF展台）。
+前几天从 LC3 大会上拿来的贴纸（CNCF 展台）。
 
 ![](00704eQkgy1fsuaue4vfxj30xc0p0b29.jpg)
 
@@ -40,7 +40,7 @@ Service Mesh meetup顺利落幕，感谢到场的小伙伴，线上观众，IT�
 
 ![](00704eQkgy1fsuavtu3d3j318w0u01ky.jpg)
 
-因为天气原因很多人来迟了，我们推迟了半个小时在1:30正式开始。
+因为天气原因很多人来迟了，我们推迟了半个小时在 1:30 正式开始。
 
 ![](00704eQkgy1fsuaww0pkjj318w0u0hdu.jpg)
 
@@ -80,4 +80,4 @@ Service Mesh meetup顺利落幕，感谢到场的小伙伴，线上观众，IT�
 
 ------
 
-历届meetup的PPT归档地址：https://github.com/servicemesher/meetup-slides
+历届 meetup 的 PPT 归档地址：https://github.com/servicemesher/meetup-slides

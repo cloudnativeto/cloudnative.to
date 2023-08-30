@@ -1,5 +1,5 @@
 ---
-title: "Istio Service Mesh教程"
+title: "Istio Service Mesh 教程"
 date: 2018-05-22T12:16:22+08:00
 draft: false
 authors: ["宋净超"]
@@ -62,7 +62,7 @@ kubectl apply -n default -f <(istioctl kube-inject -f yaml/istio-bookinfo/bookin
 172.17.8.102 zipkin.istio.jimmysong.io
 ```
 
-我们可以通过下面的URL地址访问以上的服务。
+我们可以通过下面的 URL 地址访问以上的服务。
 
 | Service      | URL                                                          |
 | ------------ | ------------------------------------------------------------ |
@@ -129,7 +129,7 @@ JAEGER_SERVICE_NAME=customer mvn \
   -Drun.arguments="--spring.config.location=src/main/resources/application-local.properties"
 ```
 
-服务访问地址： http://localhost:8280
+服务访问地址：http://localhost:8280
 
 **Preference**
 
@@ -279,7 +279,7 @@ customer => preference => recommendation v1 from '6fc97476f8-m2ntp': 1
 
 访问 <http://servicegraph.istio.jimmysong.io/dotviz> 查看服务间的关系图和 QPS。
 
-![服务关系图和QPS](https://jimmysong.io/kubernetes-handbook/images/istio-tutorial-serivcegraph-dotviz.png)
+![服务关系图和 QPS](https://jimmysong.io/kubernetes-handbook/images/istio-tutorial-serivcegraph-dotviz.png)
 
 访问 <http://grafana.istio.jimmysong.io> 查看 Service Mesh 的监控信息。
 

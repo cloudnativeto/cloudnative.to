@@ -13,7 +13,7 @@ keywords: ["Kubernetes","service mesh","金丝雀发布"]
 
 本文将和大家一起探讨下 Istio 的路由管理，介绍使用 Istio 灰度发布的过程中，有哪些需要注意的地方。
 
-流量治理用于控制服务之间的流量和接口调用。Istio 可以通过服务级别的配置，实现蓝绿发布、灰度发布以及百分比流量策略发布等，Istio 还可以实现诸如故障注入、熔断限流、超时重试等流量治理功能。 那么 Istio 如何具有如此强大的功能，它的路由管理是如何实现的，生产中使用 Istio 需要注意的要点有哪些呢？
+流量治理用于控制服务之间的流量和接口调用。Istio 可以通过服务级别的配置，实现蓝绿发布、灰度发布以及百分比流量策略发布等，Istio 还可以实现诸如故障注入、熔断限流、超时重试等流量治理功能。那么 Istio 如何具有如此强大的功能，它的路由管理是如何实现的，生产中使用 Istio 需要注意的要点有哪些呢？
 
 ## Istio 为什么可以实现流量治理
 
@@ -21,7 +21,7 @@ Istio 中路由策略的转发处理都是通过 Envoy 实现，Envoy 作为 Sid
 
 Envoy 可代理的流量包括从服务网格外部到其内部运行的服务，服务网格内部之间的服务，以及服务网格内部到外部的服务。下图展示了 Istio 完整的路由管理。
 
-![Istio路由管理](Istio-route-management.jpg)
+![Istio 路由管理](Istio-route-management.jpg)
 
 1. 客户端在特定端口上发出请求；
 2. 在集群内部，请求被路由到 Istio ingressgateway 服务所监听的端口上；
@@ -70,7 +70,7 @@ Reviews 服务具有多个版本，通过配置 VirtualService 和 DestinationRu
 ```
 下面讲述下 Product 服务是如何按照设置的权重调用 Reviews 服务。
 
-![Product服务调用Reviews服务](Product-reviews.jpg)
+![Product 服务调用 Reviews 服务](Product-reviews.jpg)
 
 1. Productpage 发起对 Reviews 的调用：http://reviews:9080/reviews
 2. 请求被 pod 的 iptable 规则拦截，转发到 15001 固定端口，这里注入 Sidecar 的 pod 里的 iptable 规则均是通过 Istio-init container 进行修改的
@@ -82,7 +82,7 @@ Reviews 服务具有多个版本，通过配置 VirtualService 和 DestinationRu
 8. 请求被转发到 Reviews 服务所在的 pod，被 iptable 规则拦截，转发到 15001 端口。
 9. Envoy 的 Virtual Listener 在 15001 端口上监听，收到了该请求。
 10. 请求被 Virtual Listener 根据请求原目标地址 IP（192.168.206.21）和端口（9080）转发到 192.168.206.21_9080 这个 listener。
-11. 根据 192.168.206.21_9080 listener 的 http_connection_manager filter 配置，该请求对应的 cluster 为 inbound|9080|v1|reviews.default.svc.cluster.local 。
+11. 根据 192.168.206.21_9080 listener 的 http_connection_manager filter 配置，该请求对应的 cluster 为 inbound|9080|v1|reviews.default.svc.cluster.local。
 12. inbound|9080|v1|reviews.default.svc.cluster.local cluster 配置的 host 为 127.0.0.1:9080。
 13. 请求被转发到 127.0.0.1:9080，即 Reviews 服务进行处理。
 

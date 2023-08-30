@@ -7,7 +7,7 @@ tags: ["istio","service mesh"]
 date: 2020-09-23T12:00:00+08:00
 ---
 
-了解了 `Pilot` 源码的基本结构和启动流程之后，我们可以深入探索 `Pilot` 究竟是怎么下发 `xDS` 协议的，以及协议的生成逻辑。相信大家都会有这些疑问：控制面与数据面详细的交互过程是什么？到底什么时候才会增量推送？增量推送判断的逻辑是什么？ 非 `Kubernetes` 原生的服务（如存在于虚拟机的服务、 `Dubbo` 服务等）到底是怎么注册并且经过一系列转化下发至数据面的？
+了解了 `Pilot` 源码的基本结构和启动流程之后，我们可以深入探索 `Pilot` 究竟是怎么下发 `xDS` 协议的，以及协议的生成逻辑。相信大家都会有这些疑问：控制面与数据面详细的交互过程是什么？到底什么时候才会增量推送？增量推送判断的逻辑是什么？非 `Kubernetes` 原生的服务（如存在于虚拟机的服务、 `Dubbo` 服务等）到底是怎么注册并且经过一系列转化下发至数据面的？
 
 带着这些问题，开始我们今天对 `Pilot` 的探索。
 
@@ -81,7 +81,7 @@ func NewServiceDiscovery(configController model.ConfigStoreCache, store model.Is
 
 `seWithSelectorByNamespace` 和 `instances` 如上述 `ServiceEntryStore` 结构介绍中的注释，前者缓存了各个 `namespace` 中所有的 `ServiceEntry` ，后者则是所有服务节点 `WorkloadEntry` 的缓存。
 
-当有新的 `WorkloadEntry` 变化时，先从 `seWithSelectorByNamespace` 中读取同一 `namespace` 中的 `ServiceEntry` ，遍历它们并与 `WorkloadEntry` 的 `Label` 进行比对，确定是关联的服务后，依据获取的服务创建 `ServiceInstance` 。 `ServiceInstance` 是 `Pilot` 抽象出的描述具体服务对应实例的结构:
+当有新的 `WorkloadEntry` 变化时，先从 `seWithSelectorByNamespace` 中读取同一 `namespace` 中的 `ServiceEntry` ，遍历它们并与 `WorkloadEntry` 的 `Label` 进行比对，确定是关联的服务后，依据获取的服务创建 `ServiceInstance` 。 `ServiceInstance` 是 `Pilot` 抽象出的描述具体服务对应实例的结构：
 
 ```go
 type ServiceInstance struct {

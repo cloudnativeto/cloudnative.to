@@ -21,7 +21,7 @@ authors: ["郑德惠","陈逸凡","崔秀龙","宋净超","敖小剑"]
 tags: ["Service Mesh"]
 featured: false
 image:
-  caption: '图片来源: [云原生社区](https://cloudnative.to)'
+  caption: '图片来源：[云原生社区](https://cloudnative.to)'
   focal_point: Right
 
 #links:
@@ -53,16 +53,16 @@ projects: []
 
 #### 唯品会 Service Mesh 的实践分享
 
-郑德惠 唯品会Java资深开发工程师，内部Service Mesh框架负责人，唯品会开源项目vjtools重要开发者，10年电信与互联网后台开发经验。
+郑德惠 唯品会 Java 资深开发工程师，内部 Service Mesh 框架负责人，唯品会开源项目 vjtools 重要开发者，10 年电信与互联网后台开发经验。
 
 #### SOFAMosn 持续演进路径及实践案例
 
-陈逸凡 花名无钩，蚂蚁集团资深开发工程师。专注于网络接入层，高性能服务器研发，SOFAMosn团队核心成员
+陈逸凡 花名无钩，蚂蚁集团资深开发工程师。专注于网络接入层，高性能服务器研发，SOFAMosn 团队核心成员
 
 #### 在网格的边缘试探——企业 Istio 试水指南
 
 崔秀龙 HPE 软件分析师，Kubernetes 权威指南作者之一，Kubernetes、Istio 项目成员
 
-#### Roundtable：回顾2018，Service Mesh 蓄势待发
+#### Roundtable：回顾 2018，Service Mesh 蓄势待发
 
 主持人：宋净超，ServiceMesher 社区联合创始人

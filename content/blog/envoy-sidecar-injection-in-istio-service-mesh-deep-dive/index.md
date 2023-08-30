@@ -32,9 +32,9 @@ productpage istio-proxy
 
 使用 Sidecar 模式部署服务网格时，无需在节点上运行代理（因此您不需要基础结构的协作），但是集群中将运行多个相同的 Sidecar 副本。从另一个角度看：我可以为一组微服务部署到一个服务网格中，你也可以部署一个有特定实现的服务网格。在 Sidecar 部署方式中，你会为每个应用的容器部署一个伴生容器。Sidecar 接管进出应用容器的所有流量。在 Kubernetes 的 Pod 中，在原有的应用容器旁边运行一个 Sidecar 容器，可以理解为两个容器共享存储、网络等资源，可以广义的将这个注入了 Sidecar 容器的 Pod 理解为一台主机，两个容器共享主机资源。
 
-例如下图 [SOFAMesh & MOSN—基于Istio构建的用于应对大规模流量的Service Mesh解决方案](https://jimmysong.io/posts/sofamesh-and-mosn-proxy-sidecar-service-mesh-by-ant-financial/)的架构图中描述的，MOSN 作为 Sidecar 的方式和应用运行在同一个 Pod 中，拦截所有进出应用容器的流量，[SOFAMesh](https://github.com/sofastack/sofa-mesh) 兼容 Istio，其中使用 Go 语言开发的 [MOSN](https://github.com/sofastack/mosn) 替换了 Envoy。
+例如下图 [SOFAMesh & MOSN—基于 Istio 构建的用于应对大规模流量的 Service Mesh 解决方案](https://jimmysong.io/posts/sofamesh-and-mosn-proxy-sidecar-service-mesh-by-ant-financial/)的架构图中描述的，MOSN 作为 Sidecar 的方式和应用运行在同一个 Pod 中，拦截所有进出应用容器的流量，[SOFAMesh](https://github.com/sofastack/sofa-mesh) 兼容 Istio，其中使用 Go 语言开发的 [MOSN](https://github.com/sofastack/mosn) 替换了 Envoy。
 
-![SOFAMesh架构图](006tNbRwgy1fuyr4vizzwj31kw1biq98.jpg)
+![SOFAMesh 架构图](006tNbRwgy1fuyr4vizzwj31kw1biq98.jpg)
 
 **注意**：下文中所指的 Sidecar 都是指的 Envoy 代理容器。
 
@@ -48,7 +48,7 @@ Init 容器使用 Linux Namespace，所以相对应用程序容器来说具有�
 
 在 Pod 启动过程中，Init 容器会按顺序在网络和数据卷初始化之后启动。每个容器必须在下一个容器启动之前成功退出。如果由于运行时或失败退出，将导致容器启动失败，它会根据 Pod 的 `restartPolicy` 指定的策略进行重试。然而，如果 Pod 的 `restartPolicy` 设置为 Always，Init 容器失败时会使用 `RestartPolicy` 策略。
 
-在所有的 Init 容器没有成功之前，Pod 将不会变成 `Ready` 状态。Init 容器的端口将不会在 Service 中进行聚集。 正在初始化中的 Pod 处于 `Pending` 状态，但应该会将 `Initializing` 状态设置为 true。Init 容器运行完成以后就会自动终止。
+在所有的 Init 容器没有成功之前，Pod 将不会变成 `Ready` 状态。Init 容器的端口将不会在 Service 中进行聚集。正在初始化中的 Pod 处于 `Pending` 状态，但应该会将 `Initializing` 状态设置为 true。Init 容器运行完成以后就会自动终止。
 
 关于 Init 容器的详细信息请参考 [Init 容器 - Kubernetes 中文指南/云原生应用架构实践手册](https://jimmysong.io/kubernetes-handbook/concepts/init-containers.html)。
 
@@ -313,7 +313,7 @@ $ /usr/local/bin/istio-iptables.sh -p 15001 -u 1337 -m REDIRECT -i '*' -x "" -b 
 这条启动命令的作用是：
 
 - 将应用容器的所有流量都转发到 Envoy 的 15001 端口。
-- 使用 `istio-proxy` 用户身份运行， UID 为 1337，即 Envoy 所处的用户空间，这也是 `istio-proxy` 容器默认使用的用户，见 YAML 配置中的 `runAsUser` 字段。
+- 使用 `istio-proxy` 用户身份运行，UID 为 1337，即 Envoy 所处的用户空间，这也是 `istio-proxy` 容器默认使用的用户，见 YAML 配置中的 `runAsUser` 字段。
 - 使用默认的 `REDIRECT` 模式来重定向流量。
 - 将所有出站流量都重定向到 Envoy 代理。
 - 将所有访问 9080 端口（即应用容器 `productpage` 的端口）的流量重定向到 Envoy 代理。
@@ -339,7 +339,7 @@ $ vagrant ssh node3
 $ sudo -i
 ```
 
-查看 iptables 配置，列出 NAT（网络地址转换）表的所有规则，因为在 Init 容器启动的时候选择给  `istio-iptables.sh` 传递的参数中指定将入站流量重定向到 Envoy 的模式为 “REDIRECT”，因此在 iptables 中将只有 NAT 表的规格配置，如果选择 `TPROXY` 还会有 `mangle` 表配置。`iptables` 命令的详细用法请参考 [iptables](https://wangchujiang.com/linux-command/c/iptables.html)，规则配置请参考 [iptables 规则配置](http://www.zsythink.net/archives/1517)。
+查看 iptables 配置，列出 NAT（网络地址转换）表的所有规则，因为在 Init 容器启动的时候选择给  `istio-iptables.sh` 传递的参数中指定将入站流量重定向到 Envoy 的模式为“REDIRECT”，因此在 iptables 中将只有 NAT 表的规格配置，如果选择 `TPROXY` 还会有 `mangle` 表配置。`iptables` 命令的详细用法请参考 [iptables](https://wangchujiang.com/linux-command/c/iptables.html)，规则配置请参考 [iptables 规则配置](http://www.zsythink.net/archives/1517)。
 
 ## 理解 iptables
 
@@ -405,11 +405,11 @@ Chain OUTPUT (policy ACCEPT 18M packets, 1916M bytes)
  pkts bytes target     prot opt in     out     source               destination
 ```
 
-我们看到三个默认的链，分别是 INPUT、FORWARD 和 OUTPUT，每个链中的第一行输出表示链名称（在本例中为INPUT/FORWARD/OUTPUT），后跟默认策略（ACCEPT）。
+我们看到三个默认的链，分别是 INPUT、FORWARD 和 OUTPUT，每个链中的第一行输出表示链名称（在本例中为 INPUT/FORWARD/OUTPUT），后跟默认策略（ACCEPT）。
 
 下图是 iptables 的建议结构图，流量在经过 INPUT 链之后就进入了上层协议栈，比如
 
-![iptables结构图](0069RVTdgy1fv5dm4a9ygj30w50czdi3.jpg)
+![iptables 结构图](0069RVTdgy1fv5dm4a9ygj30w50czdi3.jpg)
 
 图片来自[常见 iptables 使用规则场景整理](https://www.aliang.org/Linux/iptables.html)
 
@@ -429,7 +429,7 @@ Chain OUTPUT (policy ACCEPT 18M packets, 1916M bytes)
 
 还有一列没有表头，显示在最后，表示规则的选项，作为规则的扩展匹配条件，用来补充前面的几列中的配置。`prot`、`opt`、`in`、`out`、`source` 和 `destination` 和显示在 `destination` 后面的没有表头的一列扩展条件共同组成匹配规则。当流量匹配这些规则后就会执行 `target`。
 
-关于 iptables 规则请参考[常见iptables使用规则场景整理](https://www.aliang.org/Linux/iptables.html)。
+关于 iptables 规则请参考[常见 iptables 使用规则场景整理](https://www.aliang.org/Linux/iptables.html)。
 
 **target 支持的类型**
 
@@ -498,7 +498,7 @@ Chain ISTIO_REDIRECT (2 references)
 - 如果目的地非 localhost 就跳转到 ISTIO_REDIRECT 链
 - 所有来自 istio-proxy 用户空间的非 localhost 流量跳转到它的调用点 `OUTPUT` 继续执行 `OUTPUT` 链的下一条规则，因为 `OUTPUT` 链中没有下一条规则了，所以会继续执行 `POSTROUTING` 链然后跳出 iptables，直接访问目的地
 - 如果流量不是来自 istio-proxy 用户空间，又是对 localhost 的访问，那么就跳出 iptables，直接访问目的地
-- 其它所有d情况都跳转到 `ISTIO_REDIRECT` 链
+- 其它所有 d 情况都跳转到 `ISTIO_REDIRECT` 链
 
 其实在最后这条规则前还可以增加 IP 地址过滤，让某些 IP 地址段不通过 Envoy 代理。
 
@@ -551,7 +551,7 @@ ENTRYPOINT ["/usr/local/bin/pilot-agent"]
 /usr/local/bin/pilot-agent proxy sidecar --configPath /etc/istio/proxy --binaryPath /usr/local/bin/envoy --serviceCluster productpage --drainDuration 45s --parentShutdownDuration 1m0s --discoveryAddress istio-pilot.istio-system:15007 --discoveryRefreshDelay 1s --zipkinAddress zipkin.istio-system:9411 --connectTimeout 10s --statsdUdpAddress istio-statsd-prom-bridge.istio-system:9125 --proxyAdminPort 15000 --controlPlaneAuthPolicy NONE
 ```
 
-主要配置了 Envoy 二进制文件的位置、服务发现地址、服务集群名、监控指标上报地址、Envoy 的管理端口、热重启时间等，详细用法请参考 [Istio官方文档 pilot-agent 的用法](https://istio.io/docs/reference/commands/pilot-agent/)。
+主要配置了 Envoy 二进制文件的位置、服务发现地址、服务集群名、监控指标上报地址、Envoy 的管理端口、热重启时间等，详细用法请参考 [Istio 官方文档 pilot-agent 的用法](https://istio.io/docs/reference/commands/pilot-agent/)。
 
 `pilot-agent` 是容器中 PID 为 1 的启动进程，它启动时又创建了一个 Envoy 进程，如下：
 
@@ -564,7 +564,7 @@ ENTRYPOINT ["/usr/local/bin/pilot-agent"]
 - `-c /etc/istio/proxy/envoy-rev0.json`：配置文件，支持 `.json`、`.yaml`、`.pb` 和 `.pb_text` 格式，`pilot-agent` 启动的时候读取了容器的环境变量后创建的。
 - `--restart-epoch 0`：Envoy 热重启周期，第一次启动默认为 0，每热重启一次该值加 1。
 - `--drain-time-s 45`：热重启期间 Envoy 将耗尽连接的时间。
-- `--parent-shutdown-time-s 60`： Envoy 在热重启时关闭父进程之前等待的时间。
+- `--parent-shutdown-time-s 60`：Envoy 在热重启时关闭父进程之前等待的时间。
 - `--service-cluster productpage`：Envoy 运行的本地服务集群的名字。
 - `--service-node sidecar~172.33.78.10~productpage-v1-745ffc55b7-2l2lw.default~default.svc.cluster.local`：定义 Envoy 运行的本地服务节点名称，其中包含了该 Pod 的名称、IP、DNS 域等信息，根据容器的环境变量拼出来的。
 - `-max-obj-name-len 189`：cluster/route_config/listener 中名称字段的最大长度（以字节为单位）
@@ -732,10 +732,10 @@ envoy    11 istio-proxy   63u  IPv4 338525      0t0  TCP productpage-v1-745ffc55
 
 ## 参考
 
-- [SOFAMesh & SOFA MOSN—基于Istio构建的用于应对大规模流量的Service Mesh解决方案 - jimmysong.io](https://jimmysong.io/posts/sofamesh-and-mosn-proxy-sidecar-service-mesh-by-ant-financial/ - jimmysong.io)
+- [SOFAMesh & SOFA MOSN—基于 Istio 构建的用于应对大规模流量的 Service Mesh 解决方案 - jimmysong.io](https://jimmysong.io/posts/sofamesh-and-mosn-proxy-sidecar-service-mesh-by-ant-financial/ - jimmysong.io)
 - [Init 容器 - Kubernetes 中文指南/云原生应用架构实践手册 - jimmysong.io](https://jimmysong.io/kubernetes-handbook/concepts/init-containers.html)
 - [JSONPath Support - kubernetes.io](https://kubernetes.io/docs/reference/kubectl/jsonpath/)
 - [iptables 命令使用说明 - wangchujiang.com](https://wangchujiang.com/linux-command/c/iptables.html)
 - [How To List and Delete Iptables Firewall Rules - digitalocean.com](https://www.digitalocean.com/community/tutorials/how-to-list-and-delete-iptables-firewall-rules)
-- [一句一句解说 iptables的详细中文手册 - cnblog.com](https://www.cnblogs.com/fhefh/archive/2011/04/04/2005249.html)
-- [常见iptables使用规则场景整理 - aliang.org](https://www.aliang.org/Linux/iptables.html)
+- [一句一句解说 iptables 的详细中文手册 - cnblog.com](https://www.cnblogs.com/fhefh/archive/2011/04/04/2005249.html)
+- [常见 iptables 使用规则场景整理 - aliang.org](https://www.aliang.org/Linux/iptables.html)

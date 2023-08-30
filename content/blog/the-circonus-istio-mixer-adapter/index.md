@@ -1,22 +1,22 @@
 ---
-title: "Circonus Istio Mixer适配器"
+title: "Circonus Istio Mixer 适配器"
 date: 2018-07-17T20:12:18+08:00
 draft: false
 authors: ["Fred Moyer"]
 translators: ["陈冬"]
-summary: "本文是Circonus公司的人员分享的为Istio mixer开发适配器的过程。"
+summary: "本文是 Circonus 公司的人员分享的为 Istio mixer 开发适配器的过程。"
 tags: ["istio"]
 categories: ["istio"]
 keywords: ["service mesh","istio","服务网格","circonus"]
 ---
 
-> 本文英文原文最初发表时间：2017年12月6日
+> 本文英文原文最初发表时间：2017 年 12 月 6 日
 
 Circonus 参与开源软件有着悠久的传统。因此，当看到 Istio 提供了一个精心设计的接口，通过适配器连接 syndicate 服务遥测，我们就知道 Circonus 适配器可以与 Istio 很好的衔接。Istio 已经被设计成提供高性能、高可扩展的应用控制平面，并且 Circonus 也是按照高性能和可扩展性的核心原则设计的。
 
 今天我们很高兴的宣布 [Istio 服务网格](https://istio.io/) 的 Circonus 适配器的可用性。这篇博客文章将介绍这个适配器的开发，并向您展示如何快速启动并运行它。我们知道你会对此非常感兴趣，因为 Kubernetes 和 Istio 可以提供扩展 Circonus 的能力使其远强于其他遥测解决方案。
 
-如果你不知道什么是服务网格那也没关系，其实你已经用了很多年了。互联网的路由基础设施就是一个服务网格；它有利于 TCP 重传、访问控制、动态路由、流量规划等。以往占主导地位的单体web应用正在为微服务让路。Istio 通过一个  [sidecar proxy](https://www.envoyproxy.io/docs/envoy/latest/) 提供基于容器的分布式应用程序的控制平面功能。它为服务的操作人员提供了丰富的功能来控制 [Kubernetes](https://kubernetes.io/) 编排的服务集合，而不需要服务本身来实现任何控制平面的功能集合。
+如果你不知道什么是服务网格那也没关系，其实你已经用了很多年了。互联网的路由基础设施就是一个服务网格；它有利于 TCP 重传、访问控制、动态路由、流量规划等。以往占主导地位的单体 web 应用正在为微服务让路。Istio 通过一个  [sidecar proxy](https://www.envoyproxy.io/docs/envoy/latest/) 提供基于容器的分布式应用程序的控制平面功能。它为服务的操作人员提供了丰富的功能来控制 [Kubernetes](https://kubernetes.io/) 编排的服务集合，而不需要服务本身来实现任何控制平面的功能集合。
 
 Istio [Mixer](https://istio.io/docs/concepts/policies-and-telemetry/overview/) 提供了一个 [适配器](https://istio.io/blog/2017/adapter-model/) 模型，它允许我们通过为 Mixer 创建用于外部基础设施后端接口的 [处理器](https://istio.io/docs/concepts/policies-and-telemetry/config/#handlers) 来开发适配器。Mixer 还提供了一组模版，每个模板都为适配器提供了不同的元数据集。在例如 Circonus 适配器之类的度量适配器，该元数据集包括诸如`请求持续时间（request duration）`、`请求计数（request count）`、`请求有效负载大小（request payload size）`等度量。要激活 Istio 启用的 Kubernetes 集群中的 Circonus 适配器，只需要使用 istioctl 命令将 Circonus  operator 配置 注入到 k8s 集群中，metrics 将开始流动。
 
@@ -125,7 +125,7 @@ func (b *builder) Build(ctx context.Context, env adapter.Env) (adapter.Handler, 
 }
 ```
 
-Mixer 提供了一个生成器类型，我们定义了构建方法。再次，Mixer 的上下文被传递，以及表示 Mixer 配置的环境变量。我们创建了一个新的 `circonus-gometrics` 对象，并故意禁用了自动 metrics 刷新。我们这样做是因为 Mixer 要求我们在使用 `env.ScheduleDaemon()` 方法时在 panic 处理器中包装所有的 goroutines 。你会注意到我们通过 `context.WithCancel` 创建了自己的 `adapterContext` 。这使得我们可以通过 Mixer 提供的 `Close()` 方法中调用 `h.cancel()` 来关闭 metrics 刷新 goroutine 。我们还希望将任何日志事件从 `CGM (circonus-gometrics)` 发送到 Mixer 的日志中。Mixer 提供了一个基于 glog 的  `env.Logger()` 接口，但 CGM 使用的是标准的 Golang 日志。如何解决这种不匹配的问题？通过一个 logger bridge，任何 CGM 生成的日志记录语句都可以传递给 Mixer。
+Mixer 提供了一个生成器类型，我们定义了构建方法。再次，Mixer 的上下文被传递，以及表示 Mixer 配置的环境变量。我们创建了一个新的 `circonus-gometrics` 对象，并故意禁用了自动 metrics 刷新。我们这样做是因为 Mixer 要求我们在使用 `env.ScheduleDaemon()` 方法时在 panic 处理器中包装所有的 goroutines。你会注意到我们通过 `context.WithCancel` 创建了自己的 `adapterContext` 。这使得我们可以通过 Mixer 提供的 `Close()` 方法中调用 `h.cancel()` 来关闭 metrics 刷新 goroutine。我们还希望将任何日志事件从 `CGM (circonus-gometrics)` 发送到 Mixer 的日志中。Mixer 提供了一个基于 glog 的  `env.Logger()` 接口，但 CGM 使用的是标准的 Golang 日志。如何解决这种不匹配的问题？通过一个 logger bridge，任何 CGM 生成的日志记录语句都可以传递给 Mixer。
 
 ```go
 // logToEnvLogger converts CGM log package writes to env.Logger()
@@ -145,13 +145,13 @@ func (b logToEnvLogger) Write(msg []byte) (int, error) {
 
 全适配器的代码，可以查看 [Istio github 库](https://github.com/istio/istio/tree/master/mixer/adapter/circonus)。
 
-尽管如此，让我们看看在执行过程中是什么样子的。我安装了 Google Kubernetes Engine，使用 Circonus 加载了 Istio 的开发版本，并部署了于 Istio 一起提供的 BookInfo 示例应用程序。下图是从请求到应用程序的请求持续时间分布的热图。你会注意到高亮显示的时间片段的直方图覆盖。我添加了一个覆盖，添加了一个中位数、第九十和百分位的响应时间；在任意的分位数和时间窗上生成这些数据是有可能的，因为我们将原始的数据存储为对数线性直方图。注意，中位数和第九十百分位数是相对固定的，而第九十五百分位数倾向于在几百毫秒的范围内波动。这种类型的深度可观察性可以用来量化 Istio 本身在版本上的表现，因为 Istio 的开发正在快速迭代。或者，更可能的是，它将用来标识部署的应用程序中的问题。如果你的百分位数不符合你的内部服务水平目标 (SLO) ，这是一个很好的标识，说明你有事情需要做了。毕竟，如果有20个用户中有一个在你的应用程序上有低于标准的体验，难道你不想知道吗？
+尽管如此，让我们看看在执行过程中是什么样子的。我安装了 Google Kubernetes Engine，使用 Circonus 加载了 Istio 的开发版本，并部署了于 Istio 一起提供的 BookInfo 示例应用程序。下图是从请求到应用程序的请求持续时间分布的热图。你会注意到高亮显示的时间片段的直方图覆盖。我添加了一个覆盖，添加了一个中位数、第九十和百分位的响应时间；在任意的分位数和时间窗上生成这些数据是有可能的，因为我们将原始的数据存储为对数线性直方图。注意，中位数和第九十百分位数是相对固定的，而第九十五百分位数倾向于在几百毫秒的范围内波动。这种类型的深度可观察性可以用来量化 Istio 本身在版本上的表现，因为 Istio 的开发正在快速迭代。或者，更可能的是，它将用来标识部署的应用程序中的问题。如果你的百分位数不符合你的内部服务水平目标 (SLO) ，这是一个很好的标识，说明你有事情需要做了。毕竟，如果有 20 个用户中有一个在你的应用程序上有低于标准的体验，难道你不想知道吗？
 
 ![](006tKfTcly1ft40ca0k7qj30vp0igq6c.jpg)
 
 这看起来很有趣，所以让我们来安排如何让这些东西运行起来。首先我们需要一个 Kubernetes 集群。[Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/docs/quickstart) 提供了一种快速获取集群的简单方法。
 
-如果你不想使用 GKE ，那么 Istio 文档中记录了一些其他的方式，这些是我用来启动和运行的注释。在是用 web UI 的方式部署了集群之后，我使用 *gcloud* 命令行运行程序。
+如果你不想使用 GKE，那么 Istio 文档中记录了一些其他的方式，这些是我用来启动和运行的注释。在是用 web UI 的方式部署了集群之后，我使用 *gcloud* 命令行运行程序。
 
 ```bash
 # set your zones and region
@@ -193,7 +193,7 @@ $ kubectl apply -f <(istioctl kube-inject -f samples/bookinfo/kube/bookinfo.yaml
 $ kubectl get services
 ```
 
-如果你在使用 GKE ，你还需要配置网管和防火墙规则
+如果你在使用 GKE，你还需要配置网管和防火墙规则
 
 ```bash
 # get the worker address
@@ -259,6 +259,6 @@ name: mixer
 $ istioctl create  -f circonus_config.yaml
 ```
 
-向应用发送些请求，你就可以看到流向你的 Circonus 仪表盘的 metrics ！如果你遇到任何问题，请随时在 [Circonus labs slack](http://slack.s.circonus.com/) 上联系我们，或者直接在 Twitter 上 @phredmoyer 。
+向应用发送些请求，你就可以看到流向你的 Circonus 仪表盘的 metrics！如果你遇到任何问题，请随时在 [Circonus labs slack](http://slack.s.circonus.com/) 上联系我们，或者直接在 Twitter 上 @phredmoyer。
 
-这是一个很有意思的集成，Istio 绝对是 Kubernetes 的前沿，但值得注意的是在几个月前它已经成熟了，应该可以考虑用来部署新的微服务。我要感谢一些帮助过的人。 [Matt Maier](https://github.com/maier) 是 [Circonus gometrics](https://github.com/circonus-labs/circonus-gometrics) 的维护者，在整合 Istio 处理器框架和 CGM 提供了宝贵的价值。[Zack Butcher](https://twitter.com/zackbutcher) 和 [Douglas Reid](https://twitter.com/jdouglasreid) 都是 Istio 项目上的 hackers，几个月前我在一个线下的 meetup 上与他们谈论到了 Istio ，他们发出了令人鼓舞的 “send the PRs!’ 。[Martin Taillefer](https://github.com/geeknoid) 在 Circonus 适配器开发的最后阶段给予了很好的反馈和建议。[Shriram Rajagopalan](https://twitter.com/rshriram) 在最后阶段使用 CircleCI 帮助完成了测试工作。最后，感谢 Circonus 团队赞助这项工作，以及  Istio 社区的开放文化，使这项创新成为可能。
+这是一个很有意思的集成，Istio 绝对是 Kubernetes 的前沿，但值得注意的是在几个月前它已经成熟了，应该可以考虑用来部署新的微服务。我要感谢一些帮助过的人。 [Matt Maier](https://github.com/maier) 是 [Circonus gometrics](https://github.com/circonus-labs/circonus-gometrics) 的维护者，在整合 Istio 处理器框架和 CGM 提供了宝贵的价值。[Zack Butcher](https://twitter.com/zackbutcher) 和 [Douglas Reid](https://twitter.com/jdouglasreid) 都是 Istio 项目上的 hackers，几个月前我在一个线下的 meetup 上与他们谈论到了 Istio，他们发出了令人鼓舞的“send the PRs!’ 。[Martin Taillefer](https://github.com/geeknoid) 在 Circonus 适配器开发的最后阶段给予了很好的反馈和建议。[Shriram Rajagopalan](https://twitter.com/rshriram) 在最后阶段使用 CircleCI 帮助完成了测试工作。最后，感谢 Circonus 团队赞助这项工作，以及  Istio 社区的开放文化，使这项创新成为可能。

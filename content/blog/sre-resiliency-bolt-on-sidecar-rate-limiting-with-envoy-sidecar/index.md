@@ -195,7 +195,7 @@ descriptors:
       requests_per_unit: 500
 ```
 
-接下来使用docker-compose 的配置文件（`docker-compose.yml`）来启动全局速率限制服务（详细步骤请参考 [README](https://github.com/lyft/ratelimit)）：
+接下来使用 docker-compose 的配置文件（`docker-compose.yml`）来启动全局速率限制服务（详细步骤请参考 [README](https://github.com/lyft/ratelimit)）：
 
 ```bash
 $ docker-compose down && docker-compose up
@@ -280,7 +280,7 @@ admin:
       port_value: 9901
 ```
 
-然后，我们以 `1000个请求/秒` 的速率（速率限制的2倍）运行负载测试工具：
+然后，我们以 `1000个请求/秒` 的速率（速率限制的 2 倍）运行负载测试工具：
 
 ```bash
 $ make load-test LOAD_TEST_TARGET=http://localhost:10000 LOAD_TEST_RATE=1000

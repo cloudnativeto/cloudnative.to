@@ -1,5 +1,5 @@
 ---
-title: "Istio的GitOps—像代码一样管理Istio配置"
+title: "Istio 的 GitOps—像代码一样管理 Istio 配置"
 date: 2018-05-31T21:12:03+08:00
 draft: false
 authors: ["Anita"]
@@ -20,9 +20,9 @@ keywords: ["gitops","kubecon","git","CI/CD","Istio","weavecloud"]
 - Istio 和 GitOps 的最佳实践是如何管理在其上运行的应用程序的。
 - 如何使用 GitOps 工作流程和 Istio 进行金丝雀部署。
 
-### 什么是GitOps？
+### 什么是 GitOps？
 
-[GitOps 是实现持续交付的一种方式](https://www.weave.works/blog/the-gitops-pipeline)。“GitOps 使用 Git 作为声明式基础架构和应用程序的真实来源” Alexis Richardson 说。
+[GitOps 是实现持续交付的一种方式](https://www.weave.works/blog/the-gitops-pipeline)。“GitOps 使用 Git 作为声明式基础架构和应用程序的真实来源”Alexis Richardson 说。
 
 当对 Git 进行更改时，自动化交付管道会上线对基础架构的更改。但是这个想法还可以更进一步——使用工具来比较实际的生产状态和源代码控制中描述的状态，然后告诉你什么时候集群的状态跟描述的不符。
 

@@ -9,34 +9,34 @@ tags: ["Kubernetes"]
 
 ## Overview
 
-这篇文章主要是学习Informer机制并且理解Informer各个组件的设计。
+这篇文章主要是学习 Informer 机制并且理解 Informer 各个组件的设计。
 
 ## 背景
 
-为什么Kubernetes需要Informer机制？我们知道Kubernetes各个组件都是通过REST API跟API Server交互通信的，而如果每次每一个组件都直接跟API Server交互去读取/写入到后端的etcd的话，会对API Server以及etcd造成非常大的负担。 而Informer机制是为了保证各个组件之间通信的实时性、可靠性，并且减缓对API Server和etcd的负担。
+为什么 Kubernetes 需要 Informer 机制？我们知道 Kubernetes 各个组件都是通过 REST API 跟 API Server 交互通信的，而如果每次每一个组件都直接跟 API Server交互去读取/写入到后端的etcd的话，会对API Server 以及 etcd 造成非常大的负担。而 Informer 机制是为了保证各个组件之间通信的实时性、可靠性，并且减缓对 API Server 和 etcd 的负担。
 
 ## Informer 流程
 
 这个流程，建议先看看[《From Controller Study Informer》](https://github.com/JaneLiuL/study-client-go/blob/master/fromcontrollerstudyinformer.md)
 
-这里我们以CoreV1. Pod资源为例子：
+这里我们以 CoreV1. Pod 资源为例子：
 
-1. 第一次启动Informer的时候，Reflector 会使用`List`从API Server主动获取CoreV1. Pod的所有资源对象信息，通过`resync`将资源存放在`Store`中
-2. 持续使用`Reflector`建立长连接，去`Watch` API Server发来的资源变更事件
-3. 当2 监控到CoreV1.Pod的资源对象有增加/删除/修改之后，就把资源对象存放在`DeltaFIFO`中
-4. `DeltaFIFO`是一个先进先出队列，只要这个队列有数据，就被Pop到Controller中, 将这个资源对象存储至`Indexer`中，并且将该资源对象分发至`ShareInformer`
-5. Controller会触发`Process`回调函数
+1. 第一次启动 Informer 的时候，Reflector 会使用`List`从 API Server 主动获取 CoreV1. Pod 的所有资源对象信息，通过`resync`将资源存放在`Store`中
+2. 持续使用`Reflector`建立长连接，去`Watch` API Server 发来的资源变更事件
+3. 当 2 监控到 CoreV1.Pod 的资源对象有增加/删除/修改之后，就把资源对象存放在`DeltaFIFO`中
+4. `DeltaFIFO`是一个先进先出队列，只要这个队列有数据，就被 Pop 到 Controller 中，将这个资源对象存储至`Indexer`中，并且将该资源对象分发至`ShareInformer`
+5. Controller 会触发`Process`回调函数
 
 ### 打脸
 
-所以，我自己之前写代码的时候，一直以为是`ShareInformer`去主动watch API Server, 而现在正正打脸了，是`Reflector`做的List&Watch。
+所以，我自己之前写代码的时候，一直以为是`ShareInformer`去主动 watch API Server, 而现在正正打脸了，是`Reflector`做的 List&Watch。
 
 
 ### ListAndWatch 思考
 
-为什么Kubernetes里面是使用ListAndWatch呢？我们所知道的其他分布式系统常常使用RPC来触发行为。
+为什么 Kubernetes 里面是使用 ListAndWatch 呢？我们所知道的其他分布式系统常常使用 RPC 来触发行为。
 
-我们来分析下如果不这样做，而是采用API Server轮询推送消息给各个组件，或者各个组件轮询去访问API Server的话，那么**实时性**就得不到保证，并且对API Server造成很大的负载，很有可能需要开启大量的端口造成端口浪费。
+我们来分析下如果不这样做，而是采用 API Server 轮询推送消息给各个组件，或者各个组件轮询去访问 API Server 的话，那么**实时性**就得不到保证，并且对 API Server 造成很大的负载，很有可能需要开启大量的端口造成端口浪费。
 
 从实时性出发的话：
 
@@ -48,15 +48,15 @@ tags: ["Kubernetes"]
 
 从设计扩展性出发的话：
 
-作为一个“资源管理系统”的Kubernetes，我们的对象数量可能会无限扩大，那么我们需要设计一个高效扩展的组件，去应对对象的种类无限扩大，并且同一种对象可能会被用户实例化非常多次的行为。 这里可以对应我们的`ShareInformer`。
+作为一个“资源管理系统”的 Kubernetes，我们的对象数量可能会无限扩大，那么我们需要设计一个高效扩展的组件，去应对对象的种类无限扩大，并且同一种对象可能会被用户实例化非常多次的行为。这里可以对应我们的`ShareInformer`。
 
 从消息的可靠性出发的话：
 
-刚刚说了这么多，都是进行长连接去Watch的，万一网络出错怎么办？这个时候我们的List机制就很明显发挥作用，一旦感知跟API Server中断，或者第一次启动，都是使用List机制的， List作为一个短连接去获取资源信息，Watch 作为长连接去持续接收资源的变更并且处理。（用List&Watch可以保证不会漏掉任何事件）
+刚刚说了这么多，都是进行长连接去 Watch 的，万一网络出错怎么办？这个时候我们的 List 机制就很明显发挥作用，一旦感知跟 API Server 中断，或者第一次启动，都是使用 List 机制的，List 作为一个短连接去获取资源信息，Watch 作为长连接去持续接收资源的变更并且处理。（用 List&Watch 可以保证不会漏掉任何事件）
 
-#### Watch的实现
+#### Watch 的实现
 
-`Watch`是通过HTTP 长连接接收API Server发送的资源变更事件，使用的`Chunked transfer coding`， 代码位置`./staging/src/k8s.io/apiserver/pkg/endpoints/handlers/watch.go`，源码如下
+`Watch`是通过 HTTP 长连接接收 API Server 发送的资源变更事件，使用的`Chunked transfer coding`，代码位置`./staging/src/k8s.io/apiserver/pkg/endpoints/handlers/watch.go`，源码如下
 
 ```go
     e := streaming.NewEncoder(framer, s.Encoder)
@@ -72,7 +72,7 @@ tags: ["Kubernetes"]
 	flusher.Flush()
 ```
 
-我们通过`curl`来看看, 在`response`的`Header`中设置`Transfer-Encoding`的值是`chunked`
+我们通过`curl`来看看，在`response`的`Header`中设置`Transfer-Encoding`的值是`chunked`
 
 ```bash
 # curl -i http://127.0.0.1:8001/api/v1/watch/namespaces?watch=yes
@@ -87,22 +87,22 @@ Transfer-Encoding: chunked
 
 ## 监听事件 Reflector
 
-我的理解，Reflector是实现对指定的类型对象的监控，既包括Kubernetes内置资源，也可以是CRD自定义资源。
+我的理解，Reflector 是实现对指定的类型对象的监控，既包括 Kubernetes 内置资源，也可以是 CRD 自定义资源。
 
 ### 数据结构
 
-我们来看看Reflector的数据结构， 代码块`staging/src/k8s.io/client-go/tools/cache/reflector.go`
+我们来看看 Reflector 的数据结构，代码块`staging/src/k8s.io/client-go/tools/cache/reflector.go`
 
-listerWatcher其实就是从API Server里面去做List跟Watch的操作去获取对象的变更。
+listerWatcher 其实就是从 API Server 里面去做 List 跟 Watch 的操作去获取对象的变更。
 
 ```go
 type Reflector struct {
 	name string
-    // 监控的对象类型，比如Pod
+    // 监控的对象类型，比如 Pod
 	expectedType reflect.Type
     // 存储
 	store Store
-    // ListerWatcher是针对某一类对象，比如Pod
+    // ListerWatcher 是针对某一类对象，比如 Pod
 	listerWatcher ListerWatcher
 	period       time.Duration
 	resyncPeriod time.Duration
@@ -113,7 +113,7 @@ type Reflector struct {
 
 ### Run
 
-Run是循环一直把数据存储到`DeltaFIFO`中。
+Run 是循环一直把数据存储到`DeltaFIFO`中。
 
 ```go
 func (r *Reflector) Run(stopCh <-chan struct{}) {
@@ -126,11 +126,11 @@ func (r *Reflector) Run(stopCh <-chan struct{}) {
 }
 ```
 
-也就是说，Reflector是一直在执行ListAndWatch, 除非收到消息stopCh要被关闭，Run才会退出。
+也就是说，Reflector 是一直在执行 ListAndWatch, 除非收到消息 stopCh 要被关闭，Run 才会退出。
 
 ### ListAndWatch
 
-书上把这一段讲得很详细了，我贴这段代码，是为了给下面的Kubernetes并发的章节用的，这里用到了`GetResourceVersion` `setLastSyncResourceVersion`等
+书上把这一段讲得很详细了，我贴这段代码，是为了给下面的 Kubernetes 并发的章节用的，这里用到了`GetResourceVersion` `setLastSyncResourceVersion`等
 
 ```go
 func (r *Reflector) ListAndWatch(stopCh <-chan struct{}) error {
@@ -155,7 +155,7 @@ func (r *Reflector) ListAndWatch(stopCh <-chan struct{}) error {
 					panicCh <- r
 				}
 			}()
-            // 先List
+            // 先 List
 			list, err = r.listerWatcher.List(options)
 			close(listCh)
 		}()
@@ -272,19 +272,19 @@ func (r *Reflector) ListAndWatch(stopCh <-chan struct{}) error {
 
 ```
 
-#### Kubernetes并发
+#### Kubernetes 并发
 
-从ListAndWatch的代码，有一段关于`syncWith`的方法，比较重要，原来Kubernetes的并发是通过`ResourceVersion`来实现的，每次对这个对象的改动，都会把该对象的`ResourceVersion`加一。
+从 ListAndWatch 的代码，有一段关于`syncWith`的方法，比较重要，原来 Kubernetes 的并发是通过`ResourceVersion`来实现的，每次对这个对象的改动，都会把该对象的`ResourceVersion`加一。
 
-## 二级缓存DeltaFIFO 和 Store
+## 二级缓存 DeltaFIFO 和 Store
 
 ### DeltaFIFO
 
-我们通过数据结构来理解DeltaFIFO，我们先来理解一下Delta。
+我们通过数据结构来理解 DeltaFIFO，我们先来理解一下 Delta。
 
 代码块`staging/src/k8s.io/client-go/tools/cache/delta_fifo.go`
 
-通过下面的代码块，我们可以非常清晰看得出，`Delta`其实是一个资源对象存储，保存例如Pod的Added操作等。用白话来说其实就是记录Kubernetes每一个对象的变化。
+通过下面的代码块，我们可以非常清晰看得出，`Delta`其实是一个资源对象存储，保存例如 Pod 的 Added 操作等。用白话来说其实就是记录 Kubernetes 每一个对象的变化。
 
 ```go
 type Delta struct {
@@ -302,12 +302,12 @@ const (
 )
 ```
 
-FIFO就比较容易理解了，就是一个先进先出的队列。也可以看看代码块`staging/src/k8s.io/client-go/tools/cache/fifo.go`去看他的实现，如下
+FIFO 就比较容易理解了，就是一个先进先出的队列。也可以看看代码块`staging/src/k8s.io/client-go/tools/cache/fifo.go`去看他的实现，如下
 
 ```go
 type Queue interface {
 	Store
-    // 可以看出来Queue是在Store的基础上扩展了Pop，可以让对象弹出。这里如果对比一下Indexer的数据结构发现很有意思，Indexer是在Store的基础上加了索引，去快速检索对象
+    // 可以看出来 Queue 是在 Store 的基础上扩展了 Pop，可以让对象弹出。这里如果对比一下 Indexer 的数据结构发现很有意思，Indexer 是在 Store 的基础上加了索引，去快速检索对象
 	Pop(PopProcessFunc) (interface{}, error)
 	AddIfNotPresent(interface{}) error
 	HasSynced() bool
@@ -315,25 +315,25 @@ type Queue interface {
 }
 ```
 
-结合起来，DeltaFIFO其实就是一个先进先出的Kubernetes对象变化的队列，这个队列中存储不同操作类型的同一个资源对象。
+结合起来，DeltaFIFO 其实就是一个先进先出的 Kubernetes 对象变化的队列，这个队列中存储不同操作类型的同一个资源对象。
 
-DeltaFIFO中的GET方法或者GetByKey都比较简单，接下来对queueActionLocked()函数重点说明。
+DeltaFIFO 中的 GET 方法或者 GetByKey 都比较简单，接下来对 queueActionLocked() 函数重点说明。
 
 #### queueActionLocked
 
 ```go
 func (f *DeltaFIFO) queueActionLocked(actionType DeltaType, obj interface{}) error {
-    // 拿到对象的Key
+    // 拿到对象的 Key
 	id, err := f.KeyOf(obj)
 	if err != nil {
 		return KeyError{obj, err}
 	}
 
-    // 把同一个对象的不同的actionType，都添加到newDeltas列表中
+    // 把同一个对象的不同的 actionType，都添加到 newDeltas 列表中
 	newDeltas := append(f.items[id], Delta{actionType, obj})
     // 合并去重
 	newDeltas = dedupDeltas(newDeltas)
-     // 我一开始理解不了，觉得不可能存在<=0的情况，最新的Kubernetes的代码里面注释说了，正常情况下不会出现<=0， 加这个判断属于冗余判断
+     // 我一开始理解不了，觉得不可能存在<=0 的情况，最新的 Kubernetes 的代码里面注释说了，正常情况下不会出现<=0，加这个判断属于冗余判断
 	if len(newDeltas) > 0 {
 		if _, exists := f.items[id]; !exists {
 			f.queue = append(f.queue, id)
@@ -352,13 +352,13 @@ func (f *DeltaFIFO) queueActionLocked(actionType DeltaType, obj interface{}) err
 ```go
 func dedupDeltas(deltas Deltas) Deltas {
 	n := len(deltas)
-    // 少于2个也就是得一个，不需要合并了，直接返回
+    // 少于 2 个也就是得一个，不需要合并了，直接返回
 	if n < 2 {
 		return deltas
 	}
 	a := &deltas[n-1]
 	b := &deltas[n-2]
-    // 这里，最后调了isDeletionDup，这个是判断一个资源对象的两次操作是否都是删除，如果是，就去重，不需要删除两次
+    // 这里，最后调了 isDeletionDup，这个是判断一个资源对象的两次操作是否都是删除，如果是，就去重，不需要删除两次
 	if out := isDup(a, b); out != nil {
 		d := append(Deltas{}, deltas[:n-2]...)
 		return append(d, *out)
@@ -375,9 +375,9 @@ func isDup(a, b *Delta) *Delta {
 }
 ```
 
-之前群里有人问为什么dedupDeltas只是去这个列表的倒数第一个跟倒数第二个去进行合并去重的操作，这里说明一下，dedupDeltas是被queueActionLocked函数调用的，而queueActionLocked为什么我们拿出来讲，是因为在Delete/Update/Add里面去调用了queueActionLocked，合并是对某一个obj的一系列操作，而去重是只针对delete。
+之前群里有人问为什么 dedupDeltas 只是去这个列表的倒数第一个跟倒数第二个去进行合并去重的操作，这里说明一下，dedupDeltas 是被 queueActionLocked 函数调用的，而 queueActionLocked 为什么我们拿出来讲，是因为在 Delete/Update/Add 里面去调用了 queueActionLocked，合并是对某一个 obj 的一系列操作，而去重是只针对 delete。
 
-我们可以拿一个例子来看看，假设是[obj1]: [add: delta1, update: delta2, delete: delta3,  delete: delta3] 在经过queueActionLocked之后会变成[obj1]: [add: delta1, update: delta2, delete: delta3]
+我们可以拿一个例子来看看，假设是[obj1]: [add: delta1, update: delta2, delete: delta3,  delete: delta3] 在经过 queueActionLocked 之后会变成[obj1]: [add: delta1, update: delta2, delete: delta3]
 
 #### 消费者方法
 
@@ -387,7 +387,7 @@ func (f *DeltaFIFO) Pop(process PopProcessFunc) (interface{}, error) {
 	defer f.lock.Unlock()
 	for {
 		for len(f.queue) == 0 {
-			// 任何时候判断队列是否被关闭之前，都需要先判断队列的长度，看上方的len
+			// 任何时候判断队列是否被关闭之前，都需要先判断队列的长度，看上方的 len
 			if f.IsClosed() {
 				return nil, FIFOClosedError
 			}
@@ -404,7 +404,7 @@ func (f *DeltaFIFO) Pop(process PopProcessFunc) (interface{}, error) {
 			// Item may have been deleted subsequently.
 			continue
 		}
-        // 取出第一个f.queue[0]对象，从队列删除，将该对象交给process处理对象
+        // 取出第一个 f.queue[0] 对象，从队列删除，将该对象交给 process 处理对象
 		delete(f.items, id)
 		err := process(item)
 
@@ -422,13 +422,13 @@ func (f *DeltaFIFO) Pop(process PopProcessFunc) (interface{}, error) {
 
 #### LocalStore
 
-缓存机制，但LocalStore是被`Lister`的`List/Get`方法访问
+缓存机制，但 LocalStore 是被`Lister`的`List/Get`方法访问
 
 ## Share Informer 共享机制
 
 从流程上我们说了，因为是`DeltaFIFO`把消息分发至`ShareInformer`中，因此我们可以用`Informer`添加自定义的回调函数，也就是我们经常看到的`OnAdd`  `OnUpdate`和`OnDelete`
 
-Kubernetes内部的每一个资源都实现了Informer机制，如下是一个Namespace的Informer的例子
+Kubernetes 内部的每一个资源都实现了 Informer 机制，如下是一个 Namespace 的 Informer 的例子
 
 代码块`staging/src/k8s.io/client-go/informers/core/v1/namespace.go`
 
@@ -442,7 +442,7 @@ type NamespaceInformer interface {
 
 ## Indexer
 
-以下是Indexer的数据结构，清晰的看见Indexer继承了Store接口， 还增加了索引的功能。
+以下是 Indexer 的数据结构，清晰的看见 Indexer 继承了 Store 接口，还增加了索引的功能。
 
 ```go
 type Indexer interface {
@@ -453,27 +453,27 @@ type Indexer interface {
 
 ```
 
-看看我们流程第四个步骤： `DeltaFIFO`是一个先进先出队列，只要这个队列有数据，就被Pop到Controller中, 将这个资源对象存储至`Indexer`中。 这个步骤说明了Indexer存储的数据来源。
+看看我们流程第四个步骤： `DeltaFIFO`是一个先进先出队列，只要这个队列有数据，就被 Pop 到 Controller 中，将这个资源对象存储至`Indexer`中。这个步骤说明了 Indexer 存储的数据来源。
 
-我们看看Indexer关键的几个索引函数
+我们看看 Indexer 关键的几个索引函数
 
 ```go
-// 索引函数，传入的是对象，返回的是检索结果的列表，例如我们可以通过IndexFunc去查某个Annotation/label的configmap
+// 索引函数，传入的是对象，返回的是检索结果的列表，例如我们可以通过 IndexFunc 去查某个 Annotation/label 的 configmap
 type IndexFunc func(obj interface{}) ([]string, error)
-// 索引函数，key是索引器名词，value是索引器的实现函数
+// 索引函数，key 是索引器名词，value 是索引器的实现函数
 type Indexers map[string]IndexFunc
- // 索引函数name   对应多个索引键   多个对象键   真正对象
+ // 索引函数 name   对应多个索引键   多个对象键   真正对象
 type Indices map[string]Index
-// 索引缓存，map类型
+// 索引缓存，map 类型
 type Index map[string]sets.String
 ```
 
 总结一下：
 
-Indexers: 索引函数name --> 索引实现函数-->索引key值
-Indices: 索引函数name --> 对应多个索引key值 --> 每个索引key值对应不同的资源
+Indexers: 索引函数 name --> 索引实现函数-->索引 key 值
+Indices: 索引函数 name --> 对应多个索引 key 值 --> 每个索引 key 值对应不同的资源
 
-举个例子来说明的话：对象Pod有一个标签app=version1，这里标签就是索引键，Indexer会把相同标签的所有Pod放在一个集合里面，然后我们实现对标签分类就是我们Indexer的核心内容。
+举个例子来说明的话：对象 Pod 有一个标签 app=version1，这里标签就是索引键，Indexer 会把相同标签的所有 Pod 放在一个集合里面，然后我们实现对标签分类就是我们 Indexer 的核心内容。
 
 ## Reference
 

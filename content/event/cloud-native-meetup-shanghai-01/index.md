@@ -31,7 +31,7 @@ tags: ["Istio","SkyWalking","DubboGo","ChaosMesh"]
 featured: false
 
 image:
-  caption: '图片来源: [云原生社区](https://cloudnative.to)'
+  caption: '图片来源：[云原生社区](https://cloudnative.to)'
   focal_point: Right
 
 #links:
@@ -87,7 +87,7 @@ projects: []
 
 公司：Tetrate
 
-讲师介绍：高洪涛 美国 servicemesh 服务商 Tetrate 创始工程师。原华为软件开发云技术专家，对云 APM 有深入的理解，并有丰富的 APM 产品设计，研发与实施经验。对分布式数据库，容器调度，微服务，ServicMesh 等技术有深入的了解。目前为 Apache SkyWalking 核心贡献者，参与该开源项目在软件开发云的商业化进程。前当当网系统架构师，开源达人，曾参与 Apache ShardingSphere，Elastic-Job 等知名开源项目。对开源项目的管理，推广和社区运营有丰富的经验。积极参与技术分享，曾在多个技术大会中做过分享，包括 ArchSummit， Top100，Oracle 嘉年华等。在多个媒体发表过文章，如 InfoQ。
+讲师介绍：高洪涛 美国 servicemesh 服务商 Tetrate 创始工程师。原华为软件开发云技术专家，对云 APM 有深入的理解，并有丰富的 APM 产品设计，研发与实施经验。对分布式数据库，容器调度，微服务，ServicMesh 等技术有深入的了解。目前为 Apache SkyWalking 核心贡献者，参与该开源项目在软件开发云的商业化进程。前当当网系统架构师，开源达人，曾参与 Apache ShardingSphere，Elastic-Job 等知名开源项目。对开源项目的管理，推广和社区运营有丰富的经验。积极参与技术分享，曾在多个技术大会中做过分享，包括 ArchSummit，Top100，Oracle 嘉年华等。在多个媒体发表过文章，如 InfoQ。
 
 演讲概要：Apache SkyWalking 作为云原生可观测性工具在 Kubernetes 领域内有诸多应用，包括监控微服务的性能，观测基于 ISTIO 的 Service Mesh 服务等。本次分享将带来使用 SkyWalking 的 Adapter 来实现 Kubernetes 的 HPA 功能。应用该能力后，应用或服务将会根据 SkyWalking 分析的指标进行横向扩展。
 
@@ -117,7 +117,7 @@ projects: []
 
 公司：VIPKID
 
-讲师介绍： VIPKID 资深架构师，曾任百度高级研发工程师，阿里巴巴技术专家。目前负责大班课后端总架构，VIPKID 监控系统。
+讲师介绍：VIPKID 资深架构师，曾任百度高级研发工程师，阿里巴巴技术专家。目前负责大班课后端总架构，VIPKID 监控系统。
 
 演讲概要：
 
@@ -127,4 +127,4 @@ vipkid 的传统监控体系介绍：传统的机器监控，zabbix，falcon；�
 
 基于日志链路监控：基于流量 CDN-LB-WAF-NG 等链路信息的日志监控
 
-业务监控的全新规划: 对于研发 RD 和测试 QA 同学来说，更加关注线上业务的正确性。构建业务监控平台，支持线上业务指标追踪。
+业务监控的全新规划：对于研发 RD 和测试 QA 同学来说，更加关注线上业务的正确性。构建业务监控平台，支持线上业务指标追踪。

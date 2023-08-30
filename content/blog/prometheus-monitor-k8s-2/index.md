@@ -1,5 +1,5 @@
 ---
-title: "Prometheus监控Kubernetes系列2——监控部署"
+title: "Prometheus 监控 Kubernetes 系列 2——监控部署"
 date: 2019-03-26T11:12:00+08:00
 draft: false
 authors: ["罗佳豪"]
@@ -11,19 +11,19 @@ keywords: ["service mesh","服务网格","prometheus","kubernetes"]
 
 ## 背景
 
-由于容器化和微服务的大力发展，Kubernetes基本已经统一了容器管理方案，当我们使用Kubernetes来进行容器化管理的时候，全面监控Kubernetes也就成了我们第一个需要探索的问题。我们需要监控kubernetes的ingress、service、deployment、pod......等等服务，以达到随时掌握Kubernetes集群的内部状况。
+由于容器化和微服务的大力发展，Kubernetes 基本已经统一了容器管理方案，当我们使用 Kubernetes 来进行容器化管理的时候，全面监控 Kubernetes 也就成了我们第一个需要探索的问题。我们需要监控 kubernetes 的 ingress、service、deployment、pod......等等服务，以达到随时掌握 Kubernetes 集群的内部状况。
 
-此文章是Prometheus监控系列的第二篇，基于上一篇讲解了怎么对Kubernetes集群实施Prometheus监控。
+此文章是 Prometheus 监控系列的第二篇，基于上一篇讲解了怎么对 Kubernetes 集群实施 Prometheus 监控。
 
-K8s编排文件可参考 https://github.com/xianyuLuo/prometheus-monitor-kubernetes
+K8s 编排文件可参考 https://github.com/xianyuLuo/prometheus-monitor-kubernetes
 
-## Prometheus部署
+## Prometheus 部署
 
-在k8s上部署Prometheus十分简单，下面给的例子中将Prometheus部署到prometheus命名空间。
+在 k8s 上部署 Prometheus 十分简单，下面给的例子中将 Prometheus 部署到 prometheus 命名空间。
 
 ### 部署——数据采集
 
-将kube-state-metrics和prometheus分开部署，先部署prometheus。
+将 kube-state-metrics 和 prometheus 分开部署，先部署 prometheus。
 
 #### Prometheus
 
@@ -71,7 +71,7 @@ subjects:
   namespace: prometheus
 ```
 
-prometheus.rbac.yml定义了Prometheus容器访问k8s apiserver所需的ServiceAccount、ClusterRole以及ClusterRoleBinding。
+prometheus.rbac.yml 定义了 Prometheus 容器访问 k8s apiserver 所需的 ServiceAccount、ClusterRole 以及 ClusterRoleBinding。
 
 ------
 
@@ -236,7 +236,7 @@ data:
         target_label: kubernetes_pod_name
 ```
 
-prometheus-config-configmap.yaml定义了prometheus的配置文件，以configmap的形式使用。
+prometheus-config-configmap.yaml 定义了 prometheus 的配置文件，以 configmap 的形式使用。
 
 ------
 
@@ -293,8 +293,8 @@ spec:
           name: prometheus-config
 ```
 
-prometheus-dep.yaml定义了prometheus的部署，这里使用--storage.tsdb.retention参数，监控数据只保留1天，因为最终监控数据会统一汇总。
-limits资源限制根据集群大小进行适当调整。
+prometheus-dep.yaml 定义了 prometheus 的部署，这里使用--storage.tsdb.retention 参数，监控数据只保留 1 天，因为最终监控数据会统一汇总。
+limits 资源限制根据集群大小进行适当调整。
 
 ------
 
@@ -316,11 +316,11 @@ spec:
     app: prometheus-dep
 ```
 
-prometheus-svc.yaml定义Prometheus的Service，需要将Prometheus以NodePort、LoadBalancer或Ingress暴露到集群外部，这样外部的Prometheus才能访问它。这里采用的NodePort，所以只需要访问集群中有外网地址的任意一台服务器的30090端口就可以使用prometheus。
+prometheus-svc.yaml 定义 Prometheus 的 Service，需要将 Prometheus 以 NodePort、LoadBalancer 或 Ingress 暴露到集群外部，这样外部的 Prometheus 才能访问它。这里采用的 NodePort，所以只需要访问集群中有外网地址的任意一台服务器的 30090 端口就可以使用 prometheus。
 
 #### kube-state-metrics
 
-prometheus部署成功后，接着再部署kube-state-metrics作为prometheus的一个exporter来使用，提供deployment、daemonset、cronjob等服务的监控数据。
+prometheus 部署成功后，接着再部署 kube-state-metrics 作为 prometheus 的一个 exporter 来使用，提供 deployment、daemonset、cronjob 等服务的监控数据。
 
 kube-state-metrics-rbac.yaml
 
@@ -423,7 +423,7 @@ subjects:
   namespace: prometheus
 ```
 
-kube-state-metrics-rbac.yaml定义了kube-state-metrics访问k8s apiserver所需的ServiceAccount和ClusterRole及ClusterRoleBinding。
+kube-state-metrics-rbac.yaml 定义了 kube-state-metrics 访问 k8s apiserver 所需的 ServiceAccount 和 ClusterRole 及 ClusterRoleBinding。
 
 ------
 
@@ -492,7 +492,7 @@ spec:
           - --deployment=kube-state-metrics
 ```
 
-kube-state-metrics-dep.yaml定义了kube-state-metrics的部署。
+kube-state-metrics-dep.yaml 定义了 kube-state-metrics 的部署。
 
 ------
 
@@ -522,19 +522,19 @@ spec:
     k8s-app: kube-state-metrics
 ```
 
-kube-state-metrics-svc.yaml定义了kube-state-metrics的暴露方式，这里只需要使用默认的ClusterIP就可以了，因为它只提供给集群内部的promethes访问。
+kube-state-metrics-svc.yaml 定义了 kube-state-metrics 的暴露方式，这里只需要使用默认的 ClusterIP 就可以了，因为它只提供给集群内部的 promethes 访问。
 
-**k8s集群中的prometheus监控到这儿就已经全部OK了，接下来还需要做的是汇总数据、展示数据及告警规则配置。**
+**k8s 集群中的 prometheus 监控到这儿就已经全部 OK 了，接下来还需要做的是汇总数据、展示数据及告警规则配置。**
 
 ### 部署——数据汇总
 
 #### prometheus-server
 
-prometheus-server和前面prometheus的步骤基本相同，需要针对configmap、数据存储时间（一般为30d）、svc类型做些许改变，同时增加 rule.yaml。
+prometheus-server 和前面 prometheus 的步骤基本相同，需要针对 configmap、数据存储时间（一般为 30d）、svc 类型做些许改变，同时增加 rule.yaml。
 
-prometheus-server不需要kube-state-metrics。prometheus-server可以部署在任意k8s集群，或者部署在K8s集群外部都可以。
+prometheus-server 不需要 kube-state-metrics。prometheus-server 可以部署在任意 k8s 集群，或者部署在 K8s 集群外部都可以。
 
-prometheus-rbac.yaml (内容和上面的一致，namespace为prometheus-server)
+prometheus-rbac.yaml (内容和上面的一致，namespace 为 prometheus-server)
 
 ```yaml
 ......
@@ -593,11 +593,11 @@ data:
 
 global：全局配置。设置了收集数据频率、超时等
 
-alerting：告警配置。指定了prometheus将满足告警规则的信息发送到哪儿？告警规则在rule_files定义
+alerting：告警配置。指定了 prometheus 将满足告警规则的信息发送到哪儿？告警规则在 rule_files 定义
 
 rule_files：定义的告警规则文件
 
-scrape_configs：监控数据刮取配置。定义了2个job，分别是federate-k8scluster-1、federate-k8scluster-2。其中federate-k8scluster-1配置了去x.x.x.x30090采集数据，并且要匹配job名为"kubernetes-"开头。注意下面的labels，这个是自己定义的，它的作用在于给每一条刮取过来的监控数据都加上一个 **k8scluster: xxxx-k8s** 的Key-Value，xxxx一般指定为项目代码。这样我们可以在多个集群数据中区分该条数据是属于哪一个k8s集群，这对于后面的展示和告警都非常有利。
+scrape_configs：监控数据刮取配置。定义了 2 个 job，分别是 federate-k8scluster-1、federate-k8scluster-2。其中 federate-k8scluster-1 配置了去 x.x.x.x30090 采集数据，并且要匹配 job 名为"kubernetes-"开头。注意下面的 labels，这个是自己定义的，它的作用在于给每一条刮取过来的监控数据都加上一个 **k8scluster: xxxx-k8s** 的 Key-Value，xxxx 一般指定为项目代码。这样我们可以在多个集群数据中区分该条数据是属于哪一个 k8s 集群，这对于后面的展示和告警都非常有利。
 
 ------
 
@@ -694,19 +694,19 @@ data:
 
 ```
 
-rule.yaml定义了告警规则。此文件中定义了 PodDown、PodRestart、NodeUnschedulable、NodeStatusError、DaemonsetUnavailable、JobFailed 共6条规则。
+rule.yaml 定义了告警规则。此文件中定义了 PodDown、PodRestart、NodeUnschedulable、NodeStatusError、DaemonsetUnavailable、JobFailed 共 6 条规则。
 
 alert：名称
 
-expr：表达式。prometheus的SQL语句
+expr：表达式。prometheus 的 SQL 语句
 
 for：时间范围
 
-annotations：告警消息，其中 {{*}} 为Prometheus内部变量
+annotations：告警消息，其中 {{*}} 为 Prometheus 内部变量
 
 ------
 
-prometheus-server-dep.yaml (参考上面的prometheus-dep.yaml做些许调整)
+prometheus-server-dep.yaml (参考上面的 prometheus-dep.yaml 做些许调整)
 
 ```yaml
 apiVersion: apps/v1beta2
@@ -749,11 +749,11 @@ spec:
           name: prometheus-server-rule-config
 ```
 
-volumes.data这里使用的是emptyDir，这样其实不妥，应该单独挂载一块盘来存储汇总数据。可使用pv实现。
+volumes.data 这里使用的是 emptyDir，这样其实不妥，应该单独挂载一块盘来存储汇总数据。可使用 pv 实现。
 
 ------
 
-prometheus-server-svc.yaml (参考上面的prometheus-svc.yaml做些许调整)
+prometheus-server-svc.yaml (参考上面的 prometheus-svc.yaml 做些许调整)
 
 ```yaml
 kind: Service
@@ -770,13 +770,13 @@ spec:
     app: prometheus-server-dep
 ```
 
-**到这儿，数据采集和数据汇总就已经OK了。**
+**到这儿，数据采集和数据汇总就已经 OK 了。**
 
-Prometheus-server部署成功之后，在浏览器中可以看到监控数据汇总信息了
+Prometheus-server 部署成功之后，在浏览器中可以看到监控数据汇总信息了
 
 ![](006tKfTcly1g1g7wq5ye7j30vw0nzmzn.jpg)
 
-Status --> Configuration 中可以看到Prometheus-server的配置
+Status --> Configuration 中可以看到 Prometheus-server 的配置
 
 Status --> Rules 中可以看到规则文件内容
 
@@ -784,7 +784,7 @@ Status --> Targets 中可以看到刮取目标的状态信息
 
 ## 告警配置
 
-遵循上篇文章中的架构，告警使用Prometheus官方提供的组件Alertmanager
+遵循上篇文章中的架构，告警使用 Prometheus 官方提供的组件 Alertmanager
 
 alertmanager-config-configmap.yaml
 
@@ -827,13 +827,13 @@ data:
 		  bearer_token: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 ```
 
-alertmanager-config-configmap.yaml定义了alertmanager的配置文件
+alertmanager-config-configmap.yaml 定义了 alertmanager 的配置文件
 
-route：路由。分级匹配，然后交给指定 receivers，其中route.group_by中的k8scluster是prometheus-server-config.yaml中自定义的标签
+route：路由。分级匹配，然后交给指定 receivers，其中 route.group_by 中的 k8scluster 是 prometheus-server-config.yaml 中自定义的标签
 
-receivers：发送。这里使用webhook方式发送给自研的send_msg模块
+receivers：发送。这里使用 webhook 方式发送给自研的 send_msg 模块
 
-email、wechat、webhook、slack等发送方式配置请见官网文档：https://prometheus.io/docs/alerting/configuration/
+email、wechat、webhook、slack 等发送方式配置请见官网文档：https://prometheus.io/docs/alerting/configuration/
 
 ------
 
@@ -882,28 +882,28 @@ spec:
           name: alertmanager-config
 ```
 
-alertmanager-dep.yaml定义了Alertmanager的部署。
+alertmanager-dep.yaml 定义了 Alertmanager 的部署。
 
 ## 展示
 
-遵循上篇文章中的架构，展示使用开源的Grafana。Grafana的部署方式就不详细描述了，下面展示两个Dashboard
+遵循上篇文章中的架构，展示使用开源的 Grafana。Grafana 的部署方式就不详细描述了，下面展示两个 Dashboard
 
 ![](006tKfTcly1g1g7x47mnyj31dj0qsq8i.jpg)
 
-kubernetes-deployment-dashboard，展示了大多关于deployment的信息。左上角的Cluster选项就是利用prometheus-server-config.yaml中自定义的labels.k8scluster标签实现的。
+kubernetes-deployment-dashboard，展示了大多关于 deployment 的信息。左上角的 Cluster 选项就是利用 prometheus-server-config.yaml 中自定义的 labels.k8scluster 标签实现的。
 
 ------
 
 ![](006tKfTcly1g1g7xiruj7j31de0qmdo8.jpg)
 
-kubernetes-pod-dashboard，展示的都是关于pod和container的信息，包括CPU、mem使用监控。此页面数据量一般比较大。左上角的Cluster选项也是利用prometheus-server-config.yaml中自定义的labels.k8scluster做的。
+kubernetes-pod-dashboard，展示的都是关于 pod 和 container 的信息，包括 CPU、mem 使用监控。此页面数据量一般比较大。左上角的 Cluster 选项也是利用 prometheus-server-config.yaml 中自定义的 labels.k8scluster 做的。
 
-kubernetes-deployment-dashboard下载地址：https://grafana.com/dashboards/9730
+kubernetes-deployment-dashboard 下载地址：https://grafana.com/dashboards/9730
 
-kubernetes-pod-dashboard下载地址：https://grafana.com/dashboards/9729
+kubernetes-pod-dashboard 下载地址：https://grafana.com/dashboards/9729
 
 ## 结束
 
-详细监控Kubernetes集群本身就是一项复杂的工作，好在有Prometheus、Grafana、kube-state-metrics这些优秀的开源工具，才让我们的工作复杂度得以缓解，Thanks。
+详细监控 Kubernetes 集群本身就是一项复杂的工作，好在有 Prometheus、Grafana、kube-state-metrics 这些优秀的开源工具，才让我们的工作复杂度得以缓解，Thanks。
 
-此文章也是“使用prometheus完美监控kubernetes集群”系列的第二篇，如果在部署过程中遇到问题或者有不理解的地方，欢迎随时后台留言。
+此文章也是“使用 prometheus 完美监控 kubernetes 集群”系列的第二篇，如果在部署过程中遇到问题或者有不理解的地方，欢迎随时后台留言。

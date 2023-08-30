@@ -24,7 +24,7 @@ date: 2021-06-13T18:00:00+08:00
 
 ![](scaling-kubernetes-with-assurance-at-pinterest-000.png)
 
-2020年晚些时候，一个基础组件在与kube-apiserver集成时出现bug，导致向kube-apiserver发起大量请求（获取所有Pod跟节点）。这引起Kubernetes主节点资源使用率激增，然后触发OOMKilled。幸运的是这个有问题的组件很快被发现并回退。但此次事件中，平台的性能下降了，包括工作负载执行延迟和请求状态过期。
+2020 年晚些时候，一个基础组件在与 kube-apiserver 集成时出现 bug，导致向 kube-apiserver 发起大量请求（获取所有 Pod 跟节点）。这引起 Kubernetes 主节点资源使用率激增，然后触发 OOMKilled。幸运的是这个有问题的组件很快被发现并回退。但此次事件中，平台的性能下降了，包括工作负载执行延迟和请求状态过期。
 
 ![](scaling-kubernetes-with-assurance-at-pinterest-001.png)
 
@@ -96,7 +96,7 @@ Watch 缓存是 kube-apiserver 内部的一种机制，它将每种类型的资�
 
 ## 可调试性
 
-为了更好地了解 Kubernetes 控制平面的性能和资源消耗情况，我们还利用了 [boltdb](https://github.com/etcd-io/bbolt) 库和 [flamegraph ](https://github.com/brendangregg/FlameGraph)构建了etcd 数据存储分析工具，以可视化数据存储故障。数据存储分析的结果为平台用户提供了优化使用率的洞察力。
+为了更好地了解 Kubernetes 控制平面的性能和资源消耗情况，我们还利用了 [boltdb](https://github.com/etcd-io/bbolt) 库和 [flamegraph ](https://github.com/brendangregg/FlameGraph)构建了 etcd 数据存储分析工具，以可视化数据存储故障。数据存储分析的结果为平台用户提供了优化使用率的洞察力。
 
 ![](scaling-kubernetes-with-assurance-at-pinterest-006.png)
 
@@ -110,9 +110,9 @@ Watch 缓存是 kube-apiserver 内部的一种机制，它将每种类型的资�
 
 ![](scaling-kubernetes-with-assurance-at-pinterest-008.png)
 
-以下是一些关键要点，希望能在你解决 Kubernetes 可扩展性和可靠性问题的下一个旅程中帮助到你 。
+以下是一些关键要点，希望能在你解决 Kubernetes 可扩展性和可靠性问题的下一个旅程中帮助到你。
 
-1. 诊断问题以找到**其根源**。在决定 “如何处理” 之前，先关注 “为何引起”。解决问题的第一步是了解瓶颈是什么以及为何出现瓶颈。如果你找到了根本原因，就等于你找到了一半的解决方案。
+1. 诊断问题以找到**其根源**。在决定“如何处理”之前，先关注“为何引起”。解决问题的第一步是了解瓶颈是什么以及为何出现瓶颈。如果你找到了根本原因，就等于你找到了一半的解决方案。
 2. 绝大多数时候，首先查找微乎其微的改进都是值得的，而不是立即致力于彻底地改变架构。这一点尤为重要，尤其是当你有一只很灵活的团队时。
 3. 当计划调查和修复时，做出**以数据驱动**的决策。正确的遥测技术可以帮助做出更好的决策，确定首先需要关注和优化什么。
 4. 关键的基础设施组件在设计时应考虑到弹性。分布式系统有可能出现故障，最好是**始终为最坏的情况做准备**。正确的保护措施能帮助防止级联故障，并使故障覆盖面更小。
@@ -129,4 +129,4 @@ Watch 缓存是 kube-apiserver 内部的一种机制，它将每种类型的资�
 
 ## 鸣谢
 
-Pinterest 的许多工程师在扩展 Kubernetes 平台以赶上业务增长这过程中做出了很多努力。除了 Cloud Runtime 团队，包括 June Liu、Harry Zhang、Suli Xu、Ming Zong 和 Quentin Miao 为实现可扩展和稳定的计算平台而努力外，领导 SRE 工作的 Balaji Narayanan、Roberto Alcala 和 Rodrigo Menezes 也共同致力于确保计算平台的坚实基础。Kalim Moghul 和 Ryan Albrecht 负责领导容量规划工程工作，他们为项目的 “身份管理” 模块和系统层面的分析做出了贡献。领导安全工程工作的 Cedric Staub 和 Jeremy Krach 一如既往保持了高标准，使我们的工作负载能够在多租户平台上安全地运行。最后，我们的平台用户 Dinghang Yu、Karthik Anantha Padmanabhan、Petro Saviuk、Michael Benedict、Jasmine Qin 和其他许多人，提供了很多有用的反馈和需求，并与我们一起努力使业务持续增长。
+Pinterest 的许多工程师在扩展 Kubernetes 平台以赶上业务增长这过程中做出了很多努力。除了 Cloud Runtime 团队，包括 June Liu、Harry Zhang、Suli Xu、Ming Zong 和 Quentin Miao 为实现可扩展和稳定的计算平台而努力外，领导 SRE 工作的 Balaji Narayanan、Roberto Alcala 和 Rodrigo Menezes 也共同致力于确保计算平台的坚实基础。Kalim Moghul 和 Ryan Albrecht 负责领导容量规划工程工作，他们为项目的“身份管理”模块和系统层面的分析做出了贡献。领导安全工程工作的 Cedric Staub 和 Jeremy Krach 一如既往保持了高标准，使我们的工作负载能够在多租户平台上安全地运行。最后，我们的平台用户 Dinghang Yu、Karthik Anantha Padmanabhan、Petro Saviuk、Michael Benedict、Jasmine Qin 和其他许多人，提供了很多有用的反馈和需求，并与我们一起努力使业务持续增长。

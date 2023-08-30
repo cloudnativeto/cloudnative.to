@@ -9,15 +9,15 @@ tags: ["Istio", "多租户", "源码分析", "Service Mesh"]
 
 ## 背景
 
-随着云原生概念的普及，服务网格技术的流行以及 Istio 的成熟，使用Istio 进行服务治理的实践也越来越多，正成为服务治理的趋势。 
+随着云原生概念的普及，服务网格技术的流行以及 Istio 的成熟，使用 Istio 进行服务治理的实践也越来越多，正成为服务治理的趋势。 
 
 在这样的背景下，我们也加入到 Istio 的研究中，希望初期通过 Istio 实现公司产品迭代版本的灰度发布，后续基于 Istio 为业务产品提供更多的流量管理及观测追踪能力。
 
-一开始设计 Istio 部署方案时，基于当时对公司产品部署方式的了解，每款产品独占一套 Kubernetes 集群，另外考虑到当时我们对 Istio 的熟悉程度，设计的是最基础的方案：一套 Kubernetes 集群中部署一套 Istio，将该 Kubernetes 集群内唯一的产品纳管到 Istio 服务网格中，即 Kubernetes 集群、产品、Istio 是1:1:1的关系。 
+一开始设计 Istio 部署方案时，基于当时对公司产品部署方式的了解，每款产品独占一套 Kubernetes 集群，另外考虑到当时我们对 Istio 的熟悉程度，设计的是最基础的方案：一套 Kubernetes 集群中部署一套 Istio，将该 Kubernetes 集群内唯一的产品纳管到 Istio 服务网格中，即 Kubernetes 集群、产品、Istio 是 1:1:1 的关系。 
 
 随着对公司产品部署方式调研的深入，我们了解到有几款产品部署在一套 Kubernetes 集群中，按照 namespace 进行分割，并且公司开始推行统一 Kubernetes 集群，已经在落地实施。
 
-如果我们继续使用初始的部署方案，在初期 Kubernetes 集群中产品数量不多，规模不大的情况，也是可以支撑的，但存在潜在问题(主要是性能问题以及故障隔离性的问题)，所以需要调研实现在一套 Kubernetes 集群内，为每一个产品提供一套 Istio 服务网格的方案。
+如果我们继续使用初始的部署方案，在初期 Kubernetes 集群中产品数量不多，规模不大的情况，也是可以支撑的，但存在潜在问题 (主要是性能问题以及故障隔离性的问题)，所以需要调研实现在一套 Kubernetes 集群内，为每一个产品提供一套 Istio 服务网格的方案。
 
 ## 初始方案问题
 
@@ -33,11 +33,11 @@ tags: ["Istio", "多租户", "源码分析", "Service Mesh"]
 
 ## 新方案调研
 
-我们需要调研实现在一套 Kubernetes 集群内，为每一个产品提供一套 Istio 服务网格的方案，解决潜在的问题。 总结下来，有以下几种方案：
+我们需要调研实现在一套 Kubernetes 集群内，为每一个产品提供一套 Istio 服务网格的方案，解决潜在的问题。总结下来，有以下几种方案：
 
 ### 官方方案
 
-Istio 官方网站有一篇2018年的博文：[Istio 的软性多租户支持](https://istio.io/latest/zh/blog/2018/soft-multitenancy/)给出了方案，可以实现为每个产品提供一套 Istio 网格的目标，每套 Istio 的控制面可以安装到指定的 namespace 中，数据面可以设置为产品部署的 namespace。官方方案是符合我们期望的方案，但 Istio 版本升级太快，博文内容比较陈旧，没办法按文档操作，并且有人反馈实操时有问题（[提出问题的issue](https://github.com/istio/istio/issues/7608)）。
+Istio 官方网站有一篇 2018 年的博文：[Istio 的软性多租户支持](https://istio.io/latest/zh/blog/2018/soft-multitenancy/)给出了方案，可以实现为每个产品提供一套 Istio 网格的目标，每套 Istio 的控制面可以安装到指定的 namespace 中，数据面可以设置为产品部署的 namespace。官方方案是符合我们期望的方案，但 Istio 版本升级太快，博文内容比较陈旧，没办法按文档操作，并且有人反馈实操时有问题（[提出问题的 issue](https://github.com/istio/istio/issues/7608)）。
 
 每个 namespace 装一套 Istio 网格，也是存在一定问题的，但结合目前我们的实际情况，认为下面的两个问题我们是可以接受的。
 
@@ -56,7 +56,7 @@ Istio 官方网站有一篇2018年的博文：[Istio 的软性多租户支持](h
 
 ## 我们的探索
 
-目前我们进行了前两个方案的探索，即上文中官方方案及单控制面多 Gateway 的方案，通过实践和对源码研究，在不修改调研版本（V1.8.1）Istio 源码的情况下，前者是行不通的，而后者是可以顺利实现的(PS：通过对最新版本 V1.11.4 的 Istio 进行实践，本文对 V1.11.4 版本 Istio 仍然适用)。
+目前我们进行了前两个方案的探索，即上文中官方方案及单控制面多 Gateway 的方案，通过实践和对源码研究，在不修改调研版本（V1.8.1）Istio 源码的情况下，前者是行不通的，而后者是可以顺利实现的 (PS：通过对最新版本 V1.11.4 的 Istio 进行实践，本文对 V1.11.4 版本 Istio 仍然适用)。
 
 两个方案各有优缺点：
 
@@ -72,9 +72,9 @@ Istio 官方网站有一篇2018年的博文：[Istio 的软性多租户支持](h
 
 以下是通过 Istio Operator 安装 Istio，实现官方方案的一些尝试，并包含一些源代码的分析。
 
-试验 Demo 部署模型如下，在一套 Kubernetes 集群上部署两套服务网格及两套产品(Foo 和 Bar)，每套服务网格完全隔离，每个产品独占对应的服务网格。
+试验 Demo 部署模型如下，在一套 Kubernetes 集群上部署两套服务网格及两套产品 (Foo 和 Bar)，每套服务网格完全隔离，每个产品独占对应的服务网格。
 
-![官方方案验证demo部署模型](independent-control-plane-demo.png) 
+![官方方案验证 demo 部署模型](independent-control-plane-demo.png) 
 
 1、为 Foo 产品部署独占的 Istio 组件
 
@@ -156,7 +156,7 @@ error   xdsproxy        failed to create upstream grpc client: rpc error: code =
 
 ![Envoy 和 Istiod 的网络交互图](ads.png)   
 
-在数据面 Istio Ingress Gateway 容器中或者业务产品 pod 注入的 Sidecar 容器中，启动着两个进程，Envoy 进程及 Pilot Agent 进程（即图中的 Istio Agent），后者扮演着 Istiod 和 Envoy 之间（即控制面和数据面之间）进行网络交互的中间代理角色。Envoy 向Istio Agent 发送 ADS（Aggregated Discovery Services，即聚合的发现服务，通过一个 gRPC 流来同步所有的配置更新）请求，后者将请求转发给控制面的配置发现服务（一般为 Istiod ），然后配置发现服务将全部的配置更新返回给数据面。   
+在数据面 Istio Ingress Gateway 容器中或者业务产品 pod 注入的 Sidecar 容器中，启动着两个进程，Envoy 进程及 Pilot Agent 进程（即图中的 Istio Agent），后者扮演着 Istiod 和 Envoy 之间（即控制面和数据面之间）进行网络交互的中间代理角色。Envoy 向 Istio Agent 发送 ADS（Aggregated Discovery Services，即聚合的发现服务，通过一个 gRPC 流来同步所有的配置更新）请求，后者将请求转发给控制面的配置发现服务（一般为 Istiod），然后配置发现服务将全部的配置更新返回给数据面。   
 
 数据面和控制面之间的网络请求，默认基于双向 TLS 认证，即两者进行通信时，双方都需要验证对方的身份，通过阅读源代码及参考赵化冰大佬的文章[一文带你彻底厘清 Isito 中的证书工作机制](https://zhaohuabing.com/post/2020-05-25-istio-certificate/)，了解数据面对控制面的身份认证过程如下：
 
@@ -164,18 +164,18 @@ error   xdsproxy        failed to create upstream grpc client: rpc error: code =
 
 1. Istiod 采用内置的 CA 服务为自身签发一个服务器证书，并采用该服务器证书对外提供基于 TLS 的 gPRC 服务；
 2. Istiod 调用 kube-apiserver 生成 configmap：istio-ca-root-cert，在该 configmap 中放入了 Istiod 的 CA 根证书；
-3. 数据面 Ingress Gateway 容器或 Sidecar 容器将istio-ca-root-cert configmap mount 为容器内 /var/run/secrets/istio/root-cert.pem 文件；
-4. 在Pilot Agent 和 Istiod 建立 gRPC 连接时，Pilot Agent 采用 root-cert.pem 文件证书对 Istiod 的身份进行认证；
+3. 数据面 Ingress Gateway 容器或 Sidecar 容器将 istio-ca-root-cert configmap mount 为容器内 /var/run/secrets/istio/root-cert.pem 文件；
+4. 在 Pilot Agent 和 Istiod 建立 gRPC 连接时，Pilot Agent 采用 root-cert.pem 文件证书对 Istiod 的身份进行认证；
 
 问题出现：  
 
 ![Istio 多租户认证过程](certification-with-multi-tenancy.png)     
 
-5. Istio 通过 Kubernetes Informer 机制，将步骤2 Foo 控制面生成的 Configmap 同步到 Kubernetes 集群里所有的 namespace 下，包括 Bar 网格相关的 Namespace；
-6. Bar 数据面 Ingress Gateway 容器或 Sidecar 容器，采用步骤3相同的方式，将步骤5同步到的 Configmap mount 到容器内；
+5. Istio 通过 Kubernetes Informer 机制，将步骤 2 Foo 控制面生成的 Configmap 同步到 Kubernetes 集群里所有的 namespace 下，包括 Bar 网格相关的 Namespace；
+6. Bar 数据面 Ingress Gateway 容器或 Sidecar 容器，采用步骤 3 相同的方式，将步骤 5 同步到的 Configmap mount 到容器内；
 7. Bar 的 Ingress Gateway 或 Sidecar 使用 Foo 控制面生成的 CA 根证书，对 Bar 的控制面进行身份认证，认证失败。
 
-可以从 Istio 源代码：[pilot/pkg/bootstrap/server.go](https://github.com/istio/istio/blob/1.8.1/pilot/pkg/bootstrap/server.go)和[pilot/pkg/serviceregistry/kube/controller/namespacecontroller.go](https://github.com/istio/istio/blob/1.8.1/pilot/pkg/serviceregistry/kube/controller/namespacecontroller.go)中看到相关的分析内容，Istiod 中 pilot 模块 server 服务时，会进行一系列的初始化工作，包括初始化 namespaceController，而该namespaceController 会创建 configmapInformer，通过 informer 机制，接受 Kubernetes 集群中的 istio-ca-root-cert configmap 的更新，而该 informer 是一个SharedIndexInformer，也就是共享的 informer，监听同一个 Kubernetes 集群中所有 namespace 下 configmap 的变化，所以从代码中可以看出，目前的 Istio 不支持在同一个 Kubernetes 集群中存在多套 Istio 控制面，这个变化应该是来自 Istio 2020 年 7 月的一次代码修改，可以查看[namespace controller: use shared informer](https://github.com/istio/istio/commit/9fdec2a68d443b9f9aac85530ac01491b0d24bf2)
+可以从 Istio 源代码：[pilot/pkg/bootstrap/server.go](https://github.com/istio/istio/blob/1.8.1/pilot/pkg/bootstrap/server.go)和[pilot/pkg/serviceregistry/kube/controller/namespacecontroller.go](https://github.com/istio/istio/blob/1.8.1/pilot/pkg/serviceregistry/kube/controller/namespacecontroller.go)中看到相关的分析内容，Istiod 中 pilot 模块 server 服务时，会进行一系列的初始化工作，包括初始化 namespaceController，而该 namespaceController 会创建 configmapInformer，通过 informer 机制，接受 Kubernetes 集群中的 istio-ca-root-cert configmap 的更新，而该 informer 是一个 SharedIndexInformer，也就是共享的 informer，监听同一个 Kubernetes 集群中所有 namespace 下 configmap 的变化，所以从代码中可以看出，目前的 Istio 不支持在同一个 Kubernetes 集群中存在多套 Istio 控制面，这个变化应该是来自 Istio 2020 年 7 月的一次代码修改，可以查看[namespace controller: use shared informer](https://github.com/istio/istio/commit/9fdec2a68d443b9f9aac85530ac01491b0d24bf2)
 
 ![namespace controller: use shared informer](istio-code.png)
 
@@ -311,7 +311,7 @@ NAME                                                        REFERENCE           
 horizontalpodautoscaler.autoscaling/istio-ingress-gateway   Deployment/istio-ingress-gateway   8%/80%    2         5         2          23h
 ```
 
-6. 参照步骤4、5，在 bar namespace 中部署产品 Bar 独占的 Istio Ingress Gateway。
+6. 参照步骤 4、5，在 bar namespace 中部署产品 Bar 独占的 Istio Ingress Gateway。
 
 ```
 kubectl create namespace bar
@@ -368,9 +368,9 @@ NAME                                                        REFERENCE           
 horizontalpodautoscaler.autoscaling/istio-ingress-gateway   Deployment/istio-ingress-gateway   6%/80%    2         5         2          23h
 ```
 
-通过步骤1-6，实现了单控制面多 Gateway 方案的部署，两款产品 Foo 及 Bar 共享 istio-system namespace 中的 Istiod 控制面，独占各自 namespace 中的 Istio Ingress Gateway。
+通过步骤 1-6，实现了单控制面多 Gateway 方案的部署，两款产品 Foo 及 Bar 共享 istio-system namespace 中的 Istiod 控制面，独占各自 namespace 中的 Istio Ingress Gateway。
 
-部署Foo、Bar两款产品（很简单的 HelloWorld 类型的 Demo），并创建 Istio 流量管理相关的 CRD，可以实现 Foo、Bar 两款产品的灰度发布，下面是实现灰度发布后的效果，部署过程不再赘述。
+部署 Foo、Bar 两款产品（很简单的 HelloWorld 类型的 Demo），并创建 Istio 流量管理相关的 CRD，可以实现 Foo、Bar 两款产品的灰度发布，下面是实现灰度发布后的效果，部署过程不再赘述。
 
 ```
 curl http://10.154.0.165:32180/foo/hello
@@ -390,7 +390,7 @@ Hello Bar 0.0.2
 
 ## 参考文章
 
-* [2021年 Istio 大型“入坑”指南](http://blog.itpub.net/31557835/viewspace-2760142/)
+* [2021 年 Istio 大型“入坑”指南](http://blog.itpub.net/31557835/viewspace-2760142/)
 * [「Bug」Istio 的 Sidercar 和 IngressGateway 间歇性地报错：Envoy proxy is NOT ready](https://www.cnblogs.com/kirito-c/p/12750063.html)
 * [Istio performance in a multi-tenancy Kubernetes cluster](https://medium.com/ww-engineering/istio-performance-in-a-multi-tenancy-kubernetes-cluster-a843ec4e51f7)
 * [Istio 的软性多租户支持](https://istio.io/latest/zh/blog/2018/soft-multitenancy/)
@@ -398,6 +398,6 @@ Hello Bar 0.0.2
 * [Istio performance in a multi-tenancy Kubernetes cluster](https://medium.com/ww-engineering/istio-performance-in-a-multi-tenancy-kubernetes-cluster-a843ec4e51f7) 
 * [Why choose Red Hat OpenShift Service Mesh?](https://www.redhat.com/en/topics/microservices/why-choose-openshift-service-mesh)
 * [腾讯云中间件团队在 Service Mesh 中的实践与探索](https://www.infoq.cn/article/id2w4pefjqbusjhmd8jt)
-* [Service Mesh：调度千军万马微服务，2.0妥妥的](https://www.qbitai.com/2020/06/15846.html)
+* [Service Mesh：调度千军万马微服务，2.0 妥妥的](https://www.qbitai.com/2020/06/15846.html)
 * [一文带你彻底厘清 Isito 中的证书工作机制](https://zhaohuabing.com/post/2020-05-25-istio-certificate/)
-* [Istio流量管理实现机制深度解析](https://zhaohuabing.com/post/2018-09-25-istio-traffic-management-impl-intro/)
+* [Istio 流量管理实现机制深度解析](https://zhaohuabing.com/post/2018-09-25-istio-traffic-management-impl-intro/)

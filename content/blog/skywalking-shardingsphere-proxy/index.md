@@ -74,7 +74,7 @@ ds_{dataSourceShardingColumn.hashcode() % dataSourceList.size()}
 {timeSeries = currentDate - TTL +1...currentDate + 1}
 ```
 
-例如：如果 `TTL=3, currentDate = 20220907`，则分片表为:
+例如：如果 `TTL=3, currentDate = 20220907`，则分片表为：
 
 ```
 logicTableName_20220905

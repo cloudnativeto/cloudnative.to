@@ -16,7 +16,7 @@ aliases: ["/blog/202003-gitops-progressive-delivery-with-asm"]
 
 ### ASM
 
-阿里云服务网格（Alibaba Cloud Service Mesh，简称 [ASM](https://www.aliyun.com/product/servicemesh)）提供了一个全托管式的服务网格平台，兼容于社区 Istio 开源服务网格，用于简化服务的治理，包括服务调用之间的流量路由与拆分管理、服务间通信的认证安全以及网格可观测性能力，从而极大地减轻开发与运维的工作负担。ASM的架构示意图如下:
+阿里云服务网格（Alibaba Cloud Service Mesh，简称 [ASM](https://www.aliyun.com/product/servicemesh)）提供了一个全托管式的服务网格平台，兼容于社区 Istio 开源服务网格，用于简化服务的治理，包括服务调用之间的流量路由与拆分管理、服务间通信的认证安全以及网格可观测性能力，从而极大地减轻开发与运维的工作负担。ASM 的架构示意图如下：
 
 ![asm_arch.png](https://yqfile.alicdn.com/e08227881a1b2819f9c176d8e7c199d78f245b04.png)
 
@@ -30,7 +30,7 @@ ASM 定位于混合云、多云、多集群、非容器应用迁移等核心场�
 
 ### ArgoCD
 
-[ArgoCD](https://argoproj.github.io/argo-cd/) 是一个用于持续交付的Kubernetes配置管理工具。Argo CD 遵循 GitOps 模式，监听当前运行中应用的状态并与 Git Repository 中声明的状态进行比对，并自动将更新部署到环境中。 ArgoCD 的架构示意图如下：
+[ArgoCD](https://argoproj.github.io/argo-cd/) 是一个用于持续交付的 Kubernetes 配置管理工具。Argo CD 遵循 GitOps 模式，监听当前运行中应用的状态并与 Git Repository 中声明的状态进行比对，并自动将更新部署到环境中。ArgoCD 的架构示意图如下：
 ![argocd-arch.png](https://yqfile.alicdn.com/610344e9ff3b67245bb35f07a1547deb98b2d6da.png)
 
 ### Flagger
@@ -40,7 +40,7 @@ ASM 定位于混合云、多云、多集群、非容器应用迁移等核心场�
 
 ## 创建 ASM 实例
 
-参考 ASM [帮助文档](https://help.aliyun.com/document_detail/152154.html)创建 ASM 实例并添加 `mesh01` 和 `mesh02` 2个 ACK 集群：
+参考 ASM [帮助文档](https://help.aliyun.com/document_detail/152154.html)创建 ASM 实例并添加 `mesh01` 和 `mesh02` 2 个 ACK 集群：
 ![asm-instance.png](https://yqfile.alicdn.com/89b4926bd184d938d40d7a9fc1ddb18215f0714c.png)
 
 部署入口网关服务到 `mesh01` 集群：
@@ -75,7 +75,7 @@ spec:
 
 ## 部署 Flagger
 
-分别在 `mesh1` 和 `mesh2` 2个ACK集群上按照以下步骤部署 Flagger 及其它相关组件：
+分别在 `mesh1` 和 `mesh2` 2 个 ACK 集群上按照以下步骤部署 Flagger 及其它相关组件：
 
 ### 部署 Prometheus
 
@@ -83,7 +83,7 @@ spec:
 $ kubectl apply -k github.com/haoshuwei/argocd-samples/flagger/prometheus/
 ```
 
-### 部署Flagger
+### 部署 Flagger
 
 使用 ASM 实例的 kubeconfig 创建 `secret`:
 
@@ -182,7 +182,7 @@ TYPE  NAME         REPO                                          INSECURE  LFS  
 git   argocd-samples  https://github.com/haoshuwei/argocd-samples.git  false     false  false  Successful
 ```
 
-使用 kubeconfig添加 `mesh01` 和 `mesh02` 2个集群到 ArgoCD：
+使用 kubeconfig 添加 `mesh01` 和 `mesh02` 2 个集群到 ArgoCD：
 
 ```shell
 $ argocd cluster add mesh01 --kubeconfig=mesh01
@@ -206,7 +206,7 @@ $ argocd app create --project default --name podinfo --repo https://github.com/h
 
 以上命令行做的事情是创建一个应用 `podinfo`，这个应用的 Git Repository 源是 `https://github.com/haoshuwei/gitops-demo.git` 项目 `flagger/podinfo` 子目录下的文件，分支为 `latest`，应用部署到 `https://xx.xx.xxx.xx:6443` 集群的 `test` 命名空间下，应用的同步策略是 `automated`。
 
-`flagger/podinfo`  子目录下包括4个编排文件 `deployment.yaml` `hpa.yaml` `kustomization.yaml` 和 `canary.yaml`，其中 `canary.yaml` 文件就是我们这个示例中完成应用全自动化渐进式金丝雀发布的核心编排文件，内容如下:
+`flagger/podinfo`  子目录下包括 4 个编排文件 `deployment.yaml` `hpa.yaml` `kustomization.yaml` 和 `canary.yaml`，其中 `canary.yaml` 文件就是我们这个示例中完成应用全自动化渐进式金丝雀发布的核心编排文件，内容如下：
 
 ```go
 apiVersion: flagger.app/v1beta1
@@ -308,13 +308,13 @@ analysis:
 ```
 
 以上字段表示我们在发布新版本 `podinfo` 应用时，要先对新版本应用做一些测试和分析，
-`interval: 30s`， 每隔30s测试一次
-`threshold: 5`， 失败次数超过5次则认为失败
-`maxWeight: 50`， 流量权重最大可以切换到50
-`stepWeight: 5`， 每次增加权重为5
-`metrics`中定义了2种指标，
+`interval: 30s`，每隔 30s 测试一次
+`threshold: 5`，失败次数超过 5 次则认为失败
+`maxWeight: 50`，流量权重最大可以切换到 50
+`stepWeight: 5`，每次增加权重为 5
+`metrics`中定义了 2 种指标，
 `request-success-rate` 请求成功率不能小于`99`
-`request-duration` RT均值不能大于500ms
+`request-duration` RT 均值不能大于 500ms
 用来生成测试任务的则定义在 `webhooks` 字段。
 
 部署测试应用 `loadtester` 到 `mesh01` 集群：

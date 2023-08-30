@@ -131,12 +131,12 @@ $ istioctl pc cluster httpbin-d6d68fb97-cswzc --fqdn httpbin.default.svc.cluster
 上面的配置告诉我们：
 
 + **maxConnections** : 限制对后端服务发起的 `HTTP/1.1` 连接数，如果超过了这个限制，就会开启熔断。
-+ **maxPendingRequests** : 限制待处理请求列表的长度， 如果超过了这个限制，就会开启熔断。
++ **maxPendingRequests** : 限制待处理请求列表的长度，如果超过了这个限制，就会开启熔断。
 + **maxRequestsPerConnection** : 在任何给定时间内限制对后端服务发起的 `HTTP/2` 请求数，如果超过了这个限制，就会开启熔断。
 
 下面分别对这几个参数做详细解释。
 
-+ **maxConnections** : 表示在任何给定时间内， Envoy 与上游集群（这里指的是 httpbin 服务）建立的最大连接数。该配置仅适用于 `HTTP/1.1` 协议，因为 `HTTP/2` 协议可以在同一个 TCP 连接中发送多个请求，而 `HTTP/1.1` 协议在同一个连接中只能处理一个请求。如果超过了这个限制（即断路器溢出），集群的[upstream_cx_overflow](https://www.envoyproxy.io/docs/envoy/latest/configuration/cluster_manager/cluster_stats#config-cluster-manager-cluster-stats) 计数器就会递增。
++ **maxConnections** : 表示在任何给定时间内，Envoy 与上游集群（这里指的是 httpbin 服务）建立的最大连接数。该配置仅适用于 `HTTP/1.1` 协议，因为 `HTTP/2` 协议可以在同一个 TCP 连接中发送多个请求，而 `HTTP/1.1` 协议在同一个连接中只能处理一个请求。如果超过了这个限制（即断路器溢出），集群的[upstream_cx_overflow](https://www.envoyproxy.io/docs/envoy/latest/configuration/cluster_manager/cluster_stats#config-cluster-manager-cluster-stats) 计数器就会递增。
 + **maxPendingRequests** : 表示待处理请求队列的长度。因为 `HTTP/2` 是通过单个连接并发处理多个请求的，因此该熔断策略仅在创建初始 `HTTP/2` 连接时有用，之后的请求将会在同一个 TCP 连接上多路复用。对于 `HTTP/1.1` 协议，只要没有足够的上游连接可用于立即分派请求，就会将请求添加到待处理请求队列中，因此该断路器将在该进程的生命周期内保持有效。如果该断路器溢出，集群的 [upstream_rq_pending_overflow](https://www.envoyproxy.io/docs/envoy/latest/configuration/cluster_manager/cluster_stats#config-cluster-manager-cluster-stats) 计数器就会递增。
 + **maxRequestsPerConnection** : 表示在任何给定时间内，上游集群中所有主机（这里指的是 httpbin 服务）可以处理的最大请求数。实际上，这适用于仅 `HTTP/2` 集群，因为 `HTTP/1.1` 集群由最大连接数断路器控制。如果该断路器溢出，集群的 [upstream_rq_pending_overflow](https://www.envoyproxy.io/docs/envoy/latest/configuration/cluster_manager/cluster_stats#config-cluster-manager-cluster-stats) 计数器就会递增。
 
@@ -395,7 +395,7 @@ $ curl -s http://$PILOT_SVC_IP:8080/debug/edsz|grep "outbound|8000||httpbin.defa
 
 + [istio.networking.v1alpha3 OutlierDetection](https://preliminary.istio.io/zh/docs/reference/config/istio.networking.v1alpha3/#outlierdetection)
 + [Istio 流量管理之熔断](https://preliminary.istio.io/zh/docs/tasks/traffic-management/circuit-breaking/)
-+ [Envoy Proxy和Netflix Hystrix，究竟谁才是熔断王者？](https://zhuanlan.zhihu.com/p/33490531)
++ [Envoy Proxy 和 Netflix Hystrix，究竟谁才是熔断王者？](https://zhuanlan.zhihu.com/p/33490531)
 + [Envoy Outlier detection](https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/outlier#arch-overview-outlier-detection)
 + [Envoy Panic threshold](https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/load_balancing/panic_threshold#)
 + [Microservices Patterns With Envoy Sidecar Proxy, Part I: Circuit Breaking](https://blog.christianposta.com/microservices/01-microservices-patterns-with-envoy-proxy-part-i-circuit-breaking/)

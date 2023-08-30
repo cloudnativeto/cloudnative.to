@@ -56,7 +56,7 @@ DeepFlow 的全景拓扑可以与多指标进行结合，当指标量超过阈�
 
 ![扩容_02](https://yunshan-guangzhou.oss-cn-beijing.aliyuncs.com/pub/pic/202304206440e8e64d271.jpg)
 
-继续对 cart 服务的 POD 的数量扩容 1 倍，观测全景拓扑，发现红色部分都没了。到此基本上可以出压测结果了，**针对当前电商应用在 1.5k 的并发访问量的情况下，productcatalog 需要是比其他服务（除 cart 外） 2 倍的资源分配，cart 需要比其他服务（除 productcatalog 外） 多 1 倍的资源分配才能应对。**
+继续对 cart 服务的 POD 的数量扩容 1 倍，观测全景拓扑，发现红色部分都没了。到此基本上可以出压测结果了，**针对当前电商应用在 1.5k 的并发访问量的情况下，productcatalog 需要是比其他服务（除 cart 外）2 倍的资源分配，cart 需要比其他服务（除 productcatalog 外）多 1 倍的资源分配才能应对。**
 
 ![扩容_03](https://yunshan-guangzhou.oss-cn-beijing.aliyuncs.com/pub/pic/202304206440e8e6c4bf9.jpg)
 

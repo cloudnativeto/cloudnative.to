@@ -12,78 +12,78 @@ keywords: ["Kubernetes","velero"]
 ---
 
 ## 简介
-Velero前身是Heptio Ark ，是由GO语言编写的一款用于灾难恢复和迁移工具，可以安全的备份、恢复和迁移Kubernetes集群资源和持久卷。
+Velero 前身是 Heptio Ark，是由 GO 语言编写的一款用于灾难恢复和迁移工具，可以安全的备份、恢复和迁移 Kubernetes 集群资源和持久卷。
 
-**Velero主要提供以下能力**
-- 备份Kubernetes 集群资源，并在资源丢失情况下进行还原
+**Velero 主要提供以下能力**
+- 备份 Kubernetes 集群资源，并在资源丢失情况下进行还原
 - 将集群资源迁移到其他集群
 - 将生产集群复制到开发和测试集群
 
 **Velero 主要组件**
 - Velero 组件主要包括服务器端和客户端两部分
-- 服务端：运行在你Kubernetes 的集群中
-- 客户端：运行在本地的命令行工具，本地环境需要配置好Kubernetes 集群的kubeconfig 及kubectl 客户端工具
+- 服务端：运行在你 Kubernetes 的集群中
+- 客户端：运行在本地的命令行工具，本地环境需要配置好 Kubernetes 集群的 kubeconfig 及 kubectl 客户端工具
 
 **Velero 支持备份存储**
 - Azure BloB 存储
 - Google Cloud 存储
-- AWS S3 及兼容S3 的存储（比如：MinIO）
+- AWS S3 及兼容 S3 的存储（比如：MinIO）
 - Aliyun OSS 存储
 
 ## 原理
-Velero 的基本原理就是将Kubernetes 集群资源对象数据备份到对象存储中，并能从对象存储中拉取备份数据来恢复集群资源对象数据。不同于etcd 备份——将集群的全部资源备份起来——Velero 是对Kubernetes 集群内资源对象级别进行备份，可以通过对Type、Namespace、Label等对象进行分类备份或者恢复。Velero的操作（backup, scheduled backup, restore）都是CRD自定义资源，存储etcd中。
-Velero的整体模块架构如下图1，首先，客户端是一个简单的交互客户端Velero-cli，封装了各种命令参数，可以执行安装、配置、备份、恢复等操作。服务端则可以类比成一个典型的kubebuild 的operator，首先是不同的CR，也就是API。中间Controller 层需要用到一些相对比较独立的服务时，都会通过插件系统来对接到内部或者外部的插件服务。底层的数据拷贝层是对接Restic。其它都是外部的插件实现，velero.io/plugins 就代表内部的插件实现，由Velero 或者第三方厂商来实现。
-![图1 Velero 模块架构图](1.jpg)
+Velero 的基本原理就是将 Kubernetes 集群资源对象数据备份到对象存储中，并能从对象存储中拉取备份数据来恢复集群资源对象数据。不同于 etcd 备份——将集群的全部资源备份起来——Velero 是对 Kubernetes 集群内资源对象级别进行备份，可以通过对 Type、Namespace、Label 等对象进行分类备份或者恢复。Velero 的操作（backup, scheduled backup, restore）都是 CRD 自定义资源，存储 etcd 中。
+Velero 的整体模块架构如下图 1，首先，客户端是一个简单的交互客户端 Velero-cli，封装了各种命令参数，可以执行安装、配置、备份、恢复等操作。服务端则可以类比成一个典型的 kubebuild 的 operator，首先是不同的 CR，也就是 API。中间 Controller 层需要用到一些相对比较独立的服务时，都会通过插件系统来对接到内部或者外部的插件服务。底层的数据拷贝层是对接 Restic。其它都是外部的插件实现，velero.io/plugins 就代表内部的插件实现，由 Velero 或者第三方厂商来实现。
+![图 1 Velero 模块架构图](1.jpg)
 
 ### 按需备份（On-demand backups）
-**backup：** 将复制的Kubernetes 资源对象上传到对象存储中，且可选择调用云环境提供的API 来创建持久化卷快照，以及可选择指定在备份期间执行backup hook操作（比如：可能需要在快照之前告诉数据库将其内存中的缓存刷新到磁盘）。
-**Tips：** backup操作并不是严格的原子性备份，在备份期间，若是有Kubernetes 资源对象被新建或编辑操作，则这个操作变动可能不会被包含在backup备份中。
+**backup：** 将复制的 Kubernetes 资源对象上传到对象存储中，且可选择调用云环境提供的 API 来创建持久化卷快照，以及可选择指定在备份期间执行 backup hook 操作（比如：可能需要在快照之前告诉数据库将其内存中的缓存刷新到磁盘）。
+**Tips：** backup 操作并不是严格的原子性备份，在备份期间，若是有 Kubernetes 资源对象被新建或编辑操作，则这个操作变动可能不会被包含在 backup 备份中。
 **指令：**
 `velero backup create test-backup`
 **流程：**
-- Velero客户端向Kubernetes API server 发起创建Backup对象的请求
-- BackupController 检测到新建Backup对象，并进行参数验证
-- BackupController 开始备份执行过程。通过与API server交互，获取需要备份的资源数据
+- Velero 客户端向 Kubernetes API server 发起创建 Backup 对象的请求
+- BackupController 检测到新建 Backup 对象，并进行参数验证
+- BackupController 开始备份执行过程。通过与 API server 交互，获取需要备份的资源数据
 - BackupController 向对象存储服务（如：AWS S3）发起上传备份数据请求
-- 默认情况，backup操作是会对持久卷（PV）进行磁盘快照备份的，不过是可以通过--snapshot-volumes=false进行取消
+- 默认情况，backup 操作是会对持久卷（PV）进行磁盘快照备份的，不过是可以通过--snapshot-volumes=false 进行取消
 
-![图2 Velero 备份流程](2.jpg)
+![图 2 Velero 备份流程](2.jpg)
 
 ### 备份还原（Restores）
-**restore：** 对历史备份的Kubernetes 资源对象和持久卷进行还原，且允许按需选择指定部分资源对象还原到指定命名空间（Namespace）中。且可以选择在备份还原期间或还原后执行restore hook操作（比如：执行自定义数据库的还原操作之后，再执行数据库应用容器启动动作）。
-**Tips：** 默认情况下，Velero进行的是非破坏性还原操作（non-destructive restore），这意味着它不会删除目标集群上的任何数据——即如果备份中的资源对象已经存在于目标集群中，restore操作将会跳过该资源的还原。当然，也可通配置更新策略(--existing-resource-policy=update)，尝试更新目标集群中已存在资源，以匹配备份中的资源数据。
+**restore：** 对历史备份的 Kubernetes 资源对象和持久卷进行还原，且允许按需选择指定部分资源对象还原到指定命名空间（Namespace）中。且可以选择在备份还原期间或还原后执行 restore hook 操作（比如：执行自定义数据库的还原操作之后，再执行数据库应用容器启动动作）。
+**Tips：** 默认情况下，Velero 进行的是非破坏性还原操作（non-destructive restore），这意味着它不会删除目标集群上的任何数据——即如果备份中的资源对象已经存在于目标集群中，restore 操作将会跳过该资源的还原。当然，也可通配置更新策略 (--existing-resource-policy=update)，尝试更新目标集群中已存在资源，以匹配备份中的资源数据。
 **指令：**
 `velero restore create`
 **流程：**
-- Velero客户端向Kubernetes API server 发起创建Restore对象的请求
-- RestoreController 检测到新建Restore 对象，并进行参数验证
-- RestoreController 从对象存储服务处获取待还原备份资源数据信息，并进行备份资源还原前的一些预处理工作（比如：备份资源的API versions版本验证）
+- Velero 客户端向 Kubernetes API server 发起创建 Restore 对象的请求
+- RestoreController 检测到新建 Restore 对象，并进行参数验证
+- RestoreController 从对象存储服务处获取待还原备份资源数据信息，并进行备份资源还原前的一些预处理工作（比如：备份资源的 API versions 版本验证）
 - RestoreController 开始备份还原执行过程，一次性还原所有指定待还原资源
 
 ### 定时备份（Scheduled backups）
-**schedule：** 可以定期备份数据。在schedule 创建后，便创建第一次备份，随后备份将按照指定调度周期（由 Cron 表达式指定）进行备份。定时备份保存的名称为 <SCHEDULE NAME>-<TIMESTAMP>，其中 <TIMESTAMP> 格式为 YYYYMMDDhhmmss。
+**schedule：** 可以定期备份数据。在 schedule 创建后，便创建第一次备份，随后备份将按照指定调度周期（由 Cron 表达式指定）进行备份。定时备份保存的名称为 <SCHEDULE NAME>-<TIMESTAMP>，其中 <TIMESTAMP> 格式为 YYYYMMDDhhmmss。
 
 ### API versions
-Velero备份资源时，使用Kubernetes API 首选版本为每个组（group）/资源（CRD）备份。而还原备份的目标集群中，必须存在相同API 组（group）/资源（CRD）版本。需要注意的是：只是需要存在，而并不是需要首选版本。例如，如果正在备份的集群在 things API 组中有一个 gizmos 资源，group/versions为 things/v1alpha1、things/v1beta1 和 things/v1，并且服务器的首选group/versions 是 things/v1，那么所有 gizmos 将从 things/v1 API 端点备份。 当从该集群恢复备份时，目标集群必须具有 things/v1 端点才能恢复 Gizmo。
+Velero 备份资源时，使用 Kubernetes API 首选版本为每个组（group）/资源（CRD）备份。而还原备份的目标集群中，必须存在相同 API 组（group）/资源（CRD）版本。需要注意的是：只是需要存在，而并不是需要首选版本。例如，如果正在备份的集群在 things API 组中有一个 gizmos 资源，group/versions 为 things/v1alpha1、things/v1beta1 和 things/v1，并且服务器的首选group/versions 是 things/v1，那么所有 gizmos 将从 things/v1 API 端点备份。当从该集群恢复备份时，目标集群必须具有 things/v1 端点才能恢复 Gizmo。
 
 ### 备份存储
-Velero有2种备份存储方式：
+Velero 有 2 种备份存储方式：
 
-**1.Restic方式备份**
-Restic 是一款 GO 语言开发的开源免费且快速、高效和安全的跨平台备份工具。它是文件系统级别备份持久卷数据并将其发送到 Velero 的对象存储。执行速度取决于本地IO能力，网络带宽和对象存储性能，相对快照方式备份慢。 但如果当前集群或者存储出现问题，由于所有资源和数据都存储在远端的对象存储上， 用Restic方式备份可以很容易的将应用恢复。
+**1.Restic 方式备份**
+Restic 是一款 GO 语言开发的开源免费且快速、高效和安全的跨平台备份工具。它是文件系统级别备份持久卷数据并将其发送到 Velero 的对象存储。执行速度取决于本地 IO 能力，网络带宽和对象存储性能，相对快照方式备份慢。但如果当前集群或者存储出现问题，由于所有资源和数据都存储在远端的对象存储上，用 Restic 方式备份可以很容易的将应用恢复。
 **Tips：** 使用 Restic 来对 PV 进行备份会有一些限制：
-- 不支持备份 hostPath，支持EFS、AzureFile、NFS、emptyDir、local 或其他没有本地快照概念的卷类型
+- 不支持备份 hostPath，支持 EFS、AzureFile、NFS、emptyDir、local 或其他没有本地快照概念的卷类型
 - 备份数据标志只能通过 Pod 来识别
 - 单线程操作大量文件比较慢
 
 **2.快照方式备份**
-Velero使用一组 BackupItemAction 插件针对 PersistentVolumeClaims 进行备份，执行速度快。它创建一个以 PersistentVolumeClaim 作为源的 VolumeSnapshot 对象， 此 VolumeSnapshot 对象与用作源的 PersistentVolumeClaim 位于同一命名空间中，与VolumeSnapshot对应的 VolumeSnapshotContent 对象是一个集群范围的资源，将指向存储系统中基于磁盘的实际快照。Velero 备份时将所有 VolumeSnapshots 和 VolumeSnapshotContents 对象上传到对象存储系统， 但是Velero 备份后的数据资源仍然保存在集群的存储上。数据可用性依赖于本地存储的高可用性，因为如果是由于存储故障导致的应用问题，Velero的快照备份机制并不能恢复应用数据。
+Velero 使用一组 BackupItemAction 插件针对 PersistentVolumeClaims 进行备份，执行速度快。它创建一个以 PersistentVolumeClaim 作为源的 VolumeSnapshot 对象，此 VolumeSnapshot 对象与用作源的 PersistentVolumeClaim 位于同一命名空间中，与 VolumeSnapshot 对应的 VolumeSnapshotContent 对象是一个集群范围的资源，将指向存储系统中基于磁盘的实际快照。Velero 备份时将所有 VolumeSnapshots 和 VolumeSnapshotContents 对象上传到对象存储系统，但是 Velero 备份后的数据资源仍然保存在集群的存储上。数据可用性依赖于本地存储的高可用性，因为如果是由于存储故障导致的应用问题，Velero 的快照备份机制并不能恢复应用数据。
 
 ## 部署
-### MinIO对象存储部署
-Velero 依赖对象存储保存备份数据，这里部署MinIO 替代公有云对象存储。
+### MinIO 对象存储部署
+Velero 依赖对象存储保存备份数据，这里部署 MinIO 替代公有云对象存储。
 
-**1. Yaml文件——minio.yaml**
+**1. Yaml 文件——minio.yaml**
 ```
 apiVersion: v1
 kind: Namespace
@@ -223,12 +223,12 @@ NAME                    COMPLETIONS   DURATION   AGE
 job.batch/minio-setup   1/1           5s         5m50s
 ```
 **3.验证**
-然后我们可以通过 http://<nodeip>:30081，访问 MinIO的 console 页面
-![图3 MinIO 页面](3.jpg)
+然后我们可以通过 http://<nodeip>:30081，访问 MinIO 的 console 页面
+![图 3 MinIO 页面](3.jpg)
 **Tips：** 当然如果需要在不同 Kubernetes 和存储池集群备份与恢复数据，需要将 MinIO 服务端安装在 Kubernetes 集群外，保证在集群发生灾难性故障时，不会对备份数据产生影响，可以通过二进制的方式进行安装。
 
-### Velero客户端
-在 Github (https://github.com/vmware-tanzu/velero/releases)下载指定的 velero 二进制客户端，解压放置$PATH路径
+### Velero 客户端
+在 Github (https://github.com/vmware-tanzu/velero/releases) 下载指定的 velero 二进制客户端，解压放置$PATH 路径
 
 ```
 ➜~ wget https://github.com/vmware-tanzu/velero/releases/download/v1.8.1/velero-v1.8.1-linux-amd64.tar.gz
@@ -255,7 +255,7 @@ Server:
 ```
 
 ### Velero 服务端
-1. 首先准备密钥文件，access key id 和 secret access key 为MinIO 的用户名和密码
+1. 首先准备密钥文件，access key id 和 secret access key 为 MinIO 的用户名和密码
 ```
 # 秘钥文件credentials-velero
 [default]
@@ -316,12 +316,12 @@ job.batch/minio-setup   1/1           5s         6m40s
 - --secret-file 用来提供访问 MinIO 的密钥
 - --use-restic 表示使用开源免费备份工具 restic 备份和还原持久卷数据，启用该参数后会部署一个名为 restic 的 DaemonSet 对象
 - --plugins 使用的 velero 插件，本文使用 AWS S3 兼容插件。
-- s3Url 配置MinIO 服务对外暴露的nodePort端口及部署节点IP
-- 需要注意的是启动需要修改Restic DaemonSet spec 配置，调整为实际环境中Kubernetes 指定pod 保存路径的hostPath
+- s3Url 配置 MinIO 服务对外暴露的 nodePort 端口及部署节点 IP
+- 需要注意的是启动需要修改 Restic DaemonSet spec 配置，调整为实际环境中 Kubernetes 指定 pod 保存路径的 hostPath
 
 ## 测试
- 本次测试服务使用的是一个多集群查询服务Clusterpedia（包含使用本底存储的MySQL+3个deployment等资源）。具体使用细节可以参考相关官方文档（https://clusterpedia.io/zh-cn/docs/installation/kubectl-apply/）
-1. 部署Clusterpedia服务
+ 本次测试服务使用的是一个多集群查询服务 Clusterpedia（包含使用本底存储的 MySQL+3 个 deployment 等资源）。具体使用细节可以参考相关官方文档（https://clusterpedia.io/zh-cn/docs/installation/kubectl-apply/）
+1. 部署 Clusterpedia 服务
 ```
 ➜~ kubectl get all -n clusterpedia-system
 NAME                                                       READY   STATUS    RESTARTS   AGE
@@ -346,7 +346,7 @@ replicaset.apps/clusterpedia-clustersynchro-manager-7c7b47d6ff   1         1    
 replicaset.apps/clusterpedia-controller-manager-f5d84c777        1         1         1       1m
 replicaset.apps/clusterpedia-internalstorage-mysql-785597b897    1         1         1       2m
 ```
-2. 接入集群，其他集群（具体可参考https://clusterpedia.io/zh-cn/docs/usage/import-clusters/）
+2. 接入集群，其他集群（具体可参考 https://clusterpedia.io/zh-cn/docs/usage/import-clusters/）
 ```
 ➜~ ll pediacluster-*
 -rw-r--r-- 1 root root 3366 Jul 14 19:23 pediacluster-37-k8s.yaml
@@ -463,7 +463,7 @@ my-backup-1009   InProgress   0        0          2022-10-09 15:00:16 +0800 +08 
 NAME             STATUS      ERRORS   WARNINGS   CREATED                         EXPIRES   STORAGE LOCATION   SELECTOR
 my-backup-1009   Completed   0        0          2022-10-09 15:00:16 +0800 +08   29d       default            <none>
 ```
-5. 删除clusterpedia服务——具体可以参考（https://clusterpedia.io/zh-cn/docs/installation/kubectl-apply/#%E5%8D%B8%E8%BD%BD）
+5. 删除 clusterpedia 服务——具体可以参考（https://clusterpedia.io/zh-cn/docs/installation/kubectl-apply/#%E5%8D%B8%E8%BD%BD）
 ```
 # 快速删除
 # 清理 PediaCluster
@@ -620,10 +620,10 @@ CLUSTER   NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
 只要将每个 Velero 实例指向相同的对象存储（MinIO），Velero 就能将资源从一个群集迁移到另一个群集。此外还支持定时备份，触发备份 Hooks 等操作，更多资料请查阅官方文档：https://velero.io/docs/
 
 **限制/注意事项**
-- Velero支持BackupStorageLocation的多个凭证，按需指定使用，但使用此功能需要插件支持所使用的对象存储服务
-- Velero 仅支持VolumeSnapshotLocations 的一组凭据。 Velero 将始终使用安装时提供的凭据（存储在 cloud-credentials 密钥中）进行卷快照
+- Velero 支持 BackupStorageLocation 的多个凭证，按需指定使用，但使用此功能需要插件支持所使用的对象存储服务
+- Velero 仅支持 VolumeSnapshotLocations 的一组凭据。Velero 将始终使用安装时提供的凭据（存储在 cloud-credentials 密钥中）进行卷快照
 - 卷快照仍然受到提供商允许您创建快照的位置的限制。例如，AWS 和 Azure 不允许您在与卷所在的区域不同的区域中创建卷快照。
-- 每个 Velero 备份有一个 BackupStorageLocation，一个 VolumeSnapshotLocation。 不可能同时将单个 Velero 备份发送到多个备份存储位置，或者同时将单个卷快照发送到多个位置。但是可以设置多个存储位置不同的计划备份。
+- 每个 Velero 备份有一个 BackupStorageLocation，一个 VolumeSnapshotLocation。不可能同时将单个 Velero 备份发送到多个备份存储位置，或者同时将单个卷快照发送到多个位置。但是可以设置多个存储位置不同的计划备份。
 - 不支持跨提供商快照。如果您的集群具有多种类型的卷，例如 EBS 和 Portworx，但您只有为 EBS 配置的 VolumeSnapshotLocation，则 Velero 将仅对 EBS 卷进行快照。
 - Restic 数据存储在 Velero 主存储桶的前缀/子目录下，并将进入与用户在创建备份时选择的 BackupStorageLocation 对应的存储桶中。
 - Velero 的备份分为两部分——存储在对象存储中的元数据，以及持久卷数据的快照/备份。目前，Velero 本身并没有加密它们中的任何一个，而是依赖于对象和快照系统中的本机机制。一种特殊情况是 restic，它在文件系统级别备份持久卷数据并将其发送到 Velero 的对象存储。
@@ -633,4 +633,4 @@ CLUSTER   NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
 ## 参考
 - [Velero 官网](https://velero.io)
 - [Clusterpedia](https://clusterpedia.io/zh-cn/docs/)
-- [kubernetes备份恢复](https://cloud.tencent.com/developer/article/1781525)
+- [kubernetes 备份恢复](https://cloud.tencent.com/developer/article/1781525)

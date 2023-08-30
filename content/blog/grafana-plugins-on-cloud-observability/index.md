@@ -233,7 +233,7 @@ AppTracing panel 用来展现应用追踪数据。这些数据是从应用访问
 
 我们设计了一个完全模拟 Grafana Tempo backend 的模块，通过实现 Tempo 的 API，可以无缝将 DeepFlow 中的统计数据注入 Tempo UI 中显示，而且不需要额外部署 Tempo 后端：
 
-DeepFlow 使用 Tempo Panel, 通过 `deepflow-server` 替代 tempo 的 backend ：
+DeepFlow 使用 Tempo Panel, 通过 `deepflow-server` 替代 tempo 的 backend：
 
 ![DeepFlow-Tempo](./2022121363985b3136396.png)
 

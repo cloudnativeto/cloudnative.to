@@ -26,7 +26,7 @@ kubernetes 组件，图片来源[kubernetes.io](https://kubernetes.io/zh/docs/co
 在 Kubernetes 中使用了数字证书来提供身份证明，我们可以把数字证书简单理解为我们在日常生活中使用的“身份证”，上面标注了证书拥有者的身份信息，例如名称，所属组织机构等。为了保证证书的权威性，会采用一个通信双方都信任的 CA（证书机构，Certificate Authority）来颁发证书。这就类似于现实生活中颁发“身份证”的政府机构。数字证书中最重要的内容实际上是证书拥有者的公钥，该公钥代表了用户的身份。本文假设读者已经了解数字证书和 CA 的基本原理，如果你对此不太清楚，或者希望重新温习一下相关知识，可以先阅读一下这篇文章[《数字证书原理》](https://zhaohuabing.com/post/2020-03-19-pki)。
 
 ![](https://zhaohuabing.com/img/2020-05-19-k8s-certificate/ca.png)<br>
-CA （证书机构），图片来源[www.trustauth.cn](https://www.trustauth.cn/ca-question/1791.html)
+CA（证书机构），图片来源[www.trustauth.cn](https://www.trustauth.cn/ca-question/1791.html)
 
 在 Kubernetes 的组件之间进行通信时，数字证书的验证是在协议层面通过 TLS 完成的，除了需要在建立通信时提供相关的证书和密钥外，在应用层面并不需要进行特殊处理。采用 TLS 进行验证有两种方式：
 
@@ -48,7 +48,7 @@ CA （证书机构），图片来源[www.trustauth.cn](https://www.trustauth.cn/
 
 图片来源[The magic of TLS, X509 and mutual authentication explained](https://medium.com/sitewards/the-magic-of-tls-x509-and-mutual-authentication-explained-b2162dec4401)
 
-## Kubernetes 中使用到的CA和证书
+## Kubernetes 中使用到的 CA 和证书
 
 Kubernetes 中使用了大量的证书，本文不会试图覆盖到所有可能使用到的证书，但会讨论到主要的证书。理解了这些证书的使用方法和原理后，也能很快理解其他可能遇到的证书文件。下图标识出了在 kubernetes 中主要使用到的证书和其使用的位置：
 
@@ -80,9 +80,9 @@ Kubernetes 中使用到的主要证书
 
 11. kube-apiserver 作为客户端访问 kubelet 采用的证书。该证书是客户端证书。
 
-12. kube-controller-manager 用于生成和验证 service-account token 的证书。该证书并不会像其他证书一样用于身份认证，而是将证书中的公钥/私钥对用于 service account token 的生成和验证。kube-controller-manager  会用该证书的私钥来生成 service account token，然后以 secret 的方式加载到 pod 中。pod 中的应用可以使用该 token 来访问 kube-apiserver， kube-apiserver 会使用该证书中的公钥来验证请求中的 token。我们将在文中稍后部分详细介绍该证书的使用方法。
+12. kube-controller-manager 用于生成和验证 service-account token 的证书。该证书并不会像其他证书一样用于身份认证，而是将证书中的公钥/私钥对用于 service account token 的生成和验证。kube-controller-manager  会用该证书的私钥来生成 service account token，然后以 secret 的方式加载到 pod 中。pod 中的应用可以使用该 token 来访问 kube-apiserver，kube-apiserver 会使用该证书中的公钥来验证请求中的 token。我们将在文中稍后部分详细介绍该证书的使用方法。
 
-通过这张图，对证书机制比较了解的读者可能已经看出，我们其实可以使用多个不同的 CA 来颁发这些证书。只要在通信的组件中正确配置用于验证对方证书的 CA 根证书，就可以使用不同的 CA 来颁发不同用途的证书。但我们一般建议采用统一的 CA 来颁发 kubernetes 集群中的所有证书，这是因为采用一个集群根 CA 的方式比采用多个 CA 的方式更容易管理，可以避免多个CA 导致的复杂的证书配置、更新等问题，减少由于证书配置错误导致的集群故障。
+通过这张图，对证书机制比较了解的读者可能已经看出，我们其实可以使用多个不同的 CA 来颁发这些证书。只要在通信的组件中正确配置用于验证对方证书的 CA 根证书，就可以使用不同的 CA 来颁发不同用途的证书。但我们一般建议采用统一的 CA 来颁发 kubernetes 集群中的所有证书，这是因为采用一个集群根 CA 的方式比采用多个 CA 的方式更容易管理，可以避免多个 CA 导致的复杂的证书配置、更新等问题，减少由于证书配置错误导致的集群故障。
 
 ## Kubernetes 中的证书配置
 
@@ -135,9 +135,9 @@ Kubernetes 中使用到的主要证书
 
 ### 采用 kubeconfig 访问 kube-apiserver
 
-Kubernetes 中的各个组件，包括kube-controller-mananger、kube-scheduler、kube-proxy、kubelet等，采用一个kubeconfig 文件中配置的信息来访问 kube-apiserver。该文件中包含了 kube-apiserver 的地址，验证 kube-apiserver 服务器证书的 CA 证书，自己的客户端证书和私钥等访问信息。
+Kubernetes 中的各个组件，包括 kube-controller-mananger、kube-scheduler、kube-proxy、kubelet 等，采用一个 kubeconfig 文件中配置的信息来访问 kube-apiserver。该文件中包含了 kube-apiserver 的地址，验证 kube-apiserver 服务器证书的 CA 证书，自己的客户端证书和私钥等访问信息。
 
-在一个使用 minikube 安装的集群中，生成的 kubeconfig 配置文件如下所示，这四个文件分别为 admin 用户， kube-controller-mananger、kubelet 和 kube-scheduler 的kubeconfig配置文件。
+在一个使用 minikube 安装的集群中，生成的 kubeconfig 配置文件如下所示，这四个文件分别为 admin 用户，kube-controller-mananger、kubelet 和 kube-scheduler 的 kubeconfig 配置文件。
 
 ```bash
 $ ls /etc/kubernetes/
@@ -187,7 +187,7 @@ users:
 
 ### Service Account  证书
 
-Kubernetes 中有两类用户，一类为 user account，一类为 service account。 service account 主要被 pod 用于访问 kube-apiserver。 在为一个 pod 指定了 service account  后，kubernetes 会为该 service account 生成一个 JWT token，并使用 secret 将该 service account token 加载到 pod 上。pod 中的应用可以使用 service account token 来访问 api server。service account 证书被用于生成和验证 service account token。该证书的用法和前面介绍的其他证书不同，因为实际上使用的是其公钥和私钥，而并不需要对证书进行验证。
+Kubernetes 中有两类用户，一类为 user account，一类为 service account。service account 主要被 pod 用于访问 kube-apiserver。在为一个 pod 指定了 service account  后，kubernetes 会为该 service account 生成一个 JWT token，并使用 secret 将该 service account token 加载到 pod 上。pod 中的应用可以使用 service account token 来访问 api server。service account 证书被用于生成和验证 service account token。该证书的用法和前面介绍的其他证书不同，因为实际上使用的是其公钥和私钥，而并不需要对证书进行验证。
 
 我们可以看到 service account 证书的公钥和私钥分别被配置到了 kube-apiserver 和 kube-controller-manager 的命令行参数中，如下所示：
 
@@ -205,9 +205,9 @@ Kubernetes 中有两类用户，一类为 user account，一类为 service accou
 
 ![](https://zhaohuabing.com/img/2020-05-19-k8s-certificate/service-account-token.png)
 
-#### 认证方法：客户端证书还是 token ？
+#### 认证方法：客户端证书还是 token？
 
-我们可以看到，Kubernetes 提供了两种客户端认证的方法，控制面组件采用的是客户端数字证书;而在集群中部署的应用则采用了 service account token 的方式。为什么 Kubernetes 不为 service account 也生成一个证书，并采用该证书进行身份认证呢？ 实际上 Istio 就是这样做的，Istio 会自动为每个 service account 生成一个证书，并使用该证书来在 pod 中的应用之间建立双向 tls 认证。我没有找到 Kubernetes 这个设计决策的相关说明，如果你知道原因或对此有自己的见解，欢迎联系我进行探讨。
+我们可以看到，Kubernetes 提供了两种客户端认证的方法，控制面组件采用的是客户端数字证书;而在集群中部署的应用则采用了 service account token 的方式。为什么 Kubernetes 不为 service account 也生成一个证书，并采用该证书进行身份认证呢？实际上 Istio 就是这样做的，Istio 会自动为每个 service account 生成一个证书，并使用该证书来在 pod 中的应用之间建立双向 tls 认证。我没有找到 Kubernetes 这个设计决策的相关说明，如果你知道原因或对此有自己的见解，欢迎联系我进行探讨。
 
 ### Kubernetes 证书签发
 
@@ -226,12 +226,12 @@ Kubernetes 提供了一个  `certificates.k8s.io`  API，可以使用配置的 C
 
 在安装 Kubernetes 时，我们需要为每一个工作节点上的 Kubelet 分别生成一个证书。由于工作节点可能很多，手动生成 Kubelet 证书的过程会比较繁琐。为了解决这个问题，Kubernetes 提供了 [TLS bootstrapping ](https://kubernetes.io/zh/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/) 的方式来简化   Kubelet 证书的生成过程。其原理是预先提供一个 bootstrapping token，kubelet 通过该 kubelet 调用 kube-apiserver 的证书签发 API 来生成 自己需要的证书。要启用该功能，需要在 kube-apiserver 中启用 ```--enable-bootstrap-token-auth``` ，并创建一个 kubelet 访问 kube-apiserver 使用的 bootstrap token secret。如果使用 kubeadmin 安装，可以使用 ``` kubeadm token create ```命令来创建 token。
 
-采用TLS bootstrapping 生成证书的流程如下：
+采用 TLS bootstrapping 生成证书的流程如下：
 
 1. 调用 kube-apiserver 生成一个 bootstrap token。
 2. 将该 bootstrap token 写入到一个 kubeconfig 文件中，作为 kubelet 调用 kube-apiserver 的客户端验证方式。
 3. 通过  ```--bootstrap-kubeconfig``` 启动参数将 bootstrap token 传递给 kubelet 进程。
-4. Kubelet 采用bootstrap token 调用 kube-apiserver API，生成自己所需的服务器和客户端证书。
+4. Kubelet 采用 bootstrap token 调用 kube-apiserver API，生成自己所需的服务器和客户端证书。
 5. 证书生成后，Kubelet 采用生成的证书和 kube-apiserver 进行通信，并删除本地的 kubeconfig 文件，以避免 bootstrap token 泄漏风险。
 
 ## 小结
@@ -241,6 +241,6 @@ Kubernetes 中使用了大量的证书来确保集群的安全，弄清楚这些
 ## 参考文档
 * [Kubernetes PKI 证书和要求](https://kubernetes.io/zh/docs/setup/best-practices/certificates/)
 * [kubernetes the hard way](https://github.com/kelseyhightower/kubernetes-the-hard-wa)
-* [Kubernetes 之 二进制安装(二) 证书详解](https://blog.51cto.com/13210651/2361208)
+* [Kubernetes 之 二进制安装 (二) 证书详解](https://blog.51cto.com/13210651/2361208)
 * [TLS bootstrapping](https://kubernetes.io/zh/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/)
 * [数字证书原理](https://zhaohuabing.com/post/2020-03-19-pki/)

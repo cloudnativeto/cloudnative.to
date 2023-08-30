@@ -1,21 +1,21 @@
 ---
-title: "第五届Service Mesh Meetup广州站回顾"
+title: "第五届 Service Mesh Meetup 广州站回顾"
 date: 2019-01-08T10:41:54+08:00
 draft: false
 authors: ["宋净超"]
-summary: "ServiceMesher社区和蚂蚁金服联合主办、SOFAStack社区协办的第五届Service Mesh Meetup广州站收官，唯品会郑德惠、蚂蚁金服陈逸凡、HPE的崔秀龙给大家带来分享并增加Roundtable环节。"
+summary: "ServiceMesher 社区和蚂蚁金服联合主办、SOFAStack 社区协办的第五届 Service Mesh Meetup 广州站收官，唯品会郑德惠、蚂蚁金服陈逸凡、HPE 的崔秀龙给大家带来分享并增加 Roundtable 环节。"
 tags: ["meetup"]
 categories: ["其他"]
 keywords: ["service mesh","meetup"]
 ---
 
-![2019年广州 service mesh meetup](006tNc79ly1fyyzewgs38j318g0oggth.jpg)
+![2019 年广州 service mesh meetup](006tNc79ly1fyyzewgs38j318g0oggth.jpg)
 
 ![](006tNc79ly1fyyzfynn5xj318z0u0qv7.jpg)
 
 #### 唯品会 Service Mesh 的实践分享
 
-郑德惠 唯品会Java资深开发工程师，内部Service Mesh框架负责人，唯品会开源项目vjtools重要开发者，10年电信与互联网后台开发经验。
+郑德惠 唯品会 Java 资深开发工程师，内部 Service Mesh 框架负责人，唯品会开源项目 vjtools 重要开发者，10 年电信与互联网后台开发经验。
 
 ![郑德惠，唯品会](006tNc79ly1fyyzgcyz4fj318z0u0x6q.jpg)
 
@@ -23,7 +23,7 @@ keywords: ["service mesh","meetup"]
 
 #### SOFAMosn 持续演进路径及实践案例
 
-陈逸凡 花名无钩，蚂蚁金服资深开发工程师。专注于网络接入层，高性能服务器研发，SOFAMosn团队核心成员
+陈逸凡 花名无钩，蚂蚁金服资深开发工程师。专注于网络接入层，高性能服务器研发，SOFAMosn 团队核心成员
 
 ![陈逸凡，蚂蚁金服](006tNc79ly1fyyzgx3sdyj318z0u0qv7.jpg)
 
@@ -37,7 +37,7 @@ keywords: ["service mesh","meetup"]
 
 ![](006tNc79ly1fyyziaqb5uj318z0u04qs.jpg)
 
-#### Roundtable：回顾2018，Service Mesh 蓄势待发
+#### Roundtable：回顾 2018，Service Mesh 蓄势待发
 
 ![](006tNc79ly1fyyzin8a2lj318z0u0x6r.jpg)
 

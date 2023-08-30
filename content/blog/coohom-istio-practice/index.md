@@ -11,7 +11,7 @@ date: 2021-02-22T10:03:00+08:00
 
 ## 公司背景
 
-[酷家乐](https://www.kujiale.com/)公司以分布式并行计算和多媒体数据挖掘为技术核心，推出的家居云设计平台，致力于云渲染、云设计、BIM、VR、AR、AI 等技术的研发，实现“所见即所得”体验，5分钟生成装修方案，10秒生成效果图，一键生成 VR 方案的 SAAS 云端软件服务平台。
+[酷家乐](https://www.kujiale.com/)公司以分布式并行计算和多媒体数据挖掘为技术核心，推出的家居云设计平台，致力于云渲染、云设计、BIM、VR、AR、AI 等技术的研发，实现“所见即所得”体验，5 分钟生成装修方案，10 秒生成效果图，一键生成 VR 方案的 SAAS 云端软件服务平台。
 
 ### 核心问题
 
@@ -37,7 +37,7 @@ date: 2021-02-22T10:03:00+08:00
 
 ![酷家乐 serverless 云函数架构](008eGmZEly1gnxmlmtms9j32kx0u0n4c.jpg)
 
-在酷家乐，来自主站 [www.kujiale.com](http://www.kujiale.com/) 的流量都必须统一经过已有服务治理体系下的 Java 网关服务**site-gateway**进行 JWT 鉴权，过滤以及按规则转发到对应集群中的服务上。在当前治理体系下的能够接受流量转发的服务只能是 Java 服务， 因对应环境下 Serverless 服务都只部署在同一个 Kubernetes 集群中，我们将匹配 `/faas/api/` 规则的 HTTP 请求用该 Java 服务进行订阅，并借助 SpringCloud zuul 将流量直接转发到 Istio 集群内网关服务上（`cluster-local-gateway`，与 Istio-`ingress-gateway` 同配置，区别是只接受来自内网的流量，并且可以根据负载情况动态扩容），并与 Serverless 服务部署在同一集群中，这样我们解决了 Serverless 服务被已有治理体系调用的问题。
+在酷家乐，来自主站 [www.kujiale.com](http://www.kujiale.com/) 的流量都必须统一经过已有服务治理体系下的 Java 网关服务**site-gateway**进行 JWT 鉴权，过滤以及按规则转发到对应集群中的服务上。在当前治理体系下的能够接受流量转发的服务只能是 Java 服务，因对应环境下 Serverless 服务都只部署在同一个 Kubernetes 集群中，我们将匹配 `/faas/api/` 规则的 HTTP 请求用该 Java 服务进行订阅，并借助 SpringCloud zuul 将流量直接转发到 Istio 集群内网关服务上（`cluster-local-gateway`，与 Istio-`ingress-gateway` 同配置，区别是只接受来自内网的流量，并且可以根据负载情况动态扩容），并与 Serverless 服务部署在同一集群中，这样我们解决了 Serverless 服务被已有治理体系调用的问题。
 
 如下是一个展示平台业务案例，这个业务服务分别部署在集群中分别由两部分组成。
 
@@ -85,7 +85,7 @@ spec:
 
 ### KFaas 技术方案与 Istio / knative 间的版本解偶
 
-2018年我们在 Istio 尚未发布1.0正式版本前，在测试环境已经开始尝试。随着版本1.0 开始，我们在生产环境逐步迭代了 1.0.6 -> 1.1.7 -> 1.4.6 -> 1.5.4 （部分集群），包括 Knative 0.8 -> 0.9 -> 0.14 -> 0.15。在此过程中我们认为 Istio/knative 这些设施版本更迭已经成为一种常态， 我们初期的一些做法比如将业务相关的配置写入 `istio-system` namespace 中，在某些不兼容版本更新时就等于埋下了地雷。为此，我们专门设计了一个既依赖 Istio / knative 设施又与其固定版本解偶的 Kfaas 方案。
+2018 年我们在 Istio 尚未发布 1.0 正式版本前，在测试环境已经开始尝试。随着版本 1.0 开始，我们在生产环境逐步迭代了 1.0.6 -> 1.1.7 -> 1.4.6 -> 1.5.4（部分集群），包括 Knative 0.8 -> 0.9 -> 0.14 -> 0.15。在此过程中我们认为 Istio/knative 这些设施版本更迭已经成为一种常态，我们初期的一些做法比如将业务相关的配置写入 `istio-system` namespace 中，在某些不兼容版本更新时就等于埋下了地雷。为此，我们专门设计了一个既依赖 Istio / knative 设施又与其固定版本解偶的 Kfaas 方案。
 
 在 `kfaas-system` namespace 内包含：
 
@@ -95,7 +95,7 @@ spec:
 
 ### 酷家乐服务业务使用 Istio VirtualService 量级
 
-测试环境当下业务量级下，截止2020年末 VirtualService 已达 700+。
+测试环境当下业务量级下，截止 2020 年末 VirtualService 已达 700+。
 
 ![](008eGmZEly1gnwd57tavtj313q0u0u0x.jpg)
 

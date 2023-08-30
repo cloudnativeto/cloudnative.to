@@ -2,7 +2,7 @@
 title: "Dapr（分布式应用运行时）加入 CNCF 孵化器"
 translators: ["敖小剑"]
 date: 2021-11-04T02:37:00+08:00
-summary: "CNCF 技术监督委员会（TOC）已经投票决定接受 Dapr 作为CNCF的孵化项目。"
+summary: "CNCF 技术监督委员会（TOC）已经投票决定接受 Dapr 作为 CNCF 的孵化项目。"
 authors: ["CNCF"]
 categories: ["云原生"]
 tags: ["Dapr", "CNCF"]

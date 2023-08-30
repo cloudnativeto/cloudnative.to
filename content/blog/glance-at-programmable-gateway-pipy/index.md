@@ -7,7 +7,7 @@ tags: ["service mesh", "gateway"]
 date: 2021-05-31T7:13:54+08:00
 ---
 
-有幸参加了 [Flomesh](https://flomesh.cn/) 组织的workshop，了解了他们的 Pipy 网络代理，以及围绕 Pipy 构建起来的生态。Pipy 在生态中，不止是代理的角色，还是 Flomesh 服务网格​中的数据平面。
+有幸参加了 [Flomesh](https://flomesh.cn/) 组织的 workshop，了解了他们的 Pipy 网络代理，以及围绕 Pipy 构建起来的生态。Pipy 在生态中，不止是代理的角色，还是 Flomesh 服务网格​中的数据平面。
 
 整理一下，做个记录，顺便瞄一下 Pipy 的部分源码。
 
@@ -15,11 +15,11 @@ date: 2021-05-31T7:13:54+08:00
 
 下面是摘自 Github 上关于 Pipy 的介绍：
 
-> Pipy 是一个轻量级、高性能、高稳定、可编程的网络代理。Pipy 核心框架使用 C++ 开发，网络 IO 采用 ASIO 库。 Pipy 的可执行文件仅有 5M 左右，运行期的内存占用 10M 左右，因此 Pipy 非常适合做 Sidecar proxy。
+> Pipy 是一个轻量级、高性能、高稳定、可编程的网络代理。Pipy 核心框架使用 C++ 开发，网络 IO 采用 ASIO 库。Pipy 的可执行文件仅有 5M 左右，运行期的内存占用 10M 左右，因此 Pipy 非常适合做 Sidecar proxy。
 
-> Pipy 内置了自研的 pjs 作为脚本扩展，使得Pipy 可以用 JS 脚本根据特定需求快速定制逻辑与功能。
+> Pipy 内置了自研的 pjs 作为脚本扩展，使得 Pipy 可以用 JS 脚本根据特定需求快速定制逻辑与功能。
 
-> Pipy 采用了模块化、链式的处理架构，用顺序执行的模块来对网络数据块进行处理。这种简单的架构使得 Pipy 底层简单可靠，同时具备了动态编排流量的能力，兼顾了简单和灵活。通过使用 REUSE_PORT 的机制（主流 Linux 和 BSD 版本都支持该功能），Pipy 可以以多进程模式运行，使得 Pipy 不仅适用于 Sidecar 模式，也适用于大规模的流量处理场景。 在实践中，Pipy 独立部署的时候用作“软负载”，可以在低延迟的情况下，实现媲美硬件的负载均衡吞吐能力，同时具有灵活的扩展性。
+> Pipy 采用了模块化、链式的处理架构，用顺序执行的模块来对网络数据块进行处理。这种简单的架构使得 Pipy 底层简单可靠，同时具备了动态编排流量的能力，兼顾了简单和灵活。通过使用 REUSE_PORT 的机制（主流 Linux 和 BSD 版本都支持该功能），Pipy 可以以多进程模式运行，使得 Pipy 不仅适用于 Sidecar 模式，也适用于大规模的流量处理场景。在实践中，Pipy 独立部署的时候用作“软负载”，可以在低延迟的情况下，实现媲美硬件的负载均衡吞吐能力，同时具有灵活的扩展性。
 
 ![](https://atbug.oss-cn-hangzhou.aliyuncs.com/2021/05/31/16221838193789.jpg)
 
@@ -41,7 +41,7 @@ Pipy 流量处理的流程：
 
 <u>以下是个人浅见</u>：
 
-Pipy 使用 `pjs` 引擎将 JavaScript格式的配置，解析成其抽象的 `Configuration` 对象。每个 `Configuration` 中包含了多个 `Pipeline`，每个 `Configuration` 中又会用到多个 `Filter`。这些都属于 Pipy 的*静态*配置部分。（后面会提到 Pipeline 的三种不同类型）
+Pipy 使用 `pjs` 引擎将 JavaScript 格式的配置，解析成其抽象的 `Configuration` 对象。每个 `Configuration` 中包含了多个 `Pipeline`，每个 `Configuration` 中又会用到多个 `Filter`。这些都属于 Pipy 的*静态*配置部分。（后面会提到 Pipeline 的三种不同类型）
 
 ![](https://atbug.oss-cn-hangzhou.aliyuncs.com/2021/05/31/16223905428188.jpg)
 
@@ -70,7 +70,7 @@ $ brew install cmake
 
 Pipy 的编译包括了两个部分，GUI 和 Pipy 本体。
 
-GUI 是 Pipy 提供的一个用于开发模式下进行配置的界面，首先编译Pipy GUI。
+GUI 是 Pipy 提供的一个用于开发模式下进行配置的界面，首先编译 Pipy GUI。
 
 ```shell
 # pipy root folder
@@ -107,7 +107,7 @@ Options:
   --reuse-port                         Enable kernel load balancing for all listening ports
   --gui-port=<port>                    Enable web GUI on the specified port
 ```
-### Demo：Hello Pipy
+### Demo: Hello Pipy
 
 开发模式下可以让 Pipy 携带 GUI 启动，通过 GUI 进行配置。
 
@@ -215,7 +215,7 @@ wait                (condition)                                 Buffers up event
 
 Pipy 虽小（只有 11M），但以其可编程的特性提供了灵活的配置能力，潜力无限。
 
-Pipy 像处理 HTTP 一样处理任意的七层协议。内部版本支持Dubbo、Redis、Socks 等，目前正在迁移到开源版本。
+Pipy 像处理 HTTP 一样处理任意的七层协议。内部版本支持 Dubbo、Redis、Socks 等，目前正在迁移到开源版本。
 
 期待即将开源的 Portal，以及服务网格 Flomesh。持续关注，后面考虑再写几篇。
 

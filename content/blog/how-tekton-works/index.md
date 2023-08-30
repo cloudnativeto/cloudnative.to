@@ -25,7 +25,7 @@ taskruns            tr,trs       tekton.dev   true         TaskRun
 tasks                            tekton.dev   true         Task
 ```
 
-Tekton Pipelines提供了上面的CRD，其中部分CRD与Kubernetes core中资源相对应
+Tekton Pipelines 提供了上面的 CRD，其中部分 CRD 与 Kubernetes core 中资源相对应
 
 - Task => Pod
 - Task.Step => Container
@@ -35,7 +35,7 @@ Tekton Pipelines提供了上面的CRD，其中部分CRD与Kubernetes core中资�
 ## 工作原理
 
 ![](https://atbug.oss-cn-hangzhou.aliyuncs.com/2020/05/23/15902280074872.jpg)
-(图片来自tekton.dev)
+(图片来自 tekton.dev)
 
 
 Tekton Pipeline 是基于 Knative 的实现，pod `tekton-pipelines-controller` 中有两个 [Knative Controller](https://knative.dev/docs/eventing/samples/writing-receive-adapter-source/03-controller/)的实现：PipelineRun 和 TaskRun。
@@ -43,9 +43,9 @@ Tekton Pipeline 是基于 Knative 的实现，pod `tekton-pipelines-controller` 
 ![](https://atbug.oss-cn-hangzhou.aliyuncs.com/2020/05/23/15902270934199.jpg)
 
 
-### Task的执行顺序
+### Task 的执行顺序
 
-PipelineRun Controller 的 `#reconcile()`方法，监控到有`PipelineRun`被创建。然后从`PipelineSpec`的 tasks 列表，构建出一个图（`graph`），用于描述`Pipeline`中 Task 间的依赖关系。依赖关系是通过`runAfter`和`from`，进而控制[Task的执行顺序](#Task的执行顺序)。与此同时，准备`PipelineRun`中定义的`PipelineResources`。
+PipelineRun Controller 的 `#reconcile()`方法，监控到有`PipelineRun`被创建。然后从`PipelineSpec`的 tasks 列表，构建出一个图（`graph`），用于描述`Pipeline`中 Task 间的依赖关系。依赖关系是通过`runAfter`和`from`，进而控制[Task 的执行顺序](#Task的执行顺序)。与此同时，准备`PipelineRun`中定义的`PipelineResources`。
 
 ```go
 // Node represents a Task in a pipeline.
@@ -75,7 +75,7 @@ func Build(tasks Tasks) (*Graph, error) {
 pipelineSpec = resources.ApplyParameters(pipelineSpec, pr)
 ```
 
-接下来就是调用`dag#GetSchedulable()`方法，获取未完成（通过Task状态判断）的 Task 列表；
+接下来就是调用`dag#GetSchedulable()`方法，获取未完成（通过 Task 状态判断）的 Task 列表；
 
 ```go
 func GetSchedulable(g *Graph, doneTasks ...string) (map[string]struct{}, error) {
@@ -83,17 +83,17 @@ func GetSchedulable(g *Graph, doneTasks ...string) (map[string]struct{}, error) 
 }
 ```
 
-为 Task A 创建`TaskRun`，假如`Task`配置了`Condition`。会先为 condition创建一个`TaskRun`，只有在 condition 的`TaskRun`运行成功，才会运行 A 的`TaskRun`；否则就跳过。
+为 Task A 创建`TaskRun`，假如`Task`配置了`Condition`。会先为 condition 创建一个`TaskRun`，只有在 condition 的`TaskRun`运行成功，才会运行 A 的`TaskRun`；否则就跳过。
 
-### Step的执行顺序
+### Step 的执行顺序
 
 这一部分篇幅较长，之前的文章 [控制 Pod 内容器的启动顺序](https://atbug.com/control-process-order-of-pod-containers/) 中提到过。
 
-这里补充一下[Kubernetes Downward API](https://kubernetes.io/docs/tasks/inject-data-application/downward-api-volume-expose-pod-information/#the-downward-api)的使用，Kubernetes Downward API的引入，控制着 `Task` 的第一个 `Step` 在何时执行。
+这里补充一下[Kubernetes Downward API](https://kubernetes.io/docs/tasks/inject-data-application/downward-api-volume-expose-pod-information/#the-downward-api)的使用，Kubernetes Downward API 的引入，控制着 `Task` 的第一个 `Step` 在何时执行。
 
 `TaskRun` Controller 在 reconciling 的过程中，在相应的 `Pod` 状态变为`Running`时，会将`tekton.dev/ready=READY`写入到 Pod 的 annotation 中，来通知第一个`Step`的执行。
 
-Pod的部分内容：
+Pod 的部分内容：
 ```yaml
 spec:
   containers:
@@ -131,7 +131,7 @@ spec:
       name: tekton-internal-downward
 ```
 
-对原生的排序step container进一步处理：启动命令使用`entrypoint`提供，并设置执行参数：
+对原生的排序 step container 进一步处理：启动命令使用`entrypoint`提供，并设置执行参数：
 
 `entrypoint.go`
 ```go
@@ -177,7 +177,7 @@ func orderContainers(entrypointImage string, steps []corev1.Container, results [
 
 #### `credential-initializer`
 
-用于将 `ServiceAccount` 的相关secrets持久化到容器的文件系统中。比如 ssh 相关秘钥、config文件以及know_hosts文件；docker registry 相关的凭证则会被写入到 docker 的配置文件中。
+用于将 `ServiceAccount` 的相关 secrets 持久化到容器的文件系统中。比如 ssh 相关秘钥、config 文件以及 know_hosts 文件；docker registry 相关的凭证则会被写入到 docker 的配置文件中。
 
 #### `working-dir-initializer`
 
@@ -185,7 +185,7 @@ func orderContainers(entrypointImage string, steps []corev1.Container, results [
 
 #### `place-scripts`
 
-假如`Step`使用的是`script`配置（与command+args相对），这个容器会将脚本代码（`script`字段的内容）持久化到`/tekton/scripts`目录中。
+假如`Step`使用的是`script`配置（与 command+args 相对），这个容器会将脚本代码（`script`字段的内容）持久化到`/tekton/scripts`目录中。
 
 注：所有的脚本会自动加上`#!/bin/sh\nset -xe\n`，所以`script`字段里就不必写了。
 
@@ -246,7 +246,7 @@ spec:
 
 ##### `volumeClaimTemplate`
 
-为每个`PipelineRun`或者`TaskRun`创建`PersistentVolumeClaim`卷（volume）的模板。比如一次构建需要从 git 仓库克隆代码，而针对不同的流水线代码仓库是不同的。这里就会用到`volumeClaimTemplate`，为每次构建创建一个`PersistentVolumeClaim`卷。（从0.12.0开始）
+为每个`PipelineRun`或者`TaskRun`创建`PersistentVolumeClaim`卷（volume）的模板。比如一次构建需要从 git 仓库克隆代码，而针对不同的流水线代码仓库是不同的。这里就会用到`volumeClaimTemplate`，为每次构建创建一个`PersistentVolumeClaim`卷。（从 0.12.0 开始）
 
 生命周期同`PipelineRun`或者`TaskRun`，运行之后释放。
 
@@ -262,7 +262,7 @@ workspaces:
           storage: 1Gi
 ```
 
-相较于`persistantVolumeClain`类型的workspace，`volumeClaimTemplate`不需要在每次在`PipelineRun`完成后清理工作区；并发情况下可能会出现问题。
+相较于`persistantVolumeClain`类型的 workspace，`volumeClaimTemplate`不需要在每次在`PipelineRun`完成后清理工作区；并发情况下可能会出现问题。
 
 ##### `emptyDir`
 
@@ -280,9 +280,9 @@ workspaces:
 
 - 挂载的卷是`只读`的
 - 需要提前创建`configMap`
-- `configMap`的[大小限制为1MB（Kubernetes的限制）](https://github.com/kubernetes/kubernetes/blob/f16bfb069a22241a5501f6fe530f5d4e2a82cf0e/pkg/apis/core/validation/validation.go#L5042)
+- `configMap`的[大小限制为 1MB（Kubernetes 的限制）](https://github.com/kubernetes/kubernetes/blob/f16bfb069a22241a5501f6fe530f5d4e2a82cf0e/pkg/apis/core/validation/validation.go#L5042)
 
-使用场景，比如使用`maven`编译Java项目，配置文件`settings.xml`可以使用`configMap`作为工作区
+使用场景，比如使用`maven`编译 Java 项目，配置文件`settings.xml`可以使用`configMap`作为工作区
 
 ```yaml
 workspaces:
@@ -297,7 +297,7 @@ workspaces:
 
 - 挂载的卷是`只读`的
 - 需要提前创建`secret`
-- `secret`的[大小限制为1MB（Kubernetes的限制）](https://github.com/kubernetes/kubernetes/blob/f16bfb069a22241a5501f6fe530f5d4e2a82cf0e/pkg/apis/core/validation/validation.go#L5042)
+- `secret`的[大小限制为 1MB（Kubernetes 的限制）](https://github.com/kubernetes/kubernetes/blob/f16bfb069a22241a5501f6fe530f5d4e2a82cf0e/pkg/apis/core/validation/validation.go#L5042)
 
 #### `results`
 
@@ -380,11 +380,11 @@ spec:
 
 `PipelineResource`在最后提，因为目前只是`alpha`版本，何时会进入`beta`或者弃用目前还是未知数。有兴趣的可以看下这里：[Why Aren’t PipelineResources in Beta?](https://tekton.dev/docs/pipelines/resources/#why-aren-t-pipelineresources-in-beta)
 
-简单来说，`PipelineResource`可以通过其他的方式实现，而其本身也存在弊端：比如实现不透明，debug有难度；功能不够强；降低了Task的重用性等。
+简单来说，`PipelineResource`可以通过其他的方式实现，而其本身也存在弊端：比如实现不透明，debug 有难度；功能不够强；降低了 Task 的重用性等。
 
-比如`git`类型的`PipelineResource`，可以通过`workspace`和`git-clone` Task来实现；存储类型的，也可以通过`workspace`来实现。
+比如`git`类型的`PipelineResource`，可以通过`workspace`和`git-clone` Task 来实现；存储类型的，也可以通过`workspace`来实现。
 
-这也就是为什么[上面介绍workspace的篇幅](#Workspace)比较大。个人也偏向于使用`workspace`，灵活度高；使用workspace的Task重用性强。
+这也就是为什么[上面介绍 workspace 的篇幅](#Workspace)比较大。个人也偏向于使用`workspace`，灵活度高；使用 workspace 的 Task 重用性强。
 
 ## 参考
 

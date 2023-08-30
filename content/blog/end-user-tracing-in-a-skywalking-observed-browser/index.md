@@ -53,7 +53,7 @@ skywalking-client-js 收集这些性能指标，并发送给 [OAP（Observabilit
 
 1. `window.addeventlistener ('error ', callback, true)` 捕捉资源加载错误。
 2. `window.onerror` 抓取 JS 执行错误。
-3. `window.addEventListener ('unhandledrejection', callback)` 用来捕捉Promise错误。
+3. `window.addEventListener ('unhandledrejection', callback)` 用来捕捉 Promise 错误。
 4. Vue 错误由 `Vue.config.errorHandler` 捕获。
 5. Ajax 错误由 `addEventListener ('error'，callback);addEventListener ('abort'，callback);addEventListener ('timeout'，callback);` 在 send callback 中捕获。
 
@@ -103,7 +103,7 @@ SkyWalking 浏览器监控拦截 HTTP 请求，追踪段（Segment）和跨度�
 
 ![](008eGmZEly1gph48ldgzhj30u00uudo1.jpg)
 
-之后，使用 `window.addEventListener ('xhrReadyStateChange', callback)`，在请求头中设置sw8=xxxx。同时，向后端报告请求信息。最后，我们可以在追踪页面上查看追踪数据。下图展示的追踪页面。
+之后，使用 `window.addEventListener ('xhrReadyStateChange', callback)`，在请求头中设置 sw8=xxxx。同时，向后端报告请求信息。最后，我们可以在追踪页面上查看追踪数据。下图展示的追踪页面。
 
 ![](008eGmZEly1gph49850myj30po0fsaas.jpg)
 

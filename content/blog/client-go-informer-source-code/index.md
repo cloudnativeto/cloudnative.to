@@ -7,7 +7,7 @@ categories: ["Kubernetes"]
 tags: ["Kubernetes" ]
 ---
 
-本文主要根据书籍 《Kubernetes 源码剖析》的基础上，对 Client-go 部分的 Informer 机制进行了解与学习。
+本文主要根据书籍《Kubernetes 源码剖析》的基础上，对 Client-go 部分的 Informer 机制进行了解与学习。
 
 ## Informer 机制
 
@@ -51,7 +51,7 @@ informer.AddEventHandler(cache.ResourceEventHandlerFuncs{
 * 创建 stopCh 是用于在程序进程退出前通知 Informer 提前退出，Informer 是一个持久运行的 goroutine；
 * NewSharedInformerFactory 实例化了一个 SharedInformer 对象，用于进行本地资源存储；
 * sharedInformer.Core().V1().Pods().Informer() 得到了具体 Pod 资源的 informer 对象；
-* AddEventHandler 即图中的第6步，这是一个资源事件回调方法，上例中即为当创建/更新/删除 Pod 时触发事件回调方法；
+* AddEventHandler 即图中的第 6 步，这是一个资源事件回调方法，上例中即为当创建/更新/删除 Pod 时触发事件回调方法；
 * 一般而言，其他组件使用 Informer 机制触发资源回调方法会将资源对象推送到 WorkQueue 或其他队列中，具体推送的位置要去回调方法里自行实现。
 
 上面这个示例，当触发了 Add，Update 或者 Delete 事件，就通知 Client-go，告知 Kubernetes 资源事件发生变更并且需要进行相应的处理。
@@ -344,7 +344,7 @@ func (f *DeltaFIFO) queueActionLocked(actionType DeltaType, obj interface{}) err
 	newDeltas := append(f.items[id], Delta{actionType, obj})
 	newDeltas = dedupDeltas(newDeltas)
 
-  // 一般不会出现 <= 0， 属冗余判断
+  // 一般不会出现 <= 0，属冗余判断
 	if len(newDeltas) > 0 {
 		if _, exists := f.items[id]; !exists {
 			f.queue = append(f.queue, id)

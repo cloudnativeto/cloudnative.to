@@ -1,5 +1,5 @@
 ---
-title: "Knative 入门系列2：serving 介绍"
+title: "Knative 入门系列 2：serving 介绍"
 date: 2019-03-12T11:17:13+08:00
 draft: false
 authors: ["ServiceMesher"]
@@ -15,9 +15,9 @@ keywords: ["service mesh","服务网格","knative","serverless"]
 
 即便使用无服务器架构，处理和响应 HTTP 请求的能力依然重要。在开始写代码使用事件触发一个函数之前，您需要有地方来运行代码。
 
-本章探讨 Knative Serving 组件，您将了解 Knative Serving 如何管理部署以及为应用和函数提供服务。通过 Serving，您可以轻松地将一个预先构建好的镜像部署到底层 Kubernetes 集群中。（在[第三章： Build](/getting-started-with-knative/serving.html)，您将看到 Knative Build 可以帮助构建镜像以在 Serving 组件中运行）Knative Serving 维护某一时刻的快照，提供自动化伸缩功能 (既支持扩容，也支持缩容直至为零)，以及处理必要的路由和网络编排。
+本章探讨 Knative Serving 组件，您将了解 Knative Serving 如何管理部署以及为应用和函数提供服务。通过 Serving，您可以轻松地将一个预先构建好的镜像部署到底层 Kubernetes 集群中。（在[第三章：Build](/getting-started-with-knative/serving.html)，您将看到 Knative Build 可以帮助构建镜像以在 Serving 组件中运行）Knative Serving 维护某一时刻的快照，提供自动化伸缩功能 (既支持扩容，也支持缩容直至为零)，以及处理必要的路由和网络编排。
 
-Serving 模块定义一组特定的对象以控制所有功能：Revision（修订版本）、Configuration （配置）、Route（路由）和 Service（服务）。Knative 使用 Kubernetes CRD（自定义资源）的方式实现这些 Kubernetes 对象。下图 2-1 展示所有 Serving 组件对象模型间的关系。在接下去的章节将具体介绍每个部分。
+Serving 模块定义一组特定的对象以控制所有功能：Revision（修订版本）、Configuration（配置）、Route（路由）和 Service（服务）。Knative 使用 Kubernetes CRD（自定义资源）的方式实现这些 Kubernetes 对象。下图 2-1 展示所有 Serving 组件对象模型间的关系。在接下去的章节将具体介绍每个部分。
 
 <div align="center">
 <img src="006tKfTcly1g0yrpiumcqj31230u0jxo.jpg" alt="Serving Object Model"/>
@@ -164,7 +164,7 @@ percent: 100
 kubectl apply -f route.yaml
 ```
 
-这个定义中，Route 发送 100% 流量到由 `configurationName` 属性指定 Configuration 的最新就绪 Revision，该 Revision 由 Configuration YAML 中 `latestReadyRevisionName` 属性定义。您可以通过发送如下 `curl` 命令来测试这些 Route 和 Configuration ：
+这个定义中，Route 发送 100% 流量到由 `configurationName` 属性指定 Configuration 的最新就绪 Revision，该 Revision 由 Configuration YAML 中 `latestReadyRevisionName` 属性定义。您可以通过发送如下 `curl` 命令来测试这些 Route 和 Configuration：
 
 ```shell
 curl -H "Host: knative-routing-demo.default.example.com"
@@ -275,7 +275,7 @@ Autoscaler 也负责缩容至零。Revision 处于 Active (激活) 状态才接�
 
 ## 服务
 
-在 Knative 中，Service 管理负责的整个生命周期。包括部署、路由和回滚。（不要将 Knative Service 和 Kubernetes [Service](https://kubernetes.io/docs/concepts/services-networking/service/) 混淆。它们是不同的资源。） Knative Service 控制一系列组成软件的 Route 和 Configuration。Knative Service 可以被看作是一段代码 —— 您正在部署的应用或者函数。
+在 Knative 中，Service 管理负责的整个生命周期。包括部署、路由和回滚。（不要将 Knative Service 和 Kubernetes [Service](https://kubernetes.io/docs/concepts/services-networking/service/) 混淆。它们是不同的资源。）Knative Service 控制一系列组成软件的 Route 和 Configuration。Knative Service 可以被看作是一段代码 —— 您正在部署的应用或者函数。
 
 一个 Service 注意确保一个应用有一个 Route、一个 Configuation，以及为每次 Service 更新产生的一个新 Revision。当创建一个 Service 时，您没有特别定义一个 Route，Knative 创建一个发送流量到最新 Revision 的路由。您可以选择一个特定的 Revision 以路由流量到该 Revision。
 

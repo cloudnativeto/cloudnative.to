@@ -144,7 +144,7 @@ func (m *kubeGenericRuntimeManager) startContainer(podSandboxID string, podSandb
 
 ![](https://atbug.oss-cn-hangzhou.aliyuncs.com/2021/04/30/16197365667225.jpg)
 
-[cmd/entrypoint/wait.go#L26](https://github.com/addozhang/k8s-container-sequence-sample/blob/main/cmd/entrypoint/wait.go#L26) （这里参考了 Istio 的 pilot-agent 实现 ）
+[cmd/entrypoint/wait.go#L26](https://github.com/addozhang/k8s-container-sequence-sample/blob/main/cmd/entrypoint/wait.go#L26) （这里参考了 Istio 的 pilot-agent 实现）
 
 在 `PostStart` 中持续的去检查 `/ready` 断点，可以 hold 住当前容器的创建流程。保证 `/ready` 返回 `200` 后，kubelet 才会去创建下一个容器。
 

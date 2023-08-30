@@ -15,9 +15,9 @@ aliases: ["/blog/202004-istio-envoy-wasm"]
 Istio 1.5 回归单体架构，并抛却原有的 out-of-process 的数据面（Envoy）扩展方式，转而拥抱基于 WASM 的 in-proxy 扩展，以期获得更好的性能。本文基于网易杭州研究院轻舟云原生团队的调研与探索，介绍 WASM 的社区发展与实践。
 
 超简单版解释：
-> --> Envoy 内置 Google V8 引擎，支持WASM字节码运行，并开放相关接口用于和 WASM 虚拟机交互数据；
+> --> Envoy 内置 Google V8 引擎，支持 WASM 字节码运行，并开放相关接口用于和 WASM 虚拟机交互数据；
 > --> 使用各种语言开发相关扩展并编译为 .WASM 文件；
-> --> 将扩展文件挂载或者打包进入 Envoy 容器镜像，通过xDS动态下发文件路径及相关配置由虚拟机执行。
+> --> 将扩展文件挂载或者打包进入 Envoy 容器镜像，通过 xDS 动态下发文件路径及相关配置由虚拟机执行。
 
 ## WebAssembly 简述
 
@@ -43,7 +43,7 @@ Envoy 提供了一个特殊的 Http 七层 filter，名为 wasm，用于载入�
 现有的 Istio 提供了名为 Mixer 插件模型用于扩展 Envoy 数据面功能，具体来说，在 Envoy 内部，Istio 开发了一个原生 C++ 插件用于收集和获取运行时请求信息并通过 gRPC 将信息上报给 Mixer，外部 Mixer 则调用各个 Mixer Adapter 用于监控、授权控制、限流等等操作，相关处理结果如有必要再返回给 Envoy 中 C++ 插件用于做相关控制。
 Mixer 模型虽然提高了极高的灵活性，且对 Envoy 侵入性极低，但是引入了大量的额外的外部调用和数据交互，带来了巨大的性能开销（相关的测试结果很多，按照 istio 社区的数据：移除 Mixer 可以使整体 CPU 消耗减少 50%）。而且 Istio 插件扩展模型和 Envoy 插件模型整体是割裂的，Istio 插件在 out-of-process 中执行，通过 gRPC 进行插件与 Envoy 主体的数据交互，而 Envoy 原生插件则是 in-proxy 模式，在同一个进程中通过虚函数接口进行调用和执行。
 
-因此在 Istio 1.5 中，Istio 提供了全新的插件扩展模型：WASM in proxy。使用 Envoy 支持的WASM机制来扩展插件：兼顾性能、多语言支持、动态下发动态载入、以及安全性。唯一的缺点就是现有的支持还不够完善。
+因此在 Istio 1.5 中，Istio 提供了全新的插件扩展模型：WASM in proxy。使用 Envoy 支持的 WASM 机制来扩展插件：兼顾性能、多语言支持、动态下发动态载入、以及安全性。唯一的缺点就是现有的支持还不够完善。
 
 为了提升性能，Istio 社区在 1.5 发布中，已经将几个扩展使用 in-proxy 模型（基于 WASM API 而非原生 Envoy C++ HTTP 插件 API）进行实现。但是目前考虑到 WASM 还不够稳定，所以相关扩展默认不会执行在 WSAM 沙箱之中（在所谓 NullVM 中执行）。虽然 istio 也支持将相关扩展编译为 WASM 模块，并在沙箱中执行，但是不是默认选项。
 
@@ -51,7 +51,7 @@ Mixer 模型虽然提高了极高的灵活性，且对 Envoy 侵入性极低，�
 
 ### solo.io & WASM
 
-solo.io 推出了 WebAssembly Hub，用于构建、发布以及共享 Envoy WASM 扩展。WebAssembly Hub 包括一套用于简化扩展开发的 SDK（目前 solo.io 提供了AssemblysScript SDK，而 Istio/Envoy 社区提供了 Rust/C++ SDK），相关的构建、发布命令，一个用于共享和复用的扩展仓库。具体的内容可以参考 [solo.io 提供的教程](https://docs.solo.io/web-assembly-hub/latest/tutorial_code/)。
+solo.io 推出了 WebAssembly Hub，用于构建、发布以及共享 Envoy WASM 扩展。WebAssembly Hub 包括一套用于简化扩展开发的 SDK（目前 solo.io 提供了 AssemblysScript SDK，而 Istio/Envoy 社区提供了 Rust/C++ SDK），相关的构建、发布命令，一个用于共享和复用的扩展仓库。具体的内容可以参考 [solo.io 提供的教程](https://docs.solo.io/web-assembly-hub/latest/tutorial_code/)。
 
 ## WASM 实践
 
@@ -99,7 +99,7 @@ Use the arrow keys to navigate: ↓ ↑ → ←
 
 ```
 
-**filter.cc 中已经填充了样板代码，包括所有的插件需要实现的接口。开发者只需要按需修改某个接口的具体实现即可(此处列出了整个插件的全部代码，以供参考。虽然该代码没有实现什么特许功能，但是已经包含了一个 WASM 扩展（C++ 语言版）应当具备的所有结构，无论多么复杂的插件，都只是在该结构的基础上填充相关的逻辑代码而已**：
+**filter.cc 中已经填充了样板代码，包括所有的插件需要实现的接口。开发者只需要按需修改某个接口的具体实现即可 (此处列出了整个插件的全部代码，以供参考。虽然该代码没有实现什么特许功能，但是已经包含了一个 WASM 扩展（C++ 语言版）应当具备的所有结构，无论多么复杂的插件，都只是在该结构的基础上填充相关的逻辑代码而已**：
 
 ```C++
 // NOLINT(namespace-envoy)
@@ -286,7 +286,7 @@ Starting local Bazel server and connecting to it...
 wasme deploy envoy webassemblyhub.io/wbpcode/path_rewrite:v0.1 --config "{\"rewrites\": [ {\"regex_match\":\"...\", \"custom_path\": \"/anything\"} ]}" --envoy-run-args "-l trace"
 ```
 
-从 envoy 执行日志可以看到：最终 envoy 会执行七层 Filter：`envoy.filters.http.wasm`，相关配置为：wasm 文件位置（docker 执行时挂载进入容器内部）、 wasm 文件对应插件配置、runtime 等等。通过在 http_filters 中重复添加多个`envoy.filters.http.wasm`，即可实现多个 WASM 扩展的执行。从下面的日志也可以看出，即使不使用 solo.io 的工具，只需要为 Envoy 指定编译好的 wasm 文件，其执行结果是完全相同的。
+从 envoy 执行日志可以看到：最终 envoy 会执行七层 Filter：`envoy.filters.http.wasm`，相关配置为：wasm 文件位置（docker 执行时挂载进入容器内部）、wasm 文件对应插件配置、runtime 等等。通过在 http_filters 中重复添加多个`envoy.filters.http.wasm`，即可实现多个 WASM 扩展的执行。从下面的日志也可以看出，即使不使用 solo.io 的工具，只需要为 Envoy 指定编译好的 wasm 文件，其执行结果是完全相同的。
 
 ```bash
 [2020-03-31 08:41:24.831][1][debug][config] [external/envoy/source/extensions/filters/network/http_connection_manager/config.cc:388]       name: envoy.filters.http.wasm

@@ -9,7 +9,7 @@ date: 2020-10-12T13:05:42+08:00
 
 ## 背景
 
-Istio 一直是服务网格产品中的佼佼者，其数据面的组件—— Envoy 也受到很多互联网厂家及 IT 行业人员的追捧和青睐。云原生社区秉承普及和推广云原生相关技术的宗旨，已经在早些时候成立了[Envoy SIG](https://cloudnative.to/blog/sig-envoy-announcement/)。为了方便国内 IT 行业人员学习与研究 Envoy，云原生社区决定将[Envoy 官网](https://www.envoyproxy.io/docs/envoy/)最新版本进行翻译（[Envoy 有1.7中文版本](https://www.servicemesher.com/envoy/)，但是版本过老）。
+Istio 一直是服务网格产品中的佼佼者，其数据面的组件—— Envoy 也受到很多互联网厂家及 IT 行业人员的追捧和青睐。云原生社区秉承普及和推广云原生相关技术的宗旨，已经在早些时候成立了[Envoy SIG](https://cloudnative.to/blog/sig-envoy-announcement/)。为了方便国内 IT 行业人员学习与研究 Envoy，云原生社区决定将[Envoy 官网](https://www.envoyproxy.io/docs/envoy/)最新版本进行翻译（[Envoy 有 1.7 中文版本](https://www.servicemesher.com/envoy/)，但是版本过老）。
 
 ## 翻译志愿者的条件和收获
 
@@ -30,7 +30,7 @@ Istio 一直是服务网格产品中的佼佼者，其数据面的组件—— E
 ## 如何加入翻译志愿者团队
 
 * 加入云原生社区，[加入我们](https://cloudnative.to/contact)
-* 加入 Envoy SIG（添加微信 [jimmysongio](https://jimmysong.io) 或者 majinghe11，备注姓名-公司，并说明加入 Envoy SIG）。
+* 加入 Envoy SIG（添加微信 [jimmysongio](https://jimmysong.io) 或者 majinghe11，备注姓名 - 公司，并说明加入 Envoy SIG）。
 
 翻译的相关事项都会在 Envoy SIG 群里公布，包括成员招募，启动翻译，进度跟踪等。
 

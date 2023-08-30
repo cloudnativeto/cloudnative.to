@@ -1,6 +1,6 @@
 ---
 title: "Istio 1.10 版本发布并改版官网"
-summary: "我们很高兴地宣布Istio 1.10的发布！我们要特别感谢我们的发布经理Sam Naser和张之晗，以及整个测试和发布工作组在1.10中的工作。"
+summary: "我们很高兴地宣布 Istio 1.10 的发布！我们要特别感谢我们的发布经理 Sam Naser 和张之晗，以及整个测试和发布工作组在 1.10 中的工作。"
 authors: ["Istio"]
 categories: ["Istio"]
 tags: ["Istio"]
@@ -88,7 +88,7 @@ Istio 官网全新改版，效果如图。
 
 ## Istio 大咖说 B 站直播：Istio 开源四周年回顾与展望
 
-想了解 Istio 的来历吗？想知道 Istio 自我救赎般的架构重构吗？想窥探 Istio 开发背后的趣事吗？想一起解读最新版本的新特性吗？北京时间 5 月 25 日晚上 8 点，相约 B 站，让我们一起回顾 Istio发布四周年的点点滴滴，[B 站直播间](https://live.bilibili.com/23095515)不见不散！
+想了解 Istio 的来历吗？想知道 Istio 自我救赎般的架构重构吗？想窥探 Istio 开发背后的趣事吗？想一起解读最新版本的新特性吗？北京时间 5 月 25 日晚上 8 点，相约 B 站，让我们一起回顾 Istio 发布四周年的点点滴滴，[B 站直播间](https://live.bilibili.com/23095515)不见不散！
 
 ![](bilibili.jpg)
 

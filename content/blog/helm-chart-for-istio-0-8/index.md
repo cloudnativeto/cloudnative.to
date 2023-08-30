@@ -1,5 +1,5 @@
 ---
-title: "Istio 0.8的Helm Chart解析"
+title: "Istio 0.8 的 Helm Chart 解析"
 date: 2018-06-04T16:09:57+08:00
 draft: false
 authors: ["崔秀龙"]
@@ -146,7 +146,7 @@ prometheus-586d95b8d9-gb846
 - RBAC 相关
 - 用于 CRD 校验的 ValidatingWebhookConfiguration 对象。
 
-校验目标包含 Pilot（例如 destinationpolicies 和 routerules） 和 Mixer（例如 memquotas 和 prometheuses） 两类 CRD。
+校验目标包含 Pilot（例如 destinationpolicies 和 routerules）和 Mixer（例如 memquotas 和 prometheuses）两类 CRD。
 
 ### grafana
 

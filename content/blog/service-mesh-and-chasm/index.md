@@ -3,7 +3,7 @@ title: "鸿沟前的服务网格—Istio 1.1 新特性预览"
 date: 2019-03-19T10:41:25+08:00
 draft: false
 authors: ["崔秀龙"]
-summary: "Istio 1.1新特性概览。"
+summary: "Istio 1.1 新特性概览。"
 tags: ["istio"]
 categories: ["service mesh"]
 keywords: ["service mesh","服务网格","istio"]
@@ -14,7 +14,7 @@ keywords: ["service mesh","服务网格","istio"]
 这几天拜读了灵雀云出品的一篇文章：[《从“鸿沟理论”看云原生》](http://dockone.io/article/8666)，其中有两段关于 Istio 的陈述，我深感赞同：
 
 - 在 Control Plane，Istio 是最具光环的明星级项目。它正在引领 Service Mesh 创造出一个全新的市场，不过从传播周期看现在还没有跨过技术鸿沟，处于 Early adopters 阶段。
-- 在开源领域，并不存在对Istio有实质性威胁的竞品。可能在经历了 Kubernetes 之后，以及 Istio 早期迅猛的发展和在社区中巨大的影响力之下，很少有开源项目愿意在 Control Plane 和 Istio 正面交锋。
+- 在开源领域，并不存在对 Istio 有实质性威胁的竞品。可能在经历了 Kubernetes 之后，以及 Istio 早期迅猛的发展和在社区中巨大的影响力之下，很少有开源项目愿意在 Control Plane 和 Istio 正面交锋。
 
 按照我对 Istio 的理解，正如该文所说，正处于鸿沟一侧，正是从早期采用者到早期大众之间关键阶段。然而这一系统的情况又比较特殊，Service Mesh 的饼，虽说是 Linkerd 画出来的，然而真正把饼变大的，正是 Istio。Istio 画了硕大无朋的饼之后，就步步泥潭，功能薄弱、进度拖沓，让包括我在内的众多用户大摇其头。然而，画饼的另一面，就是挖坑——Istio 放出的漫天卫星，极大的吊起了各种用户的胃口，可以说是用先声夺人的方式，强行提高了门槛，要想赶超 Istio，首先就要接班，完成 Istio 的各种承诺，才能满足用户心目中对 Service Mesh 的“基本”期待。
 

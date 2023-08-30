@@ -31,7 +31,7 @@ tags: ["service mesh"]
 
 > 我也希望看到人们如何看待不同方法之间权衡的严肃讨论。例如，服务网格和 API 网关之间的职责/主张存在重叠。人们对选择感到困惑和不知所措。
 >
->— Andrew Clay Shafer 雷启理 （@littleidea）
+>— Andrew Clay Shafer 雷启理（@littleidea）
 >
 >June 12, 2019
 

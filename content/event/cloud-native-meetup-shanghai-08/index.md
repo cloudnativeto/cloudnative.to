@@ -21,7 +21,7 @@ authors: ["宣超","胡凯","谭崇康","唐博","林文炜","张凯豪"]
 tags: ["OceanBase","Rook"]
 featured: false
 image:
-  caption: '图片来源: [云原生社区](https://cloudnative.to)'
+  caption: '图片来源：[云原生社区](https://cloudnative.to)'
   focal_point: Right
 
 #links:
@@ -52,7 +52,7 @@ projects: []
 ## 讲师分享
 
 - [云原生社区 meetup 第八期上海站开场，郭旭东](https://www.bilibili.com/video/BV1tP4y1L7rs)
-- [云原生 2.0 华为云赋能 “新云原生企业”，张凯豪](https://www.bilibili.com/video/BV1Xq4y197Su)
+- [云原生 2.0 华为云赋能“新云原生企业”，张凯豪](https://www.bilibili.com/video/BV1Xq4y197Su)
 - [蚂蚁万级规模 K8s 集群 etcd 架构优化实践 —ETCD on OceanBase，宣超](https://www.bilibili.com/video/BV1i44y1v7fM)
 - [新一代开源 HCI 底层原理剖析，胡凯](https://www.bilibili.com/video/BV17Q4y1q79o)
 - [攀登规模化的高峰 —— 蚂蚁集团大规模 Sigma 集群 ApiServer 优化实践，唐博，谭崇康](https://www.bilibili.com/video/BV1uf4y137xC)

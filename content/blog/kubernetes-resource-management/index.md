@@ -1,5 +1,5 @@
 ---
-title: "Kubernetes资源管理概述"
+title: "Kubernetes 资源管理概述"
 date: 2018-12-20T15:14:54+08:00
 draft: false
 authors: ["吴伟"]
@@ -37,13 +37,13 @@ CPU 的使用时间是可压缩的，换句话说它本身无状态，申请资�
 
 `limits` 和 `requests` 的区别我们下面会提到，这里先说说比较容易理解的 cpu 和 memory。
 
-`CPU` 一般用核数来标识，一核CPU 相对于物理服务器的一个超线程核，也就是操作系统 `/proc/cpuinfo` 中列出来的核数。因为对资源进行了池化和虚拟化，因此 kubernetes 允许配置非整数个的核数，比如 `0.5` 是合法的，它标识应用可以使用半个 CPU 核的计算量。CPU 的请求有两种方式，一种是刚提到的 `0.5`，`1` 这种直接用数字标识 CPU 核心数；另外一种表示是 `500m`，它等价于 `0.5`，也就是说 `1 Core = 1000m`。
+`CPU` 一般用核数来标识，一核 CPU 相对于物理服务器的一个超线程核，也就是操作系统 `/proc/cpuinfo` 中列出来的核数。因为对资源进行了池化和虚拟化，因此 kubernetes 允许配置非整数个的核数，比如 `0.5` 是合法的，它标识应用可以使用半个 CPU 核的计算量。CPU 的请求有两种方式，一种是刚提到的 `0.5`，`1` 这种直接用数字标识 CPU 核心数；另外一种表示是 `500m`，它等价于 `0.5`，也就是说 `1 Core = 1000m`。
 
-内存比较容易理解，是通过字节大小指定的。如果直接一个数字，后面没有任何单位，表示这么多字节的内存；数字后面还可以跟着单位， 支持的单位有 `E`、`P`、`T`、`G`、`M`、`K`，前者分别是后者的 `1000` 倍大小的关系，此外还支持 `Ei`、`Pi`、`Ti`、`Gi`、`Mi`、`Ki`，其对应的倍数关系是 `2^10 = 1024`。比如要使用 100M 内存的话，直接写成 `100Mi`即可。
+内存比较容易理解，是通过字节大小指定的。如果直接一个数字，后面没有任何单位，表示这么多字节的内存；数字后面还可以跟着单位，支持的单位有 `E`、`P`、`T`、`G`、`M`、`K`，前者分别是后者的 `1000` 倍大小的关系，此外还支持 `Ei`、`Pi`、`Ti`、`Gi`、`Mi`、`Ki`，其对应的倍数关系是 `2^10 = 1024`。比如要使用 100M 内存的话，直接写成 `100Mi`即可。
 
 ### 节点可用资源
 
-理想情况下，我们希望节点上所有的资源都可以分配给 pod 使用，但实际上节点上除了运行 pods 之外，还会运行其他的很多进程：系统相关的进程（比如 sshd、udev等），以及 kubernetes 集群的组件（kubelet、docker等）。我们在分配资源的时候，需要给这些进程预留一些资源，剩下的才能给 pod 使用。预留的资源可以通过下面的参数控制：
+理想情况下，我们希望节点上所有的资源都可以分配给 pod 使用，但实际上节点上除了运行 pods 之外，还会运行其他的很多进程：系统相关的进程（比如 sshd、udev 等），以及 kubernetes 集群的组件（kubelet、docker 等）。我们在分配资源的时候，需要给这些进程预留一些资源，剩下的才能给 pod 使用。预留的资源可以通过下面的参数控制：
 
 - `--kube-reserved=[cpu=100m][,][memory=100Mi][,][ephemeral-storage=1Gi]`：控制预留给 kubernetes 集群组件的 CPU、memory 和存储资源
 - `--system-reserved=[cpu=100mi][,][memory=100Mi][,][ephemeral-storage=1Gi]`：预留给系统的 CPU、memory 和存储资源
@@ -137,9 +137,9 @@ spec:
 
 前面讲到的资源管理和调度可以认为 kubernetes 把这个集群的资源整合起来，组成一个资源池，每个应用（pod）会自动从整个池中分配资源来使用。默认情况下只要集群还有可用的资源，应用就能使用，并没有限制。kubernetes 本身考虑到了多用户和多租户的场景，提出了 namespace 的概念来对集群做一个简单的隔离。
 
-基于 namespace，kubernetes 还能够对资源进行隔离和限制，这就是 resource quota 的概念，翻译成资源配额，它限制了某个 namespace 可以使用的资源总额度。这里的资源包括 cpu、memory 的总量，也包括 kubernetes 自身对象（比如 pod、services 等）的数量。通过 resource quota，kubernetes 可以防止某个 namespace 下的用户不加限制地使用超过期望的资源，比如说不对资源进行评估就大量申请 16核 CPU 32G内存的 pod。
+基于 namespace，kubernetes 还能够对资源进行隔离和限制，这就是 resource quota 的概念，翻译成资源配额，它限制了某个 namespace 可以使用的资源总额度。这里的资源包括 cpu、memory 的总量，也包括 kubernetes 自身对象（比如 pod、services 等）的数量。通过 resource quota，kubernetes 可以防止某个 namespace 下的用户不加限制地使用超过期望的资源，比如说不对资源进行评估就大量申请 16 核 CPU 32G 内存的 pod。
 
-下面是一个资源配额的实例，它限制了 namespace 只能使用 20核 CPU 和 1G 内存，并且能创建 10 个 pod、20个 rc、5个 service，可能适用于某个测试场景。
+下面是一个资源配额的实例，它限制了 namespace 只能使用 20 核 CPU 和 1G 内存，并且能创建 10 个 pod、20 个 rc、5 个 service，可能适用于某个测试场景。
 
 ```yaml
 apiVersion: v1
@@ -166,7 +166,7 @@ Resource quota 要解决的问题和使用都相对独立和简单，但是它�
 
 Requests 和 limits 的配置除了表明资源情况和限制资源使用之外，还有一个隐藏的作用：它决定了 pod 的 QoS 等级。
 
-上一节我们提到了一个细节：如果 pod 没有配置 limits ，那么它可以使用节点上任意多的可用资源。这类 pod 能灵活使用资源，但这也导致它不稳定且危险，对于这类 pod 我们一定要在它占用过多资源导致节点资源紧张时处理掉。优先处理这类 pod，而不是资源使用处于自己请求范围内的 pod 是非常合理的想法，而这就是 pod QoS 的含义：根据 pod 的资源请求把 pod 分成不同的重要性等级。
+上一节我们提到了一个细节：如果 pod 没有配置 limits，那么它可以使用节点上任意多的可用资源。这类 pod 能灵活使用资源，但这也导致它不稳定且危险，对于这类 pod 我们一定要在它占用过多资源导致节点资源紧张时处理掉。优先处理这类 pod，而不是资源使用处于自己请求范围内的 pod 是非常合理的想法，而这就是 pod QoS 的含义：根据 pod 的资源请求把 pod 分成不同的重要性等级。
 
 kubernetes 把 pod 分成了三个 QoS 等级：
 
@@ -186,7 +186,7 @@ Pod 的 QoS 还决定了容器的 OOM（out-of-memory）值，它们对应的关
 
 ![pod QoS oom score](https://i.loli.net/2018/06/25/5b307a5b3557c.png)
 
-可以看到，QoS 越高的 pod oom 值越低，也就越不容易被系统杀死。对于 Bustable pod，它的值是根据 request 和节点内存总量共同决定的:
+可以看到，QoS 越高的 pod oom 值越低，也就越不容易被系统杀死。对于 Bustable pod，它的值是根据 request 和节点内存总量共同决定的：
 
 ```go
 oomScoreAdjust := 1000 - (1000*memoryRequest)/memoryCapacity
@@ -245,7 +245,7 @@ Pod 的驱逐是在 kubelet 中实现的，因为 kubelet 能动态地感知到�
 
 为了解决这个问题，kubernetes 引入了 soft eviction 和 hard eviction 的概念。
 
-**软驱逐**可以在资源紧缺情况并没有哪些严重的时候触发，比如内存使用率为 85%，软驱逐还需要配置一个时间指定软驱逐条件持续多久才触发，也就是说 kubelet 在发现资源使用率达到设定的阈值之后，并不会立即触发驱逐程序，而是继续观察一段时间，如果资源使用率高于阈值的情况持续一定时间，才开始驱逐。并且驱逐 pod 的时候，会遵循 grace period ，等待 pod 处理完清理逻辑。和软驱逐相关的启动参数是：
+**软驱逐**可以在资源紧缺情况并没有哪些严重的时候触发，比如内存使用率为 85%，软驱逐还需要配置一个时间指定软驱逐条件持续多久才触发，也就是说 kubelet 在发现资源使用率达到设定的阈值之后，并不会立即触发驱逐程序，而是继续观察一段时间，如果资源使用率高于阈值的情况持续一定时间，才开始驱逐。并且驱逐 pod 的时候，会遵循 grace period，等待 pod 处理完清理逻辑。和软驱逐相关的启动参数是：
 
 - `--eviction-soft`：软驱逐触发条件，比如 `memory.available<1Gi`
 - `--eviction-sfot-grace-period`：触发条件持续多久才开始驱逐，比如 `memory.available=2m30s`
@@ -384,13 +384,13 @@ kubernetes 官方文档：
 其他文档：
 
 - [Everything You Ever Wanted To Know About Resource Scheduling… Almost - Speaker Deck](https://speakerdeck.com/thockin/everything-you-ever-wanted-to-know-about-resource-scheduling-dot-dot-dot-almost): Tim Hockin 在 kubecon 上介绍的 kubernetes 资源管理理念，强烈推荐
-- [聊聊Kubernetes计算资源模型（上）——资源抽象、计量与调度](https://mp.weixin.qq.com/s/hyPNOcR3Nhy9bAiDhXUP7A)
-- [【Sigma敏捷版系列文章】kubernetes应用驱逐分析](https://www.atatech.org/articles/99071)
+- [聊聊 Kubernetes 计算资源模型（上）——资源抽象、计量与调度](https://mp.weixin.qq.com/s/hyPNOcR3Nhy9bAiDhXUP7A)
+- [【Sigma 敏捷版系列文章】kubernetes 应用驱逐分析](https://www.atatech.org/articles/99071)
 - [kubernetes 应用驱逐分析](https://www.atatech.org/articles/99071)
 - [Understanding Kubernetes Resources | Benji Visser](http://www.noqcks.io/notes/2018/02/03/understanding-kubernetes-resources/)：介绍了 kubernetes 的资源模型
-- [Kubernetes 资源分配之 Request 和 Limit 解析 - 云+社区 - 腾讯云](https://cloud.tencent.com/developer/article/1004976)：用图表的方式解释了 requests 和 limits 的含义，以及在提高资源使用率方面的作用
-- [kubernetes中容器资源控制的那些事儿](https://my.oschina.net/HardySimpson/blog/1359276)：这篇文章介绍了 kubernetes pod 中 cpu 和 memory 的 request 和 limits 是如何最终变成 cgroups 配置的
+- [Kubernetes 资源分配之 Request 和 Limit 解析 - 云 + 社区 - 腾讯云](https://cloud.tencent.com/developer/article/1004976)：用图表的方式解释了 requests 和 limits 的含义，以及在提高资源使用率方面的作用
+- [kubernetes 中容器资源控制的那些事儿](https://my.oschina.net/HardySimpson/blog/1359276)：这篇文章介绍了 kubernetes pod 中 cpu 和 memory 的 request 和 limits 是如何最终变成 cgroups 配置的
 - [The Three Pillars of Kubernetes Container Orchestration](https://medium.com/@Rancher_Labs/the-three-pillars-of-kubernetes-container-orchestration-247f42115a4a)：kubernetes 调度、资源管理和服务介绍
 - [DEM19 Advanced Auto Scaling and Deployment Tools for Kubernetes and E…](https://www.slideshare.net/AmazonWebServices/dem19-advanced-auto-scaling-and-deployment-tools-for-kubernetes-and-ecs)
-- [Kubernetes Resource QoS机制解读](https://my.oschina.net/jxcdwangtao/blog/837875)
+- [Kubernetes Resource QoS 机制解读](https://my.oschina.net/jxcdwangtao/blog/837875)
 - [深入解析 kubernetes 资源管理，容器云牛人有话说 - 简书](https://www.jianshu.com/p/a5a7b3fb6806)

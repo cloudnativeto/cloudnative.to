@@ -32,14 +32,14 @@ aliases: ["/blog/cloud-native-meetup-dalian-recap-copy"]
 
 **主讲人：张卫滨 金兰科技 软件设计师**
 
-概述了分布式系统的发展过程以及相关的核心技术，展望微服务的发展趋势以及后k8s时代的分布式技术发展分析。
+概述了分布式系统的发展过程以及相关的核心技术，展望微服务的发展趋势以及后 k8s 时代的分布式技术发展分析。
 
 
 ### 《Jutopia 一站式云原生机器学习平台》
 
 **主讲人：何昌钦 LINE China Global Solution Architect**
 
-人工智能正在影响所有行业组织。但人工智能生命周期每个阶段都是一个复杂系统，人工智能参与者很难实现这些系统并无缝集成。Jutopia 是LINE机器学习平台团队开发的一站式机器学习平台，采用云原生技术方案，致力于打通机器学习整个生命周期的Pipeline。Jutopia将多种优秀云原生开源框架进行服务化，具备机器学习服务、计算集群的多租户管理能力。
+人工智能正在影响所有行业组织。但人工智能生命周期每个阶段都是一个复杂系统，人工智能参与者很难实现这些系统并无缝集成。Jutopia 是 LINE 机器学习平台团队开发的一站式机器学习平台，采用云原生技术方案，致力于打通机器学习整个生命周期的 Pipeline。Jutopia 将多种优秀云原生开源框架进行服务化，具备机器学习服务、计算集群的多租户管理能力。
 
 ## 精彩瞬间
 
@@ -75,7 +75,7 @@ aliases: ["/blog/cloud-native-meetup-dalian-recap-copy"]
 
 PPT 存放在云原生社区云原生学院的[PPT](https://github.com/cloudnativeto/academy/tree/master/meetup/06-dalian)仓库中，欢迎感兴趣的小伙伴下载。
 
-视频直播回见[B站](https://space.bilibili.com/515485124/channel/detail?cid=198853&ctype=0)。
+视频直播回见[B 站](https://space.bilibili.com/515485124/channel/detail?cid=198853&ctype=0)。
 
 ## 致谢
 

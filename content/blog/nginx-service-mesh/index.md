@@ -18,8 +18,8 @@ NSM 通过使用户集中配置来解决以上挑战：
 
 - 安全——如今安全比以往任何时候都更加重要，数据泄露每年可能使组织损失数百万美元的收入和声誉。NSM 确保所有通信均经过 mTLS 加密，因此网络上没有敏感数据可被黑客窃取。通过访问控制可以定义策略来控制哪些服务可以相互通信。
 - 流量管理——在部署应用程序的一个新版本时，用户可能希望先限制新版本应用程序接收的流量，以防可能存在 bug。使用 NSM 智能容器流量管理，用户可以指定限制流量到新服务的策略，并随着时间的推移逐渐增加流量。限流和断路器等功能使用户可以完全控制流经服务的流量。
-- 可视化——管理数千个服务对于调试和可见性可能是一个噩梦。 NSM 通过内置的 Grafana 仪表板在 NGINX Plus 中显示可用的全套指标来帮助用户解除这个噩梦。此外，Open Tracing 的集成实现了细粒度的事务跟踪。
-- 混合部署——如果用户的企业像大多数企业一样，整个基础架构不完全在 Kubernetes 中运行。 NSM 确保不会遗漏运行在 Kubernetes 以外的应用程序。通过 NGINX Kubernetes Ingress Controller 集成，它们务可以与网格服务通信，反之亦然。
+- 可视化——管理数千个服务对于调试和可见性可能是一个噩梦。NSM 通过内置的 Grafana 仪表板在 NGINX Plus 中显示可用的全套指标来帮助用户解除这个噩梦。此外，Open Tracing 的集成实现了细粒度的事务跟踪。
+- 混合部署——如果用户的企业像大多数企业一样，整个基础架构不完全在 Kubernetes 中运行。NSM 确保不会遗漏运行在 Kubernetes 以外的应用程序。通过 NGINX Kubernetes Ingress Controller 集成，它们务可以与网格服务通信，反之亦然。
 
 NSM 通过将加密和身份验证无缝应用于容器流量来确保零信任环境中的应用程序安全。它具有对进出流量的可观察性和洞察力，来帮助用户快速准确地部署和解决问题。它还提供了细粒度的流量控制，使 DevOps 团队可以部署和优化应用程序组件，同时使 Dev 团队可以构建并轻松连接其分布式应用程序。
 
@@ -53,7 +53,7 @@ NGINX Plus 作为数据平面跨越了 sidecar 代理（东西方流量）和入
 ## NGINX 服务网格入门
 
 要开始使用 NSM，您首先需要：
-- 有一个可以访问的 Kubernetes 环境。 NGINX Service Mesh 可以支持多个 Kubernetes 平台，包括 Amazon Kubernetes 弹性容器服务 (EKS)，Azure Kubernetes 服务 (AKS)，Google Kubernetes 引擎 (GKE)，VMware vSphere 和独立的裸机群集。
+- 有一个可以访问的 Kubernetes 环境。NGINX Service Mesh 可以支持多个 Kubernetes 平台，包括 Amazon Kubernetes 弹性容器服务 (EKS)，Azure Kubernetes 服务 (AKS)，Google Kubernetes 引擎 (GKE)，VMware vSphere 和独立的裸机群集。
 - 在要安装 NSM 的机器上安装 kubectl 命令行程序。
 - 下载 NGINX Service Mesh 发布包。该软件包包括 NSM 镜像，需要将镜像上传到 Kubernetes 集群可访问的私有容器仓库中。该软件包还包括用于部署 NSM 的 nginx-meshctl 二进制文件。
 

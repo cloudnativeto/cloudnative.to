@@ -7,7 +7,7 @@ tags: ["源码阅读", "网关", "apisix"]
 date: 2021-10-24T14:00:00+08:00
 ---
 
-本文基于 [APISIX](https://github.com/apache/apisix) 2.6 版本进行源码分析，源码阅读注释仓库: [review](https://github.com/mayocream/apisix/tree/review)，分析主要流程以及核心机制。
+本文基于 [APISIX](https://github.com/apache/apisix) 2.6 版本进行源码分析，源码阅读注释仓库：[review](https://github.com/mayocream/apisix/tree/review)，分析主要流程以及核心机制。
 
 ## 1. APISIX 概述
 
@@ -501,7 +501,7 @@ APISIX 引入特权进程的一个目的在于实现 Log Rotate 插件功能。
 
 > Use `ngx.ctx` wherever you can. `ngx.var` is much  more expensive and is also limited to string values. The latter should  only be used to exchange data with other nginx C modules.[^6]
 
-APISIX 中使用缓存 `ngx.var` 获取的结果， 在不同生命周期中传递。使用 [lua-var-nginx-module](https://github.com/api7/lua-var-nginx-module) Nginx C 模块和 FFI 获取变量，在没有开启 Nginx C 模块的情况下回退到 `ngx.var` 方式获取。APISIX 默认没有在构建脚本中加载 C 模块，提交的 PR [feat: add lua-var-nginx-module](https://github.com/api7/apisix-build-tools/pull/44) 在编译 OpenResty 时添加了该模块。
+APISIX 中使用缓存 `ngx.var` 获取的结果，在不同生命周期中传递。使用 [lua-var-nginx-module](https://github.com/api7/lua-var-nginx-module) Nginx C 模块和 FFI 获取变量，在没有开启 Nginx C 模块的情况下回退到 `ngx.var` 方式获取。APISIX 默认没有在构建脚本中加载 C 模块，提交的 PR [feat: add lua-var-nginx-module](https://github.com/api7/apisix-build-tools/pull/44) 在编译 OpenResty 时添加了该模块。
 
 ```lua
 function _M.set_vars_meta(ctx)
@@ -1105,7 +1105,7 @@ APISIX 支持的一特性是外部服务发现，Kong 中默认支持通过 DNS 
 
 ### 8.1. 服务发现
 
-如果 serivce host 是域名, 通过外部注册中心进行服务发现，获取上游 IP 列表。
+如果 serivce host 是域名，通过外部注册中心进行服务发现，获取上游 IP 列表。
 
 ```lua
 function _M.set_by_route(route, api_ctx)
@@ -1635,7 +1635,7 @@ APISIX 自 2019 年发起提案，试图通过 WebAssembly 来扩展 Lua 贫乏�
 
 ### 11.4. Service Mesh
 
-APISIX 的 Service Mesh 项目 [api7/apisix-mesh-agent](https://github.com/api7/apisix-mesh-agent)，将 APISIX Proxy 作为 Sidecar 运作在数据平面。通过实现控制平面的接口，接入类似 [Istio](https://github.com/istio/istio) 或 [Kuma](https://github.com/kumahq/kuma)（由 Kong 创建捐赠给 CNCF） 的控制平面，形成一套完整的 Service Mesh 方案。
+APISIX 的 Service Mesh 项目 [api7/apisix-mesh-agent](https://github.com/api7/apisix-mesh-agent)，将 APISIX Proxy 作为 Sidecar 运作在数据平面。通过实现控制平面的接口，接入类似 [Istio](https://github.com/istio/istio) 或 [Kuma](https://github.com/kumahq/kuma)（由 Kong 创建捐赠给 CNCF）的控制平面，形成一套完整的 Service Mesh 方案。
 该项目本质上是使用 APISIX 替换了 Istio 中的 Envoy。
 
 ![](apisix-mesh-overview.png)
@@ -1648,7 +1648,7 @@ APISIX 的 Service Mesh 项目 [api7/apisix-mesh-agent](https://github.com/api7/
 
 [^1]: 摘自 APISIX [#3207](https://github.com/apache/apisix/issues/3207#issuecomment-759269071) Issue
 [^2]: [LuaJIT FFI 介绍，及其在 OpenResty 中的应用（下）](https://segmentfault.com/a/1190000016149595)
-[^3]: [《OpenResty精华整理》6.性能优化 ](https://yxudong.github.io/%E3%80%8AOpenResty%E7%B2%BE%E5%8D%8E%E6%95%B4%E7%90%86%E3%80%8B6.%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/)
+[^3]: [《OpenResty 精华整理》6.性能优化 ](https://yxudong.github.io/%E3%80%8AOpenResty%E7%B2%BE%E5%8D%8E%E6%95%B4%E7%90%86%E3%80%8B6.%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/)
 [^4]: [OpenResty：特权进程和定时任务](https://www.cnblogs.com/liekkas01/p/12764577.html)
 [^5]: OpenResty lua-resty-core 文档 [enable_privileged_agent](https://github.com/openresty/lua-resty-core/blob/master/lib/ngx/process.md#enable_privileged_agent)
 [^6]: OpenResty Issue [ngx.var vs ngx.ctx](https://github.com/openresty/lua-nginx-module/issues/1482)

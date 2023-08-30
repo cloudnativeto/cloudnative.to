@@ -9,31 +9,31 @@ date: 2020-06-12T12:00:00+08:00
 
 ## 背景
 
-Istio 从发布开始就使用 Envoy 作为自己的数据平面，充分利用了 Envoy 提供的服务发现、路由、熔断、负载均衡等功能。与此同时，Istio 项目也一直致力于提供一个便于灵活扩展的平台，以满足用户多样化的需求。在过去的一年半中， Google 的团队一直在努力用 WebAssembly 技术为 Envoy 代理添加动态扩展，并推出了针对 Envoy 代理的 WebAssembly (以下简称为WASM) 扩展机制，包括标准化的 ABI，SDK，以及该扩展机制的第一个重点实现：全新的、低延迟的 Istio 遥测系统。
+Istio 从发布开始就使用 Envoy 作为自己的数据平面，充分利用了 Envoy 提供的服务发现、路由、熔断、负载均衡等功能。与此同时，Istio 项目也一直致力于提供一个便于灵活扩展的平台，以满足用户多样化的需求。在过去的一年半中，Google 的团队一直在努力用 WebAssembly 技术为 Envoy 代理添加动态扩展，并推出了针对 Envoy 代理的 WebAssembly (以下简称为 WASM) 扩展机制，包括标准化的 ABI，SDK，以及该扩展机制的第一个重点实现：全新的、低延迟的 Istio 遥测系统。
 
 本文主要对 Envoy 和 WebAssembly 技术进行介绍，并使用 solo.io 团队推出的 wasme 工具完成 WASM filter 的构建、发布和部署，方便读者了解 Envoy WASM Filter 的扩展方式及其实现原理。
 
 ## Envoy 的过滤器机制
 
-Envoy 是 Istio 中的 Sidecar 官方标配，是一个面向服务架构的高性能网络代理，由 C++ 语言实现，拥有强大的定制化能力。Envoy 提供了进程外架构、支持L3/L4 filter、HTTP L7 filter、服务发现和动态配置、健康检查等高级功能。这里我们重点介绍一下 Envoy 流量处理过程中的 filter 机制。 
+Envoy 是 Istio 中的 Sidecar 官方标配，是一个面向服务架构的高性能网络代理，由 C++ 语言实现，拥有强大的定制化能力。Envoy 提供了进程外架构、支持 L3/L4 filter、HTTP L7 filter、服务发现和动态配置、健康检查等高级功能。这里我们重点介绍一下 Envoy 流量处理过程中的 filter 机制。 
 
 ### 过滤器机制
 
-Envoy 是面向服务架构设计的L7代理和通信总线，核心是一个 L3/L4 网络代理。可插入 filter 链机制允许开发人员编写 filter 来执行不同的 TCP 代理任务并将其插入到主体服务中。Envoy 还支持额外的 HTTP L7 filter 层。可以将 HTTP filter 插入执行不同任务的 HTTP 连接管理子系统。
+Envoy 是面向服务架构设计的 L7 代理和通信总线，核心是一个 L3/L4 网络代理。可插入 filter 链机制允许开发人员编写 filter 来执行不同的 TCP 代理任务并将其插入到主体服务中。Envoy 还支持额外的 HTTP L7 filter 层。可以将 HTTP filter 插入执行不同任务的 HTTP 连接管理子系统。
 
 ![](envoy-wasm-1.png)
 
-目前，Envoy 提供的过滤器包括侦听器过滤器（Listener Filters）、网络过滤器（Network Filters）、HTTP过滤器（HTTP Filters）三种类型，它们共同组成了一个层次化的过滤器链。
+目前，Envoy 提供的过滤器包括侦听器过滤器（Listener Filters）、网络过滤器（Network Filters）、HTTP 过滤器（HTTP Filters）三种类型，它们共同组成了一个层次化的过滤器链。
 
 **1、侦听器过滤器**
 
-侦听器过滤器在初始连接阶段访问原始数据并操作 L4 连接的元数据。例如，TLS 检查器过滤器（TLS Inspector Filter）标识连接是否经过 TLS 加密，并解析与该连接关联的 TLS 元数据（SNI或ALPN协商的协议类型）；HTTP Inspector Filter 检测应用协议是否是 HTTP，如果是的话，再进一步检测 HTTP 协议类型 (HTTP/1.x or HTTP/2) ，这两种过滤器解析到的元数据都可以和 FilterChainMatch 结合使用。
+侦听器过滤器在初始连接阶段访问原始数据并操作 L4 连接的元数据。例如，TLS 检查器过滤器（TLS Inspector Filter）标识连接是否经过 TLS 加密，并解析与该连接关联的 TLS 元数据（SNI 或 ALPN 协商的协议类型）；HTTP Inspector Filter 检测应用协议是否是 HTTP，如果是的话，再进一步检测 HTTP 协议类型 (HTTP/1.x or HTTP/2) ，这两种过滤器解析到的元数据都可以和 FilterChainMatch 结合使用。
 
 **2、网络过滤器**
 
-网络过滤器访问和操作 L4 连接上的原始数据，即TCP数据包。例如，TCP代理过滤器（TCP Proxy Filter）将客户端连接数据路由到上游主机，它还可以生成连接统计数据。此外，MySQL proxy、Redis proxy、Dubbo proxy、Thrift proxy等都属于网络过滤器。
+网络过滤器访问和操作 L4 连接上的原始数据，即 TCP 数据包。例如，TCP 代理过滤器（TCP Proxy Filter）将客户端连接数据路由到上游主机，它还可以生成连接统计数据。此外，MySQL proxy、Redis proxy、Dubbo proxy、Thrift proxy 等都属于网络过滤器。
 
-**3、HTTP过滤器**
+**3、HTTP 过滤器**
 
 HTTP 过滤器在 L7 上运行，由网络过滤器（即 HTTP 连接管理器，HTTP Connection Manager）创建。这些过滤器用于访问、操作 HTTP 请求和响应，例如，gRPC-JSON 转码器过滤器（gRPC-JSON Transcoder Filter）可以为 gRPC 后端提供一个 REST API，并将请求和响应转换为相应的格式。此外，还包括  JWT、Router、RBAC 等多种过滤器。
 
@@ -48,13 +48,13 @@ HTTP 过滤器在 L7 上运行，由网络过滤器（即 HTTP 连接管理器�
 这种方式直接在 Envoy 基础上编写 C++ 代码进行功能增强，实现自定义的 filter 之后，重新编译新的二进制可执行文件，完成现有业务的升级替换。这种方式有以下两方面问题：
 
 受语言限制，只能使用 C++ 进行扩展，不利于生态发展；
-提高了部署、运维、升级的复杂性，Envoy将会变得越来越重，并且每次更改都需要重新编译二进制文件，不利于技术迭代和管理。
+提高了部署、运维、升级的复杂性，Envoy 将会变得越来越重，并且每次更改都需要重新编译二进制文件，不利于技术迭代和管理。
 
 **2、使用 lua 脚本扩展 filter**
 
-Lua 是一种轻量小巧的脚本语言，用标准C语言编写并以源代码形式开放， 其设计目的是为了嵌入应用程序中，从而为应用程序提供灵活的扩展和定制功能。HTTP Lua Filter 允许在请求和响应流程中运行 Lua 脚本，在运行时使用 LuaJIT。该过滤器仅支持在配置中直接加载 Lua 代码。
+Lua 是一种轻量小巧的脚本语言，用标准 C 语言编写并以源代码形式开放，其设计目的是为了嵌入应用程序中，从而为应用程序提供灵活的扩展和定制功能。HTTP Lua Filter 允许在请求和响应流程中运行 Lua 脚本，在运行时使用 LuaJIT。该过滤器仅支持在配置中直接加载 Lua 代码。
 
-目前支持的主要功能包括：对传输的请求或响应流，提供头部、正文和尾部的检查；对头部和尾部进行修改；对上游主机执行异步HTTP调用；直接执行响应并跳过后续的过滤器等。
+目前支持的主要功能包括：对传输的请求或响应流，提供头部、正文和尾部的检查；对头部和尾部进行修改；对上游主机执行异步 HTTP 调用；直接执行响应并跳过后续的过滤器等。
 
 然而，HTTP Lua Filter 是实验性的，在生产中使用需要自担风险。若存在非常复杂或更高性能的场景，建议使用本地 C++ 过滤器。
 
@@ -66,12 +66,12 @@ Lua 是一种轻量小巧的脚本语言，用标准C语言编写并以源代码
 
 ### 介绍
 
-WebAssembly（WASM）是一种由多种语言编写的，可移植的字节码格式，它能以接近本机的速度执行。作为一种可移植、体积小、加载快并且兼容 Web 的全新格式，wasm具有以下特点：
+WebAssembly（WASM）是一种由多种语言编写的，可移植的字节码格式，它能以接近本机的速度执行。作为一种可移植、体积小、加载快并且兼容 Web 的全新格式，wasm 具有以下特点：
 
-* 高效：WASM 有一套完整的语义，实际上 WASM 是体积小且加载快的二进制格式， 其目标就是充分发挥硬件能力以达到原生执行效率。
+* 高效：WASM 有一套完整的语义，实际上 WASM 是体积小且加载快的二进制格式，其目标就是充分发挥硬件能力以达到原生执行效率。
 * 安全：WASM 运行在一个沙箱化的执行环境中，甚至可以在现有的 JavaScript 虚拟机中实现。
 * 开放：WASM 设计了一个非常规整的文本格式，用于调试、测试、实验、优化、学习、教学或者编写程序。
-* 标准：WASM 在 web 中被设计成无版本、特性可测试、向后兼容的特点。WASM 不仅可以运行在浏览器上，也可以运行在非web环境下。
+* 标准：WASM 在 web 中被设计成无版本、特性可测试、向后兼容的特点。WASM 不仅可以运行在浏览器上，也可以运行在非 web 环境下。
 
 需要注意的是，WASM 是一个编译目标，不是一种编程语言。WebAssembly 是经过编译器编译之后的目标格式，体积小、起步快。在语法上完全脱离 JavaScript，同时具有沙盒化的执行环境。
 
@@ -81,7 +81,7 @@ WebAssembly（WASM）是一种由多种语言编写的，可移植的字节码�
 
 这里简单介绍一下 WASM 编译相关的工具链。传统的编译器设计都是三步式的：Frontend(前端)，Optimizer（优化器），Backend(后端)。
 
-* Frontend ：源代码解析，错误检查，然后构建一个语言相关的抽象语法树(AST)来表示输入的代码。
+* Frontend：源代码解析，错误检查，然后构建一个语言相关的抽象语法树 (AST) 来表示输入的代码。
 * Optimizer：优化器会做很多的转换来减少代码的运行时间，比如说减少冗余的计算。
 * Backend：将优化后的代码映射到目标指令集，也可以被称为代码生成器。
 
@@ -89,7 +89,7 @@ WebAssembly（WASM）是一种由多种语言编写的，可移植的字节码�
 
 Emscripten 的底层就是 LLVM 编译器，可以将 LLVM 字节码编译成 JavaScript，还支持 WebAssembly 这一更加先进的 Web 技术，可以生成 WASM 字节码文件。
 
-## WASM与Envoy和Istio
+## WASM 与 Envoy 和 Istio
 
 ### Istio 引入 WebAssembly
 
@@ -100,7 +100,7 @@ Emscripten 的底层就是 LLVM 编译器，可以将 LLVM 字节码编译成 Ja
 * 制定 Wasm 嵌入代理的通用应用程序二进制接口（ABI），这意味着编译后的扩展将可以在不同版本的 Envoy 中工作，甚至其它代理也可以，前提是其它代理实现了 ABI
 * 用 C++, Rust 和 AssemblyScript 可以方便进行扩展开发的 SDK，后续还会支持更多类型的编程语言
 * 全面的示例和说明，介绍如何在 Istio 和独立的 Envoy 中部署
-* 允许使用其它 WASM 运行时的抽象，包括把扩展直接编译进 Envoy 中 “null” 运行时，这对于测试和调试非常有用
+* 允许使用其它 WASM 运行时的抽象，包括把扩展直接编译进 Envoy 中“null”运行时，这对于测试和调试非常有用
 
 使用 WASM 扩展 Envoy 带来了很多好处：
 
@@ -127,13 +127,13 @@ export PATH=$HOME/.wasme/bin:$PATH
 wasme --version
 ```
 
-**2、初始化filter项目**
+**2、初始化 filter 项目**
 
-创建一个新的filter项目：
+创建一个新的 filter 项目：
 ```bash
 wasme init ./new-filter
 ```
-根据命令行的提示可以知道，现在只支持cpp、assemblyscript两种语言；可以选择部署到 Istio 或 Gloo 平台。这里我们选择cpp、istio选项，完成项目创建。
+根据命令行的提示可以知道，现在只支持 cpp、assemblyscript 两种语言；可以选择部署到 Istio 或 Gloo 平台。这里我们选择 cpp、istio 选项，完成项目创建。
 
 ![](envoy-wasm-2.png)
 
@@ -168,11 +168,11 @@ wasme init ./new-filter
 * WORKSPACE：用于编译 filter 的 bazel WORKSPACE 文件
 * bazel/：bazel 外部依赖
 * toolchain/：编译 WASM 模块的 bazel 工具链
-* filter.cc：filter 源代码，这里是C++语言
-* filter.proto：filter配置的 protobuf schema
+* filter.cc：filter 源代码，这里是 C++语言
+* filter.proto：filter 配置的 protobuf schema
 * runtime-config.json：和 filter 镜像共同存储的 config 文件，用于在运行时加载 filter
 
-这里重点关注 filter.cc 文件即可，里面定义了一组接口和实现，只需要对相关的方法进行修改，就可以实现自定义的filter。其他文件主要用于编译，可以看到这里也引入了 emscripten 工具链，用于编译成 wasm 字节码格式。
+这里重点关注 filter.cc 文件即可，里面定义了一组接口和实现，只需要对相关的方法进行修改，就可以实现自定义的 filter。其他文件主要用于编译，可以看到这里也引入了 emscripten 工具链，用于编译成 wasm 字节码格式。
 
 **3、修改和编译**
 
@@ -187,11 +187,11 @@ FilterHeadersStatus AddHeaderContext::onResponseHeaders(uint32_t) {
 }
 ```
 
-接下来使用 wasme 命令编译 filter，这里会自动拉取quay.io/solo-io/ee-builder镜像完成编译过程，构建完成的filter镜像将会存储在本地的 registry中。
+接下来使用 wasme 命令编译 filter，这里会自动拉取 quay.io/solo-io/ee-builder 镜像完成编译过程，构建完成的 filter 镜像将会存储在本地的 registry 中。
 ```bash
 wasme build cpp -t webassemblyhub.io/sunboy0213/add-header:v0.1 .
 ```
-查看本地编译完成的filter镜像：
+查看本地编译完成的 filter 镜像：
 ```bash
 wasme list
 NAME                                    TAG  SIZE   SHA      UPDATED
@@ -211,7 +211,7 @@ drwxr-xr-x 4 root root  4.0K Apr 15 12:19 ..
 
 **4、推送到 WebAssembly hub**
 
-这里需要首先注册https://webassemblyhub.io账号，然后将本地编译完成的镜像推送到远程仓库。
+这里需要首先注册 https://webassemblyhub.io 账号，然后将本地编译完成的镜像推送到远程仓库。
 ```bash
 # 登录账号
 wasme login -u $YOUR_USERNAME -p $YOUR_PASSWORD
@@ -221,7 +221,7 @@ wasme push webassemblyhub.io/sunboy0213/add-header:v0.1
 wasme list --search $YOUR_USERNAME
 ```
 
-**5、部署到istio集群**
+**5、部署到 istio 集群**
 
 这一步的前提是已经搭建了 Istio 运行环境，并部署好了 bookinfo 示例应用。测试服务间的访问连通性如下：
 ```bash
@@ -248,11 +248,11 @@ wasme list --search $YOUR_USERNAME
 {"id":123,"author":"William Shakespeare","year":1595,"type":"paperback","pages":200,"publisher":"PublisherA","language":"English","ISBN-10":"1234567890","ISBN-13":"123-1234567890"}
 ```
 
-部署我们刚才定制开发的filter：
+部署我们刚才定制开发的 filter：
 ```bash
 wasme deploy istio webassemblyhub.io/sunboy0213/add-header:v0.1 --id=myfilter
 ```
-再次访问，可以发现响应头已经增加了 "hello: world!" 键值对。注意：该部署过程会触发pod重建操作。
+再次访问，可以发现响应头已经增加了 "hello: world!" 键值对。注意：该部署过程会触发 pod 重建操作。
 ```bash
 kubectl exec -ti deploy/productpage-v1 -c istio-proxy -- curl -v http://details:9080/details/123
 *   Trying 172.18.233.86...
@@ -282,7 +282,7 @@ kubectl exec -ti deploy/productpage-v1 -c istio-proxy -- curl -v http://details:
 
 **6、生产环境的部署**
 
-前面我们使用的 wasme 命令行提供了一种编译、部署 wasm filter 的简单方式，可以方便的在开发和测试环境中使用，但该方式显然无法用于声明式、无状态的k8s生产环境中。
+前面我们使用的 wasme 命令行提供了一种编译、部署 wasm filter 的简单方式，可以方便的在开发和测试环境中使用，但该方式显然无法用于声明式、无状态的 k8s 生产环境中。
 
 为此，官方推荐使用 Wasme Operator 管理 Service Mesh 集群中的 wasm filter。主要包括两个组件：
 
@@ -309,9 +309,9 @@ spec:
 
 刚才我们使用 wasme 命令行工具完成了 wasm filter 的构建、部署过程，其背后的工作原理简单描述如下：
 
-1. 由 Wasme Operator 设置 wasm filter 的本地缓存信息，同时生成 EnvoyFilter 资源提交给k8s；
+1. 由 Wasme Operator 设置 wasm filter 的本地缓存信息，同时生成 EnvoyFilter 资源提交给 k8s；
 2. 镜像缓存模块拉取需要的 wasm filter 到本地缓存中，该模块以 DaemonSet 的形式部署在集群节点中；
-3. 缓存模块拉取完成后，将 wasm 文件挂载到目标的workload中；
+3. 缓存模块拉取完成后，将 wasm 文件挂载到目标的 workload 中；
 4. 同时，Istiod 监测到 EnvoyFilter 变更，通过 xDS API 将 wasm 文件的信息下发到 envoy 代理。
 
 ![](envoy-wasm-3.png)
@@ -373,7 +373,7 @@ spec:
       version: v1
 ```
 
-该配置内容通过 xDS API 下发到 Envoy 代理之后，envoy 的运行时配置就会出现如下类型的 http filter，可以看到该 filter 指定了wasm文件的位置，并将wasm的运行时设置为v8引擎，从而实现了 wasm filter 的加载和运行。
+该配置内容通过 xDS API 下发到 Envoy 代理之后，envoy 的运行时配置就会出现如下类型的 http filter，可以看到该 filter 指定了 wasm 文件的位置，并将 wasm 的运行时设置为 v8 引擎，从而实现了 wasm filter 的加载和运行。
 
 ```json
 {
@@ -404,7 +404,7 @@ spec:
 
 [重新定义代理的扩展性：Envoy 和 Istio 引入 WebAssembly](https://istio.io/latest/zh/blog/2020/wasm-announce/)
 
-[如何高效地编写Envoy过滤器！第1部分](https://cloud.tencent.com/developer/article/1548607)
+[如何高效地编写 Envoy 过滤器！第 1 部分](https://cloud.tencent.com/developer/article/1548607)
 
 [WebAssembly for Proxies (ABI specification)](https://github.com/proxy-wasm/spec)
 

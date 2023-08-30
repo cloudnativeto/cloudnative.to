@@ -15,7 +15,7 @@ Envoy 对于 Service Mesh 或者说  Cloud Native 最大的贡献就是定义了
 
 **关于本文标题**
 
-2018年9月1日，[Bilgin Ibryam](https://twitter.com/bibryam) 在 InfoQ 发表了一篇文章 [Microservices in a Post-Kubernetes Era](https://www.infoq.com/articles/microservices-post-kubernetes)，中文版见[后 Kubernetes 时代的微服务](https://www.infoq.cn/article/microservices-post-kubernetes)（译文有些错误，仅供参考）。本文标题中虽然没有明确指明”后 Kubernetes 时代的微服务“是什么，但是从文中可以看出作者的观点是：在后 Kubernetes 时代，服务网格（Service Mesh）技术已完全取代了使用软件库实现网络运维（例如 Hystrix 断路器）的方式。本文索性就借用该标题。
+2018 年 9 月 1 日，[Bilgin Ibryam](https://twitter.com/bibryam) 在 InfoQ 发表了一篇文章 [Microservices in a Post-Kubernetes Era](https://www.infoq.com/articles/microservices-post-kubernetes)，中文版见[后 Kubernetes 时代的微服务](https://www.infoq.cn/article/microservices-post-kubernetes)（译文有些错误，仅供参考）。本文标题中虽然没有明确指明”后 Kubernetes 时代的微服务“是什么，但是从文中可以看出作者的观点是：在后 Kubernetes 时代，服务网格（Service Mesh）技术已完全取代了使用软件库实现网络运维（例如 Hystrix 断路器）的方式。本文索性就借用该标题。
 
 **本文中包含以下内容**
 
@@ -45,10 +45,10 @@ Envoy 对于 Service Mesh 或者说  Cloud Native 最大的贡献就是定义了
 推荐大家在阅读本文之前希望您对微服务、容器和 Kubernetes 有一定认识，如果您已经阅读过以下几篇文章将对您理解本文更有帮助，本文中也引用过了下面文章中的部分观点。
 
 - [深入解读 Service Mesh 背后的技术细节 by 刘超](https://www.cnblogs.com/163yun/p/8962278.html)
-- [Istio流量管理实现机制深度解析 by 赵化冰](https://zhaohuabing.com/post/2018-09-25-istio-traffic-management-impl-intro/)
-- [Service Mesh架构反思：数据平面和控制平面的界线该如何划定？by 敖小剑](https://skyao.io/post/201804-servicemesh-architecture-introspection/)
+- [Istio 流量管理实现机制深度解析 by 赵化冰](https://zhaohuabing.com/post/2018-09-25-istio-traffic-management-impl-intro/)
+- [Service Mesh 架构反思：数据平面和控制平面的界线该如何划定？by 敖小剑](https://skyao.io/post/201804-servicemesh-architecture-introspection/)
 - [理解 Istio Service Mesh 中 Envoy 代理 Sidecar 注入及流量劫持 by 宋净超](https://jimmysong.io/posts/envoy-sidecar-injection-in-istio-service-mesh-deep-dive/)
-- [Service Mesh 深度学习系列——Istio源码分析之pilot-agent模块分析 by 丁轶群](http://www.servicemesher.com/blog/istio-service-mesh-source-code-pilot-agent-deepin)
+- [Service Mesh 深度学习系列——Istio 源码分析之 pilot-agent 模块分析 by 丁轶群](http://www.servicemesher.com/blog/istio-service-mesh-source-code-pilot-agent-deepin)
 
 ## 为什么走到这一步
 
@@ -92,7 +92,7 @@ Istio Service Mesh 中沿用了 Kubernetes 中的 service 做服务注册，通�
 
 ## kube-proxy 组件
 
-在 Kubernetes 集群中，每个 Node 运行一个 `kube-proxy` 进程。`kube-proxy` 负责为 `Service` 实现了一种 VIP（虚拟 IP）的形式。 在 Kubernetes v1.0 版本，代理完全在 userspace 实现。Kubernetes v1.1 版本新增了 [iptables 代理模式](https://jimmysong.io/kubernetes-handbook/concepts/service.html#iptables-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F)，但并不是默认的运行模式。从 Kubernetes v1.2 起，默认使用 iptables 代理。在 Kubernetes v1.8.0-beta.0 中，添加了 [ipvs 代理模式](https://jimmysong.io/kubernetes-handbook/concepts/service.html#ipvs-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F)。关于 kube-proxy 组件的更多介绍请参考 [kubernetes 简介：service 和 kube-proxy 原理](https://cizixs.com/2017/03/30/kubernetes-introduction-service-and-kube-proxy/) 和 [使用 IPVS 实现 Kubernetes 入口流量负载均衡](https://jishu.io/kubernetes/ipvs-loadbalancer-for-kubernetes/)。
+在 Kubernetes 集群中，每个 Node 运行一个 `kube-proxy` 进程。`kube-proxy` 负责为 `Service` 实现了一种 VIP（虚拟 IP）的形式。在 Kubernetes v1.0 版本，代理完全在 userspace 实现。Kubernetes v1.1 版本新增了 [iptables 代理模式](https://jimmysong.io/kubernetes-handbook/concepts/service.html#iptables-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F)，但并不是默认的运行模式。从 Kubernetes v1.2 起，默认使用 iptables 代理。在 Kubernetes v1.8.0-beta.0 中，添加了 [ipvs 代理模式](https://jimmysong.io/kubernetes-handbook/concepts/service.html#ipvs-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F)。关于 kube-proxy 组件的更多介绍请参考 [kubernetes 简介：service 和 kube-proxy 原理](https://cizixs.com/2017/03/30/kubernetes-introduction-service-and-kube-proxy/) 和 [使用 IPVS 实现 Kubernetes 入口流量负载均衡](https://jishu.io/kubernetes/ipvs-loadbalancer-for-kubernetes/)。
 
 ### kube-proxy 的缺陷
 
@@ -134,9 +134,9 @@ Envoy 通过查询文件或管理服务器来动态发现资源。概括地讲�
 
 关于 xDS 协议的详细分解请参考丁轶群博士的这几篇文章：
 
-- [Service Mesh深度学习系列part1—istio源码分析之pilot-agent模块分析](http://www.servicemesher.com/blog/istio-service-mesh-source-code-pilot-agent-deepin)
-- [Service Mesh深度学习系列part2—istio源码分析之pilot-discovery模块分析](http://www.servicemesher.com/blog/istio-service-mesh-source-code-pilot-discovery-module-deepin)
-- [Service Mesh深度学习系列part3—istio源码分析之pilot-discovery模块分析（续）](http://www.servicemesher.com/blog/istio-service-mesh-source-code-pilot-discovery-module-deepin-part2)
+- [Service Mesh 深度学习系列 part1—istio 源码分析之 pilot-agent 模块分析](http://www.servicemesher.com/blog/istio-service-mesh-source-code-pilot-agent-deepin)
+- [Service Mesh 深度学习系列 part2—istio 源码分析之 pilot-discovery 模块分析](http://www.servicemesher.com/blog/istio-service-mesh-source-code-pilot-discovery-module-deepin)
+- [Service Mesh 深度学习系列 part3—istio 源码分析之 pilot-discovery 模块分析（续）](http://www.servicemesher.com/blog/istio-service-mesh-source-code-pilot-discovery-module-deepin-part2)
 
 文章中介绍了 Istio pilot 的总体架构、Envoy 配置的生成、pilot-discovery 模块的功能，以及 xDS 协议中的 CDS、EDS 及 ADS，关于 ADS 详情请参考 [Enovy 官方文档](https://www.envoyproxy.io/docs/envoy/latest/configuration/overview/v2_overview#aggregated-discovery-service)。
 
@@ -155,7 +155,7 @@ Envoy 通过查询文件或管理服务器来动态发现资源。概括地讲�
 
 ## Envoy
 
-Envoy 是 Istio Service Mesh 中默认的 Sidecar，Istio 在 Enovy 的基础上按照 Envoy 的 xDS 协议扩展了其控制平面，在讲到 Envoy xDS 协议之前还需要我们先熟悉下 Envoy 的基本术语。下面列举了 Envoy 里的基本术语及其数据结构解析，关于 Envoy 的详细介绍请参考 [Envoy 官方文档](http://www.servicemesher.com/envoy/)，至于 Envoy 在 Service Mesh（不仅限于 Istio） 中是如何作为转发代理工作的请参考网易云刘超的这篇[深入解读 Service Mesh 背后的技术细节 ](https://www.cnblogs.com/163yun/p/8962278.html)以及[理解 Istio Service Mesh 中 Envoy 代理 Sidecar 注入及流量劫持](https://jimmysong.io/posts/envoy-sidecar-injection-in-istio-service-mesh-deep-dive/)，本文引用其中的一些观点，详细内容不再赘述。
+Envoy 是 Istio Service Mesh 中默认的 Sidecar，Istio 在 Enovy 的基础上按照 Envoy 的 xDS 协议扩展了其控制平面，在讲到 Envoy xDS 协议之前还需要我们先熟悉下 Envoy 的基本术语。下面列举了 Envoy 里的基本术语及其数据结构解析，关于 Envoy 的详细介绍请参考 [Envoy 官方文档](http://www.servicemesher.com/envoy/)，至于 Envoy 在 Service Mesh（不仅限于 Istio）中是如何作为转发代理工作的请参考网易云刘超的这篇[深入解读 Service Mesh 背后的技术细节 ](https://www.cnblogs.com/163yun/p/8962278.html)以及[理解 Istio Service Mesh 中 Envoy 代理 Sidecar 注入及流量劫持](https://jimmysong.io/posts/envoy-sidecar-injection-in-istio-service-mesh-deep-dive/)，本文引用其中的一些观点，详细内容不再赘述。
 
 ![Envoy proxy 架构图](006tNc79ly1fz69bsaqk7j314k0tsq90.jpg)
 
@@ -187,7 +187,7 @@ Istio 是一个功能十分丰富的 Service Mesh，它包括如下功能：
 
 Istio 中定义了如下的 [CRD](https://jimmysong.io/kubernetes-handbook/concepts/custom-resource.html) 来帮助用户进行流量管理：
 
-- **Gateway**：Gateway 描述了在网络边缘运行的负载均衡器，用于接收传入或传出的HTTP / TCP连接。
+- **Gateway**：Gateway 描述了在网络边缘运行的负载均衡器，用于接收传入或传出的 HTTP / TCP 连接。
 - **VirtualService**：[VirtualService](https://istio.io/zh/docs/reference/config/istio.networking.v1alpha3/#virtualservice) 实际上将 Kubernetes 服务连接到 Istio Gateway。它还可以执行更多操作，例如定义一组流量路由规则，以便在主机被寻址时应用。
 - **DestinationRule**：`DestinationRule` 所定义的策略，决定了经过路由处理之后的流量的访问策略。简单的说就是定义流量如何路由。这些策略中可以定义负载均衡配置、连接池尺寸以及外部检测（用于在负载均衡池中对不健康主机进行识别和驱逐）配置。
 - **EnvoyFilter**：`EnvoyFilter` 对象描述了针对代理服务的过滤器，这些过滤器可以定制由 Istio Pilot 生成的代理配置。这个配置初级用户一般很少用到。

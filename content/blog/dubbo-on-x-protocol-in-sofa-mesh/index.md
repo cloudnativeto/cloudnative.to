@@ -1,21 +1,21 @@
 ---
-title: "Dubbo on x-protocol——SOFAMesh中的x-protocol示例演示"
+title: "Dubbo on x-protocol——SOFAMesh 中的 x-protocol 示例演示"
 date: 2018-09-11T19:06:22+08:00
 draft: false
 authors: ["彭泽文"]
-summary: "本文将以 Dubbo 为例，演示 SOFAMesh 中 Dubbo on x-protocol 场景下 Service Mesh 路由功能，涵盖 Version route 、Weighted route 功能。"
+summary: "本文将以 Dubbo 为例，演示 SOFAMesh 中 Dubbo on x-protocol 场景下 Service Mesh 路由功能，涵盖 Version route、Weighted route 功能。"
 tags: ["sofamesh","dubbo","x-protocol"]
 categories: ["service mesh"]
 keywords: ["service mesh","服务网格","sofamesh","蚂蚁金服"]
 ---
 
-> 本文作者：彭泽文，阿里巴巴UC事业部高级开发工程师。
+> 本文作者：彭泽文，阿里巴巴 UC 事业部高级开发工程师。
 
 ![sofamesh x-protocol dubbo](0069RVTdgy1fv5t8by8rsj30kk0bkwez.jpg)
 
 X-protocol 的定位是云原生、高性能、低侵入性的通用 Service Mesh 落地方案，依托 Kubernetes 基座，利用其原生的服务注册和服务发现机制，支持各种私有 RPC 协议低成本、易扩展的接入，快速享受 Service Mesh 所带来的红利。
 
-本文将以 [Dubbo](https://dubbo.incubator.apache.org/) 为例，演示 Dubbo on x-protocol 场景下 Service Mesh 路由功能，涵盖 Version route 、Weighted route 功能。
+本文将以 [Dubbo](https://dubbo.incubator.apache.org/) 为例，演示 Dubbo on x-protocol 场景下 Service Mesh 路由功能，涵盖 Version route、Weighted route 功能。
 
 关于 x-protocol 的介绍请参考 [蚂蚁金服开源的 SOFAMesh 的通用协议扩展解析](http://www.servicemesher.com/blog/ant-financial-sofamesh-common-protocol-extension/)。
 
@@ -30,9 +30,9 @@ X-protocol 的定位是云原生、高性能、低侵入性的通用 Service Mes
 
 先看部署效果图：
 
-![MOSN x-protocol部署图](1536291419546-2aa160de-69cd-497f-a280-fae20a1f87a3.png)
+![MOSN x-protocol 部署图](1536291419546-2aa160de-69cd-497f-a280-fae20a1f87a3.png)
 
-本示例中dubbo-consumer的部署方式采用直连模式，即不走注册中心，完全依托kubernetes平台提供的服务注册及服务发现能力。
+本示例中 dubbo-consumer 的部署方式采用直连模式，即不走注册中心，完全依托 kubernetes 平台提供的服务注册及服务发现能力。
 
 ### 1. 安装 Kubernetes
 
@@ -148,8 +148,8 @@ e2e-dubbo-consumer 是一个 Dubbo 客户端应用，它暴露了一个 8080 端
 
 ### 1. 验证 Version Route 能力
 
-本例将演示控制 dubbo-consumer的所有请求指向 dubo-provider-v1
-配置DestinationRule: 
+本例将演示控制 dubbo-consumer 的所有请求指向 dubo-provider-v1
+配置 DestinationRule: 
 
 ```bash
 istioctl create -f samples/e2e-dubbo/platform/kube/dubbo-consumer.destinationrule.yaml
@@ -174,7 +174,7 @@ spec:
       ver: v2 
 ```
 
-配置VirtualService：
+配置 VirtualService：
 
 ```bash
 istioctl create -f samples/e2e-dubbo/platform/kube/dubbo-consumer.version.vs.yaml
@@ -218,9 +218,9 @@ istioctl delete -f samples/e2e-dubbo/platform/kube/dubbo-consumer.version.vs.yam
 
 ### 2. 验证 Weight Route 能力
 
-本例将演示控制 dubbo-consumer 的请求指向 dubo-provider-v1，dubo-provider-v2。并控制流量分配比例为 v1：20%，v2：80%。
+本例将演示控制 dubbo-consumer 的请求指向 dubo-provider-v1，dubo-provider-v2。并控制流量分配比例为 v1:20%，v2:80%。
 
-配置DestinationRule: 
+配置 DestinationRule: 
 
 ```bash
 # 如果在上一示例中已经创建好了，请跳过这一步

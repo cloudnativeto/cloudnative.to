@@ -17,9 +17,9 @@ categories: ["service mesh"]
 
 ## 正文
 
-2021 年 12 月 2 日，Cilium 项目宣布了 [Cilium Service Mesh](https://cilium.io/blog/2021/12/01/cilium-service-mesh-beta) 的 beta 测试计划。在谷歌云基于 eBPF 的 Google Cloud Kubernetes Service（GKS）Dataplane V2（于 2020 年 8 月发布）所开创的概念基础上，Cilium Service Mesh 提倡 “无 sidecar 服务网格 " 的理念。它扩展了 Cilium eBPF 产品，以处理服务网格中的大部分 sidecar 代理功能，包括 L7 路由和负载均衡、TLS 终止、访问策略、健康检查、日志和跟踪，以及内置的 Kubernetes Ingress。
+2021 年 12 月 2 日，Cilium 项目宣布了 [Cilium Service Mesh](https://cilium.io/blog/2021/12/01/cilium-service-mesh-beta) 的 beta 测试计划。在谷歌云基于 eBPF 的 Google Cloud Kubernetes Service（GKS）Dataplane V2（于 2020 年 8 月发布）所开创的概念基础上，Cilium Service Mesh 提倡“无 sidecar 服务网格 " 的理念。它扩展了 Cilium eBPF 产品，以处理服务网格中的大部分 sidecar 代理功能，包括 L7 路由和负载均衡、TLS 终止、访问策略、健康检查、日志和跟踪，以及内置的 Kubernetes Ingress。
 
-Cillium 的创建者 Isovalent 在一篇题为 “[告别 Sidecar—— 使用 eBPF 解锁内核级服务网格](https://cloudnative.to/blog/ebpf-solve-service-mesh-sidecar/) “的文章中解释了使用 eBPF 作为 sidecar 代理的理由。
+Cillium 的创建者 Isovalent 在一篇题为“[告别 Sidecar—— 使用 eBPF 解锁内核级服务网格](https://cloudnative.to/blog/ebpf-solve-service-mesh-sidecar/) “的文章中解释了使用 eBPF 作为 sidecar 代理的理由。
 
 它将把我们从 sidecar 模型中解放出来，并允许我们将现有的代理技术整合到现有的内核命名空间概念中，使它们成为我们每天都在使用的容器抽象的一部分。
 
@@ -35,13 +35,13 @@ Sidecar 通常包含一个 L7 网络代理，如 [Envoy](https://envoyproxy.io/)
 
 Sidecar 代理和服务通常在 Kubernetes pod 或容器内运行。微服务应用也在容器内运行，它们通过网络接口连接到 sidecar 上。然而，这些容器化应用程序的一个重要问题是资源消耗。Sidecar 服务随着微服务的数量呈几何级数增加。当一个应用程序有数百个相互联系和负载均衡的微服务时，开销可能变得不堪重负。服务网格代理供应商在性能上展开竞争。正如 [InfoQ 之前报道的](https://www.infoq.com/news/2021/08/linkerd-rust-cloud-native/)那样，Linkerd 将其代理从 Go 重写成了 Rust，并取得了明显的性能提升。
 
-不足为奇的是，现有的服务网格供应商并不相信 eBPF 是能解决我们所有问题的圣杯。来自 Solo 的 Idit Levine 等人写了一篇文章来回应 Cilium 的公告。这篇文章的标题是 “[服务网格将使用 eBPF ？是的，但 Envoy 代理将继续存在](https://www.zhaohuabing.com/post/2021-12-19-ebpf-for-service-mesh/) "。
+不足为奇的是，现有的服务网格供应商并不相信 eBPF 是能解决我们所有问题的圣杯。来自 Solo 的 Idit Levine 等人写了一篇文章来回应 Cilium 的公告。这篇文章的标题是“[服务网格将使用 eBPF？是的，但 Envoy 代理将继续存在](https://www.zhaohuabing.com/post/2021-12-19-ebpf-for-service-mesh/) "。
 
 > 在 Solo.io，我们认为 eBPF 是优化服务网格的一种强大方式，我们认为 Envoy 代理是数据平面的基石。
 
 Solo.io 作者提出的关键点是，现在的 sidecar 代理所做的事情远远超过了简单的网络流量管理。在今天的服务网格部署中，有一些复杂的要求，远远超过了 eBPF 所支持的有限的编程模型，eBPF 是图灵不完整的，对内核的安全性有许多限制。Cilium eBPF 产品可以处理许多，但不是全部，由 sidecar 代理执行的各种任务。此外，Solo.io 的作者指出，eBPF 的每个节点一个代理的设置提供了更少的灵活性，因此与传统代理的每个节点一个代理的设置相比，增加了整体开销。这些 eBPF 的缺点对于开发者必须编写并部署到服务网格代理中的流量路由、负载均衡和授权的特定应用逻辑来说尤其明显。
 
-Terate.io 的开发者在对 Cilium 公告的回应中提出了类似的论点，标题是 “[社区中关于 Istio 和服务网格的争论](https://www.tetrate.io/blog/the-debate-in-the-community-about-istio-and-service-mesh/) "。他们指出，今天的 sidecar 代理的性能是合理的，开源社区已经想出了进一步提高性能的方法。同时，对于开发者来说，在 eBPF 这种新颖的、图灵不完整的技术中构建特定应用的数据平面逻辑是非常困难的。
+Terate.io 的开发者在对 Cilium 公告的回应中提出了类似的论点，标题是“[社区中关于 Istio 和服务网格的争论](https://www.tetrate.io/blog/the-debate-in-the-community-about-istio-and-service-mesh/) "。他们指出，今天的 sidecar 代理的性能是合理的，开源社区已经想出了进一步提高性能的方法。同时，对于开发者来说，在 eBPF 这种新颖的、图灵不完整的技术中构建特定应用的数据平面逻辑是非常困难的。
 
 > Istio 架构是稳定的，可用于生产的，而且生态系统正在萌芽。
 

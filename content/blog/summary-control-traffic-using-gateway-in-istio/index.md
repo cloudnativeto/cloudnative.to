@@ -1,9 +1,9 @@
 ---
-title: "Istio Ingress Gateway中的Envoy配置解析"
+title: "Istio Ingress Gateway 中的 Envoy 配置解析"
 date: 2018-11-05T02:08:37+08:00
 draft: false
 authors: ["沈旭光"]
-summary: "本文重点为分析Istio Gateway以及VirtualService定义如何生成Istio Ingress Gateway的Envoy相关配置。"
+summary: "本文重点为分析 Istio Gateway 以及 VirtualService 定义如何生成 Istio Ingress Gateway 的 Envoy 相关配置。"
 tags: ["Ingress","Gateway"]
 categories: ["service mesh"]
 keywords: ["service mesh","服务网格","ingress gateway"]
@@ -11,32 +11,32 @@ keywords: ["service mesh","服务网格","ingress gateway"]
 
 ![](006tNbRwly1fw7vchevggj30xu0cwq5i.jpg)
 
-- gateway定义用于配置在mesh边缘，到mesh的tcp和http的负载均衡。
+- gateway 定义用于配置在 mesh 边缘，到 mesh 的 tcp 和 http 的负载均衡。
 
-## 非TLS单主机环境
+## 非 TLS 单主机环境
 
 ### 相关拓扑
 
 ![](006tNbRwly1fwvgzlp7z2j31g21lvwl8.jpg)
 
-- 使用azure aks环境。
-- ingress gateway的service类型为loadbalancer。
-- ingress gateway的service enternal ip为104.211.54.62。
-- 通过该external ip对应的域名，访问ingress gateway svc。
+- 使用 azure aks 环境。
+- ingress gateway 的 service 类型为 loadbalancer。
+- ingress gateway 的 service enternal ip 为 104.211.54.62。
+- 通过该 external ip 对应的域名，访问 ingress gateway svc。
 
 
 
 ![](006tNbRwly1fwvbny77fbj31kw24l4hn.jpg)
 
-- 增加gateway定义。
-- gateway定义中的selector会将该设置与相应的gateway pod绑定。
-- gateway定义中的servers会在相应的pod中生成listener实例，该拓扑中的监听端口为80。
-- 需要将80端口注册到该gateway pod对应的服务中（默认已注册）。
-- gateway定义中的hosts表示listener会向哪些特定的虚拟主机转发流量，在该示例中为httpbin.7cb9a9b7b318440399a0.eastus.aksapp.io。
-- 增加virtualservice定义。
-- virtualservice定义中的hosts与gateway中的hosts相对应，表示该服务可以注册到gateway的监听中，这个host写会更新到gateway pod路由表的虚拟主机条目中。
-- virtualservice定义中的gateways将virtualservice与gateway关联起来。
-- virtualservice定义中的http定义了路由规则，路由规则会写入到相应gateway pod的路由表中。
+- 增加 gateway 定义。
+- gateway 定义中的 selector 会将该设置与相应的 gateway pod 绑定。
+- gateway 定义中的 servers 会在相应的 pod 中生成 listener 实例，该拓扑中的监听端口为 80。
+- 需要将 80 端口注册到该 gateway pod 对应的服务中（默认已注册）。
+- gateway 定义中的 hosts 表示 listener 会向哪些特定的虚拟主机转发流量，在该示例中为 httpbin.7cb9a9b7b318440399a0.eastus.aksapp.io。
+- 增加 virtualservice 定义。
+- virtualservice 定义中的 hosts 与 gateway 中的 hosts 相对应，表示该服务可以注册到 gateway 的监听中，这个 host 写会更新到 gateway pod 路由表的虚拟主机条目中。
+- virtualservice 定义中的 gateways 将 virtualservice 与 gateway 关联起来。
+- virtualservice 定义中的 http 定义了路由规则，路由规则会写入到相应 gateway pod 的路由表中。
 
 
 
@@ -59,10 +59,10 @@ spec:
     - "httpbin.7cb9a9b7b318440399a0.eastus.aksapp.io"
 ```
 
-- gateway相关配置。
-- 该定义与包含istio: ingressgateway label的ingress gateway pod绑定。
-- 新建80端口监听。
-- 监听主机为httpbin.7cb9a9b7b318440399a0.eastus.aksapp.io的请求。
+- gateway 相关配置。
+- 该定义与包含 istio: ingressgateway label 的 ingress gateway pod 绑定。
+- 新建 80 端口监听。
+- 监听主机为 httpbin.7cb9a9b7b318440399a0.eastus.aksapp.io 的请求。
 
 
 
@@ -91,8 +91,8 @@ spec:
         host: httpbin.default.svc.cluster.local
 ```
 
-- virtualservice相关配置。
-- 将该配置应用到名称为httpbin-gateway的实例中。
+- virtualservice 相关配置。
+- 将该配置应用到名称为 httpbin-gateway 的实例中。
 - 定义路由规则和相关转发目的地。
 
 
@@ -122,33 +122,33 @@ x-more-info: http://tools.ietf.org/html/rfc2324
 ```
 
 - 测试结果。
-- 通过主机httpbin.7cb9a9b7b318440399a0.eastus.aksapp.io，可以正常访问httpbin pod。
+- 通过主机 httpbin.7cb9a9b7b318440399a0.eastus.aksapp.io，可以正常访问 httpbin pod。
 
 
 
-## TLS单主机环境
+## TLS 单主机环境
 
 ### 相关拓扑
 
 ![](006tNbRwly1fwvh1kuhgpj31g21lv7az.jpg)
 
-- 使用azure aks环境。
-- ingress gateway的service类型为loadbalancer。
-- ingress gateway的service enternal ip为104.211.54.62。
-- 通过该external ip对应的域名，访问ingress gateway svc。
-- 客户端使用tls方式访问主机。
-- tls请求在ingress gateway处被卸载，并转化为http请求。
+- 使用 azure aks 环境。
+- ingress gateway 的 service 类型为 loadbalancer。
+- ingress gateway 的 service enternal ip 为 104.211.54.62。
+- 通过该 external ip 对应的域名，访问 ingress gateway svc。
+- 客户端使用 tls 方式访问主机。
+- tls 请求在 ingress gateway 处被卸载，并转化为 http 请求。
 
 
 
 ![](006tNbRwly1fwvh283d8ij31kw2cdtz8.jpg)
 
-- 增加gateway定义。
-- gateway定义中的监听端口包括80和443。
-- 在80中启用httpsredirect。
-- 在443中启用simple tls。
-- 指定443的key和cert。
-- 增加virtualservice定义，并定义相应路由规则。
+- 增加 gateway 定义。
+- gateway 定义中的监听端口包括 80 和 443。
+- 在 80 中启用 httpsredirect。
+- 在 443 中启用 simple tls。
+- 指定 443 的 key 和 cert。
+- 增加 virtualservice 定义，并定义相应路由规则。
 
 
 
@@ -173,7 +173,7 @@ kubectl create -n istio-system secret tls istio-ingressgateway-certs --key ./htt
 ```
 
 - 自签名证书相关配置。
-- k8s secret相关配置。
+- k8s secret 相关配置。
 
 
 
@@ -206,11 +206,11 @@ spec:
     - "httpbin.7cb9a9b7b318440399a0.eastus.aksapp.io"
 ```
 
-- gateway相关配置。
-- 新建监听端口包括80和443。
-- 在80中启用httpsredirect。
-- 在443中启用simple tls。
-- 指定443的key和cert。
+- gateway 相关配置。
+- 新建监听端口包括 80 和 443。
+- 在 80 中启用 httpsredirect。
+- 在 443 中启用 simple tls。
+- 指定 443 的 key 和 cert。
 
 
 
@@ -235,7 +235,7 @@ spec:
         host: httpbin.default.svc.cluster.local
 ```
 
-- virtualservice相关配置。
+- virtualservice 相关配置。
 - 配置相关路由。
 
 
@@ -284,8 +284,8 @@ x-more-info: http://tools.ietf.org/html/rfc2324
 [~/K8s/istio/istio-azure-1.0.2/samples/httpbin]$
 ```
 
-- httpsredirect测试结果。
-- 通过http方式访问httpbin.7cb9a9b7b318440399a0.eastus.aksapp.io，可以正常访问httpbin pod。
+- httpsredirect 测试结果。
+- 通过 http 方式访问 httpbin.7cb9a9b7b318440399a0.eastus.aksapp.io，可以正常访问 httpbin pod。
 
 
 
@@ -320,35 +320,35 @@ x-more-info: http://tools.ietf.org/html/rfc2324
 [~/K8s/istio/istio-azure-1.0.2/samples/httpbin]$
 ```
 
-- https测试结果。
-- 通过https方式访问httpbin.7cb9a9b7b318440399a0.eastus.aksapp.io，可以正常访问httpbin pod。
+- https 测试结果。
+- 通过 https 方式访问 httpbin.7cb9a9b7b318440399a0.eastus.aksapp.io，可以正常访问 httpbin pod。
 
 
 
-## mTLS单主机环境
+## mTLS 单主机环境
 
 ### 相关拓扑
 
 ![](006tNbRwly1fwwfxwn47kj31g21lv459.jpg)
 
-- 使用azure aks环境。
-- ingress gateway的service类型为loadbalancer。
-- ingress gateway的service enternal ip为104.211.54.62。
-- 通过该external ip对应的域名，访问ingress gateway svc。
-- 客户端使用mtls方式访问主机。
-- mtls请求在ingress gateway处被卸载，并转化为http请求。
+- 使用 azure aks 环境。
+- ingress gateway 的 service 类型为 loadbalancer。
+- ingress gateway 的 service enternal ip 为 104.211.54.62。
+- 通过该 external ip 对应的域名，访问 ingress gateway svc。
+- 客户端使用 mtls 方式访问主机。
+- mtls 请求在 ingress gateway 处被卸载，并转化为 http 请求。
 
 
 
 ![](006tNbRwly1fwwfynfmf5j31kw22k1fp.jpg)
 
-- 增加gateway定义。
-- gateway定义中的监听端口443。
-- 在443中启用mtls。
-- 指定443的key和cert。
-- 指定443的ca cert。
-- 指定允许连接443的san。
-- 增加virtualservice定义，并定义相应路由规则。
+- 增加 gateway 定义。
+- gateway 定义中的监听端口 443。
+- 在 443 中启用 mtls。
+- 指定 443 的 key 和 cert。
+- 指定 443 的 ca cert。
+- 指定允许连接 443 的 san。
+- 增加 virtualservice 定义，并定义相应路由规则。
 
 
 
@@ -383,9 +383,9 @@ kubectl create -n istio-system secret tls istio-ingressgateway-certs --key ./htt
 kubectl create -n istio-system secret generic istio-ingressgateway-ca-certs --from-file ./ca.crt
 ```
 
-- server端自签名证书相关配置。
-- client端自签名证书相关配置。
-- k8s secret相关配置。
+- server 端自签名证书相关配置。
+- client 端自签名证书相关配置。
+- k8s secret 相关配置。
 
 
 
@@ -413,12 +413,12 @@ spec:
     - "httpbin.6491dea3ce6b4d17b109.eastus.aksapp.io"
 ```
 
-- gateway相关配置。
-- 新建监听端口443。
-- 在443中启用mtls。
-- 指定443的key和cert。
-- 指定443的ca cert。
-- 指定允许连接443的san。
+- gateway 相关配置。
+- 新建监听端口 443。
+- 在 443 中启用 mtls。
+- 指定 443 的 key 和 cert。
+- 指定 443 的 ca cert。
+- 指定允许连接 443 的 san。
 
 
 
@@ -443,7 +443,7 @@ spec:
         host: httpbin.default.svc.cluster.local
 ```
 
-- virtualservice相关配置。
+- virtualservice 相关配置。
 - 配置相关路由。
 
 
@@ -473,33 +473,33 @@ x-more-info: http://tools.ietf.org/html/rfc2324
 ```
 
 - 测试结果。
-- 通过https mtls方式访问httpbin.6491dea3ce6b4d17b109.eastus.aksapp.io，可以正常访问httpbin pod。
+- 通过 https mtls 方式访问 httpbin.6491dea3ce6b4d17b109.eastus.aksapp.io，可以正常访问 httpbin pod。
 
 
 
-## 非TLS多主机环境
+## 非 TLS 多主机环境
 
 ### 相关拓扑
 
 ![](006tNbRwly1fwwi9rvcrpj31g21j1n4s.jpg)
 
-- 使用azure aks环境。
-- ingress gateway的service类型为loadbalancer。
-- ingress gateway的service enternal ip为104.211.54.62。
-- 通过该external ip对应的域名，访问ingress gateway svc。
-- 2个主机，分别为：httpbin-a.6491dea3ce6b4d17b109.eastus.aksapp.io和httpbin-b.6491dea3ce6b4d17b109.eastus.aksapp.io。
-- 客户端使用http方式访问主机。
+- 使用 azure aks 环境。
+- ingress gateway 的 service 类型为 loadbalancer。
+- ingress gateway 的 service enternal ip 为 104.211.54.62。
+- 通过该 external ip 对应的域名，访问 ingress gateway svc。
+- 2 个主机，分别为：httpbin-a.6491dea3ce6b4d17b109.eastus.aksapp.io 和 httpbin-b.6491dea3ce6b4d17b109.eastus.aksapp.io。
+- 客户端使用 http 方式访问主机。
 
 
 
 ![](006tNbRwly1fwwk8t9x7oj31kw1ogkgw.jpg)
 
-- 为2个主机配置统一的gateway定义。
-- 为2个主机分别配置virtualservice定义。
-- 主机httpbin-a.6491dea3ce6b4d17b109.eastus.aksapp.io被路由至pod httpbin-a的/status uri。
-- 主机httpbin-b.6491dea3ce6b4d17b109.eastus.aksapp.io被路由至pod httpbin-b的/headers uri。
-- 在gateway的listnener中生成统一的监听0.0.0.0_80。
-- 在gateway的route中分别生成针对httpbin-a和httpbin-b的虚拟主机。
+- 为 2 个主机配置统一的 gateway 定义。
+- 为 2 个主机分别配置 virtualservice 定义。
+- 主机 httpbin-a.6491dea3ce6b4d17b109.eastus.aksapp.io 被路由至 pod httpbin-a的/status uri。
+- 主机 httpbin-b.6491dea3ce6b4d17b109.eastus.aksapp.io 被路由至 pod httpbin-b的/headers uri。
+- 在 gateway 的 listnener 中生成统一的监听 0.0.0.0_80。
+- 在 gateway 的 route 中分别生成针对 httpbin-a 和 httpbin-b 的虚拟主机。
 
 
 
@@ -544,10 +544,10 @@ spec:
     - "httpbin-b.6491dea3ce6b4d17b109.eastus.aksapp.io"
 ```
 
-- gateway相关配置。
-- 这2个gateway的配置，生成的envoy配置是一致的。
-- 新建监听端口80。
-- 分别针对两个主机httpbin-a和httpbin-b进行监听。
+- gateway 相关配置。
+- 这 2 个 gateway 的配置，生成的 envoy 配置是一致的。
+- 新建监听端口 80。
+- 分别针对两个主机 httpbin-a 和 httpbin-b 进行监听。
 
 
 
@@ -591,9 +591,9 @@ spec:
         host: httpbin-b.default.svc.cluster.local
 ```
 
-- httpbin-a和httpbin-b的virtualservice相关配置。
-- httpbin-a.6491dea3ce6b4d17b109.eastus.aksapp.io的/status请求被路由至httpbin-a。
-- httpbin-b.6491dea3ce6b4d17b109.eastus.aksapp.io的/headers请求被路由至httpbin-b。
+- httpbin-a 和 httpbin-b 的 virtualservice 相关配置。
+- httpbin-a.6491dea3ce6b4d17b109.eastus.aksapp.io 的/status 请求被路由至 httpbin-a。
+- httpbin-b.6491dea3ce6b4d17b109.eastus.aksapp.io 的/headers 请求被路由至 httpbin-b。
 
 
 
@@ -647,36 +647,36 @@ x-envoy-upstream-service-time: 7
 ```
 
 - 测试结果。
-- 请求httpbin-a.6491dea3ce6b4d17b109.eastus.aksapp.io/status/418和httpbin-b.6491dea3ce6b4d17b109.eastus.aksapp.io/headers均可以被正确路由。
+- 请求 httpbin-a.6491dea3ce6b4d17b109.eastus.aksapp.io/status/418 和 httpbin-b.6491dea3ce6b4d17b109.eastus.aksapp.io/headers 均可以被正确路由。
 
 
 
-## TLS多主机环境
+## TLS 多主机环境
 
 ### 相关拓扑
 
 ![](006tNbRwly1fwwkizdfefj31g21j1gt7.jpg)
 
-- 使用azure aks环境。
-- ingress gateway的service类型为loadbalancer。
-- ingress gateway的service enternal ip为104.211.54.62。
-- 通过该external ip对应的域名，访问ingress gateway svc。
-- 2个主机，分别为：httpbin-a.6491dea3ce6b4d17b109.eastus.aksapp.io和httpbin-b.6491dea3ce6b4d17b109.eastus.aksapp.io。
-- 客户端使用tls方式访问主机。
+- 使用 azure aks 环境。
+- ingress gateway 的 service 类型为 loadbalancer。
+- ingress gateway 的 service enternal ip 为 104.211.54.62。
+- 通过该 external ip 对应的域名，访问 ingress gateway svc。
+- 2 个主机，分别为：httpbin-a.6491dea3ce6b4d17b109.eastus.aksapp.io 和 httpbin-b.6491dea3ce6b4d17b109.eastus.aksapp.io。
+- 客户端使用 tls 方式访问主机。
 
 
 
 ![](006tNbRwly1fwwkjjhqctj31kw2257wh.jpg)
 
-- 为2个主机分别配置gateway中的server定义。
-- 为2个主机的server定义中增加证书的定义，每个server使用不同的证书。
-- 为2个主机分别配置virtualservice定义。
-- 在gateway的listnener中生成统一的监听0.0.0.0_443。
-- 因为gateway中配置的2个server中有不相同的配置，所以在监听0.0.0.0_443中，会生成2个server，分别为httpbin-a.6491dea3ce6b4d17b109.eastus.aksapp.io和httpbin-b.6491dea3ce6b4d17b109.eastus.aksapp.io。
-- 因为监听中生成2个server，所以在路由中会生成2条不同的路由相对应，在gateway的路由中生成分别的虚拟主机https.443.https-httpbina和https.443.https-httpbinb。
-- 监听0.0.0.0_443所属的server httpbin-a.6491dea3ce6b4d17b109.eastus.aksapp.io被关联至路由https.443.https-httpbina，server httpbin-b.6491dea3ce6b4d17b109.eastus.aksapp.io被关联至路由https.443.https-httpbinb。
-- 主机httpbin-a被路由至pod httpbin-a的/status uri。
-- 主机httpbin-b被路由至pod httpbin-b的/headers uri。
+- 为 2 个主机分别配置 gateway 中的 server 定义。
+- 为 2 个主机的 server 定义中增加证书的定义，每个 server 使用不同的证书。
+- 为 2 个主机分别配置 virtualservice 定义。
+- 在 gateway 的 listnener 中生成统一的监听 0.0.0.0_443。
+- 因为 gateway 中配置的 2 个 server 中有不相同的配置，所以在监听 0.0.0.0_443 中，会生成 2 个 server，分别为 httpbin-a.6491dea3ce6b4d17b109.eastus.aksapp.io 和 httpbin-b.6491dea3ce6b4d17b109.eastus.aksapp.io。
+- 因为监听中生成 2 个 server，所以在路由中会生成 2 条不同的路由相对应，在 gateway 的路由中生成分别的虚拟主机 https.443.https-httpbina 和 https.443.https-httpbinb。
+- 监听 0.0.0.0_443 所属的 server httpbin-a.6491dea3ce6b4d17b109.eastus.aksapp.io 被关联至路由 https.443.https-httpbina，server httpbin-b.6491dea3ce6b4d17b109.eastus.aksapp.io 被关联至路由 https.443.https-httpbinb。
+- 主机 httpbin-a 被路由至 pod httpbin-a的/status uri。
+- 主机 httpbin-b 被路由至 pod httpbin-b的/headers uri。
 
 
 
@@ -712,7 +712,7 @@ kubectl create -n istio-system secret tls istio-ingressgateway-httpbin-b-certs -
 ```
 
 - 自签名证书相关配置。
-- k8s secret相关配置。
+- k8s secret 相关配置。
 
 
 
@@ -763,8 +763,8 @@ helm template install/kubernetes/helm/istio/ --name istio-ingressgateway --names
 ...
 ```
 
-- 修改了ingress gateway deployment的配置，可以支持多个证书。
-- 分别包含域名为httpbin-a和httpbin-b的证书。
+- 修改了 ingress gateway deployment 的配置，可以支持多个证书。
+- 分别包含域名为 httpbin-a 和 httpbin-b 的证书。
 
  
 
@@ -799,8 +799,8 @@ spec:
     - "httpbin-b.6491dea3ce6b4d17b109.eastus.aksapp.io"
 ```
 
-- gateway相关配置。
-- 分别定义2个server，每个server配置不同的证书。
+- gateway 相关配置。
+- 分别定义 2 个 server，每个 server 配置不同的证书。
 
 
 
@@ -844,9 +844,9 @@ spec:
         host: httpbin-b.default.svc.cluster.local
 ```
 
-- httpbin-a和httpbin-b的virtualservice相关配置。
-- httpbin-a.6491dea3ce6b4d17b109.eastus.aksapp.io的/status请求被路由至httpbin-a。
-- httpbin-b.6491dea3ce6b4d17b109.eastus.aksapp.io的/headers请求被路由至httpbin-b。
+- httpbin-a 和 httpbin-b 的 virtualservice 相关配置。
+- httpbin-a.6491dea3ce6b4d17b109.eastus.aksapp.io 的/status 请求被路由至 httpbin-a。
+- httpbin-b.6491dea3ce6b4d17b109.eastus.aksapp.io 的/headers 请求被路由至 httpbin-b。
 
 
 
@@ -901,5 +901,5 @@ x-envoy-upstream-service-time: 8
 ```
 
 - 测试结果。
-- 请求httpbin-a.6491dea3ce6b4d17b109.eastus.aksapp.io/status/418和httpbin-b.6491dea3ce6b4d17b109.eastus.aksapp.io/headers均可以被正确路由。
+- 请求 httpbin-a.6491dea3ce6b4d17b109.eastus.aksapp.io/status/418 和 httpbin-b.6491dea3ce6b4d17b109.eastus.aksapp.io/headers 均可以被正确路由。
 
