@@ -20,6 +20,8 @@ type: book
 
 请仔细填写下面的腾讯问卷，一次只能选择加入一个群。
 
+若本页中的腾讯问卷加载失败，请[点击这里](https://wj.qq.com/s2/5479026/bf82/)直接跳转到问卷页面。
+
 <iframe height="500" width="100%" id="tencent_survey" src="https://wj.qq.com/s2/5479026/bf82/" frameborder="0" onload="" allowfullscreen sandbox="allow-same-origin allow-scripts allow-modals allow-downloads allow-forms allow-popups"></iframe>
 
 ### 入群助手
