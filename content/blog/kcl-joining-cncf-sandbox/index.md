@@ -1,5 +1,5 @@
 ---
-title: "KCL 正式成为 CNCF 沙盒项目"
+title: "Kubernetes 配置语言 KCL 正式成为 CNCF 沙盒项目"
 summary: "2023 年 9 月 12 日，KCL 项目通过了全球顶级开源基金会云原生计算基金会（CNCF）技术监督委员会评定，正式成为 CNCF 沙箱项目。"
 authors: ["KCL Team"]
 categories: ["开源"]
