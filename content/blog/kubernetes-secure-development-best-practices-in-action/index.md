@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes 安全开发最佳实践的实际应用"
 summary: "作者基于NGINX Gateway Fabric项目（一个基于Kubernetes Gateway API的实现）的开发实例来展现Kubernetes下的最佳安全开发实践。"
-authors: ["Saylor Berman, Ciara Stacke"]
+authors: ["Saylor Berman", "Ciara Stacke"]
 translators: ["林静"]
 categories: ["Kubernetes","Gateway API","DevOps"]
 tags: ["NGINX","Gateway API","Security","DevOps"]

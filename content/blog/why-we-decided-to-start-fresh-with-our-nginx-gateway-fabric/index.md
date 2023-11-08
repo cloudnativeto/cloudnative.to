@@ -1,7 +1,7 @@
 ---
 title: "为什么我们决定从新开始我们的NGINX Gateway Fabric"
 summary: "Gateway API已经正式GA，您可能好奇作为社区的一个重要实现，F5 NGINX是如何决策和发展该项目的。F5的产品管理总监 Brian Ehlert以及首席软件工程师Matthew Yacobucci将在本文中为您阐述NGINX Gateway Fabric项目及其未来的目标。"
-authors: ["Brian Ehlert, Matthew Yacobucci"]
+authors: ["Brian Ehlert","Matthew Yacobucci"]
 translators: ["林静"]
 categories: ["Kubernetes","Gateway API","NGINX"]
 tags: ["NGINX","Gateway API","Kubernetes"]
