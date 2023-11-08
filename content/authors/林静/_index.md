@@ -13,7 +13,7 @@ social:
     label: "主页"
   - icon: weixin
     icon_pack: fab
-    link: 'https://jimmysong.io/contact/'
+    link: 'https://myf5.net/contactme'
     display:
       header: true
     label: "联系"
