@@ -127,7 +127,7 @@ MCP 提供了 gRPC 的实现，实现代码参见：<https://github.com/istio/ap
 具体到 istio 的场景中：
 
 - 在单 k8s 集群的 istio mesh 中，Galley 默认实现了`ResourceSource` service, Pilot 和 Mixer 会作为该 service 的 client 主动连接 Galley 进行配置订阅。
-- Galley 可以配置去主动连接远程的其他 sink, 比如说在多 k8s 集群的 mesh 中，主集群中的Galley可以为多个集群的Pilot/Mixer提供配置管理, 跨集群的Pilot/Mixer无法主动连接主集群Galley, 这时候 Galley 就可以作为 gRPC 的 client 主动发起连接，跨集群的Pilot/Mixer作为gRPC server 实现`ResourceSink`服务，
+- Galley 可以配置去主动连接远程的其他 sink, 比如说在多 k8s 集群的 mesh 中，主集群中的 Galley 可以为多个集群的 Pilot/Mixer 提供配置管理，跨集群的Pilot/Mixer无法主动连接主集群Galley, 这时候 Galley 就可以作为 gRPC 的 client 主动发起连接，跨集群的 Pilot/Mixer 作为 gRPC server 实现`ResourceSink`服务，
 
 两种模式的示意图如下：
 
@@ -453,9 +453,9 @@ func (con *connection) queueResponse(resp *WatchResponse) {
 
 [查看高清原图](https://imfox.io/assets/images/istio-a/galley_uml.png)
 
-Galley 源代码展示了面向抽象 (interface) 编程的好处，Source 是对「配置」数据源的抽象，Distributor 是「配置」快照存储的抽象，Watcher 是对「配置」订阅端的抽象。抽象的具体实现可以组合起来使用。另外 Galley 组件之间也充分解耦，组件之间的数据通过chan/watcher等流转.
+Galley 源代码展示了面向抽象 (interface) 编程的好处，Source 是对「配置」数据源的抽象，Distributor 是「配置」快照存储的抽象，Watcher 是对「配置」订阅端的抽象。抽象的具体实现可以组合起来使用。另外 Galley 组件之间也充分解耦，组件之间的数据通过 chan/watcher 等流转。
 
-关于早期 istio 配置管理的演进计划，可以参考 2018 年 5 月 CNCF KubeCon talk [Introduction to Istio Configuration - Joy Zhang](https://www.youtube.com/watch?v=x1Tyw8dFKjI&index=2&t=0s&list=LLQ2StCCdx81xHxHxBO0foGA) (需。翻.墙), 1.1 版本中 Galley 也还未完全实现该文中的 roadmap, 如 configuration pipeline 等。未来 Galley 还会继续演进。
+关于早期 istio 配置管理的演进计划，可以参考 2018 年 5 月 CNCF KubeCon talk [Introduction to Istio Configuration - Joy Zhang](https://www.youtube.com/watch?v=x1Tyw8dFKjI&index=2&t=0s&list=LLQ2StCCdx81xHxHxBO0foGA) (需。翻。墙), 1.1 版本中 Galley 也还未完全实现该文中的 roadmap, 如 configuration pipeline 等。未来 Galley 还会继续演进。
 
 ## 参考资料
 

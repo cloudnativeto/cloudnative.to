@@ -105,7 +105,7 @@ spec:
 
 ```
 
-上述策略示例授予 pod 或容器通过 kube\-dns 执行 DNS 请求的权限，但将允许的 DNS 查找限制为 `*.domain.com` 。与模式不匹配的请求将收到 `request refused` DNS 响应。它进一步授予端口443/TCP上的pod出口访问权限到DNS响应中返回的IP。任何尝试访问先前未在 DNS 响应中返回的任何 IP 地址的请求都将被拒绝。
+上述策略示例授予 pod 或容器通过 kube\-dns 执行 DNS 请求的权限，但将允许的 DNS 查找限制为 `*.domain.com` 。与模式不匹配的请求将收到 `request refused` DNS 响应。它进一步授予端口 443/TCP 上的 pod 出口访问权限到 DNS 响应中返回的 IP。任何尝试访问先前未在 DNS 响应中返回的任何 IP 地址的请求都将被拒绝。
 
 要开始使用基于 DNS 的策略，请遵循 [基于 DNS 的入门指南](https://docs.cilium.io/en/v1.4/gettingstarted/dns/) 。
 

@@ -38,7 +38,7 @@ class CheckCache {
 }
 ```
 
-> 具体代码：见istio/proxy项目，文件`src/istio/mixerclient/check_cache.h`
+> 具体代码：见 istio/proxy 项目，文件`src/istio/mixerclient/check_cache.h`
 
 1. referenced_map：保存的是引用属性
 2. cache：保存的是 check 的结果
@@ -167,8 +167,8 @@ mixer check cache 在工作时，如果要命中缓存，就必须带有两层�
 
 之后的请求匹配缓存的过程，会稍 is 有不同，体现在第一层缓存的匹配上，注意此时有两个属性组合 {“k1”: “a,b,c”, “k2”: “a,b,c 不存在” }：
 
-- 如果是”a=1,b=2,c=3,e=0,f=0”这种a/b/c三个属性都提供的输入，则会匹配到“k1”: “a,b,c”
-- 如果是”a=1,b=2,c 不存在，e=0,f=0”这种提供了a/b属性而c没有提供的输入，则会匹配到“k2”: “a,b,c 不存在”
+- 如果是”a=1,b=2,c=3,e=0,f=0”这种 a/b/c 三个属性都提供的输入，则会匹配到“k1”: “a,b,c”
+- 如果是”a=1,b=2,c 不存在，e=0,f=0”这种提供了 a/b 属性而 c 没有提供的输入，则会匹配到“k2”: “a,b,c 不存在”
 
 第二层缓存的匹配方式没有变化，注意由于属性 c 不存在，因此在计算”a=1,b=2,c 不存在，e=0,f=0”这个输入的签名时，只需要计算”a=1,b=2”。
 

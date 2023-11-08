@@ -171,7 +171,7 @@ pilot 在 watch 到「网格配置」变化后，会触发 xDS 的重新计算�
 
 ## 4. Config 控制器
 
-控制器模式在 k8s 里使用非常广泛，典型的k8s控制器利用informer/reflector 对资源进行List/Watch, 获得资源更新事件，事件对象入队列，缓存 object 到 indexer, 然后在控制循环中进行自定义处理。
+控制器模式在 k8s 里使用非常广泛，典型的 k8s 控制器利用 informer/reflector 对资源进行List/Watch, 获得资源更新事件，事件对象入队列，缓存 object 到 indexer, 然后在控制循环中进行自定义处理。
 
 Pilot 对`Service Discovery Config`和`Istio Config`两大类数据的处理，也是使用控制器模式，不过 Pilot 中 Config 控制器有特殊之处，因为适配多种平台，Config 有多种来源可能，除了 k8s informer, 还可能是 MCP, 文件系统，或者 consul client 等等。一个典型的 Config 控制器，可以用下图来描述：
 
@@ -276,7 +276,7 @@ type Task struct {
 }
 ```
 
-至此，我们看到了 event 的 生产和消费，但不涉及event/Task 是如何消费的。
+至此，我们看到了 event 的 生产和消费，但不涉及 event/Task 是如何消费的。
 
 通过调用`RegisterEventHandler`可以添加event/Task的处理器。
 
@@ -416,7 +416,7 @@ type AggregatedDiscoveryServiceServer interface {
 
 接口`StreamAggregatedResources`主要逻辑：
 
-1. DiscoveryServer 接受下游的订阅请求，根据请求的 xDS 类型，返回指定的资源，如CDS/EDS/LDS/RDS。
+1. DiscoveryServer 接受下游的订阅请求，根据请求的 xDS 类型，返回指定的资源，如 CDS/EDS/LDS/RDS。
 
 2. DiscoveryServer 将连接对象缓存到 map 中，key 为下游 node ID 加上连接计数器。当检测到配置发生变化，将会触发这些连接上的 xDS 重新 push 到下游。这些配置变化可能是`Istio Config`、`Service Discovery Config`或者网格全局配置集。
 
@@ -443,7 +443,7 @@ type AggregatedDiscoveryServiceServer interface {
 
 简要说明：
 
-- 使用统一配置管理器 (`Galley`) 来处理 istio CRD 的处理，通过 MCP 进行下发，Galley 作为 MCP 服务端，Pilot/Mixer等作为MCP 客户端。在 istio 1.1 中，Galley 的以上功能已经发布，并作为默认的配置处理方式，只是 1.1 中还保留了旧的实现代码，Pilot/Mixer 可以选择独立List/Watch Istio CRD, 未来随着 Galley 功能的增强和稳定，旧的实现应该会被移除。
+- 使用统一配置管理器 (`Galley`) 来处理 istio CRD 的处理，通过 MCP 进行下发，Galley 作为 MCP 服务端，Pilot/Mixer 等作为 MCP 客户端。在 istio 1.1 中，Galley 的以上功能已经发布，并作为默认的配置处理方式，只是 1.1 中还保留了旧的实现代码，Pilot/Mixer 可以选择独立List/Watch Istio CRD, 未来随着 Galley 功能的增强和稳定，旧的实现应该会被移除。
 - 提议设计新的 gRPC 双向流协议：Mesh Configuration Protocol (MCP), 对配置进行抽象，聚合和传输。(类似 xDS gRPC), 以此将 Pilot 中配置对接逻辑从 in-process 逐步改造为 out-of-process 方式。
 
 ------

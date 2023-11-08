@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes 安全开发最佳实践的实际应用"
-summary: "作者基于NGINX Gateway Fabric项目（一个基于Kubernetes Gateway API的实现）的开发实例来展现Kubernetes下的最佳安全开发实践。"
+summary: "作者基于 NGINX Gateway Fabric 项目（一个基于 Kubernetes Gateway API 的实现）的开发实例来展现 Kubernetes 下的最佳安全开发实践。"
 authors: ["Saylor Berman", "Ciara Stacke"]
 translators: ["林静"]
 categories: ["Kubernetes","Gateway API","DevOps"]
@@ -16,13 +16,13 @@ links:
 译者注：
 本文译自：<https://www.cncf.io/blog/2023/10/11/kubernetes-secure-development-best-practices-in-action/>
 
-本文作者基于[NGINX Gateway Fabric](https://github.com/nginxinc/nginx-gateway-fabric)项目（一个基于Kubernetes Gateway API的实现）的开发实例来展现Kubernetes下的最佳安全开发实践。
+本文作者基于 [NGINX Gateway Fabric](https://github.com/nginxinc/nginx-gateway-fabric) 项目（一个基于 Kubernetes Gateway API 的实现）的开发实例来展现 Kubernetes 下的最佳安全开发实践。
 
 ---
 
 本文作者来自：F5 NGINX 高级软件工程师 Saylor Berman 和 F5 NGINX 高级软件工程师 Ciara Stacke。
 
-使用最小 Docker 容器是容器化领域的一种流行策略，因为它具有安全性和资源效率的优势。这些容器是传统容器的精简版本，旨在仅包含运行应用程序所需的基本组件。在某些情况下，base容器可能根本不包含任何内容（这将是“scratch”容器）。
+使用最小 Docker 容器是容器化领域的一种流行策略，因为它具有安全性和资源效率的优势。这些容器是传统容器的精简版本，旨在仅包含运行应用程序所需的基本组件。在某些情况下，base 容器可能根本不包含任何内容（这将是“scratch”容器）。
 
 许多人尽可能简单地创建 Docker 映像来让他们的应用程序正常工作。这涉及选择一个基础映像，例如“ubuntu”或“python”，其中包含启动和运行所需的所有库和工具。虽然简单，但由于内部所有额外的“东西”，导致这些镜像的攻击面和内存占用量增加了。
 
@@ -54,11 +54,11 @@ ENTRYPOINT [ "/usr/bin/gateway" ]
 
 ## 图像安全扫描
 
-确保产品安全的最有效方法之一是定期进行安全扫描。在 [Trivy](https://trivy.dev/) 的帮助下，我们定期运行镜像安全扫描，作为 Github CI/CD 管道的一部分。Trivy 扫描容器镜像查找库或二进制文件中存在的任何已知漏洞 （CVE）。使用“scratch”镜像可以保护我们免受基础映像中的任何漏洞的影响，但 Trivy 仍然可以捕获在我们的 Golang 二进制文件中编译的库中的任何漏洞。扫描结果将上传到存储库的 Github 安全选项卡，使我们的团队可以轻松查看发现的任何问题。
+确保产品安全的最有效方法之一是定期进行安全扫描。在 [Trivy](https://trivy.dev/) 的帮助下，我们定期运行镜像安全扫描，作为 Github CI/CD 管道的一部分。Trivy 扫描容器镜像查找库或二进制文件中存在的任何已知漏洞（CVE）。使用“scratch”镜像可以保护我们免受基础映像中的任何漏洞的影响，但 Trivy 仍然可以捕获在我们的 Golang 二进制文件中编译的库中的任何漏洞。扫描结果将上传到存储库的 Github 安全选项卡，使我们的团队可以轻松查看发现的任何问题。
 
 ## 代码质量和安全性
 
-除了最小化容器镜像外，我们还优先考虑应用程序中的代码质量和安全性，采用安全第一的思维方式。我们从一开始就将安全性放在首位，以安全性为重点，全面评估每个设计和功能。我们在流程的早期阶段主动识别和保护资产，确保在整个开发生命周期中对其进行保护，并遵守安全设计的最佳实践，包括适当的身份验证、授权和加密机制。维护这些标准的一个重要部分是我们使用强大的代码审查流程。项目的每个贡献者为任何变化都需要创建一个PR，并且每个PR必须得到至少两个项目维护者的批准。除了这个过程之外，我们还结合了 linter 和工具的使用，以保持我们对代码安全性和质量的高标准。
+除了最小化容器镜像外，我们还优先考虑应用程序中的代码质量和安全性，采用安全第一的思维方式。我们从一开始就将安全性放在首位，以安全性为重点，全面评估每个设计和功能。我们在流程的早期阶段主动识别和保护资产，确保在整个开发生命周期中对其进行保护，并遵守安全设计的最佳实践，包括适当的身份验证、授权和加密机制。维护这些标准的一个重要部分是我们使用强大的代码审查流程。项目的每个贡献者为任何变化都需要创建一个 PR，并且每个 PR 必须得到至少两个项目维护者的批准。除了这个过程之外，我们还结合了 linter 和工具的使用，以保持我们对代码安全性和质量的高标准。
 
 ### 静态代码分析
 
@@ -66,9 +66,9 @@ ENTRYPOINT [ "/usr/bin/gateway" ]
 
 ### 使依赖项保持最新
 
-使项目的依赖项保持最新对于安全性和性能至关重要。在 NGINX Gateway Fabric 项目中，我们利用 [Dependabot](https://docs.github.com/en/code-security/dependabot) 通过持续监控项目的依赖项，并在更新可用时自动创建PR来自动化此过程。这可确保我们始终使用最新、最安全的依赖项版本。
+使项目的依赖项保持最新对于安全性和性能至关重要。在 NGINX Gateway Fabric 项目中，我们利用 [Dependabot](https://docs.github.com/en/code-security/dependabot) 通过持续监控项目的依赖项，并在更新可用时自动创建 PR 来自动化此过程。这可确保我们始终使用最新、最安全的依赖项版本。
 
-Dependabot 还通过监控常见漏洞和披露 （CVE） 数据库来提供安全警报。当我们项目的某个依赖项中发现安全漏洞时，Dependabot 会立即通知我们并自动打开包含必要更新的PR。这与扫描我们的 Docker 镜像一起，使我们能够快速修补漏洞。
+Dependabot 还通过监控常见漏洞和披露（CVE）数据库来提供安全警报。当我们项目的某个依赖项中发现安全漏洞时，Dependabot 会立即通知我们并自动打开包含必要更新的 PR。这与扫描我们的 Docker 镜像一起，使我们能够快速修补漏洞。
 
 
 ## 部署安全最佳实践

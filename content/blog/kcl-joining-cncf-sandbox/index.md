@@ -58,7 +58,7 @@ KCL 是一个开源的基于约束的记录及函数语言，期望通过成熟�
 + **配置漂移**: 对于不同环境的静态管理应用程序和基础设施配置的方式，往往没有标准的方式去管理这些动态的不同环境的配置，采用非标准化的方法比如脚本和胶水代码的拼盘，会导致复杂度呈指数增长，并导致配置漂移。
 + **认知负担**: Kubernetes 等作为构建平台的平台技术手段在底层统一基础架构细节方面出色，但是缺乏更上层的应用软件交付抽象，对于普通开发者认知负担较高，影响了更上层应用开发者的软件交付体验。
 
-针对如上问题，KCL 期望提供如下能力:
+针对如上问题，KCL 期望提供如下能力：
 
 + 通过**代码抽象**等手段屏蔽基础设施和平台的细节和复杂性，降低研发者**认知负担**
 + **编辑**和**校验**已有的存量配置或模版，直接解决云原生小配置场景问题如 Helm Chart 配置硬编码问题，但远不止如此
@@ -132,10 +132,10 @@ KCL 是一个开源的基于约束的记录及函数语言，期望通过成熟�
 
 ## 其他资源
 
-+ KCL 网站: https://kcl-lang.io/
-+ KusionStack 网站: https://kusionstack.io/
++ KCL 网站：https://kcl-lang.io/
++ KusionStack 网站：https://kusionstack.io/
 
-+ KCL 社区: https://github.com/kcl-lang/community
-+ KCL 2023 路线规划: https://kcl-lang.io/docs/community/release-policy/roadmap
++ KCL 社区：https://github.com/kcl-lang/community
++ KCL 2023 路线规划：https://kcl-lang.io/docs/community/release-policy/roadmap
 + KCL GitHub Issues: https://github.com/kcl-lang/kcl/issues
 + KCL GitHub Discussion: https://github.com/orgs/kcl-lang/discussions
