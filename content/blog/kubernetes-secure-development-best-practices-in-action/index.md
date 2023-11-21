@@ -29,7 +29,7 @@ links:
 当我们开发 [NGINX Gateway Fabric](https://github.com/nginxinc/nginx-gateway-fabric)（我们实现新的 Kubernetes Gateway API）时，我们利用了多种工具和策略来确保安全性和优化。在本文中，我们将介绍我们的设计决策：
 
 * 减少攻击面
-* 图像安全扫描
+* 镜像安全扫描
 * 代码质量和安全性
 * 部署安全最佳实践
 
@@ -37,8 +37,7 @@ links:
 
 我们选择从尽可能小的容器开始。事实上，我们不能再小了。基于 'scratch'，我们的 'nginx- gateway-fabric' 镜像只包含 Golang 二进制文件，没有其他内容。在生成最终版本之前，我们采取了几个步骤，但我们确保最终版本仅包含必要的内容，即二进制文件。Dockerfile 如下所示：
 
-```
-Dockerfile 
+```Dockerfile 
 FROM alpine:3.18 
 RUN apk add --no-cache libcap 
 COPY ./build/out/gateway /usr/bin/ 
@@ -52,7 +51,7 @@ ENTRYPOINT [ "/usr/bin/gateway" ]
 
 使用这种方法，“nginx-gateway-fabric”映像的大小大致与二进制文件本身的大小相同，没有任何额外的膨胀。二进制文件不需要任何额外的依赖项即可运行，并且我们保持了尽可能小的大小和攻击面。
 
-## 图像安全扫描
+## 镜像安全扫描
 
 确保产品安全的最有效方法之一是定期进行安全扫描。在 [Trivy](https://trivy.dev/) 的帮助下，我们定期运行镜像安全扫描，作为 Github CI/CD 管道的一部分。Trivy 扫描容器镜像查找库或二进制文件中存在的任何已知漏洞（CVE）。使用“scratch”镜像可以保护我们免受基础映像中的任何漏洞的影响，但 Trivy 仍然可以捕获在我们的 Golang 二进制文件中编译的库中的任何漏洞。扫描结果将上传到存储库的 Github 安全选项卡，使我们的团队可以轻松查看发现的任何问题。
 
