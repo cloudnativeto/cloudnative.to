@@ -13,6 +13,18 @@ design:
   interval: 5000
 content:
   slides:
+    - title: 云原生金融科技开放日
+      content: '2023 年 12 月 2 日（周六），广州天河区林和东路 285 号天安人寿中心 28 楼微赞会议室'
+      align: center
+      background:
+        position: center
+        color: "#0a55a7"
+        media: "guangzhou.webp"
+        brightness: 0.3
+      link:
+        icon: fa-solid fa-square-up-right
+        text: 立即报名
+        url: https://hdxu.cn/ysqsP
     - title: 云原生社区成都站 Meetup
       content: '2023 年 8 月 19 日（周六），成都新希望天祥广场 3 层冲鸭空间'
       align: center
