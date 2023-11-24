@@ -2,7 +2,7 @@
 widget: hero
 headless: true
 weight: 10
-title: 欢迎加入云原生社区
+title: 欢迎来到云原生社区官网
 hero_media: hero.svg
 design:
   background:
