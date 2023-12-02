@@ -63,6 +63,9 @@ sponsor:
         - image: "/img/sponsors/kusionstack.jpg"
           url: "https://kusionstack.io/"
           name: "KusionStack"
+        - image: "/img/sponsors/pipy.jpg"
+          url: "https://flomesh.io/pipy"
+          name: "Pipy"          
     org:
       title: "开源社区"
       list:
@@ -113,6 +116,9 @@ sponsor:
         - image: "/img/sponsors/gitlab.jpg"
           url: "https://gitlab.cn/"
           name: "极狐(GitLab)"
+        - image: "/img/sponsors/flomesh.jpg"
+          url: "https://flomesh.io/"
+          name: "Flomesh"          
     media:
       title: "合作机构"
       list:
