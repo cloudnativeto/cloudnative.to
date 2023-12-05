@@ -5,7 +5,7 @@
 {{ if not .Params.all_day }}{{ $str = $str | append (time.Format site.Params.locale.time_format (time $t1)) }}{{ end }}
 {{/* Show event end date if provided. */}}
 {{ if .Params.date_end }}
-  {{ $str = $str | append "&mdash;" }}
+  {{ $str = $str | append "-" }}
   {{ $t2 := time .Params.date_end}}{{/* End datetime. */}}
   {{/* Show end date if it differs to start date. */}}
   {{ if not (eq $t1.Year $t2.Year | and (eq $t1.Month $t2.Month) | and (eq $t1.Day $t2.Day)) }}
