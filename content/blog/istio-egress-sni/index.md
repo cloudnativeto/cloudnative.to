@@ -21,7 +21,7 @@ links:
 
 如果您正在使用 Istio 处理来自网格外部目标的应用程序发起的流量，那么您可能熟悉出口网关的概念。出口网关可用于监控并转发来自网格内应用程序的流量到网格外的位置。如果您的系统在受限环境中运行，并且希望控制从网格到公共互联网上可以访问什么，那么这是一个有用的功能。
 
-在[官方 Istio 文档](https://archive.istio.io/v1.13/docs/tasks/traffic-management/egress/wildcard-egress-hosts/#wildcard-configuration-for-arbitrary-domains)中，直到版本1.13，包括配置出口网关以处理任意通配符域名的用例，但随后被移除，因为文档中的解决方案没有得到官方支持或推荐，而且可能在将来的 Istio 版本中失效。尽管如此，旧的解决方案仍然可以在1.20之前的 Istio 版本中使用。然而，Istio 1.20 放弃了一些对该方法工作所需的 Envoy 功能。
+在[官方 Istio 文档](https://archive.istio.io/v1.13/docs/tasks/traffic-management/egress/wildcard-egress-hosts/#wildcard-configuration-for-arbitrary-domains)中，直到版本 1.13，包括配置出口网关以处理任意通配符域名的用例，但随后被移除，因为文档中的解决方案没有得到官方支持或推荐，而且可能在将来的 Istio 版本中失效。尽管如此，旧的解决方案仍然可以在 1.20 之前的 Istio 版本中使用。然而，Istio 1.20 放弃了一些对该方法工作所需的 Envoy 功能。
 
 本文试图描述我们如何解决了这个问题，并通过使用与 Istio 版本无关的组件和 Envoy 功能以及无需单独的 Nginx SNI 代理来填补这个空白。我们的方法允许旧解决方案的用户在系统面临 Istio 1.20 的重大变化之前无缝迁移配置。
 
@@ -181,7 +181,7 @@ $ kubectl logs -n istio-egress $GATEWAY_POD
 [2023-11-24T13:21:53.000Z] "- - -" 0 - - - "-" 1539 93646 50 - "-" "-" "-" "-" "envoy://sni_listener/" sni_cluster envoy://internal_client_address/ 172.17.5.170:8443 172.17.34.35:55108 outbound_.443_.wildcard_.egressgateway.istio-egress.svc.cluster.local -
 ```
 
-这里有四条日志条目，代表我们三个 curl 请求中的两个。每一对显示了单个请求如何通过 envoy 流量处理管道流动。它们以相反的顺序打印，但我们可以看到第2和第4行显示请求到达了网关服务，并通过内部的 `sni_cluster` 目标。第1和第3行显示最终目标是从内部 SNI 头中确定的，即应用程序设置的目标主机。请求将转发到 `dynamic_forward_proxy_cluster`，最终从 Envoy 发送到远程目标。
+这里有四条日志条目，代表我们三个 curl 请求中的两个。每一对显示了单个请求如何通过 envoy 流量处理管道流动。它们以相反的顺序打印，但我们可以看到第 2 和第 4 行显示请求到达了网关服务，并通过内部的 `sni_cluster` 目标。第 1 和第 3 行显示最终目标是从内部 SNI 头中确定的，即应用程序设置的目标主机。请求将转发到 `dynamic_forward_proxy_cluster`，最终从 Envoy 发送到远程目标。
 
 很好，但是第三个请求到 IBM Cloud 在哪里？让我们检查 sidecar 的日志：
 

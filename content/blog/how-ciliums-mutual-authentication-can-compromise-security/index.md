@@ -70,7 +70,7 @@ Cilium 最终一致性双向认证实现的真正问题出现在 Cilium 的核�
 
 ![图 8：Cilium 的核心身份原语基于在每个节点上的本地缓存中映射到 IP 地址的整数。](f8.png)
 
-我们在博客文章 “[网络基于缓存的身份可能会被误解吗？](https://www.solo.io/blog/could-network-cache-based-identity-be-mistaken/)”中详细讨论了这个问题。由于这个问题，我们建议在考虑使用依赖身份到 IP 地址映射的容器网络接口（CNI）和[服务网格](https://thenewstack.io/secure-your-service-mesh-a-13-item-checklist/)进行网络安全时采取深度防御姿态。
+我们在博客文章“[网络基于缓存的身份可能会被误解吗？](https://www.solo.io/blog/could-network-cache-based-identity-be-mistaken/)”中详细讨论了这个问题。由于这个问题，我们建议在考虑使用依赖身份到 IP 地址映射的容器网络接口（CNI）和[服务网格](https://thenewstack.io/secure-your-service-mesh-a-13-item-checklist/)进行网络安全时采取深度防御姿态。
 
 问题的关键在于：
 

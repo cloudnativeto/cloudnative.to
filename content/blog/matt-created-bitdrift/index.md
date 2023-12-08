@@ -1,6 +1,6 @@
 ---
 title: "Envoy 创始人 Matt Klein 领衔 Bitdrift 创业，推出创新移动可观测性产品并获得 1500 万美元 A 轮融资"
-summary: "Envoy 创始人 Matt Klein 领导的 Bitdrift 宣布推出首款产品 Capture，并完成1500万美元A轮融资。Capture 旨在革新移动端可观测性，允许动态实时控制遥测数据，大幅提高移动开发者的调试效率。这标志着 Bitdrift 在提升移动和服务器端可观测性方面迈出了重要一步，预示着可观测性生态系统的未来发展方向。"
+summary: "Envoy 创始人 Matt Klein 领导的 Bitdrift 宣布推出首款产品 Capture，并完成 1500 万美元 A 轮融资。Capture 旨在革新移动端可观测性，允许动态实时控制遥测数据，大幅提高移动开发者的调试效率。这标志着 Bitdrift 在提升移动和服务器端可观测性方面迈出了重要一步，预示着可观测性生态系统的未来发展方向。"
 authors: ["云原生社区"]
 categories: ["新闻"]
 tags: ["Matt Klein","Bitdrift","Startup"]
