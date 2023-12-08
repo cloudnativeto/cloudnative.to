@@ -23,8 +23,8 @@ content:
         brightness: 0.3
       link:
         icon: fa-solid fa-square-up-right
-        text: 立即报名
-        url: https://hdxu.cn/ysqsP
+        text: 查看回顾
+        url: /event/cloud-native-meetup-guangzhou-13/
     - title: 云原生社区成都站 Meetup
       content: '2023 年 8 月 19 日（周六），成都新希望天祥广场 3 层冲鸭空间'
       align: center
