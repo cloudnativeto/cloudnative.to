@@ -44,7 +44,7 @@ header:
 
 footer:
   copyright:
-    notice: '© 2020-2023 云原生社区保留所有权利'
+    notice: '© 2020-2024 云原生社区保留所有权利'
     license:
       enable: false
       allow_derivatives: false
