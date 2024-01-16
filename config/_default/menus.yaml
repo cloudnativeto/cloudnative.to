@@ -4,6 +4,13 @@
 #   The weight parameter defines the order that the links will appear in.
 
 main:
+  - name: 小组
+    identifier: sig
+    weight: 3
+  - name: Kubernetes Gateway API SIG
+    parent: sig
+    weight: 1
+    url: "k8s-gateway-api"
   - name: 资料
     identifier: docs
     weight: 31
