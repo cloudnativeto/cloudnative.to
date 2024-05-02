@@ -1,6 +1,6 @@
 ---
 title: 梁远鹏
-role: 开源爱好者
+role: 开源爱好者、kubernetes 贡献者、CNCF 大使
 superuser: false
 social:
 - icon: home
