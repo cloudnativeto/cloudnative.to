@@ -146,7 +146,7 @@ ssh_tunnel_open_fail_count 0
 
 因为是 prometheus 主动去拉取的，所以在 k8s 里 pod 因为调度的原因导致 pod 的 ip 会发生变化，人工不可能去维持，自动发现有基于 DNS 的，但是新增还是有点麻烦。
 
-Prometheus-operator 的本职就是一组用户自定义的 CRD 资源以及 Controller 的实现，Prometheus Operator 这个 controller 有 BRAC 权限下去负责监听这些自定义资源的变化，并且根据这些资源的定义自动化的完成如 Prometheus Server 自身以及配置的自动化管理工作。
+Prometheus-operator 的本职就是一组用户自定义的 CRD 资源以及 Controller 的实现，Prometheus Operator 这个 controller 有 RBAC 权限下去负责监听这些自定义资源的变化，并且根据这些资源的定义自动化的完成如 Prometheus Server 自身以及配置的自动化管理工作。
 
 在 Kubernetes 中我们使用 Deployment、DamenSet、StatefulSet 来管理应用 Workload，使用 Service、Ingress 来管理应用的访问方式，使用 ConfigMap 和 Secret 来管理应用配置。我们在集群中对这些资源的创建，更新，删除的动作都会被转换为事件 (Event)，Kubernetes 的 Controller Manager 负责监听这些事件并触发相应的任务来满足用户的期望。这种方式我们成为声明式，用户只需要关心应用程序的最终状态，其它的都通过 Kubernetes 来帮助我们完成，通过这种方式可以大大简化应用的配置管理复杂度。
 
