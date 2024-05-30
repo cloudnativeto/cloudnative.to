@@ -148,7 +148,7 @@ ssh_tunnel_open_fail_count 0
 
 Prometheus-operator 的本职就是一组用户自定义的 CRD 资源以及 Controller 的实现，Prometheus Operator 这个 controller 有 RBAC 权限下去负责监听这些自定义资源的变化，并且根据这些资源的定义自动化的完成如 Prometheus Server 自身以及配置的自动化管理工作。
 
-在 Kubernetes 中我们使用 Deployment、DamenSet、StatefulSet 来管理应用 Workload，使用 Service、Ingress 来管理应用的访问方式，使用 ConfigMap 和 Secret 来管理应用配置。我们在集群中对这些资源的创建，更新，删除的动作都会被转换为事件 (Event)，Kubernetes 的 Controller Manager 负责监听这些事件并触发相应的任务来满足用户的期望。这种方式我们成为声明式，用户只需要关心应用程序的最终状态，其它的都通过 Kubernetes 来帮助我们完成，通过这种方式可以大大简化应用的配置管理复杂度。
+在 Kubernetes 中我们使用 Deployment、DamenSet、StatefulSet 来管理应用 Workload，使用 Service、Ingress 来管理应用的访问方式，使用 ConfigMap 和 Secret 来管理应用配置。我们在集群中对这些资源的创建，更新，删除的动作都会被转换为事件 (Event)，Kubernetes 的 Controller Manager 负责监听这些事件并触发相应的任务来满足用户的期望。这种方式我们称为声明式，用户只需要关心应用程序的最终状态，其它的都通过 Kubernetes 来帮助我们完成，通过这种方式可以大大简化应用的配置管理复杂度。
 
 而除了这些原生的 Resource 资源以外，Kubernetes 还允许用户添加自己的自定义资源 (Custom Resource)。并且通过实现自定义 Controller 来实现对 Kubernetes 的扩展，不需要用户去二开 k8s 也能达到给 k8s 添加功能和对象。
 
@@ -889,7 +889,7 @@ sed -ri '/--address/s#=.+#=0.0.0.0#' /etc/kubernetes/manifests/kube-*
 
 ### 访问相关页面
 
-通过浏览器查看`prometheus.monitoring.k8s.local`与`grafana.monitoring.k8s.local`是否正常，若沒问题就可以看到下图结果，grafana 初始用股名和密码是 admin。
+通过浏览器查看`prometheus.monitoring.k8s.local`与`grafana.monitoring.k8s.local`是否正常，若沒问题就可以看到下图结果，grafana 初始用户名和密码是 admin。
 
 ![](006tNc79ly1fyzbnfx054j31l40u0qaw.jpg)
 
