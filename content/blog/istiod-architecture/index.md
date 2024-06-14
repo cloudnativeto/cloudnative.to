@@ -5,7 +5,7 @@ authors: ["Istio"]
 translators: ["云原生社区"]
 categories: ["Istio"]
 tags: ["Istio"]
-date: 2024-05-14T11:00:00+08:00
+date: 2024-06-14T11:00:00+08:00
 links:
   - icon: language
     icon_pack: fa
