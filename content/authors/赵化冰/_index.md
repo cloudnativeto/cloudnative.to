@@ -1,8 +1,8 @@
 ---
 title: 赵化冰
 role: 
-bio: "腾讯"
+bio: "Tetrate"
 organizations:
-- name: 腾讯
+- name: Tetrate
 ---
 
