@@ -5,6 +5,7 @@ authors: [""]
 translators: ["云原生社区"]
 categories: []
 tags: []
+draft: true
 date: {{ .Date }}
 links:
   - icon: language
