@@ -10,7 +10,7 @@ address:
   country:
 summary:
 abstract:
-date:
+date: {{ .Date }}
 date_end:
 all_day: false
 publishDate:
