@@ -81,7 +81,8 @@ function initSearch(force, fuse) {
 // Perform search.
 function searchAcademic(query, fuse) {
   let results = fuse.search(query);
-  // console.log({"results": results});
+  // Limit results to 100
+  results = results.slice(0, 100);  // Add this line to limit results to 100
 
   if (results.length > 0) {
     $('#search-hits').append('<h3 class="mt-0">' + results.length + ' ' + i18n.results + '</h3>');
