@@ -4,7 +4,7 @@ summary: "本文通过研究 SAP AI Core，揭示了多个安全漏洞，这些�
 authors: ["Wiz"]
 translators: ["云原生社区"]
 categories: ["Istio"]
-tags: ["AI","Istio"]
+tags: ["AI","Istio","SAP","安全"]
 draft: false
 date: 2024-07-18T19:23:50+08:00
 links:
