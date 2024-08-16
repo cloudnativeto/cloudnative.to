@@ -53,10 +53,6 @@ footer:
 
 # Localization
 
-locale:
-  date_format: '2006-01-02'
-  time_format: '下午 3:04'
-
 # Publication
 
 publications:
