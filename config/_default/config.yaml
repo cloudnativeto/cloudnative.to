@@ -42,7 +42,8 @@ imports:
 
 enableGitInfo: true
 summaryLength: 100
-paginate: 10
+pagination:
+  pagerSize: 10
 enableEmoji: false
 enableRobotsTXT: true
 footnotereturnlinkcontents: <sup>^</sup>
