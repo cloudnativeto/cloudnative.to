@@ -28,6 +28,8 @@ date: 2024-09-19T14:46:32+08:00
 - 终端开发（Android、iOS）
 - Java开发
 - Golang开发
+- 云原生
+- DBA
 - 安全运维
 - 测试工程师
 - 数据开发
@@ -47,6 +49,6 @@ date: 2024-09-19T14:46:32+08:00
 
 公司：**雄岸科技**  
 总部：**新加坡**（上市公司）  
-长期招聘，岗位详情及申请方式请访问：[JD 链接](https://docs.qq.com/sheet/DRFFOSE9heVpZeWVU)。
+**长期招聘，外企远程岗位内推通道（直招）** : https://t1kkfqulti.feishu.cn/share/base/form/shrcnNwo40aojwWrNdzlh3Ppsb3
 
 福利待遇对标大厂甚至更高，如果你愿意付出 100% 的努力，我们将给予 500% 的回报。我们提供全球各地宽敞且舒适的工作环境，崇尚自由与生活协调的工作氛围。
