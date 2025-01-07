@@ -13,8 +13,20 @@ design:
   interval: 5000
 content:
   slides:
+    - title: KCD 北京 2025
+      content: '2025 年 3 月 15 日将在北京举行，演讲议题正在征集中'
+      align: center
+      background:
+        position: center
+        color: "#0a55a7"
+        media: "beijing.webp"
+        brightness: 0.3
+      link:
+        icon: fa-solid fa-square-up-right
+        text: 查看回顾
+        url: https://community.cncf.io/events/details/cncf-kcd-beijing-presents-kcd-beijing-2025/
     - title: 云原生技术开放日·大连站
-      content: '7 月 6 日，由云原生社区主办的云原生技术开放日・大连站在大连星海假日酒店顺利举行。'
+      content: '2024 年 7 月 6 日，云原生技术开放日・大连站'
       align: center
       background:
         position: center
