@@ -1,169 +1,167 @@
 ########################### hero slider ############################
 slider:
-  enable : true
+  enable: true
   slider_item:
-    # slider item
-    - subtitle : "WELCOME TO THE "
-      title : "CLOUD NATIVE COMMUNITY"
-      content : "Cloud Native Community began with the founding of Kubernetes & CloudNative in 2016, the group covers thousands of early cloud native advocates. Building on this group, in May 2020, CNCF ambassadors and opinion leaders in the open source communities launched a new initiative to bring the Cloud Native Communtiy. The community has been upgraded to a cloud native community, aiming to build an open and inclusive communication environment to promote the spread and popularity of cloud native technology."
-      bg_image : "images/slider/banner-1.jpg"
-      animation : "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
-      button:
-        enable : true
-        label : "more details"
-        link : "about"
-        animation : "zoomIn" # animation select from : https://daneden.github.io/animate.css/
+  # slider item
+  - subtitle: "WELCOME TO THE "
+    title: "CLOUD NATIVE COMMUNITY"
+    content: "Cloud Native Community began with the founding of Kubernetes & CloudNative in 2016, the group covers thousands of early cloud native advocates. Building on this group, in May 2020, CNCF ambassadors and opinion leaders in the open source communities launched a new initiative to bring the Cloud Native Communtiy. The community has been upgraded to a cloud native community, aiming to build an open and inclusive communication environment to promote the spread and popularity of cloud native technology."
+    bg_image: "images/slider/banner-1.jpg"
+    animation: "fadeInUp" # animation select from : https://daneden.github.io/animate.css/
+    button:
+      enable: true
+      label: "more details"
+      link: "about"
+      animation: "zoomIn" # animation select from : https://daneden.github.io/animate.css/
 
 ################################## banner feature ############################
 banner_feature:
-  enable : false
+  enable: false
   # Max use 4 item
   feature_item:
-    # banner feature item loop
-    - name : "Business Solution"
-      icon : "fa-diamond" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
-      content : "Lorem ipsum dolor sit amet constur adipelit sed."
+  # banner feature item loop
+  - name: "Business Solution"
+    icon: "fa-diamond" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+    content: "Lorem ipsum dolor sit amet constur adipelit sed."
 
-    # banner feature item loop
-    - name : "Market Research"
-      icon : "fa-bar-chart" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
-      content : "Lorem ipsum dolor sit amet constur adipelit sed."
+  # banner feature item loop
+  - name: "Market Research"
+    icon: "fa-bar-chart" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+    content: "Lorem ipsum dolor sit amet constur adipelit sed."
 
-    # banner feature item loop
-    - name : "Business Strategy"
-      icon : "fa-lightbulb-o" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
-      content : "Lorem ipsum dolor sit amet constur adipelit sed."
+  # banner feature item loop
+  - name: "Business Strategy"
+    icon: "fa-lightbulb-o" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+    content: "Lorem ipsum dolor sit amet constur adipelit sed."
 
-    # banner feature item loop
-    - name : "Speed Optimization"
-      icon : "fa-dashboard" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
-      content : "Lorem ipsum dolor sit amet constur adipelit sed."
-
+  # banner feature item loop
+  - name: "Speed Optimization"
+    icon: "fa-dashboard" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+    content: "Lorem ipsum dolor sit amet constur adipelit sed."
 
 ################################## about ####################################
 about:
-  enable : true
-  subtitle : "CLOUD NATIVE ACADEMY"
-  title : "Courses, Meetup and SIGs"
-  content : "The Cloud Native Academy is hosted by the Cloud Native community and is dedicated to the dissemination and popularization of cloud native knowledge. Cloud Native Academy will regularly host live online events, inviting community members to bring knowledge and practice sharing in the field of cloud native. Follow us on [Bilibili](https://space.bilibili.com/515485124)."
+  enable: true
+  subtitle: "CLOUD NATIVE ACADEMY"
+  title: "Courses, Meetup and SIGs"
+  content: "The Cloud Native Academy is hosted by the Cloud Native community and is dedicated to the dissemination and popularization of cloud native knowledge. Cloud Native Academy will regularly host live online events, inviting community members to bring knowledge and practice sharing in the field of cloud native. Follow us on [Bilibili](https://space.bilibili.com/515485124)."
   #bg_image : "images/backgrounds/about-us-bg.png"
-  image : "images/about/about-us.jpg"
+  image: "images/about/about-us.jpg"
   button:
-    enable : true;
-    label : "Enter"
-    link : "https://i.cloudnative.to/academy"
+    enable: true;
+    label: "Enter"
+    link: "https://cloudnativecn.com/academy"
 
 ################################## funfacts ###############################
-funfacts :
-  enable : false
-  funfacts_item :
-    # fanfacts item loop
-    - name : "project done"
-      count : "50"
-      icon : "fa-bullseye" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+funfacts:
+  enable: false
+  funfacts_item:
+  # fanfacts item loop
+  - name: "project done"
+    count: "50"
+    icon: "fa-bullseye" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
 
-    # fanfacts item loop
-    - name : "Years Experience"
-      count : "25"
-      icon : "fa-calendar" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+  # fanfacts item loop
+  - name: "Years Experience"
+    count: "25"
+    icon: "fa-calendar" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
 
-    # fanfacts item loop
-    - name : "Awards Win"
-      count : "250"
-      icon : "fa-trophy" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+  # fanfacts item loop
+  - name: "Awards Win"
+    count: "250"
+    icon: "fa-trophy" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
 
-    # fanfacts item loop
-    - name : "Happy Coustomers"
-      count : "500"
-      icon : "fa-smile-o" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
-
+  # fanfacts item loop
+  - name: "Happy Coustomers"
+    count: "500"
+    icon: "fa-smile-o" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
 
 ################################# feature ############################################
 feature:
-  enable : false
-  subtitle : "Why Choose Us"
-  title : "Why They Choose Bexar"
-  image : "images/feature/feature.jpg"
-  content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius tempor incididunt ut labore."
+  enable: false
+  subtitle: "Why Choose Us"
+  title: "Why They Choose Bexar"
+  image: "images/feature/feature.jpg"
+  content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius tempor incididunt ut labore."
   feature_item:
-    # feature item loop
-    - name : "Creative Design"
-      icon : "fa-snowflake-o" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
-      content : "Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia."
+  # feature item loop
+  - name: "Creative Design"
+    icon: "fa-snowflake-o" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+    content: "Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia."
 
-    # feature item loop
-    - name : "Pixel Perfect Coding"
-      icon : "fa-code" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
-      content : "Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia."
+  # feature item loop
+  - name: "Pixel Perfect Coding"
+    icon: "fa-code" # font-awesome 4.7.0 : https://fontawesome.com/v4.7.0/icons/
+    content: "Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia."
 
 ################################# service ############################################
 service:
-  enable : false
-  subtitle : "Best Service"
-  title : "Service We Provide"
+  enable: false
+  subtitle: "Best Service"
+  title: "Service We Provide"
   # service item comes from "content/*/service" folder
 
-################################# team ##############################################
+  ################################# team ##############################################
 team:
-  enable : false
-  subtitle : "Our Team"
-  title : "Steering Committee"
+  enable: false
+  subtitle: "Our Team"
+  title: "Steering Committee"
   # team member comes from "content/*/team" folder
 
-################################# project ############################################
+  ################################# project ############################################
 project:
-  enable : false
-  subtitle : "Case Study"
-  title : "Bexar Case Studies"
+  enable: false
+  subtitle: "Case Study"
+  title: "Bexar Case Studies"
   button:
-    enable : true
-    label : "more projects"
-    link : "project"
+    enable: true
+    label: "more projects"
+    link: "project"
   # project item comes from "content/*/project" folder
 
-################################# testimonial #########################################
+  ################################# testimonial #########################################
 testimonial:
-  enable : true
-  title : "TESTIMONIALS"
+  enable: true
+  title: "TESTIMONIALS"
   testimonial_item:
-    # testimonial item loop
-    - client_image : "images/testimonial/jimmysong.jpg"
-      name : "Jimmy Song"
-      designation : "Co-founder of Cloud Native Community"
-      content : "The spirit of open source should be promoted, the results of open source should be seen, and the cloud native community wants to be with developers for their lifetime growth."
+  # testimonial item loop
+  - client_image: "images/testimonial/jimmysong.jpg"
+    name: "Jimmy Song"
+    designation: "Co-founder of Cloud Native Community"
+    content: "The spirit of open source should be promoted, the results of open source should be seen, and the cloud native community wants to be with developers for their lifetime growth."
 
-    - client_image : "images/testimonial/luoguangming.jpg"
-      name : "Guangming Luo"
-      designation : "Co-founder of Cloud Native Community"
-      content : "This is the best of times and everyone should be able to benefit from the open source community and cloud native technology. That's why we are here!"
+  - client_image: "images/testimonial/luoguangming.jpg"
+    name: "Guangming Luo"
+    designation: "Co-founder of Cloud Native Community"
+    content: "This is the best of times and everyone should be able to benefit from the open source community and cloud native technology. That's why we are here!"
 
-    - client_image : "images/testimonial/lijiansheng.jpg"
-      name : "Jiansheng Li"
-      designation : "Senior Developer Advocate"
-      content : "The heart of open source comes from the community behind it, and driving the development and growth of cloud native technologies has to start with the Cloud Native Community!"
+  - client_image: "images/testimonial/lijiansheng.jpg"
+    name: "Jiansheng Li"
+    designation: "Senior Developer Advocate"
+    content: "The heart of open source comes from the community behind it, and driving the development and growth of cloud native technologies has to start with the Cloud Native Community!"
 
 ################################# event ################################################
 cta:
-  enable : true
-  title : "RECENT EVENTS"
-  bg_image : "images/backgrounds/cta-lg.jpg"
+  enable: true
+  title: "RECENT EVENTS"
+  bg_image: "images/backgrounds/cta-lg.jpg"
   button:
-    enable : true
-    label : "Learn more"
-    link : "contact"
+    enable: true
+    label: "Learn more"
+    link: "contact"
 
 ################################# blog ################################################
 blog:
-  enable : true
-  subtitle : "Professionally-generated content"
-  title : "Blog"
+  enable: true
+  subtitle: "Professionally-generated content"
+  title: "Blog"
   find_all: "All"
   # blog post comes from "content/*/blog" folder
 
-################################# contact ################################################
+  ################################# contact ################################################
 contact:
-  enable : true
-  title : "Contact"
-  image : "images/wechat-qrcode.jpg"
-  description : "Follow us on wechat public account and join the community, to get the latest cloud native news and blogs."
+  enable: true
+  title: "Contact"
+  image: "images/wechat-qrcode.jpg"
+  description: "Follow us on wechat public account and join the community, to get the latest cloud native news and blogs."
   address: "[Beijing](/city/beijing)|[Shanghai](/city/shanghai)|[Chengdu](/city/chengdu)|[Shenzhen](https://github.com/cloudnativeto/community/issues/60)|[Hangzhou](/city/hangzhou/)|[Guangzhou](/city/guangzhou/)|[Wuhan](https://github.com/cloudnativeto/community/issues/55)|[Nanjing](/city/nanjing)|[Xi'an](https://github.com/cloudnativeto/community/issues/61)|[Dalian](/city/dalian)|[Changsha](https://github.com/cloudnativeto/community/issues/52)|[Suzhou](https://github.com/cloudnativeto/community/issues/66)|[Zhuhai](https://github.com/cloudnativeto/community/issues/67)|[Chongqing](https://github.com/cloudnativeto/community/issues/78)|[Ji'nan](https://github.com/cloudnativeto/community/issues/82)|[Xiamen](https://github.com/cloudnativeto/community/issues/83)|[Wuxi](https://github.com/cloudnativeto/community/issues/86)|[Qingdao](https://github.com/cloudnativeto/community/issues/91)|[Zhengzhou](https://github.com/cloudnativeto/community/issues/103)|[Hefei](https://github.com/cloudnativeto/community/issues/107)"
