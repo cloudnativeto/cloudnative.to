@@ -14,7 +14,6 @@ links:
     url: https://tetrate.io/blog/envoy-gateway-1-3-release-highlights/
 ---
 
-
 Envoy Gateway 1.3 版本在 **安全性、流量管理和运维能力** 方面进行了重大增强，并引入了 **API Key 认证**、**支持 HTTPRoute 重试** 以及 **更灵活的基础设施管理** 等关键改进。详见 [Envoy Gateway 1.3 发布公告](https://gateway.envoyproxy.io/news/releases/v1.3/)。
 
 ## 1.2 到 1.3 版本的核心变化
@@ -28,7 +27,7 @@ Envoy Gateway 1.3 版本在 **安全性、流量管理和运维能力** 方面�
 
 本文将总结 Envoy Gateway 1.3 版本最重要的更新内容。
 
-## **主要特性亮点**
+## 主要特性亮点
 
 ### 1. 安全性：增强认证与访问管理
 
@@ -45,7 +44,7 @@ Envoy Gateway 1.3 版本在 **安全性、流量管理和运维能力** 方面�
 - **基于动态元数据的限流（Dynamic Cost-Based Rate Limiting）**：限流 API 现支持从 **动态元数据（Dynamic Metadata）** 提取成本值，可基于请求的不同消耗量对客户端进行限流
 - **用户定义路由顺序**：EnvoyProxy CRD 现支持 **保留用户自定义的 HTTPRoute 匹配顺序**，增强路由控制灵活性
 
-### . 运营管理：基础设施优化
+### 3. 运营管理：基础设施优化
 
 - **HPA（水平自动扩展）增强**：提供 **EnvoyProxy HPA** 和 **PDB（Pod Disruption Budget）** 的更多配置选项
 - **改进 IPv6 支持**：优化 **双栈（Dual-Stack）支持**，修复 IPv6 相关问题
@@ -68,4 +67,3 @@ Envoy Gateway 1.3 为团队提供了更强大的 **安全性**、**流量管理*
  ✅ **提高生产环境运维效率**（HPA 支持、IPv6 兼容、扩展服务 fail-closed 机制等）
 
 这些改进使 Envoy Gateway 在 **生产环境** 下更具安全性、可扩展性和管理便利性，为 Kubernetes 生态中的流量管理提供更稳定、更强大的解决方案。🚀
-
