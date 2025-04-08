@@ -14,7 +14,7 @@ design:
 content:
   slides:
     - title: KCD 北京 2025
-      content: '2025 年 3 月 15 日将在北京举行，演讲议题正在征集中'
+      content: '2025 年 3 月 15 日，北京，年度全球首场 KCD'
       align: center
       background:
         position: center
