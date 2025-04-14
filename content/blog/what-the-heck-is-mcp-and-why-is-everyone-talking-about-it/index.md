@@ -5,7 +5,7 @@ authors: ["GitHub"]
 translators: ["云原生社区"]
 categories: ["AI"]
 tags: ["AI","MCP","GitHub"]
-draft: true
+draft: false
 date: 2025-04-14T10:37:31+08:00
 links:
   - icon: language
