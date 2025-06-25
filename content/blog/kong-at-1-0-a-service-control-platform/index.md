@@ -16,15 +16,15 @@ keywords: [“service mesh","服务网格","kong","网关"]
 
 _图片：Kong 公司员工们在庆祝第一届 Kong Summit 举办（来自 Kong 官方 Twitter）_
 
-[Kong](https://konghq.com/)公司的前身是 Mashape，发布了其核心开源 API 网关的 1.0 版本，名字也为[Kong](https://github.com/Kong/kong) 。这是包括诺基亚、纽约​时报和哈佛大学等客户近四年生产经验的结晶。
+[Kong](https://konghq.com/)公司的前身是 Mashape，发布了其核心开源 API 网关的 1.0 版本，名字也为[Kong](https://github.com/Kong/kong) 。这是包括诺基亚、纽约时报和哈佛大学等客户近四年生产经验的结晶。
 
 **Kong 1.0 是该公司构建服务控制平台愿景的基础，该平台结合了人工智能、机器学习和其他先进技术，可以促进信息流在服务之间的流动。**
 
 ![](006tNbRwgy1fvftotln7rj319y0q4dmg.jpg)
 
-“我们相信未来所有数据都将处于运动状态，并且将从数据池转移到系统间代理信息的地方。Kong 最初是一个网关，在 1.0 发布之后将转型为服务控制平台，“[Geoff Townsend](https://www.linkedin.com/in / geoff-townsend-25058347 /)，Kong 工程副总裁。据该公司称，截至目前，该软件已被下载 4500 万次。
+“我们相信未来所有数据都将处于运动状态，并且将从数据池转移到系统间代理信息的地方。Kong 最初是一个网关，在 1.0 发布之后将转型为服务控制平台，“[Geoff Townsend](https://www.linkedin.com/in/geoff-townsend-25058347 /)，Kong 工程副总裁。据该公司称，截至目前，该软件已被下载 4500 万次。
 
-本周在[Kong Summit 2018](https://konghq.com/kong-summit/?utm_source=pressrelease&utm_medium=referral&utm_content=1-0)上，在该公司的总部旧金山探讨了 1.0 里程碑以及企业级组件包括开发人员门户、Open API 规范、自动生成和自动配置，这些功能将于明年初推出。
+本周在[Kong Summit 2018](https://konghq.com/kong-summit/)上，在该公司的总部旧金山探讨了 1.0 里程碑以及企业级组件包括开发人员门户、Open API 规范、自动生成和自动配置，这些功能将于明年初推出。
 
 “我们希望帮助您获得服务的可见性，并能以简单的方式记录通过平台的所有内容。我们将从生产中的服务自动生成 Open API 规范，这将能够记录没有登记在册的服务。使用 Open API 规范自动配置 Kong 的节点，以便记录的内容与生产中的内容一致。有一个 API 地图能够显示实时流量的拓扑，“他说。 “Kong 位于网络中的绝佳位置，所以它将能够做一系列异常检测和机器学习。”
 
