@@ -1,7 +1,6 @@
-{{ $provider := trim (site.Params.features.comment.provider | lower) " " }}
-
-{{ if $provider }}
-  {{ $provider_tpl := printf "partials/comments/%s.html" $provider }}
+{{ $provider := trim (site.Params.features.comment.provider | lower) " " }} {{
+if $provider }}  {{ $provider_tpl := printf "partials/comments/%s.html" $provider }}
+  {{ $partial_tpl := printf "comments/%s.html" $provider }}
   {{ $provider_exists := templates.Exists $provider_tpl }}
   {{ if not $provider_exists }}
     {{ errorf "The '%s' comment provider was not found." $provider }}
@@ -11,7 +10,5 @@
 
   {{ if $commentable_page }}
   <section id="comments" class="mb-3 pt-0">
-    {{ partial $provider_tpl . }}
-  </section>
-  {{ end }}
-{{ end }}
+    {{ partial $partial_tpl . }}</section>
+{{ end }} {{ end }}

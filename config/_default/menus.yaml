@@ -17,11 +17,11 @@ main:
 - name: Envoy 中文文档
   parent: docs
   weight: 1
-  url: "https://cloudnativecn.com/envoy/"
+  url: "https://cloudnative.jimmysong.io/envoy/"
 - name: Kubebuilder 中文文档
   parent: docs
   weight: 2
-  url: "https://cloudnativecn.com/kubebuilder/"
+  url: "https://cloudnative.jimmysong.io/kubebuilder/"
 - name: 云原生资料库
   parent: docs
   weight: 3

@@ -3,19 +3,19 @@
 # Hugo Documentation: https://gohugo.io/getting-started/configuration/#all-configuration-settings
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
-title: '云原生社区（中国）' # Website name
-baseURL: 'https://cloudnativecn.com' # Website URL
+title: "云原生社区（中国）" # Website name
+baseURL: "https://cloudnative.jimmysong.io" # Website URL
 
 ############################
 ## PAGE OPTIONS
 ############################
 
 cascade:
-# Docs folder options
-- _target:
-    path: /community/**
-  editable: true
-  show_breadcrumb: true
+  # Docs folder options
+  - _target:
+      path: /community/**
+    editable: true
+    show_breadcrumb: true
 
 ############################
 ## LANGUAGE
@@ -32,8 +32,8 @@ removePathAccents: true
 
 #module:
 imports:
-- path: github.com/wowchemy/wowchemy-hugo-modules/wowchemy-cms/v5
-- path: github.com/wowchemy/wowchemy-hugo-modules/wowchemy/v5
+  - path: github.com/wowchemy/wowchemy-hugo-modules/wowchemy-cms/v5
+  - path: github.com/wowchemy/wowchemy-hugo-modules/wowchemy/v5
 
 ############################
 ## ADVANCED
@@ -46,15 +46,15 @@ pagination:
 enableEmoji: false
 enableRobotsTXT: true
 footnotereturnlinkcontents: <sup>^</sup>
-ignoreFiles: [ \.ipynb$, .ipynb_checkpoints$, \.Rmd$, \.Rmarkdown$, _cache$ ]
+ignoreFiles: [\.ipynb$, .ipynb_checkpoints$, \.Rmd$, \.Rmarkdown$, _cache$]
 permalinks:
-  authors: '/author/:slug/'
-  tags: '/tag/:slug/'
-  categories: '/category/:slug/'
+  authors: "/author/:slug/"
+  tags: "/tag/:slug/"
+  categories: "/category/:slug/"
 disableAliases: false
 outputs:
-  home: [ HTML, RSS, JSON, WebAppManifest ]
-  section: [ HTML, RSS ]
+  home: [HTML, RSS, JSON, WebAppManifest]
+  section: [HTML, RSS]
 imaging:
   resampleFilter: lanczos
   quality: 75
@@ -72,10 +72,10 @@ related:
   includeNewer: true
   toLower: true
   indices:
-  - name: tags
-    weight: 100
-  - name: categories
-    weight: 70
+    - name: tags
+      weight: 100
+    - name: categories
+      weight: 70
 security:
   _merge: deep
 sitemap:
