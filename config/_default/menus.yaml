@@ -11,21 +11,6 @@ main:
   #  parent: sig
   #  weight: 1
   #  url: "k8s-gateway-api"
-- name: 资料
-  identifier: docs
-  weight: 31
-- name: Envoy 中文文档
-  parent: docs
-  weight: 1
-  url: "https://cloudnative.jimmysong.io/envoy/"
-- name: Kubebuilder 中文文档
-  parent: docs
-  weight: 2
-  url: "https://cloudnative.jimmysong.io/kubebuilder/"
-- name: 云原生资料库
-  parent: docs
-  weight: 3
-  url: "https://istio.io/latest/zh/"
 - name: 活动
   url: event
   weight: 40
