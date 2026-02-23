@@ -1,6 +1,5 @@
 ---
 title: "Service Mesh Virtual Meetup #1"
-summary: "Service Mesh  线上分享会。"
 date: 2020-05-06T10:41:54+08:00
 draft: false
 authors: ["宋净超"]

@@ -5,7 +5,6 @@ summary: "向社区投稿指南。"
 type: book
 weight: 6
 date: '2022-07-16T00:00:00+08:00'
-type: book
 ---
 
 文章收录来源分为三类：原创、翻译、转载。

@@ -40,7 +40,7 @@ AI 训练过程需要访问大量敏感客户数据，这使 AI 训练服务成�
 
 - 访问客户的云凭证和私有 AI 工件
 
-![我们研究发现的逐步插图](f1.png)
+![我们研究发现的逐步插图](f1.webp)
 
 我们发现这些问题的根本原因是攻击者可以运行恶意 AI 模型和训练程序，这本质上是代码。在审查了几个主要 AI 服务之后，我们认为行业必须改进其在运行 AI 模型时的隔离和沙箱标准。
 
@@ -52,7 +52,7 @@ SAP AI Core 是一项服务，允许用户以可扩展和管理的方式在 SAP 
 
 我们的研究始于作为 SAP 客户，基本权限允许我们创建 AI 项目。因此，我们首先在 SAP AI Core 上创建了一个常规 AI 应用程序。SAP 的平台允许我们提供一个 Argo Workflow 文件，该文件反过来生成了一个根据我们的配置的新 Kubernetes Pod。
 
-![SAP AI Core 上的 Argo 工作流配置示例](f2.png)
+![SAP AI Core 上的 Argo 工作流配置示例](f2.webp)
 
 这允许我们在 Pod 中按设计运行我们自己的任意代码——不需要任何漏洞。然而，我们的环境受到了相当大的限制。我们很快意识到，我们的 Pod 的网络访问非常有限，这是由 Istio 代理 sidecar 强制执行的——因此，扫描内部网络对我们来说不是一个选项。至少现在不是。
 
@@ -64,11 +64,11 @@ SAP AI Core 是一项服务，允许用户以可扩展和管理的方式在 SAP 
 
 第一个是`shareProcessNamespace`，它允许我们与我们的 sidecar 容器共享进程命名空间。由于我们的 sidecar 是 Istio 代理，我们获得了对 Istio 的配置的访问权限，包括对集群的集中式 Istiod 服务器的访问令牌。
 
-![通过我们的 sidecar 容器访问 Istio 令牌](f3.png)
+![通过我们的 sidecar 容器访问 Istio 令牌](f3.webp)
 
 另一个是`runAsUser`（和`runAsGroup`）。虽然我们不能成为 root，但所有其他 UID 都是允许的——包括 Istio 的 UID，讽刺的是，这个 UID 是`1337`（是的，真的）。我们将我们的 UID 设置为 1337，并成功地以 Istio 用户的身份运行。由于 Istio 本身是[从 Istio 的 iptables 规则中排除的](https://istio.io/latest/docs/reference/config/analysis/ist0144/)——我们现在运行时没有任何流量限制！
 
-![发送请求到内部网络——在 UID 1337 之前和之后](f4.png)
+![发送请求到内部网络——在 UID 1337 之前和之后](f4.webp)
 
 我们摆脱了流量束缚，开始扫描我们 Pod 的内部网络。使用我们的 Istio 令牌，我们能够从 Istiod 服务器读取配置并了解内部环境——这引导我们进行了以下发现。
 
@@ -76,11 +76,11 @@ SAP AI Core 是一项服务，允许用户以可扩展和管理的方式在 SAP 
 
 我们在集群中找到了一个 Grafana Loki 的实例，因此我们请求了`/config`端点以查看 Loki 的配置。API 响应了完整的配置，包括 Loki 用来访问 S3 的 AWS 密钥：
 
-![来自 SAP 的 Loki 服务器的配置摘录](f5.png)
+![来自 SAP 的 Loki 服务器的配置摘录](f5.webp)
 
 这些密钥授予访问 Loki 的 S3 存储桶的权限，其中包含 AI Core 服务（SAP 称其不敏感）和客户 Pods 的大量日志。
 
-![Loki 的 S3 存储桶中的部分文件列表](f6.png)
+![Loki 的 S3 存储桶中的部分文件列表](f6.webp)
 
 ## Bug #3: 未经身份验证的 EFS 共享暴露用户文件
 
@@ -88,9 +88,9 @@ SAP AI Core 是一项服务，允许用户以可扩展和管理的方式在 SAP 
 
 列出这些 EFS 实例上存储的文件，揭示了大量 AI 数据，包括代码和训练数据集，按客户 ID 分类：
 
-![](f7.png)
+![](f7.webp)
 
-![两个 EFS 共享的部分文件列表；每个文件夹代表一个不同的客户 ID](f8.png)
+![两个 EFS 共享的部分文件列表；每个文件夹代表一个不同的客户 ID](f8.webp)
 
 ## Bug #4: 未经身份验证的 Helm 服务器危及内部 Docker 注册表和 Artifactory
 
@@ -100,7 +100,7 @@ SAP AI Core 是一项服务，允许用户以可扩展和管理的方式在 SAP 
 
 在我们的内部网络上查询这个服务器，揭示了对 SAP 的 Docker 注册表以及其 Artifactory 服务器的高权限密钥：
 
-![通过 Helm 服务器查询暴露的容器注册表和 Artifactory 凭据](f9.png)
+![通过 Helm 服务器查询暴露的容器注册表和 Artifactory 凭据](f9.webp)
 
 使用这些密钥的读取权限，潜在的攻击者可以读取内部图像和构建，提取商业秘密，可能还包括客户数据。
 
@@ -114,13 +114,13 @@ Tiller 的`install`命令接受一个 Helm 包并将其部署到 K8s 集群。�
 
 现在我们在集群上运行具有完全权限！
 
-![通过 Helm 获得的 K8s 权限的部分列表](f10.png)
+![通过 Helm 获得的 K8s 权限的部分列表](f10.webp)
 
 使用这种访问级别，攻击者可以直接访问其他客户的 Pods 并窃取敏感数据，如模型、数据集和代码。这种访问还允许攻击者干扰客户的 Pods，污染 AI 数据并操纵模型的推理。
 
 此外，这种访问级别还将允许我们查看客户自己的秘密——甚至超出 SAP AI Core 范围的秘密。例如，我们的 AI Core 账户包含了我们的 AWS 账户（用于 S3 数据访问）、我们的 SAP HANA 账户（用于 Data Lake 访问）和我们的 Docker Hub 账户（用于拉取我们的镜像）的秘密。使用我们新获得的访问级别，我们查询了这些秘密，并设法以纯文本形式访问它们所有：
 
-![使用我们的 K8s 权限访问客户秘密](f11.png)
+![使用我们的 K8s 权限访问客户秘密](f11.webp)
 
 同样的查询还揭示了一个名为`sap-docker-registry-secret`的 SAP 访问 Google 容器注册表的密钥。我们已经确认这个密钥授予了读写权限——进一步扩大了潜在供应链攻击的范围。
 
@@ -134,19 +134,19 @@ Tiller 的`install`命令接受一个 Helm 包并将其部署到 K8s 集群。�
 
 ## 披露时间线
 
--   **2024 年 1 月 25 日** – Wiz 研究报告安全发现给 SAP
+- **2024 年 1 月 25 日** – Wiz 研究报告安全发现给 SAP
 
--   **2024 年 1 月 27 日** – SAP 回复并分配了一个案件编号
+- **2024 年 1 月 27 日** – SAP 回复并分配了一个案件编号
 
--   **2024 年 2 月 16 日** – SAP 修复了第一个漏洞并旋转了相关的秘密
+- **2024 年 2 月 16 日** – SAP 修复了第一个漏洞并旋转了相关的秘密
 
--   **2024 年 2 月 28 日** – Wiz 研究绕过补丁使用 2 个新漏洞，报告给 SAP
+- **2024 年 2 月 28 日** – Wiz 研究绕过补丁使用 2 个新漏洞，报告给 SAP
 
--   **2024 年 5 月 15 日** – SAP 部署修复了所有报告的漏洞
+- **2024 年 5 月 15 日** – SAP 部署修复了所有报告的漏洞
 
--   **2024 年 7 月 17 日** – 公开披露
+- **2024 年 7 月 17 日** – 公开披露
 
-## 保持联系！
+## 保持联系
 
 嗨，我们是 Wiz 研究团队的 Hillai Ben-Sasson（[@hillai](https://twitter.com/hillai)），Shir Tamari（[@shirtamari](https://twitter.com/shirtamari)），Nir Ohfeld（[@nirohfeld](https://twitter.com/nirohfeld)），Sagi Tzadik（[@sagitz_](https://twitter.com/sagitz_)) 和 Ronen Shustin（[@ronenshh](https://twitter.com/ronenshh)）。我们是一群资深白帽黑客，我们的目标是让云成为每个人更安全的地方。我们主要关注在云中找到新的攻击向量并揭露云供应商的隔离问题。
 

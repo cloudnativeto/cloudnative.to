@@ -3,7 +3,6 @@ title: "Istio 0.8 发布了！"
 date: 2018-06-01T11:41:00+08:00
 draft: false
 authors: ["Istio"]
-keywords: ["istio","微服务","service mesh"]
 translators: ["宋净超"]
 summary: "北京时间 2018 年 6 月 1 日（儿童节）上午 9: 30 Istio 0.8.0 LTS（长期支持版本）发布。该版本除了常见的一堆错误修复和性能改进之外，还包含以下更新和新功能。"
 tags: ["istio"]
