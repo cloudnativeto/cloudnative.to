@@ -123,12 +123,12 @@ spec:
 
 ## 更多
 
-Slime 开源于 2021 年初，本文发稿时该项目仍处于初级阶段，本文大量参考了杨笛航在云原生社区中的分享 [Slime：让 Istio 服务网格变得更加高效与智能](https://cloudnative.to/blog/netease-slime/) 及 Slime 的 [GitHub](https://github.com/slime-io/slime)。感兴趣的读者可以关注下这个项目的 GitHub，进一步了解它。
+Slime 开源于 2021 年初，本文发稿时该项目仍处于初级阶段，本文大量参考了杨笛航在云原生社区中的分享 [Slime：让 Istio 服务网格变得更加高效与智能](https://cloudnative.jimmysong.io/blog/netease-slime/) 及 Slime 的 [GitHub](https://github.com/slime-io/slime)。感兴趣的读者可以关注下这个项目的 GitHub，进一步了解它。
 
-另外欢迎关注服务网格和 Istio 的朋友加入[云原生社区 Istio SIG](https://cloudnative.to/sig-istio/)，一起参与讨论和交流。
+另外欢迎关注服务网格和 Istio 的朋友加入[云原生社区 Istio SIG](https://cloudnative.jimmysong.io/sig-istio/)，一起参与讨论和交流。
 
 ## 参考
 
-- [Slime：让 Istio 服务网格变得更加高效与智能 - cloudnative.to](https://cloudnative.to/blog/netease-slime/)
+- [Slime：让 Istio 服务网格变得更加高效与智能 - cloudnative.to](https://cloudnative.jimmysong.io/blog/netease-slime/)
 - [Slime GitHub 文档 - github.com](https://github.com/slime-io/slime/blob/master/README_ZH.md)
 - [Sidecar - istio.io](https://istio.io/latest/docs/reference/config/networking/sidecar/)

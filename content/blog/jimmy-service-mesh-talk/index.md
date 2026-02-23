@@ -104,19 +104,19 @@ kube-proxy 组件、xDS 和 Istio 对流量管理的抽象后，现在我们仅�
 
 首先我们来看下 Istio 的发布时间表，1.12 版本在上周刚刚发布，这里列举了从它开源到 1.8 版本发布的时间表。2018 年可以说是服务网格爆发之年，Tetrate 也在这一年成立。自 1.5 版本起 Istio 正式确立了当前的架构。Istio 社区也也举办了丰富多彩的活动，2021 年 3 月首届 IstioCon 召开，7 月 Istio Meetup China 在北京举行，2022 年 1 月，Service Mesh Summit 2022 也将在上海举行。
 
-Istio 有着庞大的社区以及[供应商和用户群体](https://istio.io/latest/about/case-studies/)。目前主流公有云全都支持了 Istio 服务网格，如阿里云、华为云、腾讯云、网易云等，Istio 的官网上也列举了几十个社区用户，云原生社区 Istio SIG 还陆续举办了八场 [Istio 大咖说](https://cloudnative.to/sig-istio/big-talk/overview.html)，百度、腾讯、网易、小红书、小电科技都来分享过他们的 Istio 实践。
+Istio 有着庞大的社区以及[供应商和用户群体](https://istio.io/latest/about/case-studies/)。目前主流公有云全都支持了 Istio 服务网格，如阿里云、华为云、腾讯云、网易云等，Istio 的官网上也列举了几十个社区用户，云原生社区 Istio SIG 还陆续举办了八场 [Istio 大咖说](https://cloudnative.jimmysong.io/sig-istio/big-talk/overview.html)，百度、腾讯、网易、小红书、小电科技都来分享过他们的 Istio 实践。
 
 还有很多企业基于 Istio 做了二次开发或者适配或者为其开发插件，可以说是 Istio 架构已稳定，生产可用，生态正在萌芽中。
 
 ### 服务网格对应用性能的影响
 
-服务网格为了做到对应用程序透明，默认采用了 iptables 流量劫持的方式，当服务数量大的时候会有大量的 iptables 规则，影响网络性能，你可以使用 [eBPF](https://cloudnative.to/blog/how-ebpf-streamlines-the-service-mesh/) 这样的技术来提高应用性能，但是该技术对操作系统内核的版本要求比较高，很少有企业能够达到。
+服务网格为了做到对应用程序透明，默认采用了 iptables 流量劫持的方式，当服务数量大的时候会有大量的 iptables 规则，影响网络性能，你可以使用 [eBPF](https://cloudnative.jimmysong.io/blog/how-ebpf-streamlines-the-service-mesh/) 这样的技术来提高应用性能，但是该技术对操作系统内核的版本要求比较高，很少有企业能够达到。
 
 ![Istio 中的智能 DNS 代理](008i3skNly1gwp81fy0vqj31lq0nq41q.jpg)
 
-来源：<https://cloudnative.to/blog/istio-dns-proxy/>
+来源：<https://cloudnative.jimmysong.io/blog/istio-dns-proxy/>
 
-还有一种方式，也是[小红书使用的方式](https://cloudnative.to/sig-istio/big-talk/ep08.html)，那就是利用 Istio 1.8 中引入的智能 DNS 代理功能。首先使用 ServiceEntry 定义服务，让所有服务属于一个 VIP 范围，再利用 Istio 的智能 DNS 代理功能，让 sidecar 只拦截 VIP 网段的流量，这样可以减少 iptables 规则，从而提高性能。如果想深入了解这个做法的细节，大家可以去浏览 [Istio 大咖说第八期的分享视频](https://www.bilibili.com/video/BV12b4y187ae/)。
+还有一种方式，也是[小红书使用的方式](https://cloudnative.jimmysong.io/sig-istio/big-talk/ep08.html)，那就是利用 Istio 1.8 中引入的智能 DNS 代理功能。首先使用 ServiceEntry 定义服务，让所有服务属于一个 VIP 范围，再利用 Istio 的智能 DNS 代理功能，让 sidecar 只拦截 VIP 网段的流量，这样可以减少 iptables 规则，从而提高性能。如果想深入了解这个做法的细节，大家可以去浏览 [Istio 大咖说第八期的分享视频](https://www.bilibili.com/video/BV12b4y187ae/)。
 
 Istio 在初期是将整个网格内的所有服务的路由信息全量下发到所有的 proxy sidecar 中，会导致 sidecar 占用大量资源，后来 Istio 引入了 [Sidecar 资源](https://istio.io/latest/docs/reference/config/networking/sidecar/)来精细化控制需要下发的代理配置范围，另外还有企业自己开发了配置懒加载功能，例如腾讯云开源的 [Aeraki](https://github.com/aeraki-framework/aeraki)、网易开源的 [Slime](https://github.com/slime-io/slime) 都可以实现配置懒加载。我们会在 Istio 开源生态中介绍这两个开源项目。
 
@@ -138,7 +138,7 @@ Istio 在初期是将整个网格内的所有服务的路由信息全量下发�
 - [IstioCon 2021](https://events.istio.io/istiocon-2021/)
 - Istio Meetup China
 - [Istio 大咖说/Istio Weekly](https://github.com/tetratelabs/istio-weekly)
-- [云原生社区 Istio SIG](https://cloudnative.to/sig-istio/)
+- [云原生社区 Istio SIG](https://cloudnative.jimmysong.io/sig-istio/)
 - [Istio 基础教程（中文）](https://academy.tetrate.io/courses/istio-fundamentals-zh)
 - [Certified Istio Administrator](https://academy.tetrate.io/courses/certified-istio-administrator)
 
@@ -319,5 +319,5 @@ Aeraki + MetaProtocol 套件降低了在 Istio 中管理第三方协议的难度
 - Istio 架构已经稳定，生产可用，生态正处于萌芽中。
 - 对于终端用户来说适合自己的才是最好的。
 
-本人才疏学浅，因为时间的原因，很多内容没有深入展开和探讨，最后欢迎大家加入[云原生社区 Istio SIG](https://cloudnative.to/sig-istio/) 一起交流学习 Istio 和服务网格技术。
+本人才疏学浅，因为时间的原因，很多内容没有深入展开和探讨，最后欢迎大家加入[云原生社区 Istio SIG](https://cloudnative.jimmysong.io/sig-istio/) 一起交流学习 Istio 和服务网格技术。
 

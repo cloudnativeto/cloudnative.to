@@ -21,7 +21,7 @@ authors: ["董志勇","汪晟杰","黄金浩","田甜","邓洪超"]
 tags: ["DevSecOps","Envoy","KubeVela","Nocalhost"]
 featured: false
 image:
-  caption: '图片来源：[云原生社区](https://cloudnative.to)'
+  caption: '图片来源：[云原生社区](https://cloudnative.jimmysong.io)'
   focal_point: Right
 
 #links:

@@ -42,7 +42,7 @@ type: book
 - 直播当天应在云原生社区公众号上发布预告并在微信群内公告
 - 直播完成后应及时将视频上传到 B 站，并将视频封面设置为社区指定样式
 - 直播完成后应在一周内在公众号及 GitHub 上发布视频及 QA 的归档
-- 如有直播需求，请与[社区管委会](https://cloudnative.to/team)联系
+- 如有直播需求，请与[社区管委会](https://cloudnative.jimmysong.io/team)联系
 
 ## 参考
 

@@ -21,7 +21,7 @@ authors: ["郑德惠","陈逸凡","崔秀龙","宋净超","敖小剑"]
 tags: ["Service Mesh"]
 featured: false
 image:
-  caption: '图片来源：[云原生社区](https://cloudnative.to)'
+  caption: '图片来源：[云原生社区](https://cloudnative.jimmysong.io)'
   focal_point: Right
 
 #links:

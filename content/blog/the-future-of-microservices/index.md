@@ -74,7 +74,7 @@ Bryant 特继续说：“开发者需要指定某些操作特性：这是一个�
 
 ## 自主团队的架构
 
-另一个仍然具有挑战性的领域与整个系统架构有关，以及围绕团队组织和结构的相关问题。正如 [IBM](https://www.ibm.com/cloud?utm_content=logo-sponsorpage&utm_source=thenewstack&utm_medium=website&utm_campaign=platform) 的全球开发者 leader [Holly Cummins](https://www.linkedin.com/in/holly-k-cummins) 在 [云原生是关于文化而不是容器](https://cloudnative.to/cloud-native-culture-not-container/) 一文中指出的，“即使有适当的自主团队，系统级的考虑也不会消失”。
+另一个仍然具有挑战性的领域与整个系统架构有关，以及围绕团队组织和结构的相关问题。正如 [IBM](https://www.ibm.com/cloud?utm_content=logo-sponsorpage&utm_source=thenewstack&utm_medium=website&utm_campaign=platform) 的全球开发者 leader [Holly Cummins](https://www.linkedin.com/in/holly-k-cummins) 在 [云原生是关于文化而不是容器](https://cloudnative.jimmysong.io/cloud-native-culture-not-container/) 一文中指出的，“即使有适当的自主团队，系统级的考虑也不会消失”。
 
 Eric Evans 的《[领域驱动设计》](https://www.amazon.com/gp/product/0321125215/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321125215&linkCode=as2&tag=martinfowlerc-20)是微服务运动的基石，任何软件架构师都应该阅读，Bryant 说。但他更进一步说：
 

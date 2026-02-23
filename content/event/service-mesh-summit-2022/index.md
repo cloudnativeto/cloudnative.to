@@ -21,7 +21,7 @@ authors: ["张晓辉","金卫","宋净超","曾宇星","赵化冰","覃士林","
 tags: ["Istio","Service Mesh"]
 featured: false
 image:
-  caption: '图片来源：[云原生社区](https://cloudnative.to)'
+  caption: '图片来源：[云原生社区](https://cloudnative.jimmysong.io)'
   focal_point: Right
 
 #links:
@@ -50,4 +50,3 @@ projects: []
 ---
 
 活动日程请见[活动行](https://www.huodongxing.com/event/9663784282200)。
-

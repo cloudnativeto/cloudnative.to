@@ -206,7 +206,7 @@ Service Account 包含了 namespace、token 和 ca 三部分内容，通过 base
 ![图 22 部分 Controller-Manager 启动参数](22.png)
 
 
-之后 Pod 便可使用 token 来访问 API Server 了。API Server 再验证对应 token 信息，就能知道这个 token 是对应 Service Account，最后识别到对应 Service Account 的权限。图 23 展示了 K8s 使用和验证 Service Account Token 的过程。图片来源于文章：https://cloudnative.to/blog/k8s-certificate/#kube-apiserver-%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AE
+之后 Pod 便可使用 token 来访问 API Server 了。API Server 再验证对应 token 信息，就能知道这个 token 是对应 Service Account，最后识别到对应 Service Account 的权限。图 23 展示了 K8s 使用和验证 Service Account Token 的过程。图片来源于文章：https://cloudnative.jimmysong.io/blog/k8s-certificate/#kube-apiserver-%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AE
 
 ![图 23 Service AccountToken 的使用和验证过程](23.png)
 
@@ -230,6 +230,6 @@ Service Account 包含了 namespace、token 和 ca 三部分内容，通过 base
 
 - [https://cloud.tencent.com/developer/article/2016079](https://cloud.tencent.com/developer/article/2016079)
 - [http://www.javashuo.com/article/p-gocttrgh-ny.html](http://www.javashuo.com/article/p-gocttrgh-ny.html)
-- [https://cloudnative.to/blog/k8s-certificate/#kube-apiserver-%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AE](https://cloudnative.to/blog/k8s-certificate/#kube-apiserver-%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AE)
+- [https://cloudnative.jimmysong.io/blog/k8s-certificate/#kube-apiserver-%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AE](https://cloudnative.jimmysong.io/blog/k8s-certificate/#kube-apiserver-%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AE)
 - [https://zhuanlan.zhihu.com/p/468010077](https://zhuanlan.zhihu.com/p/468010077)
 - [https://kubernetes.io/docs/reference/access-authn-authz/authentication/](https://kubernetes.io/docs/reference/access-authn-authz/authentication/)

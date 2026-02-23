@@ -21,7 +21,7 @@ authors: ["宋净超","陈屹力","沈巍","向阳","高继翔","罗广明","吴
 tags: ["可观测性"]
 featured: false
 image:
-  caption: '图片来源：[云原生社区](https://cloudnative.to)'
+  caption: '图片来源：[云原生社区](https://cloudnative.jimmysong.io)'
   focal_point: Right
 
 #links:

@@ -21,7 +21,7 @@ authors: ["张亮","吴晟","朵晓东","丁振凯"]
 tags: ["Service Mesh"]
 featured: false
 image:
-  caption: '图片来源：[云原生社区](https://cloudnative.to)'
+  caption: '图片来源：[云原生社区](https://cloudnative.jimmysong.io)'
   focal_point: Right
 
 #links:

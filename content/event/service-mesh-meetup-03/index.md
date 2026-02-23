@@ -21,7 +21,7 @@ authors: ["张超盟","朱经惠","邵俊雄","杨文"]
 tags: ["Service Mesh"]
 featured: false
 image:
-  caption: '图片来源：[云原生社区](https://cloudnative.to)'
+  caption: '图片来源：[云原生社区](https://cloudnative.jimmysong.io)'
   focal_point: Right
 
 #links:

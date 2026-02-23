@@ -21,7 +21,7 @@ authors: ["周强","王佰平","孙健波","张义飞"]
 tags: ["ChaosMesh","Envoy","KubeVela"]
 featured: false
 image:
-  caption: '图片来源：[云原生社区](https://cloudnative.to)'
+  caption: '图片来源：[云原生社区](https://cloudnative.jimmysong.io)'
   focal_point: Right
 
 #links:

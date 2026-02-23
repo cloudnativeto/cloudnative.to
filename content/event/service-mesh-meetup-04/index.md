@@ -21,7 +21,7 @@ authors: ["吴晟","敖小剑","冯玮","徐运元"]
 tags: ["Service Mesh"]
 featured: false
 image:
-  caption: '图片来源：[云原生社区](https://cloudnative.to)'
+  caption: '图片来源：[云原生社区](https://cloudnative.jimmysong.io)'
   focal_point: Right
 
 #links:

@@ -10,7 +10,7 @@ tags: ["Dapr", "CNCF"]
 
 ## 编者按
 
-本文英文原文发布在 CNCF 官方博客 [Dapr (Distributed Application Runtime) joins CNCF Incubator](https://www.cncf.io/blog/2021/11/03/dapr-distributed-application-runtime-joins-cncf-incubator/) 上，译者敖小剑，宋净超参与了审校。另外云原生社区中也成立了 [Dapr 小组](https://cloudnative.to/community/sig/)，欢迎各位爱好者加入。
+本文英文原文发布在 CNCF 官方博客 [Dapr (Distributed Application Runtime) joins CNCF Incubator](https://www.cncf.io/blog/2021/11/03/dapr-distributed-application-runtime-joins-cncf-incubator/) 上，译者敖小剑，宋净超参与了审校。另外云原生社区中也成立了 [Dapr 小组](https://cloudnative.jimmysong.io/community/sig/)，欢迎各位爱好者加入。
 
 ## 正文
 

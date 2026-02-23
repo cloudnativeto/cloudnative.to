@@ -13,7 +13,7 @@ date: 2021-08-18T21:05:42+08:00
 
 行业中一直不缺安全的声音，安全也是永远绕不过的槛。再优雅再先进的架构设计，无法保障安全也是一文不值，甚至干系到企业的存活。
 
-近期在云原生领域，安全也是被屡次被提起重视。从 [Istio 首次安全评估结果公布](https://cloudnative.to/blog/istio-first-security-assessment/)、[CNCF 云原生安全白皮书发布](https://mp.weixin.qq.com/s/W8oT2YabhHNSLsWXJbPSnw)[美国国家安全局出品《Kubernetes 加固指南》](https://mp.weixin.qq.com/s/PRXtfz2Vc3Q8dhjoazY8Pw)、[《关键信息基础设施安全保护条例》的颁布](http://www.gov.cn/zhengce/content/2021-08/17/content_5631671.htm)看出，下到社区到基金会，上到国内外政府对安全的重视。
+近期在云原生领域，安全也是被屡次被提起重视。从 [Istio 首次安全评估结果公布](https://cloudnative.jimmysong.io/blog/istio-first-security-assessment/)、[CNCF 云原生安全白皮书发布](https://mp.weixin.qq.com/s/W8oT2YabhHNSLsWXJbPSnw)[美国国家安全局出品《Kubernetes 加固指南》](https://mp.weixin.qq.com/s/PRXtfz2Vc3Q8dhjoazY8Pw)、[《关键信息基础设施安全保护条例》的颁布](http://www.gov.cn/zhengce/content/2021-08/17/content_5631671.htm)看出，下到社区到基金会，上到国内外政府对安全的重视。
 
 近几年开源越来越热，各种的工具层出不穷。仪表盘可以说是离用户最近的一层，也是安全最容易被疏忽的一处，尤其是很多仪表盘并未提供用户校验或者容易配置错误。
 

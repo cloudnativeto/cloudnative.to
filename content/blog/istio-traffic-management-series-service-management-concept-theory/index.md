@@ -11,7 +11,7 @@ keywords: ["Kubernetes","service mesh","服务治理"]
 
 ## 前言
 
-在浅析 Istio 系列的[上篇文章](https://cloudnative.to/blog/istio-traffic-management-series-route-management/)中，我们介绍了 Istio 的流量路由管理相关内容，并基于此实践了灰度发布相关技术。本篇文章，我们继续扩展探讨 Istio 服务治理的相关技术和原理。
+在浅析 Istio 系列的[上篇文章](https://cloudnative.jimmysong.io/blog/istio-traffic-management-series-route-management/)中，我们介绍了 Istio 的流量路由管理相关内容，并基于此实践了灰度发布相关技术。本篇文章，我们继续扩展探讨 Istio 服务治理的相关技术和原理。
 
 ## 服务治理概念
 

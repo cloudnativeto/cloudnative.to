@@ -21,7 +21,7 @@ authors: ["赵化冰","肖涵","杨川胡","杨彪"]
 tags: ["Service Mesh"]
 featured: false
 image:
-  caption: '图片来源：[云原生社区](https://cloudnative.to)'
+  caption: '图片来源：[云原生社区](https://cloudnative.jimmysong.io)'
   focal_point: Right
 
 #links:

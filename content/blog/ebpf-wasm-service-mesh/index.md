@@ -19,7 +19,7 @@ categories: ["service mesh"]
 
 2021 年 12 月 2 日，Cilium 项目宣布了 [Cilium Service Mesh](https://cilium.io/blog/2021/12/01/cilium-service-mesh-beta) 的 beta 测试计划。在谷歌云基于 eBPF 的 Google Cloud Kubernetes Service（GKS）Dataplane V2（于 2020 年 8 月发布）所开创的概念基础上，Cilium Service Mesh 提倡“无 sidecar 服务网格 " 的理念。它扩展了 Cilium eBPF 产品，以处理服务网格中的大部分 sidecar 代理功能，包括 L7 路由和负载均衡、TLS 终止、访问策略、健康检查、日志和跟踪，以及内置的 Kubernetes Ingress。
 
-Cillium 的创建者 Isovalent 在一篇题为“[告别 Sidecar—— 使用 eBPF 解锁内核级服务网格](https://cloudnative.to/blog/ebpf-solve-service-mesh-sidecar/) “的文章中解释了使用 eBPF 作为 sidecar 代理的理由。
+Cillium 的创建者 Isovalent 在一篇题为“[告别 Sidecar—— 使用 eBPF 解锁内核级服务网格](https://cloudnative.jimmysong.io/blog/ebpf-solve-service-mesh-sidecar/) “的文章中解释了使用 eBPF 作为 sidecar 代理的理由。
 
 它将把我们从 sidecar 模型中解放出来，并允许我们将现有的代理技术整合到现有的内核命名空间概念中，使它们成为我们每天都在使用的容器抽象的一部分。
 
@@ -27,7 +27,7 @@ Cillium 的创建者 Isovalent 在一篇题为“[告别 Sidecar—— 使用 eB
 
 ![告别 sidecar](008i3skNly1gy9u3uba27j31x70u0dk7.jpg) 
 
-（来源：[告别 Sidecar—— 使用 eBPF 解锁内核级服务网格](https://cloudnative.to/blog/ebpf-solve-service-mesh-sidecar/)）
+（来源：[告别 Sidecar—— 使用 eBPF 解锁内核级服务网格](https://cloudnative.jimmysong.io/blog/ebpf-solve-service-mesh-sidecar/)）
 
 服务网格中的数据平面指的是管理数据流量如何被路由和交付给微服务应用的基础设施服务。目前，这是通过使用服务代理来实现的。这种设计模式通常也被称为 Sidecar 模式。Sidecar 允许其附属的微服务透明地与服务网格中的其他组件发出和接收请求。
 

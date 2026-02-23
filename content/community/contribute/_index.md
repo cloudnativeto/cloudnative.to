@@ -19,11 +19,11 @@ date: '2022-07-16T00:00:00+08:00'
 
 ### 定义
 
-- “社区”是指[云原生社区](https://cloudnative.to)。
+- “社区”是指[云原生社区](https://cloudnative.jimmysong.io)。
 - “文章”是指向云原生社区投稿的文章。
 - “作者”是指文章署名的作者。
 - “读者”是指阅读社区发布的文章的人。
-- “社区官网”是指 <https://cloudnative.to>。
+- “社区官网”是指 <https://cloudnative.jimmysong.io>。
 - “官网 Github”是指 [cloudnativeto/cloudnative.to](https://github.com/cloudnativeto/cloudnative.to)。
 
 ### 投稿原则

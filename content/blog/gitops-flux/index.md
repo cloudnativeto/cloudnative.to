@@ -492,8 +492,8 @@ hello-kubernetes-app-member2-app-fd85b68cb-nrvnx    1/1         RUNNING         
 
 - https://www.gitops.tech/#what-is-gitops
 - https://developer.aliyun.com/article/771574
-- https://cloudnative.to/blog/accelerating-developer-productivity-via-gitops/
-- https://cloudnative.to/blog/flux-get-start-easy/
+- https://cloudnative.jimmysong.io/blog/accelerating-developer-productivity-via-gitops/
+- https://cloudnative.jimmysong.io/blog/flux-get-start-easy/
 - https://www.bilibili.com/video/BV1q3411M7hc
 - https://github.com/fluxcd/flux2
 - https://fluxcd.io/

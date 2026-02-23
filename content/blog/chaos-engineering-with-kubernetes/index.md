@@ -853,7 +853,7 @@ func ListPodChaos(namespace string, labels map[string]string) ([]v1alpha1.PodCha
 
 - [controller-runtime 源码分析](https://qiankunli.github.io/2020/08/10/controller_runtime.html)
 - [つくって学ぶ Kubebuilder](https://github.com/zoetrope/kubebuilder-training)（日文教程）
-- [Kubebuilder Book](https://book.kubebuilder.io/) / [中文版](https://cloudnative.to/kubebuilder/)
+- [Kubebuilder Book](https://book.kubebuilder.io/) / [中文版](https://cloudnative.jimmysong.io/kubebuilder/)
 - [kube-controller-manager 源码分析（三）之 Informer 机制](https://www.huweihuang.com/kubernetes-notes/code-analysis/kube-controller-manager/sharedIndexInformer.html)
 - [kubebuilder2.0 学习笔记——进阶使用](https://segmentfault.com/a/1190000020359577)
 - [client-go 和 golang 源码中的技巧](https://www.cnblogs.com/charlieroro/p/11112526.html)

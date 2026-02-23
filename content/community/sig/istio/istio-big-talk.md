@@ -431,7 +431,7 @@ Istio 作为当前最火的 Service Mesh 框架，既有大厂背书，也有优
 
 21. 使用 traefik 作为边缘代理，Istio 来管理服务内部的流量。traefik 转发策略是直连 pod，而不是走 k8s 的 service，如何使用 Istio 来管理到达服务的流量？
 
-    答：抱歉我对 traefik 并不熟悉，不过大概看了这篇[在 Istio 服务网格中使用 Traefik Ingress Controller](https://cloudnative.to/blog/using-traefik-ingress-controller-with-istio-service-mesh/)，流量从 traefik 出来是经过了 envoy，在这里应该还可以做服务治理，后面我再研究下。
+    答：抱歉我对 traefik 并不熟悉，不过大概看了这篇[在 Istio 服务网格中使用 Traefik Ingress Controller](https://cloudnative.jimmysong.io/blog/using-traefik-ingress-controller-with-istio-service-mesh/)，流量从 traefik 出来是经过了 envoy，在这里应该还可以做服务治理，后面我再研究下。
 
 22. 目前 Istio 版本缺失限流功能，这部分要怎么支持？
 

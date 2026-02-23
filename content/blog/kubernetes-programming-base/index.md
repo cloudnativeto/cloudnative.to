@@ -208,7 +208,7 @@ spec 定义的期望状态提供了实现 "infrastructure-as-code" 的基础，�
 对于接触过云原生但不想仅仅停留在使用阶段的朋友，这本书值得一读，通过学习如何在 Kubernetes 基础上做开发，能让你更加了解 Kubernetes，后续可以深入阅读 Kubernetes 源码。
 
 这本书目前国内还未出版，可以去购买 ACM 会员，在 [Oreilly 官网](https://learning.oreilly.com/library/view/programming-kubernetes/9781492047094/) 上阅读。
-或者加入 [云原生社区](https://cloudnative.to/)，社区内分享了 Programming Kubernetes 中文版（腾讯内部翻译）。在 [社区 Github 仓库 Issue](https://github.com/cloudnativeto/community/issues/37) 下回复即可。
+或者加入 [云原生社区](https://cloudnative.jimmysong.io/)，社区内分享了 Programming Kubernetes 中文版（腾讯内部翻译）。在 [社区 Github 仓库 Issue](https://github.com/cloudnativeto/community/issues/37) 下回复即可。
 
 ### Kubernetes 源码剖析
 

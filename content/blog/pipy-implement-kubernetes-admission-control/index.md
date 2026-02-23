@@ -17,7 +17,7 @@ date: 2021-08-08T11:00:42+08:00
 
 在玩过几次 Pipy 并探究其工作原理后，又有了更多的想法。
 
-* [初探可编程网关 Pipy](https://cloudnative.to/blog/glance-at-programmable-gateway-pipy/)
+* [初探可编程网关 Pipy](https://cloudnative.jimmysong.io/blog/glance-at-programmable-gateway-pipy/)
 * [可编程网关 Pipy 第二弹：编程实现 Metrics 及源码解读](https://mp.weixin.qq.com/s/_IeRXp9EJnVsvDfg8tUr1A)
 * [可编程网关 Pipy 第三弹：事件模型设计](https://mp.weixin.qq.com/s/iQWunpazsw86X3kEkB1rJw)
 
@@ -30,7 +30,7 @@ date: 2021-08-08T11:00:42+08:00
 
 现在我更倾向于定义 pipy 是一个“云原生的流量编程框架”，代理只是其底层的核心能力，叠加了 pipy js 以后，上层可以做的事情很多，“流量滋养万物”。
 
-在 [使用 Open Policy Agent 实现可信镜像仓库检查](https://cloudnative.to/blog/image-trusted-repository-with-open-policy-agent/) 之后，就在想 Pipy 是否一样可以做到，将内核替换成 Pipy + 规则。所以今天大部分内容和上面这篇是相似的。
+在 [使用 Open Policy Agent 实现可信镜像仓库检查](https://cloudnative.jimmysong.io/blog/image-trusted-repository-with-open-policy-agent/) 之后，就在想 Pipy 是否一样可以做到，将内核替换成 Pipy + 规则。所以今天大部分内容和上面这篇是相似的。
 
 来，一起看看这个“不务正业”的 Pipy 如何实现 Kubernetes 的准入控制器 来做镜像的检查。
 

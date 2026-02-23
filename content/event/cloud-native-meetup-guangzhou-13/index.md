@@ -21,7 +21,7 @@ authors: ["周林胤", "王琼", "敖小剑", "赵崇阳"]
 tags: ["Dapr","FinOps","金融科技"]
 featured: false
 image:
-  caption: '图片来源：[云原生社区](https://cloudnative.to)'
+  caption: '图片来源：[云原生社区](https://cloudnative.jimmysong.io)'
   focal_point: Right
 
 url_code: ''

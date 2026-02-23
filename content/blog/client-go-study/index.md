@@ -227,7 +227,7 @@ func (c *threadSafeMap) updateIndices(oldObj interface{}, newObj interface{}, ke
 
 可以说 Kubernetes 是当前云原生的基石。所以想要进军云原生领域，kubernetes 的学习必不可少。kubernetes 的设计理念就是通过各种控制器将系统的实际运行状态协调到声明 API 中的期待状态。而这种协调机制就是基于 client-go 实现的。同样，kubernetes 对于 ETCD 存储的缓存处理也使用到了 client-go 中的 Reflector 机制。所以学好 client-go，等于迈入了 Kubernetes 的大门。
 
-学习 Kubernetes 及更多云原生相关技术是一个漫长的过程。所以需要一个人有极强的意志力和学习动力。如果你觉得自己缺乏这些能力，可以加入我们 [云原生社区](https://cloudnative.to/)。大家一起学习，相互督促，相互分享，相互学习，相互成长。
+学习 Kubernetes 及更多云原生相关技术是一个漫长的过程。所以需要一个人有极强的意志力和学习动力。如果你觉得自己缺乏这些能力，可以加入我们 [云原生社区](https://cloudnative.jimmysong.io/)。大家一起学习，相互督促，相互分享，相互学习，相互成长。
 
 最后送自己和正在学习及将要学习 Kubernetes 源码的同学们一句话：**不积跬步，无以至千里；不积小流，无以成江海！**
 

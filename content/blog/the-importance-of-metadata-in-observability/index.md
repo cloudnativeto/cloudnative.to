@@ -155,6 +155,6 @@ IT 基础设施的元数据构建我们可以考虑以下几点：
 
 
 ## 参考：
-1. [云原生下的可观测性发展方向](https://cloudnative.to/blog/cloud-native-observability/)
+1. [云原生下的可观测性发展方向](https://cloudnative.jimmysong.io/blog/cloud-native-observability/)
 2. [维基百科中的元数据的定义](https://zh.wikipedia.org/wiki/%E5%85%83%E6%95%B0%E6%8D%AE)
 3. [百度百科中的元数据的定义](https://baike.baidu.com/item/%E5%85%83%E6%95%B0%E6%8D%AE/1946090)

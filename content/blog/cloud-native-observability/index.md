@@ -146,7 +146,7 @@ OpenTelemetry 给云原生下带来的革命性的进步，包括：
 
 - 邮箱：davidzhang.zc@alibaba-inc.com
 -  微信：davidzhang-zc。
-- 职位：https://cloudnative.to/job/aliyun-sls-observability/
+- 职位：https://cloudnative.jimmysong.io/job/aliyun-sls-observability/
 
 ## 参考
 

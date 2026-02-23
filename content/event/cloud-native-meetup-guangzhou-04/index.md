@@ -21,7 +21,7 @@ authors: ["王院生","黄国锋","吴凌峰","敖小剑"]
 tags: ["Dapr","APISIX"]
 featured: false
 image:
-  caption: '图片来源：[云原生社区](https://cloudnative.to)'
+  caption: '图片来源：[云原生社区](https://cloudnative.jimmysong.io)'
   focal_point: Right
 
 #links:

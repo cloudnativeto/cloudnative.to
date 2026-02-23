@@ -8,7 +8,7 @@
 
 ## 投稿
 
-向本站投稿请参考[投稿指南](https://cloudnative.to/community/contribute/)。
+向本站投稿请参考[投稿指南](https://cloudnative.jimmysong.io/community/contribute/)。
 
 ## 协议
 

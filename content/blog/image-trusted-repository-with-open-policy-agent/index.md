@@ -19,7 +19,7 @@ date: 2021-08-04T10:00:42+08:00
 
 Open Policy Agent（以下简称 OPA，发音“oh-pa”）一个开源的通用策略引擎，可以统一整个堆栈的策略执行。OPA 提供了一种高级声明性语言（Rego），可让你将策略指定为代码和简单的 API，以从你的软件中卸载策略决策。你可以使用 OPA 在微服务、Kubernetes、CI/CD 管道、API 网关等中实施策略。
 
-Rego 是一种高级的声明性语言，是专门为 OPA 建立的。更多 OPA 的介绍可以看 [Open Policy Agent 官网](https://www.openpolicyagent.org/)，不想看英文直接看[这里](https://cloudnative.to/blog/introducing-policy-as-code-the-open-policy-agent-opa/)。
+Rego 是一种高级的声明性语言，是专门为 OPA 建立的。更多 OPA 的介绍可以看 [Open Policy Agent 官网](https://www.openpolicyagent.org/)，不想看英文直接看[这里](https://cloudnative.jimmysong.io/blog/introducing-policy-as-code-the-open-policy-agent-opa/)。
 
 ![2021-07-09-18-26-25](https://atbug.oss-cn-hangzhou.aliyuncs.com/2021/07/09/20210709182625.png)
 
