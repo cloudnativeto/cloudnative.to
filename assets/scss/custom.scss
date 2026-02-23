@@ -1,4 +1,180 @@
 // Override this file to add your own SCSS styling.
+
+// Navbar Styling Improvements
+.navbar {
+  // Enhanced shadow for better depth
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+  // Smoother transitions
+  transition: all 0.3s ease-in-out;
+
+  // Improved navbar brand styling
+  .navbar-brand {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    transition: all 0.2s ease;
+
+    &:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+  }
+
+  // Enhanced nav links
+  .navbar-nav {
+    .nav-link {
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: all 0.2s ease;
+      position: relative;
+      padding: 0.5rem 1rem !important;
+      border-radius: 6px;
+      margin: 0 0.2rem;
+
+      // Add underline animation on hover
+      &::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 4px;
+        left: 50%;
+        background-color: currentColor;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+        border-radius: 2px;
+      }
+
+      &:hover::after,
+      &.active::after {
+        width: 60%;
+      }
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+        transform: translateY(-1px);
+      }
+
+      &.active {
+        font-weight: 600 !important;
+        background-color: rgba(0, 0, 0, 0.06);
+        border-radius: 6px;
+      }
+    }
+  }
+
+  // Improved dropdown styling
+  .dropdown-menu {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+
+    .dropdown-item {
+      border-radius: 6px;
+      padding: 0.6rem 1rem;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+        transform: translateX(2px);
+      }
+
+      &.active,
+      &.dropdown-item-active {
+        background-color: rgba(0, 0, 0, 0.08);
+        font-weight: 600;
+      }
+    }
+  }
+
+  // Enhanced toggler button
+  .navbar-toggler {
+    border: none;
+    padding: 0.5rem;
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &:focus {
+      box-shadow: none;
+      outline: none;
+    }
+  }
+}
+
+// Dark mode navbar improvements
+.dark .navbar {
+  box-shadow: 0 2px 15px rgba(255, 255, 255, 0.05) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  .navbar-nav {
+    .nav-link {
+      &::after {
+        background-color: currentColor;
+      }
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.08);
+      }
+
+      &.active {
+        background-color: rgba(255, 255, 255, 0.12);
+      }
+    }
+  }
+
+  .dropdown-menu {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+
+    .dropdown-item {
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      &.active,
+      &.dropdown-item-active {
+        background-color: rgba(255, 255, 255, 0.15);
+      }
+    }
+  }
+}
+
+// Mobile navbar improvements
+@media (max-width: 991px) {
+  .navbar {
+    .navbar-collapse {
+      background: var(--menu-primary);
+      margin-top: 0.5rem;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-nav {
+      .nav-link {
+        margin: 0.2rem 0;
+        border-radius: 6px;
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .dark .navbar {
+    .navbar-collapse {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+  }
+}
+
 .aside-toc {
     line-height: 1.9;
     ul {
