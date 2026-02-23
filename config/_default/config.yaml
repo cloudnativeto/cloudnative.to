@@ -53,13 +53,29 @@ permalinks:
   categories: "/category/:slug/"
 disableAliases: false
 outputs:
-  home: [HTML, RSS, JSON, WebAppManifest]
-  section: [HTML, RSS]
+  home: [HTML, RSS, JSON, WebAppManifest, Sitemap]
+  section: [HTML, RSS, Sitemap]
 imaging:
   resampleFilter: lanczos
-  quality: 75
+  quality: 85
   anchor: smart
 timeout: 600000
+minify:
+  disableCSS: false
+  disableHTML: false
+  disableJS: false
+  disableJSON: false
+  disableSVG: false
+  disableXML: false
+  minifyOutput: true
+  tdewolff:
+    html:
+      keepWhitespace: false
+    css:
+      version: 2
+    js:
+      keepVarNames: false
+      precision: 0
 taxonomies:
   tag: tags
   category: categories

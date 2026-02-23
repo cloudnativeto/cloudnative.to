@@ -1,3 +1,29 @@
-User-agent: *
+{{/* Enhanced robots.txt for better SEO */}}
 
-Sitemap: {{ "sitemap.xml" | absURL }}
+User-agent: *
+Allow: /
+
+{{/* Disallow admin and private paths */}}
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /.git/
+
+{{/* Crawl-delay for bots */}}
+Crawl-delay: 1
+
+{{/* Allow specific bots */}}
+User-agent: Googlebot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+User-agent: bingbot
+Allow: /
+Crawl-delay: 1
+
+{{/* Sitemap */}}
+Sitemap: {{ printf "%ssitemap.xml" site.BaseURL }}

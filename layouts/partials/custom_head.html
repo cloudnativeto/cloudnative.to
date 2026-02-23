@@ -1,4 +1,181 @@
-{{/* Do not directly modify this file! */}}
-{{/* Instead, create a `layouts/partials/custom_head.html` file in your site and add your code to it. */}}
+{{/* Enhanced SEO Meta Tags */}}
+{{/* Enhanced SEO for Cloud Native Community */}}
 
-{{/* This partial is included in `themes/academic/layouts/partials/site_head.html`. */}}
+{{/* Additional SEO Meta Tags */}}
+<meta name="keywords" content="{{ with .Params.keywords }}{{ delimit . ", " }}{{ else }}云原生，Kubernetes, Docker, Service Mesh, Istio, 微服务，DevOps, 容器，云原生社区{{ end }}">
+<meta name="author" content="{{ with .Params.authors }}{{ delimit . ", " }}{{ else }}云原生社区{{ end }}">
+
+{{/* Enhanced Description for SEO */}}
+{{ if .Description }}
+<meta name="description" content="{{ .Description | truncate 160 }}">
+{{ else if .Summary }}
+<meta name="description" content="{{ .Summary | plainify | truncate 160 }}">
+{{ else }}
+<meta name="description" content="云原生社区是一个独立第三方云原生终端用户和泛开发者社区，致力于推广云原生技术与实践，包括 Kubernetes、Docker、Service Mesh、Istio、微服务等技术。">
+{{ end }}
+
+{{/* Open Graph / Facebook */}}
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:title" content="{{ if .Title }}{{ .Title }}{{ else }}{{ site.Title }}{{ end }}">
+{{ if .Description }}
+<meta property="og:description" content="{{ .Description | truncate 160 }}">
+{{ else if .Summary }}
+<meta property="og:description" content="{{ .Summary | plainify | truncate 160 }}">
+{{ end }}
+{{ if .Params.featured_image }}
+<meta property="og:image" content="{{ .Params.featured_image | absURL }}">
+{{ else if site.Params.seo.og_image }}
+<meta property="og:image" content="{{ site.Params.seo.og_image | absURL }}">
+{{ end }}
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="{{ site.Title }}">
+
+{{/* Article specific Open Graph tags */}}
+{{ if .IsPage }}
+<meta property="article:published_time" content="{{ .PublishDate }}">
+<meta property="article:modified_time" content="{{ .Lastmod }}">
+{{ with .Params.authors }}
+{{ if reflect.IsSlice . }}
+{{ range . }}
+<meta property="article:author" content="{{ . }}">
+{{ end }}
+{{ else }}
+<meta property="article:author" content="{{ . }}">
+{{ end }}
+{{ end }}
+{{ range .Params.tags }}
+<meta property="article:tag" content="{{ . }}">
+{{ end }}
+{{ range .Params.categories }}
+<meta property="article:section" content="{{ . }}">
+{{ end }}
+{{ end }}
+
+{{/* Twitter Card */}}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@CloudNativeCN">
+{{ with site.Params.seo.twitter }}
+<meta name="twitter:creator" content="@{{ . }}">
+{{ end }}
+<meta name="twitter:title" content="{{ if .Title }}{{ .Title }}{{ else }}{{ site.Title }}{{ end }}">
+{{ if .Description }}
+<meta name="twitter:description" content="{{ .Description | truncate 160 }}">
+{{ else if .Summary }}
+<meta name="twitter:description" content="{{ .Summary | plainify | truncate 160 }}">
+{{ end }}
+{{ if .Params.featured_image }}
+<meta name="twitter:image" content="{{ .Params.featured_image | absURL }}">
+{{ else if site.Params.seo.og_image }}
+<meta name="twitter:image" content="{{ site.Params.seo.og_image | absURL }}">
+{{ end }}
+
+{{/* Baidu Webmaster Tools Verification */}}
+{{ with site.Params.marketing.verification.baidu }}
+<meta name="baidu-site-verification" content="{{ . }}">
+{{ end }}
+
+{{/* Canonical URL */}}
+<link rel="canonical" href="{{ .Permalink }}">
+
+{{/* Alternative Language Links */}}
+{{ if .IsTranslated }}
+{{ range .Translations }}
+<link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
+{{ end }}
+{{ end }}
+
+{{/* Structured Data (JSON-LD) for Organization */}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "{{ site.Title }}",
+  "url": "{{ site.BaseURL }}",
+  "logo": "{{ site.BaseURL }}icon.png",
+  "description": "{{ site.Params.marketing.seo.description }}",
+  "sameAs": [
+    "https://github.com/{{ site.Params.repository.url | replaceRE "https://github.com/" "" }}",
+    "https://twitter.com/{{ site.Params.marketing.seo.twitter }}"
+  ]
+}
+</script>
+
+{{/* Structured Data for Blog Posts */}}
+{{ if .IsPage }}
+{{ $author := "" }}
+{{ with .Params.authors }}
+{{ if reflect.IsSlice . }}
+{{ $author = index . 0 }}
+{{ else }}
+{{ $author = . }}
+{{ end }}
+{{ end }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ .Title }}",
+  "image": "{{ with .Params.featured_image }}{{ . | absURL }}{{ else }}{{ site.BaseURL }}icon.png{{ end }}",
+  "datePublished": "{{ .PublishDate }}",
+  "dateModified": "{{ .Lastmod }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ $author }}"
+  },
+  "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}",
+  "url": "{{ .Permalink }}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site.Title }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.BaseURL }}icon.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ .Permalink }}"
+  }
+}
+</script>
+{{ end }}
+
+{{/* Structured Data for Breadcrumb */}}
+{{ if not .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ site.BaseURL }}"
+    }{{ if .Parent }},
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ .Parent.Title }}",
+      "item": "{{ .Parent.Permalink }}"
+    }{{ end }},
+    {
+      "@type": "ListItem",
+      "position": {{ if .Parent }}3{{ else }}2{{ end }},
+      "name": "{{ .Title }}",
+      "item": "{{ .Permalink }}"
+    }
+  ]
+}
+</script>
+{{ end }}
+
+{{/* Preconnect to external domains for performance */}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://avatars.githubusercontent.com">
+
+{{/* DNS Prefetch */}}
+<link rel="dns-prefetch" href="https://www.google-analytics.com">
+<link rel="dns-prefetch" href="https://stats.g.doubleclick.net">

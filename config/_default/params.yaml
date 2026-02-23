@@ -73,10 +73,10 @@ features:
     content_dir: content
     branch: master
   comment:
-    provider: 'giscus'
+    provider: ''
     disqus:
       shortname: ''
-      show_count: true
+      show_count: false
     giscus:
       repo: 'cloudnativeto/cloudnative.to'
       repo_id: 'MDEwOlJlcG9zaXRvcnkyMzc3NDUxOTA='

@@ -13,7 +13,7 @@
             {{ partial "subscribe.html" .}}
             {{ end }}
         </div>
-        <main class="article-body col-9 container docs-content" role="main">
+        <main class="article-body col-9 container docs-content mt-3" role="main">
             <article class="article">
                 <div class="article-style">
                     {{ if and .Params.mobile_toc  (gt (countwords .Content) 600)}}
