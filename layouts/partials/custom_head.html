@@ -153,7 +153,7 @@
       "position": 1,
       "name": "Home",
       "item": "{{ site.BaseURL }}"
-    }{{ if .Parent }},
+    }{{ if and .Parent .Parent.Title }},
     {
       "@type": "ListItem",
       "position": 2,
@@ -162,7 +162,7 @@
     }{{ end }},
     {
       "@type": "ListItem",
-      "position": {{ if .Parent }}3{{ else }}2{{ end }},
+      "position": {{ if and .Parent .Parent.Title }}3{{ else }}2{{ end }},
       "name": "{{ .Title }}",
       "item": "{{ .Permalink }}"
     }
